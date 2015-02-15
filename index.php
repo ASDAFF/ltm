@@ -113,4 +113,4 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 	"AJAX_OPTION_ADDITIONAL" => ""
 	),
 	false
-);?> test<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+);?> <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
