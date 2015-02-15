@@ -1,0 +1,60 @@
+<?
+$aMenuLinks = Array(
+	Array(
+		"ABOUT LTM", 
+		"/about/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"REGISTRATION", 
+		"/registr/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"PARTICIPANTS", 
+		"/members/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"PHOTOS", 
+		"/photo/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"DETAILED SCHEDULE", 
+		"/schedule/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"PARTNERS", 
+		"/partners/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"ORGANIZERS", 
+		"/organizers/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"CONTACTS", 
+		"/contacts/", 
+		Array(), 
+		Array(), 
+		"" 
+	)
+);
+?>

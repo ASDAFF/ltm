@@ -1,0 +1,22 @@
+# files
+.DS_Store
+Thumbs.db
+*.sql
+/.idea/
+/*.log
+/*.txt
+/*.xml
+/*.dt
+*.tar.gz
+/LTMFINAL
+
+# core
+/bitrix/*
+!/bitrix/php_interface/
+/bitrix/php_interface/dbconn.php
+!/bitrix/components/
+/bitrix/components/bitrix/
+# upload
+/upload/*
+/cgi-bin/
+

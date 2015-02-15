@@ -1,0 +1,41 @@
+.repas{
+	display: block;
+	width: 300px;
+	margin: 0 30px 10px 0;
+	height: 35px;
+	padding: 0 0 0 10px;
+	font-size: 16px;
+	border: 1px solid #d3d3d3;
+	border-radius: 5px;
+	float: left;
+}
+.repasbut{
+	display: block;
+	width: 200px;
+	height: 35px;
+	cursor: pointer;
+	border-radius: 5px;
+	font-size: 16px;
+	background: #ececec;
+	border: 1px solid #d3d3d3;
+	color: #343434;
+}
+#pas_form{
+	/*margin-top:24px;*/
+}
+.error_cl, .error_log{
+	color: #e11b1b;
+	display: block;
+	clear: both;
+}
+.error_bor{
+	border: 1px solid #e11b1b !important;
+}
+.yes_bor{
+	border: 1px solid #7abf36 !important;
+}
+.pas_yes{
+	color: #7abf36;
+	display: none;
+	clear: both;
+}

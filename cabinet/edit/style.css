@@ -1,0 +1,167 @@
+.company-info div.dropdown-group
+{
+	background: url("/bitrix/templates/test/images/arrow_down.png") no-repeat scroll 191px 11px transparent;
+	margin: 5px 0 5px 0px;
+	width: 220px;
+	font-size: 14px;
+	border: medium none;
+	color: #000;
+	position: relative;
+}
+.company-info div.dropdown-name
+{
+	height: 27px;
+	line-height: 27px;
+	cursor: pointer;
+	border: 1px solid #8f9092;
+	padding: 0 5px;
+}
+
+.company-info .dropdown-items
+{
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid #8f9092;
+	position: absolute;
+	top: -1px;
+	width: 218px;
+	display: none;
+	z-index: 50;
+	top: 28px;
+}
+.company-info .dropdown-items li
+{
+	height: 27px;
+	line-height: 27px;
+	padding-left: 5px;
+	list-style-type: none;
+	cursor: pointer;
+	margin: 0px;
+}
+
+.first-line
+{
+	overflow: inherit !important;
+}
+
+/*оборачиваем приоритетные направления*/
+
+.company-info.priority-wrap
+{
+	width: 100% !important;
+	margin-top: 15px;
+}
+
+.priority-wrap .check-priority{
+	font-size: 14px;
+	margin-top: 0;
+}
+
+.priority-wrap .priority-name
+{
+	color: #787878;
+	margin-bottom: 5px;
+}
+
+.priority-wrap .priority-check-all
+{
+	border: medium none;
+	color: #000;
+	font-size: 14px;
+	margin-top: 5px;
+	position: relative;
+	height: 32px;
+	line-height: 34px;
+}
+
+.priority-wrap label.check-all
+{
+	background: url("/bitrix/templates/test/images/check.png") no-repeat scroll 7px 7px transparent;
+	display: inline-block;
+	position: relative;
+	cursor: pointer;
+	width: 32px;
+	height: 32px;
+	float: left;
+}
+
+.priority-wrap label.active-all
+{
+	background: url("/bitrix/templates/test/images/check_act.png") no-repeat scroll 7px 0px transparent;
+}
+.priority-wrap .priority-check-global
+{
+	border: medium none;
+	color: #000;
+	font-size: 14px;
+	margin-top: 5px;
+	position: relative;
+	height: 32px;
+	line-height: 34px;
+}
+
+.priority-wrap label.check-global
+{
+	background: url("/bitrix/templates/test/images/check.png") no-repeat scroll 7px 7px transparent;
+	display: block;
+	position: relative;
+	cursor: pointer;
+	padding-left: 35px;
+	width: 130px;
+}
+
+.priority-wrap label.active-global
+{
+	background: url("/bitrix/templates/test/images/check_act.png") no-repeat scroll 7px 0px transparent;
+}
+
+.priority-wrap .priority-items
+{
+	background: none repeat scroll 0 0 #FFFFFF;
+	position: relative;
+	top: -1px;
+	display: none;
+	z-index: 50;
+	padding-top: 15px;
+	overflow: hidden;
+}
+
+.priority-wrap label.check-group
+{
+	background: url("/bitrix/templates/test/images/check.png") no-repeat scroll 7px 1px transparent;
+	display: block;
+	position: relative;
+	cursor: pointer;
+	top: -4px;
+	padding-left: 31px;
+	width: 27%;
+	float: left;
+	margin: 4px 0;
+}
+.priority-wrap label.active-group
+{
+	background: url("/bitrix/templates/test/images/check_act.png") no-repeat scroll 7px -6px transparent;
+}
+
+a.priority-name,
+a.priority-switch
+{
+	text-decoration: none;
+	padding:5px 3px;
+}
+
+a.priority-name ins,
+a.priority-switch ins
+{
+	text-decoration:none; 
+	color: #000 !important;
+	border-bottom: #000 1px dashed;
+}
+
+a.priority-name ins:hover,
+a.priority-switch ins:hover
+{
+	color: #00aeef !important;
+	border-bottom: #00aeef 1px dashed;
+}
+
+.priority-switch{display: none;}

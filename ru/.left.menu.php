@@ -1,0 +1,67 @@
+<?
+$aMenuLinks = Array(
+	Array(
+		"Главная", 
+		"/ru/index.php", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"О мероприятии", 
+		"/ru/about/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Программа", 
+		"/ru/detailed/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Организаторы", 
+		"/ru/organizers/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Партнеры", 
+		"/ru/partners", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Контакты", 
+		"/ru/contacts/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Участники 2013", 
+		"/ru/particip/2013/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Участники 2012", 
+		"/ru/particip/2012/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"LTM в фотографиях", 
+		"/ru/photo/", 
+		Array(), 
+		Array(), 
+		"" 
+	)
+);
+?>

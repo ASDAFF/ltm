@@ -1,0 +1,25 @@
+<?
+$aMenuLinks = Array(
+	Array(
+		"ÅÑÒÜ ÂÎÏÐÎÑÛ?", 
+		"/contacts/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Î ïðèëîæåíèè LTM GUEST SYSTEM™", 
+		"/about/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Íîâîñòè", 
+		"/news/", 
+		Array(), 
+		Array(), 
+		"" 
+	)
+);
+?>

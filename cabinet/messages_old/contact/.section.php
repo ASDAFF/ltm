@@ -1,0 +1,3 @@
+<?
+$sSectionName="Contact the administrator";
+?>

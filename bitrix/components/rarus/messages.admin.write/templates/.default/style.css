@@ -1,0 +1,18 @@
+#submenu_cont{
+	height:55px;
+	}
+.admin_messages{
+	font-size:13px;
+	padding:10px 10px 100px;
+	}
+.admin_messages p{
+	margin:9px 0 9px;
+	}
+.admin_messages a{
+	color:#787878;
+	}
+.admin_messages h1{
+	font-size:14px;
+	color:#66ccfd;
+	margin:5px 0 10px;
+	}

@@ -1,0 +1,3 @@
+<?
+$sSectionName="Write a message";
+?>

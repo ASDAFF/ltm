@@ -1,0 +1,24 @@
+table.meet{
+	table-layout: fixed;
+	width: 1000px;
+	position: relative;
+	left: -25px;
+	margin-bottom: 50px;
+}
+table.meet tr{
+	
+}
+table.meet td{
+	padding: 5px;
+	border: 1px solid #7d7d7d;
+	word-break: break-word;
+	text-align: center;
+}
+.trHover, .trHover td{
+	background: #333 !important;
+	color: #fff !important;
+}
+.er_tr, .er_tr td{
+	background: #b01a0f !important;
+	color: #fff !important;
+}

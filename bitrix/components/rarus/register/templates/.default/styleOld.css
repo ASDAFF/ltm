@@ -1,0 +1,620 @@
+.hide
+{
+	display:none !important;
+}
+
+span.upload-status
+{
+	color: #F00;
+}
+span.register-title {  
+	color: #00AEEF;
+	display: block;
+	font-family: 'Helios';
+	font-size: 21px;
+	line-height: 21px;
+	/* margin-top: 20px; */ 
+	margin-bottom: 20px;
+}
+
+#register_form_content {
+	width: 610px;
+	border: 1px solid #f1f1f2;
+	background: url("images/form_ex.png") repeat scroll 0 0 transparent;
+	padding: 15px;
+	margin-top: 5px;
+	margin-bottom: 55px;
+}
+
+.exhibition_header {
+	font-family: 'Helios_L'
+}
+.exhibition_header .title {
+	font-family: 'Helios';
+	left: -279px;
+	position: relative;
+}
+ 
+.exhibitor {
+	float: left;
+	margin-left: 35px;
+	margin-top: 37px;
+	width: 245px;
+	position: relative;
+}
+
+.buyer {
+	float: left;
+	margin-left: 69px;
+	margin-top: 17px;
+	width: 230px;
+	position: relative;
+}
+
+.exhibitor .d-title,
+.buyer .d-title {
+	font-family: 'Helios';
+	margin-bottom: 5px;
+}
+
+.exhibitor span.descr,
+.buyer span.descr{
+	font-family: 'Helios_L';
+	color: #787878;
+}
+
+
+.user-type-select {
+	height: 50px;
+	margin-left: 35px;
+	padding-bottom: 15px;
+	width: 555px;
+	display: block;
+}
+
+.user-type-select td {
+	width: 320px;
+	height: 35px;
+}
+
+
+label.check {
+	background: url("images/check.png") no-repeat scroll 0 7px transparent;
+	display: block;
+	height: 25px;
+	position: relative;
+	width: 19px;
+	cursor: pointer;
+	left: 105px;
+}
+
+label.active {
+	background: url("images/check_act.png") no-repeat scroll 0 0 transparent;
+}
+
+.line-sep {
+	background: none repeat scroll 0 0 #000000;
+	height: 1px;
+	margin-left: 35px;
+	width: 540px;
+	position: relative;
+	top: 0;
+} 
+.line-sep-g {
+	background: none repeat scroll 0 0 #C5C5C5;
+	height: 1px;
+	margin-left: 35px;
+	margin-top: 10px;
+	position: relative;
+	width: 540px;
+}
+
+
+
+/* блок выбора выставки*/
+
+.exhibition-select-block
+{
+	font-family: 'Helios';
+	margin-top: 7px;
+}
+
+.exhibition-select-block div.title
+{
+	font-family: 'Helios';
+	font-size: 20px;
+	margin: 10px 0;
+}
+
+.exhibition-select-block div.choose,
+.exhibition-select-block div.choose-b {
+	color: #212121;
+	font-size: 16px;
+	letter-spacing: -0.5px;
+	margin-left: 33px;
+	margin-top: 5px;
+}
+
+.exhibition-select-block div.choose-b {
+	font-size: 14px;
+}
+
+.exh-select {
+	color: #000;
+	font-family: 'Helios_L';
+	font-size: 17px;
+	margin-left: 30px;
+	margin-top: 10px;
+	width: 539px;
+}
+.exh-select tr,
+.exh-select td,
+.exh-select th
+{
+	height: 25px;
+	font-weight: normal;
+	text-align: left;
+}
+
+.exh-select th
+{
+	font-size: 12px;
+	text-align: center;
+}
+
+label.check-exh {
+	background: url("images/check.png") no-repeat scroll 0 3px transparent;
+	display: block;
+	height: 25px;
+	position: relative;
+	width: 19px;
+	cursor: pointer;
+	margin: 0 auto;
+}
+
+label.active-exh {
+	background: url("images/check_act.png") no-repeat scroll 0 -4px transparent;
+}
+
+#choice {
+	color: #545454;
+	display: block;
+	font-family: 'Helios_L';
+	font-size: 13px;
+	margin-left: 30px;
+	margin-top: 10px;
+}
+
+#selected-exhibition {
+	color: #66C4F3;
+}
+
+.not-available .name_exhibition
+{
+	color: #787878 !important;
+}
+
+
+
+/*НЕМНОГО ИНФОРМАЦИИ О ВАС*/
+div.some-information
+{
+	font-family: 'Helios';
+	margin-top: 15px;
+	margin-bottom: 20px;
+}
+
+div.some-information div.choose,
+div.some-information div.choose-b {
+	color: #212121;
+	font-size: 16px;
+	letter-spacing: -0.5px;
+	margin-left: 33px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+}
+
+#register_form_content input[type=text],
+#register_form_content input[type=password]
+{
+	background: url("images/ex_inp.png") no-repeat scroll 0 0 transparent;
+	border: medium none;
+	color: #000;
+	display: block;
+	font-family: 'Helios_L';
+	font-size: 18px;
+	height: 32px;
+	margin: 5px 0 5px 106px;
+	padding-left: 10px;
+	width: 392px;
+}
+
+
+.line-sep-small
+{
+	background: none repeat scroll 0 0 #CCCCCC;
+	height: 1px;
+	margin-bottom: 10px;
+	margin-left: 107px;
+	margin-top: 10px;
+	position: relative;
+	width: 402px;
+}
+.priority-title
+{
+	color: #66C4F3;
+	font-family: 'Helios_L';
+	font-size: 18px;
+	margin-left: 105px;
+	width: 403px;
+}
+
+.authorize-title
+{
+	color: #00aeef;
+	font-family: 'Helios_L';
+	font-size: 14px;
+	margin-left: 105px;
+	width: 335px;
+}
+
+.authorize-epilogue
+{
+	color: #000;
+	font-family: 'Helios_L';
+	font-size: 14px;
+	margin-left: 105px;
+	width: 351px;
+	margin-top: 5px;
+}
+
+.collegue-title
+{
+	color: #000;
+	font-family: 'Helios_L';
+	font-size: 14px;
+	margin-left: 105px;
+	width: 351px;
+	margin-top: 5px;
+}
+
+label.check-register
+{
+	background: url("images/check.png") no-repeat scroll 7px 10px transparent;
+	display: block;
+	position: relative;
+	cursor: pointer;
+	top: -4px;
+	padding-left: 35px;
+	margin-left: 25px;
+	padding-top: 10px;
+	min-height: 25px;
+}
+
+label.active-register
+{
+	background: url("images/check_act.png") no-repeat scroll 7px 3px transparent;
+}
+
+input[type=button].register-button
+{
+	border: medium none;
+	color: #FFFFFF;
+	cursor: auto;
+	display: block;
+	font-family: 'Helios_L';
+	font-size: 18px;
+	height: 30px;
+	margin-bottom: 10px;
+	margin-left: 340px;
+	margin-top: 10px;
+	text-transform: lowercase;
+	width: 162px;
+}
+input[type=button].register-button.available
+{
+	background: url("images/send.png") no-repeat scroll 0 0 transparent;
+	border: medium none;
+	cursor: pointer !important;
+}
+
+/*textarea*/
+textarea{
+	border: 1px solid #F2F2F3;
+	color: #787878;
+	display: block;
+	font-family: 'Helios_L';
+	font-size: 18px;
+	margin: 5px 0 5px 106px;
+	width: 390px;
+	min-height: 170px;
+	padding-left: 10px;
+	resize: none;
+}
+
+
+/*Оборачиваем групповой чекбокс*/
+div.check-group
+{
+	background: url("images/ex_sel.png") no-repeat scroll 0 0 transparent;
+	border: medium none;
+	color: #000;
+	font-family: 'Helios_L';
+	font-size: 18px;
+	margin: 5px 0 5px 106px;
+	padding-left: 10px;
+	width: 392px;
+	cursor: pointer;
+	position: relative;
+}
+
+div.group-name
+{
+	height: 32px;
+	line-height: 34px;
+}
+
+.group-items
+{
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid #F2F2F3;
+	left: -9px;
+	position: relative;
+	top: -1px;
+	width: 398px;
+	display: none;
+	z-index: 50;
+	padding-top: 15px;
+	overflow: hidden;
+}
+
+label.check-group
+{
+	background: url("images/check.png") no-repeat scroll 7px 3px transparent;
+	display: block;
+	position: relative;
+	cursor: pointer;
+	top: -4px;
+	padding-left: 31px;
+	width: 42%;
+	float: left;
+	margin: 4px 0;
+}
+label.active-group
+{
+	background: url("images/check_act.png") no-repeat scroll 7px -4px transparent;
+}
+
+/*Оборачиваем DropDown*/
+
+
+div.dropdown-group
+{
+	background: url("images/ex_sel.png") no-repeat scroll 0 0 transparent;
+	font-family: 'Helios_L';
+	margin: 5px 0 5px 106px;
+	width: 392px;
+	padding-left: 10px;
+	font-size: 18px;
+	border: medium none;
+	color: #000;
+	overflow: hidden;
+}
+
+.dropdown-title
+{
+	color: #787878;
+	margin-bottom: 5px;
+	margin-left: 107px;
+}
+
+div.dropdown-name
+{
+	height: 32px;
+	line-height: 34px;
+	cursor: pointer;
+	border: medium none;
+}
+
+.dropdown-items
+{
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid #F2F2F3;
+	left: -9px;
+	position: relative;
+	top: -1px;
+	width: 398px;
+	display: none;
+	z-index: 50;
+}
+.dropdown-items li
+{
+	height: 32px;
+	line-height: 32px;
+	padding-left: 10px;
+	list-style-type: none;
+	cursor: pointer;
+}
+
+/*оборачиваем приоритетные направления*/
+
+.priority-wrap
+{
+	margin-left: 105px;
+	width: 400px;
+}
+
+.check-priority
+{
+	font-family: 'Helios_L';
+	font-size: 17px;
+	margin-top: 10px;
+}
+
+.priority-name
+{
+	color: #787878;
+	margin-bottom: 5px;
+}
+
+
+
+.priority-check-all
+{
+	background: url("images/ex_sel.png") no-repeat scroll 0 0 transparent;
+	border: medium none;
+	color: #000;
+	font-size: 18px;
+	margin-top: 5px;
+	width: 400px;
+	cursor: pointer;
+	position: relative;
+	height: 32px;
+	line-height: 34px;
+}
+
+label.check-all
+{
+	background: url("images/check.png") no-repeat scroll 7px 7px transparent;
+	display: block;
+	position: relative;
+	cursor: pointer;
+	padding-left: 31px;
+	width: 30%;
+}
+
+label.active-all
+{
+	background: url("images/check_act.png") no-repeat scroll 7px 0px transparent;
+}
+.priority-check-global
+{
+	border: medium none;
+	color: #000;
+	font-size: 18px;
+	margin-top: 5px;
+	margin-left: 105px;
+	width: 400px;
+	position: relative;
+	height: 32px;
+	line-height: 34px;
+}
+
+label.check-global
+{
+	background: url("images/check.png") no-repeat scroll 7px 7px transparent;
+	display: block;
+	position: relative;
+	cursor: pointer;
+	padding-left: 31px;
+	color: #787878;
+}
+
+label.active-global
+{
+	background: url("images/check_act.png") no-repeat scroll 7px 0px transparent;
+}
+
+.priority-items
+{
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid #F2F2F3;
+	position: relative;
+	top: -1px;
+	width: 398px;
+	display: none;
+	z-index: 50;
+	padding-top: 15px;
+	overflow: hidden;
+}
+
+.block-upload-photo
+{
+	margin: 5px 0 5px 106px;
+	width: 402px;
+}
+
+
+.upload-photos
+{
+	background: none repeat scroll 0 0 #5CA656;
+	color: #FFF;
+	cursor: pointer;
+	display: block;
+	font-family: 'Helios_L';
+	font-size: 17px;
+	height: 32px;
+	line-height: 32px;
+	margin: 10px 0 5px 0px;
+	text-align: center;
+	width: 402px;
+}
+
+.upload-photos.disable-upload
+{
+	 background-color: #dddddd;
+	 color: #787878;
+}
+
+
+.upload-photo-preview
+{
+	max-width: 200px;
+}
+
+ul.files li 
+{
+	text-align: center;
+	margin: 5px 0 10px 0;
+	border: 1px dotted #000;
+	padding: 5px;
+}
+
+div.delete-photo
+{
+	width: 198px;
+	height: 28px;
+	color: #000;
+	background-color: #F00;
+	border: 1px solid #FFF;
+	cursor: pointer;
+	border-radius: 5px;
+	line-height: 28px;
+	margin: 2px auto;
+}
+
+.input-status
+{
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 0px;
+	right: 50px;
+}
+
+.input-error-text
+{
+	color: #ff1111;
+	margin: 10px 0 10px 108px;
+	font-size: 14px;
+	font-family: 'Helios_L';
+}
+
+.input-success
+{
+	background: url('images/yes_new.png') no-repeat scroll 0 10px transparent;
+}
+
+.input-error
+{
+	background: url('images/not_valid.png') no-repeat scroll 0 10px transparent;
+}
+
+.input-text-block,
+.input-select-block,
+.priority-areas, 
+.input-photo-block,
+.exhibition-block-validate
+{
+	position: relative;
+}

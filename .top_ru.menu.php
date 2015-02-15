@@ -1,0 +1,60 @@
+<?
+$aMenuLinks = Array(
+	Array(
+		"Î ÂÛÑÒÀÂÊÅ LTM", 
+		"/about/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"ÐÅÃÈÑÒÐÀÖÈß", 
+		"/registr/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Ó×ÀÑÒÍÈÊÈ", 
+		"/members/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"ÔÎÒÎ", 
+		"/photo/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"ÐÀÑÏÈÑÀÍÈÅ", 
+		"/schedule/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"ÏÀÐÒÍ¨ÐÛ", 
+		"/partners/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"ÎÐÃÀÍÈÇÀÒÎÐÛ", 
+		"/organizers/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"ÊÎÍÒÀÊÒÛ", 
+		"/contacts/", 
+		Array(), 
+		Array(), 
+		"" 
+	)
+);
+?>

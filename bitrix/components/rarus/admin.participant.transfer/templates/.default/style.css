@@ -1,0 +1,7 @@
+div.exhibition td.red{color: #F00}
+div.exhibition td.white{color: #FFF}
+div.exhibition td.green{color: #0F0}
+
+div.exhibition tr.confirmed{background-color: rgb(125, 125, 125);}
+div.exhibition tr.unconfirmed{background-color: inherit;}
+div.exhibition tr.none{background-color: inherit;}

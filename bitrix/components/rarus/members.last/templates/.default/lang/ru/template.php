@@ -1,0 +1,6 @@
+<?
+$MESS["CT_BNL_ELEMENT_DELETE_CONFIRM"] = "Áóäåò óäàëåíà âñÿ èíôîðìàöèÿ, ñâÿçàííàÿ ñ ýòîé çàïèñüþ. Ïðîäîëæèòü?";
+$MESS["MEMBERS_LIST_TITLE"] = "THE MAIN EXHIBITION IN THE LUXURY TRAVEL INDUSTRY";
+$MESS["MEMBERS_LAST_TITLE"] = "ÏÎÑËÅÄÍÈÅ ÐÅÃÈÑÒÐÀÖÈÈ<br />ÍÀ ÁËÈÆÀÉØÅÅ ÌÅÐÎÏÐÈßÒÈÅ";
+$MESS["MEMBERS_LAST_SHOW_ALL"] = "ÏÎÊÀÇÀÒÜ ÂÑÅÕ";
+?>
