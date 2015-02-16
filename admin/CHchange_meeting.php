@@ -20,7 +20,7 @@ use Doka\Meetings\Wishlists as DWL;
 $userInfo = array();
 $userInfo[1] = array();//Москва Весна 2015
 $userInfo[1]["FORM"] = 4;
-$userInfo[1]["PROP_NAME"] = "UF_ID";
+$userInfo[1]["PROP_NAME"] = "UF_ID11";
 $userInfo[1]["FIO"][0][0] = "SIMPLE_QUESTION_446";
 $userInfo[1]["FIO"][0][1] = "84";
 $userInfo[1]["FIO"][1][0] = "SIMPLE_QUESTION_551";
@@ -71,7 +71,7 @@ $userInfo[5]["FIO"][2][1] = "105";
 
 $userInfo[6] = array();//Москва Весна 2015
 $userInfo[6]["FORM"] = 4;
-$userInfo[6]["PROP_NAME"] = "UF_ID";
+$userInfo[6]["PROP_NAME"] = "UF_ID11";
 $userInfo[6]["FIO"][0][0] = "SIMPLE_QUESTION_446";
 $userInfo[6]["FIO"][0][1] = "84";
 $userInfo[6]["FIO"][1][0] = "SIMPLE_QUESTION_551";
@@ -133,10 +133,10 @@ while ($exhibition = $rsExhibitions->Fetch()) {
         $senderType = $req_obj->getUserTypeById($request['SENDER_ID']);
         if($senderType == 'GUEST'){
             $sender = $req_obj->getUserInfo($request['SENDER_ID']);
-            $receiver = $req_obj->getUserInfoFull($request['RECEIVER_ID'], $userInfo[$exhibition['ID']]["FORM"], $userInfo[$exhibition['ID']]["PROP_NAME"], $userInfo[$exhibition['ID']]["FIO"]);
+            $receiver = $req_obj->getUserInfoFull($request['RECEIVER_ID'], $exhibition['FORM_ID'], $exhibition['FORM_RES_CODE'], $userInfo[$exhibition['ID']]["FIO"]);
         }
         else{
-            $sender = $req_obj->getUserInfoFull($request['SENDER_ID'], $userInfo[$exhibition['ID']]["FORM"], $userInfo[$exhibition['ID']]["PROP_NAME"], $userInfo[$exhibition['ID']]["FIO"]);
+            $sender = $req_obj->getUserInfoFull($request['SENDER_ID'], $exhibition['FORM_ID'], $exhibition['FORM_RES_CODE'], $userInfo[$exhibition['ID']]["FIO"]);
             $receiver = $req_obj->getUserInfo($request['RECEIVER_ID']);
         }
         
@@ -156,7 +156,7 @@ while ($exhibition = $rsExhibitions->Fetch()) {
     }
 	
 }
-$mailto = "diana_box@list.ru";
+    $mailto = "diana_box@list.ru";
     $mail = "Обработка встреч с сайта Luxury\n".$strReq;
     mail($mailto,"Cron с сайта Luxury",$mail,"Content-Type: text/plain; charset=windows-1251\r\n");
 ?>
