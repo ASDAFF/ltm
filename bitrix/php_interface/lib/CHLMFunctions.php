@@ -4,9 +4,6 @@ use Bitrix\Main\Entity;
 
 class CHLMFunctions
 {
-
-
-
     function GetUserName($USER_ID)
     {
         $ar_res = false;
@@ -48,6 +45,11 @@ class CHLMFunctions
         if(in_array($arExhib["PROPERTY_C_GUESTS_GROUP_VALUE"], $arUserGroups))//гость
         {
             return self::GetGuestInfo($arUser, $arExhib);
+        }
+        
+        if(1 == $USER_ID)
+        {
+        	return $arUser;
         }
 
     }
