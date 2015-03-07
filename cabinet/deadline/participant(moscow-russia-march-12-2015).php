@@ -1,5 +1,9 @@
 <h3>DEADLINES</h3>
 
+<p><a href="http://luxurytravelmart.ru/files/DAY1-HB.pdf" target="_blank">Download floor plan for the first day</a><br />
+	<a href="http://luxurytravelmart.ru/files/DAY2-EXHIBITORS.pdf" target="_blank">Download floor plan for the second day</a><br />
+	<a href="http://luxurytravelmart.ru/files/LTM2015_exhibitors_program.pdf" target="_blank">Download program for the event</a>
+</p>
 <p><b>November, 16, 2014:</b> Opening of registration for the hosted buyers.</p>
 <p><b>January, 13, 2015:</b> Opening of registration for the buyers from Moscow.<br />
 Please note that this year registration for the evening reception won’t be open for everyone, access to the evening party is by invitation only.</p>

@@ -13,6 +13,12 @@ $arUrlRewrite = array(
 		"PATH" => "/cabinet/messages_old/contact/index.php",
 	),
 	array(
+		"CONDITION" => "#^/admin/([^/]+)/guest/matrix_hb/.*.*.*.*.*.*.*#",
+		"RULE" => "EXHIBIT_CODE=\$1",
+		"ID" => "",
+		"PATH" => "/admin/guest/matrix_hb/index.php",
+	),
+	array(
 		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/messages/contact/.*#",
 		"RULE" => "EXHIBIT_CODE=\$1",
 		"ID" => "",
@@ -23,12 +29,6 @@ $arUrlRewrite = array(
 		"RULE" => "EXHIBIT_CODE=\$1",
 		"ID" => "",
 		"PATH" => "/cabinet/morning/schedule/index.php",
-	),
-	array(
-		"CONDITION" => "#^/admin/([^/]+)/guest/matrix_hb/.*.*.*.*.*.*.*#",
-		"RULE" => "EXHIBIT_CODE=\$1",
-		"ID" => "",
-		"PATH" => "/admin/guest/matrix_hb/index.php",
 	),
 	array(
 		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/messages2/inbox/.*#",
@@ -43,16 +43,28 @@ $arUrlRewrite = array(
 		"PATH" => "/cabinet/edit/colleague.php",
 	),
 	array(
+		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/messages2/sent/.*#",
+		"RULE" => "EXHIBIT_CODE=\$1",
+		"ID" => "",
+		"PATH" => "/cabinet/messages_old/sent/index.php",
+	),
+	array(
 		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/messages/inbox/.*#",
 		"RULE" => "EXHIBIT_CODE=\$1",
 		"ID" => "",
 		"PATH" => "/cabinet/messages/inbox/index.php",
 	),
 	array(
-		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/messages2/sent/.*#",
+		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/messages/sent/.*#",
 		"RULE" => "EXHIBIT_CODE=\$1",
 		"ID" => "",
-		"PATH" => "/cabinet/messages_old/sent/index.php",
+		"PATH" => "/cabinet/messages/sent/index.php",
+	),
+	array(
+		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/messages/read/.*#",
+		"RULE" => "EXHIBIT_CODE=\$1",
+		"ID" => "",
+		"PATH" => "/cabinet/messages/read/index.php",
 	),
 	array(
 		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/messages2/new/.*#",
@@ -67,36 +79,6 @@ $arUrlRewrite = array(
 		"PATH" => "/admin/guest/matrix/index.php",
 	),
 	array(
-		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/messages/read/.*#",
-		"RULE" => "EXHIBIT_CODE=\$1",
-		"ID" => "",
-		"PATH" => "/cabinet/messages/read/index.php",
-	),
-	array(
-		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/messages/sent/.*#",
-		"RULE" => "EXHIBIT_CODE=\$1",
-		"ID" => "",
-		"PATH" => "/cabinet/messages/sent/index.php",
-	),
-	array(
-		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/edit/profile/.*#",
-		"RULE" => "EXHIBIT_CODE=\$1",
-		"ID" => "",
-		"PATH" => "/cabinet/edit/profile.php",
-	),
-	array(
-		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/edit/company/.*#",
-		"RULE" => "EXHIBIT_CODE=\$1",
-		"ID" => "",
-		"PATH" => "/cabinet/edit/participant-company.php",
-	),
-	array(
-		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/messages/new/.*#",
-		"RULE" => "EXHIBIT_CODE=\$1",
-		"ID" => "",
-		"PATH" => "/cabinet/messages/new/index.php",
-	),
-	array(
 		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/morning/list/.*#",
 		"RULE" => "EXHIBIT_CODE=\$1",
 		"ID" => "",
@@ -109,10 +91,22 @@ $arUrlRewrite = array(
 		"PATH" => "/admin/messages/inbox/index.php",
 	),
 	array(
-		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/hb/schedule/.*#",
+		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/messages/new/.*#",
 		"RULE" => "EXHIBIT_CODE=\$1",
 		"ID" => "",
-		"PATH" => "/cabinet/hb/schedule/index.php",
+		"PATH" => "/cabinet/messages/new/index.php",
+	),
+	array(
+		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/edit/company/.*#",
+		"RULE" => "EXHIBIT_CODE=\$1",
+		"ID" => "",
+		"PATH" => "/cabinet/edit/participant-company.php",
+	),
+	array(
+		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/edit/profile/.*#",
+		"RULE" => "EXHIBIT_CODE=\$1",
+		"ID" => "",
+		"PATH" => "/cabinet/edit/profile.php",
 	),
 	array(
 		"CONDITION" => "#^/admin/([0-9a-zA-Z-_]+)/messages/sent/.*#",
@@ -121,10 +115,10 @@ $arUrlRewrite = array(
 		"PATH" => "/admin/messages/sent/index.php",
 	),
 	array(
-		"CONDITION" => "#^/admin/([0-9a-zA-Z-_]+)/messages/new/.*#",
+		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/hb/schedule/.*#",
 		"RULE" => "EXHIBIT_CODE=\$1",
 		"ID" => "",
-		"PATH" => "/admin/messages/new/index.php",
+		"PATH" => "/cabinet/hb/schedule/index.php",
 	),
 	array(
 		"CONDITION" => "#^/admin/([^/]+)/participant/matrix_hb/.*#",
@@ -133,16 +127,16 @@ $arUrlRewrite = array(
 		"PATH" => "/admin/participant/matrix_hb/index.php",
 	),
 	array(
+		"CONDITION" => "#^/admin/([0-9a-zA-Z-_]+)/messages/new/.*#",
+		"RULE" => "EXHIBIT_CODE=\$1",
+		"ID" => "",
+		"PATH" => "/admin/messages/new/index.php",
+	),
+	array(
 		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/messages2/.*#",
 		"RULE" => "EXHIBIT_CODE=\$1",
 		"ID" => "",
 		"PATH" => "/cabinet/messages_old/index.php",
-	),
-	array(
-		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/deadline/.*#",
-		"RULE" => "EXHIBIT_CODE=\$1",
-		"ID" => "",
-		"PATH" => "/cabinet/deadline/index.php",
 	),
 	array(
 		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/messages/.*#",
@@ -151,22 +145,16 @@ $arUrlRewrite = array(
 		"PATH" => "/cabinet/messages/index.php",
 	),
 	array(
-		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/catalog/.*#",
+		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/deadline/.*#",
 		"RULE" => "EXHIBIT_CODE=\$1",
 		"ID" => "",
-		"PATH" => "/cabinet/catalog/index.php",
+		"PATH" => "/cabinet/deadline/index.php",
 	),
 	array(
-		"CONDITION" => "#^/admin/([^/]+)/participant/matrix/.*#",
+		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/morning/.*#",
 		"RULE" => "EXHIBIT_CODE=\$1",
 		"ID" => "",
-		"PATH" => "/admin/participant/matrix/index.php",
-	),
-	array(
-		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/evening/.*#",
-		"RULE" => "EXHIBIT_CODE=\$1",
-		"ID" => "",
-		"PATH" => "/cabinet/evening/index.php",
+		"PATH" => "/cabinet/morning/index.php",
 	),
 	array(
 		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/hb/list/.*#",
@@ -175,10 +163,22 @@ $arUrlRewrite = array(
 		"PATH" => "/cabinet/hb/list/index.php",
 	),
 	array(
-		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/morning/.*#",
+		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/catalog/.*#",
 		"RULE" => "EXHIBIT_CODE=\$1",
 		"ID" => "",
-		"PATH" => "/cabinet/morning/index.php",
+		"PATH" => "/cabinet/catalog/index.php",
+	),
+	array(
+		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/evening/.*#",
+		"RULE" => "EXHIBIT_CODE=\$1",
+		"ID" => "",
+		"PATH" => "/cabinet/evening/index.php",
+	),
+	array(
+		"CONDITION" => "#^/admin/([^/]+)/participant/matrix/.*#",
+		"RULE" => "EXHIBIT_CODE=\$1",
+		"ID" => "",
+		"PATH" => "/admin/participant/matrix/index.php",
 	),
 	array(
 		"CONDITION" => "#^/admin/([0-9a-zA-Z-_]+)/messages/.*#",
@@ -199,22 +199,16 @@ $arUrlRewrite = array(
 		"PATH" => "/admin/participant/off/index.php",
 	),
 	array(
-		"CONDITION" => "#^/members/([0-9]+)/.*.*.*.*.*.*.*#",
-		"RULE" => "ID=\$1",
-		"ID" => "",
-		"PATH" => "/members/detail.php",
-	),
-	array(
 		"CONDITION" => "#^/admin/([^/]+)/participant/on/.*#",
 		"RULE" => "EXHIBIT_CODE=\$1",
 		"ID" => "",
 		"PATH" => "/admin/participant/on/index.php",
 	),
 	array(
-		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/hb/.*#",
-		"RULE" => "EXHIBIT_CODE=\$1",
+		"CONDITION" => "#^/members/([0-9]+)/.*.*.*.*.*.*.*#",
+		"RULE" => "ID=\$1",
 		"ID" => "",
-		"PATH" => "/cabinet/hb/index.php",
+		"PATH" => "/members/detail.php",
 	),
 	array(
 		"CONDITION" => "#^/admin/([^/]+)/guest/([^/]+)/.*#",
@@ -223,16 +217,22 @@ $arUrlRewrite = array(
 		"PATH" => "/admin/guest/guest-list.php",
 	),
 	array(
-		"CONDITION" => "#^/members/([0-9a-zA-Z-_]+)/.*#",
-		"RULE" => "CODE=\$1",
+		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/hb/.*#",
+		"RULE" => "EXHIBIT_CODE=\$1",
 		"ID" => "",
-		"PATH" => "/members/index.php",
+		"PATH" => "/cabinet/hb/index.php",
 	),
 	array(
 		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/.*#",
 		"RULE" => "EXHIBIT_CODE=\$1",
 		"ID" => "",
 		"PATH" => "/cabinet/profile.php",
+	),
+	array(
+		"CONDITION" => "#^/members/([0-9a-zA-Z-_]+)/.*#",
+		"RULE" => "CODE=\$1",
+		"ID" => "",
+		"PATH" => "/members/index.php",
 	),
 	array(
 		"CONDITION" => "#^/admin/([0-9a-zA-Z-_]+)/.*#",
