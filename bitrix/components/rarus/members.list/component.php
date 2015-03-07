@@ -202,20 +202,21 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
     ksort($arResult["ITEMS_ID_BY_CATEGORY"]);
 	//сортируем по названию компаний участников
 	$newCat = array();
-	$nameId = array();
+	//$nameId = array();
 	foreach($arResult["ITEMS_ID_BY_CATEGORY"] as $categoryName=>$arItemsId){
 		foreach($arItemsId as $arItemId){
 			$newCat[$categoryName][$arItemId] = $arResult["ITEMS"][$arItemId]["NAME"];
-			$nameId[$arItemId] = $arResult["ITEMS"][$arItemId]["NAME"];
+			//$nameId[$arItemId] = $arResult["ITEMS"][$arItemId]["NAME"];
 		}
 	}
 	foreach($newCat as $arItemsId=>$categoryName){
-		sort($categoryName);
-		foreach($categoryName as $arItemId){
+		asort($categoryName);
+		/*foreach($categoryName as $arItemId){
 			$idComp[] = array_search($arItemId, $nameId);
 		}
-		$arResult["ITEMS_ID_BY_CATEGORY"][$arItemsId] = $idComp;
-		$idComp = array();
+		$arResult["ITEMS_ID_BY_CATEGORY"][$arItemsId] = $idComp;*/
+		$arResult["ITEMS_ID_BY_CATEGORY"][$arItemsId] = array_keys($categoryName);
+		//$idComp = array();
 	}
 
 	$this->IncludeComponentTemplate();

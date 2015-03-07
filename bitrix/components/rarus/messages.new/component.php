@@ -290,6 +290,12 @@ else{
 }
 $toUserdata = CHLMFunctions::GetUserInfoForm($arParams["UID"], $arResult["EXHIBIT"]);
 $arResult["USERS"]["TO"] = array("ID" => $arParams["UID"], "NAME" => $toUserdata["NAME"]. " " .$toUserdata["LAST_NAME"] . ". Company: " . $toUserdata["COMPANY_NAME"]);
+
+if(1 == $arParams["UID"])
+{
+	$arResult["USERS"]["TO"] = array("ID" => $arParams["UID"], "NAME" => "Administration Company: LTM");
+}
+
 $arResult["USERS"]["TO_LIST"]["LIST"] = array();
 $arResult["USERS"]["TO_LIST"]["COUNT"] = 0;
 if(!$arParams["UID"] && isset($arParams["GROUP_WRITE"]) && $arParams["GROUP_WRITE"] != ''){

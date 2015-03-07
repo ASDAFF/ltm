@@ -11,7 +11,7 @@ ErrorDocument 404 /404.php
   php_value max_input_vars 10000
   
   #php_value mbstring.internal_encoding UTF-8
-  php_value auto_prepend_file "/home/u24601/luxurytravelmart.ru/www/bitrix/modules/security/tools/start.php"
+  php_value auto_prepend_file "d:\xampp\htdocs/luxurytravelmart.local/www/bitrix/modules/security/tools/start.php"
 </IfModule>
 
 <IfModule mod_rewrite.c>

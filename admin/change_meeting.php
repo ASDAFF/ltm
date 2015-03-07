@@ -160,4 +160,3 @@ $mailto = "diana_box@list.ru";
     $mail = "Обработка встреч с сайта Luxury\n".$strReq;
     mail($mailto,"Cron с сайта Luxury",$mail,"Content-Type: text/plain; charset=windows-1251\r\n");
 ?>
-
