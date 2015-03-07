@@ -1,5 +1,4 @@
 <h3>DEADLINES</h3>
-
 <p><a href="http://luxurytravelmart.ru/files/DAY1-HB.pdf" target="_blank">Download floor plan for the first day</a><br />
 	<a href="http://luxurytravelmart.ru/files/DAY2-EXHIBITORS.pdf" target="_blank">Download floor plan for the second day</a><br />
 	<a href="http://luxurytravelmart.ru/files/LTM2015_exhibitors_program.pdf" target="_blank">Download program for the event</a>
