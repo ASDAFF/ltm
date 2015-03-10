@@ -16,6 +16,7 @@ Thumbs.db
 /bitrix/php_interface/dbconn.php
 !/bitrix/components/
 /bitrix/components/bitrix/
+!/bitrix/modules/doka.meetings/
 # upload
 /upload/*
 /cgi-bin/
