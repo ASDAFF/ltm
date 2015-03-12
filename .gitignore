@@ -9,7 +9,7 @@ Thumbs.db
 /*.dt
 *.tar.gz
 /LTMFINAL
-/.htaccess
+.htaccess
 
 # core
 /bitrix/*
