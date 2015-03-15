@@ -33,5 +33,7 @@ $exhibCode = trim($_REQUEST["EXHIBIT_CODE"]);
 	),
 false
 );?>
-
+	<div class="panel-heading">
+		<a href="/admin/photo/" class="collapsed">Загрузка фотографий</a>
+	</div>
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
