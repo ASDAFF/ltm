@@ -1,0 +1,1 @@
+<span id="design">Design by <a href="http://startbrand.ru" target="_blank" >STARTBRAND®</a></span>

@@ -1,0 +1,50 @@
+table{margin-bottom: 15px;}
+table tr th{text-align: left;color: #00aeef;font-weight: normal;font-size: 13px;padding: 0 0 7px;}
+table tr td{padding: 7px 0;font-size: 13px;}
+table tr:nth-child(even) td{background:#ededee;}
+table tr td:first-child{padding-left: 10px;}
+table.time-line tr td:first-child{width: 100px;}
+table tr th.chose-company{width: 295px;}
+table tr .chose-company{width: 280px;}
+table tr td select{border: 1px solid #bfc1c3;}
+input[type=submit]{color: #00aeef;border: none;font-family: helios_l;;padding: 0;border-bottom: 1px solid #00aeef;font-size: 14px;background: none;cursor: pointer;}
+.reed-letter{margin-bottom: 15px;}
+.reed-letter .head-letter{background: #ededee;padding: 5px;font-size: 12px;margin-bottom: 15px;}
+.reed-letter .contact-info{/*width: 400px;*/}
+.reed-letter .theme {width: 100%;}
+.reed-letter .message-text{font-size: 14px;padding: 0 10px 0px 5px;margin-bottom: 15px;}
+.reed-letter .send{text-align: left; padding-left:5px;}
+.reed-letter .send a{font-size: 14px;color: #00aeef;}
+.reed-letter .send a:first-child{margin-right: 15px;} 
+.reed-letter .head-letter {background: #EDEDEE;padding: 5px;font-size: 12px;margin-bottom: 15px;}
+.reed-letter .pull-right {float: right;}
+.reed-letter .pull-left {float: left;}
+.reed-letter .theme {width: 100%;}
+.reed-letter  .pull-overflow{overflow:hidden;}
+.new-message input[type=text]{width:450px; border:1px solid #9B9C9E; margin:5px 0px; padding:4px 4px;}
+.new-message textarea{max-width: 450px;min-width: 450px;border: 1px solid #9B9C9E;margin: 5px 0px;min-height: 230px;padding: 4px;}
+.new-message select{padding: 3px 0px; margin: 5px 0px; max-width: 450px;}
+.send{text-align: left;}
+
+.message-box .message-list-tab li{float: left;margin-right: 30px;}
+.message-box .message-list-tab li a{color: #77787b;font-size: 14px;}
+.message-box .inbox-list td:first-child{width: 280px;padding-right:10px;}
+.message-box .inbox-list td{padding-right: 10px;}
+.message-box .inbox-list td,.message-box .inbox .inbox-list td a{font-size: 12px;}
+.message-box .inbox-list td.unread{font-weight: bold;}
+.message-box .inbox-list .company{width: 100px;}
+.message-box .inbox-list .date{width:75px;}
+
+.message-box .new-message input[type=text]{width:634px; border:1px solid #9B9C9E; margin:5px 0px; padding:4px 4px;}
+.message-box .new-message textarea{max-width: 634px;min-width: 634px;border: 1px solid #9B9C9E;margin: 5px 0px;min-height: 280px;padding: 4px;}
+.message-box .new-message select{padding: 3px 0px; margin: 5px 0px; max-width: 634px;}
+.message-box .send{text-align: right;}
+.send input[type=submit]{color: #00aeef;border: none;font-family: helios_l;;padding: 0;border-bottom: 1px solid #00aeef;font-size: 14px;background: none;cursor: pointer;}
+.message-box .reed-letter{margin-bottom: 15px;}
+.message-box .reed-letter .head-letter{background: #ededee;padding: 5px;font-size: 12px;margin-bottom: 15px;}
+.message-box .reed-letter .contact-info{width: 500px;}
+.message-box .reed-letter .theme {width: 100%;}
+.message-box .reed-letter .message-text{font-size: 14px;padding: 0 10px;margin-bottom: 15px;}
+.message-box .reed-letter .send{text-align: left;}
+.message-box .reed-letter .send a{font-size: 14px;color: #00aeef;}
+.message-box .reed-letter .send a:first-child{margin-right: 15px;}

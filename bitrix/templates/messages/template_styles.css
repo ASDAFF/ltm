@@ -1,0 +1,42 @@
+@font-face{
+	font-family: 'Helios_N';
+	src:url('fonts/Helios_N.eot');
+	src:url('fonts/Helios_N.eot?#iefix') format('embedded-opentype'),
+		url('fonts/Helios_N.ttf') format('truetype');
+		url('fonts/Helios_N.svg#agopuscregular') format('svg');
+}
+@font-face{
+	font-family: 'Helios_T';
+	src:url('fonts/Helios_T.eot');
+	src:url('fonts/Helios_T.eot?#iefix') format('embedded-opentype'),
+		url('fonts/Helios_T.ttf') format('truetype');
+		url('fonts/Helios_T.svg#agopuscregular') format('svg');
+}
+@font-face{
+	font-family: 'Helios_L';
+	src:url('fonts/Helios_L.eot');
+	src:url('fonts/Helios_L.eot?#iefix') format('embedded-opentype'),
+		url('fonts/Helios_L.ttf') format('truetype');
+		url('fonts/Helios_L.svg#agopuscregular') format('svg');
+}
+@font-face{
+	font-family: 'Helios_C';
+	src:url('fonts/Helios_C.eot');
+	src:url('fonts/Helios_C.eot?#iefix') format('embedded-opentype'),
+		url('fonts/Helios_C.ttf') format('truetype');
+		url('fonts/Helios_C.svg#agopuscregular') format('svg');
+}
+@font-face{
+	font-family: 'Helios';
+	src:url('fonts/Helios.eot');
+	src:url('fonts/Helios.eot?#iefix') format('embedded-opentype'),
+		url('fonts/Helios.ttf') format('truetype');
+		url('fonts/Helios.svg#agopuscregular') format('svg');
+}
+body{
+	margin: 0;
+	padding: 15px;
+	font-family: 'Helios_L';
+	font-size: 16px;
+	line-height: 18px;
+}

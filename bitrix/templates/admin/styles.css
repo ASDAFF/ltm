@@ -1,0 +1,96 @@
+html,body{background:#0f0f0f;margin: 0;padding: 0;font-family:Tahoma,Geneva,sans-serif;color: #fff;font-size: 11px;line-height: 13px;}
+a{color: #fff;}
+a:focus{outline: none;}
+a:hover{text-decoration: underline;}
+ul{margin: 0 0 10px;padding: 0;}
+
+.admin-container{width: 100%;}
+/*.admin-container .content{background: #4B4B4B;}*/
+.admin-container .main-tab{background: #000;padding: 10px 0 0;margin: 0 0 10px;}
+.admin-container .main-tab .tab-item{background:#323232;border-radius:6px 6px 0 0;padding: 3px 5px;overflow: hidden;min-width: 275px;}
+.admin-container .main-tab table{margin:0;}
+.admin-container .main-tab table tr td:first-child .tab-item {min-width: 50px;}
+.admin-container .main-tab table td{padding: 0 1px;border: none;}
+.admin-container .main-tab table td .town-name {float: left;margin-right: 5px; min-height: 150px;cursor: pointer;max-width:45px;}
+.admin-container .main-tab table td .town-name .town{text-transform: uppercase;color: #787878;text-decoration: none;font-weight: bold;display: inline-block;height: 130px;width:110px;}
+.admin-container .main-tab ul{list-style: none;margin: 0;overflow: hidden;float:right;}
+.admin-container .main-tab table td .active{background:#4B4B4B;}
+.admin-container .main-tab table td .active .town{color:#66CCFD;}
+.admin-container .main-tab table td .active li.active a{color:#66CCFD;}
+.admin-container table{border: 1px solid #000;}
+.admin-container table th{text-align: left;background:#4B4B4B;color: #ccc;border-top:1px solid #000 !important;}
+.admin-container table th,table td{border: 1px solid #000;vertical-align: top; padding: 5px;}
+.admin-container table tr.even td{background: #191919;}
+.admin-container table tr.odd td{background:#4B4B4B;}
+.admin-container table .description{min-width: 400px;}
+
+.admin-container .menu li{display: inline-block;}
+.admin-container .menu li.active a{border-bottom-color: #FFF; }
+
+.admin-container .custom-buttom{
+	background: none repeat scroll 0 0 #313131;
+	border: 1px solid #000000;
+	color: #66CCFD;
+	display: inline-block;
+	font-size: 14px;
+	font-weight: bold;
+	height: 28px;
+	margin-bottom: 5px;
+	padding: 5px;
+	text-decoration: none;
+	vertical-align: middle;
+	line-height: initial;
+}
+
+.admin-container .custom-buttom:hover,
+.admin-container .custom-buttom:active{text-decoration: none;color: #66CCFD;}
+
+.admin-container .action {position: relative;}
+.admin-container .action img{cursor: pointer;}
+.admin-container .action ul{list-style: none;text-align: left;z-index:5;position: absolute;top:25px;right: 0;margin: 0;display: none;background:#000;padding: 5px;border-radius:6px;}
+.admin-container .action ul li{white-space: nowrap;}
+
+.admin-container button,
+.admin-container input,
+.admin-container optgroup,
+.admin-container select,
+.admin-container textarea
+{
+	color: black;
+	font: inherit;
+	margin: 0;
+}
+.admin-container input[type=file]
+{
+	color: white;
+	font: inherit;
+	margin: 0;
+}
+
+.admin-container form[name=admin_message] p {margin: 10px 0;}
+
+.admin-container .tab-content{background: #4b4b4b;padding:20px 10px 5px;}
+.admin-container .tab-content > .tab-pane {display: none;}
+.admin-container .tab-content > .active {display: block;}
+.admin-container .tab-content .panel {background:#4b4b4b ;border: none;box-shadow:none;}
+.admin-container ul.list li{margin: 0 0 10px;list-style: none;font-size:13px;}
+.admin-container ul.list li a{text-decoration: underline;font-size:13px;}
+.admin-container .panel-heading{background: none;border: none;}
+.admin-container .panel-heading a{color: #66CCFD;font-size: 14px;margin: 5px 0 10px;font-weight: bold;text-decoration: none;}
+.admin-container .tab-list{float:left;list-style: none;}
+.admin-container ul.tab-list a:hover {color: #787878;}
+.admin-container .headline{
+ 	font-size: 14px;
+ 	font-weight: bold;
+ 	color:#787878;
+ 	margin: 0 0 15px;
+ }
+ 
+ .reed-letter{margin-bottom: 15px;}
+.reed-letter .head-letter{padding: 5px;font-size: 12px;margin-bottom: 15px;}
+.reed-letter .contact-info{width: 500px;}
+.reed-letter .theme {width: 100%;}
+.reed-letter .message-text{font-size: 14px;padding: 0 10px;margin-bottom: 15px;}
+.reed-letter .send{text-align: left;}
+.reed-letter .send a{font-size: 14px;color: #00aeef;}
+.reed-letter .send a:first-child{margin-right: 15px;}

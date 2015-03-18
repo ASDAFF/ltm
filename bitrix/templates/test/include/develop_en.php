@@ -1,0 +1,1 @@
+<span id = "develop">Developed by <a href="http://ae-studio.ru" target="_blank">AE! studio</a></span>

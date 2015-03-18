@@ -1,0 +1,465 @@
+@font-face{
+	font-family: 'Helios_N';
+	src:url('fonts/Helios_N.eot');
+	src:url('fonts/Helios_N.eot?#iefix') format('embedded-opentype'),
+		url('fonts/Helios_N.woff') format('woff'),
+		url('fonts/Helios_N.ttf') format('truetype'),
+		url('fonts/Helios_N.svg#heliosthincregular') format('svg');
+}
+@font-face{
+	font-family: 'Proxima';
+	src:url('fonts/Proxima.eot');
+	src:url('fonts/Proxima.eot?#iefix') format('embedded-opentype'),
+		url('fonts/Proxima.ttf') format('truetype'),
+		url('fonts/Proxima.woff') format('woff'),
+		url('fonts/Proxima.svg#proxima_novaregular') format('svg');
+}
+@font-face{
+	font-family: 'Helios_L';
+	src:url('fonts/Helios_L.eot');
+	src:url('fonts/Helios_L.eot?#iefix') format('embedded-opentype'),
+		url('fonts/Helios_L.ttf') format('truetype'),
+		url('fonts/Helios_L.svg#agopuscregular') format('svg');
+}
+
+html, body{
+	margin: 0;
+	padding: 0;
+	font-family: 'Proxima';
+	font-size: 15px;
+}
+.pull-left{float: left;}
+.pull-right{float: right;}
+.pull-overflow{overflow: hidden;}
+
+table{width: 100%;border-collapse: collapse;}
+
+.form-group{overflow: hidden;width: 100%;margin-bottom: 15px;}
+.form-group .control-label {width: 25%;text-align: right;float: left;padding-right: 10px;font-size: 12px;padding-top: 6px;}
+.form-group .data-control{width: 71%;float: left;}
+.data-control input[type=text],
+.data-control input[type=email]{width: 98%;border: 1px solid #8f9092;padding: 5px 0 6px 5px;color: #77787b;font-size: 14px;}
+
+p{margin: 0 0 10px;}
+
+.clearfix:after{
+    content:'';
+    display:table;
+    clear:both;
+	}
+.clear {/* Для совместимости, а вообще, надо бы на clearfix заменить везде*/
+    clear: both !important;
+}
+.layoutCenterWrapper{
+    margin: 0 auto;
+    width: 940px;
+	}
+/* Скроллер */
+#scroller{
+    position: fixed; 
+    bottom: 220px;
+    left:0;
+    background:url("images/scroll.png") no-repeat 50% 20px;  
+    text-align: center;
+    width: 85px;
+    height: 85px;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+    border: 1px solid #00aeef;
+    border-left: 0;
+    color:#00aeef;
+    font-size: 14px;
+    display:none;
+}
+#scroller:before{
+	content: '';
+	display: block;
+	height: 50px;
+}
+header{
+	background: url("images/top.gif") #000000 repeat;
+	height: 108px;
+	width: 100%;
+	color:#fff;
+}
+#logo{
+	background: url("images/logo.png") no-repeat;
+	display: block;
+	float: left;
+	position: relative;
+	margin-top: 14px;
+	width: 89px;
+	height: 78px;
+}
+#title{
+	font-size: 44px;
+	position: relative;
+	float:left;
+	font-family: 'Helios_L';
+	display: block;
+	margin-top: 30px;
+	margin-left: 20px;	
+	text-transform: uppercase;
+}
+#lang{
+	font-size: 16px;
+	float:right;
+	padding-top: 35px;
+	text-align: right;
+}
+#lang a{
+	display: block;
+	color: #fff;
+	float: right;
+	clear: right;
+	text-decoration: none;
+	background: none;
+	width: auto;
+}
+#lang .act{
+	font-weight: bold;
+}
+/* Верхнее меню */
+nav.menu-top{
+	margin: 0 auto;
+	border-bottom: 1px solid #000000;
+	width: 940px;
+	height: 26px;
+	text-align: justify;
+	text-align-last:justify;
+}
+nav.menu-top a{
+	color: #000000;
+	display: inline-block;
+	padding: 5px;
+	text-decoration: none;
+	font-size: 15px;
+	text-transform: uppercase;
+	text-align: left;
+}
+nav.menu-top a:first-child{
+	padding-left: 0;
+}
+nav.menu-top a:last-child{
+	padding-right: 0;
+}
+nav.menu-top a:hover{
+	text-decoration: none;
+}
+nav.menu-top:after {
+	content:"";
+	display:inline-block;
+	width:100%;
+	height:0;
+	overflow:hidden;
+}
+/* Контент */
+#content{
+	margin-top: 33px;
+	position: relative;
+}
+h1{
+	font-size: 37px;
+	font-weight: normal;
+	font-family: 'Helios_N';
+	margin: 0 0 20px;
+	margin-right: -8px;
+	max-height: 40px; /* Это чтобы по ширине выравнивалось*/
+	text-align: justify;
+	text-align-last:justify;
+	letter-spacing: 5.98px;
+}
+h1:after {
+	content:"";
+	display:inline-block;
+	width:100%;
+	height:0;
+	overflow:hidden;
+}
+#center{
+	width: 640px;
+	float: left;
+}
+a{
+	color:#66c4f3;
+}
+
+/* В шаблоне этого нет, возможно внутри где-то*/
+h2{
+	color: #00AEEF;
+	font-size: 20px;
+	font-weight: normal;
+	margin: 0 0 10px;
+}
+article{
+	color: #545454;
+}
+#news h2.news{
+	color: #00AEEF;
+	font-size: 20px;
+	font-weight: normal;
+	margin: 0 0 20px;
+	border-bottom: 1px solid #B2E7FA;
+	padding-bottom: 3px;
+	clear: both;
+	float: none;
+}
+
+#news{margin-top: 30px;}
+
+#news article{
+	margin: 0 0 33px;
+	overflow: hidden;
+}
+#news article:after{
+    content:'';
+    display:table;
+    clear:both;
+	}
+#news article .news-img{
+	float: right;
+	margin: 5px 20px 0px;
+	margin-right: 0;
+	position: relative;
+}
+#news article a.more{
+	color: #676767;
+	display: block;
+	position: relative;
+	width: 120px;
+}
+#news article .news-text{
+	float: left;
+	width: 400px;
+}
+#news article a.more:hover{
+	text-decoration: none;
+}
+h3{
+	font-size: 20px;
+	font-weight: bold;
+	color:#000;
+}
+#news article h3{
+	margin:0;
+font-weight: normal;
+}
+
+/* Правая колонка, везде кроме страниц с проверкой встреч */
+#right{
+	float: right;
+	margin-bottom: 65px;
+	margin-left: 20px;
+	width: 280px;
+}
+/* Форма авторизации */
+#form{
+	background: url("images/form.gif") repeat;
+	border: 1px solid #E7F7FF;
+	position: relative;
+	padding: 20px;
+	margin-top: 5px;
+}
+#form .form_title{
+	font-size: 15px;
+	position: relative;
+}
+#form input{
+	background-color: #fff;
+	font-size: 18px;
+	border: 1px solid #E7F7FF;
+	width: 100%;
+	margin-top: 12px;
+	padding: 3px;
+}
+#form input:first-child{
+	margin-top: 20px;
+}
+#form .error-mes{
+	font-size: 17px;
+	position: absolute;
+	top:160px;
+}
+#form .error-mes p{
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+#form input.but{
+	background: none;
+	border:0px;
+	cursor: pointer;
+	font-size: 17px;
+	text-transform: uppercase;
+	margin: 50px 0 50px;
+}
+#form .forgot{
+	color: #000000;
+	display: block;
+	font-size: 14px;
+	text-decoration: none;
+	}
+#form .forgot:hover{
+	text-decoration: underline;
+}
+
+figure{
+	border:0px;
+	margin: 0;
+}
+figure img{
+	border:0px;
+}
+figure#banner{
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+figure#merop{
+	margin-top: 5px;
+}
+figure#merop span{
+	border-bottom: 1px solid #B2E7FA;
+	color: #00AEEF;
+	display: block;
+	font-size: 14px;
+	line-height: 20px;
+}
+figure#merop p{
+	border-bottom: 1px solid #B2E7FA;
+	color: #545454;
+	line-height: 18px;
+	margin: 5px 0 2px;
+	padding-bottom: 5px;
+	padding-top: 4px;
+}
+figure#merop a{
+	color: #00AEEF;
+	font-size: 14px;
+	left: 163px;
+	position: relative;
+	text-decoration: none;
+	top: 2px;
+}
+figure#merop a:hover{
+	text-decoration: underline;
+}
+figure#ltm{
+	display: none;
+	margin-top: 20px;
+	position: relative;
+}
+figure#ltm span{
+	color: #00AEEF;
+	font-size: 20px;
+}
+figure#ltm p{
+	margin: 5px 0 9px;
+}
+figure#ltm a{
+	margin-left: 3px;
+	color: #00AEEF;
+	font-size: 14px;
+}
+figure#ltm a:hover{
+	text-decoration: none;
+}
+figure#ltm a.ltm1{
+	background: url("images/ltm1.jpg") no-repeat;
+	display: block;
+	float: left;
+	width: 135px;
+	height: 40px;
+}
+figure#ltm a.ltm2{
+	background: url("images/ltm2.jpg") no-repeat;
+	display: block;
+	float: right;
+	width: 118px;
+	height: 40px;
+}
+/* Подвал */
+footer{
+	background: url("images/footer.gif") #9b9b9b repeat;
+	border-top: 1px solid #c7c7c7;
+	height: 217px;
+	position: relative;
+}
+.org{
+	float:left;
+	width:110px;
+	text-align: center;
+	margin-right: 50px;
+}
+.org img{
+	margin-top: 15px;
+}
+nav#bottom{
+	float:left;
+	width:260px;
+	padding-top: 15px;
+}
+nav#bottom:before{
+	content:'';
+    display:block;
+    clear:both;
+    width:103px;
+    height: 1px;
+    background-color: #fff;
+}
+nav#bottom a{
+	color: #fff;
+	display: block;
+	font-size: 13px;
+	margin: 11px 0 0;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+nav#bottom a:hover{
+	text-decoration: underline;
+	}
+#help{
+	float: right;
+	clear:right;
+	width: 280px;
+	padding-top: 15px;
+	color: #fff;
+	font-size: 16px;
+	}
+#help span{
+	display: block;
+	text-transform: uppercase;
+	font-size: 15px;
+	padding-bottom: 10px;
+}
+#adress{
+	width: 240px;
+	background: url("images/adress.png") left center no-repeat;
+	color: #FFFFFF;
+	font-size: 14px;
+	float: right;
+	clear:right;
+	margin-top: 30px;
+	border-top: 1px solid #fff;
+	padding: 15px 0 15px 40px;
+}
+.en #adress{
+	right: 0;
+}
+#copyright{
+	color: #FFFFFF;
+	font-size: 12px;
+	clear: both;
+	margin: 0;
+	padding: 0;
+}
+#design, #develop{
+	color: #FFFFFF;
+	font-size: 12px;
+	padding-left: 12px;
+}
+#design a, #develop a{
+	color: #FFFFFF;
+}
+#design a:hover, #develop a:hover{
+	text-decoration: none;
+}
