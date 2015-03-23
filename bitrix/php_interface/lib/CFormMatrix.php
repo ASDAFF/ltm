@@ -587,6 +587,18 @@ class CFormMatrix
 
 		return self::$arAnswerSalutationIDByForm[$needFormID][$index];
 	}
+	
+	static function getAnswerSalutationBase($answID, $needFormID)
+	{
+		if(empty($answID) || !intval($needFormID))
+		{
+			return;
+		}
+		$index = array_search($answID, self::$arAnswerSalutationIDByForm[$needFormID]);
+	
+		return self::$arAnswerSalutationIDByForm[4][$index];
+	}
+	
 	static $arCParticipantField = array(
 		"Групповые действия",
 		"ID пользователя",

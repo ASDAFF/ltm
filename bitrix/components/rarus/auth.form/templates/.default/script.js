@@ -5,7 +5,7 @@ function regForExhib(exhibID, userID, SID)
 	regData.userID = userID;
 	regData.SID = SID;
 
-	console.log(regData);
+
 	$.ajax({
 		type: "POST",
 		url: '/bitrix/components/rarus/auth.form/ajax_reg.php',
