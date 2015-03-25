@@ -4,6 +4,14 @@ $arConfirmUsersID = $_REQUEST["ACTION"];
 $answerid = array("text", "textarea", "password", "date", "file", "image", "hidden");
 $answersid = array("dropdown", "checkbox", "multiselect", "radio");
 
+$skipFields = array(
+		"SIMPLE_QUESTION_732", 		//Зал
+		"SIMPLE_QUESTION_148", 		//Стол
+		"SIMPLE_QUESTION_539", 		//Номер счета
+		"SIMPLE_QUESTION_680",		//Сумма счета
+		"SIMPLE_QUESTION_667"		//Реквизиты
+);
+
 foreach($arConfirmUsersID as $userID)
 {
 //pre($userID);
@@ -42,13 +50,19 @@ foreach($arConfirmUsersID as $userID)
     }
 
 
-
+	//если отсутствует результат вебформы на данную выставку, то добавляем пользователя и пустой для его коллеги
     if(empty($arUser[$memberOneID]))
     {
         $arNewFields = array();
 
         foreach ($arUser["FORM_USER"] as $question)//подготовка массива для формы
         {
+        	if(in_array($question["SID"], $skipFields))
+        	{
+        		continue;
+        	}
+        	
+        	
             $fieldType = "";
             if(in_array($question["FIELD_TYPE"], $answerid))
             {
@@ -86,14 +100,7 @@ foreach($arConfirmUsersID as $userID)
             $arNewFields[$fieldName] = $value;
 
         }
-
-        //pre("Добавляем данные в вебформу\r\n");
-       // pre("ID формы \r\n");
-        //pre($formID);
-
-       // pre("Новые поля \r\n");
-       //pre($arNewFields);
-
+        
        if(!empty($arNewFields))
        {
            $resMemberOneID = CFormResult::Add($formID, $arNewFields);
@@ -101,6 +108,8 @@ foreach($arConfirmUsersID as $userID)
 
            $b = $USER->Update($userID, $arUserFields);
        }
+       
+       //добавляем второму пользователю пустой результат вебформы
        $resMemberTwoID = CFormResult::Add($formID);
        $USER->Update($userID, array($memberTwoID => $resMemberTwoID));
 
@@ -109,9 +118,10 @@ foreach($arConfirmUsersID as $userID)
            CUser::SetUserGroup($userID, $arGroups);
        }
 
-    }
+    }//если результат есть, но нет результата коллеги, добавляем пустой результат коллеги
     elseif(empty($arUser[$memberTwoID]))
     {
+    	//добавляем второпу пользователю пустой результат вебформы
         $resMemberTwoID = CFormResult::Add($formID);
         $USER->Update($userID, array($memberTwoID => $resMemberTwoID));
 
@@ -119,14 +129,13 @@ foreach($arConfirmUsersID as $userID)
         {
             CUser::SetUserGroup($userID, $arGroups);
         }
-    }
+    }//если есть все результаты, просто записываем пользователя в новые подтвержденные группы
     else
     {
         CUser::SetUserGroup($userID, $arGroups);
-        //$url = $APPLICATION->GetCurUri();
-        //LocalRedirect($url);
     }
 
+    //обновляем у пользователя данные в профиле
        $name = $arUser["FORM_USER"][32]["VALUE"]; //32 id Participant first name
        $lastName = $arUser["FORM_USER"][33]["VALUE"]; //33 id Participant last name
        $workCompany = $arUser["FORM_DATA"][17]["VALUE"]; //17 id Company or hotel name
