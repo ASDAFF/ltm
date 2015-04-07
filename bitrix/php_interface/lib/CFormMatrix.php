@@ -2,6 +2,7 @@
 class CFormMatrix
 {
 
+
 	private static $arAnswerSalutationIDByForm = array(
 		4 => array(
 			200,//Mr.
@@ -57,6 +58,12 @@ class CFormMatrix
 			1410,//Ms.
 			1411//Dr.
 		),
+		29 => array(
+			1456,//Mr.
+			1457,//Mrs.
+			1458,//Ms.
+			1459//Dr.
+		),
 	);
 
 	private static $arAnswerRequisiteIDByForm = array(
@@ -96,7 +103,12 @@ class CFormMatrix
 	        1423,//ИП Поланский Артем Валентинович
 	        1424,//Трэвэл Медиа
 	    ),
+		29 => array(
+			1472,//ИП Поланский Артем Валентинович
+			1473,//Трэвэл Медиа
+		),
 	);
+
 
 	static function getIndexRequisiteIDByForm($id, $formID)
 	{
@@ -256,7 +268,23 @@ class CFormMatrix
 			    566,//Номер счета
 			    567, //Сумма счета
 			    568, //Реквизиты
-			)
+			),
+		29 => array(
+			572,//Participant first name
+			573,//Participant last name
+			574,//Job title
+			575,//Telephone
+			576,//E-mail
+			577,//Please confirm your e-mail
+			578,//Alternative e-mail
+			579,//Персональное фото
+			580, //Salutation
+			581, //Зал
+			582,//Стол
+			583,//Номер счета
+			584, //Сумма счета
+			585, //Реквизиты
+		)
 
 	);
 
@@ -405,6 +433,22 @@ class CFormMatrix
 		    1422,//Сумма счета
 		    "SIMPLE_QUESTION_183",//Реквизиты
 		),//Участники Представители Москва Осень 2015
+		29 => array(
+			1448,//Participant first name
+			1449,//Participant last name
+			1450,//Job title
+			1451,//Telephone
+			1452,//E-mail
+			1453,//Please confirm your e-mail
+			1454,//Alternative e-mail
+			1455,//Персональное фото
+			"SIMPLE_QUESTION_889", //Salutation
+			"SIMPLE_QUESTION_732",//Зал
+			1469, //Стол
+			1470,//Номер счета
+			1471,//Сумма счета
+			"SIMPLE_QUESTION_667",//Реквизиты
+		),//Участники Представители Москва Весна 2016
 	);
 
 	private static $arSIDByForm = array(
@@ -552,6 +596,22 @@ class CFormMatrix
 		    "SIMPLE_QUESTION_214",//Стол
 		    "SIMPLE_QUESTION_824",//Зал
 		),//Участники Представители Москва Осень 2015
+		29 => array(
+			"SIMPLE_QUESTION_446",//Participant first name
+			"SIMPLE_QUESTION_551",//Participant last name
+			"SIMPLE_QUESTION_729",//Job title
+			"SIMPLE_QUESTION_394",//Telephone
+			"SIMPLE_QUESTION_859",//E-mail
+			"SIMPLE_QUESTION_585",//Please confirm your e-mail
+			"SIMPLE_QUESTION_749",//Alternative e-mail
+			"SIMPLE_QUESTION_575",//Персональное фото
+			"SIMPLE_QUESTION_889",//Salutation
+			"SIMPLE_QUESTION_539",//Номер счета
+			"SIMPLE_QUESTION_680",//Сумма счета
+			"SIMPLE_QUESTION_667",//Реквизиты
+			"SIMPLE_QUESTION_148",//Стол
+			"SIMPLE_QUESTION_732",//Зал
+		),//Участники Представители Москва Весна 2016
 	);
 
 
@@ -559,7 +619,7 @@ class CFormMatrix
 	{
 		if(empty($baseQ) || !intval($needFormID))
 		{
-			return;
+			return false;
 		}
 		$index = array_search($baseQ, self::$arAnswerIDByForm[4]);
 
@@ -570,7 +630,7 @@ class CFormMatrix
 	{
 	    if(empty($baseQ) || !intval($needFormID))
 	    {
-	        return;
+	        return false;
 	    }
 	    $index = array_search($baseQ, self::$arSIDByForm[4]);
 
@@ -581,7 +641,7 @@ class CFormMatrix
 	{
 		if(empty($baseQ) || !intval($needFormID))
 		{
-			return;
+			return false;
 		}
 		$index = array_search($baseQ, self::$arAnswerSalutationIDByForm[4]);
 
@@ -592,7 +652,7 @@ class CFormMatrix
 	{
 		if(empty($answID) || !intval($needFormID))
 		{
-			return;
+			return false;
 		}
 		$index = array_search($answID, self::$arAnswerSalutationIDByForm[$needFormID]);
 	
@@ -926,8 +986,8 @@ class CFormMatrix
 			"18" => "Имя коллеги 2",
 			"19" => "Фамилия коллеги 2",
 			"20" => "Должность коллеги 2",
-			"20" => "E-mail коллеги 2",
-			"20" => "Имя коллеги 3",
+			"21" => "E-mail коллеги 2",
+			"22" => "Имя коллеги 3",
 			"23" => "Фамилия коллеги 3",
 			"24" => "Должность коллеги 3",
 			"25" => "E-mail коллеги 3"
@@ -1435,7 +1495,8 @@ class CFormMatrix
 		357 => 5, //Баку, Айзербайджан. 10 апреля 2014
 		359 => 7, //Алматы, Казахстан. 26 сентября 2014
 		360 => 6, //Киев, Украина. 23 сентября 2014
-		361 => 4, //Москва, Россия. 13 марта 2014
+//		361 => 4, //Москва, Россия. 13 марта 2014 ** СТАРОЕ ЗНАЧЕНИЕ, МОЖНО ВЕРНУТЬ ТУТ
+		361 => 29, //отдельная форма для москва весна 2016, была 4
 		488 => 25, //Москва, Россия. 12 марта 2015
 		3521 => 26, //Алматы, Казахстан. сентябрь 2015
 		3522 => 27, //Киев, Украина. сентябрь 2015
@@ -1466,14 +1527,15 @@ class CFormMatrix
 		357 => array("UF_ID2", "UF_ID7"),//Баку, Айзербайджан. 10 апреля 2014
 		359 => array("UF_ID4", "UF_ID9"),//Алматы, Казахстан. 26 сентября 2014
 		360 => array("UF_ID3", "UF_ID8"),//Киев, Украина. 23 сентября 2014
-		361 => array("UF_ID", "UF_ID6"),//Москва, Россия. 13 марта 2014
+//		361 => array("UF_ID", "UF_ID6"),//Москва, Россия. 13 марта 2014 ** СТАРОЕ ЗНАЧЕНИЕ, МОЖНО ВЕРНУТЬ ТУТ
+		361 => array("UF_MSCSPRING2016", "UF_MSCSPRING2016COL"),//Москва, Весна 2016
 		488 => array("UF_ID11", "UF_ID12"),//Москва, Россия. 12 марта 2015
 		3521 => array("UF_ALM2015", "UF_ALM2015COL"), //Алматы, Казахстан. сентябрь 2015
 		3522 => array("UF_KIEV2015", "UF_KIEV2015COL"), //Киев, Украина. сентябрь 2015
 		3523 => array("UF_MSCAUT2015", "UF_MSCAUT2015COL") //Москва, Россия. октябрь 2015
 	);
 
-	static $userFields = array("UF_ID", "UF_ID2", "UF_ID3", "UF_ID4", "UF_ID5","UF_ID11", "UF_ALM2015", "UF_KIEV2015", "UF_MSCAUT2015");
+	static $userFields = array("UF_MSCSPRING2016", "UF_ID2", "UF_ID3", "UF_ID4", "UF_ID5","UF_ID11", "UF_ALM2015", "UF_KIEV2015", "UF_MSCAUT2015");
 
 	static function getPostTemplateByExhibID($exhibId, $name) {
 		return isset(self::$arPostTemplateByExhibID[$exhibId][$name]) ? self::$arPostTemplateByExhibID[$exhibId][$name] : false;
@@ -1487,7 +1549,7 @@ class CFormMatrix
 	{
 		if(intval($id) == 0)
 		{
-			return;
+			return false;
 		}
 
 		return self::$arExhForm[$id];
@@ -1497,7 +1559,7 @@ class CFormMatrix
 	{
 		if(intval($id) == 0)
 		{
-			return;
+			return false;
 		}
 
 		return self::$arExhGuestForm[$id];
@@ -1507,7 +1569,7 @@ class CFormMatrix
 	{
 		if(intval($id) == 0)
 		{
-			return;
+			return false;
 		}
 
 		if(1 == $member)
@@ -1519,14 +1581,13 @@ class CFormMatrix
 			return self::$arExhProp[$id][0];
 		}
 
-		;
 	}
 
 	static function getFormIDByQID($id)
 	{
 		if(intval($id) == 0)
 		{
-			return;
+			return false;
 		}
 
 		foreach (self::$arFormQuestions as $formID => $questions)
@@ -1536,14 +1597,14 @@ class CFormMatrix
 				return $formID;
 			}
 		}
-		return;
+		return false;
 	}
 
 	static function getIndexQ($id, $form)
 	{
 		if(!intval($id))
 		{
-			return;
+			return false;
 		}
 
 		if(intval($form))
@@ -1561,7 +1622,7 @@ class CFormMatrix
 				}
 			}
 		}
-		return;
+		return false;
 	}
 
 	static function getQByIndex($index, $form)
@@ -1581,14 +1642,14 @@ class CFormMatrix
 				}
 			}
 		}
-		return;
+		return false;
 	}
 
 	static function getQIDByBase($id, $form)
 	{
 		if(!intval($id))
 		{
-			return;
+			return false;
 		}
 
 		if(intval($form))
@@ -1596,11 +1657,6 @@ class CFormMatrix
 			$id = array_search($id, self::$arFormQuestions[4]);
 			return self::$arFormQuestions[$form][$id];
 		}
-		return;
+		return false;
 	}
 }
-
-
-
-
-?>
