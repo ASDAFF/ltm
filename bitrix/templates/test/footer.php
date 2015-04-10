@@ -21,8 +21,8 @@ if($exhibCode)
                    	"FORGOT_PASSWORD_URL" => "/remind/",
                    	"PROFILE_URL" => "/cabinet/",
                    	"SHOW_ERRORS" => "Y",
-				    "PARTICPANT_GROUPS_ID" => array("10","9", "12", "11", "14","13", "16", "15", "18", "17", "21", "20"),
-				    "GUESTS_GROUPS_ID" => array("22", "25", "23", "26", "24", "27", "19"),
+				    "PARTICPANT_GROUPS_ID" => array("10","9", "12", "11", "14","13", "16", "15", "18", "17", "21", "20", "43", "42", "46", "47", "50", "51"),
+				    "GUESTS_GROUPS_ID" => array("22", "25", "23", "26", "24", "27", "19", "44", "48", "52"),
                    	),
                    	false
                 );?>
