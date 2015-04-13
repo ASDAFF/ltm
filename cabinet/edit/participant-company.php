@@ -1,4 +1,4 @@
-<?define("NEED_AUTH");?>
+<?define("NEED_AUTH", true);?>
 <?require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");?>
 <script  src="<?=SITE_TEMPLATE_PATH?>/js/ajaxupload.3.5.js"></script>
 <? 
@@ -102,7 +102,7 @@ SIMPLE_QUESTION_395 - Logo
 	{
 		$path = $_POST["SIMPLE_QUESTION_395"]["PATH"];
 		$filear =  CFile::MakeFileArray($path);
-		$logotipFileId = CFile::SaveFile($filear, "upload");
+		$logotipFileId = CFile::SaveFile($filear, "logo");
 		$logotipResize = CFile::ResizeImageGet($logotipFileId, array('width'=>100, 'height'=> 99999), BX_RESIZE_IMAGE_PROPORTIONAL, true);
 		$filear = CFile::MakeFileArray($logotipResize['src']);
 
@@ -192,7 +192,7 @@ if("Y" != $exhParticipantEdit)
 			<div class="pull-left company-info data-control">
 				<div class="title">Select area of business</div>
 				
-				<? $arAnswer = reset($arAnswers["SIMPLE_QUESTION_284"]); //pre($arAnswer, "b", "test2_partc");?>
+				<? $arAnswer = reset($arAnswers["SIMPLE_QUESTION_284"]);?>
 				
 				<div class="dropdown-group">
 					<div class="dropdown-name"><?=$arAnswer["ANSWER_TEXT"]?></div>
@@ -323,7 +323,7 @@ $(function(){
 			{
 				btnUploadLogo.next().remove();
 			}
-			response = $.parseJSON(response);
+			response = BX.parseJSON(response);
 
 			if(response.STATUS == "OK")
 			{
@@ -369,7 +369,7 @@ $(function(){
 			{
 				btnUploadPhoto.next().remove();
 			}
-			response = $.parseJSON(response);
+			response = BX.parseJSON(response);
 
 			if(response.STATUS == "OK")
 			{
