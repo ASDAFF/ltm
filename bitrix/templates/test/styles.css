@@ -552,9 +552,10 @@ input[name = "form_text_210"].inputtext.ex_inp{
     display: inline-block;
     position: fixed;
     top: 50%;
+	left: 50%;
     width: 350px;
     height: 350px;
-    margin: -175px auto;
+    margin: -175px 0 0 -175px;
 
 
 }
