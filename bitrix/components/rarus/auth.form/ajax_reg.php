@@ -1,10 +1,15 @@
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");?>
 <?
-//echo "<pre>" . print_r($_REQUEST, true) . "</pre>";
-
-if(!isset($_REQUEST["exhibID"]) || !isset($_REQUEST["userID"]) || !isset($_REQUEST["SID"]) || !check_bitrix_sessid("SID")) //если ошибки в сессии или данных
+if(!isset($_REQUEST["exhibID"]) || !isset($_REQUEST["userID"]) || !isset($_REQUEST["SID"])) // данных
 {
-	echo "ERROR";
+	echo "ERROR: REQUEST_DATA";
+	die();
+}
+
+if(!check_bitrix_sessid("SID"))
+{
+	echo "ERROR: SID";
+	die();
 }
 
 $exhibID = str_code(base64_decode($_REQUEST["exhibID"]), "luxoran");
@@ -60,18 +65,27 @@ if($exhibID && $userID)
 	    $arUserGroups[] = $ucExhibGroupID;
 	    $user->SetUserGroup($userID, $arUserGroups);
 
+		#копируем значение вебформы в базовую
+		$arFormData = copyExhDataToDefault($userID);
+
+		//заменяем email из вебформы, если там есть
+		if(isset($arFormData["EMAIL"]) && !empty($arFormData["EMAIL"]))
+		{
+			$arEventFields["MAIL"] = $arFormData["EMAIL"];
+		}
+
 	    if($sendType && !empty($arEventFields))
 	    {
-	        CEvent::Send($sendType, 's1', $arEventFields); 
+	        CEvent::Send($sendType, 's1', $arEventFields);
 	    }
-	    
-	    #копируем значение вебформы в базовую 
-	    copyExhDataToDefault($userID);
+
 	    echo "OK";
+		die();
 	}
 	else
 	{
-		echo "ERROR: GROUP";
+		echo "ERROR: REGISTERED";
+		die();
 	}
 
 }
@@ -95,6 +109,7 @@ function copyExhDataToDefault($userId)
 	$arExhibFilter = array(
 			"IBLOCK_ID" => 15,
 			"PROPERTY_USER_GROUP_ID" => $arUserGroup,
+			"<=PROPERTY_DATE_TIME" => date("Y-m-d")
 	);
 	$arSelect = array(
 			"ID",
@@ -102,9 +117,7 @@ function copyExhDataToDefault($userId)
 			"PROPERTY_USER_GROUP_ID"
 	);
 
-
-
-	$rsExhib = CIBlockElement::GetList(array("sort" => "desc"), $arExhibFilter, false, array("nTopCount" => 1), $arSelect);
+	$rsExhib = CIBlockElement::GetList(array("PROPERTY_DATE_TIME" => "desc"), $arExhibFilter, false, array("nTopCount" => 1), $arSelect);
 	if($arExhib = $rsExhib->Fetch())
 	{
 		#Получаем данные вебформ на эту выставку
@@ -180,5 +193,7 @@ function copyExhDataToDefault($userId)
 		//обновляем результат
 		CFormResult::Update($baseResultID, $arPersonalFormFields, "N", "N");
 	}
+
+	return $newArAnswerSID;
 }
 ?>
