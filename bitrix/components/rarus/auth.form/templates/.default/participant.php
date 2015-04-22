@@ -82,7 +82,7 @@ $curDir = $APPLICATION->GetCurDir();
     		<div class="content pull-overflow">
     		<?  $exhId = base64_encode(str_code($arExhibition["ID"], "luxoran"));
     		    $userId = base64_encode(str_code($arResult["USER"]["ID"], "luxoran")); ?>
-     			<a href="javascript:void(0)" title="<?= GetMessage("AUTH_P_REGISTER_FOR")?> <?= $arExhibition["EXH_NAME"]?>" onclick="regForExhib('<?= $exhId?>','<?= $userId?>','<?= bitrix_sessid()?>')"><?= GetMessage("AUTH_P_REGISTER_FOR")?> <?= $arExhibition["EXH_NAME"]?></a>
+     			<a href="javascript:void(0)" title="<?= GetMessage("AUTH_P_REGISTER_FOR")?> <?= $arExhibition["EXH_NAME"]?>" onclick="regForExhib('<?= $exhId?>','<?= $userId?>')"><?= GetMessage("AUTH_P_REGISTER_FOR")?> <?= $arExhibition["EXH_NAME"]?></a>
     		</div>
     	</div>
     <? endforeach;?>
