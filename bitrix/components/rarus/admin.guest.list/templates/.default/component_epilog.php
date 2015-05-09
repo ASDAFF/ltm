@@ -3,11 +3,11 @@
 $title = "";
 switch($arParams["ACT"])
 {
-	case "off": $title = "Неподтвержденные Гости";break;
-	case "morning": $title = "Гости на Утро"; break;
-	case "evening": $title = "Гости на Вечер"; break;
-	case "hostbuy": $title = "Гости HB"; break;
-	case "spam": $title = "Гости спам"; break;
+	case "off": $title = "РќРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ Р“РѕСЃС‚Рё";break;
+	case "morning": $title = "Р“РѕСЃС‚Рё РЅР° РЈС‚СЂРѕ"; break;
+	case "evening": $title = "Р“РѕСЃС‚Рё РЅР° Р’РµС‡РµСЂ"; break;
+	case "hostbuy": $title = "Р“РѕСЃС‚Рё HB"; break;
+	case "spam": $title = "Р“РѕСЃС‚Рё СЃРїР°Рј"; break;
 }
 
 if(isset($arResult["EXHIB"]["NAME"])) {

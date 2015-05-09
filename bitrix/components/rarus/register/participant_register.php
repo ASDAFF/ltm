@@ -29,21 +29,21 @@ if(empty($data["EXHIBITION"]))
 
 $arExhibitions = &$arResult["EXHIBITION"];
 
-//получаем пароль и шифруем его для записи в пользовательское поле
+//РїРѕР»СѓС‡Р°РµРј РїР°СЂРѕР»СЊ Рё С€РёС„СЂСѓРµРј РµРіРѕ РґР»СЏ Р·Р°РїРёСЃРё РІ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРѕРµ РїРѕР»Рµ
 $password = $data["PASSWORD"];
-if(strlen($password) <= 0) //если пароль не задан, генерируем его
+if(strlen($password) <= 0) //РµСЃР»Рё РїР°СЂРѕР»СЊ РЅРµ Р·Р°РґР°РЅ, РіРµРЅРµСЂРёСЂСѓРµРј РµРіРѕ
 {
-	//Пароль рассчитан на 10! комбинаций / разных гостей
+	//РџР°СЂРѕР»СЊ СЂР°СЃСЃС‡РёС‚Р°РЅ РЅР° 10! РєРѕРјР±РёРЅР°С†РёР№ / СЂР°Р·РЅС‹С… РіРѕСЃС‚РµР№
 	$pasAr = array('d', 'p', '!', 'l', '9', '#', 'm', 'A', 'r', '2');
 	shuffle($pasAr);
 	$password = implode("", $pasAr);
 }
 
-//шифруем
+//С€РёС„СЂСѓРµРј
 $passwordCoded = base64_encode(strcode($password, 'luxoran'));
 $login = $data["LOGIN"];
 
-//получаем лототип
+//РїРѕР»СѓС‡Р°РµРј Р»РѕС‚РѕС‚РёРї
 $logotip = array();
 $arLogotip = array();
 GetListFiles($uploaddir."logo",$logotip);
@@ -51,7 +51,7 @@ if(!empty($logotip))
 {
 	$logotip = reset($logotip);
 	
-	// уменьшение картинки для превью
+	// СѓРјРµРЅСЊС€РµРЅРёРµ РєР°СЂС‚РёРЅРєРё РґР»СЏ РїСЂРµРІСЊСЋ
 	$rif = CFile::ResizeImageFile(
 			$sourceFile = $logotip,
 			$destinationFile =  $uploaddir."tmpimgfile.tmp",
@@ -59,7 +59,7 @@ if(!empty($logotip))
 			$resizeType = BX_RESIZE_IMAGE_PROPORTIONAL
 	);
 	
-	if ($rif) {//заменяем картинку
+	if ($rif) {//Р·Р°РјРµРЅСЏРµРј РєР°СЂС‚РёРЅРєСѓ
 		unlink($logotip);
 		rename($uploaddir."tmpimgfile.tmp", $logotip);
 	}
@@ -67,7 +67,7 @@ if(!empty($logotip))
 }
 
 
-//получаем персональное фото
+//РїРѕР»СѓС‡Р°РµРј РїРµСЂСЃРѕРЅР°Р»СЊРЅРѕРµ С„РѕС‚Рѕ
 $personalPhoto = array();
 $arPersonal = array();
 GetListFiles($uploaddir."personal",$personalPhoto);
@@ -76,14 +76,14 @@ if(!empty($personalPhoto))
 {
 	$personalPhoto = reset($personalPhoto);
 	/*
-	 $rif = CFile::ResizeImageFile( // уменьшение картинки для превью
+	 $rif = CFile::ResizeImageFile( // СѓРјРµРЅСЊС€РµРЅРёРµ РєР°СЂС‚РёРЅРєРё РґР»СЏ РїСЂРµРІСЊСЋ
 	 		$sourceFile = $logotip,
 	 		$destinationFile =  $uploaddir."tmpimgfile.tmp",
 	 		$arSize = array('width'=>100,'height'=>99999),
 	 		$resizeType = BX_RESIZE_IMAGE_PROPORTIONAL
 	 );
 	
-	if ($rif) {//заменяем картинку
+	if ($rif) {//Р·Р°РјРµРЅСЏРµРј РєР°СЂС‚РёРЅРєСѓ
 	unlink($logotip);
 	rename($uploaddir."tmpimgfile.tmp", $logotip);
 	}
@@ -91,12 +91,12 @@ if(!empty($personalPhoto))
 	$arPersonal = CFile::MakeFileArray($personalPhoto);
 }
 
-//Получаем фотографии компаний
+//РџРѕР»СѓС‡Р°РµРј С„РѕС‚РѕРіСЂР°С„РёРё РєРѕРјРїР°РЅРёР№
 $companyPhoto = array();
 $arCompanyPhoto = array();
 GetListFiles($uploaddir."photos",$companyPhoto);
 
-//объект секций фоток
+//РѕР±СЉРµРєС‚ СЃРµРєС†РёР№ С„РѕС‚РѕРє
 $obSection = new CIBlockSection;
 $arFieldsSection = Array(
 		"ACTIVE" => 'Y',
@@ -107,7 +107,7 @@ $ID_PHOTO_SECTION = $obSection->Add($arFieldsSection);
 
 if(!empty($companyPhoto) && count($companyPhoto) >= 6 && count($companyPhoto) <= 12)
 {
-	//объект элементов фоток
+	//РѕР±СЉРµРєС‚ СЌР»РµРјРµРЅС‚РѕРІ С„РѕС‚РѕРє
 	$obIBElement = new CIBlockElement;
 
 	foreach ($companyPhoto as $photoInd => $photoPath)
@@ -130,7 +130,7 @@ if(strlen($webSite) > 0)
 	$webSite = "http://". $webSite;
 }
 
-/*  Заполняем массив для вефбормы компании  */
+/*  Р—Р°РїРѕР»РЅСЏРµРј РјР°СЃСЃРёРІ РґР»СЏ РІРµС„Р±РѕСЂРјС‹ РєРѕРјРїР°РЅРёРё  */
 $arCompanyFormFields = array(
 		"form_text_30" => $data["COMPANY_NAME"], 							//Company or hotel name
 		"form_text_29" => $data["COMPANY_NAME_FOR_INVOICE"], 				//Official name for invoice, if different
@@ -139,11 +139,11 @@ $arCompanyFormFields = array(
 		"form_text_35" => $data["ADDRESS"],									//Official adress
 		"form_text_36" => $data["CITY"],									//City
 		"form_text_37" => $data["COUNTRY"],									//Country
-		"form_text_38" => $webSite,											//веб сайт
-		"form_textarea_39" => $data["COMPANY_DESCRIPTION"],					//фамилия
+		"form_text_38" => $webSite,											//РІРµР± СЃР°Р№С‚
+		"form_textarea_39" => $data["COMPANY_DESCRIPTION"],					//С„Р°РјРёР»РёСЏ
 
 
-		/*Приоритетные направления*/
+		/*РџСЂРёРѕСЂРёС‚РµС‚РЅС‹Рµ РЅР°РїСЂР°РІР»РµРЅРёСЏ*/
 		"form_checkbox_SIMPLE_QUESTION_876" => getPriorityAreas($data["NORTH_AMERICA"]), 	//North America
 		"form_checkbox_SIMPLE_QUESTION_367" => getPriorityAreas($data["EUROPE"]), 			//Europe
 		"form_checkbox_SIMPLE_QUESTION_328" => getPriorityAreas($data["SOUTH_AMERICA"]), 	//South America
@@ -155,10 +155,10 @@ $arCompanyFormFields = array(
 );
 
 
-// создадим новый результат
+// СЃРѕР·РґР°РґРёРј РЅРѕРІС‹Р№ СЂРµР·СѓР»СЊС‚Р°С‚
 $COMPANY_RESULT_ID = CFormResult::Add($arParams["COMPANY_FORM_ID"], $arCompanyFormFields);
 
-/*Заполняем массив для вебформы участника*/
+/*Р—Р°РїРѕР»РЅСЏРµРј РјР°СЃСЃРёРІ РґР»СЏ РІРµР±С„РѕСЂРјС‹ СѓС‡Р°СЃС‚РЅРёРєР°*/
 $arPersonalFormFields = array(
 		"form_text_84" => $data["NAME"], 							//Participant first name
 		"form_text_85" => $data["LAST_NAME"], 				//Participant last name
@@ -168,13 +168,13 @@ $arPersonalFormFields = array(
 		"form_text_90" => $data["CONF_EMAIL"],									//Please confirm your e-mail
 		"form_text_91" => $data["ALT_EMAIL"],									//Alternative e-mail
 		"form_dropdown_SIMPLE_QUESTION_889" => $data["SALUTATION"],			//Salutation
-		"form_image_195" => $arPersonal,					//Персональное фото
+		"form_image_195" => $arPersonal,					//РџРµСЂСЃРѕРЅР°Р»СЊРЅРѕРµ С„РѕС‚Рѕ
 );
 
-// создадим новый результат
+// СЃРѕР·РґР°РґРёРј РЅРѕРІС‹Р№ СЂРµР·СѓР»СЊС‚Р°С‚
 $PERSONAL_RESULT_ID = CFormResult::Add($arParams["PARTICIPANT_FORM_ID"], $arPersonalFormFields);
 
-/*Подготавливаем массив для создания пользователя*/
+/*РџРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј РјР°СЃСЃРёРІ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ*/
 
 $bConfirmReq = COption::GetOptionString("main", "new_user_registration_email_confirmation", "N") == "Y";
 
@@ -198,40 +198,40 @@ $arUserFields = array(
 		"UF_FIO" => $data["NAME"]." ".$data["LAST_NAME"]
 );
 
-/*Добавляем стандартные группы при регистрации*/
+/*Р”РѕР±Р°РІР»СЏРµРј СЃС‚Р°РЅРґР°СЂС‚РЅС‹Рµ РіСЂСѓРїРїС‹ РїСЂРё СЂРµРіРёСЃС‚СЂР°С†РёРё*/
 $def_group = COption::GetOptionString("main", "new_user_registration_def_group", "");
 
 if($def_group != "")
 	$arUserFields["GROUP_ID"] = explode(",", $def_group);
 
 
-/*Добавляем в группу неподтвержденных Участников выставки*/
+/*Р”РѕР±Р°РІР»СЏРµРј РІ РіСЂСѓРїРїСѓ РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… РЈС‡Р°СЃС‚РЅРёРєРѕРІ РІС‹СЃС‚Р°РІРєРё*/
 
 foreach ($data["EXHIBITION"] as $exhId)
 {
-	/*добавление групп пользователю*/
+	/*РґРѕР±Р°РІР»РµРЅРёРµ РіСЂСѓРїРї РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ*/
 	$ucParticipantGroupID = $arExhibitions[$exhId]["PROPERTIES"]["UC_PARTICIPANTS_GROUP"]["VALUE"];
 	if($ucParticipantGroupID)
 	{
 		$arUserFields["GROUP_ID"][] = $ucParticipantGroupID;
 	}
 	
-	/*Добавляем тип почтовых событий для отправки писем*/
+	/*Р”РѕР±Р°РІР»СЏРµРј С‚РёРї РїРѕС‡С‚РѕРІС‹С… СЃРѕР±С‹С‚РёР№ РґР»СЏ РѕС‚РїСЂР°РІРєРё РїРёСЃРµРј*/
 	switch ($exhId)
 	{
-		case "361":{$eventName[] = "REG_NEW_E_MOSSP";} break; //Москва, Россия. 13 марта 2014
-		case "357":{$eventName[] = "REG_NEW_E_BAK";} break; //Баку, Азербайджан. 10 апреля 2014
-		case "360":{$eventName[] = "REG_NEW_E_KIEV";} break; //Киев, Украина. 23 сентября 2014	
-		case "359":{$eventName[] = "REG_NEW_E_ALM";} break; //Алматы, Казахстан. 26 сентября 2014
-		case "358":{$eventName[] = "REG_NEW_E_MOSOT";} break; //Москва, Россия. 2 октября 2014	
-		case "488":{$eventName[] = "REG_NEW_E_MOSSP15";} break; //Москва, Россия. 12-13 марта 2015
-		case "3521":{$eventName[] = "REG_NEW_E_ALM15";} break; //Алматы, Казахстан. 2015
-		case "3522":{$eventName[] = "REG_NEW_E_KIEV15";} break; //Киев, Украина 2015
-		case "3523":{$eventName[] = "REG_NEW_E_MOSOT15";} break; //Москва, Россия 2015
+		case "361":{$eventName[] = "REG_NEW_E_MOSSP";} break; //РњРѕСЃРєРІР°, Р РѕСЃСЃРёСЏ. 13 РјР°СЂС‚Р° 2014
+		case "357":{$eventName[] = "REG_NEW_E_BAK";} break; //Р‘Р°РєСѓ, РђР·РµСЂР±Р°Р№РґР¶Р°РЅ. 10 Р°РїСЂРµР»СЏ 2014
+		case "360":{$eventName[] = "REG_NEW_E_KIEV";} break; //РљРёРµРІ, РЈРєСЂР°РёРЅР°. 23 СЃРµРЅС‚СЏР±СЂСЏ 2014	
+		case "359":{$eventName[] = "REG_NEW_E_ALM";} break; //РђР»РјР°С‚С‹, РљР°Р·Р°С…СЃС‚Р°РЅ. 26 СЃРµРЅС‚СЏР±СЂСЏ 2014
+		case "358":{$eventName[] = "REG_NEW_E_MOSOT";} break; //РњРѕСЃРєРІР°, Р РѕСЃСЃРёСЏ. 2 РѕРєС‚СЏР±СЂСЏ 2014	
+		case "488":{$eventName[] = "REG_NEW_E_MOSSP15";} break; //РњРѕСЃРєРІР°, Р РѕСЃСЃРёСЏ. 12-13 РјР°СЂС‚Р° 2015
+		case "3521":{$eventName[] = "REG_NEW_E_ALM15";} break; //РђР»РјР°С‚С‹, РљР°Р·Р°С…СЃС‚Р°РЅ. 2015
+		case "3522":{$eventName[] = "REG_NEW_E_KIEV15";} break; //РљРёРµРІ, РЈРєСЂР°РёРЅР° 2015
+		case "3523":{$eventName[] = "REG_NEW_E_MOSOT15";} break; //РњРѕСЃРєРІР°, Р РѕСЃСЃРёСЏ 2015
 	}
 }
 
-/*Записываем результаты вебформы в свойства пользователя*/
+/*Р—Р°РїРёСЃС‹РІР°РµРј СЂРµР·СѓР»СЊС‚Р°С‚С‹ РІРµР±С„РѕСЂРјС‹ РІ СЃРІРѕР№СЃС‚РІР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ*/
 if($COMPANY_RESULT_ID && $PERSONAL_RESULT_ID)
 {
 	$arUserFields["UF_ID"] = $PERSONAL_RESULT_ID;
@@ -239,7 +239,7 @@ if($COMPANY_RESULT_ID && $PERSONAL_RESULT_ID)
 }
 
 
-/*добавляем ИД фотогалереи*/
+/*РґРѕР±Р°РІР»СЏРµРј РР” С„РѕС‚РѕРіР°Р»РµСЂРµРё*/
 if($ID_PHOTO_SECTION)
 {
 	$arUserFields["UF_ID_GROUP"] = $ID_PHOTO_SECTION;
@@ -296,7 +296,7 @@ if (intval($USER_ID) > 0)
 		$event->SendImmediate("NEW_USER_CONFIRM", SITE_ID, $arEventFields);
 
 
-	/*Отправка писем о регистрации*/
+	/*РћС‚РїСЂР°РІРєР° РїРёСЃРµРј Рѕ СЂРµРіРёСЃС‚СЂР°С†РёРё*/
 
 }
 else

@@ -16,7 +16,7 @@ if(!isset($arParams["EXHIB_CODE"]))
 if(!isset($arParams["TYPE"]))
 	$arParams["TYPE"] = "MORNING";
 
-//подключение модуля встреч
+//РїРѕРґРєР»СЋС‡РµРЅРёРµ РјРѕРґСѓР»СЏ РІСЃС‚СЂРµС‡
 use Doka\Meetings\Requests as DokaRequest;
 use Doka\Meetings\Timeslots as DokaTimeslot;
 
@@ -39,7 +39,7 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 	}
 
 
-	//получение текущей выставки
+	//РїРѕР»СѓС‡РµРЅРёРµ С‚РµРєСѓС‰РµР№ РІС‹СЃС‚Р°РІРєРё
 
 	$rsExhib = CIBlockElement::GetList(
 			array(),
@@ -68,7 +68,7 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 		$req_obj = new DokaRequest($appId);
 		$arResult['IS_ACTIVE'] = !$req_obj->getOption('IS_LOCKED');
 
-		//получение списка подтвержденных гостей на данную выставку
+		//РїРѕР»СѓС‡РµРЅРёРµ СЃРїРёСЃРєР° РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… РіРѕСЃС‚РµР№ РЅР° РґР°РЅРЅСѓСЋ РІС‹СЃС‚Р°РІРєСѓ
 
 		$cGuestGroup = $arResult["EXHIBITION"]["PROPERTIES"]["C_GUESTS_GROUP"]["VALUE"];
 
@@ -81,23 +81,23 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 				"SELECT" => array("UF_*")
 				);
 
-		$arResultId = array();//тут список результатов пользователей
+		$arResultId = array();//С‚СѓС‚ СЃРїРёСЃРѕРє СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 		$propertyName = CFormMatrix::getPropertyIDByExh($arResult["EXHIBITION"]["ID"]);
 
 		$rsUsers = $USER->GetList(($by="work_company"), ($order="asc"), $arFilter, $arParamsUser);
 		while($arUser = $rsUsers->Fetch())
 		{
 
-			$arResultId[] = $arUser[$propertyName];//дописываем id результата заполнения формы
+			$arResultId[] = $arUser[$propertyName];//РґРѕРїРёСЃС‹РІР°РµРј id СЂРµР·СѓР»СЊС‚Р°С‚Р° Р·Р°РїРѕР»РЅРµРЅРёСЏ С„РѕСЂРјС‹
 
-			//разделение участников на утро, вечер, hb
-			//утро
+			//СЂР°Р·РґРµР»РµРЅРёРµ СѓС‡Р°СЃС‚РЅРёРєРѕРІ РЅР° СѓС‚СЂРѕ, РІРµС‡РµСЂ, hb
+			//СѓС‚СЂРѕ
 			if($arUser["UF_MR"] && $arParams["TYPE"] == "MORNING")
 			{
 				$arResult["SESSION"]["MORNING"]["USERS"][$arUser["ID"]] = $arUser;
 			}
 
-			//вечер
+			//РІРµС‡РµСЂ
 			if($arUser["UF_EV"] && $arParams["TYPE"] == "EVENING")
 			{
 				$arResult["SESSION"]["EVENING"]["USERS"][$arUser["ID"]] = $arUser;
@@ -110,7 +110,7 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 			}
 		}
 
-		//получение результатов заполнения формы регистрациия для пользователей
+		//РїРѕР»СѓС‡РµРЅРёРµ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ Р·Р°РїРѕР»РЅРµРЅРёСЏ С„РѕСЂРјС‹ СЂРµРіРёСЃС‚СЂР°С†РёРёСЏ РґР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 
 		CForm::GetResultAnswerArray(
 			GUEST_FORM_ID,
@@ -132,12 +132,12 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 				continue;
 			}
 		    $arResult["SESSION"][$type]["BY_SLOTS"] = $allTimeSlot;
-			//проход по пользователям в типе
+			//РїСЂРѕС…РѕРґ РїРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏРј РІ С‚РёРїРµ
 			foreach ($arResult["SESSION"][$type]["USERS"] as &$arUser)
 			{
-				//слоты пользователей
+				//СЃР»РѕС‚С‹ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 
-				$times =  $req_obj->getSortedFreeTimesAppoint($arUser["ID"]);//свободные таймслоты пользователя
+				$times =  $req_obj->getSortedFreeTimesAppoint($arUser["ID"]);//СЃРІРѕР±РѕРґРЅС‹Рµ С‚Р°Р№РјСЃР»РѕС‚С‹ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 
 				$userTimeSlot = array();
 
@@ -155,12 +155,12 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 					$arResult["SESSION"][$type]["BY_ALPHABET"][0] = array("NAME" => "NUM", "ID" => array());
 				}
 
-				//гость
+				//РіРѕСЃС‚СЊ
 				$gName = trim($arAnswers[$resultId][113][216]["USER_TEXT"]);
 				$gLastName = trim($arAnswers[$resultId][114][217]["USER_TEXT"]);
 				$gCompanyName = trim($arAnswers[$resultId][107][204]["USER_TEXT"]);
 
-				//если ввели два адреса
+				//РµСЃР»Рё РІРІРµР»Рё РґРІР° Р°РґСЂРµСЃР°
 				$gCompanyLink = trim($arAnswers[$resultId][119][222]["USER_TEXT"]);
 
 				if($gCompanyLink == "http://")
@@ -179,16 +179,16 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 				$gCountry = reset($arAnswers[$resultId][112]);
 				$gCountry = trim($gCountry["ANSWER_TEXT"]);
 
-				//коллега 1 на вечер
+				//РєРѕР»Р»РµРіР° 1 РЅР° РІРµС‡РµСЂ
 				$ce1Name = trim($arAnswers[$resultId][120][223]["USER_TEXT"]);
 				$ce1LastName = trim($arAnswers[$resultId][121][224]["USER_TEXT"]);
-				//коллега 2 на вечер
+				//РєРѕР»Р»РµРіР° 2 РЅР° РІРµС‡РµСЂ
 				$ce2Name = trim($arAnswers[$resultId][124][227]["USER_TEXT"]);
 				$ce2LastName = trim($arAnswers[$resultId][125][228]["USER_TEXT"]);
-				//коллега 3 на вечер
+				//РєРѕР»Р»РµРіР° 3 РЅР° РІРµС‡РµСЂ
 				$ce3Name = trim($arAnswers[$resultId][128][231]["USER_TEXT"]);
 				$ce3LastName = trim($arAnswers[$resultId][129][232]["USER_TEXT"]);
-				//коллега на утро
+				//РєРѕР»Р»РµРіР° РЅР° СѓС‚СЂРѕ
 				$cmName = trim($arAnswers[$resultId][477][839]["USER_TEXT"]);
 				$cmLastName = trim($arAnswers[$resultId][478][840]["USER_TEXT"]);
 
@@ -237,20 +237,20 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 					$arPriorArea[475]["ITEMS"][$country["ANSWER_ID"]] = trim($country["ANSWER_TEXT"]);
 				}
 
-				//Вид деятельности
+				//Р’РёРґ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё
 				$arBusinessType = array();
 				foreach ($arAnswers[$resultId][108] as $BusinessType)
 				{
 					$arBusinessType[$BusinessType["ANSWER_ID"]] = trim($BusinessType["ANSWER_TEXT"]);
 				}
-				//Описание
+				//РћРїРёСЃР°РЅРёРµ
 				$arDescript = array();
 				foreach ($arAnswers[$resultId][135] as $Descript)
 				{
 					$arDescript[$Descript["ANSWER_ID"]] = trim($Descript["USER_TEXT"]);
 				}
-				$arDescript = str_replace('вЂў', '', $arDescript);
-				//Город
+				$arDescript = str_replace('РІР‚Сћ', '', $arDescript);
+				//Р“РѕСЂРѕРґ
 				$arTown = array();
 				foreach ($arAnswers[$resultId][111] as $Town)
 				{
@@ -259,14 +259,14 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 
 
 				/*
-				//рарзделение по приоритетным направлениям и по городам в них
+				//СЂР°СЂР·РґРµР»РµРЅРёРµ РїРѕ РїСЂРёРѕСЂРёС‚РµС‚РЅС‹Рј РЅР°РїСЂР°РІР»РµРЅРёСЏРј Рё РїРѕ РіРѕСЂРѕРґР°Рј РІ РЅРёС…
 				foreach ($arPriorArea as $id=>$area)
 				{
 					$arResult["SESSION"][$type]["BY_PRIORITY_AREAS"][$id]["NAME"] = $area["NAME"];
 
 					foreach ($area["ITEMS"] as $answerID => $name)
 					{
-						//поиск в уже существующих
+						//РїРѕРёСЃРє РІ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёС…
 						$found = false;
 						foreach ($arResult["SESSION"][$type]["BY_PRIORITY_AREAS"][$id]['ITEMS'] as &$areaData)
 						{
@@ -288,12 +288,12 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 				*/
 
 
-				//рарзделение по городам в приоритетных направлениях
+				//СЂР°СЂР·РґРµР»РµРЅРёРµ РїРѕ РіРѕСЂРѕРґР°Рј РІ РїСЂРёРѕСЂРёС‚РµС‚РЅС‹С… РЅР°РїСЂР°РІР»РµРЅРёСЏС…
 				foreach ($arPriorArea as $id=>$area)
 				{
 					foreach ($area["ITEMS"] as $answerID => $name)
 					{
-						//поиск в уже существующих
+						//РїРѕРёСЃРє РІ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёС…
 						$found = false;
 						foreach ($arResult["SESSION"][$type]["BY_PRIORITY_AREAS"] as $index => &$areaData)
 						{
@@ -313,7 +313,7 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 					}
 				}
 
-				//разделение по городам
+				//СЂР°Р·РґРµР»РµРЅРёРµ РїРѕ РіРѕСЂРѕРґР°Рј
 				$found = false;
 				foreach ($arResult["SESSION"][$type]["BY_CITY"] as &$cityData)
 				{
@@ -330,10 +330,10 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 					$arResult["SESSION"][$type]["BY_CITY"][] = array("NAME" => $gCity, "ID" => array($arUser["ID"]));
 				}
 
-				//без разделения
+				//Р±РµР· СЂР°Р·РґРµР»РµРЅРёСЏ
 				$arResult["SESSION"][$type]["BY_ALL"][] = $arUser["ID"];
 
-				//По алфавиту
+				//РџРѕ Р°Р»С„Р°РІРёС‚Сѓ
 				$firstLetter = strtoupper($gCompanyName{0});
 				$found = false;
 
@@ -400,8 +400,8 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 					"TOWN" => $arTown,
 					);
 				$arUser["FORM_DATA"] = $arFormData;
-			}//по пользователям
-		}//по типу (утро, вечер, хб)
+			}//РїРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏРј
+		}//РїРѕ С‚РёРїСѓ (СѓС‚СЂРѕ, РІРµС‡РµСЂ, С…Р±)
 
 	}
 

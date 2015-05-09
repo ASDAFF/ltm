@@ -4,9 +4,9 @@ $APPLICATION->AddHeadString('<script type="text/javascript" src="//ajax.googleap
 ?>
 <table border="0" cellspacing="0" cellpadding="10" id="legenda">
   <tr>
-    <td class = "confirmed"><strong>Подтвержденная встреча</strong></td>
-    <td class="yellow"><strong style="color:#000;">Встреча назначенная<br />участником</strong></td>
-    <td class="red"><strong style="color:#FFF;">Встреча назначенная<br />гостем</strong></td>
+    <td class = "confirmed"><strong>РџРѕРґС‚РІРµСЂР¶РґРµРЅРЅР°СЏ РІСЃС‚СЂРµС‡Р°</strong></td>
+    <td class="yellow"><strong style="color:#000;">Р’СЃС‚СЂРµС‡Р° РЅР°Р·РЅР°С‡РµРЅРЅР°СЏ<br />СѓС‡Р°СЃС‚РЅРёРєРѕРј</strong></td>
+    <td class="red"><strong style="color:#FFF;">Р’СЃС‚СЂРµС‡Р° РЅР°Р·РЅР°С‡РµРЅРЅР°СЏ<br />РіРѕСЃС‚РµРј</strong></td>
   </tr>
 </table><br />
 	<div class="navigate"><?=$arResult["NAVIGATE"]?></div>
@@ -14,7 +14,7 @@ $APPLICATION->AddHeadString('<script type="text/javascript" src="//ajax.googleap
         <?foreach($arResult['TIMES_FREE'] as $timesId => $timesList):?>
         <div id="time-list<?=$timesId?>">
             <?if($timesList == ''):?>
-                Все таймслоты заняты
+                Р’СЃРµ С‚Р°Р№РјСЃР»РѕС‚С‹ Р·Р°РЅСЏС‚С‹
             <?else:?>
                 <select>
                     <?=$timesList?>

@@ -1,6 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Восстановление пароля");
+$APPLICATION->SetTitle("Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РїР°СЂРѕР»СЏ");
 ?>
 <?$APPLICATION->IncludeComponent(
 	"btm:forget.password.ltm",

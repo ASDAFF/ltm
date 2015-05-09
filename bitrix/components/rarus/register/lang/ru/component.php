@@ -1,27 +1,27 @@
 <?
-$MESS ['REGISTER_WRONG_CAPTCHA'] = "Íåâåðíî ââåäåíî ñëîâî ñ êàðòèíêè";
-$MESS ['REGISTER_FIELD_REQUIRED'] = "Ïîëå #FIELD_NAME# îáÿçàòåëüíî äëÿ çàïîëíåíèÿ";
-$MESS ['REGISTER_DEFAULT_TITLE'] = "Ðåãèñòðàöèÿ íîâîãî ïîëüçîâàòåëÿ";
-$MESS ['REGISTER_USER_WITH_EMAIL_EXIST'] = "Ïîëüçîâàòåëü ñ òàêèì e-mail (#EMAIL#) óæå ñóùåñòâóåò.";
-$MESS["main_register_sess_expired"]="Âàøà ñåññèÿ èñòåêëà, ïîâòîðèòå ïîïûòêó ðåãèñòðàöèè.";
-$MESS["main_register_decode_err"]="Îøèáêà ïðè äåøèôðîâàíèè ïàðîëÿ (#ERRCODE#).";
+$MESS ['REGISTER_WRONG_CAPTCHA'] = "ÐÐµÐ²ÐµÑ€Ð½Ð¾ Ð²Ð²ÐµÐ´ÐµÐ½Ð¾ ÑÐ»Ð¾Ð²Ð¾ Ñ ÐºÐ°Ñ€Ñ‚Ð¸Ð½ÐºÐ¸";
+$MESS ['REGISTER_FIELD_REQUIRED'] = "ÐŸÐ¾Ð»Ðµ #FIELD_NAME# Ð¾Ð±ÑÐ·Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾ Ð´Ð»Ñ Ð·Ð°Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ñ";
+$MESS ['REGISTER_DEFAULT_TITLE'] = "Ð ÐµÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸Ñ Ð½Ð¾Ð²Ð¾Ð³Ð¾ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ";
+$MESS ['REGISTER_USER_WITH_EMAIL_EXIST'] = "ÐŸÐ¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ Ñ Ñ‚Ð°ÐºÐ¸Ð¼ e-mail (#EMAIL#) ÑƒÐ¶Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚.";
+$MESS["main_register_sess_expired"]="Ð’Ð°ÑˆÐ° ÑÐµÑÑÐ¸Ñ Ð¸ÑÑ‚ÐµÐºÐ»Ð°, Ð¿Ð¾Ð²Ñ‚Ð¾Ñ€Ð¸Ñ‚Ðµ Ð¿Ð¾Ð¿Ñ‹Ñ‚ÐºÑƒ Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸Ð¸.";
+$MESS["main_register_decode_err"]="ÐžÑˆÐ¸Ð±ÐºÐ° Ð¿Ñ€Ð¸ Ð´ÐµÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð¸Ð¸ Ð¿Ð°Ñ€Ð¾Ð»Ñ (#ERRCODE#).";
 
-$MESS["MODULES_NOT_FOUND"] = "Îøèáêà ïîäêëþ÷åíèÿ ìîäóëåé";
-$MESS["EXHIBIT_ID_NOT_FOUND"] = "Íå âûáðàí èíôîáëîê âûñòàâîê";
-$MESS["GUEST_FORM_ID_NOT_FOUND"] = "Íå âûáðàíà âåáôîðìà ãîñòåé";
-$MESS["COMPANY_FORM_ID_NOT_FOUND"] = "Íå âûáðàíà âåáôîðìà êîìïàíèé";
-$MESS["PARTICIPANT_FORM_ID_NOT_FOUND"] = "Íå âûáðàíà âåáôîðìà ó÷àñòíèêîâ";
-$MESS["IBLOCK_PHOTO_NOT_FOUND"] = "Íå âûáðàí èíôîáëîê ôîòîãðàôèé";
+$MESS["MODULES_NOT_FOUND"] = "ÐžÑˆÐ¸Ð±ÐºÐ° Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ñ Ð¼Ð¾Ð´ÑƒÐ»ÐµÐ¹";
+$MESS["EXHIBIT_ID_NOT_FOUND"] = "ÐÐµ Ð²Ñ‹Ð±Ñ€Ð°Ð½ Ð¸Ð½Ñ„Ð¾Ð±Ð»Ð¾Ðº Ð²Ñ‹ÑÑ‚Ð°Ð²Ð¾Ðº";
+$MESS["GUEST_FORM_ID_NOT_FOUND"] = "ÐÐµ Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð° Ð²ÐµÐ±Ñ„Ð¾Ñ€Ð¼Ð° Ð³Ð¾ÑÑ‚ÐµÐ¹";
+$MESS["COMPANY_FORM_ID_NOT_FOUND"] = "ÐÐµ Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð° Ð²ÐµÐ±Ñ„Ð¾Ñ€Ð¼Ð° ÐºÐ¾Ð¼Ð¿Ð°Ð½Ð¸Ð¹";
+$MESS["PARTICIPANT_FORM_ID_NOT_FOUND"] = "ÐÐµ Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð° Ð²ÐµÐ±Ñ„Ð¾Ñ€Ð¼Ð° ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¾Ð²";
+$MESS["IBLOCK_PHOTO_NOT_FOUND"] = "ÐÐµ Ð²Ñ‹Ð±Ñ€Ð°Ð½ Ð¸Ð½Ñ„Ð¾Ð±Ð»Ð¾Ðº Ñ„Ð¾Ñ‚Ð¾Ð³Ñ€Ð°Ñ„Ð¸Ð¹";
 
 
 $MESS["R_E_EMAIL_NOT_EQUAL"]="Email are not equal";
-$MESS["R_B_EMAIL_NOT_EQUAL"]="Email íå ñîâïàäàþò";
+$MESS["R_B_EMAIL_NOT_EQUAL"]="Email Ð½Ðµ ÑÐ¾Ð²Ð¿Ð°Ð´Ð°ÑŽÑ‚";
 
 $MESS["R_E_PASS_NOT_EQUAL"]="Passwords are not equal";
-$MESS["R_B_PASS_NOT_EQUAL"]="Ïàðîëè íå ñîâïàäàþò";
+$MESS["R_B_PASS_NOT_EQUAL"]="ÐŸÐ°Ñ€Ð¾Ð»Ð¸ Ð½Ðµ ÑÐ¾Ð²Ð¿Ð°Ð´Ð°ÑŽÑ‚";
 
 $MESS["R_E_EMPTY_EXHIBITION"]="Not selected exhibition";
-$MESS["R_B_EMPTY_EXHIBITION"]="Íå âûáðàíà âûñòàâêà";
+$MESS["R_B_EMPTY_EXHIBITION"]="ÐÐµ Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð° Ð²Ñ‹ÑÑ‚Ð°Ð²ÐºÐ°";
 
-$MESS["R_PHOTO"] = "Ôîòî ¹#PHOTO_NUM#";
+$MESS["R_PHOTO"] = "Ð¤Ð¾Ñ‚Ð¾ â„–#PHOTO_NUM#";
 ?>

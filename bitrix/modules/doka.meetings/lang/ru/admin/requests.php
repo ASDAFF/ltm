@@ -1,17 +1,17 @@
 <?
-$MESS["HLBLOCK_ADMIN_ROWS_ADD_NEW_BUTTON"] = "Äîáàâèòü çàïèñü";
-$MESS["HLBLOCK_ADMIN_ROWS_RETURN_TO_LIST_BUTTON"] = "Âåðíóòüñÿ â ñïèñîê";
-$MESS["HLBLOCK_ADMIN_DELETE_ROW_CONFIRM"] = "Óäàëèòü çàïèñü?";
-$MESS["HLBLOCK_ADMIN_ROWS_LIST_PAGE_TITLE"] = "Ñïèñîê çàïðîñîâ íà âñòðå÷ó";
+$MESS["HLBLOCK_ADMIN_ROWS_ADD_NEW_BUTTON"] = "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ð¸ÑÑŒ";
+$MESS["HLBLOCK_ADMIN_ROWS_RETURN_TO_LIST_BUTTON"] = "Ð’ÐµÑ€Ð½ÑƒÑ‚ÑŒÑÑ Ð² ÑÐ¿Ð¸ÑÐ¾Ðº";
+$MESS["HLBLOCK_ADMIN_DELETE_ROW_CONFIRM"] = "Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ð¸ÑÑŒ?";
+$MESS["HLBLOCK_ADMIN_ROWS_LIST_PAGE_TITLE"] = "Ð¡Ð¿Ð¸ÑÐ¾Ðº Ð·Ð°Ð¿Ñ€Ð¾ÑÐ¾Ð² Ð½Ð° Ð²ÑÑ‚Ñ€ÐµÑ‡Ñƒ";
 
-$MESS["IBLIST_A_SENDER_ID"] = "Îòïðàâèòåëü";
-$MESS["IBLIST_A_RECEIVER_ID"] = "Ïîëó÷àòåëü";
-$MESS["IBLIST_A_EXHIBITION_ID"] = "Âûñòàâêà";
-$MESS["IBLIST_A_STATUS"] = "Ñòàòóñ";
+$MESS["IBLIST_A_SENDER_ID"] = "ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÐµÐ»ÑŒ";
+$MESS["IBLIST_A_RECEIVER_ID"] = "ÐŸÐ¾Ð»ÑƒÑ‡Ð°Ñ‚ÐµÐ»ÑŒ";
+$MESS["IBLIST_A_EXHIBITION_ID"] = "Ð’Ñ‹ÑÑ‚Ð°Ð²ÐºÐ°";
+$MESS["IBLIST_A_STATUS"] = "Ð¡Ñ‚Ð°Ñ‚ÑƒÑ";
 
-$MESS["DOKA_FILTER_EXHIBITION_ID"] = "Âûñòàâêà";
-$MESS["DOKA_FILTER_EXHIBITION_ID_ALL"] = "Ëþáàÿ";
-$MESS["DOKA_FILTER_SENDER_ID"] = "Îòïðàâèòåëü çàïðîñà";
-$MESS["DOKA_FILTER_RECEIVER_ID"] = "Ïîëó÷àòåëü çàïðîñà";
-$MESS["DOKA_FILTER_STATUS"] = "Ñòàòóñ çàïðîñà";
+$MESS["DOKA_FILTER_EXHIBITION_ID"] = "Ð’Ñ‹ÑÑ‚Ð°Ð²ÐºÐ°";
+$MESS["DOKA_FILTER_EXHIBITION_ID_ALL"] = "Ð›ÑŽÐ±Ð°Ñ";
+$MESS["DOKA_FILTER_SENDER_ID"] = "ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÐµÐ»ÑŒ Ð·Ð°Ð¿Ñ€Ð¾ÑÐ°";
+$MESS["DOKA_FILTER_RECEIVER_ID"] = "ÐŸÐ¾Ð»ÑƒÑ‡Ð°Ñ‚ÐµÐ»ÑŒ Ð·Ð°Ð¿Ñ€Ð¾ÑÐ°";
+$MESS["DOKA_FILTER_STATUS"] = "Ð¡Ñ‚Ð°Ñ‚ÑƒÑ Ð·Ð°Ð¿Ñ€Ð¾ÑÐ°";
 ?>

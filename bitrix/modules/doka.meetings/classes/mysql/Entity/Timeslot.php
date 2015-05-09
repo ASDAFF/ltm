@@ -46,8 +46,8 @@ class Timeslot
     }
 
     /**
-     * Возвращает типы активных таймслотов, когда может проходить встреча
-     * @return array массив id типов
+     * Р’РѕР·РІСЂР°С‰Р°РµС‚ С‚РёРїС‹ Р°РєС‚РёРІРЅС‹С… С‚Р°Р№РјСЃР»РѕС‚РѕРІ, РєРѕРіРґР° РјРѕР¶РµС‚ РїСЂРѕС…РѕРґРёС‚СЊ РІСЃС‚СЂРµС‡Р°
+     * @return array РјР°СЃСЃРёРІ id С‚РёРїРѕРІ
      */
     static public function getMeetTypes()
     {
@@ -63,8 +63,8 @@ class Timeslot
     }
 
     /**
-     * Возвращает коды активных таймслотов, когда может проходить встреча
-     * @return array массив id типов
+     * Р’РѕР·РІСЂР°С‰Р°РµС‚ РєРѕРґС‹ Р°РєС‚РёРІРЅС‹С… С‚Р°Р№РјСЃР»РѕС‚РѕРІ, РєРѕРіРґР° РјРѕР¶РµС‚ РїСЂРѕС…РѕРґРёС‚СЊ РІСЃС‚СЂРµС‡Р°
+     * @return array РјР°СЃСЃРёРІ id С‚РёРїРѕРІ
      */
     static public function getMeetTypeCodes()
     {
@@ -238,7 +238,7 @@ class Timeslot
             $DB->Query($sSql, false, 'File: '.__FILE__.'<br />Line: '.__LINE__);
             $ID = $DB->LastID();
             
-            // При успешном создании - добавим столбец в таблицу с занятостью компаний
+            // РџСЂРё СѓСЃРїРµС€РЅРѕРј СЃРѕР·РґР°РЅРёРё - РґРѕР±Р°РІРёРј СЃС‚РѕР»Р±РµС† РІ С‚Р°Р±Р»РёС†Сѓ СЃ Р·Р°РЅСЏС‚РѕСЃС‚СЊСЋ РєРѕРјРїР°РЅРёР№
             if ($ID > 0) {
                 $sSql = '
                     ALTER TABLE  `meetings_companies_schedule_'.$arFields['EXHIBITION_ID'].'` ADD  `STATUS_'.$ID.'` INT NOT NULL DEFAULT 0, ADD  `MEET_'.$ID.'` INT NOT NULL DEFAULT 0;
@@ -253,7 +253,7 @@ class Timeslot
     }
 
     /**
-     * Дополняет массив полями FROM и TO, данные берем из поля NAME
+     * Р”РѕРїРѕР»РЅСЏРµС‚ РјР°СЃСЃРёРІ РїРѕР»СЏРјРё FROM Рё TO, РґР°РЅРЅС‹Рµ Р±РµСЂРµРј РёР· РїРѕР»СЏ NAME
      * @param  array $arFields
      * @return array $arFields
      */
@@ -295,7 +295,7 @@ class Timeslot
     {
         global $DB;
         $ID = intval($ID);
-        // Удаляем столбец в таблице занятости компаний
+        // РЈРґР°Р»СЏРµРј СЃС‚РѕР»Р±РµС† РІ С‚Р°Р±Р»РёС†Рµ Р·Р°РЅСЏС‚РѕСЃС‚Рё РєРѕРјРїР°РЅРёР№
         $res = self::GetList(array(), array('ID' => $ID), array('EXHIBITION_ID'));
         $data = $res->Fetch();
         $DB->Query('ALTER TABLE  `meetings_companies_schedule_'.$data['EXHIBITION_ID'].'` DROP  `STATUS_'.$ID.'`, DROP  `MEET_'.$ID.'`');

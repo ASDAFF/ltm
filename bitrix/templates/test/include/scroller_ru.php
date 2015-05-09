@@ -1,1 +1,1 @@
-<div id="scroller">ββεπυ</div>
+<div id="scroller">Π²Π²ΠµΡ€Ρ…</div>

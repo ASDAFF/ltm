@@ -62,13 +62,13 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 	}
 	
 	//die('stop');
-	//óòðî?
+	//ÑƒÑ‚Ñ€Ð¾?
 	if($morn > 0){
 		$mornAr = array('form_checkbox_SIMPLE_QUESTION_836'=> array(843));
 	}else{
 		$mornAr = '';
 	}
-	//âå÷åð?
+	//Ð²ÐµÑ‡ÐµÑ€?
 	if($ever > 0){
 		$everAr = array('form_checkbox_SIMPLE_QUESTION_156'=>array(844));
 	}else{
@@ -80,7 +80,7 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 			$salt = "Dn8*#2n!9j";
 			$len = strlen($str);
 			$gamma = '';
-			$n = $len>100 ? 8 : 2;
+			$n = $len>100 ? 16 : 4;
 			while( strlen($gamma)<$len ){
 				$gamma .= substr(pack('H*', sha1($passw.$gamma.$salt)), 0, $n);
 			}
@@ -88,7 +88,7 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 		}
 		$pass = base64_encode(strcode($pas, 'luxoran'));
 	}else{
-		//Ïàðîëü ðàññ÷èòàí íà 10! êîìáèíàöèé / ðàçíûõ ãîñòåé
+		//ÐŸÐ°Ñ€Ð¾Ð»ÑŒ Ñ€Ð°ÑÑÑ‡Ð¸Ñ‚Ð°Ð½ Ð½Ð° 10! ÐºÐ¾Ð¼Ð±Ð¸Ð½Ð°Ñ†Ð¸Ð¹ / Ñ€Ð°Ð·Ð½Ñ‹Ñ… Ð³Ð¾ÑÑ‚ÐµÐ¹
 		$pasAr = array('d', 'p', '!', 'l', '9', '#', 'm', 'A', 'r', '2');
 		shuffle($pasAr);
 		$pas = implode("", $pasAr);
@@ -96,7 +96,7 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 			$salt = "Dn8*#2n!9j";
 			$len = strlen($str);
 			$gamma = '';
-			$n = $len>100 ? 8 : 2;
+			$n = $len>100 ? 16 : 4;
 			while( strlen($gamma)<$len ){
 				$gamma .= substr(pack('H*', sha1($passw.$gamma.$salt)), 0, $n);
 			}
@@ -135,7 +135,7 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 		"form_text_510"                         => $other_country
 	);
 
-	//ÔÎÐÌÈÐÓÅÌ ÌÀÑÑÈÂ ÐÅÇÓËÜÒÀÒÀ ÔÎÐÌÛ
+	//Ð¤ÐžÐ ÐœÐ˜Ð Ð£Ð•Ðœ ÐœÐÐ¡Ð¡Ð˜Ð’ Ð Ð•Ð—Ð£Ð›Ð¬Ð¢ÐÐ¢Ð Ð¤ÐžÐ ÐœÐ«
 	if(is_array($areasAr)){
 		$arValuesMain = array_merge($arValues, $areasAr, $detAr);
 		if(is_array($mornAr)){
@@ -160,17 +160,17 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 		}
 	}
 
-	// ñîçäàäèì íîâûé ðåçóëüòàò
+	// ÑÐ¾Ð·Ð´Ð°Ð´Ð¸Ð¼ Ð½Ð¾Ð²Ñ‹Ð¹ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚
 	if ($RESULT_ID = CFormResult::Add(ID_FORM_GUEST, $arValuesMain)){
 		$form1 = true;
 		//echo $RESULT_ID;
 	}
 	
 
-	//Ñîçäà¸ì ïîëüçîâàòåëÿ
+	//Ð¡Ð¾Ð·Ð´Ð°Ñ‘Ð¼ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ
 	$user = new CUser;
-	//â êàêèõ ãðóïïàõ áóäåò ïîëüçîâàòåëü
-	//3,4,5,6 - äåôîëòíûå áèòðèêñà ãðóïïû. 19 - íåïîäòâåðæä¸ííûå ïîëüçîâàòåëè - ñîçäàíà
+	//Ð² ÐºÐ°ÐºÐ¸Ñ… Ð³Ñ€ÑƒÐ¿Ð¿Ð°Ñ… Ð±ÑƒÐ´ÐµÑ‚ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ
+	//3,4,5,6 - Ð´ÐµÑ„Ð¾Ð»Ñ‚Ð½Ñ‹Ðµ Ð±Ð¸Ñ‚Ñ€Ð¸ÐºÑÐ° Ð³Ñ€ÑƒÐ¿Ð¿Ñ‹. 19 - Ð½ÐµÐ¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´Ñ‘Ð½Ð½Ñ‹Ðµ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ð¸ - ÑÐ¾Ð·Ð´Ð°Ð½Ð°
 	$gr = array(3, 4, 5, 6, 19);
 	if($login != '' && $mornAr != ''){
 		$loginA = $login;
@@ -182,7 +182,7 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 		$loginA = $eSob.$pas.$mail;
 	}
 	$loginA = trim($loginA);
-	//UF_IDx - id ïîëüçîâàòåëüñêèõ ñâîéñòâ
+	//UF_IDx - id Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒÑÐºÐ¸Ñ… ÑÐ²Ð¾Ð¹ÑÑ‚Ð²
 	switch($formId){
 		case ID_TYPE_1; $UF = 'UF_ID2'; break;
 		case ID_TYPE_2; $UF = 'UF_ID5'; break;
@@ -216,28 +216,28 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 	}
 	/*
 	if(is_array($everAr) && is_array($mornAr)){
-		//ïèñüìî ÓÒÐÎ
+		//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð£Ð¢Ð Ðž
 		$arEventFields1 = array(
 			"LOGIN"             => $loginA,
 			"PASSWORD"          => $pas
 			);
 		CEvent::Send("REG_GUEST_MR", 's1', $arEventFields1);
 		
-		//ïèñüìî ÂÅ×ÅÐ
+		//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð’Ð•Ð§Ð•Ð 
 		$arEventFields2 = array(
 			"LOGIN"             => $loginA,
 			"PASSWORD"          => $pas
 			);
 		CEvent::Send("REG_GUEST_EV", 's1', $arEventFields2);
 	}elseif(is_array($everAr)){
-		//ïèñüìî ÂÅ×ÅÐ
+		//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð’Ð•Ð§Ð•Ð 
 		$arEventFields2 = array(
 			"LOGIN"             => $loginA,
 			"PASSWORD"          => $pas
 			);
 		CEvent::Send("REG_GUEST_EV", 's1', $arEventFields2);
 	}else{
-		//ïèñüìî ÓÒÐÎ
+		//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð£Ð¢Ð Ðž
 		$arEventFields1 = array(
 			"LOGIN"             => $loginA,
 			"PASSWORD"          => $pas
@@ -245,18 +245,18 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 		CEvent::Send("REG_GUEST_MR", 's1', $arEventFields1);
 	}
 	*/
-	//Íà êàæäóþ âûñòàâêó ñâîé òèï ñîáûòèÿ
+	//ÐÐ° ÐºÐ°Ð¶Ð´ÑƒÑŽ Ð²Ñ‹ÑÑ‚Ð°Ð²ÐºÑƒ ÑÐ²Ð¾Ð¹ Ñ‚Ð¸Ð¿ ÑÐ¾Ð±Ñ‹Ñ‚Ð¸Ñ
 	switch($formId){
 		case ID_TYPE_1; 
 						if(is_array($everAr) && is_array($mornAr)){
-							//ïèñüìî ÓÒÐÎ
+							//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð£Ð¢Ð Ðž
 							$arEventFields1 = array(
 								"LOGIN"             => $loginA,
 								"PASSWORD"          => $pas,
 								"MAIL"              => $mail
 								);
 							CEvent::Send("REG_NEW_B_BAK_M", 's1', $arEventFields1);
-							//ïèñüìî ÂÅ×ÅÐ
+							//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð’Ð•Ð§Ð•Ð 
 							$arEventFields2 = array(
 								"LOGIN"             => $loginA,
 								"PASSWORD"          => $pas,
@@ -264,7 +264,7 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 								);
 							CEvent::Send("REG_NEW_B_BAK_E", 's1', $arEventFields2);
 						}elseif(is_array($everAr)){
-							//ïèñüìî ÂÅ×ÅÐ
+							//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð’Ð•Ð§Ð•Ð 
 							$arEventFields2 = array(
 								"LOGIN"             => $loginA,
 								"PASSWORD"          => $pas,
@@ -272,7 +272,7 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 								);
 							CEvent::Send("REG_NEW_B_BAK_E", 's1', $arEventFields2);
 						}else{
-							//ïèñüìî ÓÒÐÎ
+							//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð£Ð¢Ð Ðž
 							$arEventFields1 = array(
 								"LOGIN"             => $loginA,
 								"PASSWORD"          => $pas,
@@ -283,14 +283,14 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 		break;
 		case ID_TYPE_2; 
 						if(is_array($everAr) && is_array($mornAr)){
-							//ïèñüìî ÓÒÐÎ
+							//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð£Ð¢Ð Ðž
 							$arEventFields1 = array(
 								"LOGIN"             => $loginA,
 								"PASSWORD"          => $pas,
 								"MAIL"              => $mail
 								);
 							CEvent::Send("REG_NEW_B_MOSOT_M", 's1', $arEventFields1);
-							//ïèñüìî ÂÅ×ÅÐ
+							//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð’Ð•Ð§Ð•Ð 
 							$arEventFields2 = array(
 								"LOGIN"             => $loginA,
 								"PASSWORD"          => $pas,
@@ -298,7 +298,7 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 								);
 							CEvent::Send("REG_NEW_B_MOSOT_E", 's1', $arEventFields2);
 						}elseif(is_array($everAr)){
-							//ïèñüìî ÂÅ×ÅÐ
+							//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð’Ð•Ð§Ð•Ð 
 							$arEventFields2 = array(
 								"LOGIN"             => $loginA,
 								"PASSWORD"          => $pas,
@@ -306,7 +306,7 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 								);
 							CEvent::Send("REG_NEW_B_MOSOT_E", 's1', $arEventFields2);
 						}else{
-							//ïèñüìî ÓÒÐÎ
+							//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð£Ð¢Ð Ðž
 							$arEventFields1 = array(
 								"LOGIN"             => $loginA,
 								"PASSWORD"          => $pas,
@@ -317,14 +317,14 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 		break;
 		case ID_TYPE_3; 
 						if(is_array($everAr) && is_array($mornAr)){
-							//ïèñüìî ÓÒÐÎ
+							//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð£Ð¢Ð Ðž
 							$arEventFields1 = array(
 								"LOGIN"             => $loginA,
 								"PASSWORD"          => $pas,
 								"MAIL"              => $mail
 								);
 							CEvent::Send("REG_NEW_B_ALM_M", 's1', $arEventFields1);
-							//ïèñüìî ÂÅ×ÅÐ
+							//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð’Ð•Ð§Ð•Ð 
 							$arEventFields2 = array(
 								"LOGIN"             => $loginA,
 								"PASSWORD"          => $pas,
@@ -332,7 +332,7 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 								);
 							CEvent::Send("REG_NEW_B_ALM_E", 's1', $arEventFields2);
 						}elseif(is_array($everAr)){
-							//ïèñüìî ÂÅ×ÅÐ
+							//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð’Ð•Ð§Ð•Ð 
 							$arEventFields2 = array(
 								"LOGIN"             => $loginA,
 								"PASSWORD"          => $pas,
@@ -340,7 +340,7 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 								);
 							CEvent::Send("REG_NEW_B_ALM_E", 's1', $arEventFields2);
 						}else{
-							//ïèñüìî ÓÒÐÎ
+							//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð£Ð¢Ð Ðž
 							$arEventFields1 = array(
 								"LOGIN"             => $loginA,
 								"PASSWORD"          => $pas,
@@ -351,14 +351,14 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 		break;
 		case ID_TYPE_4; 
 						if(is_array($everAr) && is_array($mornAr)){
-							//ïèñüìî ÓÒÐÎ
+							//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð£Ð¢Ð Ðž
 							$arEventFields1 = array(
 								"LOGIN"             => $loginA,
 								"PASSWORD"          => $pas,
 								"MAIL"              => $mail
 								);
 							CEvent::Send("REG_NEW_B_KIEV_M", 's1', $arEventFields1);
-							//ïèñüìî ÂÅ×ÅÐ
+							//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð’Ð•Ð§Ð•Ð 
 							$arEventFields2 = array(
 								"LOGIN"             => $loginA,
 								"PASSWORD"          => $pas,
@@ -366,7 +366,7 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 								);
 							CEvent::Send("REG_NEW_B_KIEV_E", 's1', $arEventFields2);
 						}elseif(is_array($everAr)){
-							//ïèñüìî ÂÅ×ÅÐ
+							//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð’Ð•Ð§Ð•Ð 
 							$arEventFields2 = array(
 								"LOGIN"             => $loginA,
 								"PASSWORD"          => $pas,
@@ -374,7 +374,7 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 								);
 							CEvent::Send("REG_NEW_B_KIEV_E", 's1', $arEventFields2);
 						}else{
-							//ïèñüìî ÓÒÐÎ
+							//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð£Ð¢Ð Ðž
 							$arEventFields1 = array(
 								"LOGIN"             => $loginA,
 								"PASSWORD"          => $pas,
@@ -385,14 +385,14 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 		break;
 		case ID_TYPE_5; 
 						if(is_array($everAr) && is_array($mornAr)){
-							//ïèñüìî ÓÒÐÎ
+							//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð£Ð¢Ð Ðž
 							$arEventFields1 = array(
 								"LOGIN"             => $loginA,
 								"PASSWORD"          => $pas,
 								"MAIL"              => $mail
 								);
 							CEvent::Send("REG_NEW_B_MOSSP_M", 's1', $arEventFields1);
-							//ïèñüìî ÂÅ×ÅÐ
+							//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð’Ð•Ð§Ð•Ð 
 							$arEventFields2 = array(
 								"LOGIN"             => $loginA,
 								"PASSWORD"          => $pas,
@@ -400,7 +400,7 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 								);
 							CEvent::Send("REG_NEW_B_MOSSP_E", 's1', $arEventFields2);
 						}elseif(is_array($everAr)){
-							//ïèñüìî ÂÅ×ÅÐ
+							//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð’Ð•Ð§Ð•Ð 
 							$arEventFields2 = array(
 								"LOGIN"             => $loginA,
 								"PASSWORD"          => $pas,
@@ -408,7 +408,7 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 								);
 							CEvent::Send("REG_NEW_B_MOSSP_E", 's1', $arEventFields2);
 						}else{
-							//ïèñüìî ÓÒÐÎ
+							//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð£Ð¢Ð Ðž
 							$arEventFields1 = array(
 								"LOGIN"             => $loginA,
 								"PASSWORD"          => $pas,
@@ -419,14 +419,14 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 		break;
 		case ID_TYPE_6; 
 						if(is_array($everAr) && is_array($mornAr)){
-							//ïèñüìî ÓÒÐÎ
+							//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð£Ð¢Ð Ðž
 							$arEventFields1 = array(
 								"LOGIN"             => $loginA,
 								"PASSWORD"          => $pas,
 								"MAIL"              => $mail
 								);
 							CEvent::Send("REG_NEW_B_MOSSP15_M", 's1', $arEventFields1);
-							//ïèñüìî ÂÅ×ÅÐ
+							//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð’Ð•Ð§Ð•Ð 
 							$arEventFields2 = array(
 								"LOGIN"             => $loginA,
 								"PASSWORD"          => $pas,
@@ -434,7 +434,7 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 								);
 							CEvent::Send("REG_NEW_B_MOSSP15_E", 's1', $arEventFields2);
 						}elseif(is_array($everAr)){
-							//ïèñüìî ÂÅ×ÅÐ
+							//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð’Ð•Ð§Ð•Ð 
 							$arEventFields2 = array(
 								"LOGIN"             => $loginA,
 								"PASSWORD"          => $pas,
@@ -442,7 +442,7 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 								);
 							CEvent::Send("REG_NEW_B_MOSSP15_E", 's1', $arEventFields2);
 						}else{
-							//ïèñüìî ÓÒÐÎ
+							//Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð£Ð¢Ð Ðž
 							$arEventFields1 = array(
 								"LOGIN"             => $loginA,
 								"PASSWORD"          => $pas,

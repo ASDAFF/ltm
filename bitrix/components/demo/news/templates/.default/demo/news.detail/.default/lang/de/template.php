@@ -1,3 +1,3 @@
 <?
-$MESS ['RETURN_TO_LIST'] = "Zurück zur Liste";
+$MESS ['RETURN_TO_LIST'] = "ZurÑŒck zur Liste";
 ?>

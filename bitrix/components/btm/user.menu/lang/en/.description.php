@@ -1,5 +1,5 @@
 <?
-$MESS ['COMP_MAIN_AUTH_FORM_TITLE'] = "Ìåíþ ïîëüçîâàòåëåé";
-$MESS ['COMP_MAIN_AUTH_FORM_DESCR'] = "Áëîê ìåíþ ïîëüçîâàòåëåé";
-$MESS ['MAIN_USER_GROUP_NAME'] = "Ïîëüçîâàòåëü";
+$MESS ['COMP_MAIN_AUTH_FORM_TITLE'] = "ÐœÐµÐ½ÑŽ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹";
+$MESS ['COMP_MAIN_AUTH_FORM_DESCR'] = "Ð‘Ð»Ð¾Ðº Ð¼ÐµÐ½ÑŽ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹";
+$MESS ['MAIN_USER_GROUP_NAME'] = "ÐŸÐ¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ";
 ?>

@@ -1,7 +1,7 @@
 <?
-$MESS ['COMP_AUTH_REGISTER_URL'] = "Ñòðàíèöà ðåãèñòðàöèè";
-$MESS ['COMP_AUTH_GUEST_URL'] = "Ñòðàíèöà ïðîôèëÿ ãîñòÿ";
-$MESS ['COMP_AUTH_PARTICIP_URL'] = "Ñòðàíèöà ïðîôèëÿ ó÷àñòíèêà";
-$MESS ['COMP_AUTH_ADMIN_URL'] = "Ñòðàíèöà ïðîôèëÿ àäìèíèñòðàòîðà";
-$MESS ['COMP_AUTH_SHOW_ERRORS'] = "Ïîêàçûâàòü îøèáêè";
+$MESS ['COMP_AUTH_REGISTER_URL'] = "Ð¡Ñ‚Ñ€Ð°Ð½Ð¸Ñ†Ð° Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸Ð¸";
+$MESS ['COMP_AUTH_GUEST_URL'] = "Ð¡Ñ‚Ñ€Ð°Ð½Ð¸Ñ†Ð° Ð¿Ñ€Ð¾Ñ„Ð¸Ð»Ñ Ð³Ð¾ÑÑ‚Ñ";
+$MESS ['COMP_AUTH_PARTICIP_URL'] = "Ð¡Ñ‚Ñ€Ð°Ð½Ð¸Ñ†Ð° Ð¿Ñ€Ð¾Ñ„Ð¸Ð»Ñ ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ°";
+$MESS ['COMP_AUTH_ADMIN_URL'] = "Ð¡Ñ‚Ñ€Ð°Ð½Ð¸Ñ†Ð° Ð¿Ñ€Ð¾Ñ„Ð¸Ð»Ñ Ð°Ð´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ð°";
+$MESS ['COMP_AUTH_SHOW_ERRORS'] = "ÐŸÐ¾ÐºÐ°Ð·Ñ‹Ð²Ð°Ñ‚ÑŒ Ð¾ÑˆÐ¸Ð±ÐºÐ¸";
 ?>

@@ -15,7 +15,7 @@ $aMenuLinks = Array(
 		"" 
 	),
 	Array(
-		"ABOUT LTM GUEST SYSTEM™", 
+		"ABOUT LTM GUEST SYSTEMâ„¢", 
 		"/about/", 
 		Array(), 
 		Array(), 

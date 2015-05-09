@@ -1,65 +1,65 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 <? /*?>
-Представитель 	Компания 	Должность 	Адрес 	Город 	Страна 	Индекс 	Телефон 	E-mail 	Web-site компании 	Гостевое имя
-Описание деятельности компании 	Приоритетные направления 	Форма посещения
-Подтвердить утро 	Подтвердить вечер 	Подтвердить HB
-Редактировать 	Спам*/?>
+РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ 	РљРѕРјРїР°РЅРёСЏ 	Р”РѕР»Р¶РЅРѕСЃС‚СЊ 	РђРґСЂРµСЃ 	Р“РѕСЂРѕРґ 	РЎС‚СЂР°РЅР° 	РРЅРґРµРєСЃ 	РўРµР»РµС„РѕРЅ 	E-mail 	Web-site РєРѕРјРїР°РЅРёРё 	Р“РѕСЃС‚РµРІРѕРµ РёРјСЏ
+РћРїРёСЃР°РЅРёРµ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё РєРѕРјРїР°РЅРёРё 	РџСЂРёРѕСЂРёС‚РµС‚РЅС‹Рµ РЅР°РїСЂР°РІР»РµРЅРёСЏ 	Р¤РѕСЂРјР° РїРѕСЃРµС‰РµРЅРёСЏ
+РџРѕРґС‚РІРµСЂРґРёС‚СЊ СѓС‚СЂРѕ 	РџРѕРґС‚РІРµСЂРґРёС‚СЊ РІРµС‡РµСЂ 	РџРѕРґС‚РІРµСЂРґРёС‚СЊ HB
+Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ 	РЎРїР°Рј*/?>
 <?
 $arShowedTableCols = array(
 		"ID"=>"ID",
-		"Компания"=>0,
-		"Представитель"=>array(7, 8),
-		"Должность"=>9,
-		"Адрес"=>2,
-		"Город"=>4,
-		"Страна"=>array(5, 6),
-		"Индекс"=>3,
-		"Телефон"=>10,
-		"Емейл"=>11,
-		"Веб-сайт"=>13
+		"РљРѕРјРїР°РЅРёСЏ"=>0,
+		"РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ"=>array(7, 8),
+		"Р”РѕР»Р¶РЅРѕСЃС‚СЊ"=>9,
+		"РђРґСЂРµСЃ"=>2,
+		"Р“РѕСЂРѕРґ"=>4,
+		"РЎС‚СЂР°РЅР°"=>array(5, 6),
+		"РРЅРґРµРєСЃ"=>3,
+		"РўРµР»РµС„РѕРЅ"=>10,
+		"Р•РјРµР№Р»"=>11,
+		"Р’РµР±-СЃР°Р№С‚"=>13
 );
 $arShowedTableColsBool = array();
 switch($arParams["ACT"]) {
 	case "off":
-		$arShowedTableCols["Описание деятельности"] = "29";
-		$arShowedTableCols["Форма посещения"] =  array(40, 41);
-		$arShowedTableColsBool = array("Подтв. утро"=>"UF_MR", "Подтв. вечер"=>"UF_EV", "Подтв. НВ"=>"UF_HB");
+		$arShowedTableCols["РћРїРёСЃР°РЅРёРµ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё"] = "29";
+		$arShowedTableCols["Р¤РѕСЂРјР° РїРѕСЃРµС‰РµРЅРёСЏ"] =  array(40, 41);
+		$arShowedTableColsBool = array("РџРѕРґС‚РІ. СѓС‚СЂРѕ"=>"UF_MR", "РџРѕРґС‚РІ. РІРµС‡РµСЂ"=>"UF_EV", "РџРѕРґС‚РІ. РќР’"=>"UF_HB");
 	break;
 
 	case "evening":
-		$arShowedTableCols["Форма посещения"] =  array(40, 41);
-		$arShowedTableCols["Имя коллеги (вечер)"] = "14";
-		$arShowedTableCols["Фамилия коллеги (вечер)"] = "15";
-		$arShowedTableCols["Должность коллеги (вечер)"] = "16";
-		$arShowedTableCols["Емейл коллеги (вечер)"] = "17";
-		$arShowedTableCols["Имя коллеги2 (вечер)"] = "18";
-		$arShowedTableCols["Фамилия коллеги2 (вечер)"] = "19";
-		$arShowedTableCols["Емейл коллеги2 (вечер)"] = "20";
-		$arShowedTableCols["Должность коллеги2 (вечер)"] = "21";
-		$arShowedTableCols["Имя коллеги3 (вечер)"] = "22";
-		$arShowedTableCols["Фамилия коллеги3 (вечер)"] = "23";
-		$arShowedTableCols["Должность коллеги3 (вечер)"] = "24";
-		$arShowedTableCols["Емейл коллеги3 (вечер)"] = "25";
+		$arShowedTableCols["Р¤РѕСЂРјР° РїРѕСЃРµС‰РµРЅРёСЏ"] =  array(40, 41);
+		$arShowedTableCols["РРјСЏ РєРѕР»Р»РµРіРё (РІРµС‡РµСЂ)"] = "14";
+		$arShowedTableCols["Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё (РІРµС‡РµСЂ)"] = "15";
+		$arShowedTableCols["Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё (РІРµС‡РµСЂ)"] = "16";
+		$arShowedTableCols["Р•РјРµР№Р» РєРѕР»Р»РµРіРё (РІРµС‡РµСЂ)"] = "17";
+		$arShowedTableCols["РРјСЏ РєРѕР»Р»РµРіРё2 (РІРµС‡РµСЂ)"] = "18";
+		$arShowedTableCols["Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё2 (РІРµС‡РµСЂ)"] = "19";
+		$arShowedTableCols["Р•РјРµР№Р» РєРѕР»Р»РµРіРё2 (РІРµС‡РµСЂ)"] = "20";
+		$arShowedTableCols["Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё2 (РІРµС‡РµСЂ)"] = "21";
+		$arShowedTableCols["РРјСЏ РєРѕР»Р»РµРіРё3 (РІРµС‡РµСЂ)"] = "22";
+		$arShowedTableCols["Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё3 (РІРµС‡РµСЂ)"] = "23";
+		$arShowedTableCols["Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё3 (РІРµС‡РµСЂ)"] = "24";
+		$arShowedTableCols["Р•РјРµР№Р» РєРѕР»Р»РµРіРё3 (РІРµС‡РµСЂ)"] = "25";
 	break;
 
 	case "morning":case"hostbuy":
-		$arShowedTableCols["Логин"] = "LOGIN";
-		$arShowedTableCols["Пароль"] = "27";
-		$arShowedTableCols["Имя коллеги на утро"] = "36";
-		$arShowedTableCols["Фамилия коллеги на утро"] = "37";
-		$arShowedTableCols["Должность коллеги"] = "38";
-		$arShowedTableCols["Емейл коллеги"] = "39";
-		$arShowedTableCols["Описание деятельности"] = "29";
-		$arShowedTableCols["Приоритет. направл."] = array(30, 31, 32, 33, 34, 35);
-		$arShowedTableCols["Форма посещения"] =  array(40, 41);
+		$arShowedTableCols["Р›РѕРіРёРЅ"] = "LOGIN";
+		$arShowedTableCols["РџР°СЂРѕР»СЊ"] = "27";
+		$arShowedTableCols["РРјСЏ РєРѕР»Р»РµРіРё РЅР° СѓС‚СЂРѕ"] = "36";
+		$arShowedTableCols["Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё РЅР° СѓС‚СЂРѕ"] = "37";
+		$arShowedTableCols["Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё"] = "38";
+		$arShowedTableCols["Р•РјРµР№Р» РєРѕР»Р»РµРіРё"] = "39";
+		$arShowedTableCols["РћРїРёСЃР°РЅРёРµ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё"] = "29";
+		$arShowedTableCols["РџСЂРёРѕСЂРёС‚РµС‚. РЅР°РїСЂР°РІР»."] = array(30, 31, 32, 33, 34, 35);
+		$arShowedTableCols["Р¤РѕСЂРјР° РїРѕСЃРµС‰РµРЅРёСЏ"] =  array(40, 41);
 	break;
 }
 
-//добавляем поля зал и стол для HB
+//РґРѕР±Р°РІР»СЏРµРј РїРѕР»СЏ Р·Р°Р» Рё СЃС‚РѕР» РґР»СЏ HB
 if($arParams["ACT"] == "hostbuy")
 {
-	$arShowedTableCols["Зал"] = "42";
-	$arShowedTableCols["Стол"] = "43";
+	$arShowedTableCols["Р—Р°Р»"] = "42";
+	$arShowedTableCols["РЎС‚РѕР»"] = "43";
 }
 
 function getValById($ar, $id, $formId)
@@ -111,52 +111,52 @@ function printVal($ar, $glue)
 }
 ?>
 <?if(empty($arResult["USERS_LIST"])):?>
-	В данной категории нет гостей
+	Р’ РґР°РЅРЅРѕР№ РєР°С‚РµРіРѕСЂРёРё РЅРµС‚ РіРѕСЃС‚РµР№
 <?else:?>
 <form action="" method="post">
 	<?switch($arParams["ACT"]):
 		case "off":?>
-			<input class="custom-buttom confirm-participate-button-mass" type="button" name="confirm" value="Подтвердить участие">
+			<input class="custom-buttom confirm-participate-button-mass" type="button" name="confirm" value="РџРѕРґС‚РІРµСЂРґРёС‚СЊ СѓС‡Р°СЃС‚РёРµ">
 			<? /*
-			<input class="custom-buttom" type="button" name="edit" disabled value="Редактировать">
+			<input class="custom-buttom" type="button" name="edit" disabled value="Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ">
 			*/?>
-			<input class="custom-buttom spam-guest-button-mass" type="button" name="spam"  value="В спам">
+			<input class="custom-buttom spam-guest-button-mass" type="button" name="spam"  value="Р’ СЃРїР°Рј">
 			<input type="hidden" name="SPAM_TYPE"  value="Y">
-            <a class="custom-buttom" href="/exel/guest.php?type=guests_no&app=<?=$arResult["EXHIB"]["CODE"]?>">Генерировать Excel</a>
+            <a class="custom-buttom" href="/exel/guest.php?type=guests_no&app=<?=$arResult["EXHIB"]["CODE"]?>">Р“РµРЅРµСЂРёСЂРѕРІР°С‚СЊ Excel</a>
 
 		<?break?>
 		<?case "spam":?>
-			<input class="custom-buttom spam-guest-button-mass" type="button" name="spam"  value="Восстановить">
+			<input class="custom-buttom spam-guest-button-mass" type="button" name="spam"  value="Р’РѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ">
 			<input type="hidden" name="SPAM_TYPE"  value="N">
 
 		<?break?>
 		<?case "evening":?>
-		    <a class="custom-buttom" href="/exel/guest.php?type=guests_ev&app=<?=$arResult["EXHIB"]["CODE"]?>">Генерировать Excel</a>
-            <a class="custom-buttom" href="/exel/guest.php?type=guests_ev_all&app=<?=$arResult["EXHIB"]["CODE"]?>">Excel (все люди)</a>
+		    <a class="custom-buttom" href="/exel/guest.php?type=guests_ev&app=<?=$arResult["EXHIB"]["CODE"]?>">Р“РµРЅРµСЂРёСЂРѕРІР°С‚СЊ Excel</a>
+            <a class="custom-buttom" href="/exel/guest.php?type=guests_ev_all&app=<?=$arResult["EXHIB"]["CODE"]?>">Excel (РІСЃРµ Р»СЋРґРё)</a>
             <? /*
-			<input class="custom-buttom" type="button" name="edit" disabled value="Редактировать">
-			<input class="custom-buttom" type="button" name="spam" disabled value="В СПАМ">
-			<input class="custom-buttom unconfirm-participate-button-mass" type="button" name="unconfirm" value="Отправить в Неподтвержденные">
+			<input class="custom-buttom" type="button" name="edit" disabled value="Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ">
+			<input class="custom-buttom" type="button" name="spam" disabled value="Р’ РЎРџРђРњ">
+			<input class="custom-buttom unconfirm-participate-button-mass" type="button" name="unconfirm" value="РћС‚РїСЂР°РІРёС‚СЊ РІ РќРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ">
 			*/?>
 		<?break?>
 		<?case "morning":?>		
-            <a class="custom-buttom" href="/exel/guest.php?type=guests&app=<?=$arResult["EXHIB"]["CODE"]?>">Генерировать Excel</a>
-            <a class="custom-buttom" href="/exel/guest.php?type=guests_all&app=<?=$arResult["EXHIB"]["CODE"]?>">Excel (все люди)</a>
-			<? /*<input class="custom-buttom" type="button" name="edit" disabled value="Редактировать">$arParams["EXHIBIT_CODE"]
-			<input class="custom-buttom" type="button" name="generate-schedule" disabled value="Генерировать расписание">
-			<input class="custom-buttom" type="button" name="generate-wishlist" disabled value="Генерировать вишлист">
-			<input class="custom-buttom unconfirm-participate-button-mass" type="button" name="unconfirm" value="Отправить в Неподтвержденные">
-			<input class="custom-buttom" type="button" name="cancell-participation" disabled value="Отменить участие">
+            <a class="custom-buttom" href="/exel/guest.php?type=guests&app=<?=$arResult["EXHIB"]["CODE"]?>">Р“РµРЅРµСЂРёСЂРѕРІР°С‚СЊ Excel</a>
+            <a class="custom-buttom" href="/exel/guest.php?type=guests_all&app=<?=$arResult["EXHIB"]["CODE"]?>">Excel (РІСЃРµ Р»СЋРґРё)</a>
+			<? /*<input class="custom-buttom" type="button" name="edit" disabled value="Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ">$arParams["EXHIBIT_CODE"]
+			<input class="custom-buttom" type="button" name="generate-schedule" disabled value="Р“РµРЅРµСЂРёСЂРѕРІР°С‚СЊ СЂР°СЃРїРёСЃР°РЅРёРµ">
+			<input class="custom-buttom" type="button" name="generate-wishlist" disabled value="Р“РµРЅРµСЂРёСЂРѕРІР°С‚СЊ РІРёС€Р»РёСЃС‚">
+			<input class="custom-buttom unconfirm-participate-button-mass" type="button" name="unconfirm" value="РћС‚РїСЂР°РІРёС‚СЊ РІ РќРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ">
+			<input class="custom-buttom" type="button" name="cancell-participation" disabled value="РћС‚РјРµРЅРёС‚СЊ СѓС‡Р°СЃС‚РёРµ">
 			*/?>
 		<?break?>
 		<?case "hostbuy":?>
-		    <a class="custom-buttom" href="/exel/guest.php?type=guests_hb&app=<?=$arResult["EXHIB"]["CODE"]?>">Генерировать Excel</a>
-            <a class="custom-buttom" href="/exel/guest.php?type=guests_hb_all&app=<?=$arResult["EXHIB"]["CODE"]?>">Excel (все люди)</a>
-			<? /*<input class="custom-buttom" type="button" name="edit" disabled value="Редактировать">$arParams["EXHIBIT_CODE"]
-			<input class="custom-buttom" type="button" name="generate-schedule" disabled value="Генерировать расписание">
-			<input class="custom-buttom" type="button" name="generate-wishlist" disabled value="Генерировать вишлист">
-			<input class="custom-buttom unconfirm-participate-button-mass" type="button" name="unconfirm" value="Отправить в Неподтвержденные">
-			<input class="custom-buttom" type="button" name="cancell-participation" disabled value="Отменить участие">
+		    <a class="custom-buttom" href="/exel/guest.php?type=guests_hb&app=<?=$arResult["EXHIB"]["CODE"]?>">Р“РµРЅРµСЂРёСЂРѕРІР°С‚СЊ Excel</a>
+            <a class="custom-buttom" href="/exel/guest.php?type=guests_hb_all&app=<?=$arResult["EXHIB"]["CODE"]?>">Excel (РІСЃРµ Р»СЋРґРё)</a>
+			<? /*<input class="custom-buttom" type="button" name="edit" disabled value="Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ">$arParams["EXHIBIT_CODE"]
+			<input class="custom-buttom" type="button" name="generate-schedule" disabled value="Р“РµРЅРµСЂРёСЂРѕРІР°С‚СЊ СЂР°СЃРїРёСЃР°РЅРёРµ">
+			<input class="custom-buttom" type="button" name="generate-wishlist" disabled value="Р“РµРЅРµСЂРёСЂРѕРІР°С‚СЊ РІРёС€Р»РёСЃС‚">
+			<input class="custom-buttom unconfirm-participate-button-mass" type="button" name="unconfirm" value="РћС‚РїСЂР°РІРёС‚СЊ РІ РќРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ">
+			<input class="custom-buttom" type="button" name="cancell-participation" disabled value="РћС‚РјРµРЅРёС‚СЊ СѓС‡Р°СЃС‚РёРµ">
 			*/?>
 		<?break?>
 	<?endswitch?>
@@ -167,7 +167,7 @@ function printVal($ar, $glue)
 	<div class="navigate"><?=$arResult["NAVIGATE"]?></div>
 	<table class="list" style="min-width: 100%;">
 		<tr class="odd">
-			<th width="75px">Групповые действия</th>
+			<th width="75px">Р“СЂСѓРїРїРѕРІС‹Рµ РґРµР№СЃС‚РІРёСЏ</th>
 			<?foreach($arShowedTableCols as $key=>$val):?>
 				<th><?=$key?></th>
 			<?endforeach?>
@@ -177,14 +177,14 @@ function printVal($ar, $glue)
 			<?foreach($arShowedTableColsBool as $key=>$val):?>
 				<th><?=$key?></th>
 			<?endforeach?>
-			<th>Действия</th>
+			<th>Р”РµР№СЃС‚РІРёСЏ</th>
 		</tr>
 		<?$i=0;foreach($arResult["USERS_LIST"] as $arUser):?>
 			<tr class="<?if($i++%2):?>odd<?else:?>even<?endif?>">
 				<td class="text-center"><input type="checkbox" name="SELECTED_USERS[]" value="<?=$arUser["ID"]?>"></td>
 				<?foreach($arShowedTableCols as $key=>$val):?>
 					<td>
-					<? if($key != "Пароль"):?>
+					<? if($key != "РџР°СЂРѕР»СЊ"):?>
 						<?=printVal(returnVal($arUser, $val, $arParams["GUEST_FORM_ID"]), "<br>")?>
 					<? else:?>
 						<?=$arUser["UF_PAS"]?>
@@ -193,7 +193,7 @@ function printVal($ar, $glue)
                         href="<?= $href?>"
                         target="_blank"
                         onclick="newWind('<?= $href?>', 500, 300); return false;"
-                        >Редактировать пароль</a>
+                        >Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїР°СЂРѕР»СЊ</a>
 					<? endif;?>
 					</td>
 				<?endforeach?>
@@ -224,78 +224,78 @@ function printVal($ar, $glue)
 						    <? $edithrefUconf = "/admin/service/edit.php?id=" . $arUser["ID"]."&result=". $arUser["UF_ID_COMP"] . "&type=G";?>
 							<?switch($arParams["ACT"]):
 								case "off":?>
-									<li><a href="" data-user-id="<?=$arUser["ID"]?>" class="confirm-participate-button">Подтвердить&nbsp;участие</a></li>
-									<li><a href="<?= $edithrefUconf?>" target="_blank" onclick="newWind('<?= $edithrefUconf?>', 500, 600); return false;" >Редактировать</a></li>
+									<li><a href="" data-user-id="<?=$arUser["ID"]?>" class="confirm-participate-button">РџРѕРґС‚РІРµСЂРґРёС‚СЊ&nbsp;СѓС‡Р°СЃС‚РёРµ</a></li>
+									<li><a href="<?= $edithrefUconf?>" target="_blank" onclick="newWind('<?= $edithrefUconf?>', 500, 600); return false;" >Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ</a></li>
 									<li><? $href = "/admin/service/pass.php?uid=" . $arUser["ID"]?>
                                         <a
                                             href="<?= $href?>"
                                             target="_blank"
                                             onclick="newWind('<?= $href?>', 500, 300); return false;"
-                                            >Редактировать пароль</a>
+                                            >Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїР°СЂРѕР»СЊ</a>
                                     </li>
-									<li><a href="" data-user-id="<?=$arUser["ID"]?>" class="spam-guest-button">В спам</a></li>
+									<li><a href="" data-user-id="<?=$arUser["ID"]?>" class="spam-guest-button">Р’ СЃРїР°Рј</a></li>
 								<?break?>
 									<? case "spam":?>
 
-									<li><a href="<?= $edithrefUconf?>" target="_blank" onclick="newWind('<?= $edithrefUconf?>', 500, 600); return false;" >Редактировать</a></li>
+									<li><a href="<?= $edithrefUconf?>" target="_blank" onclick="newWind('<?= $edithrefUconf?>', 500, 600); return false;" >Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ</a></li>
 									<li><? $href = "/admin/service/pass.php?uid=" . $arUser["ID"]?>
                                         <a
                                             href="<?= $href?>"
                                             target="_blank"
                                             onclick="newWind('<?= $href?>', 500, 300); return false;"
-                                            >Редактировать пароль</a>
+                                            >Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїР°СЂРѕР»СЊ</a>
                                     </li>
-									<li><a href="" data-user-id="<?=$arUser["ID"]?>" class="spam-guest-button">Восстановить</a></li>
+									<li><a href="" data-user-id="<?=$arUser["ID"]?>" class="spam-guest-button">Р’РѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ</a></li>
 								<?break?>
 								<?case "evening":?>
-									<li><a href="" data-user-id="<?=$arUser["ID"]?>" class="unconfirm-participate-button">Отправить в Неподтвержденные</a></li>
-									<li><a href="<?= $edithrefConf?>" target="_blank" onclick="newWind('<?= $edithrefConf?>', 500, 600); return false;" >Редактировать</a></li>
+									<li><a href="" data-user-id="<?=$arUser["ID"]?>" class="unconfirm-participate-button">РћС‚РїСЂР°РІРёС‚СЊ РІ РќРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ</a></li>
+									<li><a href="<?= $edithrefConf?>" target="_blank" onclick="newWind('<?= $edithrefConf?>', 500, 600); return false;" >Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ</a></li>
 									<li><? $href = "/admin/service/pass.php?uid=" . $arUser["ID"]?>
                                         <a
                                             href="<?= $href?>"
                                             target="_blank"
                                             onclick="newWind('<?= $href?>', 500, 300); return false;"
-                                            >Редактировать пароль</a>
+                                            >Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїР°СЂРѕР»СЊ</a>
                                     </li>
 									<? /*?>
-									<input class="custom-buttom" type="submit" name="spam" disabled value="В СПАМ">
-									<input class="custom-buttom" type="submit" name="unconfirm" disabled value="Отправить в Неподтвержденные">*/?>
+									<input class="custom-buttom" type="submit" name="spam" disabled value="Р’ РЎРџРђРњ">
+									<input class="custom-buttom" type="submit" name="unconfirm" disabled value="РћС‚РїСЂР°РІРёС‚СЊ РІ РќРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ">*/?>
 								<?break?>
 								<?case "morning":case "hostbuy":?>
-									<li><a href="" data-user-id="<?=$arUser["ID"]?>" class="unconfirm-participate-button">Отправить в Неподтвержденные</a></li>
-									<li><a href="<?= $edithrefConf?>" target="_blank" onclick="newWind('<?= $edithrefConf?>', 500, 600); return false;" >Редактировать</a></li>
+									<li><a href="" data-user-id="<?=$arUser["ID"]?>" class="unconfirm-participate-button">РћС‚РїСЂР°РІРёС‚СЊ РІ РќРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ</a></li>
+									<li><a href="<?= $edithrefConf?>" target="_blank" onclick="newWind('<?= $edithrefConf?>', 500, 600); return false;" >Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ</a></li>
 									<li><? $href = "/admin/service/pass.php?uid=" . $arUser["ID"]?>
                                         <a
                                             href="<?= $href?>"
                                             target="_blank"
                                             onclick="newWind('<?= $href?>', 500, 300); return false;"
-                                            >Редактировать пароль</a>
+                                            >Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїР°СЂРѕР»СЊ</a>
                                     </li>
 									<li><a
                             	href="/admin/service/pdf_shedule_guest.php?id=<?=$arUser["ID"]?>&app=<?=$arResult["EXHIB"]["PROPERTIES"]["APP_ID"]["VALUE"]?>&exhib=<?=$arResult['EXHIB']['CODE']?>&type=p&mode=pdf"
                                 target="_blank"
-                                onclick="newWind('/admin/service/pdf_shedule_guest.php?id=<?=$arUser["ID"]?>&app=<?=$arResult["EXHIB"]["PROPERTIES"]["APP_ID"]["VALUE"]?>&exhib=<?=$arResult['EXHIB']['CODE']?>&type=p&mode=pdf', 600, 700); return false;">Генерировать расписание</a></li>
+                                onclick="newWind('/admin/service/pdf_shedule_guest.php?id=<?=$arUser["ID"]?>&app=<?=$arResult["EXHIB"]["PROPERTIES"]["APP_ID"]["VALUE"]?>&exhib=<?=$arResult['EXHIB']['CODE']?>&type=p&mode=pdf', 600, 700); return false;">Р“РµРЅРµСЂРёСЂРѕРІР°С‚СЊ СЂР°СЃРїРёСЃР°РЅРёРµ</a></li>
 									<li><a
                             	href="/admin/service/wishlist_guest.php?id=<?=$arUser["ID"]?>&app=<?=$arResult["EXHIB"]["PROPERTIES"]["APP_ID"]["VALUE"]?>&exhib=<?=$arResult['EXHIB']['CODE']?>&type=p&mode=pdf"
                                 target="_blank"
-                                onclick="newWind('/admin/service/wishlist_guest.php?id=<?=$arUser["ID"]?>&app=<?=$arResult["EXHIB"]["PROPERTIES"]["APP_ID"]["VALUE"]?>&exhib=<?=$arResult['EXHIB']['CODE']?>&type=p&mode=pdf', 600, 700); return false;">Генерировать вишлист</a></li>
+                                onclick="newWind('/admin/service/wishlist_guest.php?id=<?=$arUser["ID"]?>&app=<?=$arResult["EXHIB"]["PROPERTIES"]["APP_ID"]["VALUE"]?>&exhib=<?=$arResult['EXHIB']['CODE']?>&type=p&mode=pdf', 600, 700); return false;">Р“РµРЅРµСЂРёСЂРѕРІР°С‚СЊ РІРёС€Р»РёСЃС‚</a></li>
                                 <? if($arParams["ACT"] == "hostbuy" && (isset($arResult["EXHIB"]["PROPERTIES"]["APP_HB_ID"]["VALUE"]) && $arResult["EXHIB"]["PROPERTIES"]["APP_HB_ID"]["VALUE"] != '')){
                                 	$appId = $arResult["EXHIB"]["PROPERTIES"]["APP_HB_ID"]["VALUE"];
                                 	?>
                                 	<li><a
                             	href="/admin/service/pdf_shedule_guest_hb.php?id=<?=$arUser["ID"]?>&app=<?=$appId?>&exhib=<?=$arResult['EXHIB']['CODE']?>&type=p&mode=pdf"
                                 target="_blank"
-                                onclick="newWind('/admin/service/pdf_shedule_guest_hb.php?id=<?=$arUser["ID"]?>&app=<?=$appId?>&exhib=<?=$arResult['EXHIB']['CODE']?>&type=p&mode=pdf', 600, 700); return false;">Генерировать расписание HB</a></li>
+                                onclick="newWind('/admin/service/pdf_shedule_guest_hb.php?id=<?=$arUser["ID"]?>&app=<?=$appId?>&exhib=<?=$arResult['EXHIB']['CODE']?>&type=p&mode=pdf', 600, 700); return false;">Р“РµРЅРµСЂРёСЂРѕРІР°С‚СЊ СЂР°СЃРїРёСЃР°РЅРёРµ HB</a></li>
 									<li><a
                             	href="/admin/service/wishlist_guest_hb.php?id=<?=$arUser["ID"]?>&app=<?=$appId?>&exhib=<?=$arResult['EXHIB']['CODE']?>&type=p&mode=pdf"
                                 target="_blank"
-                                onclick="newWind('/admin/service/wishlist_guest_hb.php?id=<?=$arUser["ID"]?>&app=<?=$appId?>&exhib=<?=$arResult['EXHIB']['CODE']?>&type=p&mode=pdf', 600, 700); return false;">Генерировать вишлист HB</a></li>
+                                onclick="newWind('/admin/service/wishlist_guest_hb.php?id=<?=$arUser["ID"]?>&app=<?=$appId?>&exhib=<?=$arResult['EXHIB']['CODE']?>&type=p&mode=pdf', 600, 700); return false;">Р“РµРЅРµСЂРёСЂРѕРІР°С‚СЊ РІРёС€Р»РёСЃС‚ HB</a></li>
                                 <?
                                 }
                                 ?>
 									<? /*?>
-									<input class="custom-buttom" type="submit" name="unconfirm" disabled value="Отправить в Неподтвержденные">
-									<input class="custom-buttom" type="submit" name="cancell-participation" disabled value="Отменить участие">*/?>
+									<input class="custom-buttom" type="submit" name="unconfirm" disabled value="РћС‚РїСЂР°РІРёС‚СЊ РІ РќРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ">
+									<input class="custom-buttom" type="submit" name="cancell-participation" disabled value="РћС‚РјРµРЅРёС‚СЊ СѓС‡Р°СЃС‚РёРµ">*/?>
 								<?break?>
 							<?endswitch?>
 						</ul>
@@ -308,7 +308,7 @@ function printVal($ar, $glue)
 <?endif?>
 
 <script>
-//в подтвержденные
+//РІ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ
 $(document).on("click", ".confirm-participate-button", function() {
 	return sendAjaxUpdate("/admin/guest/guest-set-confirmed.php",
 			"USER_ID="+$(this).data("user-id")+"&"+$(this).closest("form").serialize());
@@ -318,7 +318,7 @@ $(document).on("click", ".confirm-participate-button-mass", function() {
 			$(this).closest("form").serialize())
 });
 
-//в неподтвержденные
+//РІ РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ
 $(document).on("click", ".unconfirm-participate-button", function() {
 	return sendAjaxUpdate("/admin/guest/guest-set-unconfirmed.php",
 			"USER_ID="+$(this).data("user-id")+"&"+$(this).closest("form").serialize())
@@ -328,7 +328,7 @@ $(document).on("click", ".unconfirm-participate-button-mass", function() {
 			$(this).closest("form").serialize())
 });
 
-//в спам
+//РІ СЃРїР°Рј
 $(document).on("click", ".spam-guest-button", function() {
 	return sendAjaxUpdate("/admin/guest/guest-set-spam.php",
 			"USER_ID="+$(this).data("user-id")+"&"+$(this).closest("form").serialize())

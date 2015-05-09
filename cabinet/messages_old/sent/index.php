@@ -17,7 +17,7 @@ if($exhibCode != "moscow-russia-march-13-2014")
 
 if($_SESSION["USER_TYPE"] == "PARTICIPANT" && !$close)
 {?>
-	<?//--> Список табов 2 уровня ?>
+	<?//--> РЎРїРёСЃРѕРє С‚Р°Р±РѕРІ 2 СѓСЂРѕРІРЅСЏ ?>
     <ul class="message-list-tab pull-overflow">
         <li><a href="<?= $page . "inbox/" . (($userId)?"?UID=".$userId:"")?>" title="Inbox">Inbox</a></li>
         <li class="ui-tabs-active"><a href="<?= $page . "sent/" . (($userId)?"?UID=".$userId:"")?>" title="Sent">Sent</a></li>
@@ -31,12 +31,12 @@ if($_SESSION["USER_TYPE"] == "PARTICIPANT" && !$close)
 }
 elseif($_SESSION["USER_TYPE"] == "GUEST" && !$close)
 {?>
-	<?//--> Список табов 2 уровня ?>
+	<?//--> РЎРїРёСЃРѕРє С‚Р°Р±РѕРІ 2 СѓСЂРѕРІРЅСЏ ?>
     <ul class="message-list-tab pull-overflow">
-        <li><a href="<?= $page . "inbox/" . (($userId)?"?UID=".$userId:"")?>" title="Входящие">Входящие</a></li>
-        <li class="ui-tabs-active"><a href="<?= $page . "sent/" . (($userId)?"?UID=".$userId:"")?>" title="Отправленные">Отправленные</a></li>
-        <li><a href="<?= $page . "new/" . (($userId)?"?UID=".$userId:"")?>" title="Написать письмо">Написать письмо</a></li>
-        <li><a href="<?= $page . "contact/" . (($userId)?"?UID=".$userId:"")?>" title="Связаться с организаторами">Связаться с организаторами</a></li>
+        <li><a href="<?= $page . "inbox/" . (($userId)?"?UID=".$userId:"")?>" title="Р’С…РѕРґСЏС‰РёРµ">Р’С…РѕРґСЏС‰РёРµ</a></li>
+        <li class="ui-tabs-active"><a href="<?= $page . "sent/" . (($userId)?"?UID=".$userId:"")?>" title="РћС‚РїСЂР°РІР»РµРЅРЅС‹Рµ">РћС‚РїСЂР°РІР»РµРЅРЅС‹Рµ</a></li>
+        <li><a href="<?= $page . "new/" . (($userId)?"?UID=".$userId:"")?>" title="РќР°РїРёСЃР°С‚СЊ РїРёСЃСЊРјРѕ">РќР°РїРёСЃР°С‚СЊ РїРёСЃСЊРјРѕ</a></li>
+        <li><a href="<?= $page . "contact/" . (($userId)?"?UID=".$userId:"")?>" title="РЎРІСЏР·Р°С‚СЊСЃСЏ СЃ РѕСЂРіР°РЅРёР·Р°С‚РѕСЂР°РјРё">РЎРІСЏР·Р°С‚СЊСЃСЏ СЃ РѕСЂРіР°РЅРёР·Р°С‚РѕСЂР°РјРё</a></li>
     </ul>
 		<div id="message-tab-1" class="inbox morning-session">
 		<? include("guest.php");?>

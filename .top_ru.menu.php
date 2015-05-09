@@ -1,56 +1,56 @@
 <?
 $aMenuLinks = Array(
 	Array(
-		"Î ÂÛÑÒÀÂÊÅ LTM", 
+		"Ðž Ð’Ð«Ð¡Ð¢ÐÐ’ÐšÐ• LTM", 
 		"/about/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
-		"ÐÅÃÈÑÒÐÀÖÈß", 
+		"Ð Ð•Ð“Ð˜Ð¡Ð¢Ð ÐÐ¦Ð˜Ð¯", 
 		"/registr/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
-		"Ó×ÀÑÒÍÈÊÈ", 
+		"Ð£Ð§ÐÐ¡Ð¢ÐÐ˜ÐšÐ˜", 
 		"/members/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
-		"ÔÎÒÎ", 
+		"Ð¤ÐžÐ¢Ðž", 
 		"/photo/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
-		"ÐÀÑÏÈÑÀÍÈÅ", 
+		"Ð ÐÐ¡ÐŸÐ˜Ð¡ÐÐÐ˜Ð•", 
 		"/schedule/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
-		"ÏÀÐÒÍ¨ÐÛ", 
+		"ÐŸÐÐ Ð¢ÐÐÐ Ð«", 
 		"/partners/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
-		"ÎÐÃÀÍÈÇÀÒÎÐÛ", 
+		"ÐžÐ Ð“ÐÐÐ˜Ð—ÐÐ¢ÐžÐ Ð«", 
 		"/organizers/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
-		"ÊÎÍÒÀÊÒÛ", 
+		"ÐšÐžÐÐ¢ÐÐšÐ¢Ð«", 
 		"/contacts/", 
 		Array(), 
 		Array(), 

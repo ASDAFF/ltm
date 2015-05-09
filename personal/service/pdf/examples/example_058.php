@@ -81,7 +81,7 @@ $pdf->ImageSVG($file='../images/tux.svg', $x=30, $y=100, $w='', $h=100, $link=''
 
 $pdf->SetFont('helvetica', '', 8);
 $pdf->SetY(195);
-$txt = '© The copyright holder of the above Tux image is Larry Ewing, allows anyone to use it for any purpose, provided that the copyright holder is properly attributed. Redistribution, derivative work, commercial use, and all other use is permitted.';
+$txt = 'В© The copyright holder of the above Tux image is Larry Ewing, allows anyone to use it for any purpose, provided that the copyright holder is properly attributed. Redistribution, derivative work, commercial use, and all other use is permitted.';
 $pdf->Write(0, $txt, '', 0, 'L', true, 0, false, false, 0);
 
 // ---------------------------------------------------------

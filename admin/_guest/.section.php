@@ -1,3 +1,3 @@
 <?
-$sSectionName="Гости";
+$sSectionName="Р“РѕСЃС‚Рё";
 ?>

@@ -4,7 +4,7 @@ global $DB;
 global $USER;
 global $APPLICATION;
 
-//параметры
+//РїР°СЂР°РјРµС‚СЂС‹
 $arParams["EXHIB_IBLOCK_ID"] = intval($arParams["EXHIB_IBLOCK_ID"]);
 if(!$arParams["EXHIB_IBLOCK_ID"])
     $arParams["EXHIB_IBLOCK_ID"] = 15;
@@ -35,7 +35,7 @@ $arParams["USER_TYPE"] = "participant";
 
 
 
-//выполнение
+//РІС‹РїРѕР»РЅРµРЅРёРµ
 $arResult = array();
 
 if(!CModule::IncludeModule("iblock") || !CModule::IncludeModule("form"))
@@ -45,7 +45,7 @@ if(!CModule::IncludeModule("iblock") || !CModule::IncludeModule("form"))
 
 
 
-//получение выставок
+//РїРѕР»СѓС‡РµРЅРёРµ РІС‹СЃС‚Р°РІРѕРє
 $arFilter = array(
 	"IBLOCK_ID" => $arParams["EXHIB_IBLOCK_ID"],
     "CODE" => $arParams["EXHIB_CODE"],
@@ -66,10 +66,10 @@ while($obElement = $rsElement->GetNextElement())
     $arItem = $obElement->GetFields();
     $arItem["PROPERTIES"] = $obElement->GetProperties();
 
-    //получение ид свойства пользователя в котором хранится результат заполнения формы участника
+    //РїРѕР»СѓС‡РµРЅРёРµ РёРґ СЃРІРѕР№СЃС‚РІР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РІ РєРѕС‚РѕСЂРѕРј С…СЂР°РЅРёС‚СЃСЏ СЂРµР·СѓР»СЊС‚Р°С‚ Р·Р°РїРѕР»РЅРµРЅРёСЏ С„РѕСЂРјС‹ СѓС‡Р°СЃС‚РЅРёРєР°
     $userExhibPropertyID = CFormMatrix::getPropertyIDByExh($arItem["ID"]);
 
-    //получение (личных) данных участника
+    //РїРѕР»СѓС‡РµРЅРёРµ (Р»РёС‡РЅС‹С…) РґР°РЅРЅС‹С… СѓС‡Р°СЃС‚РЅРёРєР°
     $formID="";
     if("Y" == $arParams["CONFIRMED"])
     {
@@ -77,11 +77,11 @@ while($obElement = $rsElement->GetNextElement())
     }
     else
     {
-        $formID = 4;//представители москва весна (туда все падают)
+        $formID = 4;//РїСЂРµРґСЃС‚Р°РІРёС‚РµР»Рё РјРѕСЃРєРІР° РІРµСЃРЅР° (С‚СѓРґР° РІСЃРµ РїР°РґР°СЋС‚)
     }
 
 
-    //получение данных о группе пользователей
+    //РїРѕР»СѓС‡РµРЅРёРµ РґР°РЅРЅС‹С… Рѕ РіСЂСѓРїРїРµ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
     $arGroupsPropName = array("USER_GROUP_ID", "UC_PARTICIPANTS_GROUP", "PARTICIPANT_SPAM_GROUP");
 
     foreach ($arGroupsPropName as $propName)
@@ -120,31 +120,31 @@ while($obElement = $rsElement->GetNextElement())
         $arParameters = array(
             "FIELDS" => array("ID", "LOGIN","PASSWORD", "EMAIL", "WORK_COMPANY"),
             "SELECT" => array("UF_*")
-            //UF_ID - москва осень, UF_ID2 - баку, UF_ID3 - киев, UF_ID4 - алмата, UF_ID5 - москва осень, UF_ID_COMP - Участники данные компании ВСЕ ВЫСТАВКИ
+            //UF_ID - РјРѕСЃРєРІР° РѕСЃРµРЅСЊ, UF_ID2 - Р±Р°РєСѓ, UF_ID3 - РєРёРµРІ, UF_ID4 - Р°Р»РјР°С‚Р°, UF_ID5 - РјРѕСЃРєРІР° РѕСЃРµРЅСЊ, UF_ID_COMP - РЈС‡Р°СЃС‚РЅРёРєРё РґР°РЅРЅС‹Рµ РєРѕРјРїР°РЅРёРё Р’РЎР• Р’Р«РЎРўРђР’РљР
         );
 
 
         $rsUsers = CUser::GetList(($by="work_company"), ($order="asc"), $arFilter, $arParameters);
-		$rsUsers->NavStart(30); // разбиваем постранично по 30 записей
-		$arResult["NAVIGATE"] = $rsUsers->GetPageNavStringEx($navComponentObject, "Пользователи", "");
+		$rsUsers->NavStart(30); // СЂР°Р·Р±РёРІР°РµРј РїРѕСЃС‚СЂР°РЅРёС‡РЅРѕ РїРѕ 30 Р·Р°РїРёСЃРµР№
+		$arResult["NAVIGATE"] = $rsUsers->GetPageNavStringEx($navComponentObject, "РџРѕР»СЊР·РѕРІР°С‚РµР»Рё", "");
 
         while($arUser = $rsUsers->Fetch())
         {
             $arUsers[$arUser["ID"]] = $arUser;
-            //массив результатов заоплнения форм компаний и профиля
+            //РјР°СЃСЃРёРІ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ Р·Р°РѕРїР»РЅРµРЅРёСЏ С„РѕСЂРј РєРѕРјРїР°РЅРёР№ Рё РїСЂРѕС„РёР»СЏ
             $arCompanyResultID[] = $arUser["UF_ID_COMP"];
 
             if("Y" == $arParams["CONFIRMED"])
             {
-                $arUserResultID[] = $arUser[$userExhibPropertyID];//id результата
+                $arUserResultID[] = $arUser[$userExhibPropertyID];//id СЂРµР·СѓР»СЊС‚Р°С‚Р°
             }
 
             if("N" == $arParams["CONFIRMED"] || !$formResultID)
-                $arUserResultID[] = $arUser["UF_ID"];//id результата из общих
+                $arUserResultID[] = $arUser["UF_ID"];//id СЂРµР·СѓР»СЊС‚Р°С‚Р° РёР· РѕР±С‰РёС…
         }
 
-        //получение резульататов заполнения формы компании
-        //Получение ответов формы Участники данные компании ВСЕ ВЫСТАВКИ
+        //РїРѕР»СѓС‡РµРЅРёРµ СЂРµР·СѓР»СЊР°С‚Р°С‚РѕРІ Р·Р°РїРѕР»РЅРµРЅРёСЏ С„РѕСЂРјС‹ РєРѕРјРїР°РЅРёРё
+        //РџРѕР»СѓС‡РµРЅРёРµ РѕС‚РІРµС‚РѕРІ С„РѕСЂРјС‹ РЈС‡Р°СЃС‚РЅРёРєРё РґР°РЅРЅС‹Рµ РєРѕРјРїР°РЅРёРё Р’РЎР• Р’Р«РЎРўРђР’РљР
         $arResult["FORM_RESULT_COMMON"] = array("RESULTS"=>array(), "QUESTIONS"=>array(), "ANSWERS"=>array());
 
         CForm::GetResultAnswerArray(
@@ -156,7 +156,7 @@ while($obElement = $rsElement->GetNextElement())
         );
 
 
-        //получение ответов формы Представители
+        //РїРѕР»СѓС‡РµРЅРёРµ РѕС‚РІРµС‚РѕРІ С„РѕСЂРјС‹ РџСЂРµРґСЃС‚Р°РІРёС‚РµР»Рё
         $arResult["FORM_RESULT_USERS"] = array("RESULTS"=>array(), "QUESTIONS"=>array(), "ANSWERS"=>array());
 
         CForm::GetResultAnswerArray(
@@ -175,13 +175,13 @@ while($obElement = $rsElement->GetNextElement())
             {
                 $result = $arResult["FORM_RESULT_COMMON"]["ANSWERS"][$formResultCommon];
 
-                foreach ($result as $answerID => $answer)//проход по ответам
+                foreach ($result as $answerID => $answer)//РїСЂРѕС…РѕРґ РїРѕ РѕС‚РІРµС‚Р°Рј
                 {
 
                     $optionCount = count($answer);
-                    foreach ($answer as $option)//проход по ответам
+                    foreach ($answer as $option)//РїСЂРѕС…РѕРґ РїРѕ РѕС‚РІРµС‚Р°Рј
                     {
-                        //определегние названия свойсвта
+                        //РѕРїСЂРµРґРµР»РµРіРЅРёРµ РЅР°Р·РІР°РЅРёСЏ СЃРІРѕР№СЃРІС‚Р°
                         $propAnswer = "";
                         switch ($option["FIELD_TYPE"])
                         {
@@ -214,28 +214,28 @@ while($obElement = $rsElement->GetNextElement())
                 }
             }
 
-            //получение данных участника
+            //РїРѕР»СѓС‡РµРЅРёРµ РґР°РЅРЅС‹С… СѓС‡Р°СЃС‚РЅРёРєР°
             $formResultID="";
             if("Y" == $arParams["CONFIRMED"])
             {
-                $formResultID = $arUser[$userExhibPropertyID];//id результата
+                $formResultID = $arUser[$userExhibPropertyID];//id СЂРµР·СѓР»СЊС‚Р°С‚Р°
             }
 
             if("N" == $arParams["CONFIRMED"] || !$formResultID)
-                $formResultID = $arUser["UF_ID"];//id результата из общих
+                $formResultID = $arUser["UF_ID"];//id СЂРµР·СѓР»СЊС‚Р°С‚Р° РёР· РѕР±С‰РёС…
 
 
             if($formResultID)
             {
                 $result = $arResult["FORM_RESULT_USERS"]["ANSWERS"][$formResultID];
 
-                foreach ($result as $answerID => $answer)//проход по ответам
+                foreach ($result as $answerID => $answer)//РїСЂРѕС…РѕРґ РїРѕ РѕС‚РІРµС‚Р°Рј
                 {
                     $optionCount = count($answer);
-                    foreach ($answer as $option)//проход по ответам
+                    foreach ($answer as $option)//РїСЂРѕС…РѕРґ РїРѕ РѕС‚РІРµС‚Р°Рј
                     {
                         //pre($option);
-                        //определегние названия свойсвта
+                        //РѕРїСЂРµРґРµР»РµРіРЅРёРµ РЅР°Р·РІР°РЅРёСЏ СЃРІРѕР№СЃРІС‚Р°
                         $propAnswer = "";
                         switch ($option["FIELD_TYPE"])
                         {
@@ -270,13 +270,13 @@ while($obElement = $rsElement->GetNextElement())
             $arItem["PARTICIPANT"][$arUser["ID"]] = $arUser;
         }
 
-        uasort($arItem["PARTICIPANT"], "cmp"); //сортировка, в основном, для неподтвержденных, остальные при выборке сортитуются
+        uasort($arItem["PARTICIPANT"], "cmp"); //СЃРѕСЂС‚РёСЂРѕРІРєР°, РІ РѕСЃРЅРѕРІРЅРѕРј, РґР»СЏ РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С…, РѕСЃС‚Р°Р»СЊРЅС‹Рµ РїСЂРё РІС‹Р±РѕСЂРєРµ СЃРѕСЂС‚РёС‚СѓСЋС‚СЃСЏ
     }
     $arResult["EXHIBITION"] = $arItem;
 }
 
 
-if($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "GET")//если происходят действия с пользователем
+if($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "GET")//РµСЃР»Рё РїСЂРѕРёСЃС…РѕРґСЏС‚ РґРµР№СЃС‚РІРёСЏ СЃ РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј
 {
 	if(isset($_REQUEST["CONFIRM"]))
 	{

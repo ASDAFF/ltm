@@ -1,6 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("”˜‡ÒÚÌËÍË Ã‡ÚËˆ‡");
+$APPLICATION->SetTitle("–£—á–∞—Å—Ç–Ω–∏–∫–∏ –ú–∞—Ç—Ä–∏—Ü–∞");
 $close = true;
 $appCode= 1;
 $exhibCode = trim($_REQUEST["EXHIBIT_CODE"]);

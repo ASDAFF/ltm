@@ -114,10 +114,10 @@ oText['del_message'] = '<?=CUtil::addslashes(GetMessage("JS_DEL_MESSAGE"))?>';
 <? /*
             <table class="morning-time inbox-list">
                 <tr>
-                    <th>Тема</th>
-                    <th>Компания</th>
-                    <th>Отправитель</th>
-                    <th>Дата</th>
+                    <th>РўРµРјР°</th>
+                    <th>РљРѕРјРїР°РЅРёСЏ</th>
+                    <th>РћС‚РїСЂР°РІРёС‚РµР»СЊ</th>
+                    <th>Р”Р°С‚Р°</th>
                 </tr>
                 <tr>
                     <td>New proposals and terms of cooperation with our regular customers to our hotels</td>

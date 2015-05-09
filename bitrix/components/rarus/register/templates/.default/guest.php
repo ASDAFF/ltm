@@ -22,7 +22,7 @@ AjaxPatch = <?=CUtil::PhpToJSObject($arResult["AJAX_PATCH"])?>
 				</thead>
 				<tbody>
 				<?foreach ($arResult["EXHIBITION"] as $exhibID => $arItem):?>
-					<?if($arItem['PROPERTIES']['FOR_G']['VALUE'] != 'Y')//ïðîïóñêàåì, åñëè âûñòàâêà çàêðûòà äëÿ ãîñòåé
+					<?if($arItem['PROPERTIES']['FOR_G']['VALUE'] != 'Y')//Ð¿Ñ€Ð¾Ð¿ÑƒÑÐºÐ°ÐµÐ¼, ÐµÑÐ»Ð¸ Ð²Ñ‹ÑÑ‚Ð°Ð²ÐºÐ° Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð° Ð´Ð»Ñ Ð³Ð¾ÑÑ‚ÐµÐ¹
 					{
 						continue;
 					}
@@ -58,53 +58,53 @@ AjaxPatch = <?=CUtil::PhpToJSObject($arResult["AJAX_PATCH"])?>
 	
 	
 	
-	<?/* ÁËÎÊ ÍÅÌÍÎÃÎ ÈÍÔÎÐÌÀÖÈÈ Î ÂÀÑ*/?>
+	<?/* Ð‘Ð›ÐžÐš ÐÐ•ÐœÐÐžÐ“Ðž Ð˜ÐÐ¤ÐžÐ ÐœÐÐ¦Ð˜Ð˜ Ðž Ð’ÐÐ¡*/?>
 	
 	
 	<div class="some-information">
 		<div class="choose"><?=GetMessage("R_B_SOME_INFORMATION")?></div>
-		<?/*Îáùàÿ èíôîðìàöèÿ*/?>
+		<?/*ÐžÐ±Ñ‰Ð°Ñ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ñ*/?>
 		<div class="block-common">
 		<? $gQuestions = &$arResult["GUEST_FORM"]["QUESTIONS"];
 		   $gAnswers = &$arResult["GUEST_FORM"]["ANSWERS"];
 		?>
-			<?/*íàçâàíèå êîìïàíèè*/?>
+			<?/*Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ ÐºÐ¾Ð¼Ð¿Ð°Ð½Ð¸Ð¸*/?>
 			<?= ShowText("SIMPLE_QUESTION_115","COMPANY_NAME", $arResult["GUEST_FORM"], "require en");?>
-			<?/*Âèä äåÿòåëüíîñòè*/ ?>
+			<?/*Ð’Ð¸Ð´ Ð´ÐµÑÑ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚Ð¸*/ ?>
 			<?= ShowGroupCheckBox("SIMPLE_QUESTION_677","BUSINESS_TYPE", $arResult["GUEST_FORM"]);?>
-			<?/*Ôàêòè÷åñêèé àäðåñ êîìïàíèè*/?>
+			<?/*Ð¤Ð°ÐºÑ‚Ð¸Ñ‡ÐµÑÐºÐ¸Ð¹ Ð°Ð´Ñ€ÐµÑ ÐºÐ¾Ð¼Ð¿Ð°Ð½Ð¸Ð¸*/?>
 			<?= ShowText("SIMPLE_QUESTION_773","COMPANY_ADDRESS", $arResult["GUEST_FORM"], "require en");?>
-			<?/*Èíäåêñ*/?>
+			<?/*Ð˜Ð½Ð´ÐµÐºÑ*/?>
 			<?= ShowText("SIMPLE_QUESTION_756","INDEX", $arResult["GUEST_FORM"], "require index");?>
-			<?/*Ãîðîä*/?>
+			<?/*Ð“Ð¾Ñ€Ð¾Ð´*/?>
 			<?= ShowText("SIMPLE_QUESTION_672","CITY", $arResult["GUEST_FORM"], "require en");?>
-			<?/*Ñòðàíà*/?>
+			<?/*Ð¡Ñ‚Ñ€Ð°Ð½Ð°*/?>
 			<?= ShowDropDown("SIMPLE_QUESTION_678","COUNTRY", $arResult["GUEST_FORM"]);?>
-			<?/*Ñòðàíà äðóãàÿ*/?>
+			<?/*Ð¡Ñ‚Ñ€Ð°Ð½Ð° Ð´Ñ€ÑƒÐ³Ð°Ñ*/?>
 			<?= ShowText("SIMPLE_QUESTION_243","COUNTRY_OTHER", $arResult["GUEST_FORM"], "hide country_other en");?>
 			<div class="line-sep-small"></div>
-			<?/*Èìÿ*/?>
+			<?/*Ð˜Ð¼Ñ*/?>
 			<?= ShowText("SIMPLE_QUESTION_750","NAME", $arResult["GUEST_FORM"], "require en");?>
-			<?/*Ôàìèëèÿ*/?>
+			<?/*Ð¤Ð°Ð¼Ð¸Ð»Ð¸Ñ*/?>
 			<?= ShowText("SIMPLE_QUESTION_823","LAST_NAME", $arResult["GUEST_FORM"], "require en");?>
-			<?/*Äîëæíîñòü*/?>
+			<?/*Ð”Ð¾Ð»Ð¶Ð½Ð¾ÑÑ‚ÑŒ*/?>
 			<?= ShowText("SIMPLE_QUESTION_391","JOB_POST", $arResult["GUEST_FORM"], "require en");?>
-			<?/*Òåëåôîí*/?>
+			<?/*Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½*/?>
 			<?= ShowText("SIMPLE_QUESTION_636","PHONE", $arResult["GUEST_FORM"], "require phone");?>
-			<?/*ìîáèëüíûé òåëåôîí*/?>
+			<?/*Ð¼Ð¾Ð±Ð¸Ð»ÑŒÐ½Ñ‹Ð¹ Ñ‚ÐµÐ»ÐµÑ„Ð¾Ð½*/?>
 			<?= ShowText("SIMPLE_QUESTION_844","MOBILE_PHONE", $arResult["GUEST_FORM"], "phone");?>
 			<?/*email*/?>
 			<?= ShowText("SIMPLE_QUESTION_373","EMAIL", $arResult["GUEST_FORM"], "require email");?>
 			<?/*confemail*/?>
 			<?= ShowText("SIMPLE_QUESTION_279","CONF_EMAIL", $arResult["GUEST_FORM"], "require confemail");?>
-			<?/*ñàéò*/?>
+			<?/*ÑÐ°Ð¹Ñ‚*/?>
 			<?= ShowText("SIMPLE_QUESTION_552","WEB_SITE", $arResult["GUEST_FORM"], "web");?>
 			<div class="line-sep-small"></div>
 		</div>
 		
-		<?/*Óòðî */?>
+		<?/*Ð£Ñ‚Ñ€Ð¾ */?>
 		<div class="block-morning hide">
-			<?/*Îïèñàíèå êîìïàíèè*/?>
+			<?/*ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ ÐºÐ¾Ð¼Ð¿Ð°Ð½Ð¸Ð¸*/?>
 			<?= ShowTextArea("SIMPLE_QUESTION_166","COMPANY_DESCRIPTION", $arResult["GUEST_FORM"], "description en");?>
 			<div class="priority-areas">
 				<div class="priority-title"><?=GetMessage("R_B_SELECT_PRIORITY_AREAS")?></div>
@@ -134,29 +134,29 @@ AjaxPatch = <?=CUtil::PhpToJSObject($arResult["AJAX_PATCH"])?>
 			</div>
 			<div class="line-sep-small"></div>
 			<div class="authorize-title"><?=GetMessage("R_B_AUTHORIZE_TITLE")?></div>
-			<?/*Ââåäèòå ëîãèí/ãîñòåâîå èìÿ*/?>
+			<?/*Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð»Ð¾Ð³Ð¸Ð½/Ð³Ð¾ÑÑ‚ÐµÐ²Ð¾Ðµ Ð¸Ð¼Ñ*/?>
 			<?= ShowText("SIMPLE_QUESTION_474","LOGIN", $arResult["GUEST_FORM"], "login");?>
-			<?/*Ââåäèòå ïàðîëü*/?>
+			<?/*Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿Ð°Ñ€Ð¾Ð»ÑŒ*/?>
 			<?= ShowPassword("SIMPLE_QUESTION_435","PASSWORD", $arResult["GUEST_FORM"], "pass en");?>
-			<?/*Ïîâòîðèòå ïàðîëü*/?>
+			<?/*ÐŸÐ¾Ð²Ñ‚Ð¾Ñ€Ð¸Ñ‚Ðµ Ð¿Ð°Ñ€Ð¾Ð»ÑŒ*/?>
 			<?= ShowPassword("SIMPLE_QUESTION_300","CONF_PASSWORD", $arResult["GUEST_FORM"], "confpass");?>
 			<div class="authorize-epilogue"><?=GetMessage("R_B_AUTHORIZE_EPILOGUE")?></div>
 			<div class="line-sep-small"></div>
 			
 			<div class="authorize-title"><?=GetMessage("R_B_COLLEAGUE_MORNING_TITLE")?></div>
-			<?/*Èìÿ êîëëåãè íà óòðî*/?>
+			<?/*Ð˜Ð¼Ñ ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸ Ð½Ð° ÑƒÑ‚Ñ€Ð¾*/?>
 			<?= ShowText("SIMPLE_QUESTION_816","COLLEAGUE[MORNING][NAME]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_NAME"));?>
-			<?/*Ôàìèëèÿ êîëëåãè íà óòðî*/?>
+			<?/*Ð¤Ð°Ð¼Ð¸Ð»Ð¸Ñ ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸ Ð½Ð° ÑƒÑ‚Ñ€Ð¾*/?>
 			<?= ShowText("SIMPLE_QUESTION_596","COLLEAGUE[MORNING][LAST_NAME]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_LAST_NAME"));?>
-			<?/*Äîëæíîñòü êîëëåãè íà óòðî*/?>
+			<?/*Ð”Ð¾Ð»Ð¶Ð½Ð¾ÑÑ‚ÑŒ ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸ Ð½Ð° ÑƒÑ‚Ñ€Ð¾*/?>
 			<?= ShowText("SIMPLE_QUESTION_304","COLLEAGUE[MORNING][JOB_POST]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_JOB_POST"));?>
-			<?/*EAMIL êîëëåãè íà óòðî*/?>
+			<?/*EAMIL ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸ Ð½Ð° ÑƒÑ‚Ñ€Ð¾*/?>
 			<?= ShowText("SIMPLE_QUESTION_278","COLLEAGUE[MORNING][EMAIL]", $arResult["GUEST_FORM"], "email", GetMessage("R_B_EMAIL"));?>
 			<div class="line-sep-small"></div>
 		</div>
 		
 		<? /*
-		<?// óòðî âå÷åð ?>
+		<?// ÑƒÑ‚Ñ€Ð¾ Ð²ÐµÑ‡ÐµÑ€ ?>
 		<div class="block-morning-evening hide">
 			<div class="authorize-title"><?= GetMessage("R_B_COLLEAGUE_EVENING_FOR_ME_1")?></div>
 			<div class="authorize-epilogue"><?= GetMessage("R_B_COLLEAGUE_EVENING_FOR_ME_2")?></div>
@@ -164,49 +164,49 @@ AjaxPatch = <?=CUtil::PhpToJSObject($arResult["AJAX_PATCH"])?>
 		</div>
 		*/?>
 		
-		<?//âå÷åð?>
+		<?//Ð²ÐµÑ‡ÐµÑ€?>
 		<div class="block-evening hide">
 			<div class="priority-title"><?= GetMessage("R_B_COLLEAGUE_EVENING_TITLE")?></div>
 			<div class="line-sep-small"></div>
 			
 <!--			<div class="collegue-title"><?= GetMessage("R_B_EACH_COLLEAGUE_EVENING_TITLE", array("#NUM#" => "1"))?></div> -->
-			<?/*Èìÿ êîëëåãè 1*/?>
+			<?/*Ð˜Ð¼Ñ ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸ 1*/?>
 			<?= ShowText("SIMPLE_QUESTION_367","COLLEAGUE[0][NAME]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_NAME"));?>
-			<?/*Ôàìèëèÿ êîëëåãè 1*/?>
+			<?/*Ð¤Ð°Ð¼Ð¸Ð»Ð¸Ñ ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸ 1*/?>
 			<?= ShowText("SIMPLE_QUESTION_482","COLLEAGUE[0][LAST_NAME]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_LAST_NAME"));?>
-			<?/*Äîëæíîñòü êîëëåãè 1*/?>
+			<?/*Ð”Ð¾Ð»Ð¶Ð½Ð¾ÑÑ‚ÑŒ ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸ 1*/?>
 			<?= ShowText("SIMPLE_QUESTION_187","COLLEAGUE[0][JOB_POST]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_JOB_POST"));?>
-			<?/*E-mail êîëëåãè 1*/?>
+			<?/*E-mail ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸ 1*/?>
 			<?= ShowText("SIMPLE_QUESTION_421","COLLEAGUE[0][EMAIL]", $arResult["GUEST_FORM"], "email", GetMessage("R_B_EMAIL"));?>
 			<div class="line-sep-small"></div>
 
 <!--
 			<div class="collegue-title"><?= GetMessage("R_B_EACH_COLLEAGUE_EVENING_TITLE", array("#NUM#" => "2"))?></div>
-			<?/*Èìÿ êîëëåãè 2*/?>
+			<?/*Ð˜Ð¼Ñ ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸ 2*/?>
 			<?= ShowText("SIMPLE_QUESTION_225","COLLEAGUE[1][NAME]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_NAME"));?>
-			<?/*Ôàìèëèÿ êîëëåãè 2*/?>
+			<?/*Ð¤Ð°Ð¼Ð¸Ð»Ð¸Ñ ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸ 2*/?>
 			<?= ShowText("SIMPLE_QUESTION_770","COLLEAGUE[1][LAST_NAME]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_LAST_NAME"));?>
-			<?/*Äîëæíîñòü êîëëåãè 2*/?>
+			<?/*Ð”Ð¾Ð»Ð¶Ð½Ð¾ÑÑ‚ÑŒ ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸ 2*/?>
 			<?= ShowText("SIMPLE_QUESTION_280","COLLEAGUE[1][JOB_POST]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_JOB_POST"));?>
-			<?/*E-mail êîëëåãè 2*/?>
+			<?/*E-mail ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸ 2*/?>
 			<?= ShowText("SIMPLE_QUESTION_384","COLLEAGUE[1][EMAIL]", $arResult["GUEST_FORM"], "email", GetMessage("R_B_EMAIL"));?>
 			<div class="line-sep-small"></div>
 			
 			<div class="collegue-title"><?= GetMessage("R_B_EACH_COLLEAGUE_EVENING_TITLE", array("#NUM#" => "3"))?></div>
-			<?/*Èìÿ êîëëåãè 3*/?>
+			<?/*Ð˜Ð¼Ñ ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸ 3*/?>
 			<?= ShowText("SIMPLE_QUESTION_765","COLLEAGUE[2][NAME]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_NAME"));?>
-			<?/*Ôàìèëèÿ êîëëåãè 3*/?>
+			<?/*Ð¤Ð°Ð¼Ð¸Ð»Ð¸Ñ ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸ 3*/?>
 			<?= ShowText("SIMPLE_QUESTION_627","COLLEAGUE[2][LAST_NAME]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_LAST_NAME"));?>
-			<?/*Äîëæíîñòü êîëëåãè 3*/?>
+			<?/*Ð”Ð¾Ð»Ð¶Ð½Ð¾ÑÑ‚ÑŒ ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸ 3*/?>
 			<?= ShowText("SIMPLE_QUESTION_788","COLLEAGUE[2][JOB_POST]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_JOB_POST"));?>
-			<?/*E-mail êîëëåãè 3*/?>
+			<?/*E-mail ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸ 3*/?>
 			<?= ShowText("SIMPLE_QUESTION_230","COLLEAGUE[2][EMAIL]", $arResult["GUEST_FORM"], "email", GetMessage("R_B_EMAIL"));?>
 			<div class="line-sep-small"></div>
 -->
 		</div>
 	</div>
 	<div class="line-sep-g"></div>
-	<?/* êíîïêè ïîäòâåðæäåíèÿ ðåãèñòðàöèè*/?>
+	<?/* ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð¸Ñ Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸Ð¸*/?>
 	<label class = "check-register"  for = "ckeck_register"><?=GetMessage("R_B_CONF_TERMS")?></label>
 	<input id="ckeck_register" type="checkbox" name="CONFIRM_TERMS" class = "hide" />
 	

@@ -8,7 +8,7 @@ if($bIblock)
 {
 	foreach ($arResult["ITEMS"] as &$arItem)
 	{
-	    //переписываем поля по выбранному языку
+	    //РїРµСЂРµРїРёСЃС‹РІР°РµРј РїРѕР»СЏ РїРѕ РІС‹Р±СЂР°РЅРЅРѕРјСѓ СЏР·С‹РєСѓ
 	    if(LANGUAGE_ID != "ru")
 	    {
 	        $arItem["NAME"] = $arItem["PROPERTIES"]["NAME_" . $lang]["VALUE"]["TEXT"];

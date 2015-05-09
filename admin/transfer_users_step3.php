@@ -11,18 +11,18 @@ require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.
 set_time_limit(0);
 
 /*
- * Третий шаг. Переносим участников из группы пререгестрации в группу неподтвержденные этого года если они не регестрировались из личного кабинета.
- * Удаляем префикс у участников, которых переносим.
- * Переносим заполненные формы из пререгестрации для подтвержденных участников в Форму этого года.
+ * РўСЂРµС‚РёР№ С€Р°Рі. РџРµСЂРµРЅРѕСЃРёРј СѓС‡Р°СЃС‚РЅРёРєРѕРІ РёР· РіСЂСѓРїРїС‹ РїСЂРµСЂРµРіРµСЃС‚СЂР°С†РёРё РІ РіСЂСѓРїРїСѓ РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ СЌС‚РѕРіРѕ РіРѕРґР° РµСЃР»Рё РѕРЅРё РЅРµ СЂРµРіРµСЃС‚СЂРёСЂРѕРІР°Р»РёСЃСЊ РёР· Р»РёС‡РЅРѕРіРѕ РєР°Р±РёРЅРµС‚Р°.
+ * РЈРґР°Р»СЏРµРј РїСЂРµС„РёРєСЃ Сѓ СѓС‡Р°СЃС‚РЅРёРєРѕРІ, РєРѕС‚РѕСЂС‹С… РїРµСЂРµРЅРѕСЃРёРј.
+ * РџРµСЂРµРЅРѕСЃРёРј Р·Р°РїРѕР»РЅРµРЅРЅС‹Рµ С„РѕСЂРјС‹ РёР· РїСЂРµСЂРµРіРµСЃС‚СЂР°С†РёРё РґР»СЏ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… СѓС‡Р°СЃС‚РЅРёРєРѕРІ РІ Р¤РѕСЂРјСѓ СЌС‚РѕРіРѕ РіРѕРґР°.
  */
 
 
-// начальные данные. Формы
+// РЅР°С‡Р°Р»СЊРЅС‹Рµ РґР°РЅРЅС‹Рµ. Р¤РѕСЂРјС‹
 $form_from = 10;
 $form_to = 1;
 $questionsChange = array();
 
-// получим список всех вопросов веб-формы
+// РїРѕР»СѓС‡РёРј СЃРїРёСЃРѕРє РІСЃРµС… РІРѕРїСЂРѕСЃРѕРІ РІРµР±-С„РѕСЂРјС‹
 if (CForm::GetDataByID($form_from, $form, $questions, $answers, $dropdown, $multiselect)) {
     foreach ($answers as $fieldAns => $arrAns) {
         $questionsChange[$fieldAns]["NEW"] = "";
@@ -61,20 +61,20 @@ if (CForm::GetDataByID($form_from, $form, $questions, $answers, $dropdown, $mult
         }
     } else {
         $mailto = "diana_box@list.ru";
-        $mail = "Ошибки при обработке переноса анкет Luxury\n" . $strError;
-        mail($mailto, "Перенос пользователей", $mail, "Content-Type: text/plain; charset=windows-1251\r\n");
-        echo "Ошибки при обработке переноса анкет сайта Luxury\n" . $strError;
+        $mail = "РћС€РёР±РєРё РїСЂРё РѕР±СЂР°Р±РѕС‚РєРµ РїРµСЂРµРЅРѕСЃР° Р°РЅРєРµС‚ Luxury\n" . $strError;
+        mail($mailto, "РџРµСЂРµРЅРѕСЃ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№", $mail, "Content-Type: text/plain; charset=windows-1251\r\n");
+        echo "РћС€РёР±РєРё РїСЂРё РѕР±СЂР°Р±РѕС‚РєРµ РїРµСЂРµРЅРѕСЃР° Р°РЅРєРµС‚ СЃР°Р№С‚Р° Luxury\n" . $strError;
     }
 } else {
     $mailto = "diana_box@list.ru";
-    $mail = "Ошибки при обработке переноса анкет Luxury\n" . $strError;
-    mail($mailto, "Перенос пользователей", $mail, "Content-Type: text/plain; charset=windows-1251\r\n");
-    echo "Ошибки при обработке переноса анкет сайта Luxury\n" . $strError;
+    $mail = "РћС€РёР±РєРё РїСЂРё РѕР±СЂР°Р±РѕС‚РєРµ РїРµСЂРµРЅРѕСЃР° Р°РЅРєРµС‚ Luxury\n" . $strError;
+    mail($mailto, "РџРµСЂРµРЅРѕСЃ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№", $mail, "Content-Type: text/plain; charset=windows-1251\r\n");
+    echo "РћС€РёР±РєРё РїСЂРё РѕР±СЂР°Р±РѕС‚РєРµ РїРµСЂРµРЅРѕСЃР° Р°РЅРєРµС‚ СЃР°Р№С‚Р° Luxury\n" . $strError;
 }
 
 
-// начальные данные. Группы, поля
-// Закомментированы группы, чтобы случайно ничего не перенесли
+// РЅР°С‡Р°Р»СЊРЅС‹Рµ РґР°РЅРЅС‹Рµ. Р“СЂСѓРїРїС‹, РїРѕР»СЏ
+// Р—Р°РєРѕРјРјРµРЅС‚РёСЂРѕРІР°РЅС‹ РіСЂСѓРїРїС‹, С‡С‚РѕР±С‹ СЃР»СѓС‡Р°Р№РЅРѕ РЅРёС‡РµРіРѕ РЅРµ РїРµСЂРµРЅРµСЃР»Рё
 $group_from = 9;
 $group_to = 3;
 $anketa_prev = "UF_ANKETA_PREV";
@@ -82,11 +82,11 @@ $anketa_cur = "UF_ANKETA";
 $anketa_next = "UF_ANKETA_NEXT";
 
 $prefix_name = "2014";
-//СПИСОК ПОЛЬЗОВАТЕЛЕЙ
+//РЎРџРРЎРћРљ РџРћР›Р¬Р—РћР’РђРўР•Р›Р•Р™
 $filter = Array(
     "GROUPS_ID" => Array($group_from)
 );
-$rsUsers = CUser::GetList(($by = "WORK_COMPANY"), ($order = "asc"), $filter, array("SELECT" => array("UF_*"))); // выбираем пользователей
+$rsUsers = CUser::GetList(($by = "WORK_COMPANY"), ($order = "asc"), $filter, array("SELECT" => array("UF_*"))); // РІС‹Р±РёСЂР°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 $countUsers = 0;
 $resultFormId = "";
 $strError = "";
@@ -110,17 +110,17 @@ while ($arUser = $rsUsers->Fetch()) {
                 $arValues[$ans["NEW"]] = $arValuesTmp[$ans["OLD"]];
             }
             if ($RESULT_ID = CFormResult::Add($form_to, $arValues)) {
-                $message_change .= "Добавлен результат ID " . $RESULT_ID . "\n";
+                $message_change .= "Р”РѕР±Р°РІР»РµРЅ СЂРµР·СѓР»СЊС‚Р°С‚ ID " . $RESULT_ID . "\n";
 				$arUserTemp["UF_ANKETA"] = $RESULT_ID;
-				$arUserTemp["UF_SOURCE"] = "Форма";
+				$arUserTemp["UF_SOURCE"] = "Р¤РѕСЂРјР°";
             } else {
-                $strError .= "Не добавлен результат пользователя с ID " . $arUser["ID"] . "\n";
+                $strError .= "РќРµ РґРѕР±Р°РІР»РµРЅ СЂРµР·СѓР»СЊС‚Р°С‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ СЃ ID " . $arUser["ID"] . "\n";
             }
         }
 		
         $countUsers++;
 		
-        //Изменяем пользователя
+        //РР·РјРµРЅСЏРµРј РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
         $user = new CUser;
         $strTmpError = "";
         $user->Update($arUser["ID"], $arUserTemp);
@@ -134,14 +134,14 @@ while ($arUser = $rsUsers->Fetch()) {
 }
 if ($strError) {
     $mailto = "diana_box@list.ru";
-    $mail = "Ошибки при обработке встреч с сайта Luxury\n" . $strError;
-    mail($mailto, "Перенос пользователей", $mail, "Content-Type: text/plain; charset=windows-1251\r\n");
-    echo "Ошибки при обработке встреч с сайта Luxury\n" . $strError;
+    $mail = "РћС€РёР±РєРё РїСЂРё РѕР±СЂР°Р±РѕС‚РєРµ РІСЃС‚СЂРµС‡ СЃ СЃР°Р№С‚Р° Luxury\n" . $strError;
+    mail($mailto, "РџРµСЂРµРЅРѕСЃ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№", $mail, "Content-Type: text/plain; charset=windows-1251\r\n");
+    echo "РћС€РёР±РєРё РїСЂРё РѕР±СЂР°Р±РѕС‚РєРµ РІСЃС‚СЂРµС‡ СЃ СЃР°Р№С‚Р° Luxury\n" . $strError;
 } else {
     $mailto = "diana_box@list.ru";
-    $mail = "Нет ошибок при обработке встреч с сайта Luxury\n" . $message_change;
-    mail($mailto, "Перенос пользователей", $mail, "Content-Type: text/plain; charset=windows-1251\r\n");
-    echo "Нет ошибок при обработке встреч с сайта Luxury<br />";
+    $mail = "РќРµС‚ РѕС€РёР±РѕРє РїСЂРё РѕР±СЂР°Р±РѕС‚РєРµ РІСЃС‚СЂРµС‡ СЃ СЃР°Р№С‚Р° Luxury\n" . $message_change;
+    mail($mailto, "РџРµСЂРµРЅРѕСЃ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№", $mail, "Content-Type: text/plain; charset=windows-1251\r\n");
+    echo "РќРµС‚ РѕС€РёР±РѕРє РїСЂРё РѕР±СЂР°Р±РѕС‚РєРµ РІСЃС‚СЂРµС‡ СЃ СЃР°Р№С‚Р° Luxury<br />";
     echo $message_change;
 }
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");

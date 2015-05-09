@@ -68,7 +68,7 @@
 	<?
 	if(LANGUAGE_ID == "ru")
 	{
-		echo '<br><a href = "http://www.facebook.com/pages/Luxury-Travel-Mart/197410066966979" target = "_blank" class = "fb">Присоединяйтесь к нам на Facebook</a>';
+		echo '<br><a href = "http://www.facebook.com/pages/Luxury-Travel-Mart/197410066966979" target = "_blank" class = "fb">РџСЂРёСЃРѕРµРґРёРЅСЏР№С‚РµСЃСЊ Рє РЅР°Рј РЅР° Facebook</a>';
 	}
 	elseif(LANGUAGE_ID == "en")
 	{

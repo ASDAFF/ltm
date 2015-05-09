@@ -3,7 +3,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("LTM 2012 PHOTOS");
 ?>
 
-<h1>LTM 2012 в фотографиях</h1>
+<h1>LTM 2012 РІ С„РѕС‚РѕРіСЂР°С„РёСЏС…</h1>
 <p style="text-align: right;">
   <select onchange="location.href = this.options[this.selectedIndex].value;">
     <option selected="" value="#">2012</option>
@@ -45,7 +45,7 @@ $APPLICATION->SetTitle("LTM 2012 PHOTOS");
 		"CACHE_GROUPS" => "Y",
 		"DISPLAY_TOP_PAGER" => "N",
 		"DISPLAY_BOTTOM_PAGER" => "Y",
-		"PAGER_TITLE" => "Фотографии",
+		"PAGER_TITLE" => "Р¤РѕС‚РѕРіСЂР°С„РёРё",
 		"PAGER_SHOW_ALWAYS" => "Y",
 		"PAGER_TEMPLATE" => "",
 		"PAGER_DESC_NUMBERING" => "N",

@@ -1,6 +1,6 @@
-<?//-->Òàáëèöà   ?>
+<?//-->Ð¢Ð°Ð±Ð»Ð¸Ñ†Ð°   ?>
 <? include("shedule.php");?>
-<?//<--Òàáëèöà   ?>
+<?//<--Ð¢Ð°Ð±Ð»Ð¸Ñ†Ð°   ?>
 <div class="pull-overflow generate-file">
 	<div class="pull-left">
 		<a href="" title=""><?= GetMessage("PROFILE_GENERATE_WISHLIST_PDF")?></a>
@@ -18,7 +18,7 @@
 				<form action="">
 					<table class="morning-time">
 						<tr>
-							<th>¹</th>
+							<th>â„–</th>
 							<th><?= GetMessage("PROFILE_COMPANY")?></th>
 						</tr>
 						<tr>
@@ -45,7 +45,7 @@
 				<div class="wish-list"><?= GetMessage("PROFILE_MY_WISHLIST2")?></div>
 				<table class="morning-time">
 					<tr>
-						<th>¹</th>
+						<th>â„–</th>
 						<th><?= GetMessage("PROFILE_COMPANY")?></th>
 					</tr>
 					<tr>

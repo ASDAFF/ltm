@@ -3,7 +3,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $title = "";
 if(LANGUAGE_ID == "ru")
 {
-	$title = "РЕГИСТРАЦИЯ";
+	$title = "Р Р•Р“РРЎРўР РђР¦РРЇ";
 }
 elseif(LANGUAGE_ID == "en")
 {
@@ -25,7 +25,7 @@ if(!$USER->IsAdmin())
         <br />
       Paid participation.<br />Registration form is not supported in early versions of Internet Explorer (min. 10 version). Please use an alternative browser.</span> 		</div>
    		
-    <div class="sec"> 			<span>BUYER, HOSTED BUYER</span> 			<span class="descr">Гостевая регистрация на утреннюю, вечернюю сессии и по программе Hosted Buyer. Участие бесплатное, требуется подтверждение организаторов.<br />Регистрационная форма не поддерживается в ранних версиях Internet Explorer (мин. 10 версия). Пожалуйста, используйте альтернативный браузер.</span> 		</div>
+    <div class="sec"> 			<span>BUYER, HOSTED BUYER</span> 			<span class="descr">Р“РѕСЃС‚РµРІР°СЏ СЂРµРіРёСЃС‚СЂР°С†РёСЏ РЅР° СѓС‚СЂРµРЅРЅСЋСЋ, РІРµС‡РµСЂРЅСЋСЋ СЃРµСЃСЃРёРё Рё РїРѕ РїСЂРѕРіСЂР°РјРјРµ Hosted Buyer. РЈС‡Р°СЃС‚РёРµ Р±РµСЃРїР»Р°С‚РЅРѕРµ, С‚СЂРµР±СѓРµС‚СЃСЏ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ РѕСЂРіР°РЅРёР·Р°С‚РѕСЂРѕРІ.<br />Р РµРіРёСЃС‚СЂР°С†РёРѕРЅРЅР°СЏ С„РѕСЂРјР° РЅРµ РїРѕРґРґРµСЂР¶РёРІР°РµС‚СЃСЏ РІ СЂР°РЅРЅРёС… РІРµСЂСЃРёСЏС… Internet Explorer (РјРёРЅ. 10 РІРµСЂСЃРёСЏ). РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РёСЃРїРѕР»СЊР·СѓР№С‚Рµ Р°Р»СЊС‚РµСЂРЅР°С‚РёРІРЅС‹Р№ Р±СЂР°СѓР·РµСЂ.</span> 		</div>
    	</figure> 	
   <div class="clear"></div>
  	
@@ -93,7 +93,7 @@ if(!$USER->IsAdmin())
 					"PAGER_TEMPLATE" => ".default",
 					"DISPLAY_TOP_PAGER" => "N",
 					"DISPLAY_BOTTOM_PAGER" => "N",
-					"PAGER_TITLE" => "Новости",
+					"PAGER_TITLE" => "РќРѕРІРѕСЃС‚Рё",
 					"PAGER_SHOW_ALWAYS" => "N",
 					"PAGER_DESC_NUMBERING" => "N",
 					"PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
@@ -191,9 +191,9 @@ if(!$USER->IsAdmin())
      		</div>
    		
     <div class="reg_buy"> 			
-      <div id="block_exh"> 			<figure id="step2"> 				<span class="title">ГОСТЬ (VIP BUYER, BUYER, HOSTED BUYER)</span> 				<span class="choose2">ПОЖАЛУЙСТА, ВЫБЕРИТЕ МЕРОПРИЯТИЕ, НА КОТОРОЕ ВЫ БЫ ХОТЕЛИ ЗАРЕГИСТРИРОВАТЬСЯ. ВОЗМОЖНО ВЫБРАТЬ ТОЛЬКО ОДНО МЕРОПРИЯТИЕ.
+      <div id="block_exh"> 			<figure id="step2"> 				<span class="title">Р“РћРЎРўР¬ (VIP BUYER, BUYER, HOSTED BUYER)</span> 				<span class="choose2">РџРћР–РђР›РЈР™РЎРўРђ, Р’Р«Р‘Р•Р РРўР• РњР•Р РћРџР РРЇРўРР•, РќРђ РљРћРўРћР РћР• Р’Р« Р‘Р« РҐРћРўР•Р›Р Р—РђР Р•Р“РРЎРўР РР РћР’РђРўР¬РЎРЇ. Р’РћР—РњРћР–РќРћ Р’Р«Р‘Р РђРўР¬ РўРћР›Р¬РљРћ РћР”РќРћ РњР•Р РћРџР РРЇРўРР•.
             <br />
-          ПОЖАЛУЙСТА, ЗАПОЛНЯЙТЕ ФОРМУ НА АНГЛИЙСКОМ ЯЗЫКЕ:</span> 				<?
+          РџРћР–РђР›РЈР™РЎРўРђ, Р—РђРџРћР›РќРЇР™РўР• Р¤РћР РњРЈ РќРђ РђРќР“Р›РР™РЎРљРћРњ РЇР—Р«РљР•:</span> 				<?
 				CModule::IncludeModule("iblock");
 				$APPLICATION->IncludeComponent("luxor:news.list", "buy", array(
 	"IBLOCK_TYPE" => "exhib",
@@ -247,7 +247,7 @@ if(!$USER->IsAdmin())
 	"PAGER_TEMPLATE" => ".default",
 	"DISPLAY_TOP_PAGER" => "N",
 	"DISPLAY_BOTTOM_PAGER" => "N",
-	"PAGER_TITLE" => "Новости",
+	"PAGER_TITLE" => "РќРѕРІРѕСЃС‚Рё",
 	"PAGER_SHOW_ALWAYS" => "N",
 	"PAGER_DESC_NUMBERING" => "N",
 	"PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
@@ -259,7 +259,7 @@ if(!$USER->IsAdmin())
 	"AJAX_OPTION_ADDITIONAL" => ""
 	),
 	false
-);?> 				<span id="cho2">ВЫ ВЫБРАЛИ: <span id="adr2"></span></span> 			</figure> 			
+);?> 				<span id="cho2">Р’Р« Р’Р«Р‘Р РђР›Р: <span id="adr2"></span></span> 			</figure> 			
         <div class="sep2"></div>
        				<figure id="step3"> 					<?$APPLICATION->IncludeComponent(
 	"luxor:form",
@@ -301,12 +301,12 @@ if(!$USER->IsAdmin())
      			
       <table id="t_step3"> 				
         <tbody>
-          <tr> 					<td> 						<span class="chek3"></span> 						<input type="checkbox" class="none" value="agree" name="agree" /> 					</td> 					<td> 						<span class="agr">Я подтверждаю свое согласие на сбор, хранение и обработку вышеуказанных данных организаторами 							Luxury Travel Mart
+          <tr> 					<td> 						<span class="chek3"></span> 						<input type="checkbox" class="none" value="agree" name="agree" /> 					</td> 					<td> 						<span class="agr">РЇ РїРѕРґС‚РІРµСЂР¶РґР°СЋ СЃРІРѕРµ СЃРѕРіР»Р°СЃРёРµ РЅР° СЃР±РѕСЂ, С…СЂР°РЅРµРЅРёРµ Рё РѕР±СЂР°Р±РѕС‚РєСѓ РІС‹С€РµСѓРєР°Р·Р°РЅРЅС‹С… РґР°РЅРЅС‹С… РѕСЂРіР°РЅРёР·Р°С‚РѕСЂР°РјРё 							Luxury Travel Mart
                 <br />
-              в соответствии с ФЗ РФ «О персональных данных» от 27.07.2006 № 152-ФЗ.</span> 					</td> 				</tr>
+              РІ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРё СЃ Р¤Р— Р Р¤ В«Рћ РїРµСЂСЃРѕРЅР°Р»СЊРЅС‹С… РґР°РЅРЅС‹С…В» РѕС‚ 27.07.2006 в„– 152-Р¤Р—.</span> 					</td> 				</tr>
          			</tbody>
       </table>
-     			<input type="button" class="buy_but" value="Отправить" name="buy_but" /> 			
+     			<input type="button" class="buy_but" value="РћС‚РїСЂР°РІРёС‚СЊ" name="buy_but" /> 			
       <div id="ex_login"></div>
      			
       <div id="resp_ajax"></div>

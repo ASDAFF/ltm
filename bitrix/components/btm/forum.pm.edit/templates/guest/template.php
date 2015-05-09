@@ -47,7 +47,7 @@ else{
         <?
         if($arResult["USERS"]["TO_LIST"]["COUNT"] != 0){
 			?><select name="USER_ID">
-            	<option value="0">Выберите компанию</option>
+            	<option value="0">Р’С‹Р±РµСЂРёС‚Рµ РєРѕРјРїР°РЅРёСЋ</option>
             	<? foreach($arResult["USERS"]["TO_LIST"]["LIST"] as $ID => $COMP){
 					?><option value="<?=$ID?>" <?=(isset($_REQUEST['company']) && $_REQUEST['company']==$ID)?' selected':'';?>><?=$COMP?></option><?
 				}
@@ -55,10 +55,10 @@ else{
             </select><?
 		}
 		else{
-		?><input name="id" type="text" placeholder="Кому" value="<?=$arResult["USERS"]["TO"]?>"><?
+		?><input name="id" type="text" placeholder="РљРѕРјСѓ" value="<?=$arResult["USERS"]["TO"]?>"><?
 		}
 		?>
-                <input name="POST_SUBJ" type="text" placeholder="Тема сообщения" value="<? if($arResult["POST_VALUES"]["POST_SUBJ"]){ echo $arResult["POST_VALUES"]["POST_SUBJ"];}else{ echo $arResult["MESS"]["SUBJ"];}?>">
+                <input name="POST_SUBJ" type="text" placeholder="РўРµРјР° СЃРѕРѕР±С‰РµРЅРёСЏ" value="<? if($arResult["POST_VALUES"]["POST_SUBJ"]){ echo $arResult["POST_VALUES"]["POST_SUBJ"];}else{ echo $arResult["MESS"]["SUBJ"];}?>">
                 <textarea name="POST_MESSAGE"><?=$arResult["POST_VALUES"]["POST_MESSAGE"]?></textarea>
     <input name="COPY_TO_OUTBOX" type="hidden" value="Y" id="COPY_TO_OUTBOX" tabindex="<?=$tabIndex++;?>" />
     <div class="send"><input type="submit" name="SAVE_BUTTON" id="SAVE_BUTTON" tabindex="<?=$tabIndex++;?>" value="<?=($arResult["action"] == "save" ? GetMessage("F_ACT_SAVE") : GetMessage("F_ACT_SEND"))?>" tabindex="<?=$tabIndex++;?>" class="send_reg" /></div>

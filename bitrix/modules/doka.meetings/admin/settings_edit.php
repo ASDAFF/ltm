@@ -28,7 +28,7 @@ if ($ex = $APPLICATION->GetException()) {
 
 // require_once($_SERVER["DOCUMENT_ROOT"].BX_ROOT."/modules/main/tools/prop_userid.php");
 
-// Группы пользователей
+// Р“СЂСѓРїРїС‹ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 $arGROUPS = array();
 $z = CGroup::GetList(($v1=""), ($v2=""), array("ACTIVE"=>"Y",/* "ADMIN"=>"N", */"ANONYMOUS"=>"N"));
 while($zr = $z->Fetch())
@@ -62,7 +62,7 @@ if ($RIGHT >= 'W' && $REQUEST_METHOD == 'POST' && !empty($Update) && check_bitri
 
     $DB->StartTransaction();
 
-    // Подготавливаем поля
+    // РџРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј РїРѕР»СЏ
     $arFields = array(
         'NAME' => $NAME,
         'CODE' => $CODE,
@@ -170,7 +170,7 @@ $fields = DMS::getFields();
 $arFields = array();
 foreach ($fields as $field) {
 	$res = Array($field, GetMessage("DOKA_MEET_" . $field), $field, Array("text", 30));
-	// Кастомизируем
+	// РљР°СЃС‚РѕРјРёР·РёСЂСѓРµРј
 	if ($field == 'ID') continue;
 
 	if ($field == 'IS_LOCKED' || $field == 'ACTIVE' || $field == 'IS_GUEST' || $field == 'IS_HB') {

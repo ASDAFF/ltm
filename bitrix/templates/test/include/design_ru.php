@@ -1,1 +1,1 @@
-<span id="design">Дизайн <a href="http://startbrand.ru" target="_blank" >STARTBRAND®</a></span>
+<span id="design">Р”РёР·Р°Р№РЅ <a href="http://startbrand.ru" target="_blank" >STARTBRANDВ®</a></span>

@@ -13,7 +13,7 @@ if($bIblock)
 	foreach($arResult["ITEMS"] as $key=>&$arItem){
 		$arResult["ITEMS"][$key]['MOD_PHOTO'] = CFile::ResizeImageGet($arItem['PREVIEW_PICTURE']['ID'], array('width'=>220, 'height'=>160), BX_RESIZE_IMAGE_PROPORTIONAL, true);
 
-		//переписываем поля по выбранному языку
+		//РїРµСЂРµРїРёСЃС‹РІР°РµРј РїРѕР»СЏ РїРѕ РІС‹Р±СЂР°РЅРЅРѕРјСѓ СЏР·С‹РєСѓ
 		if(LANGUAGE_ID != "ru")
 		{
 		    $value_name = ($arItem["PROPERTIES"]["DETAIL_TEXT_" . $lang]["VALUE"]["TYPE"] == "html")?"~VALUE":"VALUE";

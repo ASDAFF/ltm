@@ -1,19 +1,19 @@
 <?
-$MESS["CT_BNL_ELEMENT_DELETE_CONFIRM"] = "Áóäåò óäàëåíà âñÿ èíôîðìàöèÿ, ñâÿçàííàÿ ñ ýòîé çàïèñüþ. Ïðîäîëæèòü?";
+$MESS["CT_BNL_ELEMENT_DELETE_CONFIRM"] = "Ð‘ÑƒÐ´ÐµÑ‚ ÑƒÐ´Ð°Ð»ÐµÐ½Ð° Ð²ÑÑ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ñ, ÑÐ²ÑÐ·Ð°Ð½Ð½Ð°Ñ Ñ ÑÑ‚Ð¾Ð¹ Ð·Ð°Ð¿Ð¸ÑÑŒÑŽ. ÐŸÑ€Ð¾Ð´Ð¾Ð»Ð¶Ð¸Ñ‚ÑŒ?";
 
-$MESS["NL_PARTNERS_TITLE"] = "Êîíòàêòû";
-$MESS["NL_PARTNERS_PHONE"] = "Òåëåôîí";
-$MESS["NL_PARTNERS_PHONE_SHORT"] = "Òåë";
-$MESS["NL_PARTNERS_MOBILE"] = "Ìîáèëüíûé òåëåôîí";
+$MESS["NL_PARTNERS_TITLE"] = "ÐšÐ¾Ð½Ñ‚Ð°ÐºÑ‚Ñ‹";
+$MESS["NL_PARTNERS_PHONE"] = "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½";
+$MESS["NL_PARTNERS_PHONE_SHORT"] = "Ð¢ÐµÐ»";
+$MESS["NL_PARTNERS_MOBILE"] = "ÐœÐ¾Ð±Ð¸Ð»ÑŒÐ½Ñ‹Ð¹ Ñ‚ÐµÐ»ÐµÑ„Ð¾Ð½";
 $MESS["NL_PARTNERS_EMAIL"] = "Email";
-$MESS["NL_PARTNERS_ADDRESS"] = "Àäðåñ";
+$MESS["NL_PARTNERS_ADDRESS"] = "ÐÐ´Ñ€ÐµÑ";
 
-$MESS["NL_PARTNERS_TYEP_SPONSOR"] = "Ñïîíñîð";
-$MESS["NL_PARTNERS_TYEP_HOTEL_PARTNER"] = "Îòåëü ïàðòí¸ð";
-$MESS["NL_PARTNERS_TYEP_GENERAL_PARTNER"] = "Ãåíåðàëüíûé ïàðòí¸ð";
-$MESS["NL_PARTNERS_TYEP_GENERAL_SPONSOR"] = "Ãåíåðàëüíûé ñïîíñîð";
-$MESS["NL_PARTNERS_TYEP_MEDIA_PARTNER"] = "Ìåäèà-ïàðòí¸ð";
-$MESS["NL_PARTNERS_TYEP_PARTNER"] = "Ïàðòí¸ð";
-$MESS["NL_PARTNERS_READ_MORE"] = "×èòàòü äàëåå...";
+$MESS["NL_PARTNERS_TYEP_SPONSOR"] = "Ð¡Ð¿Ð¾Ð½ÑÐ¾Ñ€";
+$MESS["NL_PARTNERS_TYEP_HOTEL_PARTNER"] = "ÐžÑ‚ÐµÐ»ÑŒ Ð¿Ð°Ñ€Ñ‚Ð½Ñ‘Ñ€";
+$MESS["NL_PARTNERS_TYEP_GENERAL_PARTNER"] = "Ð“ÐµÐ½ÐµÑ€Ð°Ð»ÑŒÐ½Ñ‹Ð¹ Ð¿Ð°Ñ€Ñ‚Ð½Ñ‘Ñ€";
+$MESS["NL_PARTNERS_TYEP_GENERAL_SPONSOR"] = "Ð“ÐµÐ½ÐµÑ€Ð°Ð»ÑŒÐ½Ñ‹Ð¹ ÑÐ¿Ð¾Ð½ÑÐ¾Ñ€";
+$MESS["NL_PARTNERS_TYEP_MEDIA_PARTNER"] = "ÐœÐµÐ´Ð¸Ð°-Ð¿Ð°Ñ€Ñ‚Ð½Ñ‘Ñ€";
+$MESS["NL_PARTNERS_TYEP_PARTNER"] = "ÐŸÐ°Ñ€Ñ‚Ð½Ñ‘Ñ€";
+$MESS["NL_PARTNERS_READ_MORE"] = "Ð§Ð¸Ñ‚Ð°Ñ‚ÑŒ Ð´Ð°Ð»ÐµÐµ...";
 
 ?>

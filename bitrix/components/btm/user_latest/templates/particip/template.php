@@ -5,7 +5,7 @@ if($arResult["ERROR_MESSAGE"] == ''){
 	?>
             <div class="main_table">
             <form method="post" action="" name="accept">
-            <p class="accept_users"><input name="accept" type="submit" value="Подтвердить участие" /></p>
+            <p class="accept_users"><input name="accept" type="submit" value="РџРѕРґС‚РІРµСЂРґРёС‚СЊ СѓС‡Р°СЃС‚РёРµ" /></p>
             <?
             if($arResult["MESSAGE"]){
 			?>
@@ -34,11 +34,11 @@ if($arResult["ERROR_MESSAGE"] == ''){
 				}
 			  }
 			  ?>
-              	<td width="80"><strong>Подтвердить участие</strong></td>
-                <td width="80"><strong>Выставить счет</strong></td>
-                <td width="80"><strong>Редактировать</strong></td>
+              	<td width="80"><strong>РџРѕРґС‚РІРµСЂРґРёС‚СЊ СѓС‡Р°СЃС‚РёРµ</strong></td>
+                <td width="80"><strong>Р’С‹СЃС‚Р°РІРёС‚СЊ СЃС‡РµС‚</strong></td>
+                <td width="80"><strong>Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ</strong></td>
 				<td width="80"><strong>Company or Hotel</strong></td>
-                <td width="80"><strong>Спам</strong></td>
+                <td width="80"><strong>РЎРїР°Рј</strong></td>
               </tr>
               <?
               for($j=0; $j<$arResult["USERS"]["COUNT"]; $j++){
@@ -70,10 +70,10 @@ if($arResult["ERROR_MESSAGE"] == ''){
 			  }
 			  ?>
               	<td width="80" align="center"><input name="accept[]" type="checkbox" value="<?=$arResult["USERS"][$j]["ID"]?>" /><input name="form<?=$arResult["USERS"][$j]["ID"]?>" type="hidden" value="<?=$arResult["USERS"][$j]["ANKETA"]?>" /></td>
-                <td width="80" align="center"><a href="/admin/service/count.php?id=<?=$arResult["USERS"][$j]["ID"]?>&type=count" target="_blank" onclick="newWind('/admin/service/count.php?id=<?=$arResult["USERS"][$j]["ID"]?>&type=count', 500, 300); return false;">Счет</a></td>
-                <td width="80"><a href="/admin/service/edit.php?id=<?=$arResult["USERS"][$j]["ID"]?>&result=<?=$arResult["USERS"][$j]["ANKETA"]?>&type=edit" target="_blank" onclick="newWind('/admin/service/edit.php?id=<?=$arResult["USERS"][$j]["ID"]?>&result=<?=$arResult["USERS"][$j]["ANKETA"]?>&type=edit', 500, 600); return false;">Редактировать</a></td>
+                <td width="80" align="center"><a href="/admin/service/count.php?id=<?=$arResult["USERS"][$j]["ID"]?>&type=count" target="_blank" onclick="newWind('/admin/service/count.php?id=<?=$arResult["USERS"][$j]["ID"]?>&type=count', 500, 300); return false;">РЎС‡РµС‚</a></td>
+                <td width="80"><a href="/admin/service/edit.php?id=<?=$arResult["USERS"][$j]["ID"]?>&result=<?=$arResult["USERS"][$j]["ANKETA"]?>&type=edit" target="_blank" onclick="newWind('/admin/service/edit.php?id=<?=$arResult["USERS"][$j]["ID"]?>&result=<?=$arResult["USERS"][$j]["ANKETA"]?>&type=edit', 500, 600); return false;">Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ</a></td>
                 <td width="80"><?=$arResult["USERS"][$j]["FIELDS"][4]?></td>
-                <td width="80"><a href="/admin/particip/off/?id=<?=$arResult["USERS"][$j]["ID"]?>&type=spam">Спам</a></td>
+                <td width="80"><a href="/admin/particip/off/?id=<?=$arResult["USERS"][$j]["ID"]?>&type=spam">РЎРїР°Рј</a></td>
               </tr>
               <?
 			  }

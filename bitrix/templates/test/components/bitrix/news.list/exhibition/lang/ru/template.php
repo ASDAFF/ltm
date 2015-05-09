@@ -1,4 +1,4 @@
 <?
-$MESS["NEWS_LIST_EXH_TITLE"] = "Î ÌÅÐÎÏÐÈßÒÈÈ";
+$MESS["NEWS_LIST_EXH_TITLE"] = "Ðž ÐœÐ•Ð ÐžÐŸÐ Ð˜Ð¯Ð¢Ð˜Ð˜";
 
 ?>

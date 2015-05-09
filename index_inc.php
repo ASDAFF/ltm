@@ -1,14 +1,14 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 
 <div class="information-block"> 	 	 
-	<div class="information-block-head">Автокеширование</div>
-	Обратите внимание: по умолчанию кеширование данных <b>включено</b>. Автокеширование позволяет значительно ускорить работу демо-сайта. Изменить настройки кеширования данных на сайте можно на специальной <a href="/bitrix/admin/cache.php">странице</a>.
+	<div class="information-block-head">РђРІС‚РѕРєРµС€РёСЂРѕРІР°РЅРёРµ</div>
+	РћР±СЂР°С‚РёС‚Рµ РІРЅРёРјР°РЅРёРµ: РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ РєРµС€РёСЂРѕРІР°РЅРёРµ РґР°РЅРЅС‹С… <b>РІРєР»СЋС‡РµРЅРѕ</b>. РђРІС‚РѕРєРµС€РёСЂРѕРІР°РЅРёРµ РїРѕР·РІРѕР»СЏРµС‚ Р·РЅР°С‡РёС‚РµР»СЊРЅРѕ СѓСЃРєРѕСЂРёС‚СЊ СЂР°Р±РѕС‚Сѓ РґРµРјРѕ-СЃР°Р№С‚Р°. РР·РјРµРЅРёС‚СЊ РЅР°СЃС‚СЂРѕР№РєРё РєРµС€РёСЂРѕРІР°РЅРёСЏ РґР°РЅРЅС‹С… РЅР° СЃР°Р№С‚Рµ РјРѕР¶РЅРѕ РЅР° СЃРїРµС†РёР°Р»СЊРЅРѕР№ <a href="/bitrix/admin/cache.php">СЃС‚СЂР°РЅРёС†Рµ</a>.
 </div>
 
 <!-- SOCNETWORK_GROUPS -->
 
 <div class="information-block"> 	 	 
-  <div class="information-block-head">Опрос</div>
+  <div class="information-block-head">РћРїСЂРѕСЃ</div>
  	<?$APPLICATION->IncludeComponent(
 	"bitrix:voting.current",
 	"main_page",
@@ -26,7 +26,7 @@
 
 
 	<div class="information-block">
-		<div class="information-block-head">Фото дня</div>
+		<div class="information-block-head">Р¤РѕС‚Рѕ РґРЅСЏ</div>
 		<?$APPLICATION->IncludeComponent(
 	"bitrix:photo.random",
 	"",

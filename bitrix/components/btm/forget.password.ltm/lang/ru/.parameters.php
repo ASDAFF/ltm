@@ -1,7 +1,7 @@
 <?
-$MESS ['ADMIN_MENU_MAIN_SETTINGS'] = "Îñíîâíûå ïàðàìåòðû";
+$MESS ['ADMIN_MENU_MAIN_SETTINGS'] = "ÐžÑÐ½Ð¾Ð²Ð½Ñ‹Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹";
 $MESS ['REGISTER_URL'] = "";
-$MESS ['GUEST_ID'] = "Ãðóïïà ãîñòåé";
-$MESS ['PARTICIP_ID'] = "Ãðóïïà ó÷àñòíèêîâ";
-$MESS ['SHOW_ERRORS'] = "Ïîêàçûâàòü îøèáêè";
+$MESS ['GUEST_ID'] = "Ð“Ñ€ÑƒÐ¿Ð¿Ð° Ð³Ð¾ÑÑ‚ÐµÐ¹";
+$MESS ['PARTICIP_ID'] = "Ð“Ñ€ÑƒÐ¿Ð¿Ð° ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¾Ð²";
+$MESS ['SHOW_ERRORS'] = "ÐŸÐ¾ÐºÐ°Ð·Ñ‹Ð²Ð°Ñ‚ÑŒ Ð¾ÑˆÐ¸Ð±ÐºÐ¸";
 ?>

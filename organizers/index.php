@@ -4,7 +4,7 @@ $APPLICATION->SetPageProperty("description", "Organizers of Luxury Travel Mart")
 $title = "";
 if(LANGUAGE_ID == "ru")
 {
-	$title = "ÎÐÃÀÍÈÇÀÒÎÐÛ";
+	$title = "ÐžÐ Ð“ÐÐÐ˜Ð—ÐÐ¢ÐžÐ Ð«";
 }
 elseif(LANGUAGE_ID == "en")
 {
@@ -79,13 +79,13 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 	),
 	"DETAIL_DISPLAY_TOP_PAGER" => "N",
 	"DETAIL_DISPLAY_BOTTOM_PAGER" => "Y",
-	"DETAIL_PAGER_TITLE" => "Ñòðàíèöà",
+	"DETAIL_PAGER_TITLE" => "Ð¡Ñ‚Ñ€Ð°Ð½Ð¸Ñ†Ð°",
 	"DETAIL_PAGER_TEMPLATE" => "",
 	"DETAIL_PAGER_SHOW_ALL" => "N",
 	"PAGER_TEMPLATE" => ".default",
 	"DISPLAY_TOP_PAGER" => "N",
 	"DISPLAY_BOTTOM_PAGER" => "Y",
-	"PAGER_TITLE" => "Îðãàíèçàòîðû",
+	"PAGER_TITLE" => "ÐžÑ€Ð³Ð°Ð½Ð¸Ð·Ð°Ñ‚Ð¾Ñ€Ñ‹",
 	"PAGER_SHOW_ALWAYS" => "N",
 	"PAGER_DESC_NUMBERING" => "N",
 	"PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",

@@ -1,3 +1,3 @@
-Поддержку сайта осуществляет <a href="http://rarus.com.ua/web/" target="_blank">компания &laquo;1С-Рарус Севастополь&raquo;</a>.<br />
+РџРѕРґРґРµСЂР¶РєСѓ СЃР°Р№С‚Р° РѕСЃСѓС‰РµСЃС‚РІР»СЏРµС‚ <a href="http://rarus.com.ua/web/" target="_blank">РєРѕРјРїР°РЅРёСЏ &laquo;1РЎ-Р Р°СЂСѓСЃ РЎРµРІР°СЃС‚РѕРїРѕР»СЊ&raquo;</a>.<br />
 +7 (8692) 48-88-01, <a href="mailto:sevastopol@rarus.ru">sevastopol@rarus.ru</a>.<br />
-Ответственный: <a href="mailto:dmitrz@rarus.ru">Жданок Дмитрий</a>.
+РћС‚РІРµС‚СЃС‚РІРµРЅРЅС‹Р№: <a href="mailto:dmitrz@rarus.ru">Р–РґР°РЅРѕРє Р”РјРёС‚СЂРёР№</a>.

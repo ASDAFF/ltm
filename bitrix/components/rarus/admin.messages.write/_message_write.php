@@ -7,12 +7,12 @@ if(!$USER->IsAuthorized()){
 }
 else
 {
-	// получим массив групп текущего пользователя
+	// РїРѕР»СѓС‡РёРј РјР°СЃСЃРёРІ РіСЂСѓРїРї С‚РµРєСѓС‰РµРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 	CModule::IncludeModule('iblock');
 	$UID = $USER->GetID();
 	global $USER;
 	$arGroups = CUser::GetUserGroup($UID);;
-	/* Администраторы */
+	/* РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ */
 	if (in_array(1, $arGroups)){
 		//$UID = 2195;
 		$rsUser = CUser::GetByID($UID);
@@ -36,8 +36,8 @@ else
         </script>
             <div class="hello_div">
                 <div class="welcome">
-                    <p><strong>Добро пожаловать, <?=$welcome?></strong></p>
-                    <p>У Вас <span><?=$meetNum?></span> неподтвержденных запросов на встречи и <span><?=$resNum?></span> новых сообщений</p>
+                    <p><strong>Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ, <?=$welcome?></strong></p>
+                    <p>РЈ Р’Р°СЃ <span><?=$meetNum?></span> РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… Р·Р°РїСЂРѕСЃРѕРІ РЅР° РІСЃС‚СЂРµС‡Рё Рё <span><?=$resNum?></span> РЅРѕРІС‹С… СЃРѕРѕР±С‰РµРЅРёР№</p>
                 </div>
                 <div class="logout"><a href="/personal/logout.php"><img src="/bitrix/templates/personal/images/logout.gif" width="63" height="21" alt="Log Out" border="0" /></a></div>
             </div>
@@ -82,11 +82,11 @@ else
                 if((isset($_POST['mes'])) and ($_POST['mes'] == 'write')){
 					$message = '';
 					if($_REQUEST["fio"]){
-						$message = $message."ФИО: ".$_REQUEST["fio"];
+						$message = $message."Р¤РРћ: ".$_REQUEST["fio"];
 						$message = $message."\n";
 					}
 					if($_REQUEST["company"]){
-						$message = $message."Компания: ".$_REQUEST["company"];
+						$message = $message."РљРѕРјРїР°РЅРёСЏ: ".$_REQUEST["company"];
 						$message = $message."\n";
 					}
 					if($_REQUEST["email"]){
@@ -94,17 +94,17 @@ else
 						$message = $message."\n";
 					}
 					if($_REQUEST["message_text"]){
-						$message = $message."Текст сообщения: ".$_REQUEST["message_text"];
+						$message = $message."РўРµРєСЃС‚ СЃРѕРѕР±С‰РµРЅРёСЏ: ".$_REQUEST["message_text"];
 						$message = $message."\n";
 					}
 					if($message){
 						$PROP = array();
 						$PROP[5] = $UID;
 						$PROP[7] = $_REQUEST["subj"];
-						$PROP[8] = Array("VALUE" => Array ("TEXT" => $_REQUEST["message_text"], "TYPE" => "html или text"));
+						$PROP[8] = Array("VALUE" => Array ("TEXT" => $_REQUEST["message_text"], "TYPE" => "html РёР»Рё text"));
 						$PROP[9] = ConvertTimeStamp(false, "FULL");
 						$PROP[10] = 0;
-						$PROP[12] = 'Администрация';
+						$PROP[12] = 'РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ';
 						if((isset($_POST['all_guest']) and isset($_POST['all_guest']) != '') or (isset($_POST['all_particip']) and isset($_POST['all_particip']) != '')){
 							$error = 0;
 							if(isset($_POST['all_guest']) and isset($_POST['all_guest']) != ''){
@@ -112,19 +112,19 @@ else
 								(
 									"GROUPS_ID"  => Array(16)
 								);
-								$rsGuests = CUser::GetList(($by="work_company"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // выбираем пользователей
-								$is_filtered = $rsGuests->is_filtered; // отфильтрована ли выборка ?
+								$rsGuests = CUser::GetList(($by="work_company"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // РІС‹Р±РёСЂР°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
+								$is_filtered = $rsGuests->is_filtered; // РѕС‚С„РёР»СЊС‚СЂРѕРІР°РЅР° Р»Рё РІС‹Р±РѕСЂРєР° ?
 								while($arParticip=$rsGuests->GetNext()) :
 									$PROP[6] = $arParticip['ID'];
-									$PROP[11] = $arParticip['NAME']." ".$arParticip['LAST_NAME']." Компания ".$arParticip['WORK_COMPANY'];
+									$PROP[11] = $arParticip['NAME']." ".$arParticip['LAST_NAME']." РљРѕРјРїР°РЅРёСЏ ".$arParticip['WORK_COMPANY'];
 									$message = new CIBlockElement;
 									$arLoadProductArray = Array(
-									  "MODIFIED_BY"    => $UID, // элемент изменен текущим пользователем
-									  "IBLOCK_SECTION_ID" => false,          // элемент лежит в корне раздела
+									  "MODIFIED_BY"    => $UID, // СЌР»РµРјРµРЅС‚ РёР·РјРµРЅРµРЅ С‚РµРєСѓС‰РёРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј
+									  "IBLOCK_SECTION_ID" => false,          // СЌР»РµРјРµРЅС‚ Р»РµР¶РёС‚ РІ РєРѕСЂРЅРµ СЂР°Р·РґРµР»Р°
 									  "IBLOCK_ID"      => 9,
 									  "PROPERTY_VALUES"=> $PROP,
-									  "NAME"           => ConvertTimeStamp(false, "FULL")." От ".$UID." К ".$arParticip['ID'],
-									  "ACTIVE"         => "N",            // активен
+									  "NAME"           => ConvertTimeStamp(false, "FULL")." РћС‚ ".$UID." Рљ ".$arParticip['ID'],
+									  "ACTIVE"         => "N",            // Р°РєС‚РёРІРµРЅ
 									  "PREVIEW_TEXT"   => substr($_REQUEST["message_text"],0,100)." ...",
 									  "DETAIL_TEXT"    => $_REQUEST["message_text"]
 									  );
@@ -148,19 +148,19 @@ else
 								(
 									"GROUPS_ID"  => Array(4)
 								);
-								$rsParticip = CUser::GetList(($by="work_company"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // выбираем пользователей
-								$is_filtered = $rsParticip->is_filtered; // отфильтрована ли выборка ?
+								$rsParticip = CUser::GetList(($by="work_company"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // РІС‹Р±РёСЂР°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
+								$is_filtered = $rsParticip->is_filtered; // РѕС‚С„РёР»СЊС‚СЂРѕРІР°РЅР° Р»Рё РІС‹Р±РѕСЂРєР° ?
 								while($arParticip=$rsParticip->GetNext()) :
 									$PROP[6] = $arParticip['ID'];
-									$PROP[11] = $arParticip['NAME']." ".$arParticip['LAST_NAME']." Компания ".$arParticip['WORK_COMPANY'];
+									$PROP[11] = $arParticip['NAME']." ".$arParticip['LAST_NAME']." РљРѕРјРїР°РЅРёСЏ ".$arParticip['WORK_COMPANY'];
 									$message = new CIBlockElement;
 									$arLoadProductArray = Array(
-									  "MODIFIED_BY"    => $UID, // элемент изменен текущим пользователем
-									  "IBLOCK_SECTION_ID" => false,          // элемент лежит в корне раздела
+									  "MODIFIED_BY"    => $UID, // СЌР»РµРјРµРЅС‚ РёР·РјРµРЅРµРЅ С‚РµРєСѓС‰РёРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј
+									  "IBLOCK_SECTION_ID" => false,          // СЌР»РµРјРµРЅС‚ Р»РµР¶РёС‚ РІ РєРѕСЂРЅРµ СЂР°Р·РґРµР»Р°
 									  "IBLOCK_ID"      => 9,
 									  "PROPERTY_VALUES"=> $PROP,
-									  "NAME"           => ConvertTimeStamp(false, "FULL")." От ".$UID." К ".$arParticip['ID'],
-									  "ACTIVE"         => "N",            // активен
+									  "NAME"           => ConvertTimeStamp(false, "FULL")." РћС‚ ".$UID." Рљ ".$arParticip['ID'],
+									  "ACTIVE"         => "N",            // Р°РєС‚РёРІРµРЅ
 									  "PREVIEW_TEXT"   => substr($_REQUEST["message_text"],0,100)." ...",
 									  "DETAIL_TEXT"    => $_REQUEST["message_text"]
 									  );
@@ -180,7 +180,7 @@ else
 								endwhile;
 							}
 							if(!$error){
-								echo "Все ваши сообщения были успешно отправленны";
+								echo "Р’СЃРµ РІР°С€Рё СЃРѕРѕР±С‰РµРЅРёСЏ Р±С‹Р»Рё СѓСЃРїРµС€РЅРѕ РѕС‚РїСЂР°РІР»РµРЅРЅС‹";
 							}
 						}
 						else{
@@ -207,12 +207,12 @@ else
 									$PROP[11] = $reciver;
 									$message = new CIBlockElement;
 									$arLoadProductArray = Array(
-									  "MODIFIED_BY"    => $UID, // элемент изменен текущим пользователем
-									  "IBLOCK_SECTION_ID" => false,          // элемент лежит в корне раздела
+									  "MODIFIED_BY"    => $UID, // СЌР»РµРјРµРЅС‚ РёР·РјРµРЅРµРЅ С‚РµРєСѓС‰РёРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј
+									  "IBLOCK_SECTION_ID" => false,          // СЌР»РµРјРµРЅС‚ Р»РµР¶РёС‚ РІ РєРѕСЂРЅРµ СЂР°Р·РґРµР»Р°
 									  "IBLOCK_ID"      => 9,
 									  "PROPERTY_VALUES"=> $PROP,
-									  "NAME"           => ConvertTimeStamp(false, "FULL")." От ".$UID." К ".$reciverProp,
-									  "ACTIVE"         => "N",            // активен
+									  "NAME"           => ConvertTimeStamp(false, "FULL")." РћС‚ ".$UID." Рљ ".$reciverProp,
+									  "ACTIVE"         => "N",            // Р°РєС‚РёРІРµРЅ
 									  "PREVIEW_TEXT"   => substr($_REQUEST["message_text"],0,100)." ...",
 									  "DETAIL_TEXT"    => $_REQUEST["message_text"]
 									  );
@@ -231,11 +231,11 @@ else
 									}
 								}
 								if(!$error){
-									echo "Все ваши сообщения были успешно отправленны";
+									echo "Р’СЃРµ РІР°С€Рё СЃРѕРѕР±С‰РµРЅРёСЏ Р±С‹Р»Рё СѓСЃРїРµС€РЅРѕ РѕС‚РїСЂР°РІР»РµРЅРЅС‹";
 								}
 							}
 							else{
-								echo "<p>Вы не выбрали ни одного адресата!</p>";
+								echo "<p>Р’С‹ РЅРµ РІС‹Р±СЂР°Р»Рё РЅРё РѕРґРЅРѕРіРѕ Р°РґСЂРµСЃР°С‚Р°!</p>";
 							}
 						}
 					}
@@ -245,34 +245,34 @@ else
 				else{
 				?>
                     <form action="/personal/shedule/admin/message_write.php" method="post" name="reg_update">
-                    <h2 class="reg_title">Адресаты</h2>
+                    <h2 class="reg_title">РђРґСЂРµСЃР°С‚С‹</h2>
                     <table width="100%" border="0" cellspacing="0" cellpadding="7" class="regist_info">
                       <tr class="chet">
                         <td width="50"><input name="all_guest" type="checkbox" value="1" style="width:20px;"></td>
-                        <td><strong>Всем гостям утренней сессии</strong></td>
+                        <td><strong>Р’СЃРµРј РіРѕСЃС‚СЏРј СѓС‚СЂРµРЅРЅРµР№ СЃРµСЃСЃРёРё</strong></td>
                       </tr>
                       <tr>
                         <td><input name="all_particip" type="checkbox" value="1" style="width:20px;"></td>
-                        <td><strong>Всем участникам</strong></td>
+                        <td><strong>Р’СЃРµРј СѓС‡Р°СЃС‚РЅРёРєР°Рј</strong></td>
                       </tr>
                     </table>
-                    <p class="reg_update" style="text-align:left;"><a href="#" onclick="toggle_desc('guest'); return false;">Гости утренней сессии</a></p>
+                    <p class="reg_update" style="text-align:left;"><a href="#" onclick="toggle_desc('guest'); return false;">Р“РѕСЃС‚Рё СѓС‚СЂРµРЅРЅРµР№ СЃРµСЃСЃРёРё</a></p>
                     <div id="desc_guest" style="display:none;">
                     <?
 						$filter = Array
 						(
 							"GROUPS_ID"  => Array(16)
 						);
-						$rsGuests = CUser::GetList(($by="work_company"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // выбираем пользователей
-						$is_filtered = $rsGuests->is_filtered; // отфильтрована ли выборка ?
+						$rsGuests = CUser::GetList(($by="work_company"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // РІС‹Р±РёСЂР°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
+						$is_filtered = $rsGuests->is_filtered; // РѕС‚С„РёР»СЊС‚СЂРѕРІР°РЅР° Р»Рё РІС‹Р±РѕСЂРєР° ?
 						$counter = 0;
 					?>
                     <table width="100%" border="0" cellspacing="0" cellpadding="7" class="regist_info">
                         <tr class="chet">
-                            <td width="50"><strong>Написать</strong></td>
-                            <td><strong>Представитель и Компания</strong></td>
-                            <td width="50"><strong>Написать</strong></td>
-                            <td><strong>Представитель и Компания</strong></td>
+                            <td width="50"><strong>РќР°РїРёСЃР°С‚СЊ</strong></td>
+                            <td><strong>РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ Рё РљРѕРјРїР°РЅРёСЏ</strong></td>
+                            <td width="50"><strong>РќР°РїРёСЃР°С‚СЊ</strong></td>
+                            <td><strong>РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ Рё РљРѕРјРїР°РЅРёСЏ</strong></td>
                         </tr>
                         <tr>
 						<?
@@ -284,7 +284,7 @@ else
 									<?
 								}
 							?>
-                                <td><input name="guests[]" type="checkbox" value="<?=$arParticip['ID']?>" style="width:20px;"><input name="reciver_<?=$arParticip['ID']?>" type="hidden" value="<?=$arParticip['NAME']?> <?=$arParticip['LAST_NAME']?> Компания <?=$arParticip['WORK_COMPANY']?>" /><input name="email_reciver_<?=$arParticip['ID']?>" type="hidden" value="<?=$arParticip['EMAIL']?>" /></td>
+                                <td><input name="guests[]" type="checkbox" value="<?=$arParticip['ID']?>" style="width:20px;"><input name="reciver_<?=$arParticip['ID']?>" type="hidden" value="<?=$arParticip['NAME']?> <?=$arParticip['LAST_NAME']?> РљРѕРјРїР°РЅРёСЏ <?=$arParticip['WORK_COMPANY']?>" /><input name="email_reciver_<?=$arParticip['ID']?>" type="hidden" value="<?=$arParticip['EMAIL']?>" /></td>
                                 <td><?=$arParticip['NAME']?> <?=$arParticip['LAST_NAME']?><br />
                                 	<strong><?=$arParticip['WORK_COMPANY']?></strong>
                                 </td>
@@ -295,23 +295,23 @@ else
                         </tr>
                     </table>
                     </div>
-                    <p class="reg_update" style="text-align:left;"><a href="#" onclick="toggle_desc('particip'); return false;">Участники</a></p>
+                    <p class="reg_update" style="text-align:left;"><a href="#" onclick="toggle_desc('particip'); return false;">РЈС‡Р°СЃС‚РЅРёРєРё</a></p>
                     <div id="desc_particip" style="display:none;">
                     <?
 						$filter = Array
 						(
 							"GROUPS_ID"  => Array(4)
 						);
-						$rsParticip = CUser::GetList(($by="work_company"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // выбираем пользователей
-						$is_filtered = $rsParticip->is_filtered; // отфильтрована ли выборка ?
+						$rsParticip = CUser::GetList(($by="work_company"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // РІС‹Р±РёСЂР°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
+						$is_filtered = $rsParticip->is_filtered; // РѕС‚С„РёР»СЊС‚СЂРѕРІР°РЅР° Р»Рё РІС‹Р±РѕСЂРєР° ?
 						$counter = 0;
 					?>
                     <table width="100%" border="0" cellspacing="0" cellpadding="7" class="regist_info">
                         <tr class="chet">
-                            <td width="50"><strong>Написать</strong></td>
-                            <td><strong>Представитель и Компания</strong></td>
-                            <td width="50"><strong>Написать</strong></td>
-                            <td><strong>Представитель и Компания</strong></td>
+                            <td width="50"><strong>РќР°РїРёСЃР°С‚СЊ</strong></td>
+                            <td><strong>РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ Рё РљРѕРјРїР°РЅРёСЏ</strong></td>
+                            <td width="50"><strong>РќР°РїРёСЃР°С‚СЊ</strong></td>
+                            <td><strong>РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ Рё РљРѕРјРїР°РЅРёСЏ</strong></td>
                         </tr>
                         <tr>
 						<?
@@ -323,7 +323,7 @@ else
 									<?
 								}
 							?>
-                                <td><input name="particip[]" type="checkbox" value="<?=$arParticip['ID']?>" style="width:20px;"><input name="reciver_<?=$arParticip['ID']?>" type="hidden" value="<?=$arParticip['NAME']?> <?=$arParticip['LAST_NAME']?> Компания <?=$arParticip['WORK_COMPANY']?>" /><input name="email_reciver_<?=$arParticip['ID']?>" type="hidden" value="<?=$arParticip['EMAIL']?>" /></td>
+                                <td><input name="particip[]" type="checkbox" value="<?=$arParticip['ID']?>" style="width:20px;"><input name="reciver_<?=$arParticip['ID']?>" type="hidden" value="<?=$arParticip['NAME']?> <?=$arParticip['LAST_NAME']?> РљРѕРјРїР°РЅРёСЏ <?=$arParticip['WORK_COMPANY']?>" /><input name="email_reciver_<?=$arParticip['ID']?>" type="hidden" value="<?=$arParticip['EMAIL']?>" /></td>
                                 <td><?=$arParticip['NAME']?> <?=$arParticip['LAST_NAME']?><br />
                                 	<strong><?=$arParticip['WORK_COMPANY']?></strong>
                                 </td>
@@ -334,27 +334,27 @@ else
                         </tr>
                     </table>
                     </div>
-                    <h2 class="reg_title">Сообщение</h2>
+                    <h2 class="reg_title">РЎРѕРѕР±С‰РµРЅРёРµ</h2>
                     <table width="100%" border="0" cellspacing="0" cellpadding="7" class="regist_info">
                       <tr class="chet">
-                        <td width="200"><strong>ФИО</strong></td>
+                        <td width="200"><strong>Р¤РРћ</strong></td>
                         <td><? echo $arUser['NAME']." ".$arUser['LAST_NAME'];?><input name="fio" type="hidden" value="<? echo $arUser['NAME']." ".$arUser['LAST_NAME'];?>" /></td>
                       </tr>
                       <tr>
-                        <td><strong>Компания</strong></td>
+                        <td><strong>РљРѕРјРїР°РЅРёСЏ</strong></td>
                         <td><?=$arUser['WORK_COMPANY']?><input name="company" type="hidden" value="<?=$arUser['WORK_COMPANY']?>" /></td>
                       </tr>
                       <tr class="chet">
-                        <td><strong>Тема</strong></td>
+                        <td><strong>РўРµРјР°</strong></td>
                         <td><input name="subj" type="text" value="" /></td>
                       </tr>
                       <tr>
-                        <td><strong>Текст сообщения</strong></td>
+                        <td><strong>РўРµРєСЃС‚ СЃРѕРѕР±С‰РµРЅРёСЏ</strong></td>
                         <td><textarea name="message_text"></textarea></td>
                       </tr>
                     </table>
                     <input name="mes" type="hidden" value="write" />
-                    <div align="right"><input name="submit" type="submit" value="Отправить" class="send_reg" /></div>
+                    <div align="right"><input name="submit" type="submit" value="РћС‚РїСЂР°РІРёС‚СЊ" class="send_reg" /></div>
                     </form>
                 <?
 				}

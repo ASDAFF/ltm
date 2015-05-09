@@ -17,35 +17,35 @@ if(strLen($arParams["AUTH_PAGE"])<=0){
 }
 
 if(strLen($arParams["GUEST_OFF"])<=0){
-	$arResult["ERROR_MESSAGE"] = "Не введены данные по неподтвержденным Гостям!<br />";
+	$arResult["ERROR_MESSAGE"] = "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рј Р“РѕСЃС‚СЏРј!<br />";
 }
 
 if(strLen($arParams["PARTICIP_OFF"])<=0){
-	$arResult["ERROR_MESSAGE"] = "Не введены данные по неподтвержденным Участникам!<br />";
+	$arResult["ERROR_MESSAGE"] = "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рј РЈС‡Р°СЃС‚РЅРёРєР°Рј!<br />";
 }
 
 if(strLen($arParams["GUEST_ACCEPT"])<=0){
-	$arResult["ERROR_MESSAGE"] = "Не введены данные по Гостям!<br />";
+	$arResult["ERROR_MESSAGE"] = "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ Р“РѕСЃС‚СЏРј!<br />";
 }
 
 if(strLen($arParams["PARTICIP_ACCEPT"])<=0){
-	$arResult["ERROR_MESSAGE"] = "Не введены данные по Участникам!<br />";
+	$arResult["ERROR_MESSAGE"] = "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ РЈС‡Р°СЃС‚РЅРёРєР°Рј!<br />";
 }
 
 if(strLen($arParams["GUEST_SPAM"])<=0){
-	$arResult["ERROR_MESSAGE"] = "Не введены данные по группе для Спама Гостей!<br />";
+	$arResult["ERROR_MESSAGE"] = "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ РіСЂСѓРїРїРµ РґР»СЏ РЎРїР°РјР° Р“РѕСЃС‚РµР№!<br />";
 }
 
 if(strLen($arParams["PARTICIP_SPAM"])<=0){
-	$arResult["ERROR_MESSAGE"] = "Не введены данные по группе для Спама Участников!<br />";
+	$arResult["ERROR_MESSAGE"] = "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ РіСЂСѓРїРїРµ РґР»СЏ РЎРїР°РјР° РЈС‡Р°СЃС‚РЅРёРєРѕРІ!<br />";
 }
 
 if(strLen($arParams["GUEST_FORM_ID"])<=0){
-	$arResult["ERROR_MESSAGE"] = "Не введены данные по Результатам гостей!<br />";
+	$arResult["ERROR_MESSAGE"] = "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ Р РµР·СѓР»СЊС‚Р°С‚Р°Рј РіРѕСЃС‚РµР№!<br />";
 }
 
 if(strLen($arParams["PARTICIP_FORM_ID"])<=0){
-	$arResult["ERROR_MESSAGE"] = "Не введены данные по Результатам участников!<br />";
+	$arResult["ERROR_MESSAGE"] = "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ Р РµР·СѓР»СЊС‚Р°С‚Р°Рј СѓС‡Р°СЃС‚РЅРёРєРѕРІ!<br />";
 }
 
 if(!($USER->IsAuthorized()))
@@ -54,77 +54,77 @@ if(!($USER->IsAuthorized()))
 }
 
 /*---------------------------------------------------*/
-//           МАССИВ ИСПОЛЬЗУЕМЫХ ДАННЫХ              //
+//           РњРђРЎРЎРР’ РРЎРџРћР›Р¬Р—РЈР•РњР«РҐ Р”РђРќРќР«РҐ              //
 /*---------------------------------------------------*/
 $userExel = array();
-	//Подтвержденные Участники
+	//РџРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ РЈС‡Р°СЃС‚РЅРёРєРё
 	$userExel[0]["USER"] = $arParams["PARTICIP_ACCEPT"];
 	$userExel[0]["FORM"] = $arParams["PARTICIP_FORM_ID"];
 	$userExel[0]["TYPE"] = "PARTICIP";
 	$userExel[0]["STATUS"] = "ON";
 
-	//Неподтвержденные Участники
+	//РќРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ РЈС‡Р°СЃС‚РЅРёРєРё
 	$userExel[1]["USER"] = $arParams["PARTICIP_OFF"];
 	$userExel[1]["FORM"] = $arParams["PARTICIP_FORM_ID"];
 	$userExel[1]["TYPE"] = "PARTICIP";
 	$userExel[1]["STATUS"] = "OFF";
 
-	//Спам Участники
+	//РЎРїР°Рј РЈС‡Р°СЃС‚РЅРёРєРё
 	$userExel[2]["USER"] = $arParams["PARTICIP_SPAM"];
 	$userExel[2]["FORM"] = $arParams["PARTICIP_FORM_ID"];
 	$userExel[2]["TYPE"] = "PARTICIP";
 	$userExel[2]["STATUS"] = "SPAM";
 
-	//ВСЕ Подтвержденные Участники
+	//Р’РЎР• РџРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ РЈС‡Р°СЃС‚РЅРёРєРё
 	$userExel[3]["USER"] = $arParams["PARTICIP_ACCEPT"];
 	$userExel[3]["FORM"] = $arParams["PARTICIP_FORM_ID"];
 	$userExel[3]["TYPE"] = "PARTICIP";
 	$userExel[3]["STATUS"] = "ALL";
 
-	//Подтвержденные Гости Утро
+	//РџРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ Р“РѕСЃС‚Рё РЈС‚СЂРѕ
 	$userExel[4]["USER"] = $arParams["GUEST_ACCEPT"];
 	$userExel[4]["FORM"] = $arParams["GUEST_FORM_ID"];
 	$userExel[4]["TYPE"] = "GUEST";
 	$userExel[4]["STATUS"] = "MORNING";
 
-	//Неподтвержденные Гости
+	//РќРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ Р“РѕСЃС‚Рё
 	$userExel[5]["USER"] = $arParams["GUEST_OFF"];
 	$userExel[5]["FORM"] = $arParams["GUEST_FORM_ID"];
 	$userExel[5]["TYPE"] = "GUEST";
 	$userExel[5]["STATUS"] = "OFF";
 
-	//Подтвержденные Гости Вечер
+	//РџРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ Р“РѕСЃС‚Рё Р’РµС‡РµСЂ
 	$userExel[6]["USER"] = $arParams["GUEST_EVENING"];
 	$userExel[6]["FORM"] = $arParams["GUEST_FORM_ID"];
 	$userExel[6]["TYPE"] = "GUEST";
 	$userExel[6]["STATUS"] = "EVENING";
 
-	//Подтвержденные Гости Hosted Buyers
+	//РџРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ Р“РѕСЃС‚Рё Hosted Buyers
 	$userExel[7]["USER"] = $arParams["GUEST_HB"];
 	$userExel[7]["FORM"] = $arParams["GUEST_FORM_ID"];
 	$userExel[7]["TYPE"] = "GUEST";
 	$userExel[7]["STATUS"] = "HB";
 
-	//ВСЕ Подтвержденные Гости Утро
+	//Р’РЎР• РџРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ Р“РѕСЃС‚Рё РЈС‚СЂРѕ
 	$userExel[8]["USER"] = $arParams["GUEST_ACCEPT"];
 	$userExel[8]["FORM"] = $arParams["GUEST_FORM_ID"];
 	$userExel[8]["TYPE"] = "GUEST";
 	$userExel[8]["STATUS"] = "ALL_MORNING";
 
-	//ВСЕ Подтвержденные Гости Вечер
+	//Р’РЎР• РџРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ Р“РѕСЃС‚Рё Р’РµС‡РµСЂ
 	$userExel[9]["USER"] = $arParams["GUEST_EVENING"];
 	$userExel[9]["FORM"] = $arParams["GUEST_FORM_ID"];
 	$userExel[9]["TYPE"] = "GUEST";
 	$userExel[9]["STATUS"] = "ALL_EVENING";
 
-	//ВСЕ Подтвержденные Гости Hosted Buyers
+	//Р’РЎР• РџРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ Р“РѕСЃС‚Рё Hosted Buyers
 	$userExel[10]["USER"] = $arParams["GUEST_HB"];
 	$userExel[10]["FORM"] = $arParams["GUEST_FORM_ID"];
 	$userExel[10]["TYPE"] = "GUEST";
 	$userExel[10]["STATUS"] = "ALL_HB";
 
 /*---------------------------------------------------*/
-//          ВЫБИРАЕМ ИСПОЛЬЗУЕМЫЙ МАССИВ             //
+//          Р’Р«Р‘РР РђР•Рњ РРЎРџРћР›Р¬Р—РЈР•РњР«Р™ РњРђРЎРЎРР’             //
 /*---------------------------------------------------*/
 if(isset($_GET["excel"])){
 	switch ($_GET["excel"]){
@@ -164,27 +164,27 @@ if(isset($_GET["excel"])){
 	}
 }
 else{
-	$arResult["ERROR_MESSAGE"] = "Не выбран тип генерируемого Excel!<br />";
+	$arResult["ERROR_MESSAGE"] = "РќРµ РІС‹Р±СЂР°РЅ С‚РёРї РіРµРЅРµСЂРёСЂСѓРµРјРѕРіРѕ Excel!<br />";
 }
 
 //print_r($curExel);
 
 /*---------------------------------------------------*/
-//           ФОРМИРУЕМ ВЫВОД ДЛЯ ШАБЛОНА             //
+//           Р¤РћР РњРР РЈР•Рњ Р’Р«Р’РћР” Р”Р›РЇ РЁРђР‘Р›РћРќРђ             //
 /*---------------------------------------------------*/
 if($arResult["ERROR_MESSAGE"] == '')
 {
 	$userId= $USER->GetID();
 	$userGroups = CUser::GetUserGroup($userId);
 	if($USER->IsAdmin() || in_array($arParams["GROUP_ID"], $userGroups)){
-		//СПИСОК ПОЛЬЗОВАТЕЛЕЙ
+		//РЎРџРРЎРћРљ РџРћР›Р¬Р—РћР’РђРўР•Р›Р•Р™
 		$filter = Array(
 			"GROUPS_ID"  => Array($curExel["USER"])
 		);
-		$rsUsers = CUser::GetList(($by="id"), ($order="desc"), $filter, array("SELECT"=>array("UF_*"))); // выбираем пользователей
+		$rsUsers = CUser::GetList(($by="id"), ($order="desc"), $filter, array("SELECT"=>array("UF_*"))); // РІС‹Р±РёСЂР°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 		if($curExel["STATUS"] == "ALL_EVENING" || $curExel["STATUS"] == "EVENING"){
-			$rsUsers->NavStart(300); // разбиваем постранично по 300 записей
-			$arResult["NAVIGATE_STR"] = $rsUsers->GetPageNavStringEx($navComponentObject, "Пользователи", "");
+			$rsUsers->NavStart(300); // СЂР°Р·Р±РёРІР°РµРј РїРѕСЃС‚СЂР°РЅРёС‡РЅРѕ РїРѕ 300 Р·Р°РїРёСЃРµР№
+			$arResult["NAVIGATE_STR"] = $rsUsers->GetPageNavStringEx($navComponentObject, "РџРѕР»СЊР·РѕРІР°С‚РµР»Рё", "");
 		}
                 $countUsers = 0;
 		$resultFormId = "";
@@ -200,10 +200,10 @@ if($arResult["ERROR_MESSAGE"] == '')
 		$resultFormId = substr($resultFormId, 3);
 		$arResult["USERS"]["COUNT"] = $countUsers;
 
-		//РЕЗУЛЬТАТЫ ПОЛЬЗОВАТЕЛЕЙ
+		//Р Р•Р—РЈР›Р¬РўРђРўР« РџРћР›Р¬Р—РћР’РђРўР•Р›Р•Р™
 		CForm::GetResultAnswerArray($curExel["FORM"], $arrColumns, $arrAnswers, $arrAnswersVarname, array("RESULT_ID" => $resultFormId));
 		
-		//СПИСОК КОЛОНОК ДЛЯ ТАБЛИЦЫ
+		//РЎРџРРЎРћРљ РљРћР›РћРќРћРљ Р”Р›РЇ РўРђР‘Р›РР¦Р«
 		$countColumns = 0;
 		$countReal = 0;
 		$arResult["FIELDS"]["COUNT"]=0;
@@ -220,7 +220,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 				}
 			}
 			else{
-				if($countReal!=0 && ($columnName["TITLE"] == $arResult["FIELDS"][$countReal-1]["TITLE"]." (другой)" || $columnName["TITLE"] == $arResult["FIELDS"][$countReal-1]["TITLE"]." (другая)" || $columnName["TITLE"] == $arResult["FIELDS"][$countReal-1]["TITLE"]." (другие)" || $columnName["TITLE"] == $arResult["FIELDS"][$countReal-1]["TITLE"]." (другое)")){
+				if($countReal!=0 && ($columnName["TITLE"] == $arResult["FIELDS"][$countReal-1]["TITLE"]." (РґСЂСѓРіРѕР№)" || $columnName["TITLE"] == $arResult["FIELDS"][$countReal-1]["TITLE"]." (РґСЂСѓРіР°СЏ)" || $columnName["TITLE"] == $arResult["FIELDS"][$countReal-1]["TITLE"]." (РґСЂСѓРіРёРµ)" || $columnName["TITLE"] == $arResult["FIELDS"][$countReal-1]["TITLE"]." (РґСЂСѓРіРѕРµ)")){
 					$arResult["FIELDS"][$countReal]["OTHER"] = "Y";
 				}
 				else{
@@ -232,7 +232,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 		$arResult["FIELDS"]["COUNT"] = $countColumns;
 		$realFieldTemp = array();
 		$k=0;
-		//СПИСОК ПОЛЬЗОВАТЕЛЕЙ С ПОЛЯМИ
+		//РЎРџРРЎРћРљ РџРћР›Р¬Р—РћР’РђРўР•Р›Р•Р™ РЎ РџРћР›РЇРњР
 		for($i=0; $i<$countUsers; $i++){
 			$arResult["USERS"][$i+$k]["ID"] = $arUsers[$i]["ID"];
 			$arResult["USERS"][$i+$k]["ANKETA"] = $arUsers[$i]["UF_ANKETA"];
@@ -286,11 +286,11 @@ if($arResult["ERROR_MESSAGE"] == '')
 						}
 					}
 					else{
-						if(strpos($arResult["FIELDS"][$j]["TITLE"], "Адрес") !== false){
-							$realFieldTemp[$j-$sdvig]["TITLE"] = "Адрес";
+						if(strpos($arResult["FIELDS"][$j]["TITLE"], "РђРґСЂРµСЃ") !== false){
+							$realFieldTemp[$j-$sdvig]["TITLE"] = "РђРґСЂРµСЃ";
 						}
-						elseif(strpos($arResult["FIELDS"][$j]["TITLE"], "Телефон") !== false){
-							$realFieldTemp[$j-$sdvig]["TITLE"] = "Телефон";
+						elseif(strpos($arResult["FIELDS"][$j]["TITLE"], "РўРµР»РµС„РѕРЅ") !== false){
+							$realFieldTemp[$j-$sdvig]["TITLE"] = "РўРµР»РµС„РѕРЅ";
 						}
 						else{
 							$realFieldTemp[$j-$sdvig]["TITLE"] = $arResult["FIELDS"][$j]["TITLE"];
@@ -317,23 +317,23 @@ if($arResult["ERROR_MESSAGE"] == '')
 					}
 					elseif($curExel["TYPE"] == "GUEST" && ($curExel["STATUS"] == "ALL_MORNING" || $curExel["STATUS"] == "ALL_HB") && substr($arResult["USERS"][$i+$k]["FIELDS"][$j-$sdvig], 2)){
 						switch($realFieldTemp[$j-$sdvig]["TITLE"]){
-							case "Имя коллеги":
+							case "РРјСЏ РєРѕР»Р»РµРіРё":
 								$CollegeName = $arResult["USERS"][$i+$k]["FIELDS"][$j-$sdvig];
 								break;
-							case "Фамилия коллеги":
+							case "Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё":
 								$CollegeLastName =$arResult["USERS"][$i+$k]["FIELDS"][$j-$sdvig];
 								break;
-							case "Должность коллеги":
+							case "Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё":
 								$CollegeJob = $arResult["USERS"][$i+$k]["FIELDS"][$j-$sdvig];
 								break;
-							case "E-mail коллеги":
+							case "E-mail РєРѕР»Р»РµРіРё":
 								$CollegeEmail = $arResult["USERS"][$i+$k]["FIELDS"][$j-$sdvig];
 								break;
 						}
 					}
 					elseif($curExel["TYPE"] == "GUEST" && $curExel["STATUS"] == "ALL_EVENING" && substr($arResult["USERS"][$i+$k]["FIELDS"][$j-$sdvig], 2)){
 						switch($realFieldTemp[$j-$sdvig]["TITLE"]){
-							case "Имя коллеги (вечер)":
+							case "РРјСЏ РєРѕР»Р»РµРіРё (РІРµС‡РµСЂ)":
 								if(isset($CollegesAr[$countCollege])){
 									$countCollege++;
 								}
@@ -342,13 +342,13 @@ if($arResult["ERROR_MESSAGE"] == '')
 								$CollegesAr[$countCollege]["JOB"] = "";
 								$CollegesAr[$countCollege]["EMAIL"] = "";
 								break;
-							case "Фамилия коллеги (вечер)":
+							case "Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё (РІРµС‡РµСЂ)":
 								$CollegesAr[$countCollege]["SURNAME"] = $arResult["USERS"][$i+$k]["FIELDS"][$j-$sdvig];
 								break;
-							case "Должность коллеги (вечер)":
+							case "Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё (РІРµС‡РµСЂ)":
 								$CollegesAr[$countCollege]["JOB"] = $arResult["USERS"][$i+$k]["FIELDS"][$j-$sdvig];
 								break;
-							case "E-mail коллеги (вечер)":
+							case "E-mail РєРѕР»Р»РµРіРё (РІРµС‡РµСЂ)":
 								$CollegesAr[$countCollege]["EMAIL"] = $arResult["USERS"][$i+$k]["FIELDS"][$j-$sdvig];
 								break;
 						}
@@ -399,7 +399,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 		$arResult["THIS_USER"] = $curExel;
 	}
 	else{
-		$arResult["ERROR_MESSAGE"] = "У вас недостаточно прав для просмотра данной страницы!";
+		$arResult["ERROR_MESSAGE"] = "РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїСЂР°РІ РґР»СЏ РїСЂРѕСЃРјРѕС‚СЂР° РґР°РЅРЅРѕР№ СЃС‚СЂР°РЅРёС†С‹!";
 	}
 }
 //print_r($arResult);

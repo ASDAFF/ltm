@@ -8,9 +8,9 @@ if($USER->IsAdmin() && isset($_REQUEST["UID"]) && intval($_REQUEST["UID"]))
 {
     $rsUser = CUser::GetByID($_REQUEST["UID"]);
     $arUser = $rsUser->Fetch();
-    $arUserGroups = CUser::GetUserGroup($_REQUEST["UID"]); //ïåðåïèñûâàåì ãðóïïû ïîëüçîâàòåëÿ
+    $arUserGroups = CUser::GetUserGroup($_REQUEST["UID"]); //Ð¿ÐµÑ€ÐµÐ¿Ð¸ÑÑ‹Ð²Ð°ÐµÐ¼ Ð³Ñ€ÑƒÐ¿Ð¿Ñ‹ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ
 }
-else //åñëè íå àäìèí ïîëó÷àåì äàííûå äëÿ òåêóùåãî ïîëüçîâàòåëÿ
+else //ÐµÑÐ»Ð¸ Ð½Ðµ Ð°Ð´Ð¼Ð¸Ð½ Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð´Ð»Ñ Ñ‚ÐµÐºÑƒÑ‰ÐµÐ³Ð¾ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ
 {
 	$arUserGroups = CUser::GetUserGroup($userId);
     $rsUser = CUser::GetByID($userId);
@@ -22,11 +22,11 @@ $arResult["USER"] = $arUser;
 $userResultID;
 if($arParams["EXHIB_CODE"])
 {
-    // id ðåçóëüòàòà çàïîëíåíèÿ ôîðìû ãîñÿ
+    // id Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð° Ð·Ð°Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ñ Ñ„Ð¾Ñ€Ð¼Ñ‹ Ð³Ð¾ÑÑ
     $userResultID = $arUser["UF_ID_COMP"];
 }
 
-//ïîëó÷åíèå âûñòàâîê
+//Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ Ð²Ñ‹ÑÑ‚Ð°Ð²Ð¾Ðº
 $arFilter = array(
     "IBLOCK_ID" => $arParams["EXHIB_IBLOCK_ID"],
     "ACTIVE" => "Y"
@@ -84,13 +84,13 @@ while($obElement = $rsElement->GetNextElement())
     	continue;
     }
 
-    $formID = GUEST_FORM_ID;//id ôîðìû ðåãèñòðàöèè
+    $formID = GUEST_FORM_ID;//id Ñ„Ð¾Ñ€Ð¼Ñ‹ Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸Ð¸
     $confirmedGroup = $arItem["PROPERTIES"]["C_GUESTS_GROUP"]["VALUE"];
 
-    //åñëè ïîëüçîâàòåëü â ãðóïïå ïîäòâåðæäåííûõ ãîñòåé
+    //ÐµÑÐ»Ð¸ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ Ð² Ð³Ñ€ÑƒÐ¿Ð¿Ðµ Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð½Ñ‹Ñ… Ð³Ð¾ÑÑ‚ÐµÐ¹
     if(in_array($confirmedGroup,$arUserGroups))
     {
-        //id ðåçóëüòàòà çàïîëíåíèÿ ôîðìû ïîëüçîâàòåëÿ íà òåêóùóþ âûñòàâêó
+        //id Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð° Ð·Ð°Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ñ Ñ„Ð¾Ñ€Ð¼Ñ‹ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ Ð½Ð° Ñ‚ÐµÐºÑƒÑ‰ÑƒÑŽ Ð²Ñ‹ÑÑ‚Ð°Ð²ÐºÑƒ
         $userResultID = $arUser[$userExhibPropertyID];
         $arResult["CONFIRMED"] = "Y";
     }
@@ -102,7 +102,7 @@ while($obElement = $rsElement->GetNextElement())
 
     if($userResultID)
     {
-        //ïîëó÷åíèå ðåçóëüòàòà çàïîëíåíè ôîðìû ïîëüçîâàòåëÿ
+        //Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð° Ð·Ð°Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸ Ñ„Ð¾Ñ€Ð¼Ñ‹ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ
         $arResultAnswerUser = array("RESULTS"=>array(), "QUESTIONS"=>array(), "ANSWERS"=>array(), "ANSWERS2"=>array());
 
         CForm::GetResultAnswerArray(
@@ -117,15 +117,15 @@ while($obElement = $rsElement->GetNextElement())
         $arProfile = array();
         $arUserAnswer = $arResultAnswerUser["ANSWERS"][$userResultID];
 
-        //çàïîëíåíèå äàííûõ ïðîôèëÿ
+        //Ð·Ð°Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ðµ Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð¿Ñ€Ð¾Ñ„Ð¸Ð»Ñ
 
         $arProfile["TYPE"] = "GUEST";
 
-        $arProfile["NAME"] = $arUserAnswer[113][216]["USER_TEXT"];//FIELD_ID 113 , ANSWER_ID 216, TITLE => Èìÿ
+        $arProfile["NAME"] = $arUserAnswer[113][216]["USER_TEXT"];//FIELD_ID 113 , ANSWER_ID 216, TITLE => Ð˜Ð¼Ñ
 
-        $arProfile["LAST_NAME"] = $arUserAnswer[114][217]["USER_TEXT"];//FIELD_ID 114 , ANSWER_ID 217, TITLE => Ôàìèëèÿ
+        $arProfile["LAST_NAME"] = $arUserAnswer[114][217]["USER_TEXT"];//FIELD_ID 114 , ANSWER_ID 217, TITLE => Ð¤Ð°Ð¼Ð¸Ð»Ð¸Ñ
 
-        $arProfile["PHOTO"] = $arUserAnswer[494][1312]["USER_FILE_ID"];//FIELD_ID 494 , ANSWER_ID 1312, TITLE => Ôîòî
+        $arProfile["PHOTO"] = $arUserAnswer[494][1312]["USER_FILE_ID"];//FIELD_ID 494 , ANSWER_ID 1312, TITLE => Ð¤Ð¾Ñ‚Ð¾
 
         if($arProfile["PHOTO"])
         {

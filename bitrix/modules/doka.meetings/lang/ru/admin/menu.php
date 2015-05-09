@@ -1,6 +1,6 @@
 <?php
-$MESS['doka_requests_text'] = 'Ñïèñîê çàïðîñîâ';
-$MESS['doka_settings_timeslots_text'] = 'Íàñòðîéêà òàéìñëîòîâ âûñòàâêè';
-$MESS['doka_settings_text'] = 'Íàñòðîéêè âûñòàâêè';
-$MESS['DOKA_MENU_MAIN'] = 'Ìîäóëü âñòðå÷';
-$MESS['DOKA_MENU_MAIN_TITLE'] = 'Óïðàâëåíèå âñòðå÷àìè';
+$MESS['doka_requests_text'] = 'Ð¡Ð¿Ð¸ÑÐ¾Ðº Ð·Ð°Ð¿Ñ€Ð¾ÑÐ¾Ð²';
+$MESS['doka_settings_timeslots_text'] = 'ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ° Ñ‚Ð°Ð¹Ð¼ÑÐ»Ð¾Ñ‚Ð¾Ð² Ð²Ñ‹ÑÑ‚Ð°Ð²ÐºÐ¸';
+$MESS['doka_settings_text'] = 'ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸ Ð²Ñ‹ÑÑ‚Ð°Ð²ÐºÐ¸';
+$MESS['DOKA_MENU_MAIN'] = 'ÐœÐ¾Ð´ÑƒÐ»ÑŒ Ð²ÑÑ‚Ñ€ÐµÑ‡';
+$MESS['DOKA_MENU_MAIN_TITLE'] = 'Ð£Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð²ÑÑ‚Ñ€ÐµÑ‡Ð°Ð¼Ð¸';

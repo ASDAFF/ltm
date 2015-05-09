@@ -1,27 +1,27 @@
 <?
-$MESS["ADM_PARC_CONFIRM"] = "Ïîäòâåðäèòü ó÷àñòèå";
-$MESS["ADM_PARC_CANCEL"] = "Â íåïîäòâåðæäåííûå";
-$MESS["ADM_PARC_EXCEL"] = "Ãåíåðèðîâàòü Excel";
-$MESS["ADM_PARC_PDF"] = "Ãåíåðèðîâàòü PDF";
-$MESS["ADM_PARC_SELECT"] = "Âûáðàòü";
-$MESS["ADM_PARC_SPAM"] = "Â Ñïàì";
-$MESS["ADM_PARC_NO_SPAM"] = "Âîññòàíîâèòü";
+$MESS["ADM_PARC_CONFIRM"] = "ÐŸÐ¾Ð´Ñ‚Ð²ÐµÑ€Ð´Ð¸Ñ‚ÑŒ ÑƒÑ‡Ð°ÑÑ‚Ð¸Ðµ";
+$MESS["ADM_PARC_CANCEL"] = "Ð’ Ð½ÐµÐ¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð½Ñ‹Ðµ";
+$MESS["ADM_PARC_EXCEL"] = "Ð“ÐµÐ½ÐµÑ€Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Excel";
+$MESS["ADM_PARC_PDF"] = "Ð“ÐµÐ½ÐµÑ€Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ PDF";
+$MESS["ADM_PARC_SELECT"] = "Ð’Ñ‹Ð±Ñ€Ð°Ñ‚ÑŒ";
+$MESS["ADM_PARC_SPAM"] = "Ð’ Ð¡Ð¿Ð°Ð¼";
+$MESS["ADM_PARC_NO_SPAM"] = "Ð’Ð¾ÑÑÑ‚Ð°Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ";
 
 
 
 
-$MESS["ADM_PARC_NO_PARTICIPANTS"] = "Â äàííîé êàòåãîðèè íåò ó÷àñòíèêîâ";
+$MESS["ADM_PARC_NO_PARTICIPANTS"] = "Ð’ Ð´Ð°Ð½Ð½Ð¾Ð¹ ÐºÐ°Ñ‚ÐµÐ³Ð¾Ñ€Ð¸Ð¸ Ð½ÐµÑ‚ ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¾Ð²";
 
-$MESS["ADM_PARC_EDIT"] = "Ðåäàêòèðîâàòü";
-$MESS["ADM_PARC_EDIT_C"] = "Ðåäàêòèðîâàòü êîìïàíèþ";
-$MESS["ADM_PARC_EDIT_M1"] = "Ðåäàêòèðîâàòü Ïðåäñòàâèòåëÿ 1";
-$MESS["ADM_PARC_EDIT_M2"] = "Ðåäàêòèðîâàòü Ïðåäñòàâèòåëÿ 2";
-$MESS["ADM_PARC_EDIT_PAS"] = "Ðåäàêòèðîâàòü ïàðîëü";
+$MESS["ADM_PARC_EDIT"] = "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ";
+$MESS["ADM_PARC_EDIT_C"] = "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÐºÐ¾Ð¼Ð¿Ð°Ð½Ð¸ÑŽ";
+$MESS["ADM_PARC_EDIT_M1"] = "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÐŸÑ€ÐµÐ´ÑÑ‚Ð°Ð²Ð¸Ñ‚ÐµÐ»Ñ 1";
+$MESS["ADM_PARC_EDIT_M2"] = "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÐŸÑ€ÐµÐ´ÑÑ‚Ð°Ð²Ð¸Ñ‚ÐµÐ»Ñ 2";
+$MESS["ADM_PARC_EDIT_PAS"] = "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð°Ñ€Ð¾Ð»ÑŒ";
 
-$MESS["ADM_PARC_TO_EXHIB"] = "Ïåðåíåñòè íà âûñòàâêó";
-$MESS["ADM_PARC_BILL"] = "Âûñòàâèòü ñ÷åò";
-$MESS["ADM_PARC_SCHEDULE"] = "Ãåíåðèðîâàòü ðàñïèñàíèå";
-$MESS["ADM_PARC_WISHLIST"] = "Ãåíåðèðîâàòü âèøëèñò";
-$MESS["ADM_PARC_SCHEDULE_HB"] = "Ãåíåðèðîâàòü ðàñïèñàíèå HB";
-$MESS["ADM_PARC_WISHLIST_HB"] = "Ãåíåðèðîâàòü âèøëèñò HB";
+$MESS["ADM_PARC_TO_EXHIB"] = "ÐŸÐµÑ€ÐµÐ½ÐµÑÑ‚Ð¸ Ð½Ð° Ð²Ñ‹ÑÑ‚Ð°Ð²ÐºÑƒ";
+$MESS["ADM_PARC_BILL"] = "Ð’Ñ‹ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ ÑÑ‡ÐµÑ‚";
+$MESS["ADM_PARC_SCHEDULE"] = "Ð“ÐµÐ½ÐµÑ€Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ñ€Ð°ÑÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ";
+$MESS["ADM_PARC_WISHLIST"] = "Ð“ÐµÐ½ÐµÑ€Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð²Ð¸ÑˆÐ»Ð¸ÑÑ‚";
+$MESS["ADM_PARC_SCHEDULE_HB"] = "Ð“ÐµÐ½ÐµÑ€Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ñ€Ð°ÑÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ HB";
+$MESS["ADM_PARC_WISHLIST_HB"] = "Ð“ÐµÐ½ÐµÑ€Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð²Ð¸ÑˆÐ»Ð¸ÑÑ‚ HB";
 ?>

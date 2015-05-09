@@ -1,6 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Âèø ëèñò");
+$APPLICATION->SetTitle("Ð’Ð¸Ñˆ Ð»Ð¸ÑÑ‚");
 $authUser = $USER->GetID();
 if(isset($_REQUEST["id"]) && $_REQUEST["id"]!='' && $authUser == 1){
 	$curUser = $_REQUEST["id"];

@@ -2,19 +2,19 @@
   CModule::IncludeModule('iblock');
 
   $times = array(
-	  '10:00 – 10:10', '10:15 – 10:25',
-	  '10:30 – 10:40', '10:45 – 10:55',
-	  '11:00 – 11:10', '11:15 – 11:25',
-	  '11:30 – 11:40', '11:45 – 11:55',
-	  '12:10 – 12:20', '12:25 – 12:35',
-	  '12:40 – 12:50', '12:55 – 13:05',
-	  '13:10 – 13:20', '13:25 – 13:35',
-	  '13:40 – 13:50', '13:55 – 14:05',
-	  '14:10 – 14:20'
+	  '10:00 вЂ“ 10:10', '10:15 вЂ“ 10:25',
+	  '10:30 вЂ“ 10:40', '10:45 вЂ“ 10:55',
+	  '11:00 вЂ“ 11:10', '11:15 вЂ“ 11:25',
+	  '11:30 вЂ“ 11:40', '11:45 вЂ“ 11:55',
+	  '12:10 вЂ“ 12:20', '12:25 вЂ“ 12:35',
+	  '12:40 вЂ“ 12:50', '12:55 вЂ“ 13:05',
+	  '13:10 вЂ“ 13:20', '13:25 вЂ“ 13:35',
+	  '13:40 вЂ“ 13:50', '13:55 вЂ“ 14:05',
+	  '14:10 вЂ“ 14:20'
   );
 
   /*---------------------------------------------------*/
-  //           ФОРМИРУЕМ ВЫВОД ДЛЯ ШАБЛОНА             //
+  //           Р¤РћР РњРР РЈР•Рњ Р’Р«Р’РћР” Р”Р›РЇ РЁРђР‘Р›РћРќРђ             //
   /*---------------------------------------------------*/
 	  $rsUser = CUser::GetByID($USER->GetID());
 	  $thisUser = $rsUser->Fetch();
@@ -23,7 +23,7 @@
 	  $arParams["APP_COUNT"] = 17;
 	  $arParams["GROUP_RECIVER_ID"] = 6;
 
-	  //СПИСОК ПОЛЬЗОВАТЕЛЕЙ
+	  //РЎРџРРЎРћРљ РџРћР›Р¬Р—РћР’РђРўР•Р›Р•Р™
 	  $thisUser["UF_WISH_OUT"] = trim(str_replace("  "," ",str_replace(",", "|", substr($thisUser["UF_WISH_OUT"],2))));
 	  $thisUser["UF_WISH_IN"] = trim(str_replace("  "," ",str_replace(",", "|", substr($thisUser["UF_WISH_IN"],2))));
 
@@ -35,7 +35,7 @@
 		  $filter = Array(
 			  "ID"  => $thisUser["UF_WISH_OUT"]
 		  );
-		  $rsUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // выбираем пользователей
+		  $rsUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // РІС‹Р±РёСЂР°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 		  while($arUsersTemp=$rsUsers->Fetch()){
 			  $myWishOut[$countOut]["COMPANY"] = $arUsersTemp["WORK_COMPANY"];
 			  $myWishOut[$countOut]["ID"] = $arUsersTemp["ID"];
@@ -47,7 +47,7 @@
 		  $filter = Array(
 			  "ID"  => $thisUser["UF_WISH_IN"]
 		  );
-		  $rsUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // выбираем пользователей
+		  $rsUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // РІС‹Р±РёСЂР°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 		  while($arUsersTemp=$rsUsers->Fetch()){
 			  $myWishIn[$countIn]["COMPANY"] = $arUsersTemp["WORK_COMPANY"];
 			  $myWishIn[$countIn]["ID"] = $arUsersTemp["ID"];
@@ -67,7 +67,7 @@
 	$pdf->ImageSVG($file='images/logo.svg', $x=30, $y=5, $w='150', $h='', $link='', $align='', $palign='', $border=0, $fitonpage=false);
 	$pdf->setXY(0,30);
 	$pdf->SetFont('times','B',17);
-	$pdf->multiCell(210, 5, "Список неподтвержденных запросов на LTM Moscow 2013", 0, C);
+	$pdf->multiCell(210, 5, "РЎРїРёСЃРѕРє РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… Р·Р°РїСЂРѕСЃРѕРІ РЅР° LTM Moscow 2013", 0, C);
 	$pdf->SetFont('times','',15);
 	$pdf->setXY(30,40);
 	$pdf->multiCell(210, 5, $arResult["USER"]["COMPANY"].", ". $arResult["USER"]["CITY"], 0, L);
@@ -78,24 +78,24 @@
 
 	$pdf->SetFont('times','B',13);
 	$pdf->setXY(0,60);
-	$pdf->multiCell(210, 5, "Вы также хотели бы встретиться со следующими компаниями", 0, C);
+	$pdf->multiCell(210, 5, "Р’С‹ С‚Р°РєР¶Рµ С…РѕС‚РµР»Рё Р±С‹ РІСЃС‚СЂРµС‚РёС‚СЊСЃСЏ СЃРѕ СЃР»РµРґСѓСЋС‰РёРјРё РєРѕРјРїР°РЅРёСЏРјРё", 0, C);
 
 	$pdf->SetFont('times','',10);
 	$pdf->setXY(0,65);
-	$pdf->multiCell(210, 5, "(возможно, данные участники отклонили ваши запросы или их расписание уже полное):", 0, C);
+	$pdf->multiCell(210, 5, "(РІРѕР·РјРѕР¶РЅРѕ, РґР°РЅРЅС‹Рµ СѓС‡Р°СЃС‚РЅРёРєРё РѕС‚РєР»РѕРЅРёР»Рё РІР°С€Рё Р·Р°РїСЂРѕСЃС‹ РёР»Рё РёС… СЂР°СЃРїРёСЃР°РЅРёРµ СѓР¶Рµ РїРѕР»РЅРѕРµ):", 0, C);
 
 
 
-	/* Формируем таблицу */
+	/* Р¤РѕСЂРјРёСЂСѓРµРј С‚Р°Р±Р»РёС†Сѓ */
 	if($countOut){
 		$pdf->setXY(20,$pdf->getY() + 5);
 		$pdf->SetFont('times','',13);
 
 		$tbl = '<table cellspacing="0" cellpadding="5" border="1">
 			<tr>
-				<td align="center" width="60">№</td>
-				<td align="center" width="250">Компания</td>
-				<td align="center" width="200">Представитель</td>
+				<td align="center" width="60">в„–</td>
+				<td align="center" width="250">РљРѕРјРїР°РЅРёСЏ</td>
+				<td align="center" width="200">РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ</td>
 			</tr>';
 		$counter = 1;
 		for($i = 0; $i < $countOut; $i++){
@@ -112,16 +112,16 @@
 	else{
 		$pdf->SetFont('times','',13);
 		$pdf->setXY(0,$pdf->getY() + 5);
-		$pdf->multiCell(210, 5, "Нет запросов в данном списке.", 0, C);
+		$pdf->multiCell(210, 5, "РќРµС‚ Р·Р°РїСЂРѕСЃРѕРІ РІ РґР°РЅРЅРѕРј СЃРїРёСЃРєРµ.", 0, C);
 	}
 
 	$pdf->SetFont('times','B',13);
 	$pdf->setXY(0,$pdf->getY() + 10);
-	$pdf->multiCell(210, 5, "С вами также хотели бы встретиться следующие компании", 0, C);
+	$pdf->multiCell(210, 5, "РЎ РІР°РјРё С‚Р°РєР¶Рµ С…РѕС‚РµР»Рё Р±С‹ РІСЃС‚СЂРµС‚РёС‚СЊСЃСЏ СЃР»РµРґСѓСЋС‰РёРµ РєРѕРјРїР°РЅРёРё", 0, C);
 
 	$pdf->SetFont('times','',10);
 	$pdf->setX(0);
-	$pdf->multiCell(210, 5, "(возможно, вы отклонили запросы от этих участников или ваше расписание уже полное):", 0, C);
+	$pdf->multiCell(210, 5, "(РІРѕР·РјРѕР¶РЅРѕ, РІС‹ РѕС‚РєР»РѕРЅРёР»Рё Р·Р°РїСЂРѕСЃС‹ РѕС‚ СЌС‚РёС… СѓС‡Р°СЃС‚РЅРёРєРѕРІ РёР»Рё РІР°С€Рµ СЂР°СЃРїРёСЃР°РЅРёРµ СѓР¶Рµ РїРѕР»РЅРѕРµ):", 0, C);
 
 
 	if($countIn){
@@ -131,9 +131,9 @@
 
 		$tbl = '<table cellspacing="0" cellpadding="5" border="1">
 			<tr>
-				<td align="center" width="60">№</td>
-				<td align="center" width="250">Компания</td>
-				<td align="center" width="200">Представитель</td>
+				<td align="center" width="60">в„–</td>
+				<td align="center" width="250">РљРѕРјРїР°РЅРёСЏ</td>
+				<td align="center" width="200">РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ</td>
 			</tr>';
 		$counter = 1;
 		for($i = 0; $i < $countIn; $i++){
@@ -150,11 +150,11 @@
 	else{
 		$pdf->SetFont('times','',13);
 		$pdf->setXY(0,$pdf->getY() + 5);
-		$pdf->multiCell(210, 5, "Нет запросов в данном списке.", 0, C);
+		$pdf->multiCell(210, 5, "РќРµС‚ Р·Р°РїСЂРѕСЃРѕРІ РІ РґР°РЅРЅРѕРј СЃРїРёСЃРєРµ.", 0, C);
 	}
 $pdf->setXY(20,$pdf->getY() + 10);
 	$y = $pdf->getY();
-	$html = 'Вы можете встретиться со всеми компаниями, указанными выше, в любое другое время Luxury Travel Mart, например, во время ланча или на вечерней сессии с 18:30 до 21:00.';
+	$html = 'Р’С‹ РјРѕР¶РµС‚Рµ РІСЃС‚СЂРµС‚РёС‚СЊСЃСЏ СЃРѕ РІСЃРµРјРё РєРѕРјРїР°РЅРёСЏРјРё, СѓРєР°Р·Р°РЅРЅС‹РјРё РІС‹С€Рµ, РІ Р»СЋР±РѕРµ РґСЂСѓРіРѕРµ РІСЂРµРјСЏ Luxury Travel Mart, РЅР°РїСЂРёРјРµСЂ, РІРѕ РІСЂРµРјСЏ Р»Р°РЅС‡Р° РёР»Рё РЅР° РІРµС‡РµСЂРЅРµР№ СЃРµСЃСЃРёРё СЃ 18:30 РґРѕ 21:00.';
 	$pdf->writeHTMLCell('', '', 20, $y, $html, $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true);
 	
 

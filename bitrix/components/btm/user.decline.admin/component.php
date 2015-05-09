@@ -17,15 +17,15 @@ if(strLen($arParams["USER_TYPE"])<=0){
 }
 
 if(strLen($arParams["USER"])<=0){
-	$arResult["ERROR_MESSAGE"] .= "Не введены данные по Пользователям!<br />";
+	$arResult["ERROR_MESSAGE"] .= "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ РџРѕР»СЊР·РѕРІР°С‚РµР»СЏРј!<br />";
 }
 
 if(strLen($arParams["GROUP"])<=0){
-	$arResult["ERROR_MESSAGE"] .= "Не введены данные по Подтвержденным пользователям!<br />";
+	$arResult["ERROR_MESSAGE"] .= "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ РџРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рј РїРѕР»СЊР·РѕРІР°С‚РµР»СЏРј!<br />";
 }
 
 if(strLen($arParams["GROUP_OFF"])<=0){
-	$arResult["ERROR_MESSAGE"] .= "Не введены данные по Отмененным пользователям!<br />";
+	$arResult["ERROR_MESSAGE"] .= "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ РћС‚РјРµРЅРµРЅРЅС‹Рј РїРѕР»СЊР·РѕРІР°С‚РµР»СЏРј!<br />";
 }
 
 if(strLen($arParams["APP_ID"])<=0){
@@ -40,11 +40,11 @@ if(!($USER->IsAuthorized()))
 CModule::IncludeModule('iblock');
 
 /*---------------------------------------------------*/
-//           ФОРМИРУЕМ ВЫВОД ДЛЯ ШАБЛОНА             //
+//           Р¤РћР РњРР РЈР•Рњ Р’Р«Р’РћР” Р”Р›РЇ РЁРђР‘Р›РћРќРђ             //
 /*---------------------------------------------------*/
 $userGroups = CUser::GetUserGroup($arParams["USER"]);
 if(!in_array($arParams["GROUP"], $userGroups)){
-	$arResult["ERROR_MESSAGE"] = "Вы не можете изменить данного пользователя";
+	$arResult["ERROR_MESSAGE"] = "Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РёР·РјРµРЅРёС‚СЊ РґР°РЅРЅРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ";
 }
 $arResult["SHOW"] = "FORM";
 if($arResult["ERROR_MESSAGE"] == '')
@@ -55,7 +55,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 		}
 		$rsUser = CUser::GetByID($arParams["USER"]);
 		$declineUser = $rsUser->Fetch();
-		//ВСТРЕЧИ ПОЛЬЗОВАТЕЛЯ
+		//Р’РЎРўР Р•Р§Р РџРћР›Р¬Р—РћР’РђРўР•Р›РЇ
 		$userMeetings = array();
 		$countMeetings = 0;
 		for($i=1; $i<13; $i++){
@@ -86,13 +86,13 @@ if($arResult["ERROR_MESSAGE"] == '')
 					$meeting_list["LIST"][$meeting_list["COUNT"]]["ID"] = $ar_meet["ID"];
 					$meeting_list["LIST"][$meeting_list["COUNT"]]["STATUS_KOD"] = $ar_meet["PROPERTY_STATUS_VALUE"];
 					if($ar_meet["PROPERTY_STATUS_VALUE"] = 'ACCEPT'){
-						$meeting_list["LIST"][$meeting_list["COUNT"]]["STATUS"] = "Подтверждена";
+						$meeting_list["LIST"][$meeting_list["COUNT"]]["STATUS"] = "РџРѕРґС‚РІРµСЂР¶РґРµРЅР°";
 					}
 					elseif($ar_meet["PROPERTY_STATUS_VALUE"] = 'ADM'){
-						$meeting_list["LIST"][$meeting_list["COUNT"]]["STATUS"] = "Администратор";
+						$meeting_list["LIST"][$meeting_list["COUNT"]]["STATUS"] = "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂ";
 					}
 					else{
-						$meeting_list["LIST"][$meeting_list["COUNT"]]["STATUS"] = "Не подтверждена";
+						$meeting_list["LIST"][$meeting_list["COUNT"]]["STATUS"] = "РќРµ РїРѕРґС‚РІРµСЂР¶РґРµРЅР°";
 					}
 					$meeting_list["LIST"][$meeting_list["COUNT"]]["TIME_ID"] = $ar_meet["PROPERTY_TIME_ENUM_ID"];
 					$meeting_list["LIST"][$meeting_list["COUNT"]]["TIME"] = $ar_meet["PROPERTY_TIME_VALUE"];
@@ -116,7 +116,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 			}
 		}
 		$arResult["MEETING"] = $meeting_list;
-		//WISH ЛИСТЫ
+		//WISH Р›РРЎРўР«
 		$declineUser["UF_WISH_OUT"] = trim(str_replace("  "," ",str_replace(",", "|", substr($declineUser["UF_WISH_OUT"],2))));
 		$declineUser["UF_WISH_IN"] = trim(str_replace("  "," ",str_replace(",", "|", substr($declineUser["UF_WISH_IN"],2))));
 		$myWishIn = array();
@@ -127,7 +127,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 			$filter = Array(
 				"ID"  => $declineUser["UF_WISH_OUT"]
 			);
-			$rsUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // выбираем пользователей
+			$rsUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // РІС‹Р±РёСЂР°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 			while($arUsersTemp=$rsUsers->Fetch()){
 				$myWishOut[$countOut]["COMPANY"] = $arUsersTemp["WORK_COMPANY"];
 				$myWishOut[$countOut]["ID"] = $arUsersTemp["ID"];
@@ -139,7 +139,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 			$filter = Array(
 				"ID"  => $declineUser["UF_WISH_IN"]
 			);
-			$rsUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // выбираем пользователей
+			$rsUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // РІС‹Р±РёСЂР°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 			while($arUsersTemp=$rsUsers->Fetch()){
 				$myWishIn[$countIn]["COMPANY"] = $arUsersTemp["WORK_COMPANY"];
 				$myWishIn[$countIn]["ID"] = $arUsersTemp["ID"];
@@ -155,10 +155,10 @@ if($arResult["ERROR_MESSAGE"] == '')
 			$fieldsFrom = Array(
 			"UF_COUNT_APP"      => "",
 			);
-			//Отмена встреч
+			//РћС‚РјРµРЅР° РІСЃС‚СЂРµС‡
 			for($i=0; $i < $arResult["MEETING"]["COUNT"]; $i++){
 				if($arResult["MEETING"]["LIST"][$i]["ID"] == $arResult["MEETING"]["LIST"][$i]["TO_APP"]){
-				  //Меняем активность у встречи и переносим ее в группу
+				  //РњРµРЅСЏРµРј Р°РєС‚РёРІРЅРѕСЃС‚СЊ Сѓ РІСЃС‚СЂРµС‡Рё Рё РїРµСЂРµРЅРѕСЃРёРј РµРµ РІ РіСЂСѓРїРїСѓ
 				  $readMeet = new CIBlockElement;
 				  $PROP = array();
 				  $PROP[4] = array("VALUE" => $arParams["APP_DECLINE"]);
@@ -169,9 +169,9 @@ if($arResult["ERROR_MESSAGE"] == '')
 				  CIBlockElement::SetPropertyValueCode($arResult["MEETING"]["LIST"][$i]["ID"], "STATUS", $PROP);
 				  $resM = $readMeet->Update($arResult["MEETING"]["LIST"][$i]["ID"], $arLoadProductArray);	
 				  
-				  // Меняем количество подтвержденных встреч
+				  // РњРµРЅСЏРµРј РєРѕР»РёС‡РµСЃС‚РІРѕ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… РІСЃС‚СЂРµС‡
 				  $strError = '';
-				  //Получатель
+				  //РџРѕР»СѓС‡Р°С‚РµР»СЊ
 				  if($arResult["MEETING"]["LIST"][$i]["STATUS_KOD"] == 'NOT'){
 					  $arResult["MEETING"]["LIST"][$i]["TO_APP_COUNT"]--;
 					  if($arResult["MEETING"]["LIST"][$i]["TO_APP_COUNT"] < 0){
@@ -191,14 +191,14 @@ if($arResult["ERROR_MESSAGE"] == '')
 					  $arResult["ERROR_MESSAGE"] .= $strError;
 				  }
 
-				//Отправитель
+				//РћС‚РїСЂР°РІРёС‚РµР»СЊ
 				  $fieldsFrom["UF_SHEDULE_".$arResult["MEETING"]["LIST"][$i]["TIME_ID"]] = "";				  
 				}
 				else{
-					$arResult["ERROR_MESSAGE"] .= "У второго пользователя с id=".$arResult["MEETING"]["LIST"][$i]["TO_ID"]." данная встреча отсутствует!";
+					$arResult["ERROR_MESSAGE"] .= "РЈ РІС‚РѕСЂРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ СЃ id=".$arResult["MEETING"]["LIST"][$i]["TO_ID"]." РґР°РЅРЅР°СЏ РІСЃС‚СЂРµС‡Р° РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚!";
 				}
 			}
-			//Удаление из wish листов
+			//РЈРґР°Р»РµРЅРёРµ РёР· wish Р»РёСЃС‚РѕРІ
 			for($i; $i < $arResult["WISH_IN"]["COUNT"]; $i++){
 				$strError = '';
 				$rsWishUser = CUser::GetByID($arResult["WISH_IN"]["LIST"][$i]["ID"]);
@@ -245,7 +245,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 		}
 	}
 	else{
-		$arResult["ERROR_MESSAGE"] = "У вас недостаточно прав для просмотра данной страницы!";
+		$arResult["ERROR_MESSAGE"] = "РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїСЂР°РІ РґР»СЏ РїСЂРѕСЃРјРѕС‚СЂР° РґР°РЅРЅРѕР№ СЃС‚СЂР°РЅРёС†С‹!";
 	}
 }
 //echo "<pre>"; print_r($arResult); echo "</pre>";

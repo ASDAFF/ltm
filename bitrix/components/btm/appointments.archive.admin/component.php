@@ -1,6 +1,6 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 /*--------------- TO DO -------------------*/
-//ƒÓ·‡‚ËÚ¸ ÍÓÎË˜ÂÒÚ‚Ó ‚ÂÏÂÌÌ˚ı ËÌÚÂ‚‡ÎÓ‚
+//–î–æ–±–∞–≤–∏—Ç—å –∫–æ–ª–∏—á–µ—Å—Ç–≤–æ –≤—Ä–µ–º–µ–Ω–Ω—ã—Ö –∏–Ω—Ç–µ—Ä–≤–∞–ª–æ–≤
 
 $arResult["ERROR_MESSAGE"] = "";
 $arResult["MESSAGE"] = "";
@@ -48,45 +48,45 @@ if(!($USER->IsAuthorized()))
 CModule::IncludeModule('iblock');
 
 $times = array(
-	  '10:00 ñ 10:10', '10:15 ñ 10:25',
-	  '10:30 ñ 10:40', '10:45 ñ 10:55',
-	  '11:00 ñ 11:10', '11:15 ñ 11:25',
-	  '11:30 ñ 11:40', '11:45 ñ 11:55',
-	  '12:10 ñ 12:20', '12:25 ñ 12:35',
-	  '12:40 ñ 12:50', '12:55 ñ 13:05',
-	  '13:10 ñ 13:20', '13:25 ñ 13:35',
-	  '13:40 ñ 13:50', '13:55 ñ 14:05',
-	  '14:10 ñ 14:20'
+	  '10:00 ‚Äì 10:10', '10:15 ‚Äì 10:25',
+	  '10:30 ‚Äì 10:40', '10:45 ‚Äì 10:55',
+	  '11:00 ‚Äì 11:10', '11:15 ‚Äì 11:25',
+	  '11:30 ‚Äì 11:40', '11:45 ‚Äì 11:55',
+	  '12:10 ‚Äì 12:20', '12:25 ‚Äì 12:35',
+	  '12:40 ‚Äì 12:50', '12:55 ‚Äì 13:05',
+	  '13:10 ‚Äì 13:20', '13:25 ‚Äì 13:35',
+	  '13:40 ‚Äì 13:50', '13:55 ‚Äì 14:05',
+	  '14:10 ‚Äì 14:20'
   );
 
 /*---------------------------------------------------*/
-//           ‘Œ–Ã»–”≈Ã ¬€¬Œƒ ƒÀﬂ ÿ¿¡ÀŒÕ¿             //
+//           –§–û–†–ú–ò–†–£–ï–ú –í–´–í–û–î –î–õ–Ø –®–ê–ë–õ–û–ù–ê             //
 /*---------------------------------------------------*/
 if($arResult["ERROR_MESSAGE"] == '' && $USER->IsAdmin())
 {
-	//—œ»—Œ  œŒÀ‹«Œ¬¿“≈À≈… œŒÀ”◊¿“≈À≈…
+	//–°–ü–ò–°–û–ö –ü–û–õ–¨–ó–û–í–ê–¢–ï–õ–ï–ô –ü–û–õ–£–ß–ê–¢–ï–õ–ï–ô
 	$freeUsersTimes = array();
 	$reciverList = array();
 	$filter = Array(
 		"GROUPS_ID"  => Array($arParams["GROUP_RECIVER_ID"])
 	);
-	$reciveUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // ‚˚·Ë‡ÂÏ ÔÓÎ¸ÁÓ‚‡ÚÂÎÂÈ
+	$reciveUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // –≤—ã–±–∏—Ä–∞–µ–º –ø–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª–µ–π
 	while($arUsersTemp=$reciveUsers->Fetch()){
 	  $reciverList[$arUsersTemp["ID"]]["COMPANY"] = $arUsersTemp["WORK_COMPANY"];
 	  $reciverList[$arUsersTemp["ID"]]["REP"] = $arUsersTemp["NAME"]." ".$arUsersTemp["LAST_NAME"];
 	}
-	//—œ»—Œ  œŒÀ‹«Œ¬¿“≈À≈… Œ“œ–¿¬»“≈À≈…
+	//–°–ü–ò–°–û–ö –ü–û–õ–¨–ó–û–í–ê–¢–ï–õ–ï–ô –û–¢–ü–†–ê–í–ò–¢–ï–õ–ï–ô
 	$freeUsersTimes = array();
 	$senderList = array();
 	$filter = Array(
 		"GROUPS_ID"  => Array($arParams["GROUP_SENDER_ID"])
 	);
-	$senderUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // ‚˚·Ë‡ÂÏ ÔÓÎ¸ÁÓ‚‡ÚÂÎÂÈ
+	$senderUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // –≤—ã–±–∏—Ä–∞–µ–º –ø–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª–µ–π
 	while($arUsersTemp=$senderUsers->Fetch()){
 	  $senderList[$arUsersTemp["ID"]]["COMPANY"] = $arUsersTemp["WORK_COMPANY"];
 	  $senderList[$arUsersTemp["ID"]]["REP"] = $arUsersTemp["NAME"]." ".$arUsersTemp["LAST_NAME"];
 	}
-	//—œ»—Œ  Õ≈Œ“Ã≈Õ≈ÕÕ€’ ¬—“–≈◊
+	//–°–ü–ò–°–û–ö –ù–ï–û–¢–ú–ï–ù–ï–ù–ù–´–• –í–°–¢–†–ï–ß
 	$meetingList = array();
 	$meetingList["LIST"] = array();
 	$meetingList["COUNT"] = 0;

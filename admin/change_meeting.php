@@ -18,7 +18,7 @@ use Doka\Meetings\Timeslots as DT;
 use Doka\Meetings\Wishlists as DWL;
 
 $userInfo = array();
-$userInfo[1] = array();//Москва Весна 2015
+$userInfo[1] = array();//РњРѕСЃРєРІР° Р’РµСЃРЅР° 2015
 $userInfo[1]["FORM"] = 4;
 $userInfo[1]["PROP_NAME"] = "UF_ID11";
 $userInfo[1]["FIO"][0][0] = "SIMPLE_QUESTION_446";
@@ -29,7 +29,7 @@ $userInfo[1]["FIO"][2][0] = "SIMPLE_QUESTION_859";
 $userInfo[1]["FIO"][2][1] = "89";
 
 
-$userInfo[2] = array();//Москва Баку 2014
+$userInfo[2] = array();//РњРѕСЃРєРІР° Р‘Р°РєСѓ 2014
 $userInfo[2]["FORM"] = 5;
 $userInfo[2]["PROP_NAME"] = "UF_ID2";
 $userInfo[2]["FIO"][0][0] = "SIMPLE_QUESTION_709";
@@ -39,7 +39,7 @@ $userInfo[2]["FIO"][1][1] = "93";
 $userInfo[2]["FIO"][2][0] = "SIMPLE_QUESTION_650";
 $userInfo[2]["FIO"][2][1] = "97";
 
-$userInfo[3] = array();//Москва Осень 2014
+$userInfo[3] = array();//РњРѕСЃРєРІР° РћСЃРµРЅСЊ 2014
 $userInfo[3]["FORM"] = 8;
 $userInfo[3]["PROP_NAME"] = "UF_ID5";
 $userInfo[3]["FIO"][0][0] = "SIMPLE_QUESTION_119";
@@ -49,7 +49,7 @@ $userInfo[3]["FIO"][1][1] = "117";
 $userInfo[3]["FIO"][2][0] = "SIMPLE_QUESTION_786";
 $userInfo[3]["FIO"][2][1] = "121";
 
-$userInfo[4] = array();//Москва Алматы 2014
+$userInfo[4] = array();//РњРѕСЃРєРІР° РђР»РјР°С‚С‹ 2014
 $userInfo[4]["FORM"] = 7;
 $userInfo[4]["PROP_NAME"] = "UF_ID4";
 $userInfo[4]["FIO"][0][0] = "SIMPLE_QUESTION_948";
@@ -59,7 +59,7 @@ $userInfo[4]["FIO"][1][1] = "109";
 $userInfo[4]["FIO"][2][0] = "SIMPLE_QUESTION_742";
 $userInfo[4]["FIO"][2][1] = "113";
 
-$userInfo[5] = array();//Москва Киев 2014
+$userInfo[5] = array();//РњРѕСЃРєРІР° РљРёРµРІ 2014
 $userInfo[5]["FORM"] = 6;
 $userInfo[5]["PROP_NAME"] = "UF_ID3";
 $userInfo[5]["FIO"][0][0] = "SIMPLE_QUESTION_896";
@@ -69,7 +69,7 @@ $userInfo[5]["FIO"][1][1] = "101";
 $userInfo[5]["FIO"][2][0] = "SIMPLE_QUESTION_279";
 $userInfo[5]["FIO"][2][1] = "105";
 
-$userInfo[6] = array();//Москва Весна 2015
+$userInfo[6] = array();//РњРѕСЃРєРІР° Р’РµСЃРЅР° 2015
 $userInfo[6]["FORM"] = 4;
 $userInfo[6]["PROP_NAME"] = "UF_ID11";
 $userInfo[6]["FIO"][0][0] = "SIMPLE_QUESTION_446";
@@ -79,7 +79,7 @@ $userInfo[6]["FIO"][1][1] = "85";
 $userInfo[6]["FIO"][2][0] = "SIMPLE_QUESTION_859";
 $userInfo[6]["FIO"][2][1] = "89";
 
-// Получим список выставок
+// РџРѕР»СѓС‡РёРј СЃРїРёСЃРѕРє РІС‹СЃС‚Р°РІРѕРє
 $rsExhibitions = DS::GetList(array(), array());
 while ($exhibition = $rsExhibitions->Fetch()) {
     if(isset($exhibition["CODE"]) && $exhibition["CODE"]!=''){
@@ -101,7 +101,7 @@ while ($exhibition = $rsExhibitions->Fetch()) {
         }
     }
     $timemout_value = $exhibition['TIMEOUT_VALUE'] * 3600; // sec
-    // Для каждой выставки отвергаем заявки, если превышен лимит ожидания ответа
+    // Р”Р»СЏ РєР°Р¶РґРѕР№ РІС‹СЃС‚Р°РІРєРё РѕС‚РІРµСЂРіР°РµРј Р·Р°СЏРІРєРё, РµСЃР»Рё РїСЂРµРІС‹С€РµРЅ Р»РёРјРёС‚ РѕР¶РёРґР°РЅРёСЏ РѕС‚РІРµС‚Р°
     $rsRequests = DR::GetList(array(), array(
         '<=UPDATED_AT' => ConvertTimeStamp(time() - $timemout_value, "FULL", "ru"),
         'STATUS' => DR::getStatusCode(DR::STATUS_PROCESS),
@@ -111,16 +111,16 @@ while ($exhibition = $rsExhibitions->Fetch()) {
     $wish_obj = new DWL($exhibition['ID']);
 	$strReq = '';
     while ($request = $rsRequests->Fetch()) {
-        // Отменяем запрос
+        // РћС‚РјРµРЅСЏРµРј Р·Р°РїСЂРѕСЃ
         $req_obj->timeoutRequest($request);
 		$arTmpStr = '';
-		$arTmpStr .= 'Встреча от '.$request['SENDER_ID'].' к '.$request['RECEIVER_ID']."\n";
-		$arTmpStr .= 'ID встречи - '.$request['ID']."\n";
-		$arTmpStr .= 'ID таймслота - '.$request['TIMESLOT_ID'];
+		$arTmpStr .= 'Р’СЃС‚СЂРµС‡Р° РѕС‚ '.$request['SENDER_ID'].' Рє '.$request['RECEIVER_ID']."\n";
+		$arTmpStr .= 'ID РІСЃС‚СЂРµС‡Рё - '.$request['ID']."\n";
+		$arTmpStr .= 'ID С‚Р°Р№РјСЃР»РѕС‚Р° - '.$request['TIMESLOT_ID'];
 		$strReq .= $arTmpStr."\n********\n";
 		echo "<pre>";echo $arTmpStr; echo "</pre>";
 		
-        // Добавляем компанию в вишлист
+        // Р”РѕР±Р°РІР»СЏРµРј РєРѕРјРїР°РЅРёСЋ РІ РІРёС€Р»РёСЃС‚
         $fields = array(
             'REASON' => DWL::REASON_TIMEOUT,
             'SENDER_ID' => $request['SENDER_ID'],
@@ -129,7 +129,7 @@ while ($exhibition = $rsExhibitions->Fetch()) {
         $wish_obj->Add($fields);
 
         $timeslot = $req_obj->getTimeslot($request['TIMESLOT_ID']);
-        // Берем доп данные по пользователям для почтовых событий
+        // Р‘РµСЂРµРј РґРѕРї РґР°РЅРЅС‹Рµ РїРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏРј РґР»СЏ РїРѕС‡С‚РѕРІС‹С… СЃРѕР±С‹С‚РёР№
         $senderType = $req_obj->getUserTypeById($request['SENDER_ID']);
         if($senderType == 'GUEST'){
             $sender = $req_obj->getUserInfo($request['SENDER_ID']);
@@ -157,6 +157,6 @@ while ($exhibition = $rsExhibitions->Fetch()) {
 	
 }
 $mailto = "diana_box@list.ru";
-    $mail = "Обработка встреч с сайта Luxury\n".$strReq;
-    mail($mailto,"Cron с сайта Luxury",$mail,"Content-Type: text/plain; charset=windows-1251\r\n");
+    $mail = "РћР±СЂР°Р±РѕС‚РєР° РІСЃС‚СЂРµС‡ СЃ СЃР°Р№С‚Р° Luxury\n".$strReq;
+    mail($mailto,"Cron СЃ СЃР°Р№С‚Р° Luxury",$mail,"Content-Type: text/plain; charset=windows-1251\r\n");
 ?>

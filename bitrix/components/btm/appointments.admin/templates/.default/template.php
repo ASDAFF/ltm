@@ -22,14 +22,14 @@ if($arResult["ERROR_MESSAGE"] == ''){
 	<div class="navigate"><?=$arResult["NAVIGATE"]?></div>
     <table border="0" cellspacing="0" cellpadding="10" class="admin_info">
       <tr>
-        <td class="active"><strong>Подтвержденная встреча</strong></td>
-        <td class="particip"><strong style="color:#000;">Встреча назначенная<br />участником</strong></td>
-        <td class="guest"><strong style="color:#FFF;">Встреча назначенная<br />гостем</strong></td>
+        <td class="active"><strong>РџРѕРґС‚РІРµСЂР¶РґРµРЅРЅР°СЏ РІСЃС‚СЂРµС‡Р°</strong></td>
+        <td class="particip"><strong style="color:#000;">Р’СЃС‚СЂРµС‡Р° РЅР°Р·РЅР°С‡РµРЅРЅР°СЏ<br />СѓС‡Р°СЃС‚РЅРёРєРѕРј</strong></td>
+        <td class="guest"><strong style="color:#FFF;">Р’СЃС‚СЂРµС‡Р° РЅР°Р·РЅР°С‡РµРЅРЅР°СЏ<br />РіРѕСЃС‚РµРј</strong></td>
       </tr>
     </table><br />
     <table border="0" cellspacing="0" cellpadding="3" class="admin_info">
         <tr class="chet">
-            <td width="120"><strong>Компания и Представитель</strong></td>
+            <td width="120"><strong>РљРѕРјРїР°РЅРёСЏ Рё РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ</strong></td>
     <?
     for ($i = 0; $i < $arResult["TIMES_COUNT"]; $i++) {
         ?><td width="110"><strong><?=$arResult["TIMES"][$i]?></strong></td><?
@@ -51,14 +51,14 @@ if($arResult["ERROR_MESSAGE"] == ''){
 			  ?>
             <td>
               <select name="companys_out" style="width:80px;" id="companys_<?=$arResult["USERS"]["LIST"][$j]["ID"]?>time<?=$i?>" class="companys_out">
-                  <option value="0">Выберите компанию</option>
+                  <option value="0">Р’С‹Р±РµСЂРёС‚Рµ РєРѕРјРїР°РЅРёСЋ</option>
                   <? 
                   foreach($arResult["USERS"]["LIST"][$j]["MEET"][$i]["LIST"] as $key => $value){
                       echo "<option value='".$value["ID"]."'>".$value["COMPANY"]."</option>"."\n";
                   }
                   ?>
               </select><br />
-              <a href="/admin/service/appointment.php?id=<?=$arResult["USERS"]["LIST"][$j]["ID"]?>&to=1&time=<?=$i?>&meet=accept" target="_blank" onclick="newRequest('<?=$arResult["USERS"]["LIST"][$j]["ID"]?>','<?=$i?>'); return false;">Назначить</a>
+              <a href="/admin/service/appointment.php?id=<?=$arResult["USERS"]["LIST"][$j]["ID"]?>&to=1&time=<?=$i?>&meet=accept" target="_blank" onclick="newRequest('<?=$arResult["USERS"]["LIST"][$j]["ID"]?>','<?=$i?>'); return false;">РќР°Р·РЅР°С‡РёС‚СЊ</a>
 			  <?
 		  }
 		  elseif($arResult["USERS"]["LIST"][$j]["MEET"][$i]["ACTIVE"] == 'Y'){
@@ -66,7 +66,7 @@ if($arResult["ERROR_MESSAGE"] == ''){
 	        <td class="active">
             	<strong><?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["COMPANY"]?></strong><br />
                 <strong><?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["REP"]?></strong><br />
-                <a href="/admin/service/appointment_edit.php?meetact=decline&meet_id=<?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["ID"]?>" target="_blank" onclick="declineRequest('<?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["ID"]?>', 'decline'); return false;">Отменить</a>
+                <a href="/admin/service/appointment_edit.php?meetact=decline&meet_id=<?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["ID"]?>" target="_blank" onclick="declineRequest('<?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["ID"]?>', 'decline'); return false;">РћС‚РјРµРЅРёС‚СЊ</a>
 			  <?
 		  }
 		  elseif($arResult["USERS"]["LIST"][$j]["MEET"][$i]["STATUS"] == 'FROM'){
@@ -74,8 +74,8 @@ if($arResult["ERROR_MESSAGE"] == ''){
 	        <td class="particip">
             	<strong><?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["COMPANY"]?></strong><br />
                 <strong><?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["REP"]?></strong><br />
-                <a href="/admin/service/appointment_edit.php?meetact=decline&meet_id=<?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["ID"]?>" target="_blank" onclick="declineRequest('<?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["ID"]?>', 'decline'); return false;">Отменить</a><br />
-                <a href="/admin/service/appointment_edit.php?meetact=accept&meet_id=<?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["ID"]?>" target="_blank" onclick="declineRequest('<?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["ID"]?>', 'accept'); return false;">Подтвердить</a>
+                <a href="/admin/service/appointment_edit.php?meetact=decline&meet_id=<?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["ID"]?>" target="_blank" onclick="declineRequest('<?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["ID"]?>', 'decline'); return false;">РћС‚РјРµРЅРёС‚СЊ</a><br />
+                <a href="/admin/service/appointment_edit.php?meetact=accept&meet_id=<?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["ID"]?>" target="_blank" onclick="declineRequest('<?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["ID"]?>', 'accept'); return false;">РџРѕРґС‚РІРµСЂРґРёС‚СЊ</a>
 			  <?
 		  }
 		  elseif($arResult["USERS"]["LIST"][$j]["MEET"][$i]["STATUS"] == 'TO'){
@@ -83,8 +83,8 @@ if($arResult["ERROR_MESSAGE"] == ''){
 	        <td class="guest">
             	<strong><?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["COMPANY"]?></strong><br />
                 <strong><?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["REP"]?></strong><br />
-                <a href="/admin/service/appointment_edit.php?meetact=decline&meet_id=<?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["ID"]?>" target="_blank" onclick="declineRequest('<?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["ID"]?>', 'decline'); return false;">Отменить</a><br />
-                <a href="/admin/service/appointment_edit.php?meetact=accept&meet_id=<?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["ID"]?>" target="_blank" onclick="declineRequest('<?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["ID"]?>', 'accept'); return false;">Подтвердить</a>
+                <a href="/admin/service/appointment_edit.php?meetact=decline&meet_id=<?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["ID"]?>" target="_blank" onclick="declineRequest('<?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["ID"]?>', 'decline'); return false;">РћС‚РјРµРЅРёС‚СЊ</a><br />
+                <a href="/admin/service/appointment_edit.php?meetact=accept&meet_id=<?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["ID"]?>" target="_blank" onclick="declineRequest('<?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["ID"]?>', 'accept'); return false;">РџРѕРґС‚РІРµСЂРґРёС‚СЊ</a>
 			  <?
 		  }
 		  else{
@@ -92,7 +92,7 @@ if($arResult["ERROR_MESSAGE"] == ''){
 	        <td>
             	<strong><?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["COMPANY"]?></strong><br />
                 <strong><?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["REP"]?></strong><br />
-                <a href="/admin/service/appointment_edit.php?meet_id=<?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["ID"]?>" target="_blank" onclick="declineRequest('<?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["ID"]?>'); return false;">Отменить</a>
+                <a href="/admin/service/appointment_edit.php?meet_id=<?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["ID"]?>" target="_blank" onclick="declineRequest('<?=$arResult["USERS"]["LIST"][$j]["MEET"][$i]["ID"]?>'); return false;">РћС‚РјРµРЅРёС‚СЊ</a>
 			  <?
 		  }
         ?>

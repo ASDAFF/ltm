@@ -1,7 +1,7 @@
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 try {
 	if(CModule::IncludeModule('iblock')) {
-		//ïîäòâåðæäåíèå ó÷àñòíèêîâ
+		//Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð¸Ðµ ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¾Ð²
 		$arUserChanges = array("UF_MR", "UF_EV", "UF_HB");
 		$unconfirmmedGuestGroupId = 19;
 
@@ -36,9 +36,9 @@ try {
 function confirmUser($userId, $arUserChanges, $unconfirmmedGuestGroupId, $confirmmedGuestGroupId) {
 	$arUserFields = array();
 
-	$arUserFields["GROUP_ID"] = CUser::GetUserGroup($userId);//ñïèñîê ãðóïï ïîëüçîâàòåëåé
+	$arUserFields["GROUP_ID"] = CUser::GetUserGroup($userId);//ÑÐ¿Ð¸ÑÐ¾Ðº Ð³Ñ€ÑƒÐ¿Ð¿ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹
 
-	//äîáàâëÿåì â ãðóïïó ïîäòâåðæäåííûõ ïîëüçîâàòåëåé è óáèðàåì èç ÍÏ
+	//Ð´Ð¾Ð±Ð°Ð²Ð»ÑÐµÐ¼ Ð² Ð³Ñ€ÑƒÐ¿Ð¿Ñƒ Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð½Ñ‹Ñ… Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹ Ð¸ ÑƒÐ±Ð¸Ñ€Ð°ÐµÐ¼ Ð¸Ð· ÐÐŸ
 	if(($key = array_search($confirmmedGuestGroupId, $arUserFields["GROUP_ID"])) !== false) {
 		unset($arUserFields["GROUP_ID"][$key]);
 	}

@@ -3,7 +3,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $title = "";
 if(LANGUAGE_ID == "ru")
 {
-	$title = "ÍÎÂÎÑÒÈ";
+	$title = "ÐÐžÐ’ÐžÐ¡Ð¢Ð˜";
 }
 elseif(LANGUAGE_ID == "en")
 {
@@ -72,13 +72,13 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 	),
 	"DETAIL_DISPLAY_TOP_PAGER" => "N",
 	"DETAIL_DISPLAY_BOTTOM_PAGER" => "Y",
-	"DETAIL_PAGER_TITLE" => "Ñòðàíèöà",
+	"DETAIL_PAGER_TITLE" => "Ð¡Ñ‚Ñ€Ð°Ð½Ð¸Ñ†Ð°",
 	"DETAIL_PAGER_TEMPLATE" => "",
 	"DETAIL_PAGER_SHOW_ALL" => "N",
 	"PAGER_TEMPLATE" => "ajax_load",
 	"DISPLAY_TOP_PAGER" => "N",
 	"DISPLAY_BOTTOM_PAGER" => "Y",
-	"PAGER_TITLE" => "Íîâîñòè",
+	"PAGER_TITLE" => "ÐÐ¾Ð²Ð¾ÑÑ‚Ð¸",
 	"PAGER_SHOW_ALWAYS" => "Y",
 	"PAGER_DESC_NUMBERING" => "N",
 	"PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",

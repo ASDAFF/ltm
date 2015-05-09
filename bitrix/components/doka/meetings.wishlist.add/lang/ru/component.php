@@ -1,30 +1,30 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die(); ?>
 <?
-$MESS['ERROR_EMPTY_USER_TYPE'] = 'Òèï þçåðà íå óêàçàí';
-$MESS['ERROR_EMPTY_USER_ID'] = 'Þçåð íå àâòîðèçîâàí';
-$MESS['ERROR_EMPTY_TIMESLOT_ID'] = 'Òàéìñëîò íå çàäàí';
-$MESS['ERROR_WRONG_RECEIVER_ID'] = 'Ïîëó÷àòåëü íå óêàçàí';
+$MESS['ERROR_EMPTY_USER_TYPE'] = 'Ð¢Ð¸Ð¿ ÑŽÐ·ÐµÑ€Ð° Ð½Ðµ ÑƒÐºÐ°Ð·Ð°Ð½';
+$MESS['ERROR_EMPTY_USER_ID'] = 'Ð®Ð·ÐµÑ€ Ð½Ðµ Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð¾Ð²Ð°Ð½';
+$MESS['ERROR_EMPTY_TIMESLOT_ID'] = 'Ð¢Ð°Ð¹Ð¼ÑÐ»Ð¾Ñ‚ Ð½Ðµ Ð·Ð°Ð´Ð°Ð½';
+$MESS['ERROR_WRONG_RECEIVER_ID'] = 'ÐŸÐ¾Ð»ÑƒÑ‡Ð°Ñ‚ÐµÐ»ÑŒ Ð½Ðµ ÑƒÐºÐ°Ð·Ð°Ð½';
 
 
-$MESS['PARTICIP_WRONG_TIMESLOT_ID'] = 'Òàéìñëîò íå ñóùåñòâóåò';
-$MESS['GUEST_WRONG_TIMESLOT_ID'] = 'Òàéìñëîò íå ñóùåñòâóåò';
-$MESS['ADMIN_WRONG_TIMESLOT_ID'] = 'Òàéìñëîò íå ñóùåñòâóåò';
+$MESS['PARTICIP_WRONG_TIMESLOT_ID'] = 'Ð¢Ð°Ð¹Ð¼ÑÐ»Ð¾Ñ‚ Ð½Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚';
+$MESS['GUEST_WRONG_TIMESLOT_ID'] = 'Ð¢Ð°Ð¹Ð¼ÑÐ»Ð¾Ñ‚ Ð½Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚';
+$MESS['ADMIN_WRONG_TIMESLOT_ID'] = 'Ð¢Ð°Ð¹Ð¼ÑÐ»Ð¾Ñ‚ Ð½Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚';
 
-$MESS['PARTICIP_WRONG_SENDER_ID'] = 'Îòïðàâèòåëü íå ñóùåñòâóåò';
-$MESS['GUEST_WRONG_SENDER_ID'] = 'Îòïðàâèòåëü íå ñóùåñòâóåò';
-$MESS['ADMIN_WRONG_SENDER_ID'] = 'Îòïðàâèòåëü íå ñóùåñòâóåò';
+$MESS['PARTICIP_WRONG_SENDER_ID'] = 'ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÐµÐ»ÑŒ Ð½Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚';
+$MESS['GUEST_WRONG_SENDER_ID'] = 'ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÐµÐ»ÑŒ Ð½Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚';
+$MESS['ADMIN_WRONG_SENDER_ID'] = 'ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÐµÐ»ÑŒ Ð½Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚';
 
-$MESS['PARTICIP_WRONG_RECEIVER_ID'] = 'Ïîëó÷àòåëü íå ñóùåñòâóåò';
-$MESS['GUEST_WRONG_RECEIVER_ID'] = 'Ïîëó÷àòåëü íå ñóùåñòâóåò';
-$MESS['ADMIN_WRONG_RECEIVER_ID'] = 'Ïîëó÷àòåëü íå ñóùåñòâóåò';
+$MESS['PARTICIP_WRONG_RECEIVER_ID'] = 'ÐŸÐ¾Ð»ÑƒÑ‡Ð°Ñ‚ÐµÐ»ÑŒ Ð½Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚';
+$MESS['GUEST_WRONG_RECEIVER_ID'] = 'ÐŸÐ¾Ð»ÑƒÑ‡Ð°Ñ‚ÐµÐ»ÑŒ Ð½Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚';
+$MESS['ADMIN_WRONG_RECEIVER_ID'] = 'ÐŸÐ¾Ð»ÑƒÑ‡Ð°Ñ‚ÐµÐ»ÑŒ Ð½Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚';
 
 
-$MESS['ERROR_GROUP_SENDER'] = 'Ãðóïïà îòïðàâèòåëÿ íå ñîîòâåòñòâóåò íàñòðîéêàì';
-$MESS['ERROR_STATUS'] = 'Íåâåðíûé ñòàòóñ çàïðîñà';
+$MESS['ERROR_GROUP_SENDER'] = 'Ð“Ñ€ÑƒÐ¿Ð¿Ð° Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÐµÐ»Ñ Ð½Ðµ ÑÐ¾Ð¾Ñ‚Ð²ÐµÑ‚ÑÑ‚Ð²ÑƒÐµÑ‚ Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ°Ð¼';
+$MESS['ERROR_STATUS'] = 'ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ ÑÑ‚Ð°Ñ‚ÑƒÑ Ð·Ð°Ð¿Ñ€Ð¾ÑÐ°';
 
 
 $MESS['PARTICIP_REQUEST_NOT_FOUND'] = 'REQUEST NOT FOUND';
 $MESS['ADMIN_REQUEST_NOT_FOUND'] = 'REQUEST NOT FOUND';
-$MESS['GUEST_REQUEST_NOT_FOUND'] = 'Çàïðîñ íå íàéäåí';
+$MESS['GUEST_REQUEST_NOT_FOUND'] = 'Ð—Ð°Ð¿Ñ€Ð¾Ñ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½';
 
 ?>

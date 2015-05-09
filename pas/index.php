@@ -4,8 +4,8 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 <script src = "/pas/pas.js"></script>
 <link href="/pas/pas.css" type="text/css" rel="stylesheet" />
 <form id = "pas_form">
-	<input type = "text" placeholder = "Ââåäèòå ñþäà ñâîé ïàðîëü" class = "depas" />
-	<input type = "button" value = "Ðàñøèôðîâàòü" class = "pasbut" />
-	<input type = "text" placeholder = "Ðàñøèôðîâàííûé ïàðîëü" class = "enpas" />
+	<input type = "text" placeholder = "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÑŽÐ´Ð° ÑÐ²Ð¾Ð¹ Ð¿Ð°Ñ€Ð¾Ð»ÑŒ" class = "depas" />
+	<input type = "button" value = "Ð Ð°ÑÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ" class = "pasbut" />
+	<input type = "text" placeholder = "Ð Ð°ÑÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð½Ñ‹Ð¹ Ð¿Ð°Ñ€Ð¾Ð»ÑŒ" class = "enpas" />
 </form>
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

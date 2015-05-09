@@ -12,33 +12,33 @@ if(strLen($arParams["AUTH_PAGE"])<=0){
 }
 
 if(strLen($arParams["EXHIB_CODE"])<=0){
-    $arResult["ERROR_MESSAGE"] = "Не введены данные по Выставке!<br />";
+    $arResult["ERROR_MESSAGE"] = "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ Р’С‹СЃС‚Р°РІРєРµ!<br />";
 }
 
 if(!($USER->IsAuthorized()))
 {
-    $arResult["ERROR_MESSAGE"] = "Вы не авторизованы!<br />";
+    $arResult["ERROR_MESSAGE"] = "Р’С‹ РЅРµ Р°РІС‚РѕСЂРёР·РѕРІР°РЅС‹!<br />";
 }
 
 if(!($USER->IsAdmin()))
 {
-    $arResult["ERROR_MESSAGE"] = "Вы не администратор!<br />";
+    $arResult["ERROR_MESSAGE"] = "Р’С‹ РЅРµ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂ!<br />";
 }
 
 if(!CModule::IncludeModule("iblock") || !CModule::IncludeModule("form") || !CModule::IncludeModule("highloadblock"))
 {
-    $arResult["ERROR_MESSAGE"] = "Ошибка подключения модулей!<br />";
+    $arResult["ERROR_MESSAGE"] = "РћС€РёР±РєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ РјРѕРґСѓР»РµР№!<br />";
 }
 
 $arResult["URL"] = $APPLICATION->GetCurPage();
 
-// начало ********************* highloadblock init ***************************************
+// РЅР°С‡Р°Р»Рѕ ********************* highloadblock init ***************************************
 
 use Bitrix\Highloadblock as HL;
 use Bitrix\Main\Entity;
 
 $hlblock = HL\HighloadBlockTable::getById($arParams["HLID"])->fetch();
-// получаем сущность
+// РїРѕР»СѓС‡Р°РµРј СЃСѓС‰РЅРѕСЃС‚СЊ
 $entity = HL\HighloadBlockTable::compileEntity($hlblock);
 $HLDataClass = $entity->getDataClass();
 
@@ -47,12 +47,12 @@ global $USER_FIELD_MANAGER;
 $HLFields = $USER_FIELD_MANAGER->GetUserFields('HLBLOCK_'.$hlblock['ID'], 0, LANGUAGE_ID);
 
 
-// конец ********************* highloadblock init *****************************************
+// РєРѕРЅРµС† ********************* highloadblock init *****************************************
 
 if($arResult["ERROR_MESSAGE"] == '')
 {
 
-    //получение данных выставки
+    //РїРѕР»СѓС‡РµРЅРёРµ РґР°РЅРЅС‹С… РІС‹СЃС‚Р°РІРєРё
 
     $arFilter = array(
         "CODE" => $arParams["EXHIB_CODE"],
@@ -80,12 +80,12 @@ if($arResult["ERROR_MESSAGE"] == '')
         $CGGroupID = $arExhib["PROPERTIES"]["C_GUESTS_GROUP"]["VALUE"];
         $UCGGroupID = $arExhib["PROPERTIES"]["UC_GUESTS_GROUP"]["VALUE"];
 
-        //получение списка пользователей на выставку
+        //РїРѕР»СѓС‡РµРЅРёРµ СЃРїРёСЃРєР° РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ РЅР° РІС‹СЃС‚Р°РІРєСѓ
 
         $arResult["PARTICIPANT"] = CGroup::GetGroupUser($CPGroupID);
         $arResult["GUEST"] = CGroup::GetGroupUser($CGGroupID);
 
-        //получение пользователей
+        //РїРѕР»СѓС‡РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
         $arUserFilter = array(
             "ID" => implode("|", array_merge($arResult["PARTICIPANT"], $arResult["GUEST"])),
             "ACTIVE" => "Y",
@@ -107,7 +107,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 
         $arUsers = $arResult["USERS"];
 
-/* Получение результатов вебформы на будущее, если понадобится
+/* РџРѕР»СѓС‡РµРЅРёРµ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ РІРµР±С„РѕСЂРјС‹ РЅР° Р±СѓРґСѓС‰РµРµ, РµСЃР»Рё РїРѕРЅР°РґРѕР±РёС‚СЃСЏ
         $arAnswersFilter = array("RESULT_ID"=>implode("|", $arUserFormAnswersId));
 
         $arAnswers = array();
@@ -119,7 +119,7 @@ if($arResult["ERROR_MESSAGE"] == '')
         $arAnswersFilter);
 */
 
-        //разделение гостей по форме участия
+        //СЂР°Р·РґРµР»РµРЅРёРµ РіРѕСЃС‚РµР№ РїРѕ С„РѕСЂРјРµ СѓС‡Р°СЃС‚РёСЏ
         foreach ($arResult["GUEST"] as $guestID)
         {
             //$resultID = $arUsers[$guestID][$propName];
@@ -147,7 +147,7 @@ if($arResult["ERROR_MESSAGE"] == '')
             $value = $arUsers[$partID];
         }
 
-        //Сортировка пользователей по названию компании
+        //РЎРѕСЂС‚РёСЂРѕРІРєР° РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ РїРѕ РЅР°Р·РІР°РЅРёСЋ РєРѕРјРїР°РЅРёРё
         $arSortKey = array("PARTICIPANT", "GUEST_M", "GUEST_E", "GUEST_HB");
 
         foreach ($arSortKey as $key)
@@ -171,7 +171,7 @@ if($arResult["ERROR_MESSAGE"] == '')
     }
 }
 
-if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"]))//обработка поста
+if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"]))//РѕР±СЂР°Р±РѕС‚РєР° РїРѕСЃС‚Р°
 {
     $arResult["SUBJECT"] = $subject = htmlspecialcharsEx($_POST["subj"]);
     $arResult["MESSAGE_TEXT"] = $message = htmlspecialcharsEx($_POST["message_text"]);
@@ -180,11 +180,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"]))//обработка п
 
     if($subject == '')
     {
-        $arResult["MESSAGE"] = "Вы не ввели Тему<br />";
+        $arResult["MESSAGE"] = "Р’С‹ РЅРµ РІРІРµР»Рё РўРµРјСѓ<br />";
     }
     if($message == '')
     {
-        $arResult["MESSAGE"] .= "Вы не ввели Текст сообщения<br />";
+        $arResult["MESSAGE"] .= "Р’С‹ РЅРµ РІРІРµР»Рё РўРµРєСЃС‚ СЃРѕРѕР±С‰РµРЅРёСЏ<br />";
     }
 
     if($arResult["MESSAGE"] == '')
@@ -228,7 +228,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"]))//обработка п
         }
 
 
-        //отправка просто выделенным пользователям
+        //РѕС‚РїСЂР°РІРєР° РїСЂРѕСЃС‚Рѕ РІС‹РґРµР»РµРЅРЅС‹Рј РїРѕР»СЊР·РѕРІР°С‚РµР»СЏРј
         if(isset($_POST["UIDS"]) && !empty($_POST["UIDS"]))
         {
             foreach ($_POST["UIDS"] as $UID => $val)
@@ -240,7 +240,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"]))//обработка п
                 }
             }
         }
-        $arResult["MESSAGE"] = "Сообщение отправлено<br />";
+        $arResult["MESSAGE"] = "РЎРѕРѕР±С‰РµРЅРёРµ РѕС‚РїСЂР°РІР»РµРЅРѕ<br />";
     }
 }
 
@@ -274,7 +274,7 @@ function sendMessage($HLDataClass, $UID, $subject, $message, &$arUsers, &$arResu
 	$arParams["MID"] = $result->getId();
 	if (intVal($arParams["MID"]) <= 0)
 	{
-	   $arResult["MESSAGE"] .= "Не отправилось Сообщение Пользователю ".$UID."<br />";
+	   $arResult["MESSAGE"] .= "РќРµ РѕС‚РїСЂР°РІРёР»РѕСЃСЊ РЎРѕРѕР±С‰РµРЅРёРµ РџРѕР»СЊР·РѕРІР°С‚РµР»СЋ ".$UID."<br />";
 	}
 	elseif ($arParams["SEND_EMAIL"] == "Y")
 	{

@@ -1,6 +1,6 @@
 <div class="hosted-session">
 	<h4>Hosted buyer session information</h4>
-	<p>Time: 15:30 – 18:00</p>
+	<p>Time: 15:30 â€“ 18:00</p>
 	<p>Place: Conference Hall I & II.</p>
 	<p>Format: Buyers will be seated, and exhibitors will move from one buyer to another, without pre- scheduled appointments. 5 minutes strictly for each appointment; at the end of each appointment a bell will ring. Please respect other exhibitors and move forward to another buyer immediately after the bell.</p>
 	<p>Please note that if you are sharing space with another hotel or colleague, you must attend all meetings with the hosted buyers together, no separate appointments are allowed in this case.</p>
@@ -66,7 +66,7 @@
 			<td class="contact"><a href="" title="">Send<br> a message</a></td>
 			<td class="free-slots">
 				<select name="" id="">
-					<option value="">10:00 – 10:10</option>
+					<option value="">10:00 â€“ 10:10</option>
 				</select>
 			</td>
 			<td class="request"><a href="" title="">Send <br>a request</a></td>
@@ -80,7 +80,7 @@
 			<td class="contact"><a href="" title="">Send<br> a message</a></td>
 			<td class="free-slots">
 				<select name="" id="">
-					<option value="">10:00 – 10:10</option>
+					<option value="">10:00 â€“ 10:10</option>
 				</select>
 			</td>
 			<td class="request"><a href="" title="">Send <br>a request</a></td>
@@ -94,7 +94,7 @@
 			<td class="contact"><a href="" title="">Send<br> a message</a></td>
 			<td class="free-slots">
 				<select name="" id="">
-					<option value="">10:00 – 10:10</option>
+					<option value="">10:00 â€“ 10:10</option>
 				</select>
 			</td>
 			<td class="request"><a href="" title="">Send <br>a request</a></td>
@@ -108,7 +108,7 @@
 			<td class="contact"><a href="" title="">Send<br> a message</a></td>
 			<td class="free-slots">
 				<select name="" id="">
-					<option value="">10:00 – 10:10</option>
+					<option value="">10:00 â€“ 10:10</option>
 				</select>
 			</td>
 			<td class="request"><a href="" title="">Send <br>a request</a></td>

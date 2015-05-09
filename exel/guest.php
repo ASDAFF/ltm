@@ -1,4 +1,4 @@
-<?
+<?header( 'Content-Type: text/html; charset=utf-8' );
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include.php");
 //all-luxury.ru/exel/indexNewGuest.php?type=guests&app=moscow-russia-march-12-2015
 if (!CModule::IncludeModule("iblock") || !CModule::IncludeModule("form")) {
@@ -12,7 +12,7 @@ $arParams["APP_CODE"] = strip_tags($_REQUEST['app']);
 
 $arResult = array();
 
-/* Ïîëó÷àåì äàííûå ïî ÈÁ Âûñòàâêè*/
+/* ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¿Ð¾ Ð˜Ð‘ Ð’Ñ‹ÑÑ‚Ð°Ð²ÐºÐ¸*/
 if(isset($arParams["APP_CODE"]) && $arParams["APP_CODE"]!=''){
 	$rsExhib = CIBlockElement::GetList(
 			array(),
@@ -32,34 +32,34 @@ if(isset($arParams["APP_CODE"]) && $arParams["APP_CODE"]!=''){
 	}
 }
 
-$fileName = $arResult["PARAM_EXHIBITION"]["NAME"]; // Íàçâàíèå ôàéëà == Íàçâàíèå âûñòàâêè + óêàçàíèå êòî ýòî
+$fileName = $arResult["PARAM_EXHIBITION"]["NAME"]; // ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ Ñ„Ð°Ð¹Ð»Ð° == ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð²Ñ‹ÑÑ‚Ð°Ð²ÐºÐ¸ + ÑƒÐºÐ°Ð·Ð°Ð½Ð¸Ðµ ÐºÑ‚Ð¾ ÑÑ‚Ð¾
 
-$filter = array(); //Ìàññèâ ñ ïîëÿìè äëÿ ôèëüòðàöèè ñïèñêà ïîëüçîâàòåëåé
-$isAll = false; //Êîëëåãè îòäåëüíîé ñòðîêîé
-$isEvening = false; //Ãîñòè íà âå÷åð
-$isHB = false; //Ãîñòè HB
+$filter = array(); //ÐœÐ°ÑÑÐ¸Ð² Ñ Ð¿Ð¾Ð»ÑÐ¼Ð¸ Ð´Ð»Ñ Ñ„Ð¸Ð»ÑŒÑ‚Ñ€Ð°Ñ†Ð¸Ð¸ ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹
+$isAll = false; //ÐšÐ¾Ð»Ð»ÐµÐ³Ð¸ Ð¾Ñ‚Ð´ÐµÐ»ÑŒÐ½Ð¾Ð¹ ÑÑ‚Ñ€Ð¾ÐºÐ¾Ð¹
+$isEvening = false; //Ð“Ð¾ÑÑ‚Ð¸ Ð½Ð° Ð²ÐµÑ‡ÐµÑ€
+$isHB = false; //Ð“Ð¾ÑÑ‚Ð¸ HB
 
-$formId = CFormMatrix::getGResultIDByExh($arResult["PARAM_EXHIBITION"]["ID"]); //Id ôîðìû
+$formId = CFormMatrix::getGResultIDByExh($arResult["PARAM_EXHIBITION"]["ID"]); //Id Ñ„Ð¾Ñ€Ð¼Ñ‹
 
-//Ïîëÿ ñ id ðåçóëüòàòîâ
-$resultAllCode = "UF_ID_COMP";//Ïîëå ñ ID ôîðìû Î ÊÎÌÏÀÍÈÈ
-$resAllComp = array(); //Ìàññèâ ðåçóëüòàòîâ Î êîìïàíèè
+//ÐŸÐ¾Ð»Ñ Ñ id Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð¾Ð²
+$resultAllCode = "UF_ID_COMP";//ÐŸÐ¾Ð»Ðµ Ñ ID Ñ„Ð¾Ñ€Ð¼Ñ‹ Ðž ÐšÐžÐœÐŸÐÐÐ˜Ð˜
+$resAllComp = array(); //ÐœÐ°ÑÑÐ¸Ð² Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð¾Ð² Ðž ÐºÐ¾Ð¼Ð¿Ð°Ð½Ð¸Ð¸
 
 if($arParams["TYPE"] == 'guests'){
 	$filter["GROUPS_ID"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["C_GUESTS_GROUP"]["VALUE"];
 	$filter["UF_MR"] = 1;
-	$fileName = "Ãîñòè ".$fileName." ïîäòâåðæäåííûå.xls";
+	$fileName = "Ð“Ð¾ÑÑ‚Ð¸ ".$fileName." Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð½Ñ‹Ðµ.xls";
 }
 elseif($arParams["TYPE"] == 'guests_all'){
 	$filter["GROUPS_ID"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["C_GUESTS_GROUP"]["VALUE"];
 	$filter["UF_MR"] = 1;
 	$isAll = true;	
-	$fileName = "Ãîñòè ".$fileName." ïîäòâåðæäåííûå (êîëëåãè îòäåëüíî).xls";
+	$fileName = "Ð“Ð¾ÑÑ‚Ð¸ ".$fileName." Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð½Ñ‹Ðµ (ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸ Ð¾Ñ‚Ð´ÐµÐ»ÑŒÐ½Ð¾).xls";
 }
 elseif($arParams["TYPE"] == 'guests_hb'){
 	$filter["GROUPS_ID"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["C_GUESTS_GROUP"]["VALUE"];
 	$filter["UF_HB"] = 1;
-	$fileName = "Ãîñòè ".$fileName." HB.xls";
+	$fileName = "Ð“Ð¾ÑÑ‚Ð¸ ".$fileName." HB.xls";
 	$isHB = true;
 
 }
@@ -67,32 +67,32 @@ elseif($arParams["TYPE"] == 'guests_hb_all'){
 	$filter["GROUPS_ID"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["C_GUESTS_GROUP"]["VALUE"];
 	$filter["UF_HB"] = 1;
 	$isAll = true;
-	$fileName = "Ãîñòè ".$fileName." HB (êîëëåãè îòäåëüíî).xls";
+	$fileName = "Ð“Ð¾ÑÑ‚Ð¸ ".$fileName." HB (ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸ Ð¾Ñ‚Ð´ÐµÐ»ÑŒÐ½Ð¾).xls";
 	$isHB = true;
 
 }
 elseif($arParams["TYPE"] == 'guests_ev'){
 	$filter["GROUPS_ID"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["C_GUESTS_GROUP"]["VALUE"];
 	$filter["UF_EV"] = 1;
-	$fileName = "Ãîñòè ".$fileName." âå÷åð";
+	$fileName = "Ð“Ð¾ÑÑ‚Ð¸ ".$fileName." Ð²ÐµÑ‡ÐµÑ€";
 	$isEvening = true;
 
 }
 elseif($arParams["TYPE"] == 'guests_ev_all'){
 	$filter["GROUPS_ID"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["C_GUESTS_GROUP"]["VALUE"];
 	$filter["UF_EV"] = 1;
-	$fileName = "Ãîñòè ".$fileName." âå÷åð (êîëëåãè îòäåëüíî)";
+	$fileName = "Ð“Ð¾ÑÑ‚Ð¸ ".$fileName." Ð²ÐµÑ‡ÐµÑ€ (ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸ Ð¾Ñ‚Ð´ÐµÐ»ÑŒÐ½Ð¾)";
 	$isAll = true;
 	$isEvening = true;
 }
 elseif($arParams["TYPE"] == 'guests_no'){
 	$filter["GROUPS_ID"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["UC_GUESTS_GROUP"]["VALUE"];
-	$fileName = "Ãîñòè ".$fileName." íåïîäòâåðæäåííûå.xls";
+	$fileName = "Ð“Ð¾ÑÑ‚Ð¸ ".$fileName." Ð½ÐµÐ¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð½Ñ‹Ðµ.xls";
 	$isEvening = true;
 }
 elseif($arParams["TYPE"] == 'guests_no_all'){
 	$filter["GROUPS_ID"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["UC_GUESTS_GROUP"]["VALUE"];
-	$fileName = "Ãîñòè ".$fileName." íåïîäòâåðæäåííûå (êîëëåãè îòäåëüíî).xls";
+	$fileName = "Ð“Ð¾ÑÑ‚Ð¸ ".$fileName." Ð½ÐµÐ¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð½Ñ‹Ðµ (ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸ Ð¾Ñ‚Ð´ÐµÐ»ÑŒÐ½Ð¾).xls";
 	$isAll = true;
 	$isEvening = true;
 }
@@ -106,15 +106,15 @@ $arTmpUsers = array();
 while ($arUser = $rsUsers->Fetch()){
 	$arTmpUsers[$i]['ID']       = $arUser['ID'];
 	$arTmpUsers[$i]['LOGIN']    = $arUser['LOGIN'];
-	$arTmpUsers[$i]['PASSWORD'] = LuxorConfig::returnPas($arUser['UF_PAS']);
+	$arTmpUsers[$i]['PASSWORD'] = str_code(base64_decode($arUser["UF_PAS"]), "luxoran");
 	$arTmpUsers[$i]['FORM_COMP'] = $arUser[$resultAllCode];
 
-	//Äàííûå ïî âñåé êîìïàíèè
+	//Ð”Ð°Ð½Ð½Ñ‹Ðµ Ð¿Ð¾ Ð²ÑÐµÐ¹ ÐºÐ¾Ð¼Ð¿Ð°Ð½Ð¸Ð¸
 	$resAllComp[] = $arUser[$resultAllCode];
 	$i++;
 }
 
-//Ïîëó÷åíèå îòâåòîâ ôîðìû Ãîñòè
+//ÐŸÐ¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ Ð¾Ñ‚Ð²ÐµÑ‚Ð¾Ð² Ñ„Ð¾Ñ€Ð¼Ñ‹ Ð“Ð¾ÑÑ‚Ð¸
 $arTmpResult = array("QUESTIONS"=>array(), "ANSWERS"=>array(), "ANSWERS2"=>array());
 
 CForm::GetResultAnswerArray(
@@ -127,22 +127,22 @@ CForm::GetResultAnswerArray(
 
 $arResult["ANSWERS"] = array();
 $j=0;
-if($isEvening)//Ïîëó÷àåì äàííûå ïî ïîëÿì äëÿ Exel èç ñïðàâî÷íèêà
+if($isEvening)//ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¿Ð¾ Ð¿Ð¾Ð»ÑÐ¼ Ð´Ð»Ñ Exel Ð¸Ð· ÑÐ¿Ñ€Ð°Ð²Ð¾Ñ‡Ð½Ð¸ÐºÐ°
 	$arCompField = CFormMatrix::$arExelEvGuestField;
 else
 	$arCompField = CFormMatrix::$arExelGuestField;
 
 foreach ($arTmpUsers as $arUser) {
-	/*Äàííûå èç ïîëüçîâàòåëÿ*/
+	/*Ð”Ð°Ð½Ð½Ñ‹Ðµ Ð¸Ð· Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ*/
 	$arResult["ANSWERS"][$j]["ID"] = $arUser['ID'];
 	if($isEvening){
 		$arResult["ANSWERS"][$j]["LOGIN"] = $arUser['LOGIN'];
 		$arResult["ANSWERS"][$j]["PASSWORD"] = $arUser['PASSWORD'];
 	}
-	/* Äàííûå î êîìïàíèè */
+	/* Ð”Ð°Ð½Ð½Ñ‹Ðµ Ð¾ ÐºÐ¾Ð¼Ð¿Ð°Ð½Ð¸Ð¸ */
 	if(!$isAll){
 		foreach ($arCompField["QUEST_CODE"] as $idQuest => $codeRes){
-			//Âîò ýòî íå î÷åíü õîðîøî, íî ëèáî SQL ëèáî åùå ÷òî-òî ïðèäóìàòü
+			//Ð’Ð¾Ñ‚ ÑÑ‚Ð¾ Ð½Ðµ Ð¾Ñ‡ÐµÐ½ÑŒ Ñ…Ð¾Ñ€Ð¾ÑˆÐ¾, Ð½Ð¾ Ð»Ð¸Ð±Ð¾ SQL Ð»Ð¸Ð±Ð¾ ÐµÑ‰Ðµ Ñ‡Ñ‚Ð¾-Ñ‚Ð¾ Ð¿Ñ€Ð¸Ð´ÑƒÐ¼Ð°Ñ‚ÑŒ
 			/*if($arCompField["NAMES_AR"][$idQuest] == "HALL" && $arTmpResult["ANSWERS2"][$arUser['FORM_COMP']][$codeRes]["0"][$arCompField["ANS_TYPE"][$idQuest]] == 'Mr.'){
 				$arResult["ANSWERS"][$j][$arCompField["NAMES_AR"][$idQuest]] = '';
 			}*/
@@ -172,10 +172,10 @@ foreach ($arTmpUsers as $arUser) {
 			$arResult["ANSWERS"][$j]["PASSWORD"] = $arUser['PASSWORD'];
 		}
 	}
-	else{//Åñëè âñå ïðåäñòàâèòåëè, òî + êîëëåãà îòäåëüíîé ñòðîêîé
+	else{//Ð•ÑÐ»Ð¸ Ð²ÑÐµ Ð¿Ñ€ÐµÐ´ÑÑ‚Ð°Ð²Ð¸Ñ‚ÐµÐ»Ð¸, Ñ‚Ð¾ + ÐºÐ¾Ð»Ð»ÐµÐ³Ð° Ð¾Ñ‚Ð´ÐµÐ»ÑŒÐ½Ð¾Ð¹ ÑÑ‚Ñ€Ð¾ÐºÐ¾Ð¹
 		$isCollege = false;
 		foreach ($arCompField["QUEST_CODE"] as $idQuest => $codeRes){
-			if(strpos($arCompField["NAMES"][$idQuest], '(íà óòðî)') !== false || strpos($arCompField["NAMES"][$idQuest], ' êîëëåãè ') !== false){
+			if(strpos($arCompField["NAMES"][$idQuest], '(Ð½Ð° ÑƒÑ‚Ñ€Ð¾)') !== false || strpos($arCompField["NAMES"][$idQuest], ' ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸ ') !== false){
 				if($arTmpResult["ANSWERS2"][$arUser['FORM_COMP']][$codeRes]["0"][$arCompField["ANS_TYPE"][$idQuest]] != ''){
 					$isCollege = $isCollege || true;
 				}
@@ -211,14 +211,14 @@ foreach ($arTmpUsers as $arUser) {
 				$firstFieldRes = 0;
 				$firstFieldId = 0;
 				foreach ($arCompField["QUEST_CODE"] as $idQuest => $codeRes){
-					if(strpos($arCompField["NAMES"][$idQuest], ' êîëëåãè ') !== false){//çàìåíÿåì òî, ÷òî îòëè÷àåòñÿ
+					if(strpos($arCompField["NAMES"][$idQuest], ' ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸ ') !== false){//Ð·Ð°Ð¼ÐµÐ½ÑÐµÐ¼ Ñ‚Ð¾, Ñ‡Ñ‚Ð¾ Ð¾Ñ‚Ð»Ð¸Ñ‡Ð°ÐµÑ‚ÑÑ
 						$numderColTmp = substr($arCompField["NAMES_AR"][$idQuest], -1);
 						if($numberCol != $numderColTmp && $arTmpResult["ANSWERS2"][$arUser['FORM_COMP']][$codeRes]["0"][$arCompField["ANS_TYPE"][$idQuest]] != ""){
 							$numberCol = $numderColTmp;
 							$firstFieldRes = $codeRes;
 							$firstFieldId = $idQuest;
 							if(!isset($arResult["ANSWERS"][$j+$numberCol]))
-								$arResult["ANSWERS"][$j+$numberCol]=$arResult["ANSWERS"][$j];//ñêîïèðîâàòü âñþ îáùóþ èíôîðìàöèþ
+								$arResult["ANSWERS"][$j+$numberCol]=$arResult["ANSWERS"][$j];//ÑÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð²ÑÑŽ Ð¾Ð±Ñ‰ÑƒÑŽ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸ÑŽ
 						}
 						elseif($numberCol != $numderColTmp){
 							$firstFieldRes = 0;
@@ -231,10 +231,10 @@ foreach ($arTmpUsers as $arUser) {
 				$j += $numberCol;	
 			}
 			else{
-				$arResult["ANSWERS"][$j+1]=$arResult["ANSWERS"][$j];//ñêîïèðîâàòü âñþ îáùóþ èíôîðìàöèþ
+				$arResult["ANSWERS"][$j+1]=$arResult["ANSWERS"][$j];//ÑÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð²ÑÑŽ Ð¾Ð±Ñ‰ÑƒÑŽ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸ÑŽ
 				$j++;
 				foreach ($arCompField["QUEST_CODE"] as $idQuest => $codeRes){
-					if(strpos($arCompField["NAMES"][$idQuest], '(íà óòðî)') !== false){//çàìåíÿåì òî, ÷òî îòëè÷àåòñÿ
+					if(strpos($arCompField["NAMES"][$idQuest], '(Ð½Ð° ÑƒÑ‚Ñ€Ð¾)') !== false){//Ð·Ð°Ð¼ÐµÐ½ÑÐµÐ¼ Ñ‚Ð¾, Ñ‡Ñ‚Ð¾ Ð¾Ñ‚Ð»Ð¸Ñ‡Ð°ÐµÑ‚ÑÑ
 						$arResult["ANSWERS"][$j][str_replace ("_COL", "", $arCompField["NAMES_AR"][$idQuest])] = $arTmpResult["ANSWERS2"][$arUser['FORM_COMP']][$codeRes]["0"][$arCompField["ANS_TYPE"][$idQuest]];
 					}		
 				}				
@@ -259,7 +259,7 @@ foreach($arCompField["QUEST_CODE"] as $idQuest => $codeRes){
 		$isDestinationsWrite = true;
 		$arResultTitles[] = $arCompField["NAMES"][$idQuest];
 	}
- 	elseif($isAll && (strpos($arCompField["NAMES"][$idQuest], '(íà óòðî)') !== false || strpos($arCompField["NAMES"][$idQuest], ' êîëëåãè ') !== false)){//Åñëè ó íàñ âñå ïðåäñòàâèòåëè, òî êîëëåãà îòäåëüíîé ñòðîêîé
+ 	elseif($isAll && (strpos($arCompField["NAMES"][$idQuest], '(Ð½Ð° ÑƒÑ‚Ñ€Ð¾)') !== false || strpos($arCompField["NAMES"][$idQuest], ' ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸ ') !== false)){//Ð•ÑÐ»Ð¸ Ñƒ Ð½Ð°Ñ Ð²ÑÐµ Ð¿Ñ€ÐµÐ´ÑÑ‚Ð°Ð²Ð¸Ñ‚ÐµÐ»Ð¸, Ñ‚Ð¾ ÐºÐ¾Ð»Ð»ÐµÐ³Ð° Ð¾Ñ‚Ð´ÐµÐ»ÑŒÐ½Ð¾Ð¹ ÑÑ‚Ñ€Ð¾ÐºÐ¾Ð¹
 		continue;
 	}
 	elseif(strpos($arCompField["NAMES"][$idQuest], '(other)') !== false){
@@ -268,7 +268,7 @@ foreach($arCompField["QUEST_CODE"] as $idQuest => $codeRes){
 	elseif(!$isHB && ($arCompField["NAMES_AR"][$idQuest] == 'HALL' || $arCompField["NAMES_AR"][$idQuest] == 'TABLE')){
 		continue;
 	}
-	else{//Åñëè ó íàñ âñå ïðåäñòàâèòåëè, òî êîëëåãà îòäåëüíîé ñòðîêîé
+	else{//Ð•ÑÐ»Ð¸ Ñƒ Ð½Ð°Ñ Ð²ÑÐµ Ð¿Ñ€ÐµÐ´ÑÑ‚Ð°Ð²Ð¸Ñ‚ÐµÐ»Ð¸, Ñ‚Ð¾ ÐºÐ¾Ð»Ð»ÐµÐ³Ð° Ð¾Ñ‚Ð´ÐµÐ»ÑŒÐ½Ð¾Ð¹ ÑÑ‚Ñ€Ð¾ÐºÐ¾Ð¹
 		$arResultTitles[] = $arCompField["NAMES"][$idQuest];
 	}
 }
@@ -289,10 +289,11 @@ unset($arTmpResult["ANSWERS2"]);
 unset($arCompField);
 
 
-// Íàñòðîéêè
+// ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸
 $cacheMethod = PHPExcel_CachedObjectStorageFactory:: cache_to_phpTemp;
 $cacheSettings = array( ' memoryCacheSize ' => '1MB');
 PHPExcel_Settings::setCacheStorageMethod($cacheMethod, $cacheSettings);
+PHPExcel_Settings::setLocale('ru_ru');
 
 $objPHPExcel = new PHPExcel();
 $objPHPExcel->getProperties()->setCreator("LTM Site")->setLastModifiedBy("LTM Site")->setTitle("Office 2007 XLSX Test Document")->setSubject("Office 2007 XLSX Test Document") ->setDescription("Document generated list of exhibitors.")->setKeywords("office 2007 openxml php");
@@ -311,37 +312,37 @@ $baseFont = array(
     )
 );
 
-/*Óñòàíàâëèâàåì øèðèíó êîëîíîê (ðàçíàÿ èíôà, ëó÷øå èíäèâèäóàëüíî)*/
+/*Ð£ÑÑ‚Ð°Ð½Ð°Ð²Ð»Ð¸Ð²Ð°ÐµÐ¼ ÑˆÐ¸Ñ€Ð¸Ð½Ñƒ ÐºÐ¾Ð»Ð¾Ð½Ð¾Ðº (Ñ€Ð°Ð·Ð½Ð°Ñ Ð¸Ð½Ñ„Ð°, Ð»ÑƒÑ‡ÑˆÐµ Ð¸Ð½Ð´Ð¸Ð²Ð¸Ð´ÑƒÐ°Ð»ÑŒÐ½Ð¾)*/
 $aSheet->getColumnDimension('A')->setWidth(7);	//uId
 $aSheet->getColumnDimension('B')->setWidth(18);	//Login
 $aSheet->getColumnDimension('C')->setWidth(18);	//Password
-$aSheet->getColumnDimension('D')->setWidth(35);	//Êîìïàíèÿ
-$aSheet->getColumnDimension('E')->setWidth(20);	//Âèä äåÿòåëüíîñòè
-$aSheet->getColumnDimension('F')->setWidth(40); //Àäðåñ
-$aSheet->getColumnDimension('G')->setWidth(10);	//Èíäåêñ
-$aSheet->getColumnDimension('H')->setWidth(20);	//Ãîðîä
-$aSheet->getColumnDimension('I')->setWidth(15); //Ñòðàíà
-$aSheet->getColumnDimension('J')->setWidth(20); //Èìÿ
-$aSheet->getColumnDimension('K')->setWidth(25); //Ôàìèëèÿ
-$aSheet->getColumnDimension('L')->setWidth(25); //Äîëæíîñòü
-$aSheet->getColumnDimension('M')->setWidth(25); //Òåëåôîí
-$aSheet->getColumnDimension('N')->setWidth(25); //Ìîá Òåëåôîí
+$aSheet->getColumnDimension('D')->setWidth(35);	//ÐšÐ¾Ð¼Ð¿Ð°Ð½Ð¸Ñ
+$aSheet->getColumnDimension('E')->setWidth(20);	//Ð’Ð¸Ð´ Ð´ÐµÑÑ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚Ð¸
+$aSheet->getColumnDimension('F')->setWidth(40); //ÐÐ´Ñ€ÐµÑ
+$aSheet->getColumnDimension('G')->setWidth(10);	//Ð˜Ð½Ð´ÐµÐºÑ
+$aSheet->getColumnDimension('H')->setWidth(20);	//Ð“Ð¾Ñ€Ð¾Ð´
+$aSheet->getColumnDimension('I')->setWidth(15); //Ð¡Ñ‚Ñ€Ð°Ð½Ð°
+$aSheet->getColumnDimension('J')->setWidth(20); //Ð˜Ð¼Ñ
+$aSheet->getColumnDimension('K')->setWidth(25); //Ð¤Ð°Ð¼Ð¸Ð»Ð¸Ñ
+$aSheet->getColumnDimension('L')->setWidth(25); //Ð”Ð¾Ð»Ð¶Ð½Ð¾ÑÑ‚ÑŒ
+$aSheet->getColumnDimension('M')->setWidth(25); //Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½
+$aSheet->getColumnDimension('N')->setWidth(25); //ÐœÐ¾Ð± Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½
 $aSheet->getColumnDimension('O')->setWidth(35); //E-mail
-$aSheet->getColumnDimension('P')->setWidth(35); //Ñàéò
-$aSheet->getColumnDimension('Q')->setWidth(70); //Ïðèîðèòåòíûå íàïðàâëåíèÿ
-$aSheet->getColumnDimension('R')->setWidth(70); //Îïèñàíèå êîìïàíèè
-if(!$isAll || strpos($arRepField["NAMES"][$idQuest], '(íà óòðî)') === false){
-	$aSheet->getColumnDimension('S')->setWidth(20); //Èìÿ êîëëåãè (íà óòðî)
-	$aSheet->getColumnDimension('T')->setWidth(25); //Ôàìèëèÿ êîëëåãè (íà óòðî)
-	$aSheet->getColumnDimension('U')->setWidth(25); //Äîëæíîñòü êîëëåãè (íà óòðî)
-	$aSheet->getColumnDimension('V')->setWidth(35); //E-mail êîëëåãè (íà óòðî)
+$aSheet->getColumnDimension('P')->setWidth(35); //Ð¡Ð°Ð¹Ñ‚
+$aSheet->getColumnDimension('Q')->setWidth(70); //ÐŸÑ€Ð¸Ð¾Ñ€Ð¸Ñ‚ÐµÑ‚Ð½Ñ‹Ðµ Ð½Ð°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ñ
+$aSheet->getColumnDimension('R')->setWidth(70); //ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ ÐºÐ¾Ð¼Ð¿Ð°Ð½Ð¸Ð¸
+if(!$isAll || strpos($arRepField["NAMES"][$idQuest], '(Ð½Ð° ÑƒÑ‚Ñ€Ð¾)') === false){
+	$aSheet->getColumnDimension('S')->setWidth(20); //Ð˜Ð¼Ñ ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸ (Ð½Ð° ÑƒÑ‚Ñ€Ð¾)
+	$aSheet->getColumnDimension('T')->setWidth(25); //Ð¤Ð°Ð¼Ð¸Ð»Ð¸Ñ ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸ (Ð½Ð° ÑƒÑ‚Ñ€Ð¾)
+	$aSheet->getColumnDimension('U')->setWidth(25); //Ð”Ð¾Ð»Ð¶Ð½Ð¾ÑÑ‚ÑŒ ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸ (Ð½Ð° ÑƒÑ‚Ñ€Ð¾)
+	$aSheet->getColumnDimension('V')->setWidth(35); //E-mail ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸ (Ð½Ð° ÑƒÑ‚Ñ€Ð¾)
 }
 
-/* Øàïêà òàáëèöû */
+/* Ð¨Ð°Ð¿ÐºÐ° Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ñ‹ */
 $row_count = 1;
 $col_count = 0;
 foreach($arResultTitles as $idQuest => $codeRes){
- 	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, iconv('WINDOWS-1251', 'UTF-8', $codeRes));
+ 	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, $codeRes);
 	$objPHPExcel->getActiveSheet()->getStyleByColumnAndRow($col_count, $row_count)->applyFromArray($baseFont);
 	$objPHPExcel->getActiveSheet()->getStyleByColumnAndRow($col_count, $row_count)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
     $col_count++;
@@ -349,7 +350,7 @@ foreach($arResultTitles as $idQuest => $codeRes){
 $row_count++;
 unset($arResultTitles);
 
-/* Âûâîä äàííûõ */
+/* Ð’Ñ‹Ð²Ð¾Ð´ Ð´Ð°Ð½Ð½Ñ‹Ñ… */
 foreach ($arResult["ANSWERS"] as $numb => $ans) {
 	$col_count = 0;	
 	foreach($ans as $userAns){
@@ -357,15 +358,15 @@ foreach ($arResult["ANSWERS"] as $numb => $ans) {
 			$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, implode(', ', $userAns));		
 		}
 		elseif($userAns == ''){
-			$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, iconv('WINDOWS-1251', 'UTF-8', '  '));
+			$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, '  ');
 		}
 		else{
-			$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, iconv('WINDOWS-1251', 'UTF-8', $userAns));
+			$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, $userAns);
 		}
 	 	$objPHPExcel->getActiveSheet()->getStyleByColumnAndRow($col_count, $row_count)->applyFromArray($baseFont);
 	    $col_count++;
 	}
-	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, iconv('WINDOWS-1251', 'UTF-8', '  '));
+	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, '  ');
 	$row_count++;
 	unset($arResult["ANSWERS"][$numb]);
 }
@@ -373,7 +374,7 @@ foreach ($arResult["ANSWERS"] as $numb => $ans) {
 $objPHPExcel->getActiveSheet()->setTitle('Guest_excel');
 $objPHPExcel->setActiveSheetIndex(0);
 
-// Redirect output to a client’s web browser (Excel5)
+// Redirect output to a clientâ€™s web browser (Excel5)
 header('Content-Type: application/vnd.ms-excel');
 header('Content-Disposition: attachment;filename="'.$fileName.'"');
 header('Cache-Control: max-age=0');
@@ -387,7 +388,7 @@ header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
 header ('Pragma: public'); // HTTP/1.0
 
 
-$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 $objWriter->save('php://output');
 exit;
 //echo "<pre>"; print_r($arResult["ANSWERS"]); echo "</pre>";

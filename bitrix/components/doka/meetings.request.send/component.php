@@ -88,7 +88,7 @@ elseif(isset($_REQUEST["type"]) && $USER->GetID() == 1){
 	$arResult['USER_TYPE'] = "GUEST";
 }
 
-// Отправка приглашения самому себе
+// РћС‚РїСЂР°РІРєР° РїСЂРёРіР»Р°С€РµРЅРёСЏ СЃР°РјРѕРјСѓ СЃРµР±Рµ
 if ($sender_id == $receiver_id) {
 	$arResult['ERROR_MESSAGE'][] = GetMessage($arResult['USER_TYPE'] . '_WRONG_RECEIVER_ID');
 }
@@ -100,16 +100,16 @@ if (!$arResult['TIMESLOT']) {
 }
 
 $formId = CFormMatrix::getPFormIDByExh($arResult["PARAM_EXHIBITION"]["ID"]);
-$propertyNameParticipant = CFormMatrix::getPropertyIDByExh($arResult["PARAM_EXHIBITION"]["ID"], 0);//свойство участника
+$propertyNameParticipant = CFormMatrix::getPropertyIDByExh($arResult["PARAM_EXHIBITION"]["ID"], 0);//СЃРІРѕР№СЃС‚РІРѕ СѓС‡Р°СЃС‚РЅРёРєР°
 $fio_datesPart = array();
-$fio_datesPart[0][0] = CFormMatrix::getSIDRelBase('SIMPLE_QUESTION_446', $formId);//Имя участника
+$fio_datesPart[0][0] = CFormMatrix::getSIDRelBase('SIMPLE_QUESTION_446', $formId);//РРјСЏ СѓС‡Р°СЃС‚РЅРёРєР°
 $fio_datesPart[0][1] = CFormMatrix::getAnswerRelBase(84 ,$formId);
-$fio_datesPart[1][0] = CFormMatrix::getSIDRelBase('SIMPLE_QUESTION_551', $formId);//Фамилия участника
+$fio_datesPart[1][0] = CFormMatrix::getSIDRelBase('SIMPLE_QUESTION_551', $formId);//Р¤Р°РјРёР»РёСЏ СѓС‡Р°СЃС‚РЅРёРєР°
 $fio_datesPart[1][1] = CFormMatrix::getAnswerRelBase(85 ,$formId);
-$fio_datesPart[2][0] = CFormMatrix::getSIDRelBase('SIMPLE_QUESTION_859', $formId);//Email участника
+$fio_datesPart[2][0] = CFormMatrix::getSIDRelBase('SIMPLE_QUESTION_859', $formId);//Email СѓС‡Р°СЃС‚РЅРёРєР°
 $fio_datesPart[2][1] = CFormMatrix::getAnswerRelBase(89 ,$formId);
 
-// Инфо об отправителе
+// РРЅС„Рѕ РѕР± РѕС‚РїСЂР°РІРёС‚РµР»Рµ
 if($arResult['USER_TYPE'] == 'PARTICIP'){
 	$arResult['SENDER'] = $req_obj->getUserInfoFull($sender_id, $formId, $propertyNameParticipant, $fio_datesPart);
 	$arResult['RECEIVER'] = $req_obj->getUserInfo($receiver_id);
@@ -127,9 +127,9 @@ if (!$arResult['RECEIVER']) {
 	$arResult['ERROR_MESSAGE'][] = GetMessage($arResult['USER_TYPE'] . '_WRONG_RECEIVER_ID');
 }
 
-// Сохранение запроса
+// РЎРѕС…СЂР°РЅРµРЅРёРµ Р·Р°РїСЂРѕСЃР°
 if (!isset($arResult['ERROR_MESSAGE']) && isset($_POST['submit'])) {
-	// Проверим, свободны ли таймслоты
+	// РџСЂРѕРІРµСЂРёРј, СЃРІРѕР±РѕРґРЅС‹ Р»Рё С‚Р°Р№РјСЃР»РѕС‚С‹
 	if ($req_obj->checkTimeslotIsFree( $arResult['TIMESLOT']['id'], array($arResult['RECEIVER']['company_id'], $arResult['SENDER']['company_id']) )) {
 	    $fields = array(
 	        'RECEIVER_ID' => $arResult['RECEIVER']['company_id'],
@@ -146,7 +146,7 @@ if (!isset($arResult['ERROR_MESSAGE']) && isset($_POST['submit'])) {
 		);
 		CEvent::Send($req_obj->getOption('EVENT_SENT'),"s1",$arFieldsMes);
 	} else {
-		$arResult['FORM_ERROR'] = 'ошибка отправки';
+		$arResult['FORM_ERROR'] = 'РѕС€РёР±РєР° РѕС‚РїСЂР°РІРєРё';
 	}
 	$arResult['REQUEST_SENT'] = true;
 }

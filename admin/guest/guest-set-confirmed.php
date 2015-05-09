@@ -1,7 +1,7 @@
 <? require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 try {
 	if(CModule::IncludeModule('iblock') && CModule::IncludeModule('form')) {
-		//подтверждение участников
+		//РїРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ СѓС‡Р°СЃС‚РЅРёРєРѕРІ
 		$arUserChanges = array("UF_MR", "UF_EV", "UF_HB");
 		$unconfirmmedGuestGroupId = 19;
 
@@ -41,13 +41,13 @@ function confirmUser($userId, $arUserChanges, $unconfirmmedGuestGroupId, $confir
 		$arUserFields[$userFieldName] = (isset($_REQUEST[$requestId]) && $_REQUEST[$requestId]) ? 1 : 0;
 	}
 
-	if(array_search(1, $arUserFields) === false) {//если не выбрано куда подтверждать, выбрасываемся
+	if(array_search(1, $arUserFields) === false) {//РµСЃР»Рё РЅРµ РІС‹Р±СЂР°РЅРѕ РєСѓРґР° РїРѕРґС‚РІРµСЂР¶РґР°С‚СЊ, РІС‹Р±СЂР°СЃС‹РІР°РµРјСЃСЏ
 		throw new Exception("Not selected where go");
 	}
 
-	$arUserFields["GROUP_ID"] = CUser::GetUserGroup($userId);//список групп пользователей
+	$arUserFields["GROUP_ID"] = CUser::GetUserGroup($userId);//СЃРїРёСЃРѕРє РіСЂСѓРїРї РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 
-	//добавляем в группу подтвержденных пользователей и убираем из НП
+	//РґРѕР±Р°РІР»СЏРµРј РІ РіСЂСѓРїРїСѓ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ Рё СѓР±РёСЂР°РµРј РёР· РќРџ
 	if(($key = array_search($unconfirmmedGuestGroupId, $arUserFields["GROUP_ID"])) !== false) {
 		unset($arUserFields["GROUP_ID"][$key]);
 	}
@@ -57,11 +57,11 @@ function confirmUser($userId, $arUserChanges, $unconfirmmedGuestGroupId, $confir
 
 	$userFieldFormAnswerIdName = CFormMatrix::getPropertyIDByExh($arExhib["ID"]);
 
-	//пользовательские данные
+	//РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёРµ РґР°РЅРЅС‹Рµ
 	$rs = CUser::GetList(($by = false), ($order = false), array("ID"=>$userId), array("SELECT"=>array("UF_*")));
 	$arUser = $rs->Fetch();
 
-	//получаем результаты формы
+	//РїРѕР»СѓС‡Р°РµРј СЂРµР·СѓР»СЊС‚Р°С‚С‹ С„РѕСЂРјС‹
 	$arAnswers = array();
 	CForm::GetResultAnswerArray(10, ($a = false), $arAnswers, ($b = false), array("RESULT_ID"=>$arUser[$userFieldFormAnswerIdName]));
 
@@ -91,7 +91,7 @@ function confirmUser($userId, $arUserChanges, $unconfirmmedGuestGroupId, $confir
 			}
 		}
 
-		//добавляем к инфо пользователя
+		//РґРѕР±Р°РІР»СЏРµРј Рє РёРЅС„Рѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 		foreach($ar as $key=>$val) {
 			$arFields["S$key"] = is_array($val) ? implode(" ", $val) : $val;
 		}
@@ -102,13 +102,13 @@ function confirmUser($userId, $arUserChanges, $unconfirmmedGuestGroupId, $confir
 	if(isset($arFields["S107"])) $arUserFields["WORK_COMPANY"] = $arFields["S107"];
 	if(isset($arFields["S113"]) && isset($arFields["S114"])) $arUserFields["UF_FIO"] = $arFields["S113"]." ".$arUserFields["LAST_NAME"] = $arFields["S114"];
 
-	//сохраняем пользователя
+	//СЃРѕС…СЂР°РЅСЏРµРј РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 	$user = new CUser;
 	$user->Update($userId, $arUserFields);
 	
-	$arFields["PASSWORD"] = $arFields["S133"];//пароль
+	$arFields["PASSWORD"] = $arFields["S133"];//РїР°СЂРѕР»СЊ
 
-	//отправляем письмо
+	//РѕС‚РїСЂР°РІР»СЏРµРј РїРёСЃСЊРјРѕ
 	if(isset($_REQUEST["CONFIRM_UF_MR_{$userId}"])
 		&& ($templateId = intval(CFormMatrix::getPostTemplateByExhibID($arExhib["ID"], "GUEST_MORNING")))) {
 		CEvent::Send("GUEST_MORNING_CONFIRM", SITE_ID, $arFields, "Y", $templateId);

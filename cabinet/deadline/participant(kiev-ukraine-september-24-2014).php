@@ -2,7 +2,7 @@
 
 <p><b>July, 1, 2014:</b> Opening of registration for the buyers.</p>
 <p><b>August, 29, 2014:</b> Password, user name and detailed instructions on how to use the online system and to set up your appointments will be sent for your attention.</p>
-<p><b>September 1 — September 18, 2014:</b> Scheduling of appointments for the morning session.</p>
+<p><b>September 1 â€” September 18, 2014:</b> Scheduling of appointments for the morning session.</p>
 <p><b>September, 19, 2014:</b> Your schedule should be ready and available for printing. A final exhibitors check for the badges.</p>
 
 
@@ -10,7 +10,7 @@
 
 <p>Registration desk will be located in the foyer of the Grand Ballroom Hall ( -2nd floor).</p>
 
-<p><b>10:00 – 14:20</b> – <i>Morning session.</i><br />
+<p><b>10:00 â€“ 14:20</b> â€“ <i>Morning session.</i><br />
 Individual pre-scheduled appointments with top-buyers. Each appointment will last 10 minutes according to the following scheme (5 minutes added for moving from one exhibitor to another):</p>
 
 <p>10:00 - 10:10 / 10:15 - 10:25 / 10:30 - 10:40 / 10:45 - 10:55<br> 11:00 - 11:10 / 11:15 - 11:25 / 11:30 - 11:40 / 11:45 - 11:55</p>
@@ -21,14 +21,14 @@ Individual pre-scheduled appointments with top-buyers. Each appointment will las
 
 <p>A bell will ring at the end/start of each appointment.<br />
 Place: Grand Ballroom Hall, Conference Hall I&II ( -2nd floor), Meeting Rooms (2nd floor).</p>
-<p><b>14:30 – 15:30</b> – <i>After-session networking and buffet-reception.</i><br />
+<p><b>14:30 â€“ 15:30</b> â€“ <i>After-session networking and buffet-reception.</i><br />
 Place: foyer of the Grand Ballroom Hall ( -2nd floor).</p>
 
 
-<p><b>15:30 – 18:00</b> – <i>Non pre-scheduled appointments with hosted buyers.</i> Buyers will be seated, and exhibitors will move around. Each appointment – 5 minutes.<br />
+<p><b>15:30 â€“ 18:00</b> â€“ <i>Non pre-scheduled appointments with hosted buyers.</i> Buyers will be seated, and exhibitors will move around. Each appointment â€“ 5 minutes.<br />
 Place: Conference Hall I&II ( -2nd floor).</p>
 
-<p><b>18:30 – 21:00</b> – <i>Evening session.</i><br />
+<p><b>18:30 â€“ 21:00</b> â€“ <i>Evening session.</i><br />
 	Workshop and cocktail reception for travel agents, corporate clients and journalists in a relaxed atmosphere.<br />
 Place: Grand Ballroom Hall. </p>
 

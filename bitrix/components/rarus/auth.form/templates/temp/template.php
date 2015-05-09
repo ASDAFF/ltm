@@ -2,9 +2,9 @@
 
 <div class="private-office" >
 
-<?php // Блок с данными пользователя ?>
+<?php // Р‘Р»РѕРє СЃ РґР°РЅРЅС‹РјРё РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ ?>
 	<div id="form" class="form rus">
-		<?php // Выводим фото + имя?>
+		<?php // Р’С‹РІРѕРґРёРј С„РѕС‚Рѕ + РёРјСЏ?>
 		<div class="information-data pull-overflow">
 			<div class="member">
 				<img src="<?php //http://placehold.it/108x108?>" alt="">	
@@ -16,21 +16,21 @@
 			</div>
 		</div>
 		
-		<?php // Редактировать данные ?>
+		<?php // Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РґР°РЅРЅС‹Рµ ?>
 		<div class="edit-profile">
-			<div class="redact"><a href="#" title="Edit profile">Изменить профиль<br> или рег. информацию</a></div>
-			<div class="colleague-reg"><a href="" title=""><b>Зарегистрировать коллег</b></a></div>
-			<div class="mail-list pull-overflow"><a href="#" title="Мои сообщения"><span class="mess">Мои сообщения</span> <span class="count pull-right">99</span></a></div>
-			<div><a href="#" title="Мое расписание">Мое расписание</a></div>
+			<div class="redact"><a href="#" title="Edit profile">РР·РјРµРЅРёС‚СЊ РїСЂРѕС„РёР»СЊ<br> РёР»Рё СЂРµРі. РёРЅС„РѕСЂРјР°С†РёСЋ</a></div>
+			<div class="colleague-reg"><a href="" title=""><b>Р—Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊ РєРѕР»Р»РµРі</b></a></div>
+			<div class="mail-list pull-overflow"><a href="#" title="РњРѕРё СЃРѕРѕР±С‰РµРЅРёСЏ"><span class="mess">РњРѕРё СЃРѕРѕР±С‰РµРЅРёСЏ</span> <span class="count pull-right">99</span></a></div>
+			<div><a href="#" title="РњРѕРµ СЂР°СЃРїРёСЃР°РЅРёРµ">РњРѕРµ СЂР°СЃРїРёСЃР°РЅРёРµ</a></div>
 		</div>
 		
-		<?php // Выход?>
+		<?php // Р’С‹С…РѕРґ?>
 		<div class="leave pull-overflow">
-			<a href="" title="ВЫХОД" class="exit type-helvetical">ВЫХОД</a>
+			<a href="" title="Р’Р«РҐРћР”" class="exit type-helvetical">Р’Р«РҐРћР”</a>
 		</div>
 	</div>
 	<div id="form" class="form">
-		<?php // Выводим фото + имя?>
+		<?php // Р’С‹РІРѕРґРёРј С„РѕС‚Рѕ + РёРјСЏ?>
 		<div class="information-data pull-overflow">
 			<div class="member">
 				<img src="<?php //http://placehold.it/108x108?>" alt="">	
@@ -42,7 +42,7 @@
 			</div>
 		</div>
 		
-		<?php // Редактировать данные ?>
+		<?php // Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РґР°РЅРЅС‹Рµ ?>
 		<div class="edit-profile">
 			<div><a href="#" title="Edit profile">Edit profile</a></div>
 			<div><a href="#" title="Contact with Organizers">Contact with Organizers</a></div>
@@ -50,15 +50,15 @@
 			<div><a href="#" title="Catalogue"><b>Catalogue</b></a></div>
 		</div>
 		
-		<?php // Выход?>
+		<?php // Р’С‹С…РѕРґ?>
 		<div class="leave pull-overflow">
 			<a href="" title="Starwood Hotels & Resort" target="_blank">Starwood Hotels & Resort</a>
 			<a href="" title="EXIT" class="exit type-helvetical">EXIT</a>
 		</div>
 	</div>
-<?php // Блок с данными пользователя ?>	
+<?php // Р‘Р»РѕРє СЃ РґР°РЅРЅС‹РјРё РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ ?>	
 
-<?php // Зарегистророваные ?>
+<?php // Р—Р°СЂРµРіРёСЃС‚СЂРѕСЂРѕРІР°РЅС‹Рµ ?>
 	<div class="gray-grid register">
 		<div class="head">
 			<div class="type-helvetica">LTM Mtoscow Spring</div>
@@ -88,16 +88,16 @@
 			<div class="pull-right edit-registration"><a href="" title="">Edit registration info<br>& add collegue</a></div>
 		</div>
 	</div>
-<?php // Зарегистророваные ?>
+<?php // Р—Р°СЂРµРіРёСЃС‚СЂРѕСЂРѕРІР°РЅС‹Рµ ?>
 
-<?php // Не зарегистророваные ?>
+<?php // РќРµ Р·Р°СЂРµРіРёСЃС‚СЂРѕСЂРѕРІР°РЅС‹Рµ ?>
 	<div class="gray-grid unregister">
 		<div class="head">
 			<div class="title"><b>You can register for LTM Almaty</b></div>
 			<div class="place">Almaty, Kazakhstan,<br>September 26, 2014</div>
 		</div>
 		<div class="content pull-overflow">
- 			<a href="" title="">Registration for LTM Almaty’ 2014</a>
+ 			<a href="" title="">Registration for LTM AlmatyвЂ™ 2014</a>
 		</div>
 	</div>
 	
@@ -107,7 +107,7 @@
 			<div class="place">Moscow, Russia, October 2, 2014</div>
 		</div>
 		<div class="content pull-overflow">
- 			<a href="" title="">Registration for LTM Almaty’ 2014</a>
+ 			<a href="" title="">Registration for LTM AlmatyвЂ™ 2014</a>
 		</div>
 	</div>
 	
@@ -117,9 +117,9 @@
 			<div class="place">Baku, Azerbaijan, April 10, 2014</div>
 		</div>
 		<div class="content pull-overflow">
- 			<a href="" title="">Registration for LTM Almaty’ 2014</a>
+ 			<a href="" title="">Registration for LTM AlmatyвЂ™ 2014</a>
 		</div>
 	</div>
-<?php // Не зарегистророваные ?> 
+<?php // РќРµ Р·Р°СЂРµРіРёСЃС‚СЂРѕСЂРѕРІР°РЅС‹Рµ ?> 
 
 </div>

@@ -1,6 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetPageProperty("title", "Проверка встреч");
+$APPLICATION->SetPageProperty("title", "РџСЂРѕРІРµСЂРєР° РІСЃС‚СЂРµС‡");
 ?>
 <script src = "/meet/meet.js"></script>
 <link href="/meet/meet.css" type="text/css" rel="stylesheet" />
@@ -13,10 +13,10 @@ foreach(LuxorConfig::getAllMeet() as $key=>$val){
 	$arMeet[$key]['USER_POL']  = LuxorConfig::getUserLoginSimple($val['RECEIVER_ID']);
 	$arMeet[$key]['USER_MAKE'] = LuxorConfig::getUserLoginSimple($val['MODIFIED_BY']);
 	switch($val['STATUS']){
-		case 'process':   $arMeet[$key]['STAT_EX'] = 'Ожидание'; break;
-		case 'confirmed': $arMeet[$key]['STAT_EX'] = 'Подтверждён'; break;
-		case 'rejected':  $arMeet[$key]['STAT_EX'] = 'Отменён'; break;
-		case 'timeout':   $arMeet[$key]['STAT_EX'] = 'Истекло время ожидания ответа'; break;
+		case 'process':   $arMeet[$key]['STAT_EX'] = 'РћР¶РёРґР°РЅРёРµ'; break;
+		case 'confirmed': $arMeet[$key]['STAT_EX'] = 'РџРѕРґС‚РІРµСЂР¶РґС‘РЅ'; break;
+		case 'rejected':  $arMeet[$key]['STAT_EX'] = 'РћС‚РјРµРЅС‘РЅ'; break;
+		case 'timeout':   $arMeet[$key]['STAT_EX'] = 'РСЃС‚РµРєР»Рѕ РІСЂРµРјСЏ РѕР¶РёРґР°РЅРёСЏ РѕС‚РІРµС‚Р°'; break;
 	}
 	$arMeet[$key]['TIMESLOT'] = LuxorConfig::getTimeSlotAr($val['EXHIBITION_ID'], $val['TIMESLOT_ID']);
 }
@@ -25,17 +25,17 @@ $arErPolSend      = LuxorConfig::getErrorsPolSend();
 $arErUserNotFound = LuxorConfig::getErrorsUserNotFound();
 $arErBouthGuest   = LuxorConfig::getErrorsBouthGuest();
 foreach(LuxorConfig::getMeetThis() as $k=>$m){
-	echo '<h2>Выставка "'.LuxorConfig::getNameEx($m['NAME_E']).'"</h2>';
+	echo '<h2>Р’С‹СЃС‚Р°РІРєР° "'.LuxorConfig::getNameEx($m['NAME_E']).'"</h2>';
 	echo '<table class = "meet">';
 		echo '<tr class = "first_meet_cl">
-				<td>ID встречи</td>
-				<td>Отправитель</td>
-				<td>Получатель</td>
-				<td>Когда сделан запрос?</td>
-				<td>Кем создан запрос?</td>
-				<td>Таймслот</td>
-				<td>Статус</td>
-				<td>Тип ошибки</td>
+				<td>ID РІСЃС‚СЂРµС‡Рё</td>
+				<td>РћС‚РїСЂР°РІРёС‚РµР»СЊ</td>
+				<td>РџРѕР»СѓС‡Р°С‚РµР»СЊ</td>
+				<td>РљРѕРіРґР° СЃРґРµР»Р°РЅ Р·Р°РїСЂРѕСЃ?</td>
+				<td>РљРµРј СЃРѕР·РґР°РЅ Р·Р°РїСЂРѕСЃ?</td>
+				<td>РўР°Р№РјСЃР»РѕС‚</td>
+				<td>РЎС‚Р°С‚СѓСЃ</td>
+				<td>РўРёРї РѕС€РёР±РєРё</td>
 			</tr>';
 	foreach($arMeet as $val){
 		if(in_array($val['ID'], $arErOtpSend)){

@@ -1,7 +1,7 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
-$APPLICATION->SetTitle("Фотографии LTM 2011");
-?><h1>LTM 2011 в фотографиях</h1>
+$APPLICATION->SetTitle("Р¤РѕС‚РѕРіСЂР°С„РёРё LTM 2011");
+?><h1>LTM 2011 РІ С„РѕС‚РѕРіСЂР°С„РёСЏС…</h1>
 
 <p style="text-align: right;">
     <select onchange="location.href = this.options[this.selectedIndex].value;">
@@ -45,7 +45,7 @@ $APPLICATION->IncludeComponent(
             "CACHE_GROUPS" => "Y",
             "DISPLAY_TOP_PAGER" => "N",
             "DISPLAY_BOTTOM_PAGER" => "Y",
-            "PAGER_TITLE" => "Фотографии",
+            "PAGER_TITLE" => "Р¤РѕС‚РѕРіСЂР°С„РёРё",
             "PAGER_SHOW_ALWAYS" => "Y",
             "PAGER_TEMPLATE" => "",
             "PAGER_DESC_NUMBERING" => "N",

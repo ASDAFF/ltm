@@ -1,16 +1,16 @@
 <?
-$MESS['ADMIN_MENU_ERROR_ENTER'] = "У вас недостаточно прав для входа в данный раздел.";
-$MESS['PARTICIP_MENU_PAGE_MORNING'] = "Утренняя сессия";
-$MESS['PARTICIP_MENU_PAGE_MORNING_MY'] = "Расписание на<br/>утреннюю сессию";
-$MESS['PARTICIP_MENU_PAGE_MORNING_LIST'] = "Список участников";
+$MESS['ADMIN_MENU_ERROR_ENTER'] = "РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїСЂР°РІ РґР»СЏ РІС…РѕРґР° РІ РґР°РЅРЅС‹Р№ СЂР°Р·РґРµР».";
+$MESS['PARTICIP_MENU_PAGE_MORNING'] = "РЈС‚СЂРµРЅРЅСЏСЏ СЃРµСЃСЃРёСЏ";
+$MESS['PARTICIP_MENU_PAGE_MORNING_MY'] = "Р Р°СЃРїРёСЃР°РЅРёРµ РЅР°<br/>СѓС‚СЂРµРЅРЅСЋСЋ СЃРµСЃСЃРёСЋ";
+$MESS['PARTICIP_MENU_PAGE_MORNING_LIST'] = "РЎРїРёСЃРѕРє СѓС‡Р°СЃС‚РЅРёРєРѕРІ";
 
-$MESS['PARTICIP_MENU_PAGE_INFO'] = "Программа и инфо";
-$MESS['PARTICIP_MENU_PAGE_INFO_MY'] = "Регистрационные<br/>данные";
-$MESS['PARTICIP_MENU_PAGE_INFO_DEADLINES'] = "программа мероприятия";
+$MESS['PARTICIP_MENU_PAGE_INFO'] = "РџСЂРѕРіСЂР°РјРјР° Рё РёРЅС„Рѕ";
+$MESS['PARTICIP_MENU_PAGE_INFO_MY'] = "Р РµРіРёСЃС‚СЂР°С†РёРѕРЅРЅС‹Рµ<br/>РґР°РЅРЅС‹Рµ";
+$MESS['PARTICIP_MENU_PAGE_INFO_DEADLINES'] = "РїСЂРѕРіСЂР°РјРјР° РјРµСЂРѕРїСЂРёСЏС‚РёСЏ";
 
-$MESS['PARTICIP_MENU_PAGE_MESSAGES'] = "Мои сообщения";
-$MESS['PARTICIP_MENU_PAGE_MESSAGES_RECEIVED'] = "полученные";
-$MESS['PARTICIP_MENU_PAGE_MESSAGES_SENT'] = "отправленные";
-$MESS['PARTICIP_MENU_PAGE_MESSAGES_WRITE'] = "написать сообщение";
-$MESS['PARTICIP_MENU_PAGE_MESSAGES_ADMIN'] = "связаться с администратором";
+$MESS['PARTICIP_MENU_PAGE_MESSAGES'] = "РњРѕРё СЃРѕРѕР±С‰РµРЅРёСЏ";
+$MESS['PARTICIP_MENU_PAGE_MESSAGES_RECEIVED'] = "РїРѕР»СѓС‡РµРЅРЅС‹Рµ";
+$MESS['PARTICIP_MENU_PAGE_MESSAGES_SENT'] = "РѕС‚РїСЂР°РІР»РµРЅРЅС‹Рµ";
+$MESS['PARTICIP_MENU_PAGE_MESSAGES_WRITE'] = "РЅР°РїРёСЃР°С‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ";
+$MESS['PARTICIP_MENU_PAGE_MESSAGES_ADMIN'] = "СЃРІСЏР·Р°С‚СЊСЃСЏ СЃ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂРѕРј";
 ?>

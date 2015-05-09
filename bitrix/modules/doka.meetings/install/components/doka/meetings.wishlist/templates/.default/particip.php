@@ -1,11 +1,11 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();?>
 
-<h3>С вами хотели бы встретиться</h3>
+<h3>РЎ РІР°РјРё С…РѕС‚РµР»Рё Р±С‹ РІСЃС‚СЂРµС‚РёС‚СЊСЃСЏ</h3>
 <table class="table table-striped" id="results">
 	<thead>
 		<tr>
 			<th>N</th>
-			<th>Компания</th>
+			<th>РљРѕРјРїР°РЅРёСЏ</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -18,12 +18,12 @@
 	</tbody>
 </table>
 
-<h3>Вы хотели бы видеть</h3>
+<h3>Р’С‹ С…РѕС‚РµР»Рё Р±С‹ РІРёРґРµС‚СЊ</h3>
 <table class="table table-striped" id="results">
 	<thead>
 		<tr>
 			<th>N</th>
-			<th>Компания</th>
+			<th>РљРѕРјРїР°РЅРёСЏ</th>
 		</tr>
 	</thead>
 	<tbody>

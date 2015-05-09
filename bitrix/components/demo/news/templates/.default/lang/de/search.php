@@ -1,3 +1,3 @@
 <?
-$MESS ['T_NEWS_DETAIL_BACK'] = "Zurück zur Liste";
+$MESS ['T_NEWS_DETAIL_BACK'] = "ZurÑŒck zur Liste";
 ?>

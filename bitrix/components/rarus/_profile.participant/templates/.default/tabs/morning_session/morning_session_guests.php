@@ -57,7 +57,7 @@
 		<td class="contact"><a href="" title="">Send<br> a message</a></td>
 		<td class="free-slots">
 			<select name="" id="">
-				<option value="">10:00 – 10:10</option>
+				<option value="">10:00 â€“ 10:10</option>
 			</select>
 		</td>
 		<td class="request"><a href="" title="">Send <br>a request</a></td>
@@ -71,7 +71,7 @@
 		<td class="contact"><a href="" title="">Send<br> a message</a></td>
 		<td class="free-slots">
 			<select name="" id="">
-				<option value="">10:00 – 10:10</option>
+				<option value="">10:00 â€“ 10:10</option>
 			</select>
 		</td>
 		<td class="request"><a href="" title="">Send <br>a request</a></td>
@@ -85,7 +85,7 @@
 		<td class="contact"><a href="" title="">Send<br> a message</a></td>
 		<td class="free-slots">
 			<select name="" id="">
-				<option value="">10:00 – 10:10</option>
+				<option value="">10:00 â€“ 10:10</option>
 			</select>
 		</td>
 		<td class="request"><a href="" title="">Send <br>a request</a></td>
@@ -99,7 +99,7 @@
 		<td class="contact"><a href="" title="">Send<br> a message</a></td>
 		<td class="free-slots">
 			<select name="" id="">
-				<option value="">10:00 – 10:10</option>
+				<option value="">10:00 â€“ 10:10</option>
 			</select>
 		</td>
 		<td class="request"><a href="" title="">Send <br>a request</a></td>

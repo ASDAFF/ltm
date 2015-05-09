@@ -1,10 +1,10 @@
 <?
-$MESS ['ADMIN_MENU_MAIN_SETTINGS'] = "Îñíîâíûå ïàðàìåòðû";
+$MESS ['ADMIN_MENU_MAIN_SETTINGS'] = "ÐžÑÐ½Ð¾Ð²Ð½Ñ‹Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹";
 $MESS ['REGISTER_URL'] = "";
-$MESS ['GUEST_ID'] = "Ãðóïïà ãîñòåé";
-$MESS ['PARTICIP_ID'] = "Ãðóïïà ó÷àñòíèêîâ";
-$MESS ['GUEST_URL'] = "Êàáèíåò ãîñòåé";
-$MESS ['PARTICIP_URL'] = "Êàáèíåò ó÷àñòíèêîâ";
-$MESS ['SHOW_ERRORS'] = "Ïîêàçûâàòü îøèáêè";
-$MESS ['IS_REDIRECT'] = "Ïåðåíàïðàâëÿòü â êàáèíåò";
+$MESS ['GUEST_ID'] = "Ð“Ñ€ÑƒÐ¿Ð¿Ð° Ð³Ð¾ÑÑ‚ÐµÐ¹";
+$MESS ['PARTICIP_ID'] = "Ð“Ñ€ÑƒÐ¿Ð¿Ð° ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¾Ð²";
+$MESS ['GUEST_URL'] = "ÐšÐ°Ð±Ð¸Ð½ÐµÑ‚ Ð³Ð¾ÑÑ‚ÐµÐ¹";
+$MESS ['PARTICIP_URL'] = "ÐšÐ°Ð±Ð¸Ð½ÐµÑ‚ ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¾Ð²";
+$MESS ['SHOW_ERRORS'] = "ÐŸÐ¾ÐºÐ°Ð·Ñ‹Ð²Ð°Ñ‚ÑŒ Ð¾ÑˆÐ¸Ð±ÐºÐ¸";
+$MESS ['IS_REDIRECT'] = "ÐŸÐµÑ€ÐµÐ½Ð°Ð¿Ñ€Ð°Ð²Ð»ÑÑ‚ÑŒ Ð² ÐºÐ°Ð±Ð¸Ð½ÐµÑ‚";
 ?>

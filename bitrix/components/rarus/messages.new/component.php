@@ -52,13 +52,13 @@ foreach ($URL_NAME_DEFAULT as $URL => $URL_VALUE)
 				/Input params
 ********************************************************************/
 
-// íà÷àëî ********************* highloadblock init ***************************************
+// Ð½Ð°Ñ‡Ð°Ð»Ð¾ ********************* highloadblock init ***************************************
 
 use Bitrix\Highloadblock as HL;
 use Bitrix\Main\Entity;
 
 $hlblock = HL\HighloadBlockTable::getById($arParams["HLID"])->fetch();
-// ïîëó÷àåì ñóùíîñòü
+// Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ ÑÑƒÑ‰Ð½Ð¾ÑÑ‚ÑŒ
 $entity = HL\HighloadBlockTable::compileEntity($hlblock);
 $HLDataClass = $entity->getDataClass();
 
@@ -67,7 +67,7 @@ global $USER_FIELD_MANAGER;
 $HLFields = $USER_FIELD_MANAGER->GetUserFields('HLBLOCK_'.$hlblock['ID'], 0, LANGUAGE_ID);
 
 
-// êîíåö ********************* highloadblock init *****************************************
+// ÐºÐ¾Ð½ÐµÑ† ********************* highloadblock init *****************************************
 
 
 $arResult = array();
@@ -146,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST" && !empty($action))
 			}
 			elseif ($arParams["SEND_EMAIL"] == "Y")
 			{
-			    //ïîëó÷àåì äàííûå ïîëüçîâàòåëÿ èç âåáôîðìû
+			    //Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ Ð¸Ð· Ð²ÐµÐ±Ñ„Ð¾Ñ€Ð¼Ñ‹
 			    $toUserData = CHLMFunctions::GetUserInfoForm($USER_INFO["ID"], $arResult["EXHIBIT"]);
 
 				if (!empty($toUserData["EMAIL"])){
@@ -311,7 +311,7 @@ if(!$arParams["UID"] && isset($arParams["GROUP_WRITE"]) && $arParams["GROUP_WRIT
 		  "GROUPS_ID"  => array($arParams["GROUP_WRITE"])
 	  );
   }
-  $rsTUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, $arSParams); // âûáèðàåì ïîëüçîâàòåëåé
+  $rsTUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, $arSParams); // Ð²Ñ‹Ð±Ð¸Ñ€Ð°ÐµÐ¼ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹
   while($arUsersTemp=$rsTUsers->Fetch()){
 	$arResult["USERS"]["TO_LIST"]["LIST"][$arUsersTemp["ID"]] = $arUsersTemp["WORK_COMPANY"];
 	$arResult["USERS"]["TO_LIST"]["COUNT"]++;

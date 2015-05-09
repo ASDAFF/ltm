@@ -1,4 +1,4 @@
 <?
-$MESS ['T_NEWS_DETAIL_BACK'] = "Zurück zur Liste";
-$MESS ['CATEGORIES'] = "Ähnliche Informationen:";
+$MESS ['T_NEWS_DETAIL_BACK'] = "ZurÑŒck zur Liste";
+$MESS ['CATEGORIES'] = "Ð”hnliche Informationen:";
 ?>

@@ -21,7 +21,7 @@ use Doka\Meetings\Wishlists as DWL;
 
 $arParams["IBLOCK_ID_EXHIB"] = 15;
 
-//ñïèñîê âûñòàâîê èç Èíôîãðóïïû ïî id âûñòàâêè èç ìîäóëÿ
+//ÑÐ¿Ð¸ÑÐ¾Ðº Ð²Ñ‹ÑÑ‚Ð°Ð²Ð¾Ðº Ð¸Ð· Ð˜Ð½Ñ„Ð¾Ð³Ñ€ÑƒÐ¿Ð¿Ñ‹ Ð¿Ð¾ id Ð²Ñ‹ÑÑ‚Ð°Ð²ÐºÐ¸ Ð¸Ð· Ð¼Ð¾Ð´ÑƒÐ»Ñ
 $arResult = array();
 $fio_dates = array();
 $arResult["EXHIB"] = array();
@@ -36,35 +36,35 @@ while($ar = $rs->Fetch()) {
 }
 
 
-// ñïèñîê âûñòàâîê èç ìîäóëÿ è ñîñòàâëåíèå âèøëèñòîâ
-$rsExhibitions = DS::GetList(array(), array("ACTIVE" => 1)); //äîáàâèòü "IS_LOCKED" => 0
+// ÑÐ¿Ð¸ÑÐ¾Ðº Ð²Ñ‹ÑÑ‚Ð°Ð²Ð¾Ðº Ð¸Ð· Ð¼Ð¾Ð´ÑƒÐ»Ñ Ð¸ ÑÐ¾ÑÑ‚Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð²Ð¸ÑˆÐ»Ð¸ÑÑ‚Ð¾Ð²
+$rsExhibitions = DS::GetList(array(), array("ACTIVE" => 1)); //Ð´Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ "IS_LOCKED" => 0
 
 while ($exhibition = $rsExhibitions->Fetch()) {
         $req_obj = new DR($exhibition['ID']);
         $wishlist_obj = new DWL($exhibition['ID']);
         $arResult["MAIL_LIST"][$exhibition['ID']] = array();
-        $arResult["MAIL_LIST"][$exhibition['ID']]["PARTICIP_IN"] = array();//ìàññèâ ñ ó÷àñòíèêàìè êîòîðûì íóæíî ïîñëàòü ñîîáùåíèå î ñâîáîäíûõ ãîñòÿõ (ó÷àñòíèê åãî INFO è ìàññèâû ñ ãîñòÿìè âëîæåííûå)
+        $arResult["MAIL_LIST"][$exhibition['ID']]["PARTICIP_IN"] = array();//Ð¼Ð°ÑÑÐ¸Ð² Ñ ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ°Ð¼Ð¸ ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ð¼ Ð½ÑƒÐ¶Ð½Ð¾ Ð¿Ð¾ÑÐ»Ð°Ñ‚ÑŒ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ Ð¾ ÑÐ²Ð¾Ð±Ð¾Ð´Ð½Ñ‹Ñ… Ð³Ð¾ÑÑ‚ÑÑ… (ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸Ðº ÐµÐ³Ð¾ INFO Ð¸ Ð¼Ð°ÑÑÐ¸Ð²Ñ‹ Ñ Ð³Ð¾ÑÑ‚ÑÐ¼Ð¸ Ð²Ð»Ð¾Ð¶ÐµÐ½Ð½Ñ‹Ðµ)
         $arResult["MAIL_LIST"][$exhibition['ID']]["GUEST_IN"] = array();
         $formId = $exhibition['FORM_ID'];
-        $propertyNameParticipant = $exhibition['FORM_RES_CODE'];//ñâîéñòâî ó÷àñòíèêà
+        $propertyNameParticipant = $exhibition['FORM_RES_CODE'];//ÑÐ²Ð¾Ð¹ÑÑ‚Ð²Ð¾ ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ°
         $fio_datesPart = array();
-        $fio_datesPart[0][0] = CFormMatrix::getSIDRelBase('SIMPLE_QUESTION_446', $formId);//Èìÿ ó÷àñòíèêà
+        $fio_datesPart[0][0] = CFormMatrix::getSIDRelBase('SIMPLE_QUESTION_446', $formId);//Ð˜Ð¼Ñ ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ°
         $fio_datesPart[0][1] = CFormMatrix::getAnswerRelBase(84 ,$formId);
-        $fio_datesPart[1][0] = CFormMatrix::getSIDRelBase('SIMPLE_QUESTION_551', $formId);//Ôàìèëèÿ ó÷àñòíèêà
+        $fio_datesPart[1][0] = CFormMatrix::getSIDRelBase('SIMPLE_QUESTION_551', $formId);//Ð¤Ð°Ð¼Ð¸Ð»Ð¸Ñ ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ°
         $fio_datesPart[1][1] = CFormMatrix::getAnswerRelBase(85 ,$formId);
-        $fio_datesPart[2][0] = CFormMatrix::getSIDRelBase('SIMPLE_QUESTION_859', $formId);//Email ó÷àñòíèêà
+        $fio_datesPart[2][0] = CFormMatrix::getSIDRelBase('SIMPLE_QUESTION_859', $formId);//Email ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ°
         $fio_datesPart[2][1] = CFormMatrix::getAnswerRelBase(89 ,$formId);
         $HB_TEG = '';
         if($exhibition['IS_HB']){
             $HB_TEG = ' HB session';
         }
        
-        //Ñïèñîê ñâîáîäíûõ ó÷àñòíèêîâ è ãîñòåé
+        //Ð¡Ð¿Ð¸ÑÐ¾Ðº ÑÐ²Ð¾Ð±Ð¾Ð´Ð½Ñ‹Ñ… ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¾Ð² Ð¸ Ð³Ð¾ÑÑ‚ÐµÐ¹
         $freeParticip = $req_obj->getUsersFreeTimesByGroup($exhibition["MEMBERS_GROUP"]);
         $freeGuest = $req_obj->getUsersFreeTimesByGroup($exhibition["GUESTS_GROUP"]);
         
         foreach($freeParticip as $personID => $personInfo) {
-            $wishListIn = $wishlist_obj->getWishlists($personID); //ñïèñîê ëþäåé ó êîòîðûõ ýòîò ÷åëîâåê â âèøëèñòå
+            $wishListIn = $wishlist_obj->getWishlists($personID); //ÑÐ¿Ð¸ÑÐ¾Ðº Ð»ÑŽÐ´ÐµÐ¹ Ñƒ ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ñ… ÑÑ‚Ð¾Ñ‚ Ñ‡ÐµÐ»Ð¾Ð²ÐµÐº Ð² Ð²Ð¸ÑˆÐ»Ð¸ÑÑ‚Ðµ
             foreach ($wishListIn["WISH_IN"] as $key => $personWish) {
                 if(isset($freeGuest[$key])){
                     $result = array_diff ($personInfo["TIMES"], $freeGuest[$key]["TIMES"]);
@@ -76,9 +76,9 @@ while ($exhibition = $rsExhibitions->Fetch()) {
             }
         }
         
-        //Ñïèñîê ñâîáîäíûõ ãîñòåé
+        //Ð¡Ð¿Ð¸ÑÐ¾Ðº ÑÐ²Ð¾Ð±Ð¾Ð´Ð½Ñ‹Ñ… Ð³Ð¾ÑÑ‚ÐµÐ¹
         foreach($freeGuest as $personID => $personInfo) {
-            $wishListIn = $wishlist_obj->getWishlists($personID); //ñïèñîê ëþäåé ó êîòîðûõ ýòîò ÷åëîâåê â âèøëèñòå
+            $wishListIn = $wishlist_obj->getWishlists($personID); //ÑÐ¿Ð¸ÑÐ¾Ðº Ð»ÑŽÐ´ÐµÐ¹ Ñƒ ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ñ… ÑÑ‚Ð¾Ñ‚ Ñ‡ÐµÐ»Ð¾Ð²ÐµÐº Ð² Ð²Ð¸ÑˆÐ»Ð¸ÑÑ‚Ðµ
             foreach ($wishListIn["WISH_IN"] as $key => $personWish) {
                 if(isset($freeParticip[$key])){
                     $result = array_diff ($personInfo["TIMES"], $freeParticip[$key]["TIMES"]);
@@ -89,7 +89,7 @@ while ($exhibition = $rsExhibitions->Fetch()) {
                 }
             }
         }
-        /* ÎÒÑÛËÊÀ ñîîáùåíèé ïî âûñòàâêå */
+        /* ÐžÐ¢Ð¡Ð«Ð›ÐšÐ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ð¹ Ð¿Ð¾ Ð²Ñ‹ÑÑ‚Ð°Ð²ÐºÐµ */
         foreach ($arResult["MAIL_LIST"][$exhibition['ID']]["PARTICIP_IN"] as $userId => $userInfo) {
             $arFieldsMes = array(
                 "EXIB" => $arResult["EXHIB"][$exhibition['ID']]["PROPERTY_V_EN_VALUE"].$HB_TEG,

@@ -26,16 +26,16 @@ $req_obj = new DokaRequest($arParams['APP_ID']);
 
 $timeslots = $req_obj->getTimeslots();
 
-// Определяем для какой группы выводить матрицу
+// РћРїСЂРµРґРµР»СЏРµРј РґР»СЏ РєР°РєРѕР№ РіСЂСѓРїРїС‹ РІС‹РІРѕРґРёС‚СЊ РјР°С‚СЂРёС†Сѓ
 if ($arResult['USER_TYPE'] != 'PARTICIP')
 	$group_search_id = $req_obj->getOption('GUESTS_GROUP');
 else
 	$group_search_id = $req_obj->getOption('MEMBERS_GROUP');
 
-// Список таймслотов со списком компаний, у которых он свободен
+// РЎРїРёСЃРѕРє С‚Р°Р№РјСЃР»РѕС‚РѕРІ СЃРѕ СЃРїРёСЃРєРѕРј РєРѕРјРїР°РЅРёР№, Сѓ РєРѕС‚РѕСЂС‹С… РѕРЅ СЃРІРѕР±РѕРґРµРЅ
 $arResult['MEET'] = array();
 
-// Список компаний, для которых выведем занятость
+// РЎРїРёСЃРѕРє РєРѕРјРїР°РЅРёР№, РґР»СЏ РєРѕС‚РѕСЂС‹С… РІС‹РІРµРґРµРј Р·Р°РЅСЏС‚РѕСЃС‚СЊ
 $rsRequests = $req_obj->getRejectedRequests($group_search_id);
 $rsRequests->NavStart(50);
 $arResult["NAVIGATE"] = $rsRequests->GetPageNavStringEx($navComponentObject, GetMessage($arResult['USER_TYPE'] . '_navigate'), "");

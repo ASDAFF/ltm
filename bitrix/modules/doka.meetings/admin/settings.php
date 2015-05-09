@@ -23,9 +23,9 @@ $oSort = new CAdminSorting($sTableID, "ID", "asc");
 $lAdmin = new CAdminList($sTableID, $oSort);
 $arFilter = array();
 
-// Удаление
+// РЈРґР°Р»РµРЅРёРµ
 if(($arID = $lAdmin->GroupAction()) && check_bitrix_sessid()) {
-    // пройдем по списку элементов
+    // РїСЂРѕР№РґРµРј РїРѕ СЃРїРёСЃРєСѓ СЌР»РµРјРµРЅС‚РѕРІ
     foreach($arID as $ID) {
         if(strlen($ID)<=0)
             continue;

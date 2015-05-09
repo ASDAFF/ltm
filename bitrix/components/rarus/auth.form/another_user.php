@@ -3,9 +3,9 @@ if("Y" == $_SESSION["ADMIN"] && isset($_REQUEST["UID"]) && intval($_REQUEST["UID
 {
 	$rsUser = CUser::GetByID($_REQUEST["UID"]);
 	$arUser = $rsUser->Fetch();
-	$arUserGroups = CUser::GetUserGroup($_REQUEST["UID"]); //ïåðåïèñûâàåì ãðóïïû ïîëüçîâàòåëÿ
+	$arUserGroups = CUser::GetUserGroup($_REQUEST["UID"]); //Ð¿ÐµÑ€ÐµÐ¿Ð¸ÑÑ‹Ð²Ð°ÐµÐ¼ Ð³Ñ€ÑƒÐ¿Ð¿Ñ‹ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ
 }
-else //åñëè íå àäìèí ïîëó÷àåì äàííûå äëÿ òåêóùåãî ïîëüçîâàòåëÿ
+else //ÐµÑÐ»Ð¸ Ð½Ðµ Ð°Ð´Ð¼Ð¸Ð½ Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð´Ð»Ñ Ñ‚ÐµÐºÑƒÑ‰ÐµÐ³Ð¾ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ
 {
     $rsUser = CUser::GetByID($userId);
 	$arUser = $rsUser->Fetch();

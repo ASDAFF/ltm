@@ -46,11 +46,11 @@ function toSpamGuest($userId, $groupUConfirmID, $groupConfirmID, $groupSpamID, $
         }
     }
 
-    if($spamType == "Y")//если добавляем в спам
+    if($spamType == "Y")//РµСЃР»Рё РґРѕР±Р°РІР»СЏРµРј РІ СЃРїР°Рј
     {
         $arGroups[] = $groupSpamID;
     }
-    elseif($spamType == "N")//если вытаскиваем из спама
+    elseif($spamType == "N")//РµСЃР»Рё РІС‹С‚Р°СЃРєРёРІР°РµРј РёР· СЃРїР°РјР°
     {
         $arGroups[] = $groupUConfirmID;
     }

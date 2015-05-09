@@ -19,11 +19,11 @@ if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 
 define("COMPANY_FORM_ID", 3);
 
-$arParams["EXHIB_IBLOCK_ID"] = intval($arParams["EXHIB_IBLOCK_ID"]);//id èíôîáëîêà âûñòàâîê
+$arParams["EXHIB_IBLOCK_ID"] = intval($arParams["EXHIB_IBLOCK_ID"]);//id Ð¸Ð½Ñ„Ð¾Ð±Ð»Ð¾ÐºÐ° Ð²Ñ‹ÑÑ‚Ð°Ð²Ð¾Ðº
 if(!$arParams["EXHIB_IBLOCK_ID"])
     $arParams["EXHIB_IBLOCK_ID"] = 15;
 
-$arParams["EXHIB_CODE"] = trim($_REQUEST["EXHIBIT_CODE"]);//êîä âûñòàâêè èç ðåêâåñòà
+$arParams["EXHIB_CODE"] = trim($_REQUEST["EXHIBIT_CODE"]);//ÐºÐ¾Ð´ Ð²Ñ‹ÑÑ‚Ð°Ð²ÐºÐ¸ Ð¸Ð· Ñ€ÐµÐºÐ²ÐµÑÑ‚Ð°
 $arParams["CACHE_TIME"] = 3600;
 
 $arParams["USER_ID"] = intval($arParams["USER_ID"]);
@@ -35,7 +35,7 @@ $userId = $arParams["USER_ID"];
 $rsUser = CUser::GetByID($userId);
 $arUser = $rsUser->Fetch();
 
-$arUserGroups = CUser::GetUserGroup($userId); //ãðóïïû ïîëüçîâàòåëÿ
+$arUserGroups = CUser::GetUserGroup($userId); //Ð³Ñ€ÑƒÐ¿Ð¿Ñ‹ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ
 
 if($this->StartResultCache(false, $lang))
 {
@@ -65,11 +65,11 @@ if($this->StartResultCache(false, $lang))
 		$arItem = $obElement->GetFields();
     	$arItem["PROPERTIES"] = $obElement->GetProperties();
 
-    	//Ïðîâåðêà íà äîñòóï ïîëüçîâàòåëÿ ê ýòîé âûñòàâêå
+    	//ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð½Ð° Ð´Ð¾ÑÑ‚ÑƒÐ¿ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ Ðº ÑÑ‚Ð¾Ð¹ Ð²Ñ‹ÑÑ‚Ð°Ð²ÐºÐµ
     	
     	$confirmedGroupID = $arItem["PROPERTIES"]["USER_GROUP_ID"]["VALUE"];
     	
-    	//åñëè ïîëüçîâàòåëü íå íàõîäèòñÿ â ãðóïïå ïîäòâåðæäåííûõ
+    	//ÐµÑÐ»Ð¸ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ Ð½Ðµ Ð½Ð°Ñ…Ð¾Ð´Ð¸Ñ‚ÑÑ Ð² Ð³Ñ€ÑƒÐ¿Ð¿Ðµ Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð½Ñ‹Ñ…
     	if(!in_array($confirmedGroupID, $arUserGroups))
     	{
     		$arResult["ERROR"] = "Permissions error";
@@ -86,16 +86,16 @@ if($this->StartResultCache(false, $lang))
     	$arItem["DATE"] = $arItem["PROPERTIES"]["DATE"]["VALUE"];
     	
     	
-    	// id ðåçóëüòàòà çàïîëíåíèÿ ôîðìû êîìïàíèè
+    	// id Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð° Ð·Ð°Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ñ Ñ„Ð¾Ñ€Ð¼Ñ‹ ÐºÐ¾Ð¼Ð¿Ð°Ð½Ð¸Ð¸
     	$companyResultID = $arUser["UF_ID_COMP"];
     	
-    	//ïîëó÷åíèå èä ñâîéñòâà ïîëüçîâàòåëÿ â êîòîðîì õðàíèòñÿ ðåçóëüòàò çàïîëíåíèÿ ôîðìû ó÷àñòíèêà
+    	//Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ Ð¸Ð´ ÑÐ²Ð¾Ð¹ÑÑ‚Ð²Ð° Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ Ð² ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð¼ Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑÑ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚ Ð·Ð°Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ñ Ñ„Ð¾Ñ€Ð¼Ñ‹ ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ°
     	$userExhibPropertyID = CFormMatrix::getPropertyIDByExh($arItem["ID"]);
     	
-    	//id ðåçóëüòàòà çàïîëíåíèÿ ôîðìû ïîëüçîâàòåëÿ íà òåêóùóþ âûñòàâêó
+    	//id Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð° Ð·Ð°Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ñ Ñ„Ð¾Ñ€Ð¼Ñ‹ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ Ð½Ð° Ñ‚ÐµÐºÑƒÑ‰ÑƒÑŽ Ð²Ñ‹ÑÑ‚Ð°Ð²ÐºÑƒ
     	$userResultID = $arUser[$userExhibPropertyID];
     	
-    	//id ôîðìû ïîëüçîâàòåëÿ íà òåêóùóþ âûñòàâêó
+    	//id Ñ„Ð¾Ñ€Ð¼Ñ‹ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ Ð½Ð° Ñ‚ÐµÐºÑƒÑ‰ÑƒÑŽ Ð²Ñ‹ÑÑ‚Ð°Ð²ÐºÑƒ
     	$formID = CFormMatrix::getPFormIDByExh($arItem["ID"]);
     	
     	$arResult["FORM_COMPANY"] = array("FORM_ID" => COMPANY_FORM_ID, "FORM_RESULT_ID" => $companyResultID);

@@ -51,16 +51,16 @@ $arResult['USER_TYPE'] = $arParams['USER_TYPE'];
 $arResult['APP'] = $arParams['APP_ID'];
 $fioParticip = "";
 $formId = CFormMatrix::getPFormIDByExh($arResult["PARAM_EXHIBITION"]["ID"]);
-$propertyNameParticipant = CFormMatrix::getPropertyIDByExh($arResult["PARAM_EXHIBITION"]["ID"], 0);//свойство участника
+$propertyNameParticipant = CFormMatrix::getPropertyIDByExh($arResult["PARAM_EXHIBITION"]["ID"], 0);//СЃРІРѕР№СЃС‚РІРѕ СѓС‡Р°СЃС‚РЅРёРєР°
 $fio_dates = array();
 $fio_dates[0][0] = CFormMatrix::getSIDRelBase('SIMPLE_QUESTION_446', $formId);
-$fio_dates[0][1] = CFormMatrix::getAnswerRelBase(84 ,$formId);//Имя участника
+$fio_dates[0][1] = CFormMatrix::getAnswerRelBase(84 ,$formId);//РРјСЏ СѓС‡Р°СЃС‚РЅРёРєР°
 $fio_dates[1][0] = CFormMatrix::getSIDRelBase('SIMPLE_QUESTION_551', $formId);
-$fio_dates[1][1] = CFormMatrix::getAnswerRelBase(85 ,$formId);//Фамилия участника
+$fio_dates[1][1] = CFormMatrix::getAnswerRelBase(85 ,$formId);//Р¤Р°РјРёР»РёСЏ СѓС‡Р°СЃС‚РЅРёРєР°
 $fio_dates[2][0] = CFormMatrix::getSIDRelBase('SIMPLE_QUESTION_148', $formId);
-$fio_dates[2][1] = CFormMatrix::getAnswerRelBase(1319 ,$formId);//Стол участника
+$fio_dates[2][1] = CFormMatrix::getAnswerRelBase(1319 ,$formId);//РЎС‚РѕР» СѓС‡Р°СЃС‚РЅРёРєР°
 $fio_dates[3][0] = CFormMatrix::getSIDRelBase('SIMPLE_QUESTION_732', $formId);
-$fio_dates[3][1] = CFormMatrix::getAnswerRelBase('SIMPLE_QUESTION_732' ,$formId);//Зал участника
+$fio_dates[3][1] = CFormMatrix::getAnswerRelBase('SIMPLE_QUESTION_732' ,$formId);//Р—Р°Р» СѓС‡Р°СЃС‚РЅРёРєР°
 
 if(isset($arParams["IS_HB"]) && $arParams["IS_HB"] == 'Y'){
 	$arResult['SEND_REQUEST_LINK'] = "/admin/service/appointment_hb.php";
@@ -79,13 +79,13 @@ use Doka\Meetings\Timeslots as DokaTimeslot;
 
 $req_obj = new DokaRequest($arParams['APP_ID']);
 
-// FIXME ПРОВЕРКА НА АДМИНА?
+// FIXME РџР РћР’Р•Р РљРђ РќРђ РђР”РњРРќРђ?
 
 $timeslots = $req_obj->getTimeslots();
 $meet_timeslots = $req_obj->getMeetTimeslotsIds();
 $statuses_free = $req_obj->getStatusesFree();
 
-// Определяем для какой группы выводить матрицу
+// РћРїСЂРµРґРµР»СЏРµРј РґР»СЏ РєР°РєРѕР№ РіСЂСѓРїРїС‹ РІС‹РІРѕРґРёС‚СЊ РјР°С‚СЂРёС†Сѓ
 if ($arResult['USER_TYPE'] != 'PARTICIP'){
 	$group_search_id = $req_obj->getOption('GUESTS_GROUP');
 	$group_opposite_id = $req_obj->getOption('MEMBERS_GROUP');}
@@ -93,7 +93,7 @@ else{
 	$group_search_id = $req_obj->getOption('MEMBERS_GROUP');
 	$group_opposite_id = $req_obj->getOption('GUESTS_GROUP');}
 
-// Список таймслотов со списком компаний, у которых он свободен
+// РЎРїРёСЃРѕРє С‚Р°Р№РјСЃР»РѕС‚РѕРІ СЃРѕ СЃРїРёСЃРєРѕРј РєРѕРјРїР°РЅРёР№, Сѓ РєРѕС‚РѕСЂС‹С… РѕРЅ СЃРІРѕР±РѕРґРµРЅ
 $arResult['TIME'] = array();
 $arResult['TIMES_FREE'] = array();
 $companies_schedule = $req_obj->getFreeTimesByGroup($group_opposite_id);
@@ -111,7 +111,7 @@ foreach ($meet_timeslots as $timeslot_id) {
 }
 unset($companies_schedule);
 
-// Полный список компаний из групп участников и гостей
+// РџРѕР»РЅС‹Р№ СЃРїРёСЃРѕРє РєРѕРјРїР°РЅРёР№ РёР· РіСЂСѓРїРї СѓС‡Р°СЃС‚РЅРёРєРѕРІ Рё РіРѕСЃС‚РµР№
 $selectPart = array(
     'SELECT' => array($propertyNameParticipant),
     'FIELDS' => array('WORK_COMPANY', 'ID')
@@ -126,7 +126,7 @@ $rsUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="desc"), $filter, $selec
 while ($arUser = $rsUsers->Fetch()) {
 	$arAnswer = CFormResult::GetDataByID(
                 $arUser[$propertyNameParticipant], 
-                array(),  // вопрос "Какие области знаний вас интересуют?" 
+                array(),  // РІРѕРїСЂРѕСЃ "РљР°РєРёРµ РѕР±Р»Р°СЃС‚Рё Р·РЅР°РЅРёР№ РІР°СЃ РёРЅС‚РµСЂРµСЃСѓСЋС‚?" 
                 $arResultTmp, 
                 $arAnswer2);
     $users_list[$arUser['ID']] =  array(
@@ -159,11 +159,11 @@ while ($arUser = $rsGUsers->Fetch()) {
     );
 }
 
-// Список компаний, для которых выведем занятость
+// РЎРїРёСЃРѕРє РєРѕРјРїР°РЅРёР№, РґР»СЏ РєРѕС‚РѕСЂС‹С… РІС‹РІРµРґРµРј Р·Р°РЅСЏС‚РѕСЃС‚СЊ
 $rsCompanies = $req_obj->getAllMeetTimesByGroup($group_search_id);
 
-$rsCompanies->NavStart(30); // разбиваем постранично по 30 записей
-$arResult["NAVIGATE"] = $rsCompanies->GetPageNavStringEx($navComponentObject, "Пользователи", "");
+$rsCompanies->NavStart(30); // СЂР°Р·Р±РёРІР°РµРј РїРѕСЃС‚СЂР°РЅРёС‡РЅРѕ РїРѕ 30 Р·Р°РїРёСЃРµР№
+$arResult["NAVIGATE"] = $rsCompanies->GetPageNavStringEx($navComponentObject, "РџРѕР»СЊР·РѕРІР°С‚РµР»Рё", "");
 
 while ($data = $rsCompanies->Fetch()) {
 	$company = array(
@@ -175,7 +175,7 @@ while ($data = $rsCompanies->Fetch()) {
 
     $statuses = $req_obj->getTimslotsStatuses($data);
     //echo "<pre>"; var_dump($data); echo "</pre>";
-    // Если пользователя нет в таблице занятости, значит у него все слоты свободны
+    // Р•СЃР»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РЅРµС‚ РІ С‚Р°Р±Р»РёС†Рµ Р·Р°РЅСЏС‚РѕСЃС‚Рё, Р·РЅР°С‡РёС‚ Сѓ РЅРµРіРѕ РІСЃРµ СЃР»РѕС‚С‹ СЃРІРѕР±РѕРґРЅС‹
     if ($data['USER_ID'] === null) {
         foreach ($meet_timeslots as $timeslot_id) {
             $company['schedule'][$timeslot_id][] = array(
@@ -193,7 +193,7 @@ while ($data = $rsCompanies->Fetch()) {
 	                'status' => DokaRequest::getStatusCode($statuses[$timeslot_id]),
                 	'is_busy' => false
 	            );
-	            // если слот занят
+	            // РµСЃР»Рё СЃР»РѕС‚ Р·Р°РЅСЏС‚
 	            if ( !in_array($statuses[$timeslot_id], $statuses_free) ) {
 	            	$user_is_sender = $data['MEET_'.$timeslot_id] % 10;
 	            	$user_id = substr($data['MEET_'.$timeslot_id], 0, -1);

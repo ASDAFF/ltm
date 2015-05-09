@@ -50,7 +50,7 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 		throw new Exception("Can't load modules iblock form");
 	}
 
-	//ñïèñîê âûñòàâîê
+	//ÑÐ¿Ð¸ÑÐ¾Ðº Ð²Ñ‹ÑÑ‚Ð°Ð²Ð¾Ðº
 	$arResult["EXHIB"] = array();
 	$arResult["EXHIB_ID_BY_USER_GROUPS_ID"] = array();
 	$rs = CIBlockElement::GetList(array("SORT"=>"ASC"),
@@ -71,7 +71,7 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 	    }
 	}
 
-    //ñïèñîê ãðóïï
+    //ÑÐ¿Ð¸ÑÐ¾Ðº Ð³Ñ€ÑƒÐ¿Ð¿
     $arResult["USER_GROUPS"] = array();
     $arResult["USER_GROUPS_BY_ID"] = array();
     foreach($arResult["EXHIB"] as $arItem) {
@@ -89,7 +89,7 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
     	}
     }
 
-    //ñïèñîê ïîëüçîâàòåëåé
+    //ÑÐ¿Ð¸ÑÐ¾Ðº Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹
     $arResult["USERS_LIST"] = array();
     $arResult["USERS_ID_BY_LOGIN"] = array();
     $rs = CUser::GetList(($by = "ID"), ($order = "ASC"), array("GROUPS_ID"=>array_keys($arResult["USER_GROUPS"]), "ACTIVE"=>"Y"),
@@ -99,20 +99,20 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
     	$arResult["USERS_ID_BY_LOGIN"][ $ar["LOGIN"] ] = $ar["ID"];
     }
 
-    //ñïèñîê îòâåòîâ ôîðìû "Ó÷àñòíèêè äàííûå êîìïàíèè ÂÑÅ ÂÛÑÒÀÂÊÈ"
+    //ÑÐ¿Ð¸ÑÐ¾Ðº Ð¾Ñ‚Ð²ÐµÑ‚Ð¾Ð² Ñ„Ð¾Ñ€Ð¼Ñ‹ "Ð£Ñ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¸ Ð´Ð°Ð½Ð½Ñ‹Ðµ ÐºÐ¾Ð¼Ð¿Ð°Ð½Ð¸Ð¸ Ð’Ð¡Ð• Ð’Ð«Ð¡Ð¢ÐÐ’ÐšÐ˜"
     $arResult["FORM_RESULT_COMMON"] = array("RESULTS"=>array(), "QUESTIONS"=>array(), "ANSWERS"=>array());
 //     $rs = CFormResult::GetList($arParams["FORM_COMMON_ID"], ($by = "ID"), ($order = "ASC"), array(), ($isFilteres = false), "N", false);
 //     while($ar = $rs->GetNext(true, false)) {
 //         $arResult["FORM_RESULT_COMMON"]["RESULTS"][$ar["ID"]] = $ar;
 //     }
 
-    //ñïèñîê ðåçóëüòàòîâ îòâåòîâ ôîðìû "Ó÷àñòíèêè äàííûå êîìïàíèè ÂÑÅ ÂÛÑÒÀÂÊÈ"
+    //ÑÐ¿Ð¸ÑÐ¾Ðº Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð¾Ð² Ð¾Ñ‚Ð²ÐµÑ‚Ð¾Ð² Ñ„Ð¾Ñ€Ð¼Ñ‹ "Ð£Ñ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¸ Ð´Ð°Ð½Ð½Ñ‹Ðµ ÐºÐ¾Ð¼Ð¿Ð°Ð½Ð¸Ð¸ Ð’Ð¡Ð• Ð’Ð«Ð¡Ð¢ÐÐ’ÐšÐ˜"
     CForm::GetResultAnswerArray(
         $arParams["FORM_COMMON_ID"],
         $arResult["FORM_RESULT_COMMON"]["QUESTIONS"],
         $arResult["FORM_RESULT_COMMON"]["ANSWERS"]);
 
-    //ñïèñîê ìåðîïðèÿòèé
+    //ÑÐ¿Ð¸ÑÐ¾Ðº Ð¼ÐµÑ€Ð¾Ð¿Ñ€Ð¸ÑÑ‚Ð¸Ð¹
     $arResult["ITEMS"] = array();
     foreach($arResult["FORM_RESULT_COMMON"]["ANSWERS"] as $key=>$arAnswer) {
         $nameAnswer = reset($arAnswer[ $arParams["FORM_FIELD_ID_NAME"] ]);
@@ -165,7 +165,7 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
     	}
     }
 
-    //ñîðòèðîâêà ïî íàçâàíèÿì êîìïàíèé
+    //ÑÐ¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÐ° Ð¿Ð¾ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸ÑÐ¼ ÐºÐ¾Ð¼Ð¿Ð°Ð½Ð¸Ð¹
     usort($arResult["ITEMS"], "cmp");
 
     $arResult["AVAILABLE_CATEGORIES"] = array();
@@ -198,9 +198,9 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 	    }
     }
 	global $USER;
-	//ñîðòèðóåì ìàññèâ ïî êàòåãîðèÿì
+	//ÑÐ¾Ñ€Ñ‚Ð¸Ñ€ÑƒÐµÐ¼ Ð¼Ð°ÑÑÐ¸Ð² Ð¿Ð¾ ÐºÐ°Ñ‚ÐµÐ³Ð¾Ñ€Ð¸ÑÐ¼
     ksort($arResult["ITEMS_ID_BY_CATEGORY"]);
-	//ñîðòèðóåì ïî íàçâàíèþ êîìïàíèé ó÷àñòíèêîâ
+	//ÑÐ¾Ñ€Ñ‚Ð¸Ñ€ÑƒÐµÐ¼ Ð¿Ð¾ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸ÑŽ ÐºÐ¾Ð¼Ð¿Ð°Ð½Ð¸Ð¹ ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¾Ð²
 	$newCat = array();
 	//$nameId = array();
 	foreach($arResult["ITEMS_ID_BY_CATEGORY"] as $categoryName=>$arItemsId){

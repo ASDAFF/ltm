@@ -6,7 +6,7 @@ $(function(){
 			$('.error_pas').remove();
 			$('.enpas').val('').removeClass('yes_bor');
 			if(!$('.depas').hasClass('error_bor')){
-				$('#pas_form').after('<span class = "error_cl">Вы должны заполнить поле!</span>');
+				$('#pas_form').after('<span class = "error_cl">Р’С‹ РґРѕР»Р¶РЅС‹ Р·Р°РїРѕР»РЅРёС‚СЊ РїРѕР»Рµ!</span>');
 				$('.depas').addClass('error_bor');
 			}
 		}else{
@@ -20,7 +20,7 @@ $(function(){
 					if(str == '**********'){
 						$('.enpas').val(response.substring(0, response.length - 10)).addClass('yes_bor');
 						if(!$('#pas_form').next().hasClass('error_pas')){
-							$('#pas_form').after('<span class = "error_pas">Такого пароля нет в базе!</span>');
+							$('#pas_form').after('<span class = "error_pas">РўР°РєРѕРіРѕ РїР°СЂРѕР»СЏ РЅРµС‚ РІ Р±Р°Р·Рµ!</span>');
 						}	
 					}else{
 						$('.enpas').val(response).addClass('yes_bor');
@@ -31,7 +31,7 @@ $(function(){
 						$('.enpas').val('').removeClass('yes_bor');
 					}
 					if(!$('#pas_form').next().hasClass('error_pas')){
-						$('#pas_form').after('<span class = "error_pas">Такого пароля нет в базе либо он был зашифрован по-неизвестному алгоритму!</span>');
+						$('#pas_form').after('<span class = "error_pas">РўР°РєРѕРіРѕ РїР°СЂРѕР»СЏ РЅРµС‚ РІ Р±Р°Р·Рµ Р»РёР±Рѕ РѕРЅ Р±С‹Р» Р·Р°С€РёС„СЂРѕРІР°РЅ РїРѕ-РЅРµРёР·РІРµСЃС‚РЅРѕРјСѓ Р°Р»РіРѕСЂРёС‚РјСѓ!</span>');
 					}					
 				}
 			});

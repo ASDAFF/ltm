@@ -7,7 +7,7 @@ class CFormValidatorTextEnRu
 	{
 		return array(
 			"NAME" => "text_en_ru", // unique validator string ID
-			"DESCRIPTION" => "Только латиница (ру)", // validator description
+			"DESCRIPTION" => "РўРѕР»СЊРєРѕ Р»Р°С‚РёРЅРёС†Р° (СЂСѓ)", // validator description
 			"TYPES" => array("text", "textarea", "password"), //  list of types validator can be applied.
 			"HANDLER" => array("CFormValidatorTextEnRu", "DoValidate") // main validation method
 		);
@@ -27,7 +27,7 @@ class CFormValidatorTextEnRu
 				return true;
 			}
 			else{
-				$APPLICATION->ThrowException("#FIELD_NAME#: Только латинские буквы");
+				$APPLICATION->ThrowException("#FIELD_NAME#: РўРѕР»СЊРєРѕ Р»Р°С‚РёРЅСЃРєРёРµ Р±СѓРєРІС‹");
 				return false;
 			}
 		}

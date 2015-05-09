@@ -159,7 +159,7 @@ if (CModule::IncludeModule("form"))
 			// check errors
 			$arResult["FORM_ERRORS"] = CForm::Check($arParams["WEB_FORM_ID"], $arResult["arrVALUES"], false, "Y", $arParams['USE_EXTENDED_ERRORS']);
 			
-/*/////////// ÏÐÎÂÅÐÊÀ ÑÎÂÏÀÄÅÍÈß ÏÎËß EMAIL ///////////*/
+/*/////////// ÐŸÐ ÐžÐ’Ð•Ð ÐšÐ Ð¡ÐžÐ’ÐŸÐÐ”Ð•ÐÐ˜Ð¯ ÐŸÐžÐ›Ð¯ EMAIL ///////////*/
 			if(isset($_REQUEST["form_email_665"]) && $_REQUEST["form_email_665"] != $_REQUEST["form_email_conf"]){
 				$arResult["FORM_ERRORS"]["SIMPLE_QUESTION_579_CONF"] = "Email entered in field \"Please confirm your email\" isn't correct.";
 			}
@@ -188,7 +188,7 @@ if (CModule::IncludeModule("form"))
 					{
 
 // ************************************************************* //
-//               ÐÅÃÈÑÒÐÈÐÓÅÌ ÍÎÂÎÃÎ ÏÎËÜÇÎÂÀÒÅËß                //
+//               Ð Ð•Ð“Ð˜Ð¡Ð¢Ð Ð˜Ð Ð£Ð•Ðœ ÐÐžÐ’ÐžÐ“Ðž ÐŸÐžÐ›Ð¬Ð—ÐžÐ’ÐÐ¢Ð•Ð›Ð¯                //
 // ************************************************************* //
 						if($arParams["REGIST_USER"] == "Y" && $arParams["REGIST_GROUP"] != '' && $arParams["EMAIL_FIELD"] != ''){
 							  function generatePassword($length = 8)
@@ -216,8 +216,8 @@ if (CModule::IncludeModule("form"))
 							  "CONFIRM_PASSWORD"  => $password,
 							  "ADMIN_NOTES"       => $password,
 							  "UF_ANKETA"         => $RESULT_ID,
-							  "UF_ANKETA_NEXT"	  => $RESULT_ID, //Òîëüêî äëÿ ñëåäóþùåãî ãîäà!
-							  "UF_SOURCE"    	  => "Ôîðìà",
+							  "UF_ANKETA_NEXT"	  => $RESULT_ID, //Ð¢Ð¾Ð»ÑŒÐºÐ¾ Ð´Ð»Ñ ÑÐ»ÐµÐ´ÑƒÑŽÑ‰ÐµÐ³Ð¾ Ð³Ð¾Ð´Ð°!
+							  "UF_SOURCE"    	  => "Ð¤Ð¾Ñ€Ð¼Ð°",
 							  "NAME"	      => $_POST["form_text_655"],
 							  "LAST_NAME"         => $_POST["form_text_656"],
 							  "WORK_COMPANY"      => $_POST["form_text_641"],
@@ -239,7 +239,7 @@ if (CModule::IncludeModule("form"))
 							}
 							else{
 								$arEventFields = array(
-									"ERROR"                  => 'Íå äîáàâèëñÿ ïîëüçîâàòåëü',
+									"ERROR"                  => 'ÐÐµ Ð´Ð¾Ð±Ð°Ð²Ð¸Ð»ÑÑ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ',
 									"EMAIL"          	  => $newEmail,
 									"NAME"          	  => $_POST["form_text_655"]." ".$_POST["form_text_656"],
 									"COMPANY"	          => $_POST["form_text_641"]

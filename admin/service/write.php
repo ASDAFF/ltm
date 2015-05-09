@@ -1,6 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Написать сообщение");
+$APPLICATION->SetTitle("РќР°РїРёСЃР°С‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ");
 ?>
 <? 
 $exhibCode = trim($_REQUEST["EXHIBIT_CODE"]);

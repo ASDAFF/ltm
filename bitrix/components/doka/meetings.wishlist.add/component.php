@@ -31,7 +31,7 @@ if (isset($arParams['USER_ID']))
 else
 	$sender_id = $USER->GetID();
 
-// Добавляем компанию в вишлист
+// Р”РѕР±Р°РІР»СЏРµРј РєРѕРјРїР°РЅРёСЋ РІ РІРёС€Р»РёСЃС‚
 $wish_obj = new DWL($arParams['APP_ID']);
 $fields = array(
 	'REASON' => DWL::REASON_SELECTED,

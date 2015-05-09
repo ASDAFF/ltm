@@ -27,7 +27,7 @@ if ($ex = $APPLICATION->GetException()) {
 }
 
 $arSelects = array();
-// Доступные выставки
+// Р”РѕСЃС‚СѓРїРЅС‹Рµ РІС‹СЃС‚Р°РІРєРё
 $arSelects['EXHIBITION_ID'][] = array(
     'ID' => '',
     'NAME' => GetMessage('DOME_MEET_CHOOSE_EXHIBITION')
@@ -40,7 +40,7 @@ while($zr = $z->Fetch()) {
     $arSelects['EXHIBITION_ID'][] = $ar;
 }
 
-// Типы таймслотов
+// РўРёРїС‹ С‚Р°Р№РјСЃР»РѕС‚РѕРІ
 $arTimeslotTypes = DMT::getTypes();
 foreach ($arTimeslotTypes as $id => $code) {
     $arSelects['SLOT_TYPE'][] = array(
@@ -72,7 +72,7 @@ if ($RIGHT >= 'W' && $REQUEST_METHOD == 'POST' && !empty($Update) && check_bitri
     
     $DB->StartTransaction();
 
-    // Подготавливаем поля
+    // РџРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј РїРѕР»СЏ
     $arFields = array(
         'NAME' => $NAME,
         'SORT' => $SORT,
@@ -163,7 +163,7 @@ $fields = DMT::getFields();
 $arFields = array();
 foreach ($fields as $field) {
 	$res = Array($field, GetMessage("DOKA_MEET_" . $field), $field, Array("text", 30));
-	// Кастомизируем
+	// РљР°СЃС‚РѕРјРёР·РёСЂСѓРµРј
 	if ($field == 'ID') continue;
 
 	if ($field == 'EXHIBITION_ID' || $field == 'SLOT_TYPE') {

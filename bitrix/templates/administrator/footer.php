@@ -8,22 +8,22 @@ IncludeTemplateLangFile(__FILE__);
 	</div>
 	<footer>
 		<div class="layoutCenterWrapper" style="border-top: 1px solid #c7c7c7;">
-			<div class="org"><img src="<?=SITE_TEMPLATE_PATH?>/images/polanskiy_x2.png" alt="Àðòåì Ïîëàíñêèé" width="62" height="65"><img src="<?=SITE_TEMPLATE_PATH?>/images/icon-tmx2.png" alt="Travel Media" width="110" height="48"></div>
+			<div class="org"><img src="<?=SITE_TEMPLATE_PATH?>/images/polanskiy_x2.png" alt="ÐÑ€Ñ‚ÐµÐ¼ ÐŸÐ¾Ð»Ð°Ð½ÑÐºÐ¸Ð¹" width="62" height="65"><img src="<?=SITE_TEMPLATE_PATH?>/images/icon-tmx2.png" alt="Travel Media" width="110" height="48"></div>
 			
 			
 			
 			<div id="adress">
 			<?$APPLICATION->IncludeComponent("bitrix:menu", "bottom", Array(
-				"ROOT_MENU_TYPE" => "bottom",	// Òèï ìåíþ äëÿ ïåðâîãî óðîâíÿ
-				"MENU_CACHE_TYPE" => "A",	// Òèï êåøèðîâàíèÿ
-				"MENU_CACHE_TIME" => "3600",	// Âðåìÿ êåøèðîâàíèÿ (ñåê.)
-				"MENU_CACHE_USE_GROUPS" => "Y",	// Ó÷èòûâàòü ïðàâà äîñòóïà
-				"MENU_CACHE_GET_VARS" => "",	// Çíà÷èìûå ïåðåìåííûå çàïðîñà
-				"MAX_LEVEL" => "1",	// Óðîâåíü âëîæåííîñòè ìåíþ
-				"CHILD_MENU_TYPE" => "bottom_".LANGUAGE_ID,	// Òèï ìåíþ äëÿ îñòàëüíûõ óðîâíåé
-				"USE_EXT" => "Y",	// Ïîäêëþ÷àòü ôàéëû ñ èìåíàìè âèäà .òèï_ìåíþ.menu_ext.php
-				"DELAY" => "N",	// Îòêëàäûâàòü âûïîëíåíèå øàáëîíà ìåíþ
-				"ALLOW_MULTI_SELECT" => "N",	// Ðàçðåøèòü íåñêîëüêî àêòèâíûõ ïóíêòîâ îäíîâðåìåííî
+				"ROOT_MENU_TYPE" => "bottom",	// Ð¢Ð¸Ð¿ Ð¼ÐµÐ½ÑŽ Ð´Ð»Ñ Ð¿ÐµÑ€Ð²Ð¾Ð³Ð¾ ÑƒÑ€Ð¾Ð²Ð½Ñ
+				"MENU_CACHE_TYPE" => "A",	// Ð¢Ð¸Ð¿ ÐºÐµÑˆÐ¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ
+				"MENU_CACHE_TIME" => "3600",	// Ð’Ñ€ÐµÐ¼Ñ ÐºÐµÑˆÐ¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ (ÑÐµÐº.)
+				"MENU_CACHE_USE_GROUPS" => "Y",	// Ð£Ñ‡Ð¸Ñ‚Ñ‹Ð²Ð°Ñ‚ÑŒ Ð¿Ñ€Ð°Ð²Ð° Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð°
+				"MENU_CACHE_GET_VARS" => "",	// Ð—Ð½Ð°Ñ‡Ð¸Ð¼Ñ‹Ðµ Ð¿ÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ñ‹Ðµ Ð·Ð°Ð¿Ñ€Ð¾ÑÐ°
+				"MAX_LEVEL" => "1",	// Ð£Ñ€Ð¾Ð²ÐµÐ½ÑŒ Ð²Ð»Ð¾Ð¶ÐµÐ½Ð½Ð¾ÑÑ‚Ð¸ Ð¼ÐµÐ½ÑŽ
+				"CHILD_MENU_TYPE" => "bottom_".LANGUAGE_ID,	// Ð¢Ð¸Ð¿ Ð¼ÐµÐ½ÑŽ Ð´Ð»Ñ Ð¾ÑÑ‚Ð°Ð»ÑŒÐ½Ñ‹Ñ… ÑƒÑ€Ð¾Ð²Ð½ÐµÐ¹
+				"USE_EXT" => "Y",	// ÐŸÐ¾Ð´ÐºÐ»ÑŽÑ‡Ð°Ñ‚ÑŒ Ñ„Ð°Ð¹Ð»Ñ‹ Ñ Ð¸Ð¼ÐµÐ½Ð°Ð¼Ð¸ Ð²Ð¸Ð´Ð° .Ñ‚Ð¸Ð¿_Ð¼ÐµÐ½ÑŽ.menu_ext.php
+				"DELAY" => "N",	// ÐžÑ‚ÐºÐ»Ð°Ð´Ñ‹Ð²Ð°Ñ‚ÑŒ Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ðµ ÑˆÐ°Ð±Ð»Ð¾Ð½Ð° Ð¼ÐµÐ½ÑŽ
+				"ALLOW_MULTI_SELECT" => "N",	// Ð Ð°Ð·Ñ€ÐµÑˆÐ¸Ñ‚ÑŒ Ð½ÐµÑÐºÐ¾Ð»ÑŒÐºÐ¾ Ð°ÐºÑ‚Ð¸Ð²Ð½Ñ‹Ñ… Ð¿ÑƒÐ½ÐºÑ‚Ð¾Ð² Ð¾Ð´Ð½Ð¾Ð²Ñ€ÐµÐ¼ÐµÐ½Ð½Ð¾
 				),
 				false
 			);?>

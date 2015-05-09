@@ -17,17 +17,17 @@ if($arResult["ERROR_MESSAGE"] == ''){
 	else{
 	?>
 	<form action="" method="post" name="decline">
-      <p style="padding-left:5px;"><strong>Компания:</strong> <?=$arResult["FROM_COMPANY"]?></p>
-      <p style="padding-left:5px;"><strong>Представитель:</strong> <?=$arResult["FROM_NAME"]?></p>
+      <p style="padding-left:5px;"><strong>РљРѕРјРїР°РЅРёСЏ:</strong> <?=$arResult["FROM_COMPANY"]?></p>
+      <p style="padding-left:5px;"><strong>РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ:</strong> <?=$arResult["FROM_NAME"]?></p>
     <br />
     <br />
-      <p style="padding-left:5px;">У данного пользователя следующие встречи</p>
+      <p style="padding-left:5px;">РЈ РґР°РЅРЅРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ СЃР»РµРґСѓСЋС‰РёРµ РІСЃС‚СЂРµС‡Рё</p>
       <table width="100%" border="0" cellspacing="0" cellpadding="5" class="form_edit">
         <tr>
-          <td width="80"><strong>Время</strong></td>
-          <td><strong>Компания</strong></td>
-          <td><strong>Представитель</strong></td>
-          <td><strong>Статус</strong></td>
+          <td width="80"><strong>Р’СЂРµРјСЏ</strong></td>
+          <td><strong>РљРѕРјРїР°РЅРёСЏ</strong></td>
+          <td><strong>РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ</strong></td>
+          <td><strong>РЎС‚Р°С‚СѓСЃ</strong></td>
         </tr>
       <?
 	  for($i=0; $i < $arResult["MEETING"]["COUNT"]; $i++){
@@ -47,11 +47,11 @@ if($arResult["ERROR_MESSAGE"] == ''){
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td width="50%" valign="top">
-              <p style="padding-left:5px;">В wish листе у данного пользователя следующие компании</p>
+              <p style="padding-left:5px;">Р’ wish Р»РёСЃС‚Рµ Сѓ РґР°РЅРЅРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ СЃР»РµРґСѓСЋС‰РёРµ РєРѕРјРїР°РЅРёРё</p>
               <table width="100%" border="0" cellspacing="0" cellpadding="5" class="form_edit">
                 <tr>
-                  <td><strong>Компания</strong></td>
-                  <td><strong>Представитель</strong></td>
+                  <td><strong>РљРѕРјРїР°РЅРёСЏ</strong></td>
+                  <td><strong>РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ</strong></td>
                 </tr>
               <?
               for($i=0; $i < $arResult["WISH_IN"]["COUNT"]; $i++){
@@ -66,11 +66,11 @@ if($arResult["ERROR_MESSAGE"] == ''){
               </table>
           </td>
           <td valign="top">
-              <p style="padding-left:5px;">Данный пользователь в wish листе у следующих компаний</p>
+              <p style="padding-left:5px;">Р”Р°РЅРЅС‹Р№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РІ wish Р»РёСЃС‚Рµ Сѓ СЃР»РµРґСѓСЋС‰РёС… РєРѕРјРїР°РЅРёР№</p>
               <table width="100%" border="0" cellspacing="0" cellpadding="5" class="form_edit">
                 <tr>
-                  <td><strong>Компания</strong></td>
-                  <td><strong>Представитель</strong></td>
+                  <td><strong>РљРѕРјРїР°РЅРёСЏ</strong></td>
+                  <td><strong>РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ</strong></td>
                 </tr>
               <?
               for($i=0; $i < $arResult["WISH_OUT"]["COUNT"]; $i++){
@@ -89,7 +89,7 @@ if($arResult["ERROR_MESSAGE"] == ''){
       <table width="100%" border="0" cellspacing="0" cellpadding="5" class="form_edit">
        <tr>
             <td colspan="4"  class="send">
-                <input name="form" type="hidden" value="send" /><input name="submit" type="submit" value="Отменить" class="send_reg" />
+                <input name="form" type="hidden" value="send" /><input name="submit" type="submit" value="РћС‚РјРµРЅРёС‚СЊ" class="send_reg" />
             </td>
         </tr>
       </table>

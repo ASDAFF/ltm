@@ -1,5 +1,5 @@
 <?
-$MESS["doka.meetings_MODULE_NAME"] = "Ìîäóëü âñòðå÷";
+$MESS["doka.meetings_MODULE_NAME"] = "ÐœÐ¾Ð´ÑƒÐ»ÑŒ Ð²ÑÑ‚Ñ€ÐµÑ‡";
 $MESS["doka.meetings_MODULE_DESC"] = "";
 $MESS["doka.meetings_PARTNER_NAME"] = "Webdoka";
 $MESS["doka.meetings_PARTNER_URI"] = "http://www.webdoka.ru/";

@@ -48,7 +48,7 @@ if($this->StartResultCache(false, $arParams))
 		throw new Exception("Can't load modules iblock form");
 	}
 
-	//список пользователей разделенный на группы подтвержденных для участия
+	//СЃРїРёСЃРѕРє РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ СЂР°Р·РґРµР»РµРЅРЅС‹Р№ РЅР° РіСЂСѓРїРїС‹ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… РґР»СЏ СѓС‡Р°СЃС‚РёСЏ
 	foreach ($arParams["USER_GROUP_ID"] as $groupID)
 	{
 
@@ -61,14 +61,14 @@ if($this->StartResultCache(false, $arParams))
 	    }
 	}
 
-    //список ответов формы "Участники данные компании ВСЕ ВЫСТАВКИ"
+    //СЃРїРёСЃРѕРє РѕС‚РІРµС‚РѕРІ С„РѕСЂРјС‹ "РЈС‡Р°СЃС‚РЅРёРєРё РґР°РЅРЅС‹Рµ РєРѕРјРїР°РЅРёРё Р’РЎР• Р’Р«РЎРўРђР’РљР"
     $arResult["FORM_RESULT_COMMON"] = array("RESULTS"=>array(), "QUESTIONS"=>array(), "ANSWERS"=>array());
 //     $rs = CFormResult::GetList($arParams["FORM_COMMON_ID"], ($by = "ID"), ($order = "ASC"), array(), ($isFilteres = false), "N", false);
 //     while($ar = $rs->GetNext(true, false)) {
 //         $arResult["FORM_RESULT_COMMON"]["RESULTS"][$ar["ID"]] = $ar;
 //     }
 
-    //список результатов ответов формы "Участники данные компании ВСЕ ВЫСТАВКИ"
+    //СЃРїРёСЃРѕРє СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ РѕС‚РІРµС‚РѕРІ С„РѕСЂРјС‹ "РЈС‡Р°СЃС‚РЅРёРєРё РґР°РЅРЅС‹Рµ РєРѕРјРїР°РЅРёРё Р’РЎР• Р’Р«РЎРўРђР’РљР"
     $arFieldsID = $arParams["FORM_FIELD_COMPANY_NAME_ID"]."|".$arParams["FORM_FIELD_LOGIN_ID"];
 
     CForm::GetResultAnswerArray(

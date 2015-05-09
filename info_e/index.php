@@ -1,14 +1,14 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetPageProperty("title", "Информация о компаниях и их представителях");
+$APPLICATION->SetPageProperty("title", "РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РєРѕРјРїР°РЅРёСЏС… Рё РёС… РїСЂРµРґСЃС‚Р°РІРёС‚РµР»СЏС…");
 $APPLICATION->SetPageProperty("NOT_SHOW_NAV_CHAIN", "Y");
-$APPLICATION->SetTitle("Информация о компаниях и их представителях");
+$APPLICATION->SetTitle("РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РєРѕРјРїР°РЅРёСЏС… Рё РёС… РїСЂРµРґСЃС‚Р°РІРёС‚РµР»СЏС…");
 ?>
 <script src = "/info_e/info_e.js"></script>
 <link href="/info_e/info_e.css" type="text/css" rel="stylesheet" />
 <?
 CModule::IncludeModule("form");
-//Все результаты формы
+//Р’СЃРµ СЂРµР·СѓР»СЊС‚Р°С‚С‹ С„РѕСЂРјС‹
 CForm::GetResultAnswerArray(
 	LuxorConfig::ID_E_FORM, 
 	$arrColumns, 
@@ -26,7 +26,7 @@ foreach($arForm as $v){
 }
 $mainAr = array();
 $i = 0;
-//Получаем массив с данными по участникам и привязываем его к компаниям
+//РџРѕР»СѓС‡Р°РµРј РјР°СЃСЃРёРІ СЃ РґР°РЅРЅС‹РјРё РїРѕ СѓС‡Р°СЃС‚РЅРёРєР°Рј Рё РїСЂРёРІСЏР·С‹РІР°РµРј РµРіРѕ Рє РєРѕРјРїР°РЅРёСЏРј
 foreach($arCompanyName as $key=>$val){
 	$filter = Array(
 		"UF_ID_COMP"          => $key,
@@ -41,15 +41,15 @@ foreach($arCompanyName as $key=>$val){
 		$i++;
 	}
 }
-//сортируем по дате регистрации компании. Самые новые - вверху таблицы
+//СЃРѕСЂС‚РёСЂСѓРµРј РїРѕ РґР°С‚Рµ СЂРµРіРёСЃС‚СЂР°С†РёРё РєРѕРјРїР°РЅРёРё. РЎР°РјС‹Рµ РЅРѕРІС‹Рµ - РІРІРµСЂС…Сѓ С‚Р°Р±Р»РёС†С‹
 $mainAr = array_reverse($mainAr);
-//Вывод
+//Р’С‹РІРѕРґ
 echo '<table id = "e_info">';
 	echo '<tr class = "tr_e_f">';
-		echo '<td>Название компании</td>';
-		echo '<td style = "width: 120px;">Логин участника</td>';
-		echo '<td style = "width: 300px;">E-mail участника</td>';
-		echo '<td>Пароль участника</td>';
+		echo '<td>РќР°Р·РІР°РЅРёРµ РєРѕРјРїР°РЅРёРё</td>';
+		echo '<td style = "width: 120px;">Р›РѕРіРёРЅ СѓС‡Р°СЃС‚РЅРёРєР°</td>';
+		echo '<td style = "width: 300px;">E-mail СѓС‡Р°СЃС‚РЅРёРєР°</td>';
+		echo '<td>РџР°СЂРѕР»СЊ СѓС‡Р°СЃС‚РЅРёРєР°</td>';
 	echo '</tr>';
 foreach($mainAr as $mV){
 	echo '<tr>';

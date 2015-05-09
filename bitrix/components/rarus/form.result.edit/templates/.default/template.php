@@ -54,7 +54,7 @@ if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 	</tr>
 	<?
 		}
-		elseif($arQuestion["TYPE"] == "text" && $arQuestion["STRUCTURE"][0]["FIELD_TYPE"] == "radio")//äèêèé êîñòûëü äëÿ ðàäèîáàòîíîâ
+		elseif($arQuestion["TYPE"] == "text" && $arQuestion["STRUCTURE"][0]["FIELD_TYPE"] == "radio")//Ð´Ð¸ÐºÐ¸Ð¹ ÐºÐ¾ÑÑ‚Ñ‹Ð»ÑŒ Ð´Ð»Ñ Ñ€Ð°Ð´Ð¸Ð¾Ð±Ð°Ñ‚Ð¾Ð½Ð¾Ð²
 		{
 			?>
 	<tr>

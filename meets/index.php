@@ -1,11 +1,11 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetPageProperty("title", "Проверка встреч");
+$APPLICATION->SetPageProperty("title", "РџСЂРѕРІРµСЂРєР° РІСЃС‚СЂРµС‡");
 ?>
 <script src = "/meet/meet.js"></script>
 <link href="/meet/meet.css" type="text/css" rel="stylesheet" />
 <?
-//подключаем классы для работы с модулем
+//РїРѕРґРєР»СЋС‡Р°РµРј РєР»Р°СЃСЃС‹ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РјРѕРґСѓР»РµРј
 CModule::IncludeModule("doka.meetings");
 $MEET = new Doka\Meetings\Requests;
 $arMeet = array();
@@ -22,25 +22,25 @@ foreach($MEET::getAllMeet() as $key=>$val){
 	$arMeet[$key]['USER_MAKE'] = $arUserM['LOGIN'];
 	$arMeet[$key]['NAME_EX'] = $MEET::getNameEx($val['EXHIBITION_ID']);
 	switch($val['STATUS']){
-		case 'process':   $arMeet[$key]['STAT_EX'] = 'Ожидание'; break;
-		case 'confirmed': $arMeet[$key]['STAT_EX'] = 'Подтверждён'; break;
-		case 'rejected':  $arMeet[$key]['STAT_EX'] = 'Отменён'; break;
-		case 'timeout':   $arMeet[$key]['STAT_EX'] = 'Истекло время ожидания ответа'; break;
+		case 'process':   $arMeet[$key]['STAT_EX'] = 'РћР¶РёРґР°РЅРёРµ'; break;
+		case 'confirmed': $arMeet[$key]['STAT_EX'] = 'РџРѕРґС‚РІРµСЂР¶РґС‘РЅ'; break;
+		case 'rejected':  $arMeet[$key]['STAT_EX'] = 'РћС‚РјРµРЅС‘РЅ'; break;
+		case 'timeout':   $arMeet[$key]['STAT_EX'] = 'РСЃС‚РµРєР»Рѕ РІСЂРµРјСЏ РѕР¶РёРґР°РЅРёСЏ РѕС‚РІРµС‚Р°'; break;
 	}
 	$arMeet[$key]['TIMESLOT'] = $MEET::getTimeSlotAr($val['EXHIBITION_ID'], $val['TIMESLOT_ID']);
 	$arMeet[$key]['ERROR_TYPE'] = $MEET::getErrorsMeet($val['ID']);
 }
 echo '<table class = "meet">';
 	echo '<tr>
-			<td>ID встречи</td>
-			<td>Название выставки</td>
-			<td>Отправитель</td>
-			<td>Получатель</td>
-			<td>Когда сделан запрос?</td>
-			<td>Кем создан запрос?</td>
-			<td>Таймслот</td>
-			<td>Статус</td>
-			<td>Тип ошибки</td>
+			<td>ID РІСЃС‚СЂРµС‡Рё</td>
+			<td>РќР°Р·РІР°РЅРёРµ РІС‹СЃС‚Р°РІРєРё</td>
+			<td>РћС‚РїСЂР°РІРёС‚РµР»СЊ</td>
+			<td>РџРѕР»СѓС‡Р°С‚РµР»СЊ</td>
+			<td>РљРѕРіРґР° СЃРґРµР»Р°РЅ Р·Р°РїСЂРѕСЃ?</td>
+			<td>РљРµРј СЃРѕР·РґР°РЅ Р·Р°РїСЂРѕСЃ?</td>
+			<td>РўР°Р№РјСЃР»РѕС‚</td>
+			<td>РЎС‚Р°С‚СѓСЃ</td>
+			<td>РўРёРї РѕС€РёР±РєРё</td>
 		</tr>';
 foreach($arMeet as $val){
 	echo '<tr>';

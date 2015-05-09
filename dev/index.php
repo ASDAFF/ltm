@@ -3,7 +3,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $title = "";
 if(LANGUAGE_ID == "ru")
 {
-	$title = "–≈√»—“–¿÷»ﬂ";
+	$title = "–†–ï–ì–ò–°–¢–†–ê–¶–ò–Ø";
 }
 elseif(LANGUAGE_ID == "en")
 {

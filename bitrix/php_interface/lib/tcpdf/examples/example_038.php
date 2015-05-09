@@ -79,7 +79,7 @@ $pdf->Write(0, $txt, '', 0, 'L', true, 0, false, false, 0);
 // set font
 $pdf->SetFont('cid0jp', '', 40);
 
-$txt = 'こんにちは世界';
+$txt = 'гЃ“г‚“гЃ«гЃЎгЃЇдё–з•Њ';
 $pdf->Write(0, $txt, '', 0, 'L', true, 0, false, false, 0);
 
 // ---------------------------------------------------------

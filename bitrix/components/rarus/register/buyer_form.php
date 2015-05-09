@@ -1,6 +1,6 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 
-//ïîëó÷àåì äàííûå âåáôîðìû äëÿ ãîñòåé
+//Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð²ÐµÐ±Ñ„Ð¾Ñ€Ð¼Ñ‹ Ð´Ð»Ñ Ð³Ð¾ÑÑ‚ÐµÐ¹
 
 $FORM_ID = $arParams["GUEST_FORM_ID"];
 CForm::GetDataByID(

@@ -1,9 +1,9 @@
-<?php // Áëîê ñ äàííûìè ïîëüçîâàòåëÿ ?>
+<?php // Ð‘Ð»Ð¾Ðº Ñ Ð´Ð°Ð½Ð½Ñ‹Ð¼Ð¸ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ ?>
 <?
 $curDir = $APPLICATION->GetCurDir();
 ?>
 	<div id="form" class="form">
-		<?php // Âûâîäèì ôîòî + èìÿ?>
+		<?php // Ð’Ñ‹Ð²Ð¾Ð´Ð¸Ð¼ Ñ„Ð¾Ñ‚Ð¾ + Ð¸Ð¼Ñ?>
 		<div class="information-data pull-overflow">
 			<div class="member">
 			<? if(isset($arResult["PROFILE"]["PHOTO"]) && strlen($arResult["PROFILE"]["PHOTO"]["src"]) > 0)
@@ -21,7 +21,7 @@ $curDir = $APPLICATION->GetCurDir();
 
 		<?//pre($arResult["EXHIBITION"], "amanda1876");?>
 		<? if($USER->IsAdmin() || (PARTICIPANT_CABINET == "Y" && !empty($arResult["EXHIBITION"]["CONFIRMED"]))):?>
-		<?php // Ðåäàêòèðîâàòü äàííûå ?>
+		<?php // Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð´Ð°Ð½Ð½Ñ‹Ðµ ?>
 		<div class="edit-profile">
 			<div><a href="<?= $arResult["PROFILE"]["EDIT_LINK"]?>" title="<?= GetMessage("AUTH_P_EDIT_PROFILE")?>" <?= ($curDir == stristr($arResult["PROFILE"]["EDIT_LINK"], "?", true))?"class='bolder'":"";?>><?= GetMessage("AUTH_P_EDIT_PROFILE")?></a></div>
 			<div><a href="<?= $arResult["PROFILE"]["MESSAGE_LINK"]?>" title="<?= GetMessage("AUTH_P_CONTACT")?>" <?= ($curDir == stristr($arResult["PROFILE"]["MESSAGES"]["LINK"], "?", true))?"class='bolder'":"";?>><?= GetMessage("AUTH_P_CONTACT")?></a></div>
@@ -37,7 +37,7 @@ $curDir = $APPLICATION->GetCurDir();
 			<? endif;?>
 		<? endif;?>
 
-		<?php // Âûõîä?>
+		<?php // Ð’Ñ‹Ñ…Ð¾Ð´?>
 		<div class="leave pull-overflow">
 		    <? if($USER->IsAdmin() || (PARTICIPANT_CABINET == "Y")):?>
 		        <a href="<?= $arResult["PROFILE"]["COMPANY_LINK"]?>" title="<?= $arResult["PROFILE"]["COMPANY_NAME"]?>" target="_blank"><?= $arResult["PROFILE"]["COMPANY_NAME"]?></a>
@@ -45,10 +45,10 @@ $curDir = $APPLICATION->GetCurDir();
 			<a href="/?logout=yes" title="EXIT" class="exit type-helvetical"><?=GetMessage("AUTH_P_EXIT")?></a>
 		</div>
 	</div>
-<?php // Áëîê ñ äàííûìè ïîëüçîâàòåëÿ ?>
+<?php // Ð‘Ð»Ð¾Ðº Ñ Ð´Ð°Ð½Ð½Ñ‹Ð¼Ð¸ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ ?>
 
 <? if($USER->IsAdmin() || (PARTICIPANT_CABINET == "Y" && !empty($arResult["EXHIBITION"]["CONFIRMED"]))):?>
-    <?php // Çàðåãèñòðîðîâàíûå ?>
+    <?php // Ð—Ð°Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð¾Ñ€Ð¾Ð²Ð°Ð½Ñ‹Ðµ ?>
     <? foreach ($arResult["EXHIBITION"]["CONFIRMED"] as $arExhibition):?>
     	<div class="gray-grid register">
     		<div class="head">
@@ -65,9 +65,9 @@ $curDir = $APPLICATION->GetCurDir();
     		</div>
     	</div>
     <? endforeach;?>
-    <?php // Çàðåãèñòðîðîâàíûå ?>
+    <?php // Ð—Ð°Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð¾Ñ€Ð¾Ð²Ð°Ð½Ñ‹Ðµ ?>
 
-    <?php // Íå çàðåãèñòðîðîâàíûå ?>
+    <?php // ÐÐµ Ð·Ð°Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð¾Ñ€Ð¾Ð²Ð°Ð½Ñ‹Ðµ ?>
     <? foreach ($arResult["EXHIBITION"]["UNCONFIRMED"] as $arExhibition):?>
     <? if("Sold out" == trim($arExhibition["STATUS"]))
     {
@@ -82,9 +82,9 @@ $curDir = $APPLICATION->GetCurDir();
     		<div class="content pull-overflow">
     		<?  $exhId = base64_encode(str_code($arExhibition["ID"], "luxoran"));
     		    $userId = base64_encode(str_code($arResult["USER"]["ID"], "luxoran")); ?>
-     			<a href="javascript:void(0)" title="<?= GetMessage("AUTH_P_REGISTER_FOR")?> <?= $arExhibition["EXH_NAME"]?>" onclick="regForExhib('<?= $exhId?>','<?= $userId?>','<?= bitrix_sessid()?>')"><?= GetMessage("AUTH_P_REGISTER_FOR")?> <?= $arExhibition["EXH_NAME"]?></a>
+     			<a href="javascript:void(0)" title="<?= GetMessage("AUTH_P_REGISTER_FOR")?> <?= $arExhibition["EXH_NAME"]?>" onclick="regForExhib('<?= $exhId?>','<?= $userId?>')"><?= GetMessage("AUTH_P_REGISTER_FOR")?> <?= $arExhibition["EXH_NAME"]?></a>
     		</div>
     	</div>
     <? endforeach;?>
-    <?php // Íå çàðåãèñòðîðîâàíûå ?>
+    <?php // ÐÐµ Ð·Ð°Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð¾Ñ€Ð¾Ð²Ð°Ð½Ñ‹Ðµ ?>
 <? endif;?>

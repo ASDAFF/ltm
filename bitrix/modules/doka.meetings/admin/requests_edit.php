@@ -29,7 +29,7 @@ if ($ex = $APPLICATION->GetException()) {
 }
 
 $arSelects = array();
-// Доступные выставки
+// Р”РѕСЃС‚СѓРїРЅС‹Рµ РІС‹СЃС‚Р°РІРєРё
 $arSelects['EXHIBITION_ID'][] = array(
     'ID' => '',
     'NAME' => GetMessage('DOME_MEET_CHOOSE_EXHIBITION')
@@ -42,7 +42,7 @@ while($zr = $z->Fetch()) {
     $arSelects['EXHIBITION_ID'][] = $ar;
 }
 
-// Статусы запросов
+// РЎС‚Р°С‚СѓСЃС‹ Р·Р°РїСЂРѕСЃРѕРІ
 $arStatuses = DMR::getStatuses();
 foreach ($arStatuses as $id => $code) {
     $arSelects['STATUS'][] = array(
@@ -74,7 +74,7 @@ if ($RIGHT >= 'W' && $REQUEST_METHOD == 'POST' && !empty($Update) && check_bitri
     
     $DB->StartTransaction();
 
-    // Подготавливаем поля
+    // РџРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј РїРѕР»СЏ
     $arFields = array(
         'RECEIVER_ID' => $RECEIVER_ID,
         'SENDER_ID' => $SENDER_ID,
@@ -182,7 +182,7 @@ $fields = DMR::getFields();
 $arFields = array();
 foreach ($fields as $field) {
 	$res = Array($field, GetMessage("DOKA_MEET_" . $field), $field, Array("text", 30));
-	// Кастомизируем
+	// РљР°СЃС‚РѕРјРёР·РёСЂСѓРµРј
 	if ($field == 'ID') continue;
 
 	if ($field == 'STATUS') {

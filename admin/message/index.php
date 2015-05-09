@@ -1,4 +1,4 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Ñîîáùåíèÿ");
+$APPLICATION->SetTitle("Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ");
 ?><p>Unfortunatly this page is under construction.</p><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

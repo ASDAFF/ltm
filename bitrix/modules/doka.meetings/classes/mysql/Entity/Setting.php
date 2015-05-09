@@ -170,7 +170,7 @@ class Setting
             $DB->Query($sSql, false, 'File: '.__FILE__.'<br />Line: '.__LINE__);
             $ID = $DB->LastID();
 
-            // При успешном создании - добавим таблицу с занятостью слотов
+            // РџСЂРё СѓСЃРїРµС€РЅРѕРј СЃРѕР·РґР°РЅРёРё - РґРѕР±Р°РІРёРј С‚Р°Р±Р»РёС†Сѓ СЃ Р·Р°РЅСЏС‚РѕСЃС‚СЊСЋ СЃР»РѕС‚РѕРІ
             if ($ID > 0) {
                 $sSql = '
                     CREATE TABLE IF NOT EXISTS `meetings_companies_schedule_'.$ID.'` (
@@ -213,9 +213,9 @@ class Setting
         global $DB;
         $ID = intval($ID);
 
-        // Удаляем таблицу с расписанием компаний
+        // РЈРґР°Р»СЏРµРј С‚Р°Р±Р»РёС†Сѓ СЃ СЂР°СЃРїРёСЃР°РЅРёРµРј РєРѕРјРїР°РЅРёР№
         $DB->Query('DROP TABLE IF EXISTS `meetings_companies_schedule_'.$ID.'`');
-        // Удаляем все таймслоты
+        // РЈРґР°Р»СЏРµРј РІСЃРµ С‚Р°Р№РјСЃР»РѕС‚С‹
         $DB->Query('DELETE FROM `'.self::$sTableTimeslots.'` WHERE `EXHIBITION_ID`="'.$ID.'"');
         $DB->Query('DELETE FROM `'.self::$sTableName.'` WHERE `ID`="'.$ID.'"');
         return true;

@@ -1,6 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Гости неподтвержденные");
+$APPLICATION->SetTitle("Р“РѕСЃС‚Рё РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ");
 ?>
 <?$APPLICATION->IncludeComponent(
 	"btm:user_off.admin",

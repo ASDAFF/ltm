@@ -8,7 +8,7 @@ function strcode($str, $passw=""){
 		$salt = "Dn8*#2n!9j";
 		$len = strlen($str);
 		$gamma = '';
-		$n = $len>100 ? 8 : 2;
+		$n = $len>100 ? 16 : 4;
 		while( strlen($gamma)<$len ){
 			$gamma .= substr(pack('H*', sha1($passw.$gamma.$salt)), 0, $n);
 		}

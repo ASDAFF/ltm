@@ -1,25 +1,25 @@
 <?
-$MESS ['FORM_ACCESS_DENIED'] = "Ó âàñ íåäîñòàòî÷íî ïðàâ äëÿ ïðîñìîòðà ôîðìû.";
-$MESS ['FORM_ACCESS_DENIED_FOR_FORM'] = "Ó âàñ íåäîñòàòî÷íî ïðàâ äëÿ ïðîñìîòðà ôîðìû.";
-$MESS ['FORM_ACCESS_DENIED_FOR_FORM_RESULTS'] = "Ó âàñ íåäîñòàòî÷íî ïðàâ äëÿ ïðîñìîòðà äàííîãî ðåçóëüòàòà.";
-$MESS ['FORM_ACCESS_DENIED_FOR_FORM_RESULTS_EDITING'] = "Ó âàñ íåäîñòàòî÷íî ïðàâ äëÿ ðåäàêòèðîâàíèÿ äàííîãî ðåçóëüòàòà.";
-$MESS ['FORM_ACCESS_DENIED_FOR_FORM_WRITE'] = "Ó âàñ íåäîñòàòî÷íî ïðàâ äëÿ çàïîëíåíèÿ ôîðìû.";
-$MESS ['FORM_INCORRECT_DATE_FORMAT'] = "Íåâåðíûé ôîðìàò äàòû äëÿ ïîëÿ \"#FIELD_NAME#\".";
-$MESS ['FORM_INCORRECT_FILE_TYPE'] = "Íåâåðíûé òèï ôàéëà äëÿ ïîëÿ \"#FIELD_NAME#\" (ôàéë íåîáõîäèìî âûáðàòü çàíîâî).";
-$MESS ['FORM_EMPTY_REQUIRED_FIELDS'] = "Íå çàïîëíåíû ñëåäóþùèå îáÿçàòåëüíûå ïîëÿ:";
-$MESS ['FORM_INCORRECT_FORM_ID'] = "Íåâåðíûé ID ôîðìû.";
-$MESS ['FORM_PUBLIC_ICON_EDIT'] = "Ðåäàêòèðîâàòü ïàðàìåòðû âåá-ôîðìû";
-$MESS ['FORM_PUBLIC_ICON_EDIT_TPL'] = "Ðåäàêòèðîâàòü øàáëîí âåá-ôîðìû";
-$MESS ['FORM_DATA_SAVED'] = "Èçìåíåíèÿ ñîõðàíåíû";
-$MESS ['FORM_VIEW_FILE'] = "Ïðîñìîòð ôàéëà";
-$MESS ['FORM_DELETE_FILE'] = "óäàëèòü";
-$MESS ['FORM_DOWNLOAD_FILE'] = "Ñêà÷àòü ôàéë #FILE_NAME#";
-$MESS ['FORM_DOWNLOAD'] = "Ñêà÷àòü";
-$MESS ['FORM_RECORD_NOT_FOUND'] = "Çàïèñü íå íàéäåíà";
-$MESS ['FORM_RESULT_ACCESS_DENIED'] = "Íå õâàòàåò ïðàâ äëÿ äîñòóïà ê ðåçóëüòàòó.";
-$MESS ['FORM_MODULE_NOT_INSTALLED'] = "Ìîäóëü âåá-ôîðì íå óñòàíîâëåí";
-$MESS ['FORM_NOTE_ADDOK'] = "Ñïàñèáî!
+$MESS ['FORM_ACCESS_DENIED'] = "Ð£ Ð²Ð°Ñ Ð½ÐµÐ´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ Ð¿Ñ€Ð°Ð² Ð´Ð»Ñ Ð¿Ñ€Ð¾ÑÐ¼Ð¾Ñ‚Ñ€Ð° Ñ„Ð¾Ñ€Ð¼Ñ‹.";
+$MESS ['FORM_ACCESS_DENIED_FOR_FORM'] = "Ð£ Ð²Ð°Ñ Ð½ÐµÐ´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ Ð¿Ñ€Ð°Ð² Ð´Ð»Ñ Ð¿Ñ€Ð¾ÑÐ¼Ð¾Ñ‚Ñ€Ð° Ñ„Ð¾Ñ€Ð¼Ñ‹.";
+$MESS ['FORM_ACCESS_DENIED_FOR_FORM_RESULTS'] = "Ð£ Ð²Ð°Ñ Ð½ÐµÐ´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ Ð¿Ñ€Ð°Ð² Ð´Ð»Ñ Ð¿Ñ€Ð¾ÑÐ¼Ð¾Ñ‚Ñ€Ð° Ð´Ð°Ð½Ð½Ð¾Ð³Ð¾ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð°.";
+$MESS ['FORM_ACCESS_DENIED_FOR_FORM_RESULTS_EDITING'] = "Ð£ Ð²Ð°Ñ Ð½ÐµÐ´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ Ð¿Ñ€Ð°Ð² Ð´Ð»Ñ Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ Ð´Ð°Ð½Ð½Ð¾Ð³Ð¾ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð°.";
+$MESS ['FORM_ACCESS_DENIED_FOR_FORM_WRITE'] = "Ð£ Ð²Ð°Ñ Ð½ÐµÐ´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ Ð¿Ñ€Ð°Ð² Ð´Ð»Ñ Ð·Ð°Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ñ Ñ„Ð¾Ñ€Ð¼Ñ‹.";
+$MESS ['FORM_INCORRECT_DATE_FORMAT'] = "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ñ„Ð¾Ñ€Ð¼Ð°Ñ‚ Ð´Ð°Ñ‚Ñ‹ Ð´Ð»Ñ Ð¿Ð¾Ð»Ñ \"#FIELD_NAME#\".";
+$MESS ['FORM_INCORRECT_FILE_TYPE'] = "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ñ‚Ð¸Ð¿ Ñ„Ð°Ð¹Ð»Ð° Ð´Ð»Ñ Ð¿Ð¾Ð»Ñ \"#FIELD_NAME#\" (Ñ„Ð°Ð¹Ð» Ð½ÐµÐ¾Ð±Ñ…Ð¾Ð´Ð¸Ð¼Ð¾ Ð²Ñ‹Ð±Ñ€Ð°Ñ‚ÑŒ Ð·Ð°Ð½Ð¾Ð²Ð¾).";
+$MESS ['FORM_EMPTY_REQUIRED_FIELDS'] = "ÐÐµ Ð·Ð°Ð¿Ð¾Ð»Ð½ÐµÐ½Ñ‹ ÑÐ»ÐµÐ´ÑƒÑŽÑ‰Ð¸Ðµ Ð¾Ð±ÑÐ·Ð°Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ðµ Ð¿Ð¾Ð»Ñ:";
+$MESS ['FORM_INCORRECT_FORM_ID'] = "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ ID Ñ„Ð¾Ñ€Ð¼Ñ‹.";
+$MESS ['FORM_PUBLIC_ICON_EDIT'] = "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ð²ÐµÐ±-Ñ„Ð¾Ñ€Ð¼Ñ‹";
+$MESS ['FORM_PUBLIC_ICON_EDIT_TPL'] = "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑˆÐ°Ð±Ð»Ð¾Ð½ Ð²ÐµÐ±-Ñ„Ð¾Ñ€Ð¼Ñ‹";
+$MESS ['FORM_DATA_SAVED'] = "Ð˜Ð·Ð¼ÐµÐ½ÐµÐ½Ð¸Ñ ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ñ‹";
+$MESS ['FORM_VIEW_FILE'] = "ÐŸÑ€Ð¾ÑÐ¼Ð¾Ñ‚Ñ€ Ñ„Ð°Ð¹Ð»Ð°";
+$MESS ['FORM_DELETE_FILE'] = "ÑƒÐ´Ð°Ð»Ð¸Ñ‚ÑŒ";
+$MESS ['FORM_DOWNLOAD_FILE'] = "Ð¡ÐºÐ°Ñ‡Ð°Ñ‚ÑŒ Ñ„Ð°Ð¹Ð» #FILE_NAME#";
+$MESS ['FORM_DOWNLOAD'] = "Ð¡ÐºÐ°Ñ‡Ð°Ñ‚ÑŒ";
+$MESS ['FORM_RECORD_NOT_FOUND'] = "Ð—Ð°Ð¿Ð¸ÑÑŒ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°";
+$MESS ['FORM_RESULT_ACCESS_DENIED'] = "ÐÐµ Ñ…Ð²Ð°Ñ‚Ð°ÐµÑ‚ Ð¿Ñ€Ð°Ð² Ð´Ð»Ñ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ðº Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ñƒ.";
+$MESS ['FORM_MODULE_NOT_INSTALLED'] = "ÐœÐ¾Ð´ÑƒÐ»ÑŒ Ð²ÐµÐ±-Ñ„Ð¾Ñ€Ð¼ Ð½Ðµ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½";
+$MESS ['FORM_NOTE_ADDOK'] = "Ð¡Ð¿Ð°ÑÐ¸Ð±Ð¾!
 
-Âàøà çàÿâêà #RESULT_ID# ïðèíÿòà!";
-$MESS ['FORM_NOTE_EDITOK'] = "Èçìåíåíèÿ ñîõðàíåíû";
+Ð’Ð°ÑˆÐ° Ð·Ð°ÑÐ²ÐºÐ° #RESULT_ID# Ð¿Ñ€Ð¸Ð½ÑÑ‚Ð°!";
+$MESS ['FORM_NOTE_EDITOK'] = "Ð˜Ð·Ð¼ÐµÐ½ÐµÐ½Ð¸Ñ ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ñ‹";
 ?>

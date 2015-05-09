@@ -397,7 +397,7 @@ if(isset($arParams["GROUP_WRITE"]) && $arParams["GROUP_WRITE"] != ''){
 		  "GROUPS_ID"  => array($arParams["GROUP_WRITE"])
 	  );
   }
-  $rsTUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, $arSParams); // âûáèðàåì ïîëüçîâàòåëåé
+  $rsTUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, $arSParams); // Ð²Ñ‹Ð±Ð¸Ñ€Ð°ÐµÐ¼ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹
   while($arUsersTemp=$rsTUsers->Fetch()){
 	$arResult["USERS"]["TO_LIST"]["LIST"][$arUsersTemp["ID"]] = $arUsersTemp["WORK_COMPANY"];
 	$arResult["USERS"]["TO_LIST"]["COUNT"]++;

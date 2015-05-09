@@ -1,24 +1,24 @@
 <?
-$MESS["AUTH_LOGIN"] = "Ëîãèí";
-$MESS["AUTH_PASSWORD"] = "Ïàðîëü";
-$MESS["AUTH_REMEMBER_ME"] = "Çàïîìíèòü ìåíÿ íà ýòîì êîìïüþòåðå";
-$MESS["AUTH_FORGOT_PASSWORD_2"] = "Çàáûëè ñâîé ïàðîëü?";
-$MESS["AUTH_REGISTER"] = "Ðåãèñòðàöèÿ";
-$MESS["AUTH_LOGOUT_BUTTON"] = "Âûéòè";
-$MESS["AUTH_PROFILE"] = "Ìîé ïðîôèëü";
-$MESS["AUTH_A_INTERNAL"] = "Âñòðîåííàÿ àâòîðèçàöèÿ";
+$MESS["AUTH_LOGIN"] = "Ð›Ð¾Ð³Ð¸Ð½";
+$MESS["AUTH_PASSWORD"] = "ÐŸÐ°Ñ€Ð¾Ð»ÑŒ";
+$MESS["AUTH_REMEMBER_ME"] = "Ð—Ð°Ð¿Ð¾Ð¼Ð½Ð¸Ñ‚ÑŒ Ð¼ÐµÐ½Ñ Ð½Ð° ÑÑ‚Ð¾Ð¼ ÐºÐ¾Ð¼Ð¿ÑŒÑŽÑ‚ÐµÑ€Ðµ";
+$MESS["AUTH_FORGOT_PASSWORD_2"] = "Ð—Ð°Ð±Ñ‹Ð»Ð¸ ÑÐ²Ð¾Ð¹ Ð¿Ð°Ñ€Ð¾Ð»ÑŒ?";
+$MESS["AUTH_REGISTER"] = "Ð ÐµÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸Ñ";
+$MESS["AUTH_LOGOUT_BUTTON"] = "Ð’Ñ‹Ð¹Ñ‚Ð¸";
+$MESS["AUTH_PROFILE"] = "ÐœÐ¾Ð¹ Ð¿Ñ€Ð¾Ñ„Ð¸Ð»ÑŒ";
+$MESS["AUTH_A_INTERNAL"] = "Ð’ÑÑ‚Ñ€Ð¾ÐµÐ½Ð½Ð°Ñ Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð°Ñ†Ð¸Ñ";
 $MESS["AUTH_A_OPENID"] = "OpenID";
 $MESS["AUTH_OPENID"] = "OpenID";
 $MESS["AUTH_A_LIVEID"] = "LiveID";
 $MESS["AUTH_LIVEID_LOGIN"] = "Log In";
-$MESS["AUTH_CAPTCHA_PROMT"] = "Ââåäèòå ñëîâî íà êàðòèíêå";
-$MESS["AUTH_REMEMBER_SHORT"] = "Çàïîìíèòü ìåíÿ";
-$MESS["socserv_as_user_form"] = "Âîéòè êàê ïîëüçîâàòåëü:";
-$MESS["AUTH_SECURE_NOTE"]="Ïåðåä îòïðàâêîé ôîðìû àâòîðèçàöèè ïàðîëü áóäåò çàøèôðîâàí â áðàóçåðå. Ýòî ïîçâîëèò èçáåæàòü ïåðåäà÷è ïàðîëÿ â îòêðûòîì âèäå.";
-$MESS["AUTH_NONSECURE_NOTE"]="Ïàðîëü áóäåò îòïðàâëåí â îòêðûòîì âèäå. Âêëþ÷èòå JavaScript â áðàóçåðå, ÷òîáû çàøèôðîâàòü ïàðîëü ïåðåä îòïðàâêîé.";
+$MESS["AUTH_CAPTCHA_PROMT"] = "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÐ»Ð¾Ð²Ð¾ Ð½Ð° ÐºÐ°Ñ€Ñ‚Ð¸Ð½ÐºÐµ";
+$MESS["AUTH_REMEMBER_SHORT"] = "Ð—Ð°Ð¿Ð¾Ð¼Ð½Ð¸Ñ‚ÑŒ Ð¼ÐµÐ½Ñ";
+$MESS["socserv_as_user_form"] = "Ð’Ð¾Ð¹Ñ‚Ð¸ ÐºÐ°Ðº Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ:";
+$MESS["AUTH_SECURE_NOTE"]="ÐŸÐµÑ€ÐµÐ´ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²ÐºÐ¾Ð¹ Ñ„Ð¾Ñ€Ð¼Ñ‹ Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð°Ñ†Ð¸Ð¸ Ð¿Ð°Ñ€Ð¾Ð»ÑŒ Ð±ÑƒÐ´ÐµÑ‚ Ð·Ð°ÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½ Ð² Ð±Ñ€Ð°ÑƒÐ·ÐµÑ€Ðµ. Ð­Ñ‚Ð¾ Ð¿Ð¾Ð·Ð²Ð¾Ð»Ð¸Ñ‚ Ð¸Ð·Ð±ÐµÐ¶Ð°Ñ‚ÑŒ Ð¿ÐµÑ€ÐµÐ´Ð°Ñ‡Ð¸ Ð¿Ð°Ñ€Ð¾Ð»Ñ Ð² Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚Ð¾Ð¼ Ð²Ð¸Ð´Ðµ.";
+$MESS["AUTH_NONSECURE_NOTE"]="ÐŸÐ°Ñ€Ð¾Ð»ÑŒ Ð±ÑƒÐ´ÐµÑ‚ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½ Ð² Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚Ð¾Ð¼ Ð²Ð¸Ð´Ðµ. Ð’ÐºÐ»ÑŽÑ‡Ð¸Ñ‚Ðµ JavaScript Ð² Ð±Ñ€Ð°ÑƒÐ·ÐµÑ€Ðµ, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð·Ð°ÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð°Ñ€Ð¾Ð»ÑŒ Ð¿ÐµÑ€ÐµÐ´ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²ÐºÐ¾Ð¹.";
 
-$MESS["AUTH_AUTH"]="ÀÂÒÎÐÈÇÀÖÈß";
-$MESS["AUTH_FOR_EXHIBITIRS"]="äëÿ ó÷àñòíèêîâ è ãîñòåé";
-$MESS["AUTH_FORGOT_PASSWORD"] = "çàáûëè ïàðîëü?";
-$MESS["AUTH_LOGIN_BUTTON"] = "Âõîä";
+$MESS["AUTH_AUTH"]="ÐÐ’Ð¢ÐžÐ Ð˜Ð—ÐÐ¦Ð˜Ð¯";
+$MESS["AUTH_FOR_EXHIBITIRS"]="Ð´Ð»Ñ ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¾Ð² Ð¸ Ð³Ð¾ÑÑ‚ÐµÐ¹";
+$MESS["AUTH_FORGOT_PASSWORD"] = "Ð·Ð°Ð±Ñ‹Ð»Ð¸ Ð¿Ð°Ñ€Ð¾Ð»ÑŒ?";
+$MESS["AUTH_LOGIN_BUTTON"] = "Ð’Ñ…Ð¾Ð´";
 ?>

@@ -1,17 +1,17 @@
 <?
-$MESS ['AUTH_LOGIN_BUTTON'] = "Âîéòè";
-$MESS ['AUTH_LOGIN'] = "Ëîãèí";
-$MESS ['AUTH_PASSWORD'] = "Ïàðîëü";
-$MESS ['AUTH_REMEMBER_ME'] = "Çàïîìíèòü ìåíÿ íà ýòîì êîìïüþòåðå";
-$MESS ['AUTH_FORGOT_PASSWORD_2'] = "Çàáûëè ñâîé ïàðîëü?";
-$MESS ['AUTH_REGISTER'] = "Ðåãèñòðàöèÿ";
-$MESS ['AUTH_LOGOUT_BUTTON'] = "Âûéòè";
-$MESS ['AUTH_PROFILE'] = "Ìîé ïðîôèëü";
-$MESS ['AUTH_A_INTERNAL'] = "Âñòðîåííàÿ àâòîðèçàöèÿ";
+$MESS ['AUTH_LOGIN_BUTTON'] = "Ð’Ð¾Ð¹Ñ‚Ð¸";
+$MESS ['AUTH_LOGIN'] = "Ð›Ð¾Ð³Ð¸Ð½";
+$MESS ['AUTH_PASSWORD'] = "ÐŸÐ°Ñ€Ð¾Ð»ÑŒ";
+$MESS ['AUTH_REMEMBER_ME'] = "Ð—Ð°Ð¿Ð¾Ð¼Ð½Ð¸Ñ‚ÑŒ Ð¼ÐµÐ½Ñ Ð½Ð° ÑÑ‚Ð¾Ð¼ ÐºÐ¾Ð¼Ð¿ÑŒÑŽÑ‚ÐµÑ€Ðµ";
+$MESS ['AUTH_FORGOT_PASSWORD_2'] = "Ð—Ð°Ð±Ñ‹Ð»Ð¸ ÑÐ²Ð¾Ð¹ Ð¿Ð°Ñ€Ð¾Ð»ÑŒ?";
+$MESS ['AUTH_REGISTER'] = "Ð ÐµÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸Ñ";
+$MESS ['AUTH_LOGOUT_BUTTON'] = "Ð’Ñ‹Ð¹Ñ‚Ð¸";
+$MESS ['AUTH_PROFILE'] = "ÐœÐ¾Ð¹ Ð¿Ñ€Ð¾Ñ„Ð¸Ð»ÑŒ";
+$MESS ['AUTH_A_INTERNAL'] = "Ð’ÑÑ‚Ñ€Ð¾ÐµÐ½Ð½Ð°Ñ Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð°Ñ†Ð¸Ñ";
 $MESS ['AUTH_A_OPENID'] = "OpenID";
 $MESS ['AUTH_OPENID'] = "OpenID";
 $MESS ['AUTH_A_LIVEID'] = "LiveID";
 $MESS ['AUTH_LIVEID_LOGIN'] = "Log In";
-$MESS ['AUTH_CAPTCHA_PROMT'] = "Ââåäèòå ñëîâî íà êàðòèíêå";
-$MESS ['AUTH_DEJA'] = "Âû óæå àâòîðèçîâàíû";
+$MESS ['AUTH_CAPTCHA_PROMT'] = "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÐ»Ð¾Ð²Ð¾ Ð½Ð° ÐºÐ°Ñ€Ñ‚Ð¸Ð½ÐºÐµ";
+$MESS ['AUTH_DEJA'] = "Ð’Ñ‹ ÑƒÐ¶Ðµ Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð¾Ð²Ð°Ð½Ñ‹";
 ?>

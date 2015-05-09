@@ -19,7 +19,7 @@
 			<?else:?>
 				<td colspan="2">
 					<?if (!count($item['list'])):?>
-						Все слоты заняты
+						Р’СЃРµ СЃР»РѕС‚С‹ Р·Р°РЅСЏС‚С‹
 					<?else:?>
 						<select name="company_id" class="form-control">
 							<?foreach ($item['list'] as $company):?>
@@ -38,17 +38,17 @@
 					case 'process':
 						if ($item['sent_by_you']):?>
 							<a onClick="window.open('<?=$arResult['REJECT_REQUEST_LINK']?>?timeslot_id=<?=$item['timeslot_id']?>&receiver_id=<?=$item['company_id']?>', 'newWindow', 'width=620,height=430,resizable=yes,scrollbars=yes,status=yes'); return false;" 
-								href="<?=$arResult['REJECT_REQUEST_LINK']?>?timeslot_id=<?=$item['timeslot_id']?>&receiver_id=<?=$item['company_id']?>">Отменить</a>
+								href="<?=$arResult['REJECT_REQUEST_LINK']?>?timeslot_id=<?=$item['timeslot_id']?>&receiver_id=<?=$item['company_id']?>">РћС‚РјРµРЅРёС‚СЊ</a>
 						<?else:?>
 							<a onClick="window.open('<?=$arResult['REJECT_CONFIRM_LINK']?>?timeslot_id=<?=$item['timeslot_id']?>&receiver_id=<?=$item['company_id']?>', 'newWindow', 'width=620,height=430,resizable=yes,scrollbars=yes,status=yes'); return false;" 
-							href="<?=$arResult['CONFIRM_REQUEST_LINK']?>?timeslot_id=<?=$item['timeslot_id']?>&receiver_id=<?=$item['company_id']?>">Подтвердить</a> <a href="#">Отменить</a>
+							href="<?=$arResult['CONFIRM_REQUEST_LINK']?>?timeslot_id=<?=$item['timeslot_id']?>&receiver_id=<?=$item['company_id']?>">РџРѕРґС‚РІРµСЂРґРёС‚СЊ</a> <a href="#">РћС‚РјРµРЅРёС‚СЊ</a>
 						<?
 						endif;
 						break;
 					
 					case 'free':
 						?>
-						<a href="<?=$arResult['SEND_REQUEST_LINK']?>?timeslot_id=<?=$item['timeslot_id']?>&receiver_id=">Послать запрос</a>
+						<a href="<?=$arResult['SEND_REQUEST_LINK']?>?timeslot_id=<?=$item['timeslot_id']?>&receiver_id=">РџРѕСЃР»Р°С‚СЊ Р·Р°РїСЂРѕСЃ</a>
 						<?
 						break;
 				}

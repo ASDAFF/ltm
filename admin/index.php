@@ -1,6 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Кабинет администратора");
+$APPLICATION->SetTitle("РљР°Р±РёРЅРµС‚ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР°");
 ?><?/*$APPLICATION->IncludeComponent(
 	"btm:main.admin",
 	"",
@@ -34,6 +34,6 @@ $exhibCode = trim($_REQUEST["EXHIBIT_CODE"]);
 false
 );?>
 	<div class="panel-heading">
-		<a href="/admin/photo/" class="collapsed">Загрузка фотографий</a>
+		<a href="/admin/photo/" class="collapsed">Р—Р°РіСЂСѓР·РєР° С„РѕС‚РѕРіСЂР°С„РёР№</a>
 	</div>
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

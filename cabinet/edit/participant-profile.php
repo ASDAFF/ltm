@@ -14,7 +14,7 @@ try{
 	$curPage = "/cabinet/".$_REQUEST["EXHIBIT_CODE"]."/edit/profile/".(isset($_REQUEST["UID"])?"?UID={$_REQUEST["UID"]}":"");
 	CModule::IncludeModule("form");
 
-	//получение id выставки
+	//РїРѕР»СѓС‡РµРЅРёРµ id РІС‹СЃС‚Р°РІРєРё
 	$exhCode = trim($_REQUEST["EXHIBIT_CODE"]);
 	if($exhCode && CModule::IncludeModule("iblock"))
 	{
@@ -22,7 +22,7 @@ try{
 		if($arExhib = $rsExhib->Fetch())
 		{
 			$formID = CFormMatrix::getPFormIDByExh($arExhib["ID"]);
-			$formPropName = CFormMatrix::getPropertyIDByExh($arExhib["ID"]);//получение имени свойства пользователя для текущей выставки
+			$formPropName = CFormMatrix::getPropertyIDByExh($arExhib["ID"]);//РїРѕР»СѓС‡РµРЅРёРµ РёРјРµРЅРё СЃРІРѕР№СЃС‚РІР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РґР»СЏ С‚РµРєСѓС‰РµР№ РІС‹СЃС‚Р°РІРєРё
 			$resultId = $arUser[$formPropName];
 			$exhName = $arExhib["PROPERTY_SHORT_NAME_VALUE"];
 			$exhDate = $arExhib["PROPERTY_DATE_VALUE"];
@@ -40,11 +40,11 @@ try{
 			89,//E-mail
 			90,//Please confirm your e-mail
 			91,//Alternative e-mail
-			195,//Персональное фото
+			195,//РџРµСЂСЃРѕРЅР°Р»СЊРЅРѕРµ С„РѕС‚Рѕ
 			"SIMPLE_QUESTION_889",//Salutation
 	 */
 
-	//сохранение имени, фамилии и фио в поля пользователя
+	//СЃРѕС…СЂР°РЅРµРЅРёРµ РёРјРµРЅРё, С„Р°РјРёР»РёРё Рё С„РёРѕ РІ РїРѕР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 	$fieldName = "form_text_" . CFormMatrix::getAnswerRelBase(84, $formID); //Participant first name
 	$fieldLastName = "form_text_" . CFormMatrix::getAnswerRelBase(85, $formID); //Participant first name
 	$fieldEmail =  "form_text_" . CFormMatrix::getAnswerRelBase(89, $formID); //Participant first name
@@ -53,7 +53,7 @@ try{
 	$fieldEmailAlt = "form_text_" . CFormMatrix::getAnswerRelBase(91, $formID);//Alternative e-mail
 	$fieldSalutation = "form_dropdown_" . CFormMatrix::getAnswerRelBase("SIMPLE_QUESTION_889", $formID);//Salutation
 
-	//получение приветствия из базы
+	//РїРѕР»СѓС‡РµРЅРёРµ РїСЂРёРІРµС‚СЃС‚РІРёСЏ РёР· Р±Р°Р·С‹
 	$rsSalutation = CFormAnswer::GetByID($_REQUEST[$fieldSalutation]);
 	$fieldSalutation = $rsSalutation->Fetch();
 	$fieldSalutation = $fieldSalutation["MESSAGE"];
@@ -67,12 +67,12 @@ try{
 	    "EMAIL" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_859",$formID),//E-mail
 	    "EMAIL_CONF" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_585",$formID),//Please confirm your e-mail
 	    "EMAIL_ALT" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_749",$formID),//Alternative e-mail
-	    "PHOTO" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_575",$formID),//Персональное фото
+	    "PHOTO" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_575",$formID),//РџРµСЂСЃРѕРЅР°Р»СЊРЅРѕРµ С„РѕС‚Рѕ
 	    "SALUTATION" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_889",$formID),//Salutation
 	);
 
 
-	//тут запрещается редактирование
+	//С‚СѓС‚ Р·Р°РїСЂРµС‰Р°РµС‚СЃСЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ
 
 	if("Y" != $exhParticipantEdit)
 	{
@@ -106,9 +106,9 @@ try{
 		);
 
 
-		//получение старых полей формы
+		//РїРѕР»СѓС‡РµРЅРёРµ СЃС‚Р°СЂС‹С… РїРѕР»РµР№ С„РѕСЂРјС‹
 
-		//получение старого описания компании
+		//РїРѕР»СѓС‡РµРЅРёРµ СЃС‚Р°СЂРѕРіРѕ РѕРїРёСЃР°РЅРёСЏ РєРѕРјРїР°РЅРёРё
 
 		/*
 		 	"SIMPLE_QUESTION_446",//Participant first name
@@ -118,7 +118,7 @@ try{
 			"SIMPLE_QUESTION_859",//E-mail
 			"SIMPLE_QUESTION_585",//Please confirm your e-mail
 			"SIMPLE_QUESTION_749",//Alternative e-mail
-			"SIMPLE_QUESTION_575",//Персональное фото
+			"SIMPLE_QUESTION_575",//РџРµСЂСЃРѕРЅР°Р»СЊРЅРѕРµ С„РѕС‚Рѕ
 			"SIMPLE_QUESTION_889",//Salutation
 		 */
 
@@ -185,12 +185,12 @@ try{
 		);
 
 		CEvent::Send("PARTICIPANT_PROFILE_CHANGE", "s1", $arSendFields);
-	}//пост
+	}//РїРѕСЃС‚
 
 
     if(isset($_REQUEST["formresult"]) && $_REQUEST["formresult"] == "editok")
     {
-        //вывод информации об успешном сохранении
+        //РІС‹РІРѕРґ РёРЅС„РѕСЂРјР°С†РёРё РѕР± СѓСЃРїРµС€РЅРѕРј СЃРѕС…СЂР°РЅРµРЅРёРё
         echo "<p style='color:green;'>Your information has been updated. Thank you!</p>";
     }
 
@@ -210,7 +210,7 @@ try{
 		"USE_EXTENDED_ERRORS" => "N",
 		"QUESTION_TO_SHOW" => array(
 			array("NAME"=>"PARTICIPANT at " .$exhName . " " .$exhDate , "ITEMS"=>array(
-				array("ID"=>$FieldSID["PHOTO"], "IS_PIC"=>true),//Персональное фото
+				array("ID"=>$FieldSID["PHOTO"], "IS_PIC"=>true),//РџРµСЂСЃРѕРЅР°Р»СЊРЅРѕРµ С„РѕС‚Рѕ
                 array("ID"=>$FieldSID["NAME"], "TITLE" => "First name"),//Participant first name
                 array("ID"=>$FieldSID["LAST_NAME"], "TITLE" => "Last name"),//Participant last name
                 array("ID"=>$FieldSID["SALUTATION"], "TITLE" => "Title"),////Salutation

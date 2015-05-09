@@ -6,13 +6,13 @@ function strcode($str, $passw=""){
 		$salt = "Dn8*#2n!9j";
 		$len = strlen($str);
 		$gamma = '';
-		$n = $len>100 ? 8 : 2;
+		$n = $len>100 ? 16 : 4;
 		while( strlen($gamma)<$len ){
 			$gamma .= substr(pack('H*', sha1($passw.$gamma.$salt)), 0, $n);
 		}
 		return $str^$gamma;
 	}
-$depas = strcode(base64_decode($pas), 'luxoran');
+$depas = strcode(base64_decode($pas), "luxoran");
 
 //Проверяем, есть ли вообще введённый пароль в базе
 $filter = Array("!UF_PAS" => ""); 

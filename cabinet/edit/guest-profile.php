@@ -12,7 +12,7 @@ try{
 	$resultId = $arUser["UF_ID_COMP"];
 	$curPage = "/cabinet/".$_REQUEST["EXHIBIT_CODE"]."/edit/profile/".(isset($_REQUEST["UID"])?"?UID={$_REQUEST["UID"]}":"");
 
-	//получение id выставки
+	//РїРѕР»СѓС‡РµРЅРёРµ id РІС‹СЃС‚Р°РІРєРё
 	$exhCode = trim($_REQUEST["EXHIBIT_CODE"]);
 	if($exhCode && CModule::IncludeModule("iblock"))
 	{
@@ -20,7 +20,7 @@ try{
 	    if($arExhib = $rsExhib->Fetch())
 	    {
 	        $formID = CFormMatrix::getPFormIDByExh($arExhib["ID"]);
-	        $formPropName = CFormMatrix::getPropertyIDByExh($arExhib["ID"]);//получение имени свойства пользователя для текущей выставки
+	        $formPropName = CFormMatrix::getPropertyIDByExh($arExhib["ID"]);//РїРѕР»СѓС‡РµРЅРёРµ РёРјРµРЅРё СЃРІРѕР№СЃС‚РІР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РґР»СЏ С‚РµРєСѓС‰РµР№ РІС‹СЃС‚Р°РІРєРё
 	        $resultId = $arUser[$formPropName];
 	        $exhName = $arExhib["PROPERTY_SHORT_NAME_VALUE"];
 	        $exhDate = $arExhib["PROPERTY_DATE_VALUE"];
@@ -30,10 +30,10 @@ try{
 	    }
 	}
 
-	//тут запрещается редактирование
+	//С‚СѓС‚ Р·Р°РїСЂРµС‰Р°РµС‚СЃСЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ
 	if("Y" != $exhGuestEdit)
 	{
-	    echo "<p style='color:red;'>Редактирование закрыто администратором!</p>";
+	    echo "<p style='color:red;'>Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ Р·Р°РєСЂС‹С‚Рѕ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂРѕРј!</p>";
 
 	    if("POST" == $_SERVER["REQUEST_METHOD"])
 	    {
@@ -45,10 +45,10 @@ try{
 	    }
 	}
 
-	//сохранение имени, фамилии и фио в поля пользователя
-	$fieldNameName = "form_text_216"; //имя
-	$fieldLastNameName = "form_text_217";//фамилия
-	$fieldEmeil =  "form_text_220"; //мыло
+	//СЃРѕС…СЂР°РЅРµРЅРёРµ РёРјРµРЅРё, С„Р°РјРёР»РёРё Рё С„РёРѕ РІ РїРѕР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+	$fieldNameName = "form_text_216"; //РёРјСЏ
+	$fieldLastNameName = "form_text_217";//С„Р°РјРёР»РёСЏ
+	$fieldEmeil =  "form_text_220"; //РјС‹Р»Рѕ
 
 	if($userId && "Y" == $exhGuestEdit &&
 	    $_SERVER["REQUEST_METHOD"] == "POST" &&
@@ -71,8 +71,8 @@ try{
 
 	if(isset($_REQUEST["formresult"]) && $_REQUEST["formresult"] == "editok")
 	{
-	    //вывод информации об успешном сохранении
-	    echo "<p style='color:red;'>Внесенные изменения сохранены</p>";
+	    //РІС‹РІРѕРґ РёРЅС„РѕСЂРјР°С†РёРё РѕР± СѓСЃРїРµС€РЅРѕРј СЃРѕС…СЂР°РЅРµРЅРёРё
+	    echo "<p style='color:red;'>Р’РЅРµСЃРµРЅРЅС‹Рµ РёР·РјРµРЅРµРЅРёСЏ СЃРѕС…СЂР°РЅРµРЅС‹</p>";
 	}
 
 	$APPLICATION->IncludeComponent(
@@ -96,14 +96,14 @@ try{
 				array("ID"=>"SIMPLE_QUESTION_823"),
 				array("ID"=>"SIMPLE_QUESTION_115", "DISABLED"=>true),
 				array("ID"=>"SIMPLE_QUESTION_391"),
-				array("ID"=>"SIMPLE_QUESTION_773", "TITLE"=>"Адрес"),
+				array("ID"=>"SIMPLE_QUESTION_773", "TITLE"=>"РђРґСЂРµСЃ"),
 				array("ID"=>"SIMPLE_QUESTION_672"),
 				array("ID"=>"SIMPLE_QUESTION_678"),
 				array("ID"=>"SIMPLE_QUESTION_756"),
 				array("ID"=>"SIMPLE_QUESTION_636"),
 				array("ID"=>"SIMPLE_QUESTION_373"),
-				array("ID"=>"SIMPLE_QUESTION_552", "TITLE"=>"Web-сайт"),
-				array("ID"=>"SIMPLE_QUESTION_166", "TITLE"=>"Описание компании"),
+				array("ID"=>"SIMPLE_QUESTION_552", "TITLE"=>"Web-СЃР°Р№С‚"),
+				array("ID"=>"SIMPLE_QUESTION_166", "TITLE"=>"РћРїРёСЃР°РЅРёРµ РєРѕРјРїР°РЅРёРё"),
 				array("ID"=>"SIMPLE_QUESTION_383"),
 				array("ID"=>"SIMPLE_QUESTION_244"),
 				array("ID"=>"SIMPLE_QUESTION_212"),

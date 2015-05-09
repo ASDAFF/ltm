@@ -45,7 +45,7 @@ $APPLICATION->SetTitle("LTM 2009 PHOTOS");
 		"CACHE_GROUPS" => "Y",
 		"DISPLAY_TOP_PAGER" => "N",
 		"DISPLAY_BOTTOM_PAGER" => "Y",
-		"PAGER_TITLE" => "Ôîòîãðàôèè",
+		"PAGER_TITLE" => "Ð¤Ð¾Ñ‚Ð¾Ð³Ñ€Ð°Ñ„Ð¸Ð¸",
 		"PAGER_SHOW_ALWAYS" => "Y",
 		"PAGER_TEMPLATE" => "",
 		"PAGER_DESC_NUMBERING" => "N",

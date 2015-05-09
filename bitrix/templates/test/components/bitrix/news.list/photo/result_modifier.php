@@ -9,7 +9,7 @@ if($bIblock)
 	{
 	    if(isset($arItem["PROPERTIES"]["MORE_PHOTO"]) && !empty($arItem["PROPERTIES"]["MORE_PHOTO"]))
 	    {
-	        //переписываем поля по выбранному языку
+	        //РїРµСЂРµРїРёСЃС‹РІР°РµРј РїРѕР»СЏ РїРѕ РІС‹Р±СЂР°РЅРЅРѕРјСѓ СЏР·С‹РєСѓ
 	        if(LANGUAGE_ID != "ru")
 	        {
 	            $arItem["NAME"] = $arItem["PROPERTIES"]["NAME_" . $lang]["VALUE"];

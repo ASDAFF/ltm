@@ -9,7 +9,7 @@ if($USER->IsAdmin() && isset($_REQUEST["UID"])) {
 	$userId = $USER->GetID();
 }
 
-$arUserGroups = CUser::GetUserGroup($userId); //группы пользователя
+$arUserGroups = CUser::GetUserGroup($userId); //РіСЂСѓРїРїС‹ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 
 
 if(CModule::IncludeModule('iblock')) {
@@ -20,7 +20,7 @@ if(CModule::IncludeModule('iblock')) {
         array("ID", "NAME", "CODE", "PROPERTY_SHORT_NAME", "PROPERTY_USER_GROUP_ID"));
     while($arItem = $rs->Fetch()) {
     	
-    	//Проверка на доступ пользователя к этой выставке
+    	//РџСЂРѕРІРµСЂРєР° РЅР° РґРѕСЃС‚СѓРї РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ Рє СЌС‚РѕР№ РІС‹СЃС‚Р°РІРєРµ
     	$confirmedGroupID = $arItem["PROPERTY_USER_GROUP_ID_VALUE"];
     	 
     	if(!in_array($confirmedGroupID, $arUserGroups))

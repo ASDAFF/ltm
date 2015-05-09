@@ -3,12 +3,12 @@ if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 
 if($arResult["ERROR_MESSAGE"] == ''){
 	?>
-    <p>Список неподтвержденных встреч, отправленных гостями.</p>
+    <p>РЎРїРёСЃРѕРє РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… РІСЃС‚СЂРµС‡, РѕС‚РїСЂР°РІР»РµРЅРЅС‹С… РіРѕСЃС‚СЏРјРё.</p>
     <table border="0" cellspacing="0" cellpadding="5" class="admin_info">
         <tr class="chet">
-            <td width="210"><strong>Компания и Представитель</strong></td>
-            <td width="210"><strong>Адресат</strong></td>
-            <td width="100"><strong>Время</strong></td>
+            <td width="210"><strong>РљРѕРјРїР°РЅРёСЏ Рё РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ</strong></td>
+            <td width="210"><strong>РђРґСЂРµСЃР°С‚</strong></td>
+            <td width="100"><strong>Р’СЂРµРјСЏ</strong></td>
         </tr>
     <?
 	for ($j = 0; $j < $arResult["MEETINGS"]["COUNT"]; $j++) {

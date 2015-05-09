@@ -186,14 +186,14 @@ if (CModule::IncludeModule("form"))
 
 					$arTmpUsFields = array();
 
-					//если форма описания компании
+					//РµСЃР»Рё С„РѕСЂРјР° РѕРїРёСЃР°РЅРёСЏ РєРѕРјРїР°РЅРёРё
 					if(isset($_REQUEST["type"]) && $_REQUEST["type"] == "C")
 					{
                          if(isset($_REQUEST["form_text_30"]) && $_REQUEST["form_text_30"] != ''){//company name
     						$userTmp = new CUser;
 
     						$arTmpUsFields["WORK_COMPANY"] = $_REQUEST["form_text_30"];
-    						if($_REQUEST["form_text_31"] <> $oldArValues["form_text_31"]) //если меняем логин
+    						if($_REQUEST["form_text_31"] <> $oldArValues["form_text_31"]) //РµСЃР»Рё РјРµРЅСЏРµРј Р»РѕРіРёРЅ
     						{
     							$newLogin = trim($_REQUEST["form_text_31"]);
 
@@ -202,7 +202,7 @@ if (CModule::IncludeModule("form"))
 
     							if(!empty($userIsset))
     							{
-    							    $strError .= "Логин " . $newLogin . " занят";
+    							    $strError .= "Р›РѕРіРёРЅ " . $newLogin . " Р·Р°РЅСЏС‚";
     							}
     							else
     							{
@@ -213,11 +213,11 @@ if (CModule::IncludeModule("form"))
     						$userTmp->Update($_REQUEST["id"], $arTmpUsFields);
     						$strError .= $userTmp->LAST_ERROR;
 
-    						//обновление раздела с фотками компании
+    						//РѕР±РЅРѕРІР»РµРЅРёРµ СЂР°Р·РґРµР»Р° СЃ С„РѕС‚РєР°РјРё РєРѕРјРїР°РЅРёРё
     						$rsUser = $userTmp->GetByID($_REQUEST["id"]);
     						$arUser = $rsUser->Fetch();
 
-    						$photoSectionID = $arUser["UF_ID_GROUP"]; //id раздела фотогалереи
+    						$photoSectionID = $arUser["UF_ID_GROUP"]; //id СЂР°Р·РґРµР»Р° С„РѕС‚РѕРіР°Р»РµСЂРµРё
 
     						if($photoSectionID && CModule::IncludeModule("iblock"))
     						{
@@ -229,7 +229,7 @@ if (CModule::IncludeModule("form"))
     							}
     						}
     					}
-					}//если форма участника
+					}//РµСЃР»Рё С„РѕСЂРјР° СѓС‡Р°СЃС‚РЅРёРєР°
 					elseif(isset($_REQUEST["type"]) && $_REQUEST["type"] == "M")
 					{
 
@@ -250,7 +250,7 @@ if (CModule::IncludeModule("form"))
 						$userTmp->Update($_REQUEST["id"], $arTmpUsFields);
 						$strError .= $userTmp->LAST_ERROR;
 					}
-					elseif(isset($_REQUEST["type"]) && $_REQUEST["type"] == "G")//если форма гостя
+					elseif(isset($_REQUEST["type"]) && $_REQUEST["type"] == "G")//РµСЃР»Рё С„РѕСЂРјР° РіРѕСЃС‚СЏ
 					{
 					    $userTmp = new CUser;
 
@@ -268,11 +268,11 @@ if (CModule::IncludeModule("form"))
 					    );
 
 
-					    //проверяем куда записался гость утро или вечер
+					    //РїСЂРѕРІРµСЂСЏРµРј РєСѓРґР° Р·Р°РїРёСЃР°Р»СЃСЏ РіРѕСЃС‚СЊ СѓС‚СЂРѕ РёР»Рё РІРµС‡РµСЂ
 					    $morning = (isset($oldArValues["form_checkbox_SIMPLE_QUESTION_836"]))?"Y":"N";
 					    $evening = (isset($oldArValues["form_checkbox_SIMPLE_QUESTION_156"]))?"Y":"N";
 
-					    if(($_REQUEST["form_text_235"] <> $oldArValues["form_text_235"]) && ("Y" == $morning)) //если меняем логин
+					    if(($_REQUEST["form_text_235"] <> $oldArValues["form_text_235"]) && ("Y" == $morning)) //РµСЃР»Рё РјРµРЅСЏРµРј Р»РѕРіРёРЅ
 					    {
 
 					        $newLogin = trim($_REQUEST["form_text_235"]);
@@ -282,7 +282,7 @@ if (CModule::IncludeModule("form"))
 
 					        if(!empty($userIsset))
 					        {
-					            $strError .= "Логин " . $newLogin . " занят";
+					            $strError .= "Р›РѕРіРёРЅ " . $newLogin . " Р·Р°РЅСЏС‚";
 					        }
 					        else
 					        {
@@ -290,7 +290,7 @@ if (CModule::IncludeModule("form"))
 					        }
 					    }
 
-					    if($_REQUEST["form_password_236"] <> $oldArValues["form_password_236"]) //если меняем пароль
+					    if($_REQUEST["form_password_236"] <> $oldArValues["form_password_236"]) //РµСЃР»Рё РјРµРЅСЏРµРј РїР°СЂРѕР»СЊ
 					    {
 
 					        if($_REQUEST["form_password_236"] == $_REQUEST["form_password_237"])
@@ -302,7 +302,7 @@ if (CModule::IncludeModule("form"))
 					        }
 					        else
 					        {
-					            $strError .= "Подтвержденние пароля не совпадает с введенным паролем<br />";
+					            $strError .= "РџРѕРґС‚РІРµСЂР¶РґРµРЅРЅРёРµ РїР°СЂРѕР»СЏ РЅРµ СЃРѕРІРїР°РґР°РµС‚ СЃ РІРІРµРґРµРЅРЅС‹Рј РїР°СЂРѕР»РµРј<br />";
 					        }
 					    }
 
@@ -1054,7 +1054,7 @@ if (CModule::IncludeModule("form"))
 		$arResult["REQUIRED_STAR"] = $arResult["REQUIRED_SIGN"];
 
 /*---------------------------------------------------*/
-//     ФОРМИРУЕМ ВЫВОД ПОЛЬЗОВАТЕЛЬСКИХ ПОЛЕЙ        //
+//     Р¤РћР РњРР РЈР•Рњ Р’Р«Р’РћР” РџРћР›Р¬Р—РћР’РђРўР•Р›Р¬РЎРљРРҐ РџРћР›Р•Р™        //
 /*---------------------------------------------------*/
 /*		$rsUser = CUser::GetByID($arParams["RESULT_USER"]);
 		$thisUser = $rsUser->Fetch();

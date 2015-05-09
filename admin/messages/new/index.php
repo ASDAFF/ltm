@@ -8,9 +8,9 @@ $page = "/admin/" . $exhibCode . "/messages/";
 ?>
 <div class="menu">
     <ul>
-        <li><a href="<?= $page?>inbox/" class="custom-buttom">Входящие</a></li>
-        <li><a href="<?= $page?>sent/" class="custom-buttom" >Исходящие</a></li>
-        <li class="active" ><a href="<?= $page?>new/" class="custom-buttom">Написать</a></li>
+        <li><a href="<?= $page?>inbox/" class="custom-buttom">Р’С…РѕРґСЏС‰РёРµ</a></li>
+        <li><a href="<?= $page?>sent/" class="custom-buttom" >РСЃС…РѕРґСЏС‰РёРµ</a></li>
+        <li class="active" ><a href="<?= $page?>new/" class="custom-buttom">РќР°РїРёСЃР°С‚СЊ</a></li>
     </ul>
 </div>
 

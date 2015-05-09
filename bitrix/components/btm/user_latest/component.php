@@ -1,7 +1,7 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 /*--------------- TO DO -------------------*/
-//ƒÓ·‡‚ËÚ¸ —Ú‡ÚÛÒ ‘ÓÏ˚ ‚ œ‡‡ÏÂÚ˚
-//œÓ‚ÂÍ‡, ÂÒÎË ÌÂÚ œÓÎ¸ÁÓ‚‡ÚÂÎÂÈ
+//–î–æ–±–∞–≤–∏—Ç—å –°—Ç–∞—Ç—É—Å –§–æ—Ä–º—ã –≤ –ü–∞—Ä–∞–º–µ—Ç—Ä—ã
+//–ü—Ä–æ–≤–µ—Ä–∫–∞, –µ—Å–ª–∏ –Ω–µ—Ç –ü–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª–µ–π
 
 $arResult["ERROR_MESSAGE"] = "";
 $arResult["MESSAGE"] = "";
@@ -23,23 +23,23 @@ if(strLen($arParams["USER_COUNT"])<=0){
 }
 
 if(strLen($arParams["USER"])<=0){
-	$arResult["ERROR_MESSAGE"] = "ÕÂ ‚‚Â‰ÂÌ˚ ‰‡ÌÌ˚Â ÔÓ œÓÎ¸ÁÓ‚‡ÚÂÎˇÏ!<br />";
+	$arResult["ERROR_MESSAGE"] = "–ù–µ –≤–≤–µ–¥–µ–Ω—ã –¥–∞–Ω–Ω—ã–µ –ø–æ –ü–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª—è–º!<br />";
 }
 
 if(strLen($arParams["FORM_ID"])<=0){
-	$arResult["ERROR_MESSAGE"] = "ÕÂ ‚‚Â‰ÂÌ˚ ‰‡ÌÌ˚Â ÔÓ –ÂÁÛÎ¸Ú‡Ú‡Ï ÔÓÎ¸ÁÓ‚‡ÚÂÎÂÈ!<br />";
+	$arResult["ERROR_MESSAGE"] = "–ù–µ –≤–≤–µ–¥–µ–Ω—ã –¥–∞–Ω–Ω—ã–µ –ø–æ –†–µ–∑—É–ª—å—Ç–∞—Ç–∞–º –ø–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª–µ–π!<br />";
 }
 
 /*---------------------------------------------------*/
-//           ‘Œ–Ã»–”≈Ã ¬€¬Œƒ ƒÀﬂ ÿ¿¡ÀŒÕ¿             //
+//           –§–û–†–ú–ò–†–£–ï–ú –í–´–í–û–î –î–õ–Ø –®–ê–ë–õ–û–ù–ê             //
 /*---------------------------------------------------*/
 if($arResult["ERROR_MESSAGE"] == '')
 {
-	//—œ»—Œ  œŒÀ‹«Œ¬¿“≈À≈…
+	//–°–ü–ò–°–û–ö –ü–û–õ–¨–ó–û–í–ê–¢–ï–õ–ï–ô
 	$filter = Array(
 		"GROUPS_ID"  => Array($arParams["USER"])
 	);
-	$rsUsers = CUser::GetList(($by="id"), ($order="desc"), $filter, array("SELECT"=>array("UF_*"), "NAV_PARAMS" => array("nPageSize"=>$arParams["USER_COUNT"]))); // ‚˚·Ë‡ÂÏ ÔÓÎ¸ÁÓ‚‡ÚÂÎÂÈ
+	$rsUsers = CUser::GetList(($by="id"), ($order="desc"), $filter, array("SELECT"=>array("UF_*"), "NAV_PARAMS" => array("nPageSize"=>$arParams["USER_COUNT"]))); // –≤—ã–±–∏—Ä–∞–µ–º –ø–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª–µ–π
 	$countUsers = 0;
 	$resultFormId = "";
 	while($arUsersTemp=$rsUsers->Fetch()){
@@ -51,10 +51,10 @@ if($arResult["ERROR_MESSAGE"] == '')
 	$resultFormId = substr($resultFormId, 3);
 	$arResult["USERS"]["COUNT"] = $countUsers;
 
-	//–≈«”À‹“¿“€ œŒÀ‹«Œ¬¿“≈À≈…
+	//–†–ï–ó–£–õ–¨–¢–ê–¢–´ –ü–û–õ–¨–ó–û–í–ê–¢–ï–õ–ï–ô
 	CForm::GetResultAnswerArray($arParams["FORM_ID"], $arrColumns, $arrAnswers, $arrAnswersVarname, array("RESULT_ID" => $resultFormId));
 	
-	//—œ»—Œ  œŒÀ‹«Œ¬¿“≈À≈… — œŒÀﬂÃ»
+	//–°–ü–ò–°–û–ö –ü–û–õ–¨–ó–û–í–ê–¢–ï–õ–ï–ô –° –ü–û–õ–Ø–ú–ò
 	for($i=0; $i<$countUsers; $i++){
 		$arResult["USERS"][$i]["ID"] = $arUsers[$i]["ID"];
 		$arResult["USERS"][$i]["ANKETA"] = $arUsers[$i]["UF_ANKETA"];

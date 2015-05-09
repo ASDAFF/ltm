@@ -1,6 +1,6 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 
-//ïîëó÷àåì äàííûå âåáôîðìû êîìïàíèè
+//Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð²ÐµÐ±Ñ„Ð¾Ñ€Ð¼Ñ‹ ÐºÐ¾Ð¼Ð¿Ð°Ð½Ð¸Ð¸
 
 $FORM_COMPANY_ID = $arParams["COMPANY_FORM_ID"];
 CForm::GetDataByID(
@@ -12,7 +12,7 @@ CForm::GetDataByID(
     $arResult["COMPANY_FORM"]["MULTISELECT"]
 );
 
-//ïîëó÷àåì äàííûå âåáôîðìû Ó÷àñòíèêà
+//Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð²ÐµÐ±Ñ„Ð¾Ñ€Ð¼Ñ‹ Ð£Ñ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ°
 
 $FORM_PARTICIPANT_ID = $arParams["PARTICIPANT_FORM_ID"];
 CForm::GetDataByID(

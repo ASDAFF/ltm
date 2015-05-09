@@ -1,22 +1,22 @@
 <?
-$MESS['DOKA_MEET_TITLE_ADD'] = 'Íîâûé òàéìñëîò';
-$MESS['DOKA_MEET_TITLE_UPDATE'] = 'Òàéìñëîò #NAME# äëÿ âûñòàâêè #EXHIBITION_ID# - Ðåäàêòèðîâàíèå';
-$MESS['DOKA_MEET_LIST'] = 'Ñïèñîê òàéìñëîòîâ';
-$MESS['DOKA_MEET_ADD_NEW'] = 'Äîáàâèòü';
-$MESS['DOKA_MEET_DELETE'] = 'Óäàëèòü';
-$MESS['DOKA_MEET_DELETE_CONF'] = 'Âû óâåðåíû, ÷òî õîòèòå óäàëèòü äàííûé òàéìñëîò? Âñå äàííûå áóäóò áåçâîçâðàòíî óòåðÿíû.';
-$MESS['DOKA_MEET_NAME_REQ'] = 'Íàçâàíèå';
-$MESS['DOKA_MEET_TAB'] = 'Íàñòðîéêè';
-$MESS['DOKA_MEET_TAB_DESCR'] = 'Íàñòðîéêè òàéìñëîòà';
-$MESS['DOKA_MEET_SAVE_OK'] = "Íàñòðîéêè óñïåøíî ñîõðàíåíû.";
+$MESS['DOKA_MEET_TITLE_ADD'] = 'ÐÐ¾Ð²Ñ‹Ð¹ Ñ‚Ð°Ð¹Ð¼ÑÐ»Ð¾Ñ‚';
+$MESS['DOKA_MEET_TITLE_UPDATE'] = 'Ð¢Ð°Ð¹Ð¼ÑÐ»Ð¾Ñ‚ #NAME# Ð´Ð»Ñ Ð²Ñ‹ÑÑ‚Ð°Ð²ÐºÐ¸ #EXHIBITION_ID# - Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ';
+$MESS['DOKA_MEET_LIST'] = 'Ð¡Ð¿Ð¸ÑÐ¾Ðº Ñ‚Ð°Ð¹Ð¼ÑÐ»Ð¾Ñ‚Ð¾Ð²';
+$MESS['DOKA_MEET_ADD_NEW'] = 'Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ';
+$MESS['DOKA_MEET_DELETE'] = 'Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ';
+$MESS['DOKA_MEET_DELETE_CONF'] = 'Ð’Ñ‹ ÑƒÐ²ÐµÑ€ÐµÐ½Ñ‹, Ñ‡Ñ‚Ð¾ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ ÑƒÐ´Ð°Ð»Ð¸Ñ‚ÑŒ Ð´Ð°Ð½Ð½Ñ‹Ð¹ Ñ‚Ð°Ð¹Ð¼ÑÐ»Ð¾Ñ‚? Ð’ÑÐµ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð±ÑƒÐ´ÑƒÑ‚ Ð±ÐµÐ·Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‚Ð½Ð¾ ÑƒÑ‚ÐµÑ€ÑÐ½Ñ‹.';
+$MESS['DOKA_MEET_NAME_REQ'] = 'ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ';
+$MESS['DOKA_MEET_TAB'] = 'ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸';
+$MESS['DOKA_MEET_TAB_DESCR'] = 'ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸ Ñ‚Ð°Ð¹Ð¼ÑÐ»Ð¾Ñ‚Ð°';
+$MESS['DOKA_MEET_SAVE_OK'] = "ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ñ‹.";
 
-$MESS['DOKA_MEET_NAME'] = "Ïðîìåæóòîê âðåìåíè [××:ìì-××:ìì]";
-$MESS['DOKA_MEET_EXHIBITION_ID'] = "Âûñòàâêà";
-$MESS['DOKA_MEET_SORT'] = "Ñîðòèðîâêà";
-$MESS['DOKA_MEET_TIME_FROM'] = "Îò (ìèí)";
-$MESS['DOKA_MEET_TIME_TO'] = "Äî (ìèí)";
-$MESS['DOKA_MEET_SLOT_TYPE'] = "Òèï òàéìñëîòà";
-$MESS['DOKA_MEET_MEET'] = "Âñòðå÷à";
-$MESS['DOKA_MEET_COFFEE'] = "Êîôåáðåéê";
-$MESS['DOME_MEET_CHOOSE_EXHIBITION'] = "Âûáåðèòå âûñòàâêó";
+$MESS['DOKA_MEET_NAME'] = "ÐŸÑ€Ð¾Ð¼ÐµÐ¶ÑƒÑ‚Ð¾Ðº Ð²Ñ€ÐµÐ¼ÐµÐ½Ð¸ [Ð§Ð§:Ð¼Ð¼-Ð§Ð§:Ð¼Ð¼]";
+$MESS['DOKA_MEET_EXHIBITION_ID'] = "Ð’Ñ‹ÑÑ‚Ð°Ð²ÐºÐ°";
+$MESS['DOKA_MEET_SORT'] = "Ð¡Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÐ°";
+$MESS['DOKA_MEET_TIME_FROM'] = "ÐžÑ‚ (Ð¼Ð¸Ð½)";
+$MESS['DOKA_MEET_TIME_TO'] = "Ð”Ð¾ (Ð¼Ð¸Ð½)";
+$MESS['DOKA_MEET_SLOT_TYPE'] = "Ð¢Ð¸Ð¿ Ñ‚Ð°Ð¹Ð¼ÑÐ»Ð¾Ñ‚Ð°";
+$MESS['DOKA_MEET_MEET'] = "Ð’ÑÑ‚Ñ€ÐµÑ‡Ð°";
+$MESS['DOKA_MEET_COFFEE'] = "ÐšÐ¾Ñ„ÐµÐ±Ñ€ÐµÐ¹Ðº";
+$MESS['DOME_MEET_CHOOSE_EXHIBITION'] = "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð²Ñ‹ÑÑ‚Ð°Ð²ÐºÑƒ";
 ?>

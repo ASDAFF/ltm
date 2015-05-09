@@ -8,21 +8,21 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 	<input type="hidden" name="app" value="<?=$arResult['APP']?>" />
     <table width="100%" border="0" cellspacing="0" cellpadding="5" class="form_edit">
 		<tr>
-        	<td width="130">От:</td>
+        	<td width="130">РћС‚:</td>
 			<td>
 			<?=$arResult['SENDER']['company_name']?><br />
 			<?=$arResult['SENDER']['repr_name']?>
             </td>
 		</tr>
 		<tr>
-        	<td>Кому:</td>
+        	<td>РљРѕРјСѓ:</td>
 			<td>
 			<?=$arResult['RECEIVER']['company_name']?><br />
 			<?=$arResult['RECEIVER']['repr_name']?>
             </td>
 		</tr>
 		<tr>
-        	<td>Время:</td>
+        	<td>Р’СЂРµРјСЏ:</td>
 			<td><?=$arResult['TIMESLOT']['name']?></td>
 		</tr>
      </table>

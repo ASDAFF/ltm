@@ -33,9 +33,9 @@ $arFilter = array(
 	"EXHIBITION_ID" => (int)$find_EXHIBITION_ID,
 );
 
-// Удаление
+// РЈРґР°Р»РµРЅРёРµ
 if(($arID = $lAdmin->GroupAction()) && check_bitrix_sessid()) {
-    // пройдем по списку элементов
+    // РїСЂРѕР№РґРµРј РїРѕ СЃРїРёСЃРєСѓ СЌР»РµРјРµРЅС‚РѕРІ
     foreach($arID as $ID) {
         if(strlen($ID)<=0)
             continue;
@@ -172,7 +172,7 @@ $lAdmin->CheckListMode();
 ?>
 <form method="GET" name="find_form" id="find_form" action="<?echo $APPLICATION->GetCurPage()?>">
 <?
-// Фильтр по выставкам
+// Р¤РёР»СЊС‚СЂ РїРѕ РІС‹СЃС‚Р°РІРєР°Рј
 $arFindFields['EXHIBITION_ID'] = GetMessage('DOKA_FILTER_EXHIBITION_ID');
 $filterUrl = $APPLICATION->GetCurPageParam();
 $oFilter = new CAdminFilter($sTableID."_filter", $arFindFields, array("table_id" => $sTableID, "url" => $filterUrl));
@@ -209,7 +209,7 @@ $oFilter = new CAdminFilter($sTableID."_filter", $arFindFields, array("table_id"
         <td><?echo GetMessage("DOKA_FILTER_EXHIBITION_ID")?>:</td>
         <td>
         	<?
-        	// Получим список выставок
+        	// РџРѕР»СѓС‡РёРј СЃРїРёСЃРѕРє РІС‹СЃС‚Р°РІРѕРє
         	$values = array( 'REFERENCE' => array(GetMessage('DOKA_FILTER_EXHIBITION_ID_ALL')), 'REFERENCE_ID' => array('') );
         	$exhibition_list = DMS::GetList(array(), array(), array('NAME', 'ID'));
         	while ( $exhibition = $exhibition_list->Fetch()) {

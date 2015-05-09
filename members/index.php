@@ -4,7 +4,7 @@ $APPLICATION->SetPageProperty("description", "List of participants fo Luxury Tra
 $title = "";
 if(LANGUAGE_ID == "ru")
 {
-	$title = "Ó×ÀÑÒÍÈÊÈ";
+	$title = "Ð£Ð§ÐÐ¡Ð¢ÐÐ˜ÐšÐ˜";
 }
 elseif(LANGUAGE_ID == "en")
 {
@@ -15,7 +15,7 @@ $APPLICATION->SetPageProperty("NOT_SHOW_NAV_CHAIN", "Y");
 $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 ?>
 <? 
-//ðåäèðåêòèì íà áëèæàéøóþ âûñòàâêó
+//Ñ€ÐµÐ´Ð¸Ñ€ÐµÐºÑ‚Ð¸Ð¼ Ð½Ð° Ð±Ð»Ð¸Ð¶Ð°Ð¹ÑˆÑƒÑŽ Ð²Ñ‹ÑÑ‚Ð°Ð²ÐºÑƒ
 if($APPLICATION->GetCurDir() == "/members/" && CModule::IncludeModule("iblock"))
 {
 	$rsElements = CIBlockElement::GetList(

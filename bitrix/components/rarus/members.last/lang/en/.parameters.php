@@ -18,7 +18,7 @@ $MESS ['T_IBLOCK_DESC_ACTIVE_DATE_FORMAT'] = "Date display format";
 $MESS ['CP_BNL_FIELD_CODE'] = "Fields";
 $MESS ['CP_BNL_CACHE_GROUPS'] = "Respect Access Permissions";
 $MESS ['T_IBLOCK_DESC_USER_GROUPS'] = "User groups";
-$MESS ['MEMB_COMPANY_NAME_ID'] = "ID Field «Company name»";
-$MESS ['MEMB_LOGIN_ID'] = "ID Field «Login»";
+$MESS ['MEMB_COMPANY_NAME_ID'] = "ID Field Â«Company nameÂ»";
+$MESS ['MEMB_LOGIN_ID'] = "ID Field Â«LoginÂ»";
 $MESS ['MEMB_URL_TEMPLATE'] = "Detail page URL";
 ?>

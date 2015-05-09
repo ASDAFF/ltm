@@ -1,7 +1,7 @@
 <?
-$MESS["MESSAGES_INBOX"] = "Âõîäÿùèå";
-$MESS["MESSAGES_NEW"] = "Íàïèñàòü ïèñüìî";
-$MESS["MESSAGES_SENT"] = "Îòïðàâëåííûå";
-$MESS["MESSAGES_CONTACT"] = "Ñâÿçàòüñÿ ñ îðãàíèçàòîðàìè";
-$MESS["MESSAGES_BLOCKED"] = "Ñîîáùåíèÿ çàáëîêèðîâàíû îðãàíèçàòîðàìè";
+$MESS["MESSAGES_INBOX"] = "Ð’Ñ…Ð¾Ð´ÑÑ‰Ð¸Ðµ";
+$MESS["MESSAGES_NEW"] = "ÐÐ°Ð¿Ð¸ÑÐ°Ñ‚ÑŒ Ð¿Ð¸ÑÑŒÐ¼Ð¾";
+$MESS["MESSAGES_SENT"] = "ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð½Ñ‹Ðµ";
+$MESS["MESSAGES_CONTACT"] = "Ð¡Ð²ÑÐ·Ð°Ñ‚ÑŒÑÑ Ñ Ð¾Ñ€Ð³Ð°Ð½Ð¸Ð·Ð°Ñ‚Ð¾Ñ€Ð°Ð¼Ð¸";
+$MESS["MESSAGES_BLOCKED"] = "Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ Ð·Ð°Ð±Ð»Ð¾ÐºÐ¸Ñ€Ð¾Ð²Ð°Ð½Ñ‹ Ð¾Ñ€Ð³Ð°Ð½Ð¸Ð·Ð°Ñ‚Ð¾Ñ€Ð°Ð¼Ð¸";
 ?>

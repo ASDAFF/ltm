@@ -10,7 +10,7 @@
 		$by = htmlspecialcharsEx(trim($_REQUEST["by"]));
 		$type = htmlspecialcharsEx(trim($_REQUEST["type"]));
 
-		//определение из какой группы брать данные
+		//РѕРїСЂРµРґРµР»РµРЅРёРµ РёР· РєР°РєРѕР№ РіСЂСѓРїРїС‹ Р±СЂР°С‚СЊ РґР°РЅРЅС‹Рµ
 		switch ($by)
 		{
 			case "alphabet" : $sort = "BY_ALPHABET"; break;
@@ -25,11 +25,11 @@
 <div id="session-tab-2">
 	<div class="pull-overflow sorting-company">
 		<div class="list">
-			<a href="<?= $APPLICATION->GetCurPageParam("by=alphabet", array("by", "EXHIBIT_CODE", "type"));?>" title="" <?= ($by=="alphabet")?"class='selected'":"";?>>По алфавиту</a>
-			<a href="<?= $APPLICATION->GetCurPageParam("by=priority_areas", array("by", "EXHIBIT_CODE", "type"));?>" title="" <?= ($by=="priority_areas")?"class='selected'":"";?>>По странам</a>
-			<a href="<?= $APPLICATION->GetCurPageParam("by=business", array("by", "EXHIBIT_CODE", "type"));?>" title="" <?= ($by=="business")?"class='selected'":"";?>>По виду деятельности</a>
-			<a href="<?= $APPLICATION->GetCurPageParam("by=slots", array("by", "EXHIBIT_CODE", "type"));?>" title="" <?= ($by=="slots")?"class='selected'":"";?>>По свободному времени</a>
-			<a href="<?= $APPLICATION->GetCurPageParam("by=all", array("by", "EXHIBIT_CODE", "type"));?>" title="" <?= ($by=="all" || !$by)?"class='selected'":"";?>>Все</a>
+			<a href="<?= $APPLICATION->GetCurPageParam("by=alphabet", array("by", "EXHIBIT_CODE", "type"));?>" title="" <?= ($by=="alphabet")?"class='selected'":"";?>>РџРѕ Р°Р»С„Р°РІРёС‚Сѓ</a>
+			<a href="<?= $APPLICATION->GetCurPageParam("by=priority_areas", array("by", "EXHIBIT_CODE", "type"));?>" title="" <?= ($by=="priority_areas")?"class='selected'":"";?>>РџРѕ СЃС‚СЂР°РЅР°Рј</a>
+			<a href="<?= $APPLICATION->GetCurPageParam("by=business", array("by", "EXHIBIT_CODE", "type"));?>" title="" <?= ($by=="business")?"class='selected'":"";?>>РџРѕ РІРёРґСѓ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё</a>
+			<a href="<?= $APPLICATION->GetCurPageParam("by=slots", array("by", "EXHIBIT_CODE", "type"));?>" title="" <?= ($by=="slots")?"class='selected'":"";?>>РџРѕ СЃРІРѕР±РѕРґРЅРѕРјСѓ РІСЂРµРјРµРЅРё</a>
+			<a href="<?= $APPLICATION->GetCurPageParam("by=all", array("by", "EXHIBIT_CODE", "type"));?>" title="" <?= ($by=="all" || !$by)?"class='selected'":"";?>>Р’СЃРµ</a>
 		</div>
 		<?if($by == "alphabet"):?>
 
@@ -63,15 +63,15 @@
 
 	<table class="sorting-company">
 		<tr>
-			<th>Компания</th>
-			<th>Представитель</th>
-			<th>Написать</th>
-			<th class="free-slots">Таймслоты</th>
-			<th>Запрос</th>
+			<th>РљРѕРјРїР°РЅРёСЏ</th>
+			<th>РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ</th>
+			<th>РќР°РїРёСЃР°С‚СЊ</th>
+			<th class="free-slots">РўР°Р№РјСЃР»РѕС‚С‹</th>
+			<th>Р—Р°РїСЂРѕСЃ</th>
 		</tr>
 
 		<?
-		//определение из какой группы брать данные
+		//РѕРїСЂРµРґРµР»РµРЅРёРµ РёР· РєР°РєРѕР№ РіСЂСѓРїРїС‹ Р±СЂР°С‚СЊ РґР°РЅРЅС‹Рµ
 
 		if($sort != "BY_ALL")
 		{
@@ -99,7 +99,7 @@
 							<div><?= implode(", ", $userFormData["BUSINESS_TYPE"])?></div>
 						</td>
 						<td class="representative"><?= $userFormData["PARTICIPANT"]["FIO"]?></td>
-						<td class="contact"><a href="/cabinet/service/write.php?id=<?= $arUser["ID"]?>&exhib_code=<?=$_REQUEST["EXHIBIT_CODE"]?>" target="_blank" onclick="newWind('/cabinet/service/write.php?id=<?= $arUser["ID"]?>&exhib_code=<?=$_REQUEST["EXHIBIT_CODE"]?>'); return false;">Написать<br>сообщение</a></td>
+						<td class="contact"><a href="/cabinet/service/write.php?id=<?= $arUser["ID"]?>&exhib_code=<?=$_REQUEST["EXHIBIT_CODE"]?>" target="_blank" onclick="newWind('/cabinet/service/write.php?id=<?= $arUser["ID"]?>&exhib_code=<?=$_REQUEST["EXHIBIT_CODE"]?>'); return false;">РќР°РїРёСЃР°С‚СЊ<br>СЃРѕРѕР±С‰РµРЅРёРµ</a></td>
                     <?
                     if (count ($userFormData["TIME_SLOTS"]) && $arResult['IS_ACTIVE']){
 						?>
@@ -111,7 +111,7 @@
 						</select>
 					</td>
 					<td class="request">
-						<a href="javascript:void(0)" title="" onclick="sendRequest<?=$arResult["USER_TYPE"]?>(this,<?= $arResult["APP_ID"]?>,<?= $arResult["USER_ID"]?>,<?= $arUser["ID"]?>,'g')">Отправить<br>запрос</a>
+						<a href="javascript:void(0)" title="" onclick="sendRequest<?=$arResult["USER_TYPE"]?>(this,<?= $arResult["APP_ID"]?>,<?= $arResult["USER_ID"]?>,<?= $arUser["ID"]?>,'g')">РћС‚РїСЂР°РІРёС‚СЊ<br>Р·Р°РїСЂРѕСЃ</a>
 					</td>
 						<?
 					}
@@ -119,13 +119,13 @@
 						?><td colspan="2"><?=GetMessage("SESSION_BLOCK");?></td><?
 					}
 					else{
-						?><td colspan="2">Расписание полное</td><?
+						?><td colspan="2">Р Р°СЃРїРёСЃР°РЅРёРµ РїРѕР»РЅРѕРµ</td><?
 					}
 					?>
 					</tr>
 					<?
 				}
-				if(!$type && $by == "priority_areas"  || $by == "slots" || $by == "business")//если нет типа выводим первый и выходим, а то выведет всех по много раз
+				if(!$type && $by == "priority_areas"  || $by == "slots" || $by == "business")//РµСЃР»Рё РЅРµС‚ С‚РёРїР° РІС‹РІРѕРґРёРј РїРµСЂРІС‹Р№ Рё РІС‹С…РѕРґРёРј, Р° С‚Рѕ РІС‹РІРµРґРµС‚ РІСЃРµС… РїРѕ РјРЅРѕРіРѕ СЂР°Р·
 				{
 					break;
 				}
@@ -134,7 +134,7 @@
 		else
 		{
 			foreach ($arResult["SESSION"][$sort] as $data):
-			//Для всех пользователей
+			//Р”Р»СЏ РІСЃРµС… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 			$arUser = $arResult["SESSION"]["USERS"][$data];
 			$userFormData = $arUser["FORM_DATA"];
 			?>
@@ -148,7 +148,7 @@
 						<div><?= implode(", ", $userFormData["BUSINESS_TYPE"])?></div>
 					</td>
 					<td class="representative"><?= $userFormData["PARTICIPANT"]["FIO"]?></td>
-					<td class="contact"><a href="/cabinet/service/write.php?id=<?= $arUser["ID"]?>&EXHIBIT_CODE=<?=$_REQUEST["EXHIBIT_CODE"]?>" target="_blank" onclick="newWind('/cabinet/service/write.php?id=<?= $arUser["ID"]?>&EXHIBIT_CODE=<?=$_REQUEST["EXHIBIT_CODE"]?>'); return false;">Написать<br>сообщение</a></td>
+					<td class="contact"><a href="/cabinet/service/write.php?id=<?= $arUser["ID"]?>&EXHIBIT_CODE=<?=$_REQUEST["EXHIBIT_CODE"]?>" target="_blank" onclick="newWind('/cabinet/service/write.php?id=<?= $arUser["ID"]?>&EXHIBIT_CODE=<?=$_REQUEST["EXHIBIT_CODE"]?>'); return false;">РќР°РїРёСЃР°С‚СЊ<br>СЃРѕРѕР±С‰РµРЅРёРµ</a></td>
                     <?
                     if (count ($userFormData["TIME_SLOTS"]) && $arResult['IS_ACTIVE']){
 						?>
@@ -160,7 +160,7 @@
 						</select>
 					</td>
 					<td class="request">
-						<a href="javascript:void(0)" title="" onclick="sendRequest<?=$arResult["USER_TYPE"]?>(this,<?= $arResult["APP_ID"]?>,<?= $arResult["USER_ID"]?>,<?= $arUser["ID"]?>,'g')">Отправить<br>запрос</a>
+						<a href="javascript:void(0)" title="" onclick="sendRequest<?=$arResult["USER_TYPE"]?>(this,<?= $arResult["APP_ID"]?>,<?= $arResult["USER_ID"]?>,<?= $arUser["ID"]?>,'g')">РћС‚РїСЂР°РІРёС‚СЊ<br>Р·Р°РїСЂРѕСЃ</a>
 					</td>
 						<?
 					}
@@ -168,7 +168,7 @@
 						?><td colspan="2"><?=GetMessage("SESSION_BLOCK");?></td><?
 					}
 					else{
-						?><td colspan="2">Расписание полное</td><?
+						?><td colspan="2">Р Р°СЃРїРёСЃР°РЅРёРµ РїРѕР»РЅРѕРµ</td><?
 					}
 					?>
 				</tr>

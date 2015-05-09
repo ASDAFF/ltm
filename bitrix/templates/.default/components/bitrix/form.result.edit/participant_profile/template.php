@@ -89,7 +89,7 @@
 
 </div>
 <?=$arResult["FORM_FOOTER"]?>
-<?//âåøàåì îáðàáîò÷èê êîïèðîâàíèÿ èìåéëà â ïîäòâåðæäåíèå èìåéëà
+<?//Ð²ÐµÑˆÐ°ÐµÐ¼ Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚Ñ‡Ð¸Ðº ÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ Ð¸Ð¼ÐµÐ¹Ð»Ð° Ð² Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð¸Ðµ Ð¸Ð¼ÐµÐ¹Ð»Ð°
 if(strlen($arParams["EMAIL_SID"]) > 0 && strlen($arParams["CONF_EMAIL_SID"]) > 0)
 {
 	$email_question = $arResult["QUESTIONS"][$arParams["EMAIL_SID"]];
@@ -100,7 +100,7 @@ if(strlen($arParams["EMAIL_SID"]) > 0 && strlen($arParams["CONF_EMAIL_SID"]) > 0
 	$emailFieldName = "form_{$email_question["STRUCTURE"][0]["FIELD_TYPE"]}_{$email_question["STRUCTURE"][0]["ID"]}";
 	$confEmailFieldName = "form_{$conf_email_question["STRUCTURE"][0]["FIELD_TYPE"]}_{$conf_email_question["STRUCTURE"][0]["ID"]}";
 
-	//âûâàëèâàåì îáðàáîò÷èê
+	//Ð²Ñ‹Ð²Ð°Ð»Ð¸Ð²Ð°ÐµÐ¼ Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚Ñ‡Ð¸Ðº
 	?>
 	<script type="text/javascript">
 	$(function() {

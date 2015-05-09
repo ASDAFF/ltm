@@ -1,10 +1,10 @@
 <?
-$MESS ['ADMIN_MAIN'] = "Êàáèíåò àäìèíèñòðàòîðà";
-$MESS ['ADMIN_MAIN_GUEST'] = "Íåïîäòâåðæäåííûõ ãîñòåé: ";
-$MESS ['ADMIN_MAIN_PARTICIP'] = "Íåïîäòâåðæäåííûõ ó÷àñòíèêîâ: ";
-$MESS ['ADMIN_MAIN_PAY'] = "Íåîïëàòèâøèõ ó÷àñòíèêîâ: ";
-$MESS ['ADMIN_MAIN_GUEST_MORNING'] = "Ïîäòâåðæäåííûõ ãîñòåé íà ÓÒÐÎ: ";
-$MESS ['ADMIN_MAIN_GUEST_EVENING'] = "Ïîäòâåðæäåííûõ ãîñòåé íà ÂÅ×ÅÐ: ";
-$MESS ['ADMIN_MAIN_GUEST_HB'] = "Ïîäòâåðæäåííûõ HOSTED BUYERS: ";
-$MESS ['ADMIN_MAIN_MORE'] = "Ïåðåéòè íà ñòðàíèöó";
+$MESS ['ADMIN_MAIN'] = "ÐšÐ°Ð±Ð¸Ð½ÐµÑ‚ Ð°Ð´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ð°";
+$MESS ['ADMIN_MAIN_GUEST'] = "ÐÐµÐ¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð½Ñ‹Ñ… Ð³Ð¾ÑÑ‚ÐµÐ¹: ";
+$MESS ['ADMIN_MAIN_PARTICIP'] = "ÐÐµÐ¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð½Ñ‹Ñ… ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¾Ð²: ";
+$MESS ['ADMIN_MAIN_PAY'] = "ÐÐµÐ¾Ð¿Ð»Ð°Ñ‚Ð¸Ð²ÑˆÐ¸Ñ… ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¾Ð²: ";
+$MESS ['ADMIN_MAIN_GUEST_MORNING'] = "ÐŸÐ¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð½Ñ‹Ñ… Ð³Ð¾ÑÑ‚ÐµÐ¹ Ð½Ð° Ð£Ð¢Ð Ðž: ";
+$MESS ['ADMIN_MAIN_GUEST_EVENING'] = "ÐŸÐ¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð½Ñ‹Ñ… Ð³Ð¾ÑÑ‚ÐµÐ¹ Ð½Ð° Ð’Ð•Ð§Ð•Ð : ";
+$MESS ['ADMIN_MAIN_GUEST_HB'] = "ÐŸÐ¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð½Ñ‹Ñ… HOSTED BUYERS: ";
+$MESS ['ADMIN_MAIN_MORE'] = "ÐŸÐµÑ€ÐµÐ¹Ñ‚Ð¸ Ð½Ð° ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ñƒ";
 ?>

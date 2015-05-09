@@ -12,24 +12,24 @@ if($arResult["ERROR_MESSAGE"] == ''){
 	$thisStr = array();
 	$thisStr[] = "ID";
 	for($i=0; $i<$arResult["FIELDS"]["COUNT"]; $i++){
-		if($arResult["FIELDS"][$i]["TITLE"] == "Òåëåôîí"){
+		if($arResult["FIELDS"][$i]["TITLE"] == "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"){
 			if($countPhone == 0){
-				$thisStr[] = "Òåëåôîí";
+				$thisStr[] = "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½";
 				$countPhone++;
 			}
 		}
-		elseif($arResult["FIELDS"][$i]["TITLE"] == "Èìÿ" || $arResult["FIELDS"][$i]["TITLE"] == "Ôàìèëèÿ"){
+		elseif($arResult["FIELDS"][$i]["TITLE"] == "Ð˜Ð¼Ñ" || $arResult["FIELDS"][$i]["TITLE"] == "Ð¤Ð°Ð¼Ð¸Ð»Ð¸Ñ"){
 			if($countName == 0){
-				$thisStr[] = "Ïðåäñòàâèòåëü";
+				$thisStr[] = "ÐŸÑ€ÐµÐ´ÑÑ‚Ð°Ð²Ð¸Ñ‚ÐµÐ»ÑŒ";
 				$countName++;
 			}
 		}
-		elseif($arResult["FIELDS"][$i]["TITLE"] != "Ïàðîëü" && strpos($arResult["FIELDS"][$i]["TITLE"], "êîëëåãè") === false && $arResult["FIELDS"][$i]["TITLE"] != "Àëüòåðíàòèâíûé e-mail" && $arResult["FIELDS"][$i]["TITLE"] != "Îïèñàíèå äåÿòåëüíîñòè êîìïàíèè"){
+		elseif($arResult["FIELDS"][$i]["TITLE"] != "ÐŸÐ°Ñ€Ð¾Ð»ÑŒ" && strpos($arResult["FIELDS"][$i]["TITLE"], "ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸") === false && $arResult["FIELDS"][$i]["TITLE"] != "ÐÐ»ÑŒÑ‚ÐµÑ€Ð½Ð°Ñ‚Ð¸Ð²Ð½Ñ‹Ð¹ e-mail" && $arResult["FIELDS"][$i]["TITLE"] != "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ Ð´ÐµÑÑ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚Ð¸ ÐºÐ¾Ð¼Ð¿Ð°Ð½Ð¸Ð¸"){
 
 			$thisStr[] = $arResult["FIELDS"][$i]["TITLE"];
 		}
 	}
-	$thisStr[] = "Ïàðîëü";
+	$thisStr[] = "ÐŸÐ°Ñ€Ð¾Ð»ÑŒ";
 	
 	$excel->writeLine($thisStr);
 	
@@ -41,7 +41,7 @@ if($arResult["ERROR_MESSAGE"] == ''){
 		$thisStr[] = $arResult["USERS"][$j]["ID"];
 		
 		for($i=0; $i<$arResult["FIELDS"]["COUNT"]; $i++){
-			if($arResult["FIELDS"][$i]["TITLE"] == "Òåëåôîí"){
+			if($arResult["FIELDS"][$i]["TITLE"] == "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"){
 				if($countPhone == 0){
 					$phoneStr .= $arResult["USERS"][$j]["FIELDS"][$i];
 					$countPhone++;
@@ -56,7 +56,7 @@ if($arResult["ERROR_MESSAGE"] == ''){
 					$countPhone++;
 				}
 			}
-			elseif($arResult["FIELDS"][$i]["TITLE"] == "Èìÿ" || $arResult["FIELDS"][$i]["TITLE"] == "Ôàìèëèÿ"){
+			elseif($arResult["FIELDS"][$i]["TITLE"] == "Ð˜Ð¼Ñ" || $arResult["FIELDS"][$i]["TITLE"] == "Ð¤Ð°Ð¼Ð¸Ð»Ð¸Ñ"){
 				if($countName == 0){
 					$phoneStr = $arResult["USERS"][$j]["FIELDS"][$i];
 					$countName++;
@@ -68,9 +68,9 @@ if($arResult["ERROR_MESSAGE"] == ''){
 					$countName++;
 				}
 			}
-			elseif($arResult["FIELDS"][$i]["TITLE"] != "Ïàðîëü" && strpos($arResult["FIELDS"][$i]["TITLE"], "êîëëåãè") === false && $arResult["FIELDS"][$i]["TITLE"] != "Àëüòåðíàòèâíûé e-mail" && $arResult["FIELDS"][$i]["TITLE"] != "Îïèñàíèå äåÿòåëüíîñòè êîìïàíèè"){
-				$arResult["USERS"][$j]["FIELDS"][$i]=str_replace("Èíäèâèäóàëüíûå âñòðå÷è ñ ó÷àñòíèêàìè, ïî çàðàíåå ñîñòàâëåííîìó ðàñïèñàíèþ","Âñòðå÷è ñ ó÷àñòíèêàìè",$arResult["USERS"][$j]["FIELDS"][$i]);
-				$arResult["USERS"][$j]["FIELDS"][$i]=str_replace("Ïîñåùåíèå ñåìèíàðà A","Ñåìèíàð À",$arResult["USERS"][$j]["FIELDS"][$i]);
+			elseif($arResult["FIELDS"][$i]["TITLE"] != "ÐŸÐ°Ñ€Ð¾Ð»ÑŒ" && strpos($arResult["FIELDS"][$i]["TITLE"], "ÐºÐ¾Ð»Ð»ÐµÐ³Ð¸") === false && $arResult["FIELDS"][$i]["TITLE"] != "ÐÐ»ÑŒÑ‚ÐµÑ€Ð½Ð°Ñ‚Ð¸Ð²Ð½Ñ‹Ð¹ e-mail" && $arResult["FIELDS"][$i]["TITLE"] != "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ Ð´ÐµÑÑ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚Ð¸ ÐºÐ¾Ð¼Ð¿Ð°Ð½Ð¸Ð¸"){
+				$arResult["USERS"][$j]["FIELDS"][$i]=str_replace("Ð˜Ð½Ð´Ð¸Ð²Ð¸Ð´ÑƒÐ°Ð»ÑŒÐ½Ñ‹Ðµ Ð²ÑÑ‚Ñ€ÐµÑ‡Ð¸ Ñ ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ°Ð¼Ð¸, Ð¿Ð¾ Ð·Ð°Ñ€Ð°Ð½ÐµÐµ ÑÐ¾ÑÑ‚Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð¼Ñƒ Ñ€Ð°ÑÐ¿Ð¸ÑÐ°Ð½Ð¸ÑŽ","Ð’ÑÑ‚Ñ€ÐµÑ‡Ð¸ Ñ ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ°Ð¼Ð¸",$arResult["USERS"][$j]["FIELDS"][$i]);
+				$arResult["USERS"][$j]["FIELDS"][$i]=str_replace("ÐŸÐ¾ÑÐµÑ‰ÐµÐ½Ð¸Ðµ ÑÐµÐ¼Ð¸Ð½Ð°Ñ€Ð° A","Ð¡ÐµÐ¼Ð¸Ð½Ð°Ñ€ Ð",$arResult["USERS"][$j]["FIELDS"][$i]);
 				$thisStr[] = $arResult["USERS"][$j]["FIELDS"][$i];
 			}
 		}

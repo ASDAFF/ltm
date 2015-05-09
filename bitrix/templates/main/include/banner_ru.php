@@ -1,3 +1,3 @@
-<a href="/members/" title="Êàòàëîã ó÷àñòíèêîâ">
-<img src="<?=SITE_TEMPLATE_PATH?>/images/banner.png" alt="Êàòàëîã ó÷àñòíèêîâ"  />
+<a href="/members/" title="ÐšÐ°Ñ‚Ð°Ð»Ð¾Ð³ ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¾Ð²">
+<img src="<?=SITE_TEMPLATE_PATH?>/images/banner.png" alt="ÐšÐ°Ñ‚Ð°Ð»Ð¾Ð³ ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¾Ð²"  />
 </a>

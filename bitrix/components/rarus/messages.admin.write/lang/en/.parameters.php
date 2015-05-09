@@ -1,12 +1,12 @@
 <?
-$MESS ['ADMIN_MAIN_MAIN_SETTINGS'] = "Îñíîâíûå ïàðàìåòðû";
-$MESS ['ADMIN_MAIN_PATH_TO_KAB'] = "Ïóòü ê ïàïêå êàáèíåòà àäìèíèñòðàòîðà";
-$MESS ['ADMIN_MAIN_AUTH_PAGE'] = "Ñòðàíèöà àâòîðèçàöèè";
-$MESS ['ADMIN_MAIN_GROUP_ID'] = "Ãðóïïû àäìèíèñòðàòîðîâ";
-$MESS ['ADMIN_MAIN_GUEST'] = "Ãîñòè";
-$MESS ['ADMIN_MAIN_GUEST_HB'] = "Ãîñòè õîñòåä áàéåð";
-$MESS ['ADMIN_MAIN_PARTICIP'] = "Ó÷àñòíèêè";
-$MESS ['ADMIN_MAIN_MESSAGE'] = "Ñîîáùåíèÿ";
+$MESS ['ADMIN_MAIN_MAIN_SETTINGS'] = "ÐžÑÐ½Ð¾Ð²Ð½Ñ‹Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹";
+$MESS ['ADMIN_MAIN_PATH_TO_KAB'] = "ÐŸÑƒÑ‚ÑŒ Ðº Ð¿Ð°Ð¿ÐºÐµ ÐºÐ°Ð±Ð¸Ð½ÐµÑ‚Ð° Ð°Ð´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ð°";
+$MESS ['ADMIN_MAIN_AUTH_PAGE'] = "Ð¡Ñ‚Ñ€Ð°Ð½Ð¸Ñ†Ð° Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð°Ñ†Ð¸Ð¸";
+$MESS ['ADMIN_MAIN_GROUP_ID'] = "Ð“Ñ€ÑƒÐ¿Ð¿Ñ‹ Ð°Ð´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ð¾Ð²";
+$MESS ['ADMIN_MAIN_GUEST'] = "Ð“Ð¾ÑÑ‚Ð¸";
+$MESS ['ADMIN_MAIN_GUEST_HB'] = "Ð“Ð¾ÑÑ‚Ð¸ Ñ…Ð¾ÑÑ‚ÐµÐ´ Ð±Ð°Ð¹ÐµÑ€";
+$MESS ['ADMIN_MAIN_PARTICIP'] = "Ð£Ñ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¸";
+$MESS ['ADMIN_MAIN_MESSAGE'] = "Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ";
 $MESS ['HLM_DEFAULT_EID'] = "ID exhibition";
 $MESS ['HLM_DEFAULT_HLID'] = "ID Highload";
 $MESS ['HLM_COPY_TO_OUTBOX'] = "Copy to outbox";

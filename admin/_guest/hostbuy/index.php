@@ -1,6 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Гости Hosted Buyers");
+$APPLICATION->SetTitle("Р“РѕСЃС‚Рё Hosted Buyers");
 ?>
 <?$APPLICATION->IncludeComponent(
 	"btm:user_accept.admin",

@@ -1,5 +1,5 @@
 <?
-$MESS ['FORM_SERVICE'] = "Âåá-ôîðìû";
-$MESS ['FORM_COMPONENT_NAME'] = "Âåá-ôîðìà";
-$MESS ['FORM_COMPONENT_DESCR'] = "Âåá-ôîðìà";
+$MESS ['FORM_SERVICE'] = "Ð’ÐµÐ±-Ñ„Ð¾Ñ€Ð¼Ñ‹";
+$MESS ['FORM_COMPONENT_NAME'] = "Ð’ÐµÐ±-Ñ„Ð¾Ñ€Ð¼Ð°";
+$MESS ['FORM_COMPONENT_DESCR'] = "Ð’ÐµÐ±-Ñ„Ð¾Ñ€Ð¼Ð°";
 ?>

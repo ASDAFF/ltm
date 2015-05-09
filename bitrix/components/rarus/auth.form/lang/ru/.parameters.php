@@ -1,6 +1,6 @@
 <?
-$MESS["COMP_AUTH_FORM_REGISTER_URL"] = "Ñòðàíèöà ðåãèñòðàöèè";
-$MESS["COMP_AUTH_FORM_FORGOT_PASSWORD_URL"] = "Ñòðàíèöà çàáûòîãî ïàðîëÿ";
-$MESS["COMP_AUTH_FORM_PROFILE_URL"] = "Ñòðàíèöà ïðîôèëÿ";
-$MESS["COMP_AUTH_FORM_SHOW_ERRORS"] = "Ïîêàçûâàòü îøèáêè";
+$MESS["COMP_AUTH_FORM_REGISTER_URL"] = "Ð¡Ñ‚Ñ€Ð°Ð½Ð¸Ñ†Ð° Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸Ð¸";
+$MESS["COMP_AUTH_FORM_FORGOT_PASSWORD_URL"] = "Ð¡Ñ‚Ñ€Ð°Ð½Ð¸Ñ†Ð° Ð·Ð°Ð±Ñ‹Ñ‚Ð¾Ð³Ð¾ Ð¿Ð°Ñ€Ð¾Ð»Ñ";
+$MESS["COMP_AUTH_FORM_PROFILE_URL"] = "Ð¡Ñ‚Ñ€Ð°Ð½Ð¸Ñ†Ð° Ð¿Ñ€Ð¾Ñ„Ð¸Ð»Ñ";
+$MESS["COMP_AUTH_FORM_SHOW_ERRORS"] = "ÐŸÐ¾ÐºÐ°Ð·Ñ‹Ð²Ð°Ñ‚ÑŒ Ð¾ÑˆÐ¸Ð±ÐºÐ¸";
 ?>

@@ -1,13 +1,13 @@
 <?
-$MESS ['COMP_AUTH_REGISTER_URL'] = "Ñòðàíèöà ðåãèñòðàöèè";
-$MESS ['COMP_AUTH_GUEST_URL'] = "Ñòðàíèöà ïðîôèëÿ ãîñòÿ";
-$MESS ['COMP_AUTH_PARTICIP_URL'] = "Ñòðàíèöà ïðîôèëÿ ó÷àñòíèêà";
-$MESS ['COMP_AUTH_ADMIN_URL'] = "Ñòðàíèöà ïðîôèëÿ àäìèíèñòðàòîðà";
-$MESS ['COMP_AUTH_GUEST_GROUP'] = "Ãðóïïà ãîñòÿ";
-$MESS ['COMP_AUTH_PARTICIP_GROUP'] = "Ãðóïïà ó÷àñòíèêà";
-$MESS ['COMP_AUTH_ADMIN_GROUP'] = "Ãðóïïà àäìèíèñòðàòîðà";
-$MESS ['COMP_AUTH_TYPE'] = "Òèï ïîëüçîâàòåëÿ";
-$MESS ['COMP_AUTH_GROUP'] = "Ãðóïïà ïîëüçîâàòåëÿ";
-$MESS ['COMP_AUTH_FORM'] = "ID ôîðìû ïîëüçîâàòåëÿ";
-$MESS ['COMP_AUTH_SHOW_ERRORS'] = "Ïîêàçûâàòü îøèáêè";
+$MESS ['COMP_AUTH_REGISTER_URL'] = "Ð¡Ñ‚Ñ€Ð°Ð½Ð¸Ñ†Ð° Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸Ð¸";
+$MESS ['COMP_AUTH_GUEST_URL'] = "Ð¡Ñ‚Ñ€Ð°Ð½Ð¸Ñ†Ð° Ð¿Ñ€Ð¾Ñ„Ð¸Ð»Ñ Ð³Ð¾ÑÑ‚Ñ";
+$MESS ['COMP_AUTH_PARTICIP_URL'] = "Ð¡Ñ‚Ñ€Ð°Ð½Ð¸Ñ†Ð° Ð¿Ñ€Ð¾Ñ„Ð¸Ð»Ñ ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ°";
+$MESS ['COMP_AUTH_ADMIN_URL'] = "Ð¡Ñ‚Ñ€Ð°Ð½Ð¸Ñ†Ð° Ð¿Ñ€Ð¾Ñ„Ð¸Ð»Ñ Ð°Ð´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ð°";
+$MESS ['COMP_AUTH_GUEST_GROUP'] = "Ð“Ñ€ÑƒÐ¿Ð¿Ð° Ð³Ð¾ÑÑ‚Ñ";
+$MESS ['COMP_AUTH_PARTICIP_GROUP'] = "Ð“Ñ€ÑƒÐ¿Ð¿Ð° ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ°";
+$MESS ['COMP_AUTH_ADMIN_GROUP'] = "Ð“Ñ€ÑƒÐ¿Ð¿Ð° Ð°Ð´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ð°";
+$MESS ['COMP_AUTH_TYPE'] = "Ð¢Ð¸Ð¿ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ";
+$MESS ['COMP_AUTH_GROUP'] = "Ð“Ñ€ÑƒÐ¿Ð¿Ð° Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ";
+$MESS ['COMP_AUTH_FORM'] = "ID Ñ„Ð¾Ñ€Ð¼Ñ‹ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ";
+$MESS ['COMP_AUTH_SHOW_ERRORS'] = "ÐŸÐ¾ÐºÐ°Ð·Ñ‹Ð²Ð°Ñ‚ÑŒ Ð¾ÑˆÐ¸Ð±ÐºÐ¸";
 ?>

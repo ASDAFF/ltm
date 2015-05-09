@@ -26,9 +26,9 @@ Class doka_meetings extends CModule
 		CModule::IncludeModule("iblock");
 
 		$this->options = array(
-			'LID' => 'ru', // язык интерфейса
+			'LID' => 'ru', // СЏР·С‹Рє РёРЅС‚РµСЂС„РµР№СЃР°
 		);
-		// идентификаторы сайтов
+		// РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂС‹ СЃР°Р№С‚РѕРІ
 		$rsSites = CSite::GetList($by="sort", $order="desc", array("ACTIVE" => "Y"));
 		while ($arSite = $rsSites->Fetch()) {
 			$this->options['SID'][] = $arSite['ID'];

@@ -1,7 +1,7 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Участники 2013");
-?><h1>Участники 2013</h1>
+$APPLICATION->SetTitle("РЈС‡Р°СЃС‚РЅРёРєРё 2013");
+?><h1>РЈС‡Р°СЃС‚РЅРёРєРё 2013</h1>
  <?$APPLICATION->IncludeComponent(
 	"btm:user.list",
 	"",

@@ -7,17 +7,17 @@ $arResult["ERROR_MESSAGE"] = array();
 
 if(!($USER->IsAuthorized()))
 {
-    $arResult["ERROR_MESSAGE"][] = "Вы не авторизованы!<br />";
+    $arResult["ERROR_MESSAGE"][] = "Р’С‹ РЅРµ Р°РІС‚РѕСЂРёР·РѕРІР°РЅС‹!<br />";
 }
 
 if(!($USER->IsAdmin()))
 {
-    $arResult["ERROR_MESSAGE"][] = "Вы не администратор!<br />";
+    $arResult["ERROR_MESSAGE"][] = "Р’С‹ РЅРµ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂ!<br />";
 }
 
 if(!CModule::IncludeModule("iblock"))
 {
-    $arResult["ERROR_MESSAGE"][] = "Ошибка подключения модулей!<br />";
+    $arResult["ERROR_MESSAGE"][] = "РћС€РёР±РєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ РјРѕРґСѓР»РµР№!<br />";
 }
 
 if(isset($_REQUEST["upload"])){
@@ -34,7 +34,7 @@ if(isset($_REQUEST["upload"])){
                 $arResult["ERROR_MESSAGE"][] = $_FILES["file"]["error"][$fileNumber];
             }
             elseif($_FILES["file"]["type"][$fileNumber] != 'image/jpeg'){
-                $arResult["ERROR_MESSAGE"][] = "Не верный тип файла ".$fileName;
+                $arResult["ERROR_MESSAGE"][] = "РќРµ РІРµСЂРЅС‹Р№ С‚РёРї С„Р°Р№Р»Р° ".$fileName;
             }
             else{
                 $fileArr = array(
@@ -46,8 +46,8 @@ if(isset($_REQUEST["upload"])){
                 );
 
                 $arLoadProductArray = Array(
-                    "MODIFIED_BY"    => $USER->GetID(), // элемент изменен текущим пользователем
-                    "IBLOCK_SECTION_ID" => $sectionID,          // элемент лежит в корне раздела
+                    "MODIFIED_BY"    => $USER->GetID(), // СЌР»РµРјРµРЅС‚ РёР·РјРµРЅРµРЅ С‚РµРєСѓС‰РёРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј
+                    "IBLOCK_SECTION_ID" => $sectionID,          // СЌР»РµРјРµРЅС‚ Р»РµР¶РёС‚ РІ РєРѕСЂРЅРµ СЂР°Р·РґРµР»Р°
                     "IBLOCK_ID"      => $arParams["IBLOCK_ID"],
                     "NAME"           => $fileName,
                     "DETAIL_PICTURE" => $fileArr
@@ -63,12 +63,12 @@ if(isset($_REQUEST["upload"])){
         }
     }
     else{
-        $arResult["ERROR_MESSAGE"][] = "Вы не выбрали раздел";
+        $arResult["ERROR_MESSAGE"][] = "Р’С‹ РЅРµ РІС‹Р±СЂР°Р»Рё СЂР°Р·РґРµР»";
     }
 }
 
 
-//получение выставок
+//РїРѕР»СѓС‡РµРЅРёРµ РІС‹СЃС‚Р°РІРѕРє
 $arFilter = array(
 	"IBLOCK_ID" => $arParams["IBLOCK_ID"]
 );
@@ -88,5 +88,5 @@ while($ar_result = $db_list->GetNext())
 }
 
 
-//вызов шаблона
+//РІС‹Р·РѕРІ С€Р°Р±Р»РѕРЅР°
 $this->IncludeComponentTemplate();

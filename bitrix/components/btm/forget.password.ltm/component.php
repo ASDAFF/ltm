@@ -3,11 +3,11 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 //
 
 if(strLen($arParams["GUEST_ID"])<=0){
-	$arResult["ERROR_MESSAGE"] = "Íå ââåäåíû äàííûå ïî ãîñòÿì.";
+	$arResult["ERROR_MESSAGE"] = "ÐÐµ Ð²Ð²ÐµÐ´ÐµÐ½Ñ‹ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¿Ð¾ Ð³Ð¾ÑÑ‚ÑÐ¼.";
 }
 
 if(strLen($arParams["PARTICIP_ID"])<=0){
-	$arResult["ERROR_MESSAGE"] = "Íå ââåäåíû äàííûå ïî ó÷àñòíèêàì.";
+	$arResult["ERROR_MESSAGE"] = "ÐÐµ Ð²Ð²ÐµÐ´ÐµÐ½Ñ‹ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¿Ð¾ ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ°Ð¼.";
 }
 
 $arResult["FORM_TYPE"] = "FORM";

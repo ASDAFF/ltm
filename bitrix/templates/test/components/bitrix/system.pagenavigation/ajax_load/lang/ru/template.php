@@ -1,12 +1,12 @@
 <?
-$MESS ['nav_of'] = "èç";
-$MESS ['nav_begin'] = "Íà÷àëî";
-$MESS ['nav_prev'] = "Ïðåä.";
-$MESS ['nav_next'] = "Ñëåä.";
-$MESS ['nav_end'] = "Êîíåö";
-$MESS ['nav_paged'] = "Ïî ñòð.";
-$MESS ['nav_all'] = "Âñå";
+$MESS ['nav_of'] = "Ð¸Ð·";
+$MESS ['nav_begin'] = "ÐÐ°Ñ‡Ð°Ð»Ð¾";
+$MESS ['nav_prev'] = "ÐŸÑ€ÐµÐ´.";
+$MESS ['nav_next'] = "Ð¡Ð»ÐµÐ´.";
+$MESS ['nav_end'] = "ÐšÐ¾Ð½ÐµÑ†";
+$MESS ['nav_paged'] = "ÐŸÐ¾ ÑÑ‚Ñ€.";
+$MESS ['nav_all'] = "Ð’ÑÐµ";
 $MESS ['nav_to'] = "-";
 
-$MESS ['NAV_MORE'] = "ïîêàçàòü áîëüøå íîâîñòåé...";
+$MESS ['NAV_MORE'] = "Ð¿Ð¾ÐºÐ°Ð·Ð°Ñ‚ÑŒ Ð±Ð¾Ð»ÑŒÑˆÐµ Ð½Ð¾Ð²Ð¾ÑÑ‚ÐµÐ¹...";
 ?>

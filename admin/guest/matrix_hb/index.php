@@ -1,6 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Гости Матрица HB");
+$APPLICATION->SetTitle("Р“РѕСЃС‚Рё РњР°С‚СЂРёС†Р° HB");
 $close = true;
 $appCode= 1;
 $exhibCode = trim($_REQUEST["EXHIBIT_CODE"]);

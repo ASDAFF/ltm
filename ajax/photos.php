@@ -6,7 +6,7 @@ $ext = substr($_FILES['uploadfile']['name'],strpos($_FILES['uploadfile']['name']
 $filetypes = array('.jpg', '.JPG','.jpeg','.JPEG');
 
 if(!in_array($ext,$filetypes)){
-	echo "<p>Данный формат файлов не поддерживается</p>";}
+	echo "<p>Р”Р°РЅРЅС‹Р№ С„РѕСЂРјР°С‚ С„Р°Р№Р»РѕРІ РЅРµ РїРѕРґРґРµСЂР¶РёРІР°РµС‚СЃСЏ</p>";}
 else{ 
 	if (move_uploaded_file($_FILES['uploadfile']['tmp_name'], $file)) { 
 	  echo "success"; 

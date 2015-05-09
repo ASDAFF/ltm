@@ -1,8 +1,8 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Кабинет администратора");
+$APPLICATION->SetTitle("РљР°Р±РёРЅРµС‚ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР°");
 ?>
 <? $exhibCode = htmlspecialchars($_REQUEST["EXHIBIT_CODE"]);?>
 
-<a href="/admin/<?= $exhibCode?>/messages/">Сообщения</a>
+<a href="/admin/<?= $exhibCode?>/messages/">РЎРѕРѕР±С‰РµРЅРёСЏ</a>
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

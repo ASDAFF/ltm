@@ -1,15 +1,15 @@
 <?
-$MESS ['COMP_FORM_GROUP_PARAMS'] = "Ïàðàìåòðû êîìïîíåíòà";
-$MESS ['COMP_FORM_PARAMS_WEB_FORM_ID'] = "ID âåá-ôîðìû";
-$MESS ['COMP_FORM_PARAMS_RESULT_ID'] = "ID ðåçóëüòàòà";
-$MESS ['COMP_FORM_PARAMS_LIST_URL'] = "Ñòðàíèöà ñî ñïèñêîì ðåçóëüòàòîâ";
-$MESS ['COMP_FORM_PARAMS_EDIT_URL'] = "Ñòðàíèöà ðåäàêòèðîâàíèÿ ðåçóëüòàòà";
-$MESS ['COMP_FORM_PARAMS_SUCCESS_URL'] = "Ñòðàíèöà ñ ñîîáùåíèåì îá óñïåøíîé îòïðàâêå";
-$MESS ['COMP_FORM_PARAMS_CHAIN_ITEM_TEXT'] = "Íàçâàíèå äîïîëíèòåëüíîãî ïóíêòà â íàâèãàöèîííîé öåïî÷êå";
-$MESS ['COMP_FORM_PARAMS_CHAIN_ITEM_LINK'] = "Ññûëêà íà äîïîëíèòåëüíîì ïóíêòå â íàâèãàöèîííîé öåïî÷êå";
-$MESS ['COMP_FORM_PARAMS_IGNORE_CUSTOM_TEMPLATE'] = "Èãíîðèðîâàòü ñâîé øàáëîí";
-$MESS ['COMP_FORM_PARAMS_USE_EXTENDED_ERRORS'] = "Èñïîëüçîâàòü ðàñøèðåííûé âûâîä ñîîáùåíèé îá îøèáêàõ";
-$MESS ['COMP_FORM_PARAMS_EMAIL_FIELD'] = "Ïîëå Email äëÿ ëîãèíà";
-$MESS ['COMP_FORM_PARAMS_ANKETA_TO'] = "Ïîëå êóäà çàïèñûâàåì id ôîðìû.";
-$MESS ['COMP_FORM_PARAMS_ANKETA_FROM'] = "Ïîëå îòêóäà áåðåì id ôîðìû ñ äàííûìè.";
+$MESS ['COMP_FORM_GROUP_PARAMS'] = "ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ ÐºÐ¾Ð¼Ð¿Ð¾Ð½ÐµÐ½Ñ‚Ð°";
+$MESS ['COMP_FORM_PARAMS_WEB_FORM_ID'] = "ID Ð²ÐµÐ±-Ñ„Ð¾Ñ€Ð¼Ñ‹";
+$MESS ['COMP_FORM_PARAMS_RESULT_ID'] = "ID Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð°";
+$MESS ['COMP_FORM_PARAMS_LIST_URL'] = "Ð¡Ñ‚Ñ€Ð°Ð½Ð¸Ñ†Ð° ÑÐ¾ ÑÐ¿Ð¸ÑÐºÐ¾Ð¼ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð¾Ð²";
+$MESS ['COMP_FORM_PARAMS_EDIT_URL'] = "Ð¡Ñ‚Ñ€Ð°Ð½Ð¸Ñ†Ð° Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð°";
+$MESS ['COMP_FORM_PARAMS_SUCCESS_URL'] = "Ð¡Ñ‚Ñ€Ð°Ð½Ð¸Ñ†Ð° Ñ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸ÐµÐ¼ Ð¾Ð± ÑƒÑÐ¿ÐµÑˆÐ½Ð¾Ð¹ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²ÐºÐµ";
+$MESS ['COMP_FORM_PARAMS_CHAIN_ITEM_TEXT'] = "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð´Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ð³Ð¾ Ð¿ÑƒÐ½ÐºÑ‚Ð° Ð² Ð½Ð°Ð²Ð¸Ð³Ð°Ñ†Ð¸Ð¾Ð½Ð½Ð¾Ð¹ Ñ†ÐµÐ¿Ð¾Ñ‡ÐºÐµ";
+$MESS ['COMP_FORM_PARAMS_CHAIN_ITEM_LINK'] = "Ð¡ÑÑ‹Ð»ÐºÐ° Ð½Ð° Ð´Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ð¼ Ð¿ÑƒÐ½ÐºÑ‚Ðµ Ð² Ð½Ð°Ð²Ð¸Ð³Ð°Ñ†Ð¸Ð¾Ð½Ð½Ð¾Ð¹ Ñ†ÐµÐ¿Ð¾Ñ‡ÐºÐµ";
+$MESS ['COMP_FORM_PARAMS_IGNORE_CUSTOM_TEMPLATE'] = "Ð˜Ð³Ð½Ð¾Ñ€Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑÐ²Ð¾Ð¹ ÑˆÐ°Ð±Ð»Ð¾Ð½";
+$MESS ['COMP_FORM_PARAMS_USE_EXTENDED_ERRORS'] = "Ð˜ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÑŒ Ñ€Ð°ÑÑˆÐ¸Ñ€ÐµÐ½Ð½Ñ‹Ð¹ Ð²Ñ‹Ð²Ð¾Ð´ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ð¹ Ð¾Ð± Ð¾ÑˆÐ¸Ð±ÐºÐ°Ñ…";
+$MESS ['COMP_FORM_PARAMS_EMAIL_FIELD'] = "ÐŸÐ¾Ð»Ðµ Email Ð´Ð»Ñ Ð»Ð¾Ð³Ð¸Ð½Ð°";
+$MESS ['COMP_FORM_PARAMS_ANKETA_TO'] = "ÐŸÐ¾Ð»Ðµ ÐºÑƒÐ´Ð° Ð·Ð°Ð¿Ð¸ÑÑ‹Ð²Ð°ÐµÐ¼ id Ñ„Ð¾Ñ€Ð¼Ñ‹.";
+$MESS ['COMP_FORM_PARAMS_ANKETA_FROM'] = "ÐŸÐ¾Ð»Ðµ Ð¾Ñ‚ÐºÑƒÐ´Ð° Ð±ÐµÑ€ÐµÐ¼ id Ñ„Ð¾Ñ€Ð¼Ñ‹ Ñ Ð´Ð°Ð½Ð½Ñ‹Ð¼Ð¸.";
 ?>

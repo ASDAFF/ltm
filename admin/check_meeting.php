@@ -21,7 +21,7 @@ use Doka\Meetings\Wishlists as DWL;
 
 $arParams["IBLOCK_ID_EXHIB"] = 15;
 
-//список выставок из Инфогруппы по id выставки из модуля
+//СЃРїРёСЃРѕРє РІС‹СЃС‚Р°РІРѕРє РёР· РРЅС„РѕРіСЂСѓРїРїС‹ РїРѕ id РІС‹СЃС‚Р°РІРєРё РёР· РјРѕРґСѓР»СЏ
 $arResult = array();
 $fio_dates = array();
 $erStrAll = '';
@@ -33,8 +33,8 @@ while($ar = $rs->Fetch()) {
     $arResult["EXHIB"][$ar["PROPERTY_APP_ID_VALUE"]] = $ar;
 }
 
-// список выставок из модуля и составление вишлистов
-$rsExhibitions = DS::GetList(array(), array("ACTIVE" => 1)); //добавить "IS_LOCKED" => 0
+// СЃРїРёСЃРѕРє РІС‹СЃС‚Р°РІРѕРє РёР· РјРѕРґСѓР»СЏ Рё СЃРѕСЃС‚Р°РІР»РµРЅРёРµ РІРёС€Р»РёСЃС‚РѕРІ
+$rsExhibitions = DS::GetList(array(), array("ACTIVE" => 1)); //РґРѕР±Р°РІРёС‚СЊ "IS_LOCKED" => 0
 
 while ($exhibition = $rsExhibitions->Fetch()) {
 	$erStr = '';
@@ -42,7 +42,7 @@ while ($exhibition = $rsExhibitions->Fetch()) {
     $timeslotsId = $req_obj->getMeetTimeslotsIds();
     $timeslots = $req_obj->getAllMeetTimeslots(); //[id]["name"]
     
-    /* Гости */
+    /* Р“РѕСЃС‚Рё */
     $guestTmp = $req_obj->getAllMeetChooseByGroup($exhibition["GUESTS_GROUP"]);
     $guest = array();
     while ($arParticip = $guestTmp->Fetch()) {
@@ -53,19 +53,19 @@ while ($exhibition = $rsExhibitions->Fetch()) {
     	}        
     }
 
-    /* Участники */
+    /* РЈС‡Р°СЃС‚РЅРёРєРё */
     $participTmp = $req_obj->getAllMeetChooseByGroup($exhibition["MEMBERS_GROUP"]);
     $particip = array();
     while ($arParticip = $participTmp->Fetch()) {
     	$particip[$arParticip["USER_ID"]]=array();
     	foreach ($timeslotsId as $key => $timeId) {
-    		$userTmp = substr($arParticip["MEET_".$timeId], 0, -1);//для читабельности
-    		$statusTmp = $arParticip["STATUS_".$timeId];//для читабельности
+    		$userTmp = substr($arParticip["MEET_".$timeId], 0, -1);//РґР»СЏ С‡РёС‚Р°Р±РµР»СЊРЅРѕСЃС‚Рё
+    		$statusTmp = $arParticip["STATUS_".$timeId];//РґР»СЏ С‡РёС‚Р°Р±РµР»СЊРЅРѕСЃС‚Рё
 
     		$particip[$arParticip["USER_ID"]][$timeId]["USER"] = $userTmp;
     		$particip[$arParticip["USER_ID"]][$timeId]["STATUS"] = $statusTmp;
-    		/* Сразу же проверяем со стороны участников*/
-    		if($userTmp != '' && $guest[$userTmp][$timeId]["USER"] != $arParticip["USER_ID"]){//Если у участника и гостя не совпадают оппоненты, но при этом статусы не Таймаут и не Отменен
+    		/* РЎСЂР°Р·Сѓ Р¶Рµ РїСЂРѕРІРµСЂСЏРµРј СЃРѕ СЃС‚РѕСЂРѕРЅС‹ СѓС‡Р°СЃС‚РЅРёРєРѕРІ*/
+    		if($userTmp != '' && $guest[$userTmp][$timeId]["USER"] != $arParticip["USER_ID"]){//Р•СЃР»Рё Сѓ СѓС‡Р°СЃС‚РЅРёРєР° Рё РіРѕСЃС‚СЏ РЅРµ СЃРѕРІРїР°РґР°СЋС‚ РѕРїРїРѕРЅРµРЅС‚С‹, РЅРѕ РїСЂРё СЌС‚РѕРј СЃС‚Р°С‚СѓСЃС‹ РЅРµ РўР°Р№РјР°СѓС‚ Рё РЅРµ РћС‚РјРµРЅРµРЅ
     			if($statusTmp != 3 && $statusTmp != 4){
     				$erStr .= '(Diff user) Timeslot '.$timeslots[$timeId]["name"].'('.$timeId.') 
     				Particip to Guest - '.$arParticip["USER_ID"].'-'.$userTmp.'('.$statusTmp.') 
@@ -73,20 +73,20 @@ while ($exhibition = $rsExhibitions->Fetch()) {
     			}
     			
     		}
-    		elseif($userTmp != '' && $guest[$userTmp][$timeId]["STATUS"] != $statusTmp){//Если оппоненты совпадают, но статусы разные
+    		elseif($userTmp != '' && $guest[$userTmp][$timeId]["STATUS"] != $statusTmp){//Р•СЃР»Рё РѕРїРїРѕРЅРµРЅС‚С‹ СЃРѕРІРїР°РґР°СЋС‚, РЅРѕ СЃС‚Р°С‚СѓСЃС‹ СЂР°Р·РЅС‹Рµ
 				$erStr .= '(Diff status) Timeslot '.$timeslots[$timeId]["name"].'('.$timeId.') 
 				Particip to Guest - '.$arParticip["USER_ID"].'-'.$userTmp.'('.$statusTmp.') 
 				Guest to Particip - '.$userTmp.'-'.$guest[$userTmp][$timeId]["USER"].'('.$guest[$userTmp][$timeId]["STATUS"].')<br />';
     		}
     	}    	
     }
-    /* Проверяем со стороны гостей */
+    /* РџСЂРѕРІРµСЂСЏРµРј СЃРѕ СЃС‚РѕСЂРѕРЅС‹ РіРѕСЃС‚РµР№ */
     foreach ($guest as $partId => $arParticip) {
         foreach ($timeslotsId as $key => $timeId) {
-            $userTmp = $arParticip[$timeId]["USER"];//для читабельности
-            $statusTmp = $arParticip[$timeId]["STATUS"];//для читабельности
+            $userTmp = $arParticip[$timeId]["USER"];//РґР»СЏ С‡РёС‚Р°Р±РµР»СЊРЅРѕСЃС‚Рё
+            $statusTmp = $arParticip[$timeId]["STATUS"];//РґР»СЏ С‡РёС‚Р°Р±РµР»СЊРЅРѕСЃС‚Рё
 
-            if($userTmp != '' && $particip[$userTmp][$timeId]["USER"] != $partId){//Если у участника и гостя не совпадают оппоненты, но при этом статусы не Таймаут и не Отменен
+            if($userTmp != '' && $particip[$userTmp][$timeId]["USER"] != $partId){//Р•СЃР»Рё Сѓ СѓС‡Р°СЃС‚РЅРёРєР° Рё РіРѕСЃС‚СЏ РЅРµ СЃРѕРІРїР°РґР°СЋС‚ РѕРїРїРѕРЅРµРЅС‚С‹, РЅРѕ РїСЂРё СЌС‚РѕРј СЃС‚Р°С‚СѓСЃС‹ РЅРµ РўР°Р№РјР°СѓС‚ Рё РЅРµ РћС‚РјРµРЅРµРЅ
                 if($statusTmp != 3 && $statusTmp != 4){
                     $erStr .= '(Diff user) Timeslot '.$timeslots[$timeId]["name"].'('.$timeId.') 
                     Particip to Guest - '.$partId.'-'.$userTmp.'('.$statusTmp.') 
@@ -94,7 +94,7 @@ while ($exhibition = $rsExhibitions->Fetch()) {
                 }
                 
             }
-            elseif($userTmp != '' && $particip[$userTmp][$timeId]["STATUS"] != $statusTmp){//Если оппоненты совпадают, но статусы разные
+            elseif($userTmp != '' && $particip[$userTmp][$timeId]["STATUS"] != $statusTmp){//Р•СЃР»Рё РѕРїРїРѕРЅРµРЅС‚С‹ СЃРѕРІРїР°РґР°СЋС‚, РЅРѕ СЃС‚Р°С‚СѓСЃС‹ СЂР°Р·РЅС‹Рµ
                 $erStr .= '(Diff status) Timeslot '.$timeslots[$timeId]["name"].'('.$timeId.') 
                 Particip to Guest - '.$partId.'-'.$userTmp.'('.$statusTmp.') 
                 Guest to Particip - '.$userTmp.'-'.$particip[$userTmp][$timeId]["USER"].'('.$particip[$userTmp][$timeId]["STATUS"].')<br />';

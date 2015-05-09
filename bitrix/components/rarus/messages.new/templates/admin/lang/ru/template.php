@@ -1,8 +1,8 @@
 <?
-$MESS["HLM_BUTTON_SEND"] = "Îòïðàâèòü";
-$MESS["HLM_SUBJECT_PH"] = "Òåìà";
-$MESS["HLM_MESSAGE_PH"] = "Òåêñò ñîîáùåíèÿ";
-$MESS["HLM_CHOOSE_A_COMPANY"] = "Âûáåðèòå êîìïàíèþ";
-$MESS["HLM_TO"] = "Êîìó";
+$MESS["HLM_BUTTON_SEND"] = "ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÑŒ";
+$MESS["HLM_SUBJECT_PH"] = "Ð¢ÐµÐ¼Ð°";
+$MESS["HLM_MESSAGE_PH"] = "Ð¢ÐµÐºÑÑ‚ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ";
+$MESS["HLM_CHOOSE_A_COMPANY"] = "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ ÐºÐ¾Ð¼Ð¿Ð°Ð½Ð¸ÑŽ";
+$MESS["HLM_TO"] = "ÐšÐ¾Ð¼Ñƒ";
 
 ?>

@@ -28,22 +28,22 @@ if($arResult["ERROR_MESSAGE"] == ''){
     </script>
     <table width="100%" border="0" cellspacing="5" cellpadding="0">
       <tr>
-        <td><p class="reg_update" style="text-align:left;"><? if($arResult["SORT"] == 'ABC'){?><strong style="color:#66CCFF;">В алфавитном порядке</strong><? } else{?><a href="<?=$arResult["LINK"]?>?ussort=abc" style=" color:#FFF;">В алфавитном порядке</a><? }?></p></td>
-        <td><p class="reg_update" style="text-align:center;"><? if($arResult["SORT"] == "COUNTRIES"){?><strong style="color:#66CCFF;">По странам</strong><? } else{?><a href="<?=$arResult["LINK"]?>?ussort=country" style=" color:#FFF;">По странам</a><? }?></p></td>
-        <td><p class="reg_update"><? if($arResult["SORT"] == "BUSINESS"){?><strong style="color:#66CCFF;">По виду деятельности</strong><? } else{?><a href="<?=$arResult["LINK"]?>?ussort=business" style=" color:#FFF;">По виду деятельности</a><? }?></p></td>
-        <td><p class="reg_update"><? if($arResult["SORT"] == "TIMES"){?><strong style="color:#66CCFF;">По свободному времени</strong><? } else{?><a href="<?=$arResult["LINK"]?>?ussort=times" style=" color:#FFF;">По свободному времени</a><? }?></p></td>
-        <td width="70"><p class="reg_update"><? if($arResult["SORT"] == "ALL"){?><strong style="color:#66CCFF;">Все</strong><? } else{?><a href="<?=$arResult["LINK"]?>?ussort=all" style=" color:#FFF;">Все</a><? }?></p></td>
+        <td><p class="reg_update" style="text-align:left;"><? if($arResult["SORT"] == 'ABC'){?><strong style="color:#66CCFF;">Р’ Р°Р»С„Р°РІРёС‚РЅРѕРј РїРѕСЂСЏРґРєРµ</strong><? } else{?><a href="<?=$arResult["LINK"]?>?ussort=abc" style=" color:#FFF;">Р’ Р°Р»С„Р°РІРёС‚РЅРѕРј РїРѕСЂСЏРґРєРµ</a><? }?></p></td>
+        <td><p class="reg_update" style="text-align:center;"><? if($arResult["SORT"] == "COUNTRIES"){?><strong style="color:#66CCFF;">РџРѕ СЃС‚СЂР°РЅР°Рј</strong><? } else{?><a href="<?=$arResult["LINK"]?>?ussort=country" style=" color:#FFF;">РџРѕ СЃС‚СЂР°РЅР°Рј</a><? }?></p></td>
+        <td><p class="reg_update"><? if($arResult["SORT"] == "BUSINESS"){?><strong style="color:#66CCFF;">РџРѕ РІРёРґСѓ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё</strong><? } else{?><a href="<?=$arResult["LINK"]?>?ussort=business" style=" color:#FFF;">РџРѕ РІРёРґСѓ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё</a><? }?></p></td>
+        <td><p class="reg_update"><? if($arResult["SORT"] == "TIMES"){?><strong style="color:#66CCFF;">РџРѕ СЃРІРѕР±РѕРґРЅРѕРјСѓ РІСЂРµРјРµРЅРё</strong><? } else{?><a href="<?=$arResult["LINK"]?>?ussort=times" style=" color:#FFF;">РџРѕ СЃРІРѕР±РѕРґРЅРѕРјСѓ РІСЂРµРјРµРЅРё</a><? }?></p></td>
+        <td width="70"><p class="reg_update"><? if($arResult["SORT"] == "ALL"){?><strong style="color:#66CCFF;">Р’СЃРµ</strong><? } else{?><a href="<?=$arResult["LINK"]?>?ussort=all" style=" color:#FFF;">Р’СЃРµ</a><? }?></p></td>
       </tr>
     </table>
     <p class="filter_block"><?=$arResult["FILTER"]["SUB"]?></p>
     <div class="filter_block"><?=$arResult["NAVIGATE"]?></div>
     <table width="100%" border="0" cellspacing="0" cellpadding="7" class="regist_info">
         <tr class="chet">
-            <td><strong>Компания</strong></td>
-            <td width="130"><strong>Представитель</strong></td>
-            <td width="75"><strong>Написать</strong></td>
-            <td width="105"><strong>Свободное время</strong></td>
-            <td width="80"><strong>Запрос</strong></td>
+            <td><strong>РљРѕРјРїР°РЅРёСЏ</strong></td>
+            <td width="130"><strong>РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ</strong></td>
+            <td width="75"><strong>РќР°РїРёСЃР°С‚СЊ</strong></td>
+            <td width="105"><strong>РЎРІРѕР±РѕРґРЅРѕРµ РІСЂРµРјСЏ</strong></td>
+            <td width="80"><strong>Р—Р°РїСЂРѕСЃ</strong></td>
         </tr>
 	<?
     $countUsers = 0;
@@ -54,10 +54,10 @@ if($arResult["ERROR_MESSAGE"] == ''){
             <strong><?=$arResult["USERS"][$j]["FIELDS"]["COMPANY"]?></strong><br />
             <?=$arResult["USERS"][$j]["FIELDS"]["BUSINESS"]?><br /><br />        
             <?=$arResult["USERS"][$j]["FIELDS"]["COUNTRY_LIST"]?><br />
-            <a href="#" more="user_<?=$arResult["USERS"][$j]["ID"]?>" class="more">Подробнее</a>
+            <a href="#" more="user_<?=$arResult["USERS"][$j]["ID"]?>" class="more">РџРѕРґСЂРѕР±РЅРµРµ</a>
             </td>
             <td width="130"><?=$arResult["USERS"][$j]["FIELDS"]["NAME"]?></td>
-            <td width="75"><a href="/ru/personal/service/write.php?id=<?=$arResult["USERS"][$j]["ID"]?>" target="_blank" onclick="newWind('/ru/personal/service/write.php?id=<?=$arResult["USERS"][$j]["ID"]?>'); return false;">Написать сообщение</a></td>
+            <td width="75"><a href="/ru/personal/service/write.php?id=<?=$arResult["USERS"][$j]["ID"]?>" target="_blank" onclick="newWind('/ru/personal/service/write.php?id=<?=$arResult["USERS"][$j]["ID"]?>'); return false;">РќР°РїРёСЃР°С‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ</a></td>
             <? if($arResult["USERS"][$j]["COUNT_APP"] > 0){
 				?>
             <td width="105">
@@ -71,13 +71,13 @@ if($arResult["ERROR_MESSAGE"] == ''){
                 ?>
             </select>
             </td>
-            <td width="80"><a href="/ru/personal/service/appointment.php?id=<?=$arResult["USERS"][$j]["ID"]?>&time=0" target="_blank" onclick="newRequest('<?=$arResult["USERS"][$j]["ID"]?>'); return false;">Послать запрос</a></td>
+            <td width="80"><a href="/ru/personal/service/appointment.php?id=<?=$arResult["USERS"][$j]["ID"]?>&time=0" target="_blank" onclick="newRequest('<?=$arResult["USERS"][$j]["ID"]?>'); return false;">РџРѕСЃР»Р°С‚СЊ Р·Р°РїСЂРѕСЃ</a></td>
 				<?
 				}
 			else{
 				?>
             <td colspan="2">
-            	Расписание полное
+            	Р Р°СЃРїРёСЃР°РЅРёРµ РїРѕР»РЅРѕРµ
             </td>
 				<?
 			}
@@ -85,8 +85,8 @@ if($arResult["ERROR_MESSAGE"] == ''){
         </tr>
         <tr <? if($countUsers % 2){?>class="chet"<? }?> style="display:none;" id="user_<?=$arResult["USERS"][$j]["ID"]?>">
             <td colspan="5" height="1">
-            <strong>Сайт</strong>: <a href="http://<?=$arResult["USERS"][$j]["FIELDS"]["SITE"]?>" target="_blank"><?=$arResult["USERS"][$j]["FIELDS"]["SITE"]?></a><br />
-            <strong>Адрес</strong>: <?=$arResult["USERS"][$j]["FIELDS"]["CITY"]?>, <?=$arResult["USERS"][$j]["FIELDS"]["ADRESS"]?><br />
+            <strong>РЎР°Р№С‚</strong>: <a href="http://<?=$arResult["USERS"][$j]["FIELDS"]["SITE"]?>" target="_blank"><?=$arResult["USERS"][$j]["FIELDS"]["SITE"]?></a><br />
+            <strong>РђРґСЂРµСЃ</strong>: <?=$arResult["USERS"][$j]["FIELDS"]["CITY"]?>, <?=$arResult["USERS"][$j]["FIELDS"]["ADRESS"]?><br />
             <?=nl2br($arResult["USERS"][$j]["FIELDS"]["DESC"])?>
             </td>
         </tr>

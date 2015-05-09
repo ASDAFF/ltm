@@ -1,54 +1,54 @@
 <?
 function DokaGeneratePdf($arResult) {
-	$pdf = new TCPDF('P', 'mm', 'A4', false, 'UTF-8', false);
+	$pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
 	$pdf->setPrintHeader(false);
 	$pdf->setPrintFooter(false);
-	 $pdf->AddFont('times','I','timesi.php');
+	 $pdf->AddFont('freeserif','I','freeserifi.php');
 	$pdf->AddPage();
 	$pdf->ImageSVG($file=DOKA_MEETINGS_MODULE_DIR . '/images/logo.svg', $x=30, $y=5, $w='150', $h='', $link='', $align='', $palign='', $border=0, $fitonpage=false);
 	$pdf->setXY(0,23);
-	$pdf->SetFont('times','B',17);
+	$pdf->SetFont('freeserif','B',17);
 	if($arResult["EXHIBITION"]["IS_HB"]){
-		$arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'] .= " Hosted Buyers сессия";
+		$arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'] .= " Hosted Buyers СЃРµСЃСЃРёСЏ";
 	}
-	$pdf->multiCell(210, 5, "Список неподтвержденных запросов на\n" . $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'], 0, C);
-	$pdf->SetFont('times','',15);
+	$pdf->multiCell(210, 5, "РЎРїРёСЃРѕРє РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… Р·Р°РїСЂРѕСЃРѕРІ РЅР°\n" . $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'], 0, C);
+	$pdf->SetFont('freeserif','',15);
 	$pdf->setXY(30,40);
-	$pdf->multiCell(210, 5, iconv('utf-8', 'windows-1251', $arResult["USER"]['COMPANY']).", ". iconv('utf-8', 'windows-1251', $arResult["USER"]['CITY']), 0, L);
+	$pdf->multiCell(210, 5, $arResult["USER"]['COMPANY'].", ". $arResult["USER"]['CITY'], 0, L);
 	$pdf->setXY(30,48);
-	$pdf->multiCell(210, 5, iconv('utf-8', 'windows-1251', $arResult["USER"]['REP']), 0, L);
+	$pdf->multiCell(210, 5, $arResult["USER"]['REP'], 0, L);
 
 
-	$pdf->SetFont('times','B',13);
+	$pdf->SetFont('freeserif','B',13);
 	$pdf->setXY(0,60);
-	$pdf->multiCell(210, 5, "Вы также хотели бы встретиться со следующими компаниями", 0, C);
+	$pdf->multiCell(210, 5, "Р’С‹ С‚Р°РєР¶Рµ С…РѕС‚РµР»Рё Р±С‹ РІСЃС‚СЂРµС‚РёС‚СЊСЃСЏ СЃРѕ СЃР»РµРґСѓСЋС‰РёРјРё РєРѕРјРїР°РЅРёСЏРјРё", 0, C);
 
-	$pdf->SetFont('times','',10);
+	$pdf->SetFont('freeserif','',10);
 	$pdf->setXY(0,65);
-	$pdf->multiCell(210, 5, "(возможно, данные участники отклонили ваши запросы или их расписание уже полное):", 0, C);
+	$pdf->multiCell(210, 5, "(РІРѕР·РјРѕР¶РЅРѕ, РґР°РЅРЅС‹Рµ СѓС‡Р°СЃС‚РЅРёРєРё РѕС‚РєР»РѕРЅРёР»Рё РІР°С€Рё Р·Р°РїСЂРѕСЃС‹ РёР»Рё РёС… СЂР°СЃРїРёСЃР°РЅРёРµ СѓР¶Рµ РїРѕР»РЅРѕРµ):", 0, C);
 
 
-	/* Формируем таблицу */
+	/* Р¤РѕСЂРјРёСЂСѓРµРј С‚Р°Р±Р»РёС†Сѓ */
 	if (!$arResult['WISH_IN']) {
 		$pdf->setXY(0, $pdf->getY() + 5);
-		$pdf->SetFont('Times','',13);
-		$pdf->multiCell(210, 5, "Этот список запросов пуст.", 0, C);
+		$pdf->SetFont('freeserif','',13);
+		$pdf->multiCell(210, 5, "Р­С‚РѕС‚ СЃРїРёСЃРѕРє Р·Р°РїСЂРѕСЃРѕРІ РїСѓСЃС‚.", 0, C);
 	} else {
 		$pdf->setXY(20,$pdf->getY() + 5);
-		$pdf->SetFont('times','',13);
+		$pdf->SetFont('freeserif','',13);
 
 		$tbl = '<table cellspacing="0" cellpadding="5" border="1">
 			<tr>
-				<td align="center" width="60">№</td>
-				<td align="center" width="250">Компания</td>
-				<td align="center" width="200">Представитель</td>
+				<td align="center" width="60">в„–</td>
+				<td align="center" width="250">РљРѕРјРїР°РЅРёСЏ</td>
+				<td align="center" width="200">РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ</td>
 			</tr>';
 		$i = 1;
 		foreach ($arResult['WISH_IN'] as $item) {
 		  $tbl .= '<tr>
 				<td align="center">'.$i.'</td>
-				<td>'.iconv('utf-8', 'windows-1251', $item["company_name"]).'</td>
-				<td>'.iconv('utf-8', 'windows-1251', $item["company_rep"]).'</td>
+				<td>'.$item["company_name"].'</td>
+				<td>'.$item["company_rep"].'</td>
 			</tr>';
 			$i++;
 		}
@@ -57,34 +57,34 @@ function DokaGeneratePdf($arResult) {
 	}
 
 
-	$pdf->SetFont('times','B',13);
+	$pdf->SetFont('freeserif','B',13);
 	$pdf->setXY(0,$pdf->getY() + 20);
-	$pdf->multiCell(210, 5, "С вами также хотели бы встретиться следующие компании", 0, C);
+	$pdf->multiCell(210, 5, "РЎ РІР°РјРё С‚Р°РєР¶Рµ С…РѕС‚РµР»Рё Р±С‹ РІСЃС‚СЂРµС‚РёС‚СЊСЃСЏ СЃР»РµРґСѓСЋС‰РёРµ РєРѕРјРїР°РЅРёРё", 0, C);
 
-	$pdf->SetFont('times','',10);
+	$pdf->SetFont('freeserif','',10);
 	$pdf->setX(0);
-	$pdf->multiCell(210, 5, "(возможно, вы отклонили запросы от этих участников или ваше расписание уже полное):", 0, C);
+	$pdf->multiCell(210, 5, "(РІРѕР·РјРѕР¶РЅРѕ, РІС‹ РѕС‚РєР»РѕРЅРёР»Рё Р·Р°РїСЂРѕСЃС‹ РѕС‚ СЌС‚РёС… СѓС‡Р°СЃС‚РЅРёРєРѕРІ РёР»Рё РІР°С€Рµ СЂР°СЃРїРёСЃР°РЅРёРµ СѓР¶Рµ РїРѕР»РЅРѕРµ):", 0, C);
 
 	if (!$arResult["WISH_OUT"]) {
 		$pdf->setXY(0,$pdf->getY() + 5);
-		$pdf->SetFont('Times','',13);
-		$pdf->multiCell(210, 5, "Этот список запросов пуст.", 0, C);
+		$pdf->SetFont('freeserif','',13);
+		$pdf->multiCell(210, 5, "Р­С‚РѕС‚ СЃРїРёСЃРѕРє Р·Р°РїСЂРѕСЃРѕРІ РїСѓСЃС‚.", 0, C);
 	} else {
 		$pdf->setXY(20,$pdf->getY() + 5);
-		$pdf->SetFont('times','',13);
+		$pdf->SetFont('freeserif','',13);
 
 		$tbl = '<table cellspacing="0" cellpadding="5" border="1">
 			<tr>
-				<td align="center" width="60">№</td>
-				<td align="center" width="250">Компания</td>
-				<td align="center" width="200">Представитель</td>
+				<td align="center" width="60">в„–</td>
+				<td align="center" width="250">РљРѕРјРїР°РЅРёСЏ</td>
+				<td align="center" width="200">РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ</td>
 			</tr>';
 		$i = 1;
 		foreach ($arResult['WISH_OUT'] as $item) {
 		  $tbl .= '<tr>
 				<td align="center">'.$i.'</td>
-				<td>'.iconv('utf-8', 'windows-1251', $item["company_name"]).'</td>
-				<td>'.iconv('utf-8', 'windows-1251', $item["company_rep"]).'</td>
+				<td>'.$item["company_name"].'</td>
+				<td>'.$item["company_rep"].'</td>
 			</tr>';
 			$i++;
 		}
@@ -95,8 +95,8 @@ function DokaGeneratePdf($arResult) {
 
 	$pdf->setXY(20,$pdf->getY() + 10);
 	$y = $pdf->getY();
-	$html = 'Вы можете встретиться со всеми компаниями, указанными выше, в любое другое время Luxury Travel
-Mart, например, во время ланча, перерыва на кофе или на вечерней сессии.';
+	$html = 'Р’С‹ РјРѕР¶РµС‚Рµ РІСЃС‚СЂРµС‚РёС‚СЊСЃСЏ СЃРѕ РІСЃРµРјРё РєРѕРјРїР°РЅРёСЏРјРё, СѓРєР°Р·Р°РЅРЅС‹РјРё РІС‹С€Рµ, РІ Р»СЋР±РѕРµ РґСЂСѓРіРѕРµ РІСЂРµРјСЏ Luxury Travel
+Mart, РЅР°РїСЂРёРјРµСЂ, РІРѕ РІСЂРµРјСЏ Р»Р°РЅС‡Р°, РїРµСЂРµСЂС‹РІР° РЅР° РєРѕС„Рµ РёР»Рё РЅР° РІРµС‡РµСЂРЅРµР№ СЃРµСЃСЃРёРё.';
 	$pdf->writeHTMLCell('', '', 20, $y, $html, $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true);
 
 	$pdf->Output("print_wish.pdf", I);

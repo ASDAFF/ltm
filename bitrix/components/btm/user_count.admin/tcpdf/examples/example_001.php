@@ -76,7 +76,7 @@ $pdf->SetFont('times', 'BI', 16);
 $pdf->AddPage();
 
 // print a line using Cell()
-$pdf->Cell(0, 12, 'Example 001 - €àèéìòù', 1, 1, 'C');
+$pdf->Cell(0, 12, 'Example 001 - в‚¬Г ГЁГ©Г¬ГІГ№', 1, 1, 'C');
 
 // ---------------------------------------------------------
 

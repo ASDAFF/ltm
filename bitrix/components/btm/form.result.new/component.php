@@ -159,7 +159,7 @@ if (CModule::IncludeModule("form"))
 			// check errors
 			$arResult["FORM_ERRORS"] = CForm::Check($arParams["WEB_FORM_ID"], $arResult["arrVALUES"], false, "Y", $arParams['USE_EXTENDED_ERRORS']);
 			
-/*/////////// ÏÐÎÂÅÐÊÀ ÑÎÂÏÀÄÅÍÈß ÏÎËß EMAIL ///////////*/
+/*/////////// ÐŸÐ ÐžÐ’Ð•Ð ÐšÐ Ð¡ÐžÐ’ÐŸÐÐ”Ð•ÐÐ˜Ð¯ ÐŸÐžÐ›Ð¯ EMAIL ///////////*/
 			if(isset($_REQUEST["form_email_19"]) && $_REQUEST["form_email_19"] != $_REQUEST["form_email_conf"]){
 				$arResult["FORM_ERRORS"]["SIMPLE_QUESTION_579_CONF"] = "Email entered in field \"Please confirm your email\" isn't correct.";
 			}
@@ -188,7 +188,7 @@ if (CModule::IncludeModule("form"))
 					{
 
 // ************************************************************* //
-//               ÐÅÃÈÑÒÐÈÐÓÅÌ ÍÎÂÎÃÎ ÏÎËÜÇÎÂÀÒÅËß                //
+//               Ð Ð•Ð“Ð˜Ð¡Ð¢Ð Ð˜Ð Ð£Ð•Ðœ ÐÐžÐ’ÐžÐ“Ðž ÐŸÐžÐ›Ð¬Ð—ÐžÐ’ÐÐ¢Ð•Ð›Ð¯                //
 // ************************************************************* //
 						if($arParams["REGIST_USER"] == "Y" && $arParams["REGIST_GROUP"] != '' && $arParams["EMAIL_FIELD"] != ''){
 							  function generatePassword($length = 8)
@@ -232,7 +232,7 @@ if (CModule::IncludeModule("form"))
 							}
 							else{
 								$arEventFields = array(
-									"ERROR"                  => 'Íå äîáàâèëñÿ ïîëüçîâàòåëü',
+									"ERROR"                  => 'ÐÐµ Ð´Ð¾Ð±Ð°Ð²Ð¸Ð»ÑÑ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ',
 									"EMAIL"          	  => $newEmail,
 									"NAME"          	  => $_POST["form_text_1"]." ".$_POST["form_text_2"],
 									"COMPANY"	          => $_POST["form_text_10"]

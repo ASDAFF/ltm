@@ -1,1 +1,1 @@
-<span id = "design">Дизайн <a href = "#">STARTBRAND®</a></span>
+<span id = "design">Р”РёР·Р°Р№РЅ <a href = "#">STARTBRANDВ®</a></span>

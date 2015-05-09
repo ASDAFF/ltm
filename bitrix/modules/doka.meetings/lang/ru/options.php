@@ -1,8 +1,8 @@
 <?php
-$MESS["IBLOCK_ADM_IMP_TAB1"] = "Íàñòðîéêè";
-$MESS["IBLOCK_ADM_ADMIN_ID"] = "Ãðóïïà àäìèíèñòðàòîðîâ";
-$MESS["DOKA_EVENT_TYPE_SENT"] = "Êîä ñîáûòèÿ 'Çàïðîñ îòïðàâëåí'";
-$MESS["DOKA_EVENT_TYPE_REJECTED"] = "Êîä ñîáûòèÿ 'Çàïðîñ îòìåíåí'";
-$MESS["DOKA_EVENT_TYPE_TIMEOUT"] = "Êîä ñîáûòèÿ 'Çàïðîñ ñíÿòü ïî òàéìàóòó'";
-$MESS["DOKA_TIMEOUT_VALUE"] = "Âðåìÿ æèçíè çàïðîñà";
+$MESS["IBLOCK_ADM_IMP_TAB1"] = "ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸";
+$MESS["IBLOCK_ADM_ADMIN_ID"] = "Ð“Ñ€ÑƒÐ¿Ð¿Ð° Ð°Ð´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ð¾Ð²";
+$MESS["DOKA_EVENT_TYPE_SENT"] = "ÐšÐ¾Ð´ ÑÐ¾Ð±Ñ‹Ñ‚Ð¸Ñ 'Ð—Ð°Ð¿Ñ€Ð¾Ñ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½'";
+$MESS["DOKA_EVENT_TYPE_REJECTED"] = "ÐšÐ¾Ð´ ÑÐ¾Ð±Ñ‹Ñ‚Ð¸Ñ 'Ð—Ð°Ð¿Ñ€Ð¾Ñ Ð¾Ñ‚Ð¼ÐµÐ½ÐµÐ½'";
+$MESS["DOKA_EVENT_TYPE_TIMEOUT"] = "ÐšÐ¾Ð´ ÑÐ¾Ð±Ñ‹Ñ‚Ð¸Ñ 'Ð—Ð°Ð¿Ñ€Ð¾Ñ ÑÐ½ÑÑ‚ÑŒ Ð¿Ð¾ Ñ‚Ð°Ð¹Ð¼Ð°ÑƒÑ‚Ñƒ'";
+$MESS["DOKA_TIMEOUT_VALUE"] = "Ð’Ñ€ÐµÐ¼Ñ Ð¶Ð¸Ð·Ð½Ð¸ Ð·Ð°Ð¿Ñ€Ð¾ÑÐ°";
 

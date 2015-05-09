@@ -1,13 +1,13 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();?>
-<div>Здесь вы можете запросить только тех участников, чьи расписания заполнены</div>
+<div>Р—РґРµСЃСЊ РІС‹ РјРѕР¶РµС‚Рµ Р·Р°РїСЂРѕСЃРёС‚СЊ С‚РѕР»СЊРєРѕ С‚РµС… СѓС‡Р°СЃС‚РЅРёРєРѕРІ, С‡СЊРё СЂР°СЃРїРёСЃР°РЅРёСЏ Р·Р°РїРѕР»РЅРµРЅС‹</div>
 <table class="section-request">
     <tr>
         <td class="appointments">
-            <div class="wish-list">Вы хотели бы видеть следующие компании</div>
+            <div class="wish-list">Р’С‹ С…РѕС‚РµР»Рё Р±С‹ РІРёРґРµС‚СЊ СЃР»РµРґСѓСЋС‰РёРµ РєРѕРјРїР°РЅРёРё</div>
                 <table class="morning-time">
                 <tr>
 			<th>N</th>
-			<th>Компания</th>
+			<th>РљРѕРјРїР°РЅРёСЏ</th>
                 </tr>
 				<? $counter=0;
 				foreach ($arResult['WISH_IN'] as $item):?>
@@ -22,10 +22,10 @@
                 <div class="send-request">
                  <a href="/cabinet/service/wish.php?id=<?=$arResult['USER_ID']?>&to=0&app=<?=$arResult['APP_ID']?>"
                     target="_blank"
-                    onclick="newWish('<?=$arResult['USER_ID']?>','<?=$arResult['APP_ID']?>','/cabinet/service/wish.php'); return false;">Отправить запрос</a>
+                    onclick="newWish('<?=$arResult['USER_ID']?>','<?=$arResult['APP_ID']?>','/cabinet/service/wish.php'); return false;">РћС‚РїСЂР°РІРёС‚СЊ Р·Р°РїСЂРѕСЃ</a>
                	</div>
                 <select name="wishlistComp" id="wishlistComp">
-                    <option value="0">Выберите компанию</option>
+                    <option value="0">Р’С‹Р±РµСЂРёС‚Рµ РєРѕРјРїР°РЅРёСЋ</option>
  				<? foreach ($arResult['COMPANIES'] as $item):?>
                     <option value="<?=$item['company_id']?>"><?=$item['company_name']?></option>
                 <?endforeach;?>
@@ -33,11 +33,11 @@
             </form>
         </td>
         <td>
-            <div class="wish-list">С Вами также хотели бы встретиться следующие участники</div>
+            <div class="wish-list">РЎ Р’Р°РјРё С‚Р°РєР¶Рµ С…РѕС‚РµР»Рё Р±С‹ РІСЃС‚СЂРµС‚РёС‚СЊСЃСЏ СЃР»РµРґСѓСЋС‰РёРµ СѓС‡Р°СЃС‚РЅРёРєРё</div>
             <table class="morning-time">
                 <tr>
 			<th>N</th>
-			<th>Компания</th>
+			<th>РљРѕРјРїР°РЅРёСЏ</th>
                 </tr>
 				<? $counter=0;
 				foreach ($arResult['WISH_OUT'] as $item):?>

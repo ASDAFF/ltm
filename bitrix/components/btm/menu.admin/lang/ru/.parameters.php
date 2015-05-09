@@ -1,6 +1,6 @@
 <?
-$MESS ['ADMIN_MENU_MAIN_SETTINGS'] = "Îñíîâíûå ïàðàìåòðû";
-$MESS ['ADMIN_MENU_PATH_TO_KAB'] = "Ïóòü ê ïàïêå êàáèíåòà àäìèíèñòðàòîðà";
-$MESS ['ADMIN_MENU_GROUP_ID'] = "Ãðóïïû àäìèíèñòðàòîðîâ";
-$MESS ['ADMIN_MENU_AUTH_PAGE'] = "Ñòðàíèöà àâòîðèçàöèè";
+$MESS ['ADMIN_MENU_MAIN_SETTINGS'] = "ÐžÑÐ½Ð¾Ð²Ð½Ñ‹Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹";
+$MESS ['ADMIN_MENU_PATH_TO_KAB'] = "ÐŸÑƒÑ‚ÑŒ Ðº Ð¿Ð°Ð¿ÐºÐµ ÐºÐ°Ð±Ð¸Ð½ÐµÑ‚Ð° Ð°Ð´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ð°";
+$MESS ['ADMIN_MENU_GROUP_ID'] = "Ð“Ñ€ÑƒÐ¿Ð¿Ñ‹ Ð°Ð´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ð¾Ð²";
+$MESS ['ADMIN_MENU_AUTH_PAGE'] = "Ð¡Ñ‚Ñ€Ð°Ð½Ð¸Ñ†Ð° Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð°Ñ†Ð¸Ð¸";
 ?>

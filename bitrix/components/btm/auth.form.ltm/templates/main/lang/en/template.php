@@ -15,5 +15,5 @@ $MESS ['AUTH_A_LIVEID'] = "LiveID";
 $MESS ['AUTH_LIVEID_LOGIN'] = "Log In";
 $MESS ['AUTH_CAPTCHA_PROMT'] = "Type text from image";
 $MESS ['AUTH_DEJA'] = 'You are autorized already.<br /><a href="/personal/">Personal cabinet</a>';
-$MESS ['IS_BLOCKED'] = "Ëè÷íûå êàáèíåòû íå àêòèâíû.";
+$MESS ['IS_BLOCKED'] = "Ð›Ð¸Ñ‡Ð½Ñ‹Ðµ ÐºÐ°Ð±Ð¸Ð½ÐµÑ‚Ñ‹ Ð½Ðµ Ð°ÐºÑ‚Ð¸Ð²Ð½Ñ‹.";
 ?>

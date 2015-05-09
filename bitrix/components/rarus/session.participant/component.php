@@ -21,7 +21,7 @@ if($USER->IsAdmin() && isset($_REQUEST["UID"])) {
 	$arResult["USER_ID"] = $USER->GetID();
 }
 
-//подключение модуля встреч
+//РїРѕРґРєР»СЋС‡РµРЅРёРµ РјРѕРґСѓР»СЏ РІСЃС‚СЂРµС‡
 use Doka\Meetings\Requests as DokaRequest;
 use Doka\Meetings\Timeslots as DokaTimeslot;
 
@@ -34,7 +34,7 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 	}
 
 
-	//получение текущей выставки
+	//РїРѕР»СѓС‡РµРЅРёРµ С‚РµРєСѓС‰РµР№ РІС‹СЃС‚Р°РІРєРё
 
 	$rsExhib = CIBlockElement::GetList(
 			array(),
@@ -66,7 +66,7 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 		$req_obj = new DokaRequest($appId);
 		$arResult['IS_ACTIVE'] = !$req_obj->getOption('IS_LOCKED');
 
-		//получение списка подтвержденных Участников на данную выставку
+		//РїРѕР»СѓС‡РµРЅРёРµ СЃРїРёСЃРєР° РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… РЈС‡Р°СЃС‚РЅРёРєРѕРІ РЅР° РґР°РЅРЅСѓСЋ РІС‹СЃС‚Р°РІРєСѓ
 
 		$cParticipantGroup = $arResult["EXHIBITION"]["PROPERTIES"]["USER_GROUP_ID"]["VALUE"];
 
@@ -79,16 +79,16 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 				"SELECT" => array("UF_*")
 				);
 
-		$arResultId = array();//тут список результатов пользователей
-		$arResultAllFormId = array();//тут список результатов заполнения формы участники все выставки
-		$propertyNameParticipant = CFormMatrix::getPropertyIDByExh($arResult["EXHIBITION"]["ID"], 0);//свойство участника
-		$propertyNameColleague = CFormMatrix::getPropertyIDByExh($arResult["EXHIBITION"]["ID"], 1);//свойство коллеги
+		$arResultId = array();//С‚СѓС‚ СЃРїРёСЃРѕРє СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
+		$arResultAllFormId = array();//С‚СѓС‚ СЃРїРёСЃРѕРє СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ Р·Р°РїРѕР»РЅРµРЅРёСЏ С„РѕСЂРјС‹ СѓС‡Р°СЃС‚РЅРёРєРё РІСЃРµ РІС‹СЃС‚Р°РІРєРё
+		$propertyNameParticipant = CFormMatrix::getPropertyIDByExh($arResult["EXHIBITION"]["ID"], 0);//СЃРІРѕР№СЃС‚РІРѕ СѓС‡Р°СЃС‚РЅРёРєР°
+		$propertyNameColleague = CFormMatrix::getPropertyIDByExh($arResult["EXHIBITION"]["ID"], 1);//СЃРІРѕР№СЃС‚РІРѕ РєРѕР»Р»РµРіРё
 
 		$rsUsers = $USER->GetList(($by="work_company"), ($order="asc"), $arFilter, $arParamsUser);
 		while($arUser = $rsUsers->Fetch())
 		{
 
-			$arResultId[] = $arUser[$propertyNameParticipant];//дописываем id результата заполнения формы
+			$arResultId[] = $arUser[$propertyNameParticipant];//РґРѕРїРёСЃС‹РІР°РµРј id СЂРµР·СѓР»СЊС‚Р°С‚Р° Р·Р°РїРѕР»РЅРµРЅРёСЏ С„РѕСЂРјС‹
 			$arResultId[] = $arUser[$propertyNameColleague];
 			$arResultAllFormId[] = $arUser["UF_ID_COMP"];
 
@@ -96,7 +96,7 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 
 		}
 
-		//получение результатов заполнения формы регистрациия для пользователей
+		//РїРѕР»СѓС‡РµРЅРёРµ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ Р·Р°РїРѕР»РЅРµРЅРёСЏ С„РѕСЂРјС‹ СЂРµРіРёСЃС‚СЂР°С†РёРёСЏ РґР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 
 		$formId = CFormMatrix::getPFormIDByExh($arResult["EXHIBITION"]["ID"]);
 
@@ -120,11 +120,11 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 
 		//pre($arQuestionsCompany);
 		$allTimeSlot = $req_obj->getAllMeetTimeslots();
-		$arResult["SESSION"]["BY_SLOTS"] = $allTimeSlot;//список всех таймслотов
+		$arResult["SESSION"]["BY_SLOTS"] = $allTimeSlot;//СЃРїРёСЃРѕРє РІСЃРµС… С‚Р°Р№РјСЃР»РѕС‚РѕРІ
 
 		foreach ($arResult["SESSION"]["USERS"] as &$arUser)
 		{
-		    $times =  $req_obj->getSortedFreeTimesAppoint($arUser["ID"]);//свободные таймслоты пользователя
+		    $times =  $req_obj->getSortedFreeTimesAppoint($arUser["ID"]);//СЃРІРѕР±РѕРґРЅС‹Рµ С‚Р°Р№РјСЃР»РѕС‚С‹ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 
 		    $userTimeSlot = array();
 		    foreach ($times as $time)
@@ -147,25 +147,25 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 			$fieldId = CFormMatrix::getQIDByBase(32 , $formId);
 			$answerID = CFormMatrix::getAnswerRelBase(84 ,$formId);//Participant first name
 
-			//участник
+			//СѓС‡Р°СЃС‚РЅРёРє
 			$pName = trim($arAnswersUser[$resultIdUser][$fieldId][$answerID]["USER_TEXT"]);
-			//коллега
+			//РєРѕР»Р»РµРіР°
 			$cName = trim($arAnswersUser[$resultIdColleague][$fieldId][$answerID]["USER_TEXT"]);
 
 
 			$fieldId = CFormMatrix::getQIDByBase(33 , $formId);
 			$answerID = CFormMatrix::getAnswerRelBase(85 ,$formId);//Participant last name
 
-			//участник
+			//СѓС‡Р°СЃС‚РЅРёРє
 			$pLastName = trim($arAnswersUser[$resultIdUser][$fieldId][$answerID]["USER_TEXT"]);
-			//коллега
+			//РєРѕР»Р»РµРіР°
 			$cLastName = trim($arAnswersUser[$resultIdColleague][$fieldId][$answerID]["USER_TEXT"]);
 
 
 
 			$pCompanyName = trim($arAnswersCompany[$resultIdCompany][17][30]["USER_TEXT"]);
 
-			//если ввели два адреса
+			//РµСЃР»Рё РІРІРµР»Рё РґРІР° Р°РґСЂРµСЃР°
 			$pCompanyLink = trim($arAnswersCompany[$resultIdCompany][23][38]["USER_TEXT"]);
 			if($pCompanyLink == "http://")
 			{
@@ -229,7 +229,7 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 				$arPriorArea[30]["ITEMS"][$country["ANSWER_ID"]] = trim($country["ANSWER_TEXT"]);
 			}
 
-			//Вид деятельности
+			//Р’РёРґ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё
 			$arBusinessType = array();
 			foreach ($arAnswersCompany[$resultIdCompany][19] as $BusinessType)
 			{
@@ -238,14 +238,14 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 
 
 			/*
-			//рарзделение по приоритетным направлениям и по городам в них
+			//СЂР°СЂР·РґРµР»РµРЅРёРµ РїРѕ РїСЂРёРѕСЂРёС‚РµС‚РЅС‹Рј РЅР°РїСЂР°РІР»РµРЅРёСЏРј Рё РїРѕ РіРѕСЂРѕРґР°Рј РІ РЅРёС…
 			foreach ($arPriorArea as $id=>$area)
 			{
 				$arResult["SESSION"]["BY_PRIORITY_AREAS"][$id]["NAME"] = $area["NAME"];
 
 				foreach ($area["ITEMS"] as $answerID => $name)
 				{
-					//поиск в уже существующих
+					//РїРѕРёСЃРє РІ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёС…
 					$found = false;
 					foreach ($arResult["SESSION"]["BY_PRIORITY_AREAS"][$id]['ITEMS'] as &$areaData)
 					{
@@ -267,12 +267,12 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 			*/
 
 
-			//рарзделение по городам в приоритетных направлениях
+			//СЂР°СЂР·РґРµР»РµРЅРёРµ РїРѕ РіРѕСЂРѕРґР°Рј РІ РїСЂРёРѕСЂРёС‚РµС‚РЅС‹С… РЅР°РїСЂР°РІР»РµРЅРёСЏС…
 			foreach ($arPriorArea as $id=>$area)
 			{
 				foreach ($area["ITEMS"] as $answerID => $name)
 				{
-					//поиск в уже существующих
+					//РїРѕРёСЃРє РІ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёС…
 					$found = false;
 					foreach ($arResult["SESSION"]["BY_PRIORITY_AREAS"] as $index => &$areaData)
 					{
@@ -292,7 +292,7 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 				}
 			}
 
-			//разделение по городам
+			//СЂР°Р·РґРµР»РµРЅРёРµ РїРѕ РіРѕСЂРѕРґР°Рј
 			$found = false;
 			foreach ($arResult["SESSION"]["BY_CITY"] as &$cityData)
 			{
@@ -309,10 +309,10 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 				$arResult["SESSION"]["BY_CITY"][] = array("NAME" => $pCity, "ID" => array($arUser["ID"]));
 			}
 
-			//без разделения
+			//Р±РµР· СЂР°Р·РґРµР»РµРЅРёСЏ
 			$arResult["SESSION"]["BY_ALL"][] = $arUser["ID"];
 
-			//По алфавиту
+			//РџРѕ Р°Р»С„Р°РІРёС‚Сѓ
 			$firstLetter = strtoupper($pCompanyName{0});
 			$found = false;
 
@@ -342,10 +342,10 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 				$arResult["SESSION"]["BY_ALPHABET"][] = array("NAME" => $firstLetter, "ID" => array($arUser["ID"]));
 			}
 
-			//разделение по виду деятельности
+			//СЂР°Р·РґРµР»РµРЅРёРµ РїРѕ РІРёРґСѓ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё
 			foreach ($arBusinessType as $answerID => $name)
 			{
-				//поиск в уже существующих
+				//РїРѕРёСЃРє РІ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёС…
 				$found = false;
 				foreach ($arResult["SESSION"]["BY_BUSINESS"] as $index => &$businessData)
 				{
@@ -386,7 +386,7 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 
 
 			$arUser["FORM_DATA"] = $arFormData;
-		}//по пользователям
+		}//РїРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏРј
 	}
 
 	usort($arResult["SESSION"]["BY_CITY"], "cmp");

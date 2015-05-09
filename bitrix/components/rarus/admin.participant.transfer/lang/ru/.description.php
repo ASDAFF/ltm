@@ -1,6 +1,6 @@
 <?
-$MESS["P_TRANSFERTITLE"] = "Ïåðåíîñ ó÷àñòíèêà";
+$MESS["P_TRANSFERTITLE"] = "ÐŸÐµÑ€ÐµÐ½Ð¾Ñ ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ°";
 $MESS["P_TRANSFER_DESCR"] = "";
-$MESS["P_TRANSFER_NAME"] = "Ïåðåíîñ ó÷àñòíèêà";
+$MESS["P_TRANSFER_NAME"] = "ÐŸÐµÑ€ÐµÐ½Ð¾Ñ ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ°";
 
 ?>

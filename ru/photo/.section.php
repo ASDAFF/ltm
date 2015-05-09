@@ -1,3 +1,3 @@
 <?
-$sSectionName="LTM â ôîòîãðàôèÿõ";
+$sSectionName="LTM Ð² Ñ„Ð¾Ñ‚Ð¾Ð³Ñ€Ð°Ñ„Ð¸ÑÑ…";
 ?>

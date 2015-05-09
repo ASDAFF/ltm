@@ -1,102 +1,102 @@
 <?
 function DokaGeneratePdf($arResult) {
-	$pdf = new TCPDF('P', 'mm', 'A4', false, 'UTF-8', false);
+	$pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
 	$pdf->setPrintHeader(false);
 	$pdf->setPrintFooter(false);
 	$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-	$pdf->AddFont('times','I','timesi.php');
+	$pdf->AddFont('freeserif','I','freeserifi.php');
 	$pdf->AddPage();
 	$pdf->ImageSVG($file=DOKA_MEETINGS_MODULE_DIR . '/images/logo.svg', $x=30, $y=5, $w='150', $h='', $link='', $align='', $palign='', $border=0, $fitonpage=false);
 
 	$pdf->setXY(0,25);
-	$pdf->SetFont('times', 'B',17);
+	$pdf->SetFont('freeserif', 'B',17);
 	if($arResult["EXHIBITION"]["IS_HB"]){
-		$arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'] .= " Hosted Buyers сессия";
+		$arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'] .= " Hosted Buyers СЃРµСЃСЃРёСЏ";
 	}
-	$pdf->multiCell(210, 5, "Расписание встреч на утренней сессии\n" . $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'], 0, C);
-/*$pdf->multiCell(210, 5, "Список неподтвержденных запросов на\nLuxury Travel Mart Баку", 0, C);*/
-	$pdf->SetFont('times','',15);
+	$pdf->multiCell(210, 5, "Р Р°СЃРїРёСЃР°РЅРёРµ РІСЃС‚СЂРµС‡ РЅР° СѓС‚СЂРµРЅРЅРµР№ СЃРµСЃСЃРёРё\n" . $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'], 0, C);
+/*$pdf->multiCell(210, 5, "РЎРїРёСЃРѕРє РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… Р·Р°РїСЂРѕСЃРѕРІ РЅР°\nLuxury Travel Mart Р‘Р°РєСѓ", 0, C);*/
+	$pdf->SetFont('freeserif','',15);
 	$pdf->setXY(30,44);
-	$pdf->multiCell(210, 5, iconv('utf-8', 'windows-1251', $arResult["USER"]['COMPANY']).", ". iconv('utf-8', 'windows-1251', $arResult["USER"]['CITY']), 0, L);
+	$pdf->multiCell(210, 5, $arResult["USER"]['COMPANY'].", ". $arResult["USER"]['CITY'], 0, L);
 	$pdf->setXY(30,52);
-	$pdf->multiCell(210, 5, iconv('utf-8', 'windows-1251', $arResult["USER"]['REP']), 0, L);	
+	$pdf->multiCell(210, 5, $arResult["USER"]['REP'], 0, L);
 	$pdf->setXY(30,60);
 	if($arResult["EXHIBITION"]["IS_HB"] && $arResult["HALL"] != "None"){
 		$pdf->multiCell(210, 5, "Hall, Table: ".$arResult["HALL"].", ".$arResult["TABLE"], 0, L);
 
 		$pdf->setXY(0,70);
-		$pdf->SetFont('times','',13);
-		$pdf->multiCell(210, 5, "Ваше расписание", 0, C);
+		$pdf->SetFont('freeserif','',13);
+		$pdf->multiCell(210, 5, "Р’Р°С€Рµ СЂР°СЃРїРёСЃР°РЅРёРµ", 0, C);
 		$pdf->setXY(20,80);
 	}
 	elseif($arResult["EXHIBITION"]["IS_HB"]){
 		$pdf->multiCell(210, 5, "Hall, Table: ", 0, L);
 		
 		$pdf->setXY(0,70);
-		$pdf->SetFont('times','',13);
-		$pdf->multiCell(210, 5, "Ваше расписание", 0, C);
+		$pdf->SetFont('freeserif','',13);
+		$pdf->multiCell(210, 5, "Р’Р°С€Рµ СЂР°СЃРїРёСЃР°РЅРёРµ", 0, C);
 		$pdf->setXY(20,80);
 	}
 	else{
 		$pdf->setX(0);
-		$pdf->SetFont('times','',13);
-		$pdf->multiCell(210, 5, "Ваше расписание", 0, C);
+		$pdf->SetFont('freeserif','',13);
+		$pdf->multiCell(210, 5, "Р’Р°С€Рµ СЂР°СЃРїРёСЃР°РЅРёРµ", 0, C);
 		$pdf->setXY(20,70);
 	}
 
-	$pdf->SetFont('times','',10);
+	$pdf->SetFont('freeserif','',10);
 
-	/* Формируем таблицу */
+	/* Р¤РѕСЂРјРёСЂСѓРµРј С‚Р°Р±Р»РёС†Сѓ */
 	if($arResult["EXHIBITION"]["IS_HB"]){
         $header = '<table cellspacing="0" cellpadding="5" border="1">
     <tr>
-        <td align="center" width="70">Время</td>
-        <td align="center" width="240">Участники</td>
-        <td align="center" width="90">Статус</td>
+        <td align="center" width="70">Р’СЂРµРјСЏ</td>
+        <td align="center" width="240">РЈС‡Р°СЃС‚РЅРёРєРё</td>
+        <td align="center" width="90">РЎС‚Р°С‚СѓСЃ</td>
     </tr>';
 	}
 	else{
         $header = '<table cellspacing="0" cellpadding="5" border="1">
     <tr>
-        <td align="center" width="70">Время</td>
-        <td align="center" width="240">Участники</td>
-        <td align="center" width="90">Статус</td>
-        <td align="center" width="95">Зал, Стол</td>
+        <td align="center" width="70">Р’СЂРµРјСЏ</td>
+        <td align="center" width="240">РЈС‡Р°СЃС‚РЅРёРєРё</td>
+        <td align="center" width="90">РЎС‚Р°С‚СѓСЃ</td>
+        <td align="center" width="95">Р—Р°Р», РЎС‚РѕР»</td>
     </tr>';		
 	}
 
 	$tbl = $header;
 	$count = 0;
 	$countBreaks = 0;
-	foreach ($arResult['SCHEDULE'] as $timeslot) {
+	foreach ($arResult['SCHEDULE'] as $freeseriflot) {
 		$count++;
-		if ($timeslot['status'] == 'free') {
+		if ($freeseriflot['status'] == 'free') {
 			$tbl .= '<tr>
-                        <td>'.iconv('utf-8', 'windows-1251', $timeslot['name']).'</td>
-                        <td colspan="3" align="center">Свободно</td>
+                        <td>'.$freeseriflot['name'].'</td>
+                        <td colspan="3" align="center">РЎРІРѕР±РѕРґРЅРѕ</td>
                     </tr>';
 		}
-		else if($timeslot['status'] == 'coffe' && !$countBreaks){
+		else if($freeseriflot['status'] == 'coffe' && !$countBreaks){
 			$tbl .= '<tr>
-                        <td>'.iconv('utf-8', 'windows-1251', $timeslot['name']).'</td>
-                        <td colspan="3" align="center">Перерыв на кофе</td>
+                        <td>'.$freeseriflot['name'].'</td>
+                        <td colspan="3" align="center">РџРµСЂРµСЂС‹РІ РЅР° РєРѕС„Рµ</td>
                     </tr>';
             $countBreaks++;
 			}
-		else if($timeslot['status'] == 'coffe' && $countBreaks){
+		else if($freeseriflot['status'] == 'coffe' && $countBreaks){
 			$tbl .= '<tr>
-                        <td>'.iconv('utf-8', 'windows-1251', $timeslot['name']).'</td>
-                        <td colspan="3" align="center">Перерыв на обед</td>
+                        <td>'.$freeseriflot['name'].'</td>
+                        <td colspan="3" align="center">РџРµСЂРµСЂС‹РІ РЅР° РѕР±РµРґ</td>
                     </tr>';
 			}
 		else {
 			$tbl .= '<tr>
-							<td>'.iconv('utf-8', 'windows-1251', $timeslot['name']).'</td>
-							<td>Компания: '.$timeslot['company_name'].'<br />Представитель: '.iconv('utf-8', 'windows-1251', $timeslot['company_rep']).'</td>
-							<td align="center">' . $timeslot['notes']. '</td>';
+							<td>'.$freeseriflot['name'].'</td>
+							<td>РљРѕРјРїР°РЅРёСЏ: '.$freeseriflot['company_name'].'<br />РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ: '.$freeseriflot['company_rep'].'</td>
+							<td align="center">' . $freeseriflot['notes']. '</td>';
 			if(!$arResult["EXHIBITION"]["IS_HB"]){
-				if($timeslot['hall']){
-					 $tbl .= '<td>'.iconv('utf-8', 'windows-1251', $timeslot['hall']).', '.iconv('utf-8', 'windows-1251', $timeslot['table']).'</td>';
+				if($freeseriflot['hall']){
+					 $tbl .= '<td>'.$freeseriflot['hall'].', '.$freeseriflot['table'].'</td>';
 				}
 				else{
 					$tbl .= '<td> </td>';
@@ -108,7 +108,7 @@ function DokaGeneratePdf($arResult) {
 			$tbl .= '</table>';
 			$pdf->writeHTML($tbl, true, false, false, false, '');
 			$pdf->setXY(0,$pdf->getY() + 1);
-			$pdf->multiCell(210, 5, "продолжение на следующей странице", 0, C);
+			$pdf->multiCell(210, 5, "РїСЂРѕРґРѕР»Р¶РµРЅРёРµ РЅР° СЃР»РµРґСѓСЋС‰РµР№ СЃС‚СЂР°РЅРёС†Рµ", 0, C);
 			$pdf->AddPage();
 			$pdf->setX(20);
 			$tbl = $header;
@@ -119,12 +119,12 @@ function DokaGeneratePdf($arResult) {
 
 	$pdf->setXY(20,$pdf->getY() + 10);
 	$y = $pdf->getY();
-	$html = '<b>Регистрация гостей и выдача бейджей</b> будет проходить в день мероприятия на стойке регистрации Luxury Travel Mart <b>с 09:30 до 11:30.</b>';
+	$html = '<b>Р РµРіРёСЃС‚СЂР°С†РёСЏ РіРѕСЃС‚РµР№ Рё РІС‹РґР°С‡Р° Р±РµР№РґР¶РµР№</b> Р±СѓРґРµС‚ РїСЂРѕС…РѕРґРёС‚СЊ РІ РґРµРЅСЊ РјРµСЂРѕРїСЂРёСЏС‚РёСЏ РЅР° СЃС‚РѕР№РєРµ СЂРµРіРёСЃС‚СЂР°С†РёРё Luxury Travel Mart <b>СЃ 09:30 РґРѕ 11:30.</b>';
 	$pdf->writeHTMLCell('', '', 20, $y, $html, $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true);
 
 	$pdf->setY($pdf->getY() + 10);
 	$y = $pdf->getY();
-	$html = 'Пожалуйста, имейте при себе <b>достаточное количество визитных карточек на английском языке.</b>';
+	$html = 'РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РёРјРµР№С‚Рµ РїСЂРё СЃРµР±Рµ <b>РґРѕСЃС‚Р°С‚РѕС‡РЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РІРёР·РёС‚РЅС‹С… РєР°СЂС‚РѕС‡РµРє РЅР° Р°РЅРіР»РёР№СЃРєРѕРј СЏР·С‹РєРµ.</b>';
 	$pdf->writeHTMLCell('', '', 20, $y, $html, $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true);
 
 	$pdf->Output("print.pdf", I);

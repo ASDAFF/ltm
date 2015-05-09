@@ -1,7 +1,7 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Участники 2010");
-?><h1>Участники 2010</h1>
+$APPLICATION->SetTitle("РЈС‡Р°СЃС‚РЅРёРєРё 2010");
+?><h1>РЈС‡Р°СЃС‚РЅРёРєРё 2010</h1>
 <p class="area_title">Aviation</p>
 <ul>
   <li><strong><a href="http://www.airpartner.com" target="_blank" style="color: white;">Air Partner Private Jets</a></strong></li>
@@ -150,7 +150,7 @@ $APPLICATION->SetTitle("Участники 2010");
 
 <p class="area_title">DMC and Touroperators</p>
 <ul>
-  <li><strong><a href="http://www.7south.net" target="_blank" style="color: white;">7°South</a></strong></li>
+  <li><strong><a href="http://www.7south.net" target="_blank" style="color: white;">7В°South</a></strong></li>
   <li><strong><a href="http://www.amandatour.com" target="_blank" style="color: white;">Amandatour</a></strong></li>
   <li><strong><a href="http://TBA" target="_blank" style="color: white;">Be Luxury by Full Services Group</a></strong></li>
   <li><strong><a href="http://LUX@jtb.jp" target="_blank" style="color: white;">Boutique JTB</a></strong></li>

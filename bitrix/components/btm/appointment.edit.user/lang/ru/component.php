@@ -1,14 +1,14 @@
 <?
-$MESS ['APPOINTMENT_EDIT_APP_ID_ERROR'] = "Íå ââåäåíû äàííûå ïî âñòðå÷å! Âîçìîæíî, íåïðàâèëüíûé çàïðîñ.";
-$MESS ['APPOINTMENT_EDIT_APP_ACTION_ERROR'] = "Íå ââåäåíû äàííûå ïî äåéñòâèþ íàä âñòðå÷åé! Âîçìîæíî, íåïðàâèëüíûé çàïðîñ.";
-$MESS ['APPOINTMENT_EDIT_AUTH_ERROR'] = "Âû íå àâòîðèçîâàíû!";
-$MESS ['APPOINTMENT_EDIT_BLOCKED'] = "Íàçíà÷åíèå âñòðå÷ çàáëîêèðîâàíî àäìèíèñòðàöèåé";
-$MESS ['APPOINTMENT_EDIT_EDIT_ERROR'] = "Âû íå ìîæåòå èçìåíÿòü äàííóþ âñòðå÷ó.";
-$MESS ['APPOINTMENT_EDIT_APP_CHANGE_ERROR'] = "Âîçíèêëà îøèáêà, ïîïðîáóéòå åùå ðàç íåñêîëüêî ïîçæå.";
-$MESS ['APPOINTMENT_EDIT_APP_ACCEPT_ERROR'] = "Âû íå ìîæåòå îäîáðèòü äàííóþ âñòðå÷ó";
-$MESS ['APPOINTMENT_EDIT_APP_ACCEPT'] = "Âñòðå÷à óñïåøíî ïîäòâåðæäåíà.";
-$MESS ['APPOINTMENT_EDIT_APP_ACCEPT_DEJA'] = "Äàííàÿ âñòðå÷à óæå ïîäòâåðæäåíà.";
-$MESS ['APPOINTMENT_EDIT_APP_DECLINE'] = "Âñòðå÷à óñïåøíî îòìåíåíà.";
-$MESS ['APPOINTMENT_EDIT_APP_DECLINE_DEJA'] = "Äàííàÿ âñòðå÷à óæå îòìåíåíà.";
-$MESS ['APPOINTMENT_EDIT_APP_EXIST_ERROR'] = "Äàííàÿ âñòðå÷à íå íàéäåíà.";
+$MESS ['APPOINTMENT_EDIT_APP_ID_ERROR'] = "ÐÐµ Ð²Ð²ÐµÐ´ÐµÐ½Ñ‹ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¿Ð¾ Ð²ÑÑ‚Ñ€ÐµÑ‡Ðµ! Ð’Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾, Ð½ÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ñ‹Ð¹ Ð·Ð°Ð¿Ñ€Ð¾Ñ.";
+$MESS ['APPOINTMENT_EDIT_APP_ACTION_ERROR'] = "ÐÐµ Ð²Ð²ÐµÐ´ÐµÐ½Ñ‹ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¿Ð¾ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸ÑŽ Ð½Ð°Ð´ Ð²ÑÑ‚Ñ€ÐµÑ‡ÐµÐ¹! Ð’Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾, Ð½ÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ñ‹Ð¹ Ð·Ð°Ð¿Ñ€Ð¾Ñ.";
+$MESS ['APPOINTMENT_EDIT_AUTH_ERROR'] = "Ð’Ñ‹ Ð½Ðµ Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð¾Ð²Ð°Ð½Ñ‹!";
+$MESS ['APPOINTMENT_EDIT_BLOCKED'] = "ÐÐ°Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð²ÑÑ‚Ñ€ÐµÑ‡ Ð·Ð°Ð±Ð»Ð¾ÐºÐ¸Ñ€Ð¾Ð²Ð°Ð½Ð¾ Ð°Ð´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸ÐµÐ¹";
+$MESS ['APPOINTMENT_EDIT_EDIT_ERROR'] = "Ð’Ñ‹ Ð½Ðµ Ð¼Ð¾Ð¶ÐµÑ‚Ðµ Ð¸Ð·Ð¼ÐµÐ½ÑÑ‚ÑŒ Ð´Ð°Ð½Ð½ÑƒÑŽ Ð²ÑÑ‚Ñ€ÐµÑ‡Ñƒ.";
+$MESS ['APPOINTMENT_EDIT_APP_CHANGE_ERROR'] = "Ð’Ð¾Ð·Ð½Ð¸ÐºÐ»Ð° Ð¾ÑˆÐ¸Ð±ÐºÐ°, Ð¿Ð¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ ÐµÑ‰Ðµ Ñ€Ð°Ð· Ð½ÐµÑÐºÐ¾Ð»ÑŒÐºÐ¾ Ð¿Ð¾Ð·Ð¶Ðµ.";
+$MESS ['APPOINTMENT_EDIT_APP_ACCEPT_ERROR'] = "Ð’Ñ‹ Ð½Ðµ Ð¼Ð¾Ð¶ÐµÑ‚Ðµ Ð¾Ð´Ð¾Ð±Ñ€Ð¸Ñ‚ÑŒ Ð´Ð°Ð½Ð½ÑƒÑŽ Ð²ÑÑ‚Ñ€ÐµÑ‡Ñƒ";
+$MESS ['APPOINTMENT_EDIT_APP_ACCEPT'] = "Ð’ÑÑ‚Ñ€ÐµÑ‡Ð° ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð°.";
+$MESS ['APPOINTMENT_EDIT_APP_ACCEPT_DEJA'] = "Ð”Ð°Ð½Ð½Ð°Ñ Ð²ÑÑ‚Ñ€ÐµÑ‡Ð° ÑƒÐ¶Ðµ Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð°.";
+$MESS ['APPOINTMENT_EDIT_APP_DECLINE'] = "Ð’ÑÑ‚Ñ€ÐµÑ‡Ð° ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¾Ñ‚Ð¼ÐµÐ½ÐµÐ½Ð°.";
+$MESS ['APPOINTMENT_EDIT_APP_DECLINE_DEJA'] = "Ð”Ð°Ð½Ð½Ð°Ñ Ð²ÑÑ‚Ñ€ÐµÑ‡Ð° ÑƒÐ¶Ðµ Ð¾Ñ‚Ð¼ÐµÐ½ÐµÐ½Ð°.";
+$MESS ['APPOINTMENT_EDIT_APP_EXIST_ERROR'] = "Ð”Ð°Ð½Ð½Ð°Ñ Ð²ÑÑ‚Ñ€ÐµÑ‡Ð° Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°.";
 ?>

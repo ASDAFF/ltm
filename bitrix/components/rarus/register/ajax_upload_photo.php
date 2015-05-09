@@ -28,12 +28,12 @@ foreach ($_FILES as $key => $fileData)
 	}
 	else
 	{
-		//создаем папку, если нет
+		//СЃРѕР·РґР°РµРј РїР°РїРєСѓ, РµСЃР»Рё РЅРµС‚
 		if (!file_exists($_SERVER["DOCUMENT_ROOT"].$uploaddir)) {
 			mkdir($_SERVER["DOCUMENT_ROOT"].$uploaddir, 0766, true);
 		}
 	
-		//перемещаем файл
+		//РїРµСЂРµРјРµС‰Р°РµРј С„Р°Р№Р»
 		if (move_uploaded_file($fileData['tmp_name'], $_SERVER["DOCUMENT_ROOT"]. $file))
 		{
 			$arResponse["STATUS"] = "success";

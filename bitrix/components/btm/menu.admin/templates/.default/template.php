@@ -5,7 +5,7 @@ if($arResult["ERROR_MESSAGE"] == ''){
 	?>
     	<script type="text/javascript" src="/bitrix/templates/personal_admin/choose_tips.js"></script>
         <div id="top_tips">
-        	<div <? if($arResult["ISACTIVE"] == "N"):?>class="active_tip"<? else:?>class="tip"<? endif;?> id="parent0" onclick="chooseParmenu('top_tips','submenu_cont','0');"><p><a href="/admin/" onclick="chooseParmenu('top_tips','submenu_cont','0'); return false;">Главная</a></p></div>
+        	<div <? if($arResult["ISACTIVE"] == "N"):?>class="active_tip"<? else:?>class="tip"<? endif;?> id="parent0" onclick="chooseParmenu('top_tips','submenu_cont','0');"><p><a href="/admin/" onclick="chooseParmenu('top_tips','submenu_cont','0'); return false;">Р“Р»Р°РІРЅР°СЏ</a></p></div>
         <?
 		$counterPoint = 1;
 		foreach($arResult["MENU"] as $mainPoint){
@@ -18,7 +18,7 @@ if($arResult["ERROR_MESSAGE"] == ''){
         </div>
         <div id="submenu_cont">
         	<div class="submenu" id="sub0" <? if($arResult["ISACTIVE"] == "N"):?>style="display:block;"<? endif;?>>
-                <p <? if($arResult["ISACTIVE"] == "N"):?>class="active"<? else:?>class="subpoint"<? endif;?>><a href="/admin/">Главная страница</a></p>
+                <p <? if($arResult["ISACTIVE"] == "N"):?>class="active"<? else:?>class="subpoint"<? endif;?>><a href="/admin/">Р“Р»Р°РІРЅР°СЏ СЃС‚СЂР°РЅРёС†Р°</a></p>
             </div>
         <?
 		$counterPoint = 1;

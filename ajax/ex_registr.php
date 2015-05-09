@@ -29,7 +29,7 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 	$form1 = false;
 	$form2 = false;
 	
-	//логотип 
+	//Р»РѕРіРѕС‚РёРї 
 	if ($handle = opendir(PATH_LOGO)) {
 		while (false !== ($file = readdir($handle))){ 
 			if($file != '.' && $file != '..'){
@@ -41,12 +41,12 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 	}
 	$logotip = CFile::MakeFileArray(PATH_LOGO.$logotip);
 	
-	//будем обрезать логотип
+	//Р±СѓРґРµРј РѕР±СЂРµР·Р°С‚СЊ Р»РѕРіРѕС‚РёРї
 	$vMod = CFile::SaveFile($logotip, "upload");
 	$file = CFile::ResizeImageGet($vMod, array('width'=>100, 'height'=> 99999), BX_RESIZE_IMAGE_PROPORTIONAL, true);    
 	$logotipMod = CFile::MakeFileArray($file['src']);
 	
-	//фотографии (6-12) 
+	//С„РѕС‚РѕРіСЂР°С„РёРё (6-12) 
 	if ($handle = opendir(PATH_PHOTOS)) {
 		while (false !== ($file = readdir($handle))){ 
 			if($file != '.' && $file != '..'){
@@ -72,7 +72,7 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 		$arLoad = Array(
 			"IBLOCK_SECTION_ID" => $ID_SECTION,
 			"IBLOCK_ID"      => IBLOCK_PHOTO,
-			"NAME"           => "Фото ".$tt,
+			"NAME"           => "Р¤РѕС‚Рѕ ".$tt,
 			"ACTIVE"         => "Y",
 			"PREVIEW_PICTURE" => CFile::MakeFileArray(PATH_PHOTOS.$v)
 		);
@@ -102,7 +102,7 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 		"form_textarea_39"                   => $textComp
 	);
 	$arValuesMain = array_merge($arValues, $areasAr);
-	// создадим новый результат
+	// СЃРѕР·РґР°РґРёРј РЅРѕРІС‹Р№ СЂРµР·СѓР»СЊС‚Р°С‚
 	if ($RESULT_ID = CFormResult::Add(ID_FROM_COMP, $arValuesMain)){
 		$form1 = true;
 	}
@@ -111,8 +111,8 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 	}
 	unlink(PATH_LOGO.$logotip_d);
 	
-	//форма Участники Представители Москва Весна (по умолчанию)
-	//персональное фото 
+	//С„РѕСЂРјР° РЈС‡Р°СЃС‚РЅРёРєРё РџСЂРµРґСЃС‚Р°РІРёС‚РµР»Рё РњРѕСЃРєРІР° Р’РµСЃРЅР° (РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ)
+	//РїРµСЂСЃРѕРЅР°Р»СЊРЅРѕРµ С„РѕС‚Рѕ 
 	if ($handle = opendir(PATH_PERS_PHOTO)) {
 		while (false !== ($file = readdir($handle))){ 
 			if($file != '.' && $file != '..'){
@@ -134,13 +134,13 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 		"form_text_91"                       => $alt_mail,
 		"form_image_195"                     => $pers
 	);
-	// создадим новый результат
+	// СЃРѕР·РґР°РґРёРј РЅРѕРІС‹Р№ СЂРµР·СѓР»СЊС‚Р°С‚
 	if ($RESULT_ID2 = CFormResult::Add(ID_FROM_COMP_DEFAULT, $arValues2)){
 		$form2 = true;
 	}
 	unlink(PATH_PERS_PHOTO.$pers_d);
 	
-	//Создаём пользователя
+	//РЎРѕР·РґР°С‘Рј РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 	$user = new CUser;
 	$group_user = explode('|', $group_user);
 	$group_user = array_diff($group_user, array(''));
@@ -173,7 +173,7 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 			$gr[] = GROUP_KIEV15;
 		}
 	}
-	//Прибавляем так же нового пользователя к группам с перечисленными id
+	//РџСЂРёР±Р°РІР»СЏРµРј С‚Р°Рє Р¶Рµ РЅРѕРІРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ Рє РіСЂСѓРїРїР°Рј СЃ РїРµСЂРµС‡РёСЃР»РµРЅРЅС‹РјРё id
 	$gr[] = 3;
 	$gr[] = 4;
 	$gr[] = 5;
@@ -183,7 +183,7 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 		$salt = "Dn8*#2n!9j";
 		$len = strlen($str);
 		$gamma = '';
-		$n = $len>100 ? 8 : 2;
+		$n = $len>100 ? 16 : 4;
 		while( strlen($gamma)<$len ){
 			$gamma .= substr(pack('H*', sha1($passw.$gamma.$salt)), 0, $n);
 		}
@@ -200,7 +200,7 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 	echo $txt;
 	// result - Hello XOR encode! 
 	*/
-	//Пароль рассчитан на 10! комбинаций / разных участников
+	//РџР°СЂРѕР»СЊ СЂР°СЃСЃС‡РёС‚Р°РЅ РЅР° 10! РєРѕРјР±РёРЅР°С†РёР№ / СЂР°Р·РЅС‹С… СѓС‡Р°СЃС‚РЅРёРєРѕРІ
 	$pasAr = array('S', '*', 't', 'f', '[', '$', '3', 'A', 'b', '7');
 	shuffle($pasAr);
 	$pasStr = implode('', $pasAr);
@@ -228,7 +228,7 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 		$userAdd = true;
 	}
 	/*
-	//письмо админу
+	//РїРёСЃСЊРјРѕ Р°РґРјРёРЅСѓ
 	$arEventFields1 = array(
 		"NAME"             => $first_name,
 		"MAIL"             => $mail,
@@ -236,7 +236,7 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 		);
 	CEvent::Send("NEW_EXH", 's1', $arEventFields1);
 	
-	//письмо зарегистрированному участнику
+	//РїРёСЃСЊРјРѕ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅРЅРѕРјСѓ СѓС‡Р°СЃС‚РЅРёРєСѓ
 	$arEventFields2 = array(
 		"NAME"             => $first_name,
 		"MAIL"             => $mail,
@@ -245,7 +245,7 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 		);
 	CEvent::Send("NEW_EXH_FOR_EXH", 's1', $arEventFields2);
 	*/
-	//На каждую выставку свой шаблон
+	//РќР° РєР°Р¶РґСѓСЋ РІС‹СЃС‚Р°РІРєСѓ СЃРІРѕР№ С€Р°Р±Р»РѕРЅ
 	
 	foreach($group_user as $g){
 		if($g == ID_TYPE_6){

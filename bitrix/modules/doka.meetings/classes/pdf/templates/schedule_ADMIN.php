@@ -33,7 +33,7 @@ function DokaGeneratePdf($arResult) {
 	$pdf->SetX(20);
 
 
-	/* Формируем таблицу */
+	/* Р¤РѕСЂРјРёСЂСѓРµРј С‚Р°Р±Р»РёС†Сѓ */
 	$header = '
 	<table cellspacing="0" cellpadding="5" border="1">
 			<tr>

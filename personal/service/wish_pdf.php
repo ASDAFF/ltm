@@ -2,19 +2,19 @@
   CModule::IncludeModule('iblock');
 
   $times = array(
-	  '10:00 – 10:10', '10:15 – 10:25',
-	  '10:30 – 10:40', '10:45 – 10:55',
-	  '11:00 – 11:10', '11:15 – 11:25',
-	  '11:30 – 11:40', '11:45 – 11:55',
-	  '12:10 – 12:20', '12:25 – 12:35',
-	  '12:40 – 12:50', '12:55 – 13:05',
-	  '13:10 – 13:20', '13:25 – 13:35',
-	  '13:40 – 13:50', '13:55 – 14:05',
-	  '14:10 – 14:20'
+	  '10:00 â€“ 10:10', '10:15 â€“ 10:25',
+	  '10:30 â€“ 10:40', '10:45 â€“ 10:55',
+	  '11:00 â€“ 11:10', '11:15 â€“ 11:25',
+	  '11:30 â€“ 11:40', '11:45 â€“ 11:55',
+	  '12:10 â€“ 12:20', '12:25 â€“ 12:35',
+	  '12:40 â€“ 12:50', '12:55 â€“ 13:05',
+	  '13:10 â€“ 13:20', '13:25 â€“ 13:35',
+	  '13:40 â€“ 13:50', '13:55 â€“ 14:05',
+	  '14:10 â€“ 14:20'
   );
 
   /*---------------------------------------------------*/
-  //           ÔÎÐÌÈÐÓÅÌ ÂÛÂÎÄ ÄËß ØÀÁËÎÍÀ             //
+  //           Ð¤ÐžÐ ÐœÐ˜Ð Ð£Ð•Ðœ Ð’Ð«Ð’ÐžÐ” Ð”Ð›Ð¯ Ð¨ÐÐ‘Ð›ÐžÐÐ             //
   /*---------------------------------------------------*/
 	  $rsUser = CUser::GetByID($USER->GetID());
 	  $thisUser = $rsUser->Fetch();
@@ -26,7 +26,7 @@
 	  $arParams["APP_COUNT"] = 17;
 	  $arParams["GROUP_RECIVER_ID"] = 6;
 
-	  //ÑÏÈÑÎÊ ÏÎËÜÇÎÂÀÒÅËÅÉ
+	  //Ð¡ÐŸÐ˜Ð¡ÐžÐš ÐŸÐžÐ›Ð¬Ð—ÐžÐ’ÐÐ¢Ð•Ð›Ð•Ð™
 	  $thisUser["UF_WISH_OUT"] = trim(str_replace("  "," ",str_replace(",", "|", substr($thisUser["UF_WISH_OUT"],2))));
 	  $thisUser["UF_WISH_IN"] = trim(str_replace("  "," ",str_replace(",", "|", substr($thisUser["UF_WISH_IN"],2))));
 
@@ -38,7 +38,7 @@
 		  $filter = Array(
 			  "ID"  => $thisUser["UF_WISH_OUT"]
 		  );
-		  $rsUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // âûáèðàåì ïîëüçîâàòåëåé
+		  $rsUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // Ð²Ñ‹Ð±Ð¸Ñ€Ð°ÐµÐ¼ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹
 		  while($arUsersTemp=$rsUsers->Fetch()){
 			  $myWishOut[$countOut]["COMPANY"] = $arUsersTemp["WORK_COMPANY"];
 			  $myWishOut[$countOut]["ID"] = $arUsersTemp["ID"];
@@ -50,7 +50,7 @@
 		  $filter = Array(
 			  "ID"  => $thisUser["UF_WISH_IN"]
 		  );
-		  $rsUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // âûáèðàåì ïîëüçîâàòåëåé
+		  $rsUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // Ð²Ñ‹Ð±Ð¸Ñ€Ð°ÐµÐ¼ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹
 		  while($arUsersTemp=$rsUsers->Fetch()){
 			  $myWishIn[$countIn]["COMPANY"] = $arUsersTemp["WORK_COMPANY"];
 			  $myWishIn[$countIn]["ID"] = $arUsersTemp["ID"];
@@ -80,7 +80,7 @@
 	$pdf->SetFont('Times','B',12);
 	$pdf->setXY(0,$pdf->getY() + 2);
 
-	/* Ôîðìèðóåì òàáëèöó */
+	/* Ð¤Ð¾Ñ€Ð¼Ð¸Ñ€ÑƒÐµÐ¼ Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ñƒ */
 
 	$pdf->multiCell(210, 5, "You requested an appointment with these companies,\n but they declined your requests or their schedules were full:", 0, C);
 	$pdf->SetFont('times','',12);
@@ -152,7 +152,7 @@ $pdf->setXY(20,$pdf->getY() + 5);
 	
 $pdf->setXY(20,$pdf->getY() + 15);
 $y = $pdf->getY();
-	$html = 'You can meet these companies at any time except for the morning session. Please message each guest individually, and make an appointment for any time that suits you – for example, at the evening session, or during lunch, or you may even schedule an appointment at the guests’ office for any day after the Luxury Travel Mart.';
+	$html = 'You can meet these companies at any time except for the morning session. Please message each guest individually, and make an appointment for any time that suits you â€“ for example, at the evening session, or during lunch, or you may even schedule an appointment at the guestsâ€™ office for any day after the Luxury Travel Mart.';
 	$pdf->writeHTMLCell('', '', 20, $y, $html, $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true);
 
 $pdf->Output("print_wish.pdf", I);

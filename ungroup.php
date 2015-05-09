@@ -22,7 +22,7 @@ $rsUsers = $USER->GetList(($by="id"), ($order="desc"), $arFilter);
 while($arUsers = $rsUsers->Fetch())
 {
     pre($arUsers["LOGIN"]);
-    //все группы пользователя
+    //РІСЃРµ РіСЂСѓРїРїС‹ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 	$arGroups = CUser::GetUserGroup($arUsers["ID"]);
 	$indexGroup = array_search(DELETE_GROUP_ID, $arGroups);
 

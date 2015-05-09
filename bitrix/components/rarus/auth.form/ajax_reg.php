@@ -1,16 +1,21 @@
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");?>
 <?
-//echo "<pre>" . print_r($_REQUEST, true) . "</pre>";
-
-if(!isset($_REQUEST["exhibID"]) || !isset($_REQUEST["userID"]) || !isset($_REQUEST["SID"]) || !check_bitrix_sessid("SID")) //åñëè îøèáêè â ñåññèè èëè äàííûõ
+if(!isset($_REQUEST["exhibID"]) || !isset($_REQUEST["userID"]) || !isset($_REQUEST["SID"])) // Ð´Ð°Ð½Ð½Ñ‹Ñ…
 {
-	echo "ERROR";
+	echo "ERROR: REQUEST_DATA";
+	die();
+}
+
+if(!check_bitrix_sessid("SID"))
+{
+	echo "ERROR: SID";
+	die();
 }
 
 $exhibID = str_code(base64_decode($_REQUEST["exhibID"]), "luxoran");
 $userID = str_code(base64_decode($_REQUEST["userID"]), "luxoran");
 
-//ïîëó÷åíèå id Ãðóïïû íåïîäòâåðæäåííûõ ïîëüçîâàòåëåé íà äàííóþ âûñòàâêó
+//Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ id Ð“Ñ€ÑƒÐ¿Ð¿Ñ‹ Ð½ÐµÐ¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð½Ñ‹Ñ… Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹ Ð½Ð° Ð´Ð°Ð½Ð½ÑƒÑŽ Ð²Ñ‹ÑÑ‚Ð°Ð²ÐºÑƒ
 
 if($exhibID && $userID)
 {
@@ -26,9 +31,9 @@ if($exhibID && $userID)
 
 	$arUserGroups = $user->GetUserGroup($userID);
 
-	//ïî÷òîâûå ñîáûòèÿ
+	//Ð¿Ð¾Ñ‡Ñ‚Ð¾Ð²Ñ‹Ðµ ÑÐ¾Ð±Ñ‹Ñ‚Ð¸Ñ
 
-	//ïîëó÷åíèå äàííûõ ïîëüçîâàòåëÿ
+	//Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ
 
 	$rsUser = $user->GetByID($userID);
 	$arUser = $rsUser->Fetch();
@@ -44,15 +49,15 @@ if($exhibID && $userID)
 	$sendType;
 	switch ($exhibID)
 	{
-		case "361" : $sendType = "REG_NEW_E_MOSSP"; break; //Ìîñêâà, Ðîññèÿ. 13 ìàðòà 2014
-		case "360" : $sendType = "REG_NEW_E_KIEV"; break; //Êèåâ, Óêðàèíà. 23 ñåíòÿáðÿ 2014
-		case "357" : $sendType = "REG_NEW_E_BAK"; break; //Áàêó, Àçåðáàéäæàí. 10 àïðåëÿ 2014
-		case "359" : $sendType = "REG_NEW_E_ALM"; break; //Àëìàòû, Êàçàõñòàí. 26 ñåíòÿáðÿ 2014
-		case "358" : $sendType = "REG_NEW_E_MOSOT"; break; //Ìîñêâà, Ðîññèÿ. 2 îêòÿáðÿ 2014
-		case "488" : $sendType = "REG_NEW_E_MOSSP15"; break; //Ìîñêâà, Ðîññèÿ. 12 ìàðòà 2015
-		case "3521" : $sendType = "REG_NEW_E_ALM15"; break; //Àëìàòû, Êàçàõñòàí. 2015
-		case "3522" : $sendType = "REG_NEW_E_KIEV15"; break; //Êèåâ, Óêðàèíà. 22 ñåíòÿáðÿ 2015
-		case "3523" : $sendType = "REG_NEW_E_MOSOT15"; break; //Ìîñêâà, Ðîññèÿ 2015
+		case "361" : $sendType = "REG_NEW_E_MOSSP"; break; //ÐœÐ¾ÑÐºÐ²Ð°, Ð Ð¾ÑÑÐ¸Ñ. 13 Ð¼Ð°Ñ€Ñ‚Ð° 2014
+		case "360" : $sendType = "REG_NEW_E_KIEV"; break; //ÐšÐ¸ÐµÐ², Ð£ÐºÑ€Ð°Ð¸Ð½Ð°. 23 ÑÐµÐ½Ñ‚ÑÐ±Ñ€Ñ 2014
+		case "357" : $sendType = "REG_NEW_E_BAK"; break; //Ð‘Ð°ÐºÑƒ, ÐÐ·ÐµÑ€Ð±Ð°Ð¹Ð´Ð¶Ð°Ð½. 10 Ð°Ð¿Ñ€ÐµÐ»Ñ 2014
+		case "359" : $sendType = "REG_NEW_E_ALM"; break; //ÐÐ»Ð¼Ð°Ñ‚Ñ‹, ÐšÐ°Ð·Ð°Ñ…ÑÑ‚Ð°Ð½. 26 ÑÐµÐ½Ñ‚ÑÐ±Ñ€Ñ 2014
+		case "358" : $sendType = "REG_NEW_E_MOSOT"; break; //ÐœÐ¾ÑÐºÐ²Ð°, Ð Ð¾ÑÑÐ¸Ñ. 2 Ð¾ÐºÑ‚ÑÐ±Ñ€Ñ 2014
+		case "488" : $sendType = "REG_NEW_E_MOSSP15"; break; //ÐœÐ¾ÑÐºÐ²Ð°, Ð Ð¾ÑÑÐ¸Ñ. 12 Ð¼Ð°Ñ€Ñ‚Ð° 2015
+		case "3521" : $sendType = "REG_NEW_E_ALM15"; break; //ÐÐ»Ð¼Ð°Ñ‚Ñ‹, ÐšÐ°Ð·Ð°Ñ…ÑÑ‚Ð°Ð½. 2015
+		case "3522" : $sendType = "REG_NEW_E_KIEV15"; break; //ÐšÐ¸ÐµÐ², Ð£ÐºÑ€Ð°Ð¸Ð½Ð°. 22 ÑÐµÐ½Ñ‚ÑÐ±Ñ€Ñ 2015
+		case "3523" : $sendType = "REG_NEW_E_MOSOT15"; break; //ÐœÐ¾ÑÐºÐ²Ð°, Ð Ð¾ÑÑÐ¸Ñ 2015
 	}
 
 	if($ucExhibGroupID && !array_search($ucExhibGroupID, $arUserGroups))
@@ -60,18 +65,27 @@ if($exhibID && $userID)
 	    $arUserGroups[] = $ucExhibGroupID;
 	    $user->SetUserGroup($userID, $arUserGroups);
 
+		#ÐºÐ¾Ð¿Ð¸Ñ€ÑƒÐµÐ¼ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð²ÐµÐ±Ñ„Ð¾Ñ€Ð¼Ñ‹ Ð² Ð±Ð°Ð·Ð¾Ð²ÑƒÑŽ
+		$arFormData = copyExhDataToDefault($userID);
+
+		//Ð·Ð°Ð¼ÐµÐ½ÑÐµÐ¼ email Ð¸Ð· Ð²ÐµÐ±Ñ„Ð¾Ñ€Ð¼Ñ‹, ÐµÑÐ»Ð¸ Ñ‚Ð°Ð¼ ÐµÑÑ‚ÑŒ
+		if(isset($arFormData["EMAIL"]) && !empty($arFormData["EMAIL"]))
+		{
+			$arEventFields["MAIL"] = $arFormData["EMAIL"];
+		}
+
 	    if($sendType && !empty($arEventFields))
 	    {
-	        CEvent::Send($sendType, 's1', $arEventFields); 
+	        CEvent::Send($sendType, 's1', $arEventFields);
 	    }
-	    
-	    #êîïèðóåì çíà÷åíèå âåáôîðìû â áàçîâóþ 
-	    copyExhDataToDefault($userID);
+
 	    echo "OK";
+		die();
 	}
 	else
 	{
-		echo "ERROR: GROUP";
+		echo "ERROR: REGISTERED";
+		die();
 	}
 
 }
@@ -85,7 +99,7 @@ function copyExhDataToDefault($userId)
 		$USER = new CUser();
 	}
 
-	#íàõîäèì ïîñëåäíþþ âûñòàâêó â êîòîðîé ó÷àâñòâîâàë ïîëüçîâàòåëü
+	#Ð½Ð°Ñ…Ð¾Ð´Ð¸Ð¼ Ð¿Ð¾ÑÐ»ÐµÐ´Ð½ÑŽÑŽ Ð²Ñ‹ÑÑ‚Ð°Ð²ÐºÑƒ Ð² ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð¹ ÑƒÑ‡Ð°Ð²ÑÑ‚Ð²Ð¾Ð²Ð°Ð» Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ
 	CModule::IncludeModule("iblock");
 	CModule::IncludeModule("form");
 
@@ -95,6 +109,7 @@ function copyExhDataToDefault($userId)
 	$arExhibFilter = array(
 			"IBLOCK_ID" => 15,
 			"PROPERTY_USER_GROUP_ID" => $arUserGroup,
+			"<=PROPERTY_DATE_TIME" => date("Y-m-d")
 	);
 	$arSelect = array(
 			"ID",
@@ -102,17 +117,15 @@ function copyExhDataToDefault($userId)
 			"PROPERTY_USER_GROUP_ID"
 	);
 
-
-
-	$rsExhib = CIBlockElement::GetList(array("sort" => "desc"), $arExhibFilter, false, array("nTopCount" => 1), $arSelect);
+	$rsExhib = CIBlockElement::GetList(array("PROPERTY_DATE_TIME" => "desc"), $arExhibFilter, false, array("nTopCount" => 1), $arSelect);
 	if($arExhib = $rsExhib->Fetch())
 	{
-		#Ïîëó÷àåì äàííûå âåáôîðì íà ýòó âûñòàâêó
-		#id ôîðìû
+		#ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð²ÐµÐ±Ñ„Ð¾Ñ€Ð¼ Ð½Ð° ÑÑ‚Ñƒ Ð²Ñ‹ÑÑ‚Ð°Ð²ÐºÑƒ
+		#id Ñ„Ð¾Ñ€Ð¼Ñ‹
 		$formID = CFormMatrix::getPFormIDByExh($arExhib["ID"]);
-		$formPropName = CFormMatrix::getPropertyIDByExh($arExhib["ID"]);//ïîëó÷åíèå èìåíè ñâîéñòâà ïîëüçîâàòåëÿ äëÿ òåêóùåé âûñòàâêè
+		$formPropName = CFormMatrix::getPropertyIDByExh($arExhib["ID"]);//Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ Ð¸Ð¼ÐµÐ½Ð¸ ÑÐ²Ð¾Ð¹ÑÑ‚Ð²Ð° Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ Ð´Ð»Ñ Ñ‚ÐµÐºÑƒÑ‰ÐµÐ¹ Ð²Ñ‹ÑÑ‚Ð°Ð²ÐºÐ¸
 
-		#ïîëó÷àåì àéäè ðåçóëüòàòà
+		#Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð°Ð¹Ð´Ð¸ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð°
 		$resultId = $arUser[$formPropName];
 		$baseResultID = $arUser["UF_ID"];
 
@@ -124,7 +137,7 @@ function copyExhDataToDefault($userId)
 				"EMAIL" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_859",$formID),//E-mail
 				"EMAIL_CONF" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_585",$formID),//Please confirm your e-mail
 				"EMAIL_ALT" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_749",$formID),//Alternative e-mail
-				"PHOTO" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_575",$formID),//Ïåðñîíàëüíîå ôîòî
+				"PHOTO" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_575",$formID),//ÐŸÐµÑ€ÑÐ¾Ð½Ð°Ð»ÑŒÐ½Ð¾Ðµ Ñ„Ð¾Ñ‚Ð¾
 				"SALUTATION" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_889",$formID),//Salutation
 		);
 
@@ -163,7 +176,7 @@ function copyExhDataToDefault($userId)
 			}
 		}
 
-		/*Çàïîëíÿåì ìàññèâ äëÿ âåáôîðìû ó÷àñòíèêà*/
+		/*Ð—Ð°Ð¿Ð¾Ð»Ð½ÑÐµÐ¼ Ð¼Ð°ÑÑÐ¸Ð² Ð´Ð»Ñ Ð²ÐµÐ±Ñ„Ð¾Ñ€Ð¼Ñ‹ ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ°*/
 		$arPersonalFormFields = array(
 				"form_text_84" => $newArAnswerSID["NAME"], 								//Participant first name
 				"form_text_85" => $newArAnswerSID["LAST_NAME"], 						//Participant last name
@@ -174,11 +187,13 @@ function copyExhDataToDefault($userId)
 				"form_text_91" => $newArAnswerSID["EMAIL_ALT"],							//Alternative e-mail
 				"form_dropdown_SIMPLE_QUESTION_889" =>
 				CFormMatrix::getAnswerSalutationBase($newArAnswerSID["SALUTATION"],$formID),	//Salutation
-				"form_image_195" => Cfile::MakeFileArray($newArAnswerSID["PHOTO"]),		//Ïåðñîíàëüíîå ôîòî
+				"form_image_195" => Cfile::MakeFileArray($newArAnswerSID["PHOTO"]),		//ÐŸÐµÑ€ÑÐ¾Ð½Ð°Ð»ÑŒÐ½Ð¾Ðµ Ñ„Ð¾Ñ‚Ð¾
 		);
 
-		//îáíîâëÿåì ðåçóëüòàò
+		//Ð¾Ð±Ð½Ð¾Ð²Ð»ÑÐµÐ¼ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚
 		CFormResult::Update($baseResultID, $arPersonalFormFields, "N", "N");
 	}
+
+	return $newArAnswerSID;
 }
 ?>

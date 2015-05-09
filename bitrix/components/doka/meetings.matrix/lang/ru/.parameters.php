@@ -1,4 +1,4 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die(); ?>
 <?
-$MESS['APP_ID'] = 'ID âûñòàâêè';
-$MESS['USER_TYPE'] = 'Òèï ïîëüçîâàòåëÿ';
+$MESS['APP_ID'] = 'ID Ð²Ñ‹ÑÑ‚Ð°Ð²ÐºÐ¸';
+$MESS['USER_TYPE'] = 'Ð¢Ð¸Ð¿ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ';

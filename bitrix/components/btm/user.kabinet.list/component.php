@@ -1,7 +1,7 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 /*--------------- TO DO -------------------*/
-//ƒÓ·‡‚ËÚ¸ Ô‡‡ÏÂÚ ÍÓÎË˜ÂÒÚ‚Ó ‚ÒÚÂ˜.
-//ƒÓ·‡‚ËÚ¸ Ô‡‡ÏÂÚ id ËÌÙÓÒËÒÚÂÏ˚
+//–î–æ–±–∞–≤–∏—Ç—å –ø–∞—Ä–∞–º–µ—Ç—Ä –∫–æ–ª–∏—á–µ—Å—Ç–≤–æ –≤—Å—Ç—Ä–µ—á.
+//–î–æ–±–∞–≤–∏—Ç—å –ø–∞—Ä–∞–º–µ—Ç—Ä id –∏–Ω—Ñ–æ—Å–∏—Å—Ç–µ–º—ã
 
 
 $arResult["ERROR_MESSAGE"] = "";
@@ -20,7 +20,7 @@ if(strLen($arParams["AUTH_PAGE"])<=0){
 }
 
 if(strLen($arParams["USER"])<=0){
-	$arResult["ERROR_MESSAGE"] = "ÕÂ ‚‚Â‰ÂÌ˚ ‰‡ÌÌ˚Â ÔÓ œÓÎ¸ÁÓ‚‡ÚÂÎˇÏ!<br />";
+	$arResult["ERROR_MESSAGE"] = "–ù–µ –≤–≤–µ–¥–µ–Ω—ã –¥–∞–Ω–Ω—ã–µ –ø–æ –ü–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª—è–º!<br />";
 }
 
 if(!isset($arParams["APPOINTMENTS"]) || strLen($arParams["APPOINMENTS"])<=0){
@@ -32,25 +32,25 @@ if(!isset($arParams["APP_ID"]) || strLen($arParams["APP_ID"])<=0){
 }
 
 if(strLen($arParams["ADMIN_ID"])<=0){
-	$arResult["ERROR_MESSAGE"] = "ÕÂ ‚‚Â‰ÂÌ˚ ‰‡ÌÌ˚Â ÔÓ ¿‰ÏËÌËÒÚ‡ÚÓ‡Ï!<br />";
+	$arResult["ERROR_MESSAGE"] = "–ù–µ –≤–≤–µ–¥–µ–Ω—ã –¥–∞–Ω–Ω—ã–µ –ø–æ –ê–¥–º–∏–Ω–∏—Å—Ç—Ä–∞—Ç–æ—Ä–∞–º!<br />";
 }
 
 if(strLen($arParams["FORM_ID"])<=0){
-	$arResult["ERROR_MESSAGE"] = "ÕÂ ‚‚Â‰ÂÌ˚ ‰‡ÌÌ˚Â ÔÓ –ÂÁÛÎ¸Ú‡Ú‡Ï ÔÓÎ¸ÁÓ‚‡ÚÂÎÂÈ!<br />";
+	$arResult["ERROR_MESSAGE"] = "–ù–µ –≤–≤–µ–¥–µ–Ω—ã –¥–∞–Ω–Ω—ã–µ –ø–æ –†–µ–∑—É–ª—å—Ç–∞—Ç–∞–º –ø–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª–µ–π!<br />";
 }
 
 /*---------------------------------------------------*/
-//           ‘Œ–Ã»–”≈Ã —œ»—Œ  œŒÀ‹«Œ¬¿“≈À≈…            //
+//           –§–û–†–ú–ò–†–£–ï–ú –°–ü–ò–°–û–ö –ü–û–õ–¨–ó–û–í–ê–¢–ï–õ–ï–ô            //
 /*---------------------------------------------------*/
 if($arResult["ERROR_MESSAGE"] == '')
 {
-	//—œ»—Œ  œŒÀ‹«Œ¬¿“≈À≈…
+	//–°–ü–ò–°–û–ö –ü–û–õ–¨–ó–û–í–ê–¢–ï–õ–ï–ô
 	$filter = Array(
 		"GROUPS_ID"  => Array($arParams["GROUP_ID"])
 	);
-	$rsUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // ‚˚·Ë‡ÂÏ ÔÓÎ¸ÁÓ‚‡ÚÂÎÂÈ
+	$rsUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // –≤—ã–±–∏—Ä–∞–µ–º –ø–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª–µ–π
 	if(!isset($_REQUEST["ussort"]) || ($_REQUEST["ussort"]=='abc' && !isset($_REQUEST['letter'])) || $_REQUEST["ussort"]=='all'){
-		$rsUsers->NavStart(50); // ‡Á·Ë‚‡ÂÏ ÔÓÒÚ‡ÌË˜ÌÓ ÔÓ 50 Á‡ÔËÒÂÈ
+		$rsUsers->NavStart(50); // —Ä–∞–∑–±–∏–≤–∞–µ–º –ø–æ—Å—Ç—Ä–∞–Ω–∏—á–Ω–æ –ø–æ 50 –∑–∞–ø–∏—Å–µ–π
 		$arResult["NAVIGATE"] = $rsUsers->GetPageNavStringEx($navComponentObject, "Companies", "");
 	}
 	$countUsers = 0;
@@ -73,29 +73,29 @@ if($arResult["ERROR_MESSAGE"] == '')
 	$resultFormId = substr($resultFormId, 3);
 	$arResult["COUNT"] = $countUsers;
 
-	//–≈«”À‹“¿“€ œŒÀ‹«Œ¬¿“≈À≈…
+	//–†–ï–ó–£–õ–¨–¢–ê–¢–´ –ü–û–õ–¨–ó–û–í–ê–¢–ï–õ–ï–ô
 	CForm::GetResultAnswerArray($arParams["FORM_ID"], $arrColumns, $arrAnswers, $arrAnswersVarname, array("RESULT_ID" => $resultFormId));
 	
-	//—œ»—Œ   ŒÀŒÕŒ  ƒÀﬂ “¿¡À»÷€
+	//–°–ü–ò–°–û–ö –ö–û–õ–û–ù–û–ö –î–õ–Ø –¢–ê–ë–õ–ò–¶–´
 	$countries = array();
 	$countContr = 0;
 	$cities = array();
 	$countCity = 0;
 	$times = array(
-	  '10:00 ñ 10:10', '10:15 ñ 10:25',
-	  '10:30 ñ 10:40', '10:45 ñ 10:55',
-	  '11:00 ñ 11:10', '11:15 ñ 11:25',
-	  '11:30 ñ 11:40', '11:45 ñ 11:55',
-	  '12:10 ñ 12:20', '12:25 ñ 12:35',
-	  '12:40 ñ 12:50', '12:55 ñ 13:05',
-	  '13:10 ñ 13:20', '13:25 ñ 13:35',
-	  '13:40 ñ 13:50', '13:55 ñ 14:05',
-	  '14:10 ñ 14:20'
+	  '10:00 ‚Äì 10:10', '10:15 ‚Äì 10:25',
+	  '10:30 ‚Äì 10:40', '10:45 ‚Äì 10:55',
+	  '11:00 ‚Äì 11:10', '11:15 ‚Äì 11:25',
+	  '11:30 ‚Äì 11:40', '11:45 ‚Äì 11:55',
+	  '12:10 ‚Äì 12:20', '12:25 ‚Äì 12:35',
+	  '12:40 ‚Äì 12:50', '12:55 ‚Äì 13:05',
+	  '13:10 ‚Äì 13:20', '13:25 ‚Äì 13:35',
+	  '13:40 ‚Äì 13:50', '13:55 ‚Äì 14:05',
+	  '14:10 ‚Äì 14:20'
   );
 	$arResult["TIMES"]["COUNT"] = $arParams["APPOINTMENTS"];
 	$arResult["TIMES"]["VALUES"] = $times;
 
-	//—œ»—Œ  œŒÀ‹«Œ¬¿“≈À≈…
+	//–°–ü–ò–°–û–ö –ü–û–õ–¨–ó–û–í–ê–¢–ï–õ–ï–ô
 	if($arParams["USER"] == 'PARTICIP'){
 	  for($i=0; $i<$countUsers; $i++){
 		  $arUsers[$i]["FIELDS"]["NAME"] = $arrAnswersVarname[$arUsers[$i]["UF_ANKETA"]]["name"][0]["USER_TEXT"]." ".$arrAnswersVarname[$arUsers[$i]["UF_ANKETA"]]["surname"][0]["USER_TEXT"];
@@ -179,12 +179,12 @@ if($arResult["ERROR_MESSAGE"] == '')
 	  }
 	}
   /*---------------------------------------------------*/
-  //                 ‘Œ–Ã»–”≈Ã ‘»À‹“–€                 //
+  //                 –§–û–†–ú–ò–†–£–ï–ú –§–ò–õ–¨–¢–†–´                 //
   /*---------------------------------------------------*/
   $arResult["SORT"] = "ALL";
   $thisUrl = $APPLICATION->GetCurPage();
   $arResult["LINK"] = $thisUrl;
-  //œÓ ‡ÎÙ‡‚ËÚÛ
+  //–ü–æ –∞–ª—Ñ–∞–≤–∏—Ç—É
   if((isset($_GET['ussort'])) and ($_GET['ussort'] == 'abc')){
     $arResult["SORT"] = "ABC";
 	$letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0";

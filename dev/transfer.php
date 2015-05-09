@@ -14,12 +14,12 @@ define('SITE_ID', 's1'); // your site ID - need for language ID
 
 $DOCUMENT_ROOT = $_SERVER["DOCUMENT_ROOT"];
 
-//подключаем ядро битрикса
+//РїРѕРґРєР»СЋС‡Р°РµРј СЏРґСЂРѕ Р±РёС‚СЂРёРєСЃР°
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 
 set_time_limit(0);
 
-#Подключение модулей
+#РџРѕРґРєР»СЋС‡РµРЅРёРµ РјРѕРґСѓР»РµР№
 CModule::includeModule("form");
 
 global $USER;
@@ -29,31 +29,31 @@ if(!is_object($USER))
 }
 
 
-#Константы
+#РљРѕРЅСЃС‚Р°РЅС‚С‹
 
-#Id старой вебформы
+#Id СЃС‚Р°СЂРѕР№ РІРµР±С„РѕСЂРјС‹
 $OLD_FORM_ID = 4;
 
-#Id Новой вебформы
+#Id РќРѕРІРѕР№ РІРµР±С„РѕСЂРјС‹
 $NEW_FORM_ID = 29;
 
-#id группы пользователей подтвержденных на выставку
+#id РіСЂСѓРїРїС‹ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… РЅР° РІС‹СЃС‚Р°РІРєСѓ
 $USER_GROUP_ID = 10;
 
 $arUsers = getUserByGroup($USER_GROUP_ID);
 
 foreach($arUsers as $arUser)
 {
-	#получаем результат вебформы для участника
+	#РїРѕР»СѓС‡Р°РµРј СЂРµР·СѓР»СЊС‚Р°С‚ РІРµР±С„РѕСЂРјС‹ РґР»СЏ СѓС‡Р°СЃС‚РЅРёРєР°
 	$arFormDataParticipant = convertAnswerById($arUser["UF_ID"], $NEW_FORM_ID);
 	$arFormDataColleague = convertAnswerById($arUser["UF_ID6"], $NEW_FORM_ID);
 
-	//копируем результат участника
+	//РєРѕРїРёСЂСѓРµРј СЂРµР·СѓР»СЊС‚Р°С‚ СѓС‡Р°СЃС‚РЅРёРєР°
 	$resParticipantID = CFormResult::Add($NEW_FORM_ID, $arFormDataParticipant);
-	//копируем результат коллеги
+	//РєРѕРїРёСЂСѓРµРј СЂРµР·СѓР»СЊС‚Р°С‚ РєРѕР»Р»РµРіРё
 	$resColleagueID = CFormResult::Add($NEW_FORM_ID, $arFormDataColleague);
 
-	//обновляем данные пользователя
+	//РѕР±РЅРѕРІР»СЏРµРј РґР°РЅРЅС‹Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 	$USER->Update($arUser["ID"], array("UF_MSCSPRING2016" => $resParticipantID, "UF_MSCSPRING2016COL" => $resColleagueID));
 
 }
@@ -67,11 +67,11 @@ foreach($arUsers as $arUser)
 
 
 
-#функции
+#С„СѓРЅРєС†РёРё
 
 /**
- * Получаем список пользователей находящихся в определенной группе
- * @param $USER_GROUP_ID - id группы пользователей
+ * РџРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ РЅР°С…РѕРґСЏС‰РёС…СЃСЏ РІ РѕРїСЂРµРґРµР»РµРЅРЅРѕР№ РіСЂСѓРїРїРµ
+ * @param $USER_GROUP_ID - id РіСЂСѓРїРїС‹ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
  * @return array
  */
 function getUserByGroup($USER_GROUP_ID)
@@ -87,7 +87,7 @@ function getUserByGroup($USER_GROUP_ID)
 		"SELECT" => array("UF_ID", "UF_ID6", "UF_MSCSPRING2016", "UF_MSCSPRING2016COL")
 	);
 
-	#получаем список пользователей из группы подтвержденных пользователей
+	#РїРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ РёР· РіСЂСѓРїРїС‹ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 	$rsUsers = $USER->GetList(
 		$by="id",
 		$order="asc",
@@ -106,9 +106,9 @@ function getUserByGroup($USER_GROUP_ID)
 
 
 /**
- * Вывод данных в консоль
- * @param $arData - данные
- * @param bool $dump - выводить через var_export
+ * Р’С‹РІРѕРґ РґР°РЅРЅС‹С… РІ РєРѕРЅСЃРѕР»СЊ
+ * @param $arData - РґР°РЅРЅС‹Рµ
+ * @param bool $dump - РІС‹РІРѕРґРёС‚СЊ С‡РµСЂРµР· var_export
  */
 function show($arData, $dump = false)
 {
@@ -129,10 +129,10 @@ function show($arData, $dump = false)
 }
 
 /**
- * Конвертирует результат вебформы с id 4, заданную параметром
- * @param $resultId - id результата вебформы
- * @param $formID - id формы в которую конвертируются данные
- * @return array - массив, который можно использовать для добавления результата вебформы
+ * РљРѕРЅРІРµСЂС‚РёСЂСѓРµС‚ СЂРµР·СѓР»СЊС‚Р°С‚ РІРµР±С„РѕСЂРјС‹ СЃ id 4, Р·Р°РґР°РЅРЅСѓСЋ РїР°СЂР°РјРµС‚СЂРѕРј
+ * @param $resultId - id СЂРµР·СѓР»СЊС‚Р°С‚Р° РІРµР±С„РѕСЂРјС‹
+ * @param $formID - id С„РѕСЂРјС‹ РІ РєРѕС‚РѕСЂСѓСЋ РєРѕРЅРІРµСЂС‚РёСЂСѓСЋС‚СЃСЏ РґР°РЅРЅС‹Рµ
+ * @return array - РјР°СЃСЃРёРІ, РєРѕС‚РѕСЂС‹Р№ РјРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ СЂРµР·СѓР»СЊС‚Р°С‚Р° РІРµР±С„РѕСЂРјС‹
  */
 function convertAnswerById($resultId, $formID)
 {
@@ -161,18 +161,18 @@ function convertAnswerById($resultId, $formID)
 			"SIMPLE_QUESTION_859",//E-mail
 			"SIMPLE_QUESTION_585",//Please confirm your e-mail
 			"SIMPLE_QUESTION_749",//Alternative e-mail
-			"SIMPLE_QUESTION_575",//Персональное фото
+			"SIMPLE_QUESTION_575",//РџРµСЂСЃРѕРЅР°Р»СЊРЅРѕРµ С„РѕС‚Рѕ
 			"SIMPLE_QUESTION_889",//Salutation
-			"SIMPLE_QUESTION_539",//Номер счета
-			"SIMPLE_QUESTION_680",//Сумма счета
-			"SIMPLE_QUESTION_667",//Реквизиты
-			"SIMPLE_QUESTION_148",//Стол
-			"SIMPLE_QUESTION_732",//Зал
+			"SIMPLE_QUESTION_539",//РќРѕРјРµСЂ СЃС‡РµС‚Р°
+			"SIMPLE_QUESTION_680",//РЎСѓРјРјР° СЃС‡РµС‚Р°
+			"SIMPLE_QUESTION_667",//Р РµРєРІРёР·РёС‚С‹
+			"SIMPLE_QUESTION_148",//РЎС‚РѕР»
+			"SIMPLE_QUESTION_732",//Р—Р°Р»
 		),
 		$arResult,
 		$arAnswerSID);
 
-	#преобразуем результат для новой формы
+	#РїСЂРµРѕР±СЂР°Р·СѓРµРј СЂРµР·СѓР»СЊС‚Р°С‚ РґР»СЏ РЅРѕРІРѕР№ С„РѕСЂРјС‹
 	foreach($arAnswerSID as $SID =>$arAnswer)
 	{
 		$question = reset($arAnswer);
@@ -211,13 +211,13 @@ function convertAnswerById($resultId, $formID)
 		{
 			$value = CFormMatrix::getAnswerSalutationRelBase($question["ANSWER_ID"], $formID);
 		}
-		elseif("radio" == $question["FIELD_TYPE"] && $question["SID"] == "SIMPLE_QUESTION_667")//Реквизиты
+		elseif("radio" == $question["FIELD_TYPE"] && $question["SID"] == "SIMPLE_QUESTION_667")//Р РµРєРІРёР·РёС‚С‹
 		{
 			$value = CFormMatrix::getIndexRequisiteRelBase($question["ANSWER_ID"], $formID);
 		}
-		elseif("dropdown" == $question["FIELD_TYPE"] && $question["SID"] == "SIMPLE_QUESTION_732")//Зал
+		elseif("dropdown" == $question["FIELD_TYPE"] && $question["SID"] == "SIMPLE_QUESTION_732")//Р—Р°Р»
 		{
-			$value = $arZal[$question["ANSWER_ID"]]; //костыль на один раз, в массиве ключи - айди ответов в старой форме?  в значении - айди ответов в новой
+			$value = $arZal[$question["ANSWER_ID"]]; //РєРѕСЃС‚С‹Р»СЊ РЅР° РѕРґРёРЅ СЂР°Р·, РІ РјР°СЃСЃРёРІРµ РєР»СЋС‡Рё - Р°Р№РґРё РѕС‚РІРµС‚РѕРІ РІ СЃС‚Р°СЂРѕР№ С„РѕСЂРјРµ?  РІ Р·РЅР°С‡РµРЅРёРё - Р°Р№РґРё РѕС‚РІРµС‚РѕРІ РІ РЅРѕРІРѕР№
 		}
 		else
 		{

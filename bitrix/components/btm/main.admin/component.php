@@ -1,9 +1,9 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 /*--------------- TO DO -------------------*/
-//В параметрах сделать ссылку на страницу Неподтвержденных госте
-//В параметрах сделать ссылку на страницу Неподтвержденных участников
-//В параметрах сделать ссылки на страницу Неоплативших (хотя может и не нужно)
-//Добавить про сообщения
+//Р’ РїР°СЂР°РјРµС‚СЂР°С… СЃРґРµР»Р°С‚СЊ СЃСЃС‹Р»РєСѓ РЅР° СЃС‚СЂР°РЅРёС†Сѓ РќРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… РіРѕСЃС‚Рµ
+//Р’ РїР°СЂР°РјРµС‚СЂР°С… СЃРґРµР»Р°С‚СЊ СЃСЃС‹Р»РєСѓ РЅР° СЃС‚СЂР°РЅРёС†Сѓ РќРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… СѓС‡Р°СЃС‚РЅРёРєРѕРІ
+//Р’ РїР°СЂР°РјРµС‚СЂР°С… СЃРґРµР»Р°С‚СЊ СЃСЃС‹Р»РєРё РЅР° СЃС‚СЂР°РЅРёС†Сѓ РќРµРѕРїР»Р°С‚РёРІС€РёС… (С…РѕС‚СЏ РјРѕР¶РµС‚ Рё РЅРµ РЅСѓР¶РЅРѕ)
+//Р”РѕР±Р°РІРёС‚СЊ РїСЂРѕ СЃРѕРѕР±С‰РµРЅРёСЏ
 
 
 $arResult["ERROR_MESSAGE"] = "";
@@ -21,32 +21,32 @@ if(strLen($arParams["AUTH_PAGE"])<=0){
 }
 
 if(strLen($arParams["GUEST"])<=0){
-	$arResult["ERROR_MESSAGE"] = "Не введены данные по Гостям!<br />";
+	$arResult["ERROR_MESSAGE"] = "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ Р“РѕСЃС‚СЏРј!<br />";
 }
 
 if(strLen($arParams["GUEST_ACCEPT"])<=0){
-	$arResult["ERROR_MESSAGE"] = "Не введены данные по Гостям на утро!<br />";
+	$arResult["ERROR_MESSAGE"] = "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ Р“РѕСЃС‚СЏРј РЅР° СѓС‚СЂРѕ!<br />";
 }
 
 if(strLen($arParams["GUEST_EVENING"])<=0){
-	$arResult["ERROR_MESSAGE"] = "Не введены данные по Гостям на вечер!<br />";
+	$arResult["ERROR_MESSAGE"] = "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ Р“РѕСЃС‚СЏРј РЅР° РІРµС‡РµСЂ!<br />";
 }
 
 if(strLen($arParams["GUEST_HB"])<=0){
-	$arResult["ERROR_MESSAGE"] = "Не введены данные по Гостям hosted buyers!<br />";
+	$arResult["ERROR_MESSAGE"] = "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ Р“РѕСЃС‚СЏРј hosted buyers!<br />";
 }
 
 if(strLen($arParams["PARTICIP"])<=0){
-	$arResult["ERROR_MESSAGE"] = "Не введены данные по Участникам!<br />";
+	$arResult["ERROR_MESSAGE"] = "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ РЈС‡Р°СЃС‚РЅРёРєР°Рј!<br />";
 }
 
 if(strLen($arParams["PARTICIP_ACCEPT"])<=0){
-	$arResult["ERROR_MESSAGE"] = "Не введены данные по Участникам!<br />";
+	$arResult["ERROR_MESSAGE"] = "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ РЈС‡Р°СЃС‚РЅРёРєР°Рј!<br />";
 }
 
 /*
 if(strLen($arParams["MESSAGE"])<=0){
-	$arResult["ERROR_MESSAGE"] = "Не введены данные по Сообщениям!<br />";
+	$arResult["ERROR_MESSAGE"] = "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ РЎРѕРѕР±С‰РµРЅРёСЏРј!<br />";
 }
 */
 
@@ -59,57 +59,57 @@ elseif($arResult["ERROR_MESSAGE"] == '')
 	$userId= $USER->GetID();
 	$userGroups = CUser::GetUserGroup($userId);
 	if($USER->IsAdmin() || in_array($arParams["GROUP_ID"], $userGroups)){
-		//ГОСТИ
+		//Р“РћРЎРўР
 		$filter = Array(
 			"GROUPS_ID"  => Array($arParams["GUEST"])
 		);
-		$rsUsers = CUser::GetList(($by="id"), ($order="asc"), $filter); // выбираем пользователей
+		$rsUsers = CUser::GetList(($by="id"), ($order="asc"), $filter); // РІС‹Р±РёСЂР°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 		$usersCount = $rsUsers->SelectedRowsCount();
 		$arResult["GUEST"]["COUNT"] = $usersCount;
 		$arResult["GUEST"]["LINK"] = $arParams["PATH_TO_KAB"]."guest/off/";
 		
-		//УЧАСТНИКИ
+		//РЈР§РђРЎРўРќРРљР
 		$filter = Array(
 			"GROUPS_ID"  => Array($arParams["PARTICIP"])
 		);
-		$rsUsers = CUser::GetList(($by="id"), ($order="asc"), $filter); // выбираем пользователей
+		$rsUsers = CUser::GetList(($by="id"), ($order="asc"), $filter); // РІС‹Р±РёСЂР°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 		$usersCount = $rsUsers->SelectedRowsCount();
 		$arResult["PARTICIP"]["COUNT"] = $usersCount;
 		$arResult["PARTICIP"]["LINK"] = $arParams["PATH_TO_KAB"]."particip/off/";
 		
-		//НЕОПЛАТИВШИЕ УЧАСТНИКИ
+		//РќР•РћРџР›РђРўРР’РЁРР• РЈР§РђРЎРўРќРРљР
 		$filter = Array(
 			"GROUPS_ID"  => Array($arParams["PARTICIP_ACCEPT"]),
 			"UF_PAY" => ""
 		);
-		$rsUsers = CUser::GetList(($by="id"), ($order="asc"), $filter); // выбираем пользователей
+		$rsUsers = CUser::GetList(($by="id"), ($order="asc"), $filter); // РІС‹Р±РёСЂР°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 		$usersCount = $rsUsers->SelectedRowsCount();
 		$arResult["PAY"]["COUNT"] = $usersCount;
 		$arResult["PAY"]["LINK"] = $arParams["PATH_TO_KAB"]."particip/on/";
 		
-		//ГОСТИ утро
+		//Р“РћРЎРўР СѓС‚СЂРѕ
 		$filter = Array(
 			"GROUPS_ID"  => Array($arParams["GUEST_ACCEPT"])
 		);
-		$rsUsers = CUser::GetList(($by="id"), ($order="asc"), $filter); // выбираем пользователей
+		$rsUsers = CUser::GetList(($by="id"), ($order="asc"), $filter); // РІС‹Р±РёСЂР°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 		$usersCount = $rsUsers->SelectedRowsCount();
 		$arResult["GUEST_MORNING"]["COUNT"] = $usersCount;
 		$arResult["GUEST_MORNING"]["LINK"] = $arParams["PATH_TO_KAB"]."guest/on/";
 		
-		//ГОСТИ вечер
+		//Р“РћРЎРўР РІРµС‡РµСЂ
 		$filter = Array(
 			"GROUPS_ID"  => Array($arParams["GUEST_EVENING"])
 		);
-		$rsUsers = CUser::GetList(($by="id"), ($order="asc"), $filter); // выбираем пользователей
+		$rsUsers = CUser::GetList(($by="id"), ($order="asc"), $filter); // РІС‹Р±РёСЂР°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 		$usersCount = $rsUsers->SelectedRowsCount();
 		$arResult["GUEST_EVENING"]["COUNT"] = $usersCount;
 		$arResult["GUEST_EVENING"]["LINK"] = $arParams["PATH_TO_KAB"]."guest/evening/";
 		
-		//ГОСТИ HB
+		//Р“РћРЎРўР HB
 		$filter = Array(
 			"GROUPS_ID"  => Array($arParams["GUEST_HB"])
 		);
-		$rsUsers = CUser::GetList(($by="id"), ($order="asc"), $filter); // выбираем пользователей
+		$rsUsers = CUser::GetList(($by="id"), ($order="asc"), $filter); // РІС‹Р±РёСЂР°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 		$usersCount = $rsUsers->SelectedRowsCount();
 		$arResult["GUEST_HB"]["COUNT"] = $usersCount;
 		$arResult["GUEST_HB"]["LINK"] = $arParams["PATH_TO_KAB"]."guest/hostbuy/";
@@ -117,7 +117,7 @@ elseif($arResult["ERROR_MESSAGE"] == '')
 		
 	}
 	else{
-		$arResult["ERROR_MESSAGE"] = "У вас недостаточно прав для просмотра данной страницы!";
+		$arResult["ERROR_MESSAGE"] = "РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїСЂР°РІ РґР»СЏ РїСЂРѕСЃРјРѕС‚СЂР° РґР°РЅРЅРѕР№ СЃС‚СЂР°РЅРёС†С‹!";
 	}
 }
 

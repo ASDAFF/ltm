@@ -5,10 +5,10 @@ $APPLICATION->SetPageProperty("NOT_SHOW_NAV_CHAIN", "Y");
 $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 ?>
 
-<?php //Общиц контейнер для ЛК?>
+<?php //РћР±С‰РёС† РєРѕРЅС‚РµР№РЅРµСЂ РґР»СЏ Р›Рљ?>
 <div class="exhibition-block rus">
 	
-	<?php //-->Табы конференций?>
+	<?php //-->РўР°Р±С‹ РєРѕРЅС„РµСЂРµРЅС†РёР№?>
 		<div class="exhibition-list pull-overflow">
 			<ul>
 				<li><a href="#" title="">LTM Moscow 2014</a></li>
@@ -20,120 +20,120 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 				<li><a href="" title="">LTM Moscow 2014.</a></li>
 			</ul>
 		</div>
-	<?php //<--Табы конференций?>
+	<?php //<--РўР°Р±С‹ РєРѕРЅС„РµСЂРµРЅС†РёР№?>
 	
 	
-	<?php //--> Заголовки?>
-		<h2>LUXURY TRAVEL MART MOSCOW SPRING’ 2014, 13 March</h2>
+	<?php //--> Р—Р°РіРѕР»РѕРІРєРё?>
+		<h2>LUXURY TRAVEL MART MOSCOW SPRINGвЂ™ 2014, 13 March</h2>
 		<div class="sub-headline">The Ritz-Carlton Moscow</div>
-	<?php //<-- Заголовки?>
+	<?php //<-- Р—Р°РіРѕР»РѕРІРєРё?>
 	
 	
-	<?php //--> Общие блок для табов 1 уровня ?>
+	<?php //--> РћР±С‰РёРµ Р±Р»РѕРє РґР»СЏ С‚Р°Р±РѕРІ 1 СѓСЂРѕРІРЅСЏ ?>
 	<div id="exhibition-session" class="exhibition-session">
 	
-		<?//--> Табы 1 уровня ?>
+		<?//--> РўР°Р±С‹ 1 СѓСЂРѕРІРЅСЏ ?>
 			<ul class="pull-overflow main-tab">
-				<li><a href="#exhibition-tab-1" title="">Программа и инфо</a></li>
-				<li><a href="#exhibition-tab-2" title="">Утренняя сессия</a></li>
-				<li><a href="#exhibition-tab-5" title="">Мои сообщения (19)</a></li>
-				<li><a href="#exhibition-tab-3" title="">Каталог участников</a></li>
+				<li><a href="#exhibition-tab-1" title="">РџСЂРѕРіСЂР°РјРјР° Рё РёРЅС„Рѕ</a></li>
+				<li><a href="#exhibition-tab-2" title="">РЈС‚СЂРµРЅРЅСЏСЏ СЃРµСЃСЃРёСЏ</a></li>
+				<li><a href="#exhibition-tab-5" title="">РњРѕРё СЃРѕРѕР±С‰РµРЅРёСЏ (19)</a></li>
+				<li><a href="#exhibition-tab-3" title="">РљР°С‚Р°Р»РѕРі СѓС‡Р°СЃС‚РЅРёРєРѕРІ</a></li>
 			</ul>
-		<?//<-- Табы 1 уровня ?>
+		<?//<-- РўР°Р±С‹ 1 СѓСЂРѕРІРЅСЏ ?>
 		
-		<?//--> Содержимое таба 1 ?>
+		<?//--> РЎРѕРґРµСЂР¶РёРјРѕРµ С‚Р°Р±Р° 1 ?>
 		<div id="exhibition-tab-1">
-			<p>Телефон организаторов в Москве: <b>+7 495 111 11 11</b>,<br>пожалуйста, обращайтесь по любым вопросам</p>
+			<p>РўРµР»РµС„РѕРЅ РѕСЂРіР°РЅРёР·Р°С‚РѕСЂРѕРІ РІ РњРѕСЃРєРІРµ: <b>+7 495 111 11 11</b>,<br>РїРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‰Р°Р№С‚РµСЃСЊ РїРѕ Р»СЋР±С‹Рј РІРѕРїСЂРѕСЃР°Рј</p>
 			
-			<h3>ПРОГРАММА МЕРОПРИЯТИЯ</h3>
+			<h3>РџР РћР“Р РђРњРњРђ РњР•Р РћРџР РРЇРўРРЇ</h3>
 			
-			<p>24 сентября (вторник), 2013г. <br> Отель Интерконтиненталь, Киев, 10:00 – 21:00</p>
+			<p>24 СЃРµРЅС‚СЏР±СЂСЏ (РІС‚РѕСЂРЅРёРє), 2013Рі. <br> РћС‚РµР»СЊ РРЅС‚РµСЂРєРѕРЅС‚РёРЅРµРЅС‚Р°Р»СЊ, РљРёРµРІ, 10:00 вЂ“ 21:00</p>
 			
-			<p><b>Место проведения:</b></p>
+			<p><b>РњРµСЃС‚Рѕ РїСЂРѕРІРµРґРµРЅРёСЏ:</b></p>
 			
-			<p>Отель Интерконтиненталь Киев, улица Большая Житомирская, дом 2А</p>
+			<p>РћС‚РµР»СЊ РРЅС‚РµСЂРєРѕРЅС‚РёРЅРµРЅС‚Р°Р»СЊ РљРёРµРІ, СѓР»РёС†Р° Р‘РѕР»СЊС€Р°СЏ Р–РёС‚РѕРјРёСЂСЃРєР°СЏ, РґРѕРј 2Рђ</p>
 			
-			<p>Залы "Grand Ballroom" и "Conference Hall" – минус второй (конференц) этаж отеля и Meeting Room, второй этаж отеля.</p>
+			<p>Р—Р°Р»С‹ "Grand Ballroom" Рё "Conference Hall" вЂ“ РјРёРЅСѓСЃ РІС‚РѕСЂРѕР№ (РєРѕРЅС„РµСЂРµРЅС†) СЌС‚Р°Р¶ РѕС‚РµР»СЏ Рё Meeting Room, РІС‚РѕСЂРѕР№ СЌС‚Р°Р¶ РѕС‚РµР»СЏ.</p>
 			
-			<p>Гардероб для гостей располагается при входе в залы.</p>
+			<p>Р“Р°СЂРґРµСЂРѕР± РґР»СЏ РіРѕСЃС‚РµР№ СЂР°СЃРїРѕР»Р°РіР°РµС‚СЃСЏ РїСЂРё РІС…РѕРґРµ РІ Р·Р°Р»С‹.</p>
 			
-			<p>Регистрация гостей:</p>
+			<p>Р РµРіРёСЃС‚СЂР°С†РёСЏ РіРѕСЃС‚РµР№:</p>
 			
-			<p>Начало регистрации гостей утренней сессии в 09:30. При входе в залы будут находиться стойки регистрации "Зарегистрированные гости".</p>
+			<p>РќР°С‡Р°Р»Рѕ СЂРµРіРёСЃС‚СЂР°С†РёРё РіРѕСЃС‚РµР№ СѓС‚СЂРµРЅРЅРµР№ СЃРµСЃСЃРёРё РІ 09:30. РџСЂРё РІС…РѕРґРµ РІ Р·Р°Р»С‹ Р±СѓРґСѓС‚ РЅР°С…РѕРґРёС‚СЊСЃСЏ СЃС‚РѕР№РєРё СЂРµРіРёСЃС‚СЂР°С†РёРё "Р—Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅРЅС‹Рµ РіРѕСЃС‚Рё".</p>
 			
-			<p>Для входа в залы необходимо предъявить именной бейдж, который зарегистрированные гости смогут получить на стойках регистрации. Все гости мероприятия на стойках регистрации смогут также получить электронный каталог участников Luxury Travel Mart и план-схему расположения рабочих мест участников на утренней сессии.</p>
+			<p>Р”Р»СЏ РІС…РѕРґР° РІ Р·Р°Р»С‹ РЅРµРѕР±С…РѕРґРёРјРѕ РїСЂРµРґСЉСЏРІРёС‚СЊ РёРјРµРЅРЅРѕР№ Р±РµР№РґР¶, РєРѕС‚РѕСЂС‹Р№ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅРЅС‹Рµ РіРѕСЃС‚Рё СЃРјРѕРіСѓС‚ РїРѕР»СѓС‡РёС‚СЊ РЅР° СЃС‚РѕР№РєР°С… СЂРµРіРёСЃС‚СЂР°С†РёРё. Р’СЃРµ РіРѕСЃС‚Рё РјРµСЂРѕРїСЂРёСЏС‚РёСЏ РЅР° СЃС‚РѕР№РєР°С… СЂРµРіРёСЃС‚СЂР°С†РёРё СЃРјРѕРіСѓС‚ С‚Р°РєР¶Рµ РїРѕР»СѓС‡РёС‚СЊ СЌР»РµРєС‚СЂРѕРЅРЅС‹Р№ РєР°С‚Р°Р»РѕРі СѓС‡Р°СЃС‚РЅРёРєРѕРІ Luxury Travel Mart Рё РїР»Р°РЅ-СЃС…РµРјСѓ СЂР°СЃРїРѕР»РѕР¶РµРЅРёСЏ СЂР°Р±РѕС‡РёС… РјРµСЃС‚ СѓС‡Р°СЃС‚РЅРёРєРѕРІ РЅР° СѓС‚СЂРµРЅРЅРµР№ СЃРµСЃСЃРёРё.</p>
 			
-			<p>Программа:</p>
+			<p>РџСЂРѕРіСЂР°РјРјР°:</p>
 			
-			<p>10:00 – 14:20 Рабочие встречи согласно предварительно составленному на www.kiev.luxurytravelmart.ru расписанию. Продолжительность каждой встречи 10 минут, 5 минут на переход от участника к участнику. Начало и окончание встречи – специальное звуковое оповещение.</p>
+			<p>10:00 вЂ“ 14:20 Р Р°Р±РѕС‡РёРµ РІСЃС‚СЂРµС‡Рё СЃРѕРіР»Р°СЃРЅРѕ РїСЂРµРґРІР°СЂРёС‚РµР»СЊРЅРѕ СЃРѕСЃС‚Р°РІР»РµРЅРЅРѕРјСѓ РЅР° www.kiev.luxurytravelmart.ru СЂР°СЃРїРёСЃР°РЅРёСЋ. РџСЂРѕРґРѕР»Р¶РёС‚РµР»СЊРЅРѕСЃС‚СЊ РєР°Р¶РґРѕР№ РІСЃС‚СЂРµС‡Рё 10 РјРёРЅСѓС‚, 5 РјРёРЅСѓС‚ РЅР° РїРµСЂРµС…РѕРґ РѕС‚ СѓС‡Р°СЃС‚РЅРёРєР° Рє СѓС‡Р°СЃС‚РЅРёРєСѓ. РќР°С‡Р°Р»Рѕ Рё РѕРєРѕРЅС‡Р°РЅРёРµ РІСЃС‚СЂРµС‡Рё вЂ“ СЃРїРµС†РёР°Р»СЊРЅРѕРµ Р·РІСѓРєРѕРІРѕРµ РѕРїРѕРІРµС‰РµРЅРёРµ.</p>
 			
-			<p>Просим вас строго придерживаться расписания встреч и обязательно посещать все запланированные встречи.</p>
+			<p>РџСЂРѕСЃРёРј РІР°СЃ СЃС‚СЂРѕРіРѕ РїСЂРёРґРµСЂР¶РёРІР°С‚СЊСЃСЏ СЂР°СЃРїРёСЃР°РЅРёСЏ РІСЃС‚СЂРµС‡ Рё РѕР±СЏР·Р°С‚РµР»СЊРЅРѕ РїРѕСЃРµС‰Р°С‚СЊ РІСЃРµ Р·Р°РїР»Р°РЅРёСЂРѕРІР°РЅРЅС‹Рµ РІСЃС‚СЂРµС‡Рё.</p>
 			
-			<p>11:55 – 12:10 Перерыв на кофе. Фойе конференц-этажа.</p>
+			<p>11:55 вЂ“ 12:10 РџРµСЂРµСЂС‹РІ РЅР° РєРѕС„Рµ. Р¤РѕР№Рµ РєРѕРЅС„РµСЂРµРЅС†-СЌС‚Р°Р¶Р°.</p>
 			
-			<p>14:30 – 15:30 Ланч для участников и гостей утренней сессии. Возможность для неформального общения. Фойе конференц-этажа.</p>
+			<p>14:30 вЂ“ 15:30 Р›Р°РЅС‡ РґР»СЏ СѓС‡Р°СЃС‚РЅРёРєРѕРІ Рё РіРѕСЃС‚РµР№ СѓС‚СЂРµРЅРЅРµР№ СЃРµСЃСЃРёРё. Р’РѕР·РјРѕР¶РЅРѕСЃС‚СЊ РґР»СЏ РЅРµС„РѕСЂРјР°Р»СЊРЅРѕРіРѕ РѕР±С‰РµРЅРёСЏ. Р¤РѕР№Рµ РєРѕРЅС„РµСЂРµРЅС†-СЌС‚Р°Р¶Р°.</p>
 			
-			<p>15:30 – 18:00 Сессия для региональных агентств, по приглашению организаторов.</p>
+			<p>15:30 вЂ“ 18:00 РЎРµСЃСЃРёСЏ РґР»СЏ СЂРµРіРёРѕРЅР°Р»СЊРЅС‹С… Р°РіРµРЅС‚СЃС‚РІ, РїРѕ РїСЂРёРіР»Р°С€РµРЅРёСЋ РѕСЂРіР°РЅРёР·Р°С‚РѕСЂРѕРІ.</p>
 			
-			<p>18:30 Регистрация гостей вечерней сессии.</p>
+			<p>18:30 Р РµРіРёСЃС‚СЂР°С†РёСЏ РіРѕСЃС‚РµР№ РІРµС‡РµСЂРЅРµР№ СЃРµСЃСЃРёРё.</p>
 			
-			<p>18:30 – 21:00 Вечерняя сессия, встречи с участниками мероприятия без заранее назначенных расписаний (зал Grand Ballroom Hall).</p>
+			<p>18:30 вЂ“ 21:00 Р’РµС‡РµСЂРЅСЏСЏ СЃРµСЃСЃРёСЏ, РІСЃС‚СЂРµС‡Рё СЃ СѓС‡Р°СЃС‚РЅРёРєР°РјРё РјРµСЂРѕРїСЂРёСЏС‚РёСЏ Р±РµР· Р·Р°СЂР°РЅРµРµ РЅР°Р·РЅР°С‡РµРЅРЅС‹С… СЂР°СЃРїРёСЃР°РЅРёР№ (Р·Р°Р» Grand Ballroom Hall).</p>
 				
-			<p>Рабочий язык мероприятия – английский. Просим иметь при себе достаточное количество визитных карточек на английском языке.</p>
+			<p>Р Р°Р±РѕС‡РёР№ СЏР·С‹Рє РјРµСЂРѕРїСЂРёСЏС‚РёСЏ вЂ“ Р°РЅРіР»РёР№СЃРєРёР№. РџСЂРѕСЃРёРј РёРјРµС‚СЊ РїСЂРё СЃРµР±Рµ РґРѕСЃС‚Р°С‚РѕС‡РЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РІРёР·РёС‚РЅС‹С… РєР°СЂС‚РѕС‡РµРє РЅР° Р°РЅРіР»РёР№СЃРєРѕРј СЏР·С‹РєРµ.</p>
 			
-			<p>Посетители без визитных карточек на мероприятие допускаться не будут.</p>
+			<p>РџРѕСЃРµС‚РёС‚РµР»Рё Р±РµР· РІРёР·РёС‚РЅС‹С… РєР°СЂС‚РѕС‡РµРє РЅР° РјРµСЂРѕРїСЂРёСЏС‚РёРµ РґРѕРїСѓСЃРєР°С‚СЊСЃСЏ РЅРµ Р±СѓРґСѓС‚.</p>
 			
-			<h3>ФАЙЛЫ ДЛЯ СКАЧИВАНИЯ</h3>
+			<h3>Р¤РђР™Р›Р« Р”Р›РЇ РЎРљРђР§РР’РђРќРРЇ</h3>
 			
 			<ul>
-				<li><a href="" title="">План расположения участников на утренней сессии</a></li>
-				<li><a href="" title="">План расположения участников на вечерней сессии</a></li>
-				<li><a href="" title="">Список участников с указанием расположения</a></li>
+				<li><a href="" title="">РџР»Р°РЅ СЂР°СЃРїРѕР»РѕР¶РµРЅРёСЏ СѓС‡Р°СЃС‚РЅРёРєРѕРІ РЅР° СѓС‚СЂРµРЅРЅРµР№ СЃРµСЃСЃРёРё</a></li>
+				<li><a href="" title="">РџР»Р°РЅ СЂР°СЃРїРѕР»РѕР¶РµРЅРёСЏ СѓС‡Р°СЃС‚РЅРёРєРѕРІ РЅР° РІРµС‡РµСЂРЅРµР№ СЃРµСЃСЃРёРё</a></li>
+				<li><a href="" title="">РЎРїРёСЃРѕРє СѓС‡Р°СЃС‚РЅРёРєРѕРІ СЃ СѓРєР°Р·Р°РЅРёРµРј СЂР°СЃРїРѕР»РѕР¶РµРЅРёСЏ</a></li>
 			</ul>
 			
 		</div>
-		<?//<-- Содержимое таба 1 ?>
+		<?//<-- РЎРѕРґРµСЂР¶РёРјРѕРµ С‚Р°Р±Р° 1 ?>
 		
-		<?//--> Содержимое таба 2?>
+		<?//--> РЎРѕРґРµСЂР¶РёРјРѕРµ С‚Р°Р±Р° 2?>
 		<div id="exhibition-tab-2">
-			<?// Табы 2 уровня ?>
+			<?// РўР°Р±С‹ 2 СѓСЂРѕРІРЅСЏ ?>
 			
 			<div class="morning-session" id="morning-session">
 			
-				<?//--> Список табов 2 уровня ?>
+				<?//--> РЎРїРёСЃРѕРє С‚Р°Р±РѕРІ 2 СѓСЂРѕРІРЅСЏ ?>
 				<ul class="pull-overflow sub-tab-session">
-					<li><a href="#session-tab-1" title="">Расписание на утреннюю сессию</a></li>
-					<li><a href="#session-tab-2" title="">Список участников</a></li>
+					<li><a href="#session-tab-1" title="">Р Р°СЃРїРёСЃР°РЅРёРµ РЅР° СѓС‚СЂРµРЅРЅСЋСЋ СЃРµСЃСЃРёСЋ</a></li>
+					<li><a href="#session-tab-2" title="">РЎРїРёСЃРѕРє СѓС‡Р°СЃС‚РЅРёРєРѕРІ</a></li>
 				</ul>
-				<?//<--Список табов 2 уровня ?>
+				<?//<--РЎРїРёСЃРѕРє С‚Р°Р±РѕРІ 2 СѓСЂРѕРІРЅСЏ ?>
 				
-				<?//-->Контейнер содержимого табы 2 уровня ?>
+				<?//-->РљРѕРЅС‚РµР№РЅРµСЂ СЃРѕРґРµСЂР¶РёРјРѕРіРѕ С‚Р°Р±С‹ 2 СѓСЂРѕРІРЅСЏ ?>
 				<div id="session-tab-1">
 				
-					<?//-->Таблица   ?>
+					<?//-->РўР°Р±Р»РёС†Р°   ?>
 					<? //include("shedule.php");?>
-					<?//<--Таблица   ?>
+					<?//<--РўР°Р±Р»РёС†Р°   ?>
 					
 					<div class="pull-overflow generate-file">
 						<div class="pull-left">
-							<a href="" title="">Создать список пожеланий PDF</a>
+							<a href="" title="">РЎРѕР·РґР°С‚СЊ СЃРїРёСЃРѕРє РїРѕР¶РµР»Р°РЅРёР№ PDF</a>
 						</div>
 						<div class="pull-right">
-							<a href="" title="">Сформировать расписание в PDF</a>
+							<a href="" title="">РЎС„РѕСЂРјРёСЂРѕРІР°С‚СЊ СЂР°СЃРїРёСЃР°РЅРёРµ РІ PDF</a>
 						</div>
 					</div>
 					
 					<div class="request-guests">
-						<div>Здесь вы можете запросить только тех участникой, чьи расписания уже заполнены</div>
+						<div>Р—РґРµСЃСЊ РІС‹ РјРѕР¶РµС‚Рµ Р·Р°РїСЂРѕСЃРёС‚СЊ С‚РѕР»СЊРєРѕ С‚РµС… СѓС‡Р°СЃС‚РЅРёРєРѕР№, С‡СЊРё СЂР°СЃРїРёСЃР°РЅРёСЏ СѓР¶Рµ Р·Р°РїРѕР»РЅРµРЅС‹</div>
 						<table class="section-request">
 							<tr>
 								<td class="appointments">
-									<div class="wish-list">Вы также хотели бы встретиться с</div>
+									<div class="wish-list">Р’С‹ С‚Р°РєР¶Рµ С…РѕС‚РµР»Рё Р±С‹ РІСЃС‚СЂРµС‚РёС‚СЊСЃСЏ СЃ</div>
 									<form action="">
 										<table class="morning-time">
 											<tr>
-												<th>№</th>
-												<th>Компания</th>
+												<th>в„–</th>
+												<th>РљРѕРјРїР°РЅРёСЏ</th>
 											</tr>
 											<tr>
 												<td>1</td>
@@ -148,19 +148,19 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 												<td>Lorem ipsum dolor sit amet.</td>
 											</tr>
 										</table>
-										<div class="send-request send"><a href="" title="">Отправить запрос</a></div>
+										<div class="send-request send"><a href="" title="">РћС‚РїСЂР°РІРёС‚СЊ Р·Р°РїСЂРѕСЃ</a></div>
 										
 										<select name="" id="">
-											<option value="">Выберете компанию</option>
+											<option value="">Р’С‹Р±РµСЂРµС‚Рµ РєРѕРјРїР°РЅРёСЋ</option>
 										</select>
 									</form>
 								</td>
 								<td>
-									<div class="wish-list">С вами хотели бы встретиться следующие участники</div>
+									<div class="wish-list">РЎ РІР°РјРё С…РѕС‚РµР»Рё Р±С‹ РІСЃС‚СЂРµС‚РёС‚СЊСЃСЏ СЃР»РµРґСѓСЋС‰РёРµ СѓС‡Р°СЃС‚РЅРёРєРё</div>
 									<table class="morning-time">
 										<tr>
-											<th>№</th>
-											<th>Компания</th>
+											<th>в„–</th>
+											<th>РљРѕРјРїР°РЅРёСЏ</th>
 										</tr>
 										<tr>
 											<td>1</td>
@@ -174,15 +174,15 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 					
 				</div>
 				
-				<?//-->Содержимое таба 2 уровня 2 вкладка ?>
+				<?//-->РЎРѕРґРµСЂР¶РёРјРѕРµ С‚Р°Р±Р° 2 СѓСЂРѕРІРЅСЏ 2 РІРєР»Р°РґРєР° ?>
 				<div id="session-tab-2">
 					<div class="pull-overflow sorting-company">
 						<div class="pull-left">
 							<ul>
-								<li><a href="" title="">По странам</a></li>
-								<li><a href="" title="">По виду деятельности</a></li>
-								<li><a href="" title="">По свободному времени</a></li>
-								<li><a href="" title="">Все</a></li>
+								<li><a href="" title="">РџРѕ СЃС‚СЂР°РЅР°Рј</a></li>
+								<li><a href="" title="">РџРѕ РІРёРґСѓ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё</a></li>
+								<li><a href="" title="">РџРѕ СЃРІРѕР±РѕРґРЅРѕРјСѓ РІСЂРµРјРµРЅРё</a></li>
+								<li><a href="" title="">Р’СЃРµ</a></li>
 							</ul>
 						</div>
 						<div class="pull-right">
@@ -220,11 +220,11 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 					
 					<table class="sorting-company">
 						<tr>
-							<th>Компания</th>
-							<th>Представитель</th>
-							<th>Написать</th>
+							<th>РљРѕРјРїР°РЅРёСЏ</th>
+							<th>РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ</th>
+							<th>РќР°РїРёСЃР°С‚СЊ</th>
 							<th class="free-slots">Free slots</th>
-							<th>Запрос</th>
+							<th>Р—Р°РїСЂРѕСЃ</th>
 						</tr>
 						<tr>
 							<td class="company">
@@ -232,13 +232,13 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 								<div>Worldwide</div>
 							</td>
 							<td class="representative">John Patterson-Sounwell</td>
-							<td class="contact"><a href="" title="">Написать<br>сообщение</a></td>
+							<td class="contact"><a href="" title="">РќР°РїРёСЃР°С‚СЊ<br>СЃРѕРѕР±С‰РµРЅРёРµ</a></td>
 							<td class="free-slots">
 								<select name="" id="">
-									<option value="">10:00 – 10:10</option>
+									<option value="">10:00 вЂ“ 10:10</option>
 								</select>
 							</td>
-							<td class="request"><a href="" title="">Отправить<br>запрос</a></td>
+							<td class="request"><a href="" title="">РћС‚РїСЂР°РІРёС‚СЊ<br>Р·Р°РїСЂРѕСЃ</a></td>
 						</tr>
 						<tr>
 							<td class="company">
@@ -246,13 +246,13 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 								<div>Worldwide</div>
 							</td>
 							<td class="representative">John Patterson-Sounwell</td>
-							<td class="contact"><a href="" title="">Написать<br>сообщение</a></td>
+							<td class="contact"><a href="" title="">РќР°РїРёСЃР°С‚СЊ<br>СЃРѕРѕР±С‰РµРЅРёРµ</a></td>
 							<td class="free-slots">
 								<select name="" id="">
-									<option value="">10:00 – 10:10</option>
+									<option value="">10:00 вЂ“ 10:10</option>
 								</select>
 							</td>
-							<td class="request"><a href="" title="">Отправить<br>запрос</a></td>
+							<td class="request"><a href="" title="">РћС‚РїСЂР°РІРёС‚СЊ<br>Р·Р°РїСЂРѕСЃ</a></td>
 						</tr>
 						<tr>
 							<td class="company">
@@ -260,13 +260,13 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 								<div>Worldwide</div>
 							</td>
 							<td class="representative">John Patterson-Sounwell</td>
-							<td class="contact"><a href="" title="">Написать<br>сообщение</a></td>
+							<td class="contact"><a href="" title="">РќР°РїРёСЃР°С‚СЊ<br>СЃРѕРѕР±С‰РµРЅРёРµ</a></td>
 							<td class="free-slots">
 								<select name="" id="">
-									<option value="">10:00 – 10:10</option>
+									<option value="">10:00 вЂ“ 10:10</option>
 								</select>
 							</td>
-							<td class="request"><a href="" title="">Отправить<br>запрос</a></td>
+							<td class="request"><a href="" title="">РћС‚РїСЂР°РІРёС‚СЊ<br>Р·Р°РїСЂРѕСЃ</a></td>
 						</tr>
 						<tr>
 							<td class="company">
@@ -274,23 +274,23 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 								<div>Worldwide</div>
 							</td>
 							<td class="representative">John Patterson-Sounwell</td>
-							<td class="contact"><a href="" title="">Написать<br>сообщение</a></td>
+							<td class="contact"><a href="" title="">РќР°РїРёСЃР°С‚СЊ<br>СЃРѕРѕР±С‰РµРЅРёРµ</a></td>
 							<td class="free-slots">
 								<select name="" id="">
-									<option value="">10:00 – 10:10</option>
+									<option value="">10:00 вЂ“ 10:10</option>
 								</select>
 							</td>
-							<td class="request"><a href="" title="">Отправить<br>запрос</a></td>
+							<td class="request"><a href="" title="">РћС‚РїСЂР°РІРёС‚СЊ<br>Р·Р°РїСЂРѕСЃ</a></td>
 						</tr>
 					</table>
 				</div>
 			</div>
 		</div>
-		<?php //-->Cодержимое таба 3 ?>
+		<?php //-->CРѕРґРµСЂР¶РёРјРѕРµ С‚Р°Р±Р° 3 ?>
 			<div id="exhibition-tab-3">
 				<div class="hosted-session">
 					<h4>Hosted Buyers Session details</h4>
-					<p>Time: 15:30 – 18:00</p>
+					<p>Time: 15:30 вЂ“ 18:00</p>
 					<p>Place: Conference Hall I & II.</p>
 					<p>Format: Buyers will be seated, and exhibitors will move from one buyer to another, without pre- scheduled appointments. 5 minutes strictly for each appointment; at the end of each appointment a bell will ring. Please respect other exhibitors and move forward to another buyer immediately after the bell.</p>
 					<p>Please note that if you are sharing space with another hotel or colleague, you must attend all meetings with the hosted buyers together, no separate appointments are allowed in this case.</p>
@@ -356,7 +356,7 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 							<td class="contact"><a href="" title="">Send<br> a message</a></td>
 							<td class="free-slots">
 								<select name="" id="">
-									<option value="">10:00 – 10:10</option>
+									<option value="">10:00 вЂ“ 10:10</option>
 								</select>
 							</td>
 							<td class="request"><a href="" title="">Send <br>a request</a></td>
@@ -370,7 +370,7 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 							<td class="contact"><a href="" title="">Send<br> a message</a></td>
 							<td class="free-slots">
 								<select name="" id="">
-									<option value="">10:00 – 10:10</option>
+									<option value="">10:00 вЂ“ 10:10</option>
 								</select>
 							</td>
 							<td class="request"><a href="" title="">Send <br>a request</a></td>
@@ -384,7 +384,7 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 							<td class="contact"><a href="" title="">Send<br> a message</a></td>
 							<td class="free-slots">
 								<select name="" id="">
-									<option value="">10:00 – 10:10</option>
+									<option value="">10:00 вЂ“ 10:10</option>
 								</select>
 							</td>
 							<td class="request"><a href="" title="">Send <br>a request</a></td>
@@ -398,7 +398,7 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 							<td class="contact"><a href="" title="">Send<br> a message</a></td>
 							<td class="free-slots">
 								<select name="" id="">
-									<option value="">10:00 – 10:10</option>
+									<option value="">10:00 вЂ“ 10:10</option>
 								</select>
 							</td>
 							<td class="request"><a href="" title="">Send <br>a request</a></td>
@@ -406,9 +406,9 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 					</table>
 				</div>
 			</div>
-		<?php //<--Содержание таба 3 ?>
+		<?php //<--РЎРѕРґРµСЂР¶Р°РЅРёРµ С‚Р°Р±Р° 3 ?>
 		
-		<?php //-->Cодержимое таба 4 ?>
+		<?php //-->CРѕРґРµСЂР¶РёРјРѕРµ С‚Р°Р±Р° 4 ?>
 			<div id="exhibition-tab-4" class="evening-session" style="display: none;">
 				<div class="morning-session">
 					<div class="pull-overflow sorting-company">
@@ -492,16 +492,16 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 					</table>
 				</div>
 			</div>
-		<?php //<--Содержание таба 4 ?>
+		<?php //<--РЎРѕРґРµСЂР¶Р°РЅРёРµ С‚Р°Р±Р° 4 ?>
 		
-		<?php //-->Cодержимое таба 5 ?>
+		<?php //-->CРѕРґРµСЂР¶РёРјРѕРµ С‚Р°Р±Р° 5 ?>
 			<div id="exhibition-tab-5" class="message-box">
 				<div id="message-box-function">
 					<ul class="message-list-tab pull-overflow">
-						<li><a href="#message-tab-1" title="Входящие">Входящие</a></li>
-						<li><a href="#message-tab-2" title="Отправленные">Отправленные</a></li>
-						<li><a href="#message-tab-3" title="Написать письмо">Написать письмо</a></li>
-						<li><a href="#message-tab-4" title="Связаться с организаторами">Связаться с организаторами</a></li>
+						<li><a href="#message-tab-1" title="Р’С…РѕРґСЏС‰РёРµ">Р’С…РѕРґСЏС‰РёРµ</a></li>
+						<li><a href="#message-tab-2" title="РћС‚РїСЂР°РІР»РµРЅРЅС‹Рµ">РћС‚РїСЂР°РІР»РµРЅРЅС‹Рµ</a></li>
+						<li><a href="#message-tab-3" title="РќР°РїРёСЃР°С‚СЊ РїРёСЃСЊРјРѕ">РќР°РїРёСЃР°С‚СЊ РїРёСЃСЊРјРѕ</a></li>
+						<li><a href="#message-tab-4" title="РЎРІСЏР·Р°С‚СЊСЃСЏ СЃ РѕСЂРіР°РЅРёР·Р°С‚РѕСЂР°РјРё">РЎРІСЏР·Р°С‚СЊСЃСЏ СЃ РѕСЂРіР°РЅРёР·Р°С‚РѕСЂР°РјРё</a></li>
 					</ul>
 					<div class="reed-letter pull-overflow">
 					<form action="">
@@ -519,18 +519,18 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium animi minus excepturi sint voluptas corporis quas. Harum dolor officiis maxime qui dignissimos praesentium rem ducimus at corporis illum. Veniam quibusdam atque at molestias ducimus sit itaque pariatur officia consectetur repellendus architecto rem consequatur molestiae maiores fugit recusandae animi laudantium consequuntur labore aliquid. Ut qui amet ab omnis expedita cupiditate corrupti cum numquam facere eum. Ipsam nisi dolore odio enim quia a dicta ea reprehenderit nihil earum aliquid esse odit natus fuga asperiores facilis blanditiis cum debitis harum neque iure quibusdam deleniti. Eaque necessitatibus minus aliquid porro adipisci. Nesciunt id dicta ducimus sequi est obcaecati laborum pariatur. Dolor quas rerum laudantium repellat aliquid est necessitatibus! Quod explicabo dolorum hic modi dolor doloremque sequi velit voluptates aut officia odio aspernatur soluta placeat sed numquam asperiores quo ratione earum provident ipsa culpa autem nesciunt magnam totam aperiam tempore ex nulla laudantium tempora voluptatibus eum amet alias eius! Id corporis praesentium exercitationem quisquam repellat soluta tempora velit molestias ea fugiat iste odio explicabo impedit quasi et ratione accusantium sunt temporibus sapiente voluptatibus nihil totam possimus omnis dolores nostrum cupiditate laborum ad ullam alias earum nemo animi deserunt quae aliquam placeat ducimus sit est voluptate perspiciatis perferendis suscipit nisi eos ut provident nulla rerum! Animi distinctio quia sit quas molestias doloremque sequi rem odio maiores officia itaque inventore temporibus ratione nemo illum officiis dolorum dolore atque incidunt ad id perferendis at impedit commodi optio? Eligendi autem distinctio blanditiis cupiditate a iure architecto id suscipit repellendus.	
 						</div>
 						<div class="send">
-							<a title="" href="">Ответить</a> 
-							<a title="" href="">Переслать</a> 
+							<a title="" href="">РћС‚РІРµС‚РёС‚СЊ</a> 
+							<a title="" href="">РџРµСЂРµСЃР»Р°С‚СЊ</a> 
 						</div>
 					</form>
 					</div>
 					<div id="message-tab-1" class="inbox morning-session">
 						<table class="morning-time inbox-list">
 							<tr>
-								<th>Тема</th>
-								<th>Компания</th>
-								<th>Отправитель</th>
-								<th>Дата</th>
+								<th>РўРµРјР°</th>
+								<th>РљРѕРјРїР°РЅРёСЏ</th>
+								<th>РћС‚РїСЂР°РІРёС‚РµР»СЊ</th>
+								<th>Р”Р°С‚Р°</th>
 							</tr>
 							<tr>
 								<td>New proposals and terms of cooperation with our regular customers to our hotels</td>
@@ -556,10 +556,10 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 					<div id="message-tab-2" class="sendbox morning-session">
 						<table class="morning-time inbox-list">
 							<tr>
-								<th>Тема</th>
-								<th>Компания</th>
-								<th>Отправитель</th>
-								<th>Дата</th>
+								<th>РўРµРјР°</th>
+								<th>РљРѕРјРїР°РЅРёСЏ</th>
+								<th>РћС‚РїСЂР°РІРёС‚РµР»СЊ</th>
+								<th>Р”Р°С‚Р°</th>
 							</tr>
 							<tr>
 								<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis nulla.</td>
@@ -584,56 +584,56 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 					
 					<div id="message-tab-3" class="new-message">
 						<form action="">
-							<input type="text" placeholder="Тема сообщения">
-							<textarea>Текст сообщения</textarea>
-							<div class="send"><input type="submit" value="Отправить" /></div>
+							<input type="text" placeholder="РўРµРјР° СЃРѕРѕР±С‰РµРЅРёСЏ">
+							<textarea>РўРµРєСЃС‚ СЃРѕРѕР±С‰РµРЅРёСЏ</textarea>
+							<div class="send"><input type="submit" value="РћС‚РїСЂР°РІРёС‚СЊ" /></div>
 						</form>
 					</div>
 					<div id="message-tab-4" class="new-message">
 						<form action="">
-							<input type="text" placeholder="Тема сообщения">
-							<textarea>Текст сообщения </textarea>
-							<div class="send"><input type="submit" value="Отправить" /></div>
+							<input type="text" placeholder="РўРµРјР° СЃРѕРѕР±С‰РµРЅРёСЏ">
+							<textarea>РўРµРєСЃС‚ СЃРѕРѕР±С‰РµРЅРёСЏ </textarea>
+							<div class="send"><input type="submit" value="РћС‚РїСЂР°РІРёС‚СЊ" /></div>
 						</form>
 					</div>
 				</div>
 			</div>
-		<?php //<--Содержание таба 5 ?>
+		<?php //<--РЎРѕРґРµСЂР¶Р°РЅРёРµ С‚Р°Р±Р° 5 ?>
 	</div>
-	<?php //<-- Табы 1 уровня ?>
+	<?php //<-- РўР°Р±С‹ 1 СѓСЂРѕРІРЅСЏ ?>
 	
 </div>
 
-<?php //-->Редактирование профиля ?>
+<?php //-->Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РїСЂРѕС„РёР»СЏ ?>
 <div class="edit-profil pull-overflow">
 	<form action="">
 		<div class="profil pull-overflow">
 		
-			<div class="pull-overflow headline">КОЛЛЕГА №1 НА ВЕЧЕРНЮЮ СЕССИЮ</div>
+			<div class="pull-overflow headline">РљРћР›Р›Р•Р“Рђ в„–1 РќРђ Р’Р•Р§Р•Р РќР®Р® РЎР•РЎРЎРР®</div>
 			
 			<div class="pull-left profil-photo">
 			<div class="member">
 				<a href="" title=""><img src="http://placehold.it/108x108"></a>
 			</div>
 				
-				<a href="##" title="">Загрузить фото</a>
+				<a href="##" title="">Р—Р°РіСЂСѓР·РёС‚СЊ С„РѕС‚Рѕ</a>
 			</div>
 			
 			<div class="profil-field pull-left">
 				<div class="form-group">
-					<label class="control-label" for="inputdemo">Имя</label>
+					<label class="control-label" for="inputdemo">РРјСЏ</label>
 					<div class="data-control">
 						<input type="text" placeholder="John" id="inputdemo" class="form-control">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label" for="inputdemo">Фамилия</label>
+					<label class="control-label" for="inputdemo">Р¤Р°РјРёР»РёСЏ</label>
 					<div class="data-control">
 						<input type="text" placeholder="Patterson" id="inputdemo" class="form-control">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label" for="inputdemo">Должность</label>
+					<label class="control-label" for="inputdemo">Р”РѕР»Р¶РЅРѕСЃС‚СЊ</label>
 					<div class="data-control">
 						<input type="text" placeholder="Hello" id="inputdemo" class="form-control">
 					</div>
@@ -649,31 +649,31 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 		</div>
 		<div class="profil pull-overflow">
 		
-			<div class="pull-overflow headline">КОЛЛЕГА НА УТРЕННЮЮ СЕССИЮ</div>
+			<div class="pull-overflow headline">РљРћР›Р›Р•Р“Рђ РќРђ РЈРўР Р•РќРќР®Р® РЎР•РЎРЎРР®</div>
 			
 			<div class="pull-left profil-photo">
 			<div class="member">
 				<a href="" title=""><img src="http://placehold.it/108x108"></a>
 			</div>
 				
-				<a href="##" title="">Загрузить фото</a>
+				<a href="##" title="">Р—Р°РіСЂСѓР·РёС‚СЊ С„РѕС‚Рѕ</a>
 			</div>
 			
 			<div class="profil-field pull-left">
 				<div class="form-group">
-					<label class="control-label" for="inputdemo">Имя</label>
+					<label class="control-label" for="inputdemo">РРјСЏ</label>
 					<div class="data-control">
 						<input type="text" placeholder="John" id="inputdemo" class="form-control">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label" for="inputdemo">Фамилия</label>
+					<label class="control-label" for="inputdemo">Р¤Р°РјРёР»РёСЏ</label>
 					<div class="data-control">
 						<input type="text" placeholder="Patterson" id="inputdemo" class="form-control">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label" for="inputdemo">Должность</label>
+					<label class="control-label" for="inputdemo">Р”РѕР»Р¶РЅРѕСЃС‚СЊ</label>
 					<div class="data-control">
 						<input type="text" placeholder="Hello" id="inputdemo" class="form-control">
 					</div>
@@ -688,15 +688,15 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 		</div>
 		
 		<div class="send-change send">
-			<input type="submit" value="Сохранить изменения" />
+			<input type="submit" value="РЎРѕС…СЂР°РЅРёС‚СЊ РёР·РјРµРЅРµРЅРёСЏ" />
 		</div>
 	</form>
 	<div class="signature pull-overflow">
-		<span>Если кто-то из ваших коллег хочет отдельные от вас встречи, то ему необходимо пройти процесс регистрации.</span>
-		<div>При загрузке фотографий учитывайте, что файлы должны быть не более 2mb. и содержать лицо участника крупным планом.</div>
+		<span>Р•СЃР»Рё РєС‚Рѕ-С‚Рѕ РёР· РІР°С€РёС… РєРѕР»Р»РµРі С…РѕС‡РµС‚ РѕС‚РґРµР»СЊРЅС‹Рµ РѕС‚ РІР°СЃ РІСЃС‚СЂРµС‡Рё, С‚Рѕ РµРјСѓ РЅРµРѕР±С…РѕРґРёРјРѕ РїСЂРѕР№С‚Рё РїСЂРѕС†РµСЃСЃ СЂРµРіРёСЃС‚СЂР°С†РёРё.</span>
+		<div>РџСЂРё Р·Р°РіСЂСѓР·РєРµ С„РѕС‚РѕРіСЂР°С„РёР№ СѓС‡РёС‚С‹РІР°Р№С‚Рµ, С‡С‚Рѕ С„Р°Р№Р»С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РЅРµ Р±РѕР»РµРµ 2mb. Рё СЃРѕРґРµСЂР¶Р°С‚СЊ Р»РёС†Рѕ СѓС‡Р°СЃС‚РЅРёРєР° РєСЂСѓРїРЅС‹Рј РїР»Р°РЅРѕРј.</div>
 	</div>
 </div>
-<?php //<--Редактирование профиля ?>
+<?php //<--Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РїСЂРѕС„РёР»СЏ ?>
 
 <div class="create-page">
 	<div class="create-page-result">
@@ -723,7 +723,7 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 		<div class="description">
 			<div class="title"> Please enter a description of your company and service</div>
 			<textarea name="" id="" cols="30" rows="10"></textarea>
-			<div class="title">	Please upload a minimum of 6 (maximum 12) photos of your company/hotel. The maximum size of each photo is 3mb. Don’t forget &mdash; the better the quality of your photos, the better the impression of your company/hotel.</div>
+			<div class="title">	Please upload a minimum of 6 (maximum 12) photos of your company/hotel. The maximum size of each photo is 3mb. DonвЂ™t forget &mdash; the better the quality of your photos, the better the impression of your company/hotel.</div>
 			<label class="button-dark ltm-btn" >upload photos<input type="file" name="" id="" value=""/></label>
 		</div>
 	

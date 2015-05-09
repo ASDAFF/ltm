@@ -182,7 +182,7 @@ $pdf->Text(50, 109, 'MirrorP');
 //Stop Transformation
 $pdf->StopTransform();
 
-//Mirroring against a straigth line described by a point (120, 120) and an angle -20°
+//Mirroring against a straigth line described by a point (120, 120) and an angle -20В°
 $angle=-20;
 $px=120;
 $py=120;

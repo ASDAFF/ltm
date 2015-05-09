@@ -2,7 +2,7 @@
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 
 $arComponentDescription = array(
-	"NAME" => "Отправка запроса",
+	"NAME" => "РћС‚РїСЂР°РІРєР° Р·Р°РїСЂРѕСЃР°",
 	"DESCRIPTION" => "",
 	"ICON" => "/images/icon.gif",
 	"SORT" => 10,

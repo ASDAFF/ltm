@@ -148,7 +148,7 @@ if($arResult["ERROR_MESSAGE"] == ''){
           <td valign="top" width="350">
               <table width="100%" border="0" cellspacing="0" cellpadding="7" class="regist_info">
                   <tr class="chet">
-                      <td width="20"><strong>¹</strong></td>
+                      <td width="20"><strong>â„–</strong></td>
                       <td><strong>Company</strong></td>
                   </tr>
                   <?
@@ -177,7 +177,7 @@ if($arResult["ERROR_MESSAGE"] == ''){
           <td valign="top">
             <table width="100%" border="0" cellspacing="0" cellpadding="7" class="regist_info">
               <tr class="chet">
-                  <td width="20"><strong>¹</strong></td>
+                  <td width="20"><strong>â„–</strong></td>
                   <td width="190"><strong>Company</strong></td>
                   <td><strong>&nbsp;</strong></td>
               </tr>

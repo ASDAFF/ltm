@@ -15,19 +15,19 @@ input:disabled{background-color : rgb(143, 188, 143);}
 	<form action="" method="post" name="count">
     <table width="100%" border="0" cellspacing="0" cellpadding="5">
       <tr>
-        <td width="150"><strong>Номер счета</strong></td>
+        <td width="150"><strong>РќРѕРјРµСЂ СЃС‡РµС‚Р°</strong></td>
         <td>
             <input type="text" name="<?= CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_539", $arResult["FORM_ID"])?>" value="<?= ($data["PAY_NAME"])?$data["PAY_NAME"]:$user["ID"];?>"> <? /*<div class="edit-button"></div>*/?>
         </td>
       </tr>
       <tr>
-        <td width="150"><strong>Сумма</strong></td>
+        <td width="150"><strong>РЎСѓРјРјР°</strong></td>
         <td>
             <input type="text" name="<?= CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_680", $arResult["FORM_ID"])?>" value="<?= $data["PAY_COUNT"]?>">
         </td>
       </tr>
       <tr>
-        <td><strong>Получатель платежа</strong></td>
+        <td><strong>РџРѕР»СѓС‡Р°С‚РµР»СЊ РїР»Р°С‚РµР¶Р°</strong></td>
 
          <td>
              <? $selected = $data["PAY_REQUISITE"];?>
@@ -37,7 +37,7 @@ input:disabled{background-color : rgb(143, 188, 143);}
                 <br />
             <? endforeach;?>
 		</td>
-        <? /* вывод селектом если понадобится
+        <? /* РІС‹РІРѕРґ СЃРµР»РµРєС‚РѕРј РµСЃР»Рё РїРѕРЅР°РґРѕР±РёС‚СЃСЏ
         <td><?$selected = $data["PAY_REQUISITE"];?>
             <select name="PAY_REQUISITE">
             <? foreach ($arResult["PAY_REQUISITE"] as $arRequisite):?>
@@ -48,20 +48,20 @@ input:disabled{background-color : rgb(143, 188, 143);}
 		*/?>
       </tr>
       <tr>
-        <td><strong>Название компании</strong></td>
+        <td><strong>РќР°Р·РІР°РЅРёРµ РєРѕРјРїР°РЅРёРё</strong></td>
         <td><?= $data["COMPANY_NAME_INVOICE"]?></td>
       </tr>
       <tr>
-        <td><strong>Представитель</strong></td>
+        <td><strong>РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ</strong></td>
         <td><?= $data["FIRST_NAME"]?> <?= $data["LAST_NAME"]?></td>
       </tr>
       <tr>
-        <td><strong>Адрес компании</strong></td>
+        <td><strong>РђРґСЂРµСЃ РєРѕРјРїР°РЅРёРё</strong></td>
         <td><?= $data["ADDRESS"]?></td>
       </tr>
       <tr class="send">
-        <td><input type="submit" value="Посмотреть счет" name="button_look"/></td>
-        <td><input type="submit" value="Выставить счет" name="make"/>&nbsp; &nbsp; &nbsp;<input type="submit" value="Сохранить" name="save"/></td>
+        <td><input type="submit" value="РџРѕСЃРјРѕС‚СЂРµС‚СЊ СЃС‡РµС‚" name="button_look"/></td>
+        <td><input type="submit" value="Р’С‹СЃС‚Р°РІРёС‚СЊ СЃС‡РµС‚" name="make"/>&nbsp; &nbsp; &nbsp;<input type="submit" value="РЎРѕС…СЂР°РЅРёС‚СЊ" name="save"/></td>
       </tr>
     </table>
         <input name="RESULT_ID" type="hidden" value="<?= $arResult["USER_RESULT_ID"]?>" />
@@ -81,7 +81,7 @@ input:disabled{background-color : rgb(143, 188, 143);}
 	?>
     <br />
     <br />
-    <p style="padding-left:10px;">Счет был успешно отправлен по адресу <?=$data['EMAIL']?></p>
+    <p style="padding-left:10px;">РЎС‡РµС‚ Р±С‹Р» СѓСЃРїРµС€РЅРѕ РѕС‚РїСЂР°РІР»РµРЅ РїРѕ Р°РґСЂРµСЃСѓ <?=$data['EMAIL']?></p>
     <br />
     <br />
 	<?

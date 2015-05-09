@@ -1,1 +1,1 @@
-<p id="copyright">© All rights reserved. Artyom Polanskiy and Travel Media LLC</p>
+<p id="copyright">Â© All rights reserved. Artyom Polanskiy and Travel Media LLC</p>

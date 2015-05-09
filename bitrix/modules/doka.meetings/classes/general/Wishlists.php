@@ -93,7 +93,7 @@ class Wishlists extends DokaWishlist
             if($data['sender_id'] == $user_id){
                     $arAnswer = \CFormResult::GetDataByID(
                         $data['receiver_repr_fio'], 
-                        array(),  // вопрос "Какие области знаний вас интересуют?" 
+                        array(),  // РІРѕРїСЂРѕСЃ "РљР°РєРёРµ РѕР±Р»Р°СЃС‚Рё Р·РЅР°РЅРёР№ РІР°СЃ РёРЅС‚РµСЂРµСЃСѓСЋС‚?" 
                         $arResultTmp, 
                         $arAnswer2);
                     $results['WISH_IN'][$data['receiver_id']] = array(
@@ -105,7 +105,7 @@ class Wishlists extends DokaWishlist
             else {
                     $arAnswer = \CFormResult::GetDataByID(
                         $data['sender_repr_fio'], 
-                        array(),  // вопрос "Какие области знаний вас интересуют?" 
+                        array(),  // РІРѕРїСЂРѕСЃ "РљР°РєРёРµ РѕР±Р»Р°СЃС‚Рё Р·РЅР°РЅРёР№ РІР°СЃ РёРЅС‚РµСЂРµСЃСѓСЋС‚?" 
                         $arResultTmp, 
                         $arAnswer2);
                     $results['WISH_OUT'][$data['sender_id']] = array(

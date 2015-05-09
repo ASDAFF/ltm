@@ -28,7 +28,7 @@ switch($mode)
                 $result['message'] = strip_tags($res['MESSAGE']);
         } else {
             $result['status'] = true;
-            $result['message'] = 'Пользователь уже авторизован';
+            $result['message'] = 'РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ СѓР¶Рµ Р°РІС‚РѕСЂРёР·РѕРІР°РЅ';
 
         }
 
@@ -57,7 +57,7 @@ switch($mode)
                 $password = mb_substr(md5(uniqid(rand(),true)), 0, 8);
 
                 $USER->Update($user['ID'], Array("PASSWORD" => $password, "CONFIRM_PASSWORD" => $password));
-                $USER->SendUserInfo($user['ID'], SITE_ID, "Пароль изменён: ". $password);
+                $USER->SendUserInfo($user['ID'], SITE_ID, "РџР°СЂРѕР»СЊ РёР·РјРµРЅС‘РЅ: ". $password);
 
                 $rsSites = CSite::GetByID("s1");
                 $arSite = $rsSites->Fetch();
@@ -65,17 +65,17 @@ switch($mode)
                 $arEventFields = array(
                     "SITE_NAME"           => $arSite['NAME'],
                     "EMAIL"               => $emailTo,
-                    "MESSAGE"             => 'Пароль успешно восстановлен. Новый пароль: '. $password,
+                    "MESSAGE"             => 'РџР°СЂРѕР»СЊ СѓСЃРїРµС€РЅРѕ РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅ. РќРѕРІС‹Р№ РїР°СЂРѕР»СЊ: '. $password,
                     "USER_ID"             => $user['ID'],
                     "LOGIN"               => $user['LOGIN'],
                 );
                 CEvent::Send('USER_PASS_RECOVERY', $arSite, $arEventFields, "N");
-                //bxmail('example@mail.ru', 'Восстановление пароля', 'Пароль восстановлен: '. $password);
+                //bxmail('example@mail.ru', 'Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РїР°СЂРѕР»СЏ', 'РџР°СЂРѕР»СЊ РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅ: '. $password);
 
-                $result['message'] = "Пароль успешно изменён.";
+                $result['message'] = "РџР°СЂРѕР»СЊ СѓСЃРїРµС€РЅРѕ РёР·РјРµРЅС‘РЅ.";
             }
             else
-                $result['message'] = 'Пользователь с такие e-mail адресом не найден.';
+                $result['message'] = 'РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ СЃ С‚Р°РєРёРµ e-mail Р°РґСЂРµСЃРѕРј РЅРµ РЅР°Р№РґРµРЅ.';
         }
         break;
 

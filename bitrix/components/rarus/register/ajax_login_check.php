@@ -31,10 +31,10 @@ if(check_bitrix_sessid("SID"))
 		$arResponse["ERROR_TEXT"] = "Login must consist of latin letters, numbers or underscores";
 		$arResponse["ERROR_CODE"] = "login";
 	}
-	else //проверяем на наличие в битриксе
+	else //РїСЂРѕРІРµСЂСЏРµРј РЅР° РЅР°Р»РёС‡РёРµ РІ Р±РёС‚СЂРёРєСЃРµ
 	{
 		$rsUser = CUser::GetByLogin($login);
-		if($arUser = $rsUser->Fetch())//логин занят
+		if($arUser = $rsUser->Fetch())//Р»РѕРіРёРЅ Р·Р°РЅСЏС‚
 		{
 			$arResponse["STATUS"] = "error";
 			$arResponse["ERROR_TEXT"] = "Login has already been taken";

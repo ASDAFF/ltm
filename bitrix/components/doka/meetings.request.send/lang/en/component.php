@@ -1,21 +1,21 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die(); ?>
 <?
-$MESS['ERROR_EMPTY_USER_TYPE'] = 'Òèï þçåðà íå óêàçàí';
-$MESS['ERROR_EMPTY_USER_ID'] = 'Þçåð íå àâòîðèçîâàí';
-$MESS['ERROR_EMPTY_TIMESLOT_ID'] = 'Òàéìñëîò íå çàäàí';
-$MESS['ERROR_WRONG_RECEIVER_ID'] = 'Ïîëó÷àòåëü íå óêàçàí';
+$MESS['ERROR_EMPTY_USER_TYPE'] = 'Ð¢Ð¸Ð¿ ÑŽÐ·ÐµÑ€Ð° Ð½Ðµ ÑƒÐºÐ°Ð·Ð°Ð½';
+$MESS['ERROR_EMPTY_USER_ID'] = 'Ð®Ð·ÐµÑ€ Ð½Ðµ Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð¾Ð²Ð°Ð½';
+$MESS['ERROR_EMPTY_TIMESLOT_ID'] = 'Ð¢Ð°Ð¹Ð¼ÑÐ»Ð¾Ñ‚ Ð½Ðµ Ð·Ð°Ð´Ð°Ð½';
+$MESS['ERROR_WRONG_RECEIVER_ID'] = 'ÐŸÐ¾Ð»ÑƒÑ‡Ð°Ñ‚ÐµÐ»ÑŒ Ð½Ðµ ÑƒÐºÐ°Ð·Ð°Ð½';
 $MESS['ERROR_WRONG_RECEIVER_PARTICIP_ID'] = 'Please select the recipient';
 
 $MESS['PARTICIP_WRONG_TIMESLOT_ID'] = 'Time slot is not exists';
-$MESS['GUEST_WRONG_TIMESLOT_ID'] = 'Òàéìñëîò íå ñóùåñòâóåò';
-$MESS['ADMIN_WRONG_TIMESLOT_ID'] = 'Òàéìñëîò íå ñóùåñòâóåò';
+$MESS['GUEST_WRONG_TIMESLOT_ID'] = 'Ð¢Ð°Ð¹Ð¼ÑÐ»Ð¾Ñ‚ Ð½Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚';
+$MESS['ADMIN_WRONG_TIMESLOT_ID'] = 'Ð¢Ð°Ð¹Ð¼ÑÐ»Ð¾Ñ‚ Ð½Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚';
 
 $MESS['PARTICIP_WRONG_SENDER_ID'] = 'Sender is not exists more';
-$MESS['GUEST_WRONG_SENDER_ID'] = 'Îòïðàâèòåëü íå ñóùåñòâóåò';
-$MESS['ADMIN_WRONG_SENDER_ID'] = 'Îòïðàâèòåëü íå ñóùåñòâóåò';
+$MESS['GUEST_WRONG_SENDER_ID'] = 'ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÐµÐ»ÑŒ Ð½Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚';
+$MESS['ADMIN_WRONG_SENDER_ID'] = 'ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÐµÐ»ÑŒ Ð½Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚';
 
 $MESS['PARTICIP_WRONG_RECEIVER_ID'] = 'Receiver is not exist';
-$MESS['GUEST_WRONG_RECEIVER_ID'] = 'Ïîëó÷àòåëü íå ñóùåñòâóåò';
-$MESS['ADMIN_WRONG_RECEIVER_ID'] = 'Ïîëó÷àòåëü íå ñóùåñòâóåò';
+$MESS['GUEST_WRONG_RECEIVER_ID'] = 'ÐŸÐ¾Ð»ÑƒÑ‡Ð°Ñ‚ÐµÐ»ÑŒ Ð½Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚';
+$MESS['ADMIN_WRONG_RECEIVER_ID'] = 'ÐŸÐ¾Ð»ÑƒÑ‡Ð°Ñ‚ÐµÐ»ÑŒ Ð½Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚';
 
 ?>

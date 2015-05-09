@@ -14,14 +14,14 @@ $MESS["PARTICIPANT_FORM_ID_NOT_FOUND"] = "Participants web forms is not selected
 $MESS["IBLOCK_PHOTO_NOT_FOUND"] = "Photos Infoblock is not selected";
 
 $MESS["R_E_EMAIL_NOT_EQUAL"]="Email are not equal";
-$MESS["R_B_EMAIL_NOT_EQUAL"]="Email íå ñîâïàäàþò";
+$MESS["R_B_EMAIL_NOT_EQUAL"]="Email Ð½Ðµ ÑÐ¾Ð²Ð¿Ð°Ð´Ð°ÑŽÑ‚";
 
 $MESS["R_E_PASS_NOT_EQUAL"]="Passwords are not equal";
-$MESS["R_B_PASS_NOT_EQUAL"]="Ïàðîëè íå ñîâïàäàþò";
+$MESS["R_B_PASS_NOT_EQUAL"]="ÐŸÐ°Ñ€Ð¾Ð»Ð¸ Ð½Ðµ ÑÐ¾Ð²Ð¿Ð°Ð´Ð°ÑŽÑ‚";
 
 $MESS["R_E_EMPTY_EXHIBITION"]="Not selected exhibition";
-$MESS["R_B_EMPTY_EXHIBITION"]="Íå âûáðàíà âûñòàâêà";
+$MESS["R_B_EMPTY_EXHIBITION"]="ÐÐµ Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð° Ð²Ñ‹ÑÑ‚Ð°Ð²ÐºÐ°";
 
 
-$MESS["R_PHOTO"] = "Photo ¹#PHOTO_NUM#";
+$MESS["R_PHOTO"] = "Photo â„–#PHOTO_NUM#";
 ?>

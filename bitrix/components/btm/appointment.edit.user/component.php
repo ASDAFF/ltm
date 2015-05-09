@@ -60,18 +60,18 @@ if(strLen($arParams["IS_ACTIVE"])<=0 || $arParams["IS_ACTIVE"] == 'N'){
 CModule::IncludeModule('iblock');
 
 $times = array(
-	  '10:00 – 10:10', '10:15 – 10:25',
-	  '10:30 – 10:40', '10:45 – 10:55',
-	  '11:00 – 11:10', '11:15 – 11:25',
-	  '11:30 – 11:40', '11:45 – 11:55',
-	  '12:10 – 12:20', '12:25 – 12:35',
-	  '12:40 – 12:50', '12:55 – 13:05',
-	  '13:10 – 13:20', '13:25 – 13:35',
-	  '13:40 – 13:50', '13:55 – 14:05',
-	  '14:10 – 14:20'
+	  '10:00 вЂ“ 10:10', '10:15 вЂ“ 10:25',
+	  '10:30 вЂ“ 10:40', '10:45 вЂ“ 10:55',
+	  '11:00 вЂ“ 11:10', '11:15 вЂ“ 11:25',
+	  '11:30 вЂ“ 11:40', '11:45 вЂ“ 11:55',
+	  '12:10 вЂ“ 12:20', '12:25 вЂ“ 12:35',
+	  '12:40 вЂ“ 12:50', '12:55 вЂ“ 13:05',
+	  '13:10 вЂ“ 13:20', '13:25 вЂ“ 13:35',
+	  '13:40 вЂ“ 13:50', '13:55 вЂ“ 14:05',
+	  '14:10 вЂ“ 14:20'
   );
 /*---------------------------------------------------*/
-//           ФОРМИРУЕМ ВЫВОД ДЛЯ ШАБЛОНА             //
+//           Р¤РћР РњРР РЈР•Рњ Р’Р«Р’РћР” Р”Р›РЇ РЁРђР‘Р›РћРќРђ             //
 /*---------------------------------------------------*/
 if($arResult["ERROR_MESSAGE"] == '')
 {
@@ -83,7 +83,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 	{
 	  $arFields = $obRes->GetFields(); 
 	  $ar_res = $obRes->GetProperty("TIME");
-      //ПАРАМЕТРЫ встречи
+      //РџРђР РђРњР•РўР Р« РІСЃС‚СЂРµС‡Рё
 	  $appTmp["ACTIVE"] = $arFields["ACTIVE"];
 	  $appTmp["TIME"]["ID"] = $ar_res["VALUE_ENUM_ID"];
 	  $appTmp["TIME"]["ID_REAL"]  = $appTmp["TIME"]["ID"];
@@ -94,7 +94,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 	  $ar_res = $obRes->GetProperty("STATUS");
 	  $appTmp["STATUS"]["ID"] = $ar_res["VALUE_ENUM_ID"];
 	  $appTmp["STATUS"]["TITLE"] = $ar_res["VALUE"];
-	  //ОТ кого встреча
+	  //РћРў РєРѕРіРѕ РІСЃС‚СЂРµС‡Р°
 	  $appTmp["FROM"]["ID"] = $arFields["CREATED_BY"];
 	  $rsUser = CUser::GetByID($arFields["CREATED_BY"]);
 	  $reciverUser = $rsUser->Fetch();
@@ -109,7 +109,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 	  $appTmp["FROM"]["WISH_IN"] = $reciverUser["UF_WISH_IN"];
 	  $appTmp["FROM"]["WISH_OUT"] = $reciverUser["UF_WISH_OUT"];
 	  
-	  //ДЛЯ кого встреча
+	  //Р”Р›РЇ РєРѕРіРѕ РІСЃС‚СЂРµС‡Р°
 	  $appTmp["TO"]["ID"] = $arFields["DETAIL_TEXT"];
 	  $rsUser = CUser::GetByID($arFields["DETAIL_TEXT"]);
 	  $reciverUser = $rsUser->Fetch();
@@ -136,7 +136,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 	  }*/
 	  if($arResult["ERROR_MESSAGE"] == '' && $arParams["APP_ACTION"] == 'accept'){
 		  if($appTmp["ACTIVE"] == 'N' && $appTmp["STATUS"]["ID"] != $arParams["APP_ACCEPT"]){
-			  //Меняем активность у встречи и переносим ее в группу
+			  //РњРµРЅСЏРµРј Р°РєС‚РёРІРЅРѕСЃС‚СЊ Сѓ РІСЃС‚СЂРµС‡Рё Рё РїРµСЂРµРЅРѕСЃРёРј РµРµ РІ РіСЂСѓРїРїСѓ
 			  $readMeet = new CIBlockElement;
 			  $PROP = array();
 			  $PROP[4] = array("VALUE" => $arParams["APP_ACCEPT"]);
@@ -148,7 +148,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 			  CIBlockElement::SetPropertyValueCode($arParams["APP_ELEMENT"], "STATUS", $PROP);
 			  $resM = $readMeet->Update($arParams["APP_ELEMENT"], $arLoadProductArray);
 			  
-			  // Меняем количество подтвержденных встреч
+			  // РњРµРЅСЏРµРј РєРѕР»РёС‡РµСЃС‚РІРѕ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… РІСЃС‚СЂРµС‡
 			  $appTmp["TO"]["APP_COUNT"]--;
 			  if($appTmp["TO"]["APP_COUNT"] < 0){
 				  $appTmp["TO"]["APP_COUNT"] = 0;
@@ -166,7 +166,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 	  }
 	  elseif($arResult["ERROR_MESSAGE"] == '' && $arParams["APP_ACTION"] == 'decline'){
 		  if($appTmp["STATUS"]["ID"] != $arParams["APP_DECLINE"]){
-			  //Меняем активность у встречи и переносим ее в группу
+			  //РњРµРЅСЏРµРј Р°РєС‚РёРІРЅРѕСЃС‚СЊ Сѓ РІСЃС‚СЂРµС‡Рё Рё РїРµСЂРµРЅРѕСЃРёРј РµРµ РІ РіСЂСѓРїРїСѓ
 			  $readMeet = new CIBlockElement;
 			  $PROP = array();
 			  $PROP[4] = array("VALUE" => $arParams["APP_DECLINE"]);
@@ -178,10 +178,10 @@ if($arResult["ERROR_MESSAGE"] == '')
 			  CIBlockElement::SetPropertyValueCode($arParams["APP_ELEMENT"], "STATUS", $PROP);
 			  $resM = $readMeet->Update($arParams["APP_ELEMENT"], $arLoadProductArray);
 			  
-			  // Меняем количество подтвержденных встреч если встреча не подтверждена
+			  // РњРµРЅСЏРµРј РєРѕР»РёС‡РµСЃС‚РІРѕ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… РІСЃС‚СЂРµС‡ РµСЃР»Рё РІСЃС‚СЂРµС‡Р° РЅРµ РїРѕРґС‚РІРµСЂР¶РґРµРЅР°
 			  $strError = '';
 			  if($appTmp["ACTIVE"] != 'Y'){
-				//Получатель
+				//РџРѕР»СѓС‡Р°С‚РµР»СЊ
 				$appTmp["TO"]["APP_COUNT"]--;
 				if($appTmp["TO"]["APP_COUNT"] < 0){
 					$appTmp["TO"]["APP_COUNT"] = 0;
@@ -212,7 +212,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 				  CEvent::Send("DECLINE_APPOINTMENT","s1",$arFieldsMes);
 			  }
 			  
-			  //Отправитель
+			  //РћС‚РїСЂР°РІРёС‚РµР»СЊ
 			  $fromUser = new CUser;
 			  $fieldsFrom = Array(
 				"UF_SHEDULE_".$appTmp["TIME"]["ID"] => "",
@@ -225,7 +225,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 				  $arResult["ERROR_MESSAGE"] = $strError;
 			  }
 			  
-			  //Создаем почтовое событие и отправляем его.
+			  //РЎРѕР·РґР°РµРј РїРѕС‡С‚РѕРІРѕРµ СЃРѕР±С‹С‚РёРµ Рё РѕС‚РїСЂР°РІР»СЏРµРј РµРіРѕ.
 			  
 			  $arResult["MESSAGE"] = GetMessage("APPOINTMENT_EDIT_APP_DECLINE");
 		  }

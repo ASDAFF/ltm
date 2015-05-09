@@ -1,7 +1,7 @@
 <?
 if(!defined("B_PROLOG_INCLUDED")||B_PROLOG_INCLUDED!==true)die();
 
-/*Параметры компонента*/
+/*РџР°СЂР°РјРµС‚СЂС‹ РєРѕРјРїРѕРЅРµРЅС‚Р°*/
 $arParams["EXHIBIT_IBLOCK_ID"] = intval($arParams["EXHIBIT_IBLOCK_ID"]);
 if($arParams["EXHIBIT_IBLOCK_ID"] <= 0)
 {
@@ -73,7 +73,7 @@ $arResult["ERRORS"] = array();
 $register_done = false;
 
 $uploaddir = $_SERVER['DOCUMENT_ROOT'].'/upload/tmp/'. bitrix_sessid()."/";
-//регистрация лтм
+//СЂРµРіРёСЃС‚СЂР°С†РёСЏ Р»С‚Рј
 
 if(isset($_REQUEST["USER_TYPE"]))
 {
@@ -99,9 +99,9 @@ $arResult["AJAX_PATCH"] = array(
 );
 
 
-//получаем все выставки
+//РїРѕР»СѓС‡Р°РµРј РІСЃРµ РІС‹СЃС‚Р°РІРєРё
 
-//получение выставок
+//РїРѕР»СѓС‡РµРЅРёРµ РІС‹СЃС‚Р°РІРѕРє
 $arFilter = array(
 		"IBLOCK_ID" => $arParams["EXHIBIT_IBLOCK_ID"],
 		"ACTIVE" => "Y"
@@ -121,11 +121,11 @@ while($obElement = $rsElement->GetNextElement(true, false))
 	$arItem = $obElement->GetFields();
 	$arItem["PROPERTIES"] = $obElement->GetProperties();
 	
-	//получам статус выставки для гостя
+	//РїРѕР»СѓС‡Р°Рј СЃС‚Р°С‚СѓСЃ РІС‹СЃС‚Р°РІРєРё РґР»СЏ РіРѕСЃС‚СЏ
 	$statusGuest = array();
 	switch($arItem['PROPERTIES']['STATUS_G_M']['VALUE_ENUM'])
 	{
-		case "Available" : //если статус выставки для гостей на утром - Разрешена
+		case "Available" : //РµСЃР»Рё СЃС‚Р°С‚СѓСЃ РІС‹СЃС‚Р°РІРєРё РґР»СЏ РіРѕСЃС‚РµР№ РЅР° СѓС‚СЂРѕРј - Р Р°Р·СЂРµС€РµРЅР°
 			switch ($arItem['PROPERTIES']['STATUS_G_E']['VALUE_ENUM'])
 			{
 				case "Available":
@@ -229,7 +229,7 @@ while($obElement = $rsElement->GetNextElement(true, false))
 	}
 	
 	
-	//Получаем статус выставки для участников
+	//РџРѕР»СѓС‡Р°РµРј СЃС‚Р°С‚СѓСЃ РІС‹СЃС‚Р°РІРєРё РґР»СЏ СѓС‡Р°СЃС‚РЅРёРєРѕРІ
 	$statusParticipant = array();
 	switch($arItem['PROPERTIES']['STATUS']['VALUE_ENUM']){
 		case 'Available' :
@@ -261,7 +261,7 @@ while($obElement = $rsElement->GetNextElement(true, false))
 		"PARTICIPANT" => $statusParticipant
 	);
 	
-	//Заносим выставки в результат
+	//Р—Р°РЅРѕСЃРёРј РІС‹СЃС‚Р°РІРєРё РІ СЂРµР·СѓР»СЊС‚Р°С‚
 	$arResult["EXHIBITION"][$arItem["ID"]] = $arItem;
 	
 }
@@ -351,7 +351,7 @@ $arResult["VALUES"] = htmlspecialcharsEx($arResult["VALUES"]);
 // all done
 $this->IncludeComponentTemplate();
 
-//удаляем фотки
+//СѓРґР°Р»СЏРµРј С„РѕС‚РєРё
 if(strpos($uploaddir, bitrix_sessid())!==false)
 {
 	delTreeDir($uploaddir);

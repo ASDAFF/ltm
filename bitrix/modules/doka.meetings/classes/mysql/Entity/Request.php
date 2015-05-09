@@ -10,22 +10,22 @@ class Request
 
     var $LAST_ERROR = '';
 
-    const STATUS_EMPTY     = 0; // Статус не выбран, т.е. слот свободен
+    const STATUS_EMPTY     = 0; // РЎС‚Р°С‚СѓСЃ РЅРµ РІС‹Р±СЂР°РЅ, С‚.Рµ. СЃР»РѕС‚ СЃРІРѕР±РѕРґРµРЅ
     const STATUS_PROCESS   = 1;
     const STATUS_CONFIRMED = 2;
     const STATUS_REJECTED  = 3;
     const STATUS_TIMEOUT   = 4;
 	
-	/*=== типы ошибок в встречах ===*/
+	/*=== С‚РёРїС‹ РѕС€РёР±РѕРє РІ РІСЃС‚СЂРµС‡Р°С… ===*/
 	
-	const ERROR_OTP_SEND_MES         = 'Даннный запрос уже занят с текущим таймслотом';
-	const ERROR_POL_SEND_MES         = 'Данному пользователю уже был ранее отправлен запрос с текущим таймслотом';
-	const ERROR_USER_NOT_FOUND       = 'Не существует пользователя с таким ID, которому отправлен запрос';
-	const ERROR_USER_IS_GUEST        = 'Оба пользователя являются гостями';
-	const ERROR_NO_MEET              = 'Ошибок не найдено';
+	const ERROR_OTP_SEND_MES         = 'Р”Р°РЅРЅРЅС‹Р№ Р·Р°РїСЂРѕСЃ СѓР¶Рµ Р·Р°РЅСЏС‚ СЃ С‚РµРєСѓС‰РёРј С‚Р°Р№РјСЃР»РѕС‚РѕРј';
+	const ERROR_POL_SEND_MES         = 'Р”Р°РЅРЅРѕРјСѓ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ СѓР¶Рµ Р±С‹Р» СЂР°РЅРµРµ РѕС‚РїСЂР°РІР»РµРЅ Р·Р°РїСЂРѕСЃ СЃ С‚РµРєСѓС‰РёРј С‚Р°Р№РјСЃР»РѕС‚РѕРј';
+	const ERROR_USER_NOT_FOUND       = 'РќРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ СЃ С‚Р°РєРёРј ID, РєРѕС‚РѕСЂРѕРјСѓ РѕС‚РїСЂР°РІР»РµРЅ Р·Р°РїСЂРѕСЃ';
+	const ERROR_USER_IS_GUEST        = 'РћР±Р° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ СЏРІР»СЏСЋС‚СЃСЏ РіРѕСЃС‚СЏРјРё';
+	const ERROR_NO_MEET              = 'РћС€РёР±РѕРє РЅРµ РЅР°Р№РґРµРЅРѕ';
 	
 	/**
-	*нужно рассмотреть все виды ошибок
+	*РЅСѓР¶РЅРѕ СЂР°СЃСЃРјРѕС‚СЂРµС‚СЊ РІСЃРµ РІРёРґС‹ РѕС€РёР±РѕРє
 	*/
 	
     static protected $module = 'doka.meetings';
@@ -218,7 +218,7 @@ class Request
             $DB->Query($sSql, false, 'File: '.__FILE__.'<br />Line: '.__LINE__);
             $ID = $DB->LastID();
 
-            // Обновляем таблицу с занятостью компаний
+            // РћР±РЅРѕРІР»СЏРµРј С‚Р°Р±Р»РёС†Сѓ СЃ Р·Р°РЅСЏС‚РѕСЃС‚СЊСЋ РєРѕРјРїР°РЅРёР№
             if ($ID > 0)
                 $ID = $this->upsertCompanyShedule($ID, $arFields);
             
@@ -229,14 +229,14 @@ class Request
     }
 
     /**
-     * Добавляем/обн. данные в таблицу с занятостью компаний
-     * Внимание, в MEET_N в конце записывается управляющий байт - кто кому отсылал запрос
+     * Р”РѕР±Р°РІР»СЏРµРј/РѕР±РЅ. РґР°РЅРЅС‹Рµ РІ С‚Р°Р±Р»РёС†Сѓ СЃ Р·Р°РЅСЏС‚РѕСЃС‚СЊСЋ РєРѕРјРїР°РЅРёР№
+     * Р’РЅРёРјР°РЅРёРµ, РІ MEET_N РІ РєРѕРЅС†Рµ Р·Р°РїРёСЃС‹РІР°РµС‚СЃСЏ СѓРїСЂР°РІР»СЏСЋС‰РёР№ Р±Р°Р№С‚ - РєС‚Рѕ РєРѕРјСѓ РѕС‚СЃС‹Р»Р°Р» Р·Р°РїСЂРѕСЃ
      */
     private function upsertCompanyShedule($ID, $arFields)
     {
         global $DB, $USER;
 
-        // Получим группу юзера, ограничение на то, что группа только одна
+        // РџРѕР»СѓС‡РёРј РіСЂСѓРїРїСѓ СЋР·РµСЂР°, РѕРіСЂР°РЅРёС‡РµРЅРёРµ РЅР° С‚Рѕ, С‡С‚Рѕ РіСЂСѓРїРїР° С‚РѕР»СЊРєРѕ РѕРґРЅР°
         $sender_id = $arFields['SENDER_ID'];
         $receiver_id = $arFields['RECEIVER_ID'];
 
@@ -252,7 +252,7 @@ class Request
         $receiver_fields['USER_ID'] = $receiver_id;
         $receiver_fields['MEET_'.$arFields['TIMESLOT_ID']] = $arFields['SENDER_ID'] . '0';
 
-        // Обновим занятость для отправителя и получателя
+        // РћР±РЅРѕРІРёРј Р·Р°РЅСЏС‚РѕСЃС‚СЊ РґР»СЏ РѕС‚РїСЂР°РІРёС‚РµР»СЏ Рё РїРѕР»СѓС‡Р°С‚РµР»СЏ
         $arInsert = $DB->PrepareInsert(self::$sTableNameShedule.$arFields['EXHIBITION_ID'], $sender_fields);
         $arInsert2 = $DB->PrepareInsert(self::$sTableNameShedule.$arFields['EXHIBITION_ID'], $receiver_fields);
 
@@ -283,7 +283,7 @@ class Request
                 $sSql = 'UPDATE `'.self::$sTableName.'` SET '.$sUpdate.' WHERE `ID`="'.$ID.'"';
                 $DB->Query($sSql, false, 'File: '.__FILE__.'<br />Line: '.__LINE__);
 
-                // TODO:: апдейтим значения статуса, переделать под отдельный запрос!
+                // TODO:: Р°РїРґРµР№С‚РёРј Р·РЅР°С‡РµРЅРёСЏ СЃС‚Р°С‚СѓСЃР°, РїРµСЂРµРґРµР»Р°С‚СЊ РїРѕРґ РѕС‚РґРµР»СЊРЅС‹Р№ Р·Р°РїСЂРѕСЃ!
                 $ID = $this->upsertCompanyShedule($ID, $arFields);
                 return $ID;
             }
@@ -300,7 +300,7 @@ class Request
     }
 
     /**
-     * Дополняет массив полями FROM и TO, данные берем из поля NAME
+     * Р”РѕРїРѕР»РЅСЏРµС‚ РјР°СЃСЃРёРІ РїРѕР»СЏРјРё FROM Рё TO, РґР°РЅРЅС‹Рµ Р±РµСЂРµРј РёР· РїРѕР»СЏ NAME
      * @param  array $arFields
      * @return array $arFields
      */

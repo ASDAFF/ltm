@@ -1,6 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Ðåäàêòèðîâàòü");
+$APPLICATION->SetTitle("Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ");
 ?>
 <?/*$APPLICATION->IncludeComponent(
 	"btm:form.result.edit",

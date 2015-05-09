@@ -1,5 +1,5 @@
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Âûñòàâèòü ñ÷åò");
+$APPLICATION->SetTitle("Ð’Ñ‹ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ ÑÑ‡ÐµÑ‚");
 ?>
 
 <?$APPLICATION->IncludeComponent(

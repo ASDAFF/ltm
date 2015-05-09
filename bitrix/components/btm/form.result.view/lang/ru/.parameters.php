@@ -1,13 +1,13 @@
 <?
-$MESS ['COMP_FORM_GROUP_PARAMS'] = "Ïàðàìåòðû êîìïîíåíòà";
-$MESS ['COMP_FORM_SEF_RESULT_VIEW_PAGE'] = "Øàáëîí URL ñòðàíèöû ïðîñìîòðà";
-$MESS ['FORM_COMP_VALUE_YES'] = "Äà";
-$MESS ['FORM_COMP_VALUE_NO'] = "Íåò";
-$MESS ['COMP_FORM_PARAMS_RESULT_ID'] = "ID ðåçóëüòàòà";
-$MESS ['COMP_FORM_PARAMS_SHOW_ANSWER_VALUE'] = "Ïîêàçàòü çíà÷åíèå ïàðàìåòðà ANSWER_VALUE";
-$MESS ['COMP_FORM_PARAMS_SHOW_ADDITIONAL'] = "Ïîêàçàòü äîïîëíèòåëüíûå ïîëÿ âåá-ôîðìû";
-$MESS ['COMP_FORM_PARAMS_SHOW_STATUS'] = "Ïîêàçàòü òåêóùèé ñòàòóñ ðåçóëüòàòà";
-$MESS ['COMP_FORM_PARAMS_EDIT_URL'] = "Ñòðàíèöà ðåäàêòèðîâàíèÿ ðåçóëüòàòà";
-$MESS ['COMP_FORM_PARAMS_CHAIN_ITEM_TEXT'] = "Íàçâàíèå äîïîëíèòåëüíîãî ïóíêòà â íàâèãàöèîííîé öåïî÷êå";
-$MESS ['COMP_FORM_PARAMS_CHAIN_ITEM_LINK'] = "Ññûëêà íà äîïîëíèòåëüíîì ïóíêòå â íàâèãàöèîííîé öåïî÷êå";
+$MESS ['COMP_FORM_GROUP_PARAMS'] = "ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ ÐºÐ¾Ð¼Ð¿Ð¾Ð½ÐµÐ½Ñ‚Ð°";
+$MESS ['COMP_FORM_SEF_RESULT_VIEW_PAGE'] = "Ð¨Ð°Ð±Ð»Ð¾Ð½ URL ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ñ‹ Ð¿Ñ€Ð¾ÑÐ¼Ð¾Ñ‚Ñ€Ð°";
+$MESS ['FORM_COMP_VALUE_YES'] = "Ð”Ð°";
+$MESS ['FORM_COMP_VALUE_NO'] = "ÐÐµÑ‚";
+$MESS ['COMP_FORM_PARAMS_RESULT_ID'] = "ID Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð°";
+$MESS ['COMP_FORM_PARAMS_SHOW_ANSWER_VALUE'] = "ÐŸÐ¾ÐºÐ°Ð·Ð°Ñ‚ÑŒ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð° ANSWER_VALUE";
+$MESS ['COMP_FORM_PARAMS_SHOW_ADDITIONAL'] = "ÐŸÐ¾ÐºÐ°Ð·Ð°Ñ‚ÑŒ Ð´Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ðµ Ð¿Ð¾Ð»Ñ Ð²ÐµÐ±-Ñ„Ð¾Ñ€Ð¼Ñ‹";
+$MESS ['COMP_FORM_PARAMS_SHOW_STATUS'] = "ÐŸÐ¾ÐºÐ°Ð·Ð°Ñ‚ÑŒ Ñ‚ÐµÐºÑƒÑ‰Ð¸Ð¹ ÑÑ‚Ð°Ñ‚ÑƒÑ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð°";
+$MESS ['COMP_FORM_PARAMS_EDIT_URL'] = "Ð¡Ñ‚Ñ€Ð°Ð½Ð¸Ñ†Ð° Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð°";
+$MESS ['COMP_FORM_PARAMS_CHAIN_ITEM_TEXT'] = "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð´Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ð³Ð¾ Ð¿ÑƒÐ½ÐºÑ‚Ð° Ð² Ð½Ð°Ð²Ð¸Ð³Ð°Ñ†Ð¸Ð¾Ð½Ð½Ð¾Ð¹ Ñ†ÐµÐ¿Ð¾Ñ‡ÐºÐµ";
+$MESS ['COMP_FORM_PARAMS_CHAIN_ITEM_LINK'] = "Ð¡ÑÑ‹Ð»ÐºÐ° Ð½Ð° Ð´Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ð¼ Ð¿ÑƒÐ½ÐºÑ‚Ðµ Ð² Ð½Ð°Ð²Ð¸Ð³Ð°Ñ†Ð¸Ð¾Ð½Ð½Ð¾Ð¹ Ñ†ÐµÐ¿Ð¾Ñ‡ÐºÐµ";
 ?>

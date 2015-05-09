@@ -77,7 +77,7 @@ Move your mouse over the yellow box or double click on it to display the annotat
 $pdf->Write(0, $txt, '', 0, 'L', true, 0, false, false, 0);
 
 // text annotation
-$pdf->Annotation(83, 27, 10, 10, "Text annotation example\naccented letters test: àèéìòù", array('Subtype'=>'Text', 'Name' => 'Comment', 'T' => 'title example', 'Subj' => 'example', 'C' => array(255, 255, 0)));
+$pdf->Annotation(83, 27, 10, 10, "Text annotation example\naccented letters test: Г ГЁГ©Г¬ГІГ№", array('Subtype'=>'Text', 'Name' => 'Comment', 'T' => 'title example', 'Subj' => 'example', 'C' => array(255, 255, 0)));
 
 // ---------------------------------------------------------
 

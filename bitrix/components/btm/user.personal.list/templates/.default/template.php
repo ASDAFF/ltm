@@ -47,7 +47,7 @@ if($arResult["ERROR_MESSAGE"] == ''){
                   <td>
                   <select name="times" style="width:90px;" id="list_<?=$arResult["USERS"][$j]["ID"]?>">
                       <option value='1'>10.00 - 10.15</option>
-                      <option value='2'>10:20 – 10:35</option>
+                      <option value='2'>10:20 â€“ 10:35</option>
                   </select>
                   </td>
                   <td>Send a request</td>

@@ -1,10 +1,10 @@
 <?
 /**
- * Вспомогательные элементы для админки
+ * Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Рµ СЌР»РµРјРµРЅС‚С‹ РґР»СЏ Р°РґРјРёРЅРєРё
  */
 
 /**
- * Выбор таймслота
+ * Р’С‹Р±РѕСЂ С‚Р°Р№РјСЃР»РѕС‚Р°
  *
  * @param int $SELECTED Selected iblock
  * @param string $strTypeName Name of the iblock type select
@@ -61,7 +61,7 @@ function DokaGetTimeslotDropDownList($SELECTED, $strTypeName, $strSecondSelectNa
         ';
     }
 
-    // Определим выделенный элемент во втором селекте
+    // РћРїСЂРµРґРµР»РёРј РІС‹РґРµР»РµРЅРЅС‹Р№ СЌР»РµРјРµРЅС‚ РІРѕ РІС‚РѕСЂРѕРј СЃРµР»РµРєС‚Рµ
     $SELECTED_KEY = false;
     if($SELECTED > 0) {
         foreach($arSecondSelectVals[$filterId] as $id => $vals)

@@ -1,5 +1,5 @@
 <?
-$MESS['ADMIN_MENU_ERROR_ENTER'] = "Ó âàñ íåäîñòàòî÷íî ïðàâ äëÿ âõîäà â äàííûé ðàçäåë.";
+$MESS['ADMIN_MENU_ERROR_ENTER'] = "Ð£ Ð²Ð°Ñ Ð½ÐµÐ´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ Ð¿Ñ€Ð°Ð² Ð´Ð»Ñ Ð²Ñ…Ð¾Ð´Ð° Ð² Ð´Ð°Ð½Ð½Ñ‹Ð¹ Ñ€Ð°Ð·Ð´ÐµÐ».";
 $MESS['PARTICIP_MENU_PAGE_MORNING'] = "Morning Session";
 $MESS['PARTICIP_MENU_PAGE_MORNING_MY'] = "My schedule for<br />the Morning Session";
 $MESS['PARTICIP_MENU_PAGE_MORNING_GUESTS'] = "Morning Session<br />Guests";

@@ -1,1 +1,1 @@
-<span id = "develop">Разработано <a href = "#">AE studio</a></span>
+<span id = "develop">Р Р°Р·СЂР°Р±РѕС‚Р°РЅРѕ <a href = "#">AE studio</a></span>

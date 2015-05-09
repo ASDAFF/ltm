@@ -1,5 +1,5 @@
 <?php 
-//ðåñàéçèì êàðòèíêó
+//Ñ€ÐµÑÐ°Ð¹Ð·Ð¸Ð¼ ÐºÐ°Ñ€Ñ‚Ð¸Ð½ÐºÑƒ
 if(isset($arResult["DETAIL_PICTURE"]) && !empty($arResult["DETAIL_PICTURE"]))
 {
 	$newFile = CFile::ResizeImageGet(

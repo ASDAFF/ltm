@@ -57,7 +57,7 @@ else
 			if(isset($_POST[$fieldAns])){
 				if(($_POST[$fieldAns] != $_POST["OLD_".$fieldAns] && $arrAns["TYPE"] != 'dropdown') || ($_POST[$fieldAns] != '' && $_POST[$fieldAns] != $arResult["QUEST"][$fieldAns]["ANSWER_ID"] && $arrAns["TYPE"] == 'dropdown')){
 					$arVALUE = array();
-					$ANSWER_ID = $arrAns["ANSWER_ID"]; // ID ïîëÿ îòâåòà
+					$ANSWER_ID = $arrAns["ANSWER_ID"]; // ID Ð¿Ð¾Ð»Ñ Ð¾Ñ‚Ð²ÐµÑ‚Ð°
 					if($arrAns["TYPE"] == 'dropdown'){
 						$arVALUE[$_POST[$fieldAns]] = '';
 						$newAns = '';
@@ -66,7 +66,7 @@ else
 								$newAns .= $optField["MESSAGE"]."; ";
 							}
 						}
-						$sendMessage .= "Ïîëå ".$arResult["QUEST"][$fieldAns]["TITLE"].". Ñòàðîå çíà÷åíèå: ".$arResult["QUEST"][$fieldAns]["VALUE"]." Íîâîå çíà÷åíèå: ".$newAns."\n";
+						$sendMessage .= "ÐŸÐ¾Ð»Ðµ ".$arResult["QUEST"][$fieldAns]["TITLE"].". Ð¡Ñ‚Ð°Ñ€Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ: ".$arResult["QUEST"][$fieldAns]["VALUE"]." ÐÐ¾Ð²Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ: ".$newAns."\n";
 					}
 					elseif($arrAns["TYPE"] == 'checkbox'){
 						foreach($_POST[$fieldAns] as $checkValue){
@@ -75,7 +75,7 @@ else
 					}
 					else{
 						$arVALUE[$ANSWER_ID] = $_POST[$fieldAns];
-						$sendMessage .= "Ïîëå ".$arResult["QUEST"][$fieldAns]["TITLE"].". Ñòàðîå çíà÷åíèå: ".$arResult["QUEST"][$fieldAns]["VALUE"]." Íîâîå çíà÷åíèå: ".$_POST[$fieldAns]."\n";
+						$sendMessage .= "ÐŸÐ¾Ð»Ðµ ".$arResult["QUEST"][$fieldAns]["TITLE"].". Ð¡Ñ‚Ð°Ñ€Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ: ".$arResult["QUEST"][$fieldAns]["VALUE"]." ÐÐ¾Ð²Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ: ".$_POST[$fieldAns]."\n";
 					}
 					CFormResult::SetField($RESULT_ID, $fieldAns, $arVALUE);
 				}
@@ -104,7 +104,7 @@ else
 		}
 	}
 	elseif((isset($_POST['usact'])) and ($_POST['usact'] == 'update') && ($arTmpResult["ACTION_TYPE"] == "CREATE")){
-		// ìàññèâ çíà÷åíèé îòâåòîâ
+		// Ð¼Ð°ÑÑÐ¸Ð² Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ð¹ Ð¾Ñ‚Ð²ÐµÑ‚Ð¾Ð²
 		$arValues = array();
 		if (CForm::GetDataByID($arParams["FORM_ID"], $form, $questions, $answers, $dropdown, $multiselect)){
 			foreach($answers as $fieldAns => $arrAns){
@@ -125,7 +125,7 @@ else
 					}
 				}
 			}
-			// ñîçäàäèì íîâûé ðåçóëüòàò
+			// ÑÐ¾Ð·Ð´Ð°Ð´Ð¸Ð¼ Ð½Ð¾Ð²Ñ‹Ð¹ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚
 			if ($RESULT_ID = CFormResult::Add($arParams["FORM_ID"], $arValues))
 			{
 				$userTmp = new CUser;
@@ -135,7 +135,7 @@ else
 				}
 				$arTmpUsFields = Array(
 				  "UF_ANKETA_NEXT"    => $RESULT_ID,
-				  "UF_SOURCE"  	  	  => "ËÊ",
+				  "UF_SOURCE"  	  	  => "Ð›Ðš",
 				  "GROUP_ID"   		  => $userGroups,
 				);
 				$userTmp->Update($userId, $arTmpUsFields);
@@ -174,7 +174,7 @@ else
 				}
 				else{
 					$arEventFields = array(
-						"ERROR"                  => 'Íå äîáàâèëñÿ ïîëüçîâàòåëü',
+						"ERROR"                  => 'ÐÐµ Ð´Ð¾Ð±Ð°Ð²Ð¸Ð»ÑÑ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ',
 						"ID"                  => $arUser["ID"],
 						"EMAIL"          	  => $arUser["EMAIL"],
 						"NAME"          	  => $arUser["NAME"]." ".$arUser["LAST_NAME"],

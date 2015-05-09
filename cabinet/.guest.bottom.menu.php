@@ -9,31 +9,31 @@ if($exhibCode)
 {
     $aMenuLinks = array(
         array(
-            "Программа и инфо",
+            "РџСЂРѕРіСЂР°РјРјР° Рё РёРЅС„Рѕ",
             "/cabinet/" . $exhibCode . "/deadline/",
             array(),
             array()
         ),
         array(
-            "13 марта",
+            "13 РјР°СЂС‚Р°",
             "/cabinet/" . $exhibCode . "/morning/",
             array(),
             array()
         ),
         /*array(
-            "Утренняя сессия",
+            "РЈС‚СЂРµРЅРЅСЏСЏ СЃРµСЃСЃРёСЏ",
             "/cabinet/" . $exhibCode . "/morning/",
             array(),
             array()
         ),*/
         array(
-            "Мои сообщения",
+            "РњРѕРё СЃРѕРѕР±С‰РµРЅРёСЏ",
             "/cabinet/" . $exhibCode . "/messages/",
             array(),
             array()
         ),
         array(
-            "Каталог участников",
+            "РљР°С‚Р°Р»РѕРі СѓС‡Р°СЃС‚РЅРёРєРѕРІ",
             "/members/",
             array(),
             array()

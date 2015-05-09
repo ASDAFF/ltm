@@ -1,6 +1,6 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 /*--------------- TO DO -------------------*/
-//Добавить в параметры FORM_ID
+//Р”РѕР±Р°РІРёС‚СЊ РІ РїР°СЂР°РјРµС‚СЂС‹ FORM_ID
 
 $arResult["ERROR_MESSAGE"] = "";
 $arResult["MESSAGE"] = "";
@@ -18,30 +18,30 @@ if(strLen($arParams["AUTH_PAGE"])<=0){
 }
 
 if(strLen($arParams["USER_ID"])<=0){
-	$arResult["ERROR_MESSAGE"] = "Не введены данные по Пользователю!<br />";
+	$arResult["ERROR_MESSAGE"] = "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ РџРѕР»СЊР·РѕРІР°С‚РµР»СЋ!<br />";
 }
 
 if(strLen($arParams["EXHIB_ID"])<=0){
-    $arResult["ERROR_MESSAGE"] = "Не введены данные по Выставке!<br />";
+    $arResult["ERROR_MESSAGE"] = "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ Р’С‹СЃС‚Р°РІРєРµ!<br />";
 }
 
 if(!($USER->IsAuthorized()))
 {
-	$arResult["ERROR_MESSAGE"] = "Вы не авторизованы!<br />";
+	$arResult["ERROR_MESSAGE"] = "Р’С‹ РЅРµ Р°РІС‚РѕСЂРёР·РѕРІР°РЅС‹!<br />";
 }
 
 if(!($USER->IsAdmin()))
 {
-    $arResult["ERROR_MESSAGE"] = "Вы не администратор!<br />";
+    $arResult["ERROR_MESSAGE"] = "Р’С‹ РЅРµ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂ!<br />";
 }
 
 if(!CModule::IncludeModule("iblock") || !CModule::IncludeModule("form"))
 {
-    $arResult["ERROR_MESSAGE"] = "Ошибка подключения модулей!<br />";
+    $arResult["ERROR_MESSAGE"] = "РћС€РёР±РєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ РјРѕРґСѓР»РµР№!<br />";
 }
 
 
-//сохранение данных
+//СЃРѕС…СЂР°РЅРµРЅРёРµ РґР°РЅРЅС‹С…
 if($arResult["ERROR_MESSAGE"] == '' && $_SERVER["REQUEST_METHOD"] == "POST" && $_REQUEST["save"])
 {
     dataSave($arParams["USER_ID"], $_POST);
@@ -50,11 +50,11 @@ if($arResult["ERROR_MESSAGE"] == '' && $_SERVER["REQUEST_METHOD"] == "POST" && $
 
 if($arResult["ERROR_MESSAGE"] == '')
 {
-    //получение даных пользователя
+    //РїРѕР»СѓС‡РµРЅРёРµ РґР°РЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
     $rsUser = CUser::GetList(($by = false), ($order = false), array("ID"=>$arParams["USER_ID"]), array("SELECT"=>array("UF_*"), "FIELDS" => array("ID", "NAME", "LAST_NAME", "LOGIN", "EMAIL", "WORK_COMPANY")));
     $arUser = $rsUser->Fetch();
 
-	//получение данных выставки
+	//РїРѕР»СѓС‡РµРЅРёРµ РґР°РЅРЅС‹С… РІС‹СЃС‚Р°РІРєРё
 
     $arFilter = array(
     	"ID" => $arParams["EXHIB_ID"],
@@ -89,17 +89,17 @@ if($arResult["ERROR_MESSAGE"] == '')
 	    $arData["PAY_NAME"] = $arUser["UF_PAY_NAME"];
 	    $arData["PAY_COUNT"] = intval($arUser["UF_PAY_COUNT"]);
 	    $arData["PAY_REQUISITE"] = $arUser["UF_REQUISITE"];
-	    $rsRequisite = CUserFieldEnum::GetList(array(), array("USER_FIELD_ID" => 39)); //39 код свойства UF_REQUISITE
+	    $rsRequisite = CUserFieldEnum::GetList(array(), array("USER_FIELD_ID" => 39)); //39 РєРѕРґ СЃРІРѕР№СЃС‚РІР° UF_REQUISITE
 	    while($arRequisite = $rsRequisite->GetNext(true,false))
 	    {
 	    	$arResult["PAY_REQUISITE"][$arRequisite["ID"]] = $arRequisite;
-	    	if("Y" == $arRequisite["DEF"])//запоминаем значение по умолчанию
+	    	if("Y" == $arRequisite["DEF"])//Р·Р°РїРѕРјРёРЅР°РµРј Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 	    	{
 	    	    $arData["PAY_REQUISITE_XML"] = $arRequisite["XML_ID"];
 	    	}
 	    }
 
-	    //если задано в пользователе заменяем
+	    //РµСЃР»Рё Р·Р°РґР°РЅРѕ РІ РїРѕР»СЊР·РѕРІР°С‚РµР»Рµ Р·Р°РјРµРЅСЏРµРј
 	    if($xml = $arResult["PAY_REQUISITE"][$arUser["UF_REQUISITE"]]["XML_ID"])
 	    {
 	        $arData["PAY_REQUISITE_XML"] = $xml;
@@ -107,7 +107,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 	    */
 
 	    $formID = CFormMatrix::getPFormIDByExh($arExhib["ID"]);
-	    $formPropName = CFormMatrix::getPropertyIDByExh($arExhib["ID"]);//получение имени свойства пользователя для текущей выставки
+	    $formPropName = CFormMatrix::getPropertyIDByExh($arExhib["ID"]);//РїРѕР»СѓС‡РµРЅРёРµ РёРјРµРЅРё СЃРІРѕР№СЃС‚РІР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РґР»СЏ С‚РµРєСѓС‰РµР№ РІС‹СЃС‚Р°РІРєРё
 	    $resultUserId = $arUser[$formPropName];
 	    $arResult["USER_RESULT_ID"] = $resultUserId;
 	    $resultCompanyId = $arUser["UF_ID_COMP"];
@@ -115,7 +115,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 
 	    $arResult["FORM_ID"] = $formID;
 
-	    //получение данных из формы пользователя
+	    //РїРѕР»СѓС‡РµРЅРёРµ РґР°РЅРЅС‹С… РёР· С„РѕСЂРјС‹ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 	    $FieldUserSID = array(
 	        "FIRST_NAME" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_446",$formID),//Participant first name
 	        "LAST_NAME" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_551",$formID),//Participant last name
@@ -124,11 +124,11 @@ if($arResult["ERROR_MESSAGE"] == '')
 	        "EMAIL" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_859",$formID),//E-mail
 	        "EMAIL_CONF" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_585",$formID),//Please confirm your e-mail
 	        "EMAIL_ALT" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_749",$formID),//Alternative e-mail
-	        "PHOTO" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_575",$formID),//Персональное фото
+	        "PHOTO" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_575",$formID),//РџРµСЂСЃРѕРЅР°Р»СЊРЅРѕРµ С„РѕС‚Рѕ
 	        "SALUTATION" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_889",$formID),//Salutation
-	        "PAY_NAME" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_539",$formID),//Номер счета
-	        "PAY_COUNT" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_680",$formID),//Сумма счета
-	        "PAY_REQUISITE" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_667",$formID),//Реквизиты
+	        "PAY_NAME" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_539",$formID),//РќРѕРјРµСЂ СЃС‡РµС‚Р°
+	        "PAY_COUNT" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_680",$formID),//РЎСѓРјРјР° СЃС‡РµС‚Р°
+	        "PAY_REQUISITE" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_667",$formID),//Р РµРєРІРёР·РёС‚С‹
 	    );
 
 	    $arAnswer = CFormResult::GetDataByID(
@@ -150,7 +150,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 	        $arResultFormUser,
 	        $arAnswerUserSID);
 
-	    //составляем массив в пользователе из резальтатов заполнения формы
+	    //СЃРѕСЃС‚Р°РІР»СЏРµРј РјР°СЃСЃРёРІ РІ РїРѕР»СЊР·РѕРІР°С‚РµР»Рµ РёР· СЂРµР·Р°Р»СЊС‚Р°С‚РѕРІ Р·Р°РїРѕР»РЅРµРЅРёСЏ С„РѕСЂРјС‹
 	     $arUser["FORM_DATA"] = array();
 	     foreach ($FieldUserSID as $name => $sid)
 	     {
@@ -172,7 +172,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 	     }
 
 
-	     //получение данных из формы компании
+	     //РїРѕР»СѓС‡РµРЅРёРµ РґР°РЅРЅС‹С… РёР· С„РѕСЂРјС‹ РєРѕРјРїР°РЅРёРё
 	     $FieldCompanySID = array(
 	         "COMPANY_NAME_INVOICE" => "SIMPLE_QUESTION_106",// - Official name for invoice
 	         "COMPANY_NAME" => "SIMPLE_QUESTION_988",// - Company or hotel name
@@ -204,7 +204,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 	         $arResultFormCompany,
 	         $arAnswerCompanySID);
 
-	     //составляем массив в пользователе из резальтатов заполнения формы
+	     //СЃРѕСЃС‚Р°РІР»СЏРµРј РјР°СЃСЃРёРІ РІ РїРѕР»СЊР·РѕРІР°С‚РµР»Рµ РёР· СЂРµР·Р°Р»СЊС‚Р°С‚РѕРІ Р·Р°РїРѕР»РЅРµРЅРёСЏ С„РѕСЂРјС‹
 	     foreach ($FieldCompanySID as $name => $sid)
 	     {
 	         if(isset($arAnswerCompanySID[$sid]))
@@ -250,7 +250,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 	     $arData["PAY_REQUISITE"] = $arUser["FORM_DATA"]["PAY_REQUISITE"];
 
 
-	     //получение id ответа реквизитов
+	     //РїРѕР»СѓС‡РµРЅРёРµ id РѕС‚РІРµС‚Р° СЂРµРєРІРёР·РёС‚РѕРІ
 
 	     $WebFormId = CForm::GetDataByID(
 	         $formID,
@@ -267,7 +267,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 	     {
 	         $arResult["PAY_REQUISITE"][] = $arAnswerReq;
 
-	         if(!$arData["PAY_REQUISITE"] && "checked" == $arAnswerReq["FIELD_PARAM"])//запоминаем значение по умолчанию
+	         if(!$arData["PAY_REQUISITE"] && "checked" == $arAnswerReq["FIELD_PARAM"])//Р·Р°РїРѕРјРёРЅР°РµРј Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 	         {
 	             $index = CFormMatrix::getIndexRequisiteIDByForm($arAnswerReq["ID"], $formID);
 	         }
@@ -287,14 +287,14 @@ if($arResult["ERROR_MESSAGE"] == '')
 	$arResult["DATA"] = $arData;
 	$arResult["USER"] = $arUser;
 
-	if(isset($_REQUEST["type"]) && $_REQUEST["type"] == "look")//смотрим счет
+	if(isset($_REQUEST["type"]) && $_REQUEST["type"] == "look")//СЃРјРѕС‚СЂРёРј СЃС‡РµС‚
 	{
 	    $oPDF = generatePDF($arData, $arParams["PATH_TO_DATA"]);
 
 	    $APPLICATION->RestartBuffer();
 	    $oPDF->Output("invoice.pdf","I") ;
 	}
-	elseif($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST["button_look"]))//перенаправление на просмотр счета
+	elseif($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST["button_look"]))//РїРµСЂРµРЅР°РїСЂР°РІР»РµРЅРёРµ РЅР° РїСЂРѕСЃРјРѕС‚СЂ СЃС‡РµС‚Р°
 	{?>
 
 	    <script type="text/javascript">
@@ -303,7 +303,7 @@ if($arResult["ERROR_MESSAGE"] == '')
         </script>
 	<?
 	}
-	elseif($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST["make"]))// ОТПРАВЛЯЕМ ПИСЬМО СО СЧЕТОМ
+	elseif($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST["make"]))// РћРўРџР РђР’Р›РЇР•Рњ РџРРЎР¬РњРћ РЎРћ РЎР§Р•РўРћРњ
 	{
 
 	    $oPDF = generatePDF($arData, $arParams["PATH_TO_DATA"]);
@@ -326,7 +326,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 	    }
 	    else{
 	        $arResult["TYPE"] = "SENT";
-	        $arResult["ERROR_MESSAGE"] = "Не удалось отправит счет<br />";
+	        $arResult["ERROR_MESSAGE"] = "РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РїСЂР°РІРёС‚ СЃС‡РµС‚<br />";
 	    }
 
 	}
@@ -373,7 +373,7 @@ function sendEmailPDF($data, $file, $folder)
     $file. "\n\n" .
 
     "--{$mime_boundary}--\n";
-    $subject = "{$data["COMPANY_NAME"]}: {$data["NAME"]} Invoice & Confirmation Letter – please sign and return within 5 working days";
+    $subject = "{$data["COMPANY_NAME"]}: {$data["NAME"]} Invoice & Confirmation Letter вЂ“ please sign and return within 5 working days";
 
     //$data["EMAIL"]
 
@@ -393,7 +393,7 @@ function sendEmailPDF($data, $file, $folder)
 
 
 /**
- * Возвращает объект TCPDF с pdf документом
+ * Р’РѕР·РІСЂР°С‰Р°РµС‚ РѕР±СЉРµРєС‚ TCPDF СЃ pdf РґРѕРєСѓРјРµРЅС‚РѕРј
  * @param int $userID
  * @param array $data
  * @return TCPDF
@@ -409,13 +409,13 @@ with State Registration Number 309503525800010
 at Federal Tax Service Inspectorate in
 Pavlosvkiy Posad, Moscow Region
 
-Индивидуальный предприниматель
-Поланский Артём Валентинович,
-зарегистрированный Инспекцией Федеральной
-Налоговой Службы
-по г. Павловский Посад Московской области,
-государственный регистрационный номер 309503525800010
-ИНН 503507510512
+РРЅРґРёРІРёРґСѓР°Р»СЊРЅС‹Р№ РїСЂРµРґРїСЂРёРЅРёРјР°С‚РµР»СЊ
+РџРѕР»Р°РЅСЃРєРёР№ РђСЂС‚С‘Рј Р’Р°Р»РµРЅС‚РёРЅРѕРІРёС‡,
+Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅРЅС‹Р№ РРЅСЃРїРµРєС†РёРµР№ Р¤РµРґРµСЂР°Р»СЊРЅРѕР№
+РќР°Р»РѕРіРѕРІРѕР№ РЎР»СѓР¶Р±С‹
+РїРѕ Рі. РџР°РІР»РѕРІСЃРєРёР№ РџРѕСЃР°Рґ РњРѕСЃРєРѕРІСЃРєРѕР№ РѕР±Р»Р°СЃС‚Рё,
+РіРѕСЃСѓРґР°СЂСЃС‚РІРµРЅРЅС‹Р№ СЂРµРіРёСЃС‚СЂР°С†РёРѕРЅРЅС‹Р№ РЅРѕРјРµСЂ 309503525800010
+РРќРќ 503507510512
 
 Moscow, Russia";
 
@@ -426,7 +426,7 @@ Beneficiary: Polanskiy Artem Valentinovich
 Account: 40802978700001002738";
 
 $data["BENEFICIARY_NAME"] = "Artem V. Polanskiy /
-Поланский Артём Валентинович";
+РџРѕР»Р°РЅСЃРєРёР№ РђСЂС‚С‘Рј Р’Р°Р»РµРЅС‚РёРЅРѕРІРёС‡";
     	}; break;
 
     	case "TM" : {
@@ -434,11 +434,11 @@ $data["BENEFICIARY"] = "Travel Media,
 registered as Society with limited liability
 with State Registration Number 1047796617472
 at Federal Tax Service Inspectorate No 46 in Moscow
-Общество с ограниченной ответственностью «Трэвэл Медиа»,
-зарегистрированное Инспекцией Федеральной
-Налоговой Службы № 46 по г. Москве,
-государственный регистрационный номер 1047796617472
-ИНН 7707525284
+РћР±С‰РµСЃС‚РІРѕ СЃ РѕРіСЂР°РЅРёС‡РµРЅРЅРѕР№ РѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕСЃС‚СЊСЋ В«РўСЂСЌРІСЌР» РњРµРґРёР°В»,
+Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅРЅРѕРµ РРЅСЃРїРµРєС†РёРµР№ Р¤РµРґРµСЂР°Р»СЊРЅРѕР№
+РќР°Р»РѕРіРѕРІРѕР№ РЎР»СѓР¶Р±С‹ в„– 46 РїРѕ Рі. РњРѕСЃРєРІРµ,
+РіРѕСЃСѓРґР°СЂСЃС‚РІРµРЅРЅС‹Р№ СЂРµРіРёСЃС‚СЂР°С†РёРѕРЅРЅС‹Р№ РЅРѕРјРµСЂ 1047796617472
+РРќРќ 7707525284
 
 Moscow, Russia";
 
@@ -450,7 +450,7 @@ Beneficiary: Travel Media
 Account: 40702978900140010240";
 
 $data["BENEFICIARY_NAME"] = "Elena Vetrova /
-Ветрова Елена Васильевна";
+Р’РµС‚СЂРѕРІР° Р•Р»РµРЅР° Р’Р°СЃРёР»СЊРµРІРЅР°";
     	}; break;
 
     }
@@ -460,26 +460,26 @@ $data["BENEFICIARY_NAME"] = "Elena Vetrova /
     define("FONT_SIZE", 12);
     define("LINE_INDENT", 3.4);
 
-    //подгружаем библиотеку с классами для работы pdf
+    //РїРѕРґРіСЂСѓР¶Р°РµРј Р±РёР±Р»РёРѕС‚РµРєСѓ СЃ РєР»Р°СЃСЃР°РјРё РґР»СЏ СЂР°Р±РѕС‚С‹ pdf
     require_once ($_SERVER["DOCUMENT_ROOT"] .  "/bitrix/php_interface/lib/tcpdf/tcpdf.php");
 
-    $pdf = new TCPDF('P', 'mm', 'A4', false, 'UTF-8', false);
+    $pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
     $pdf->SetMargins(15, 5, 10);
 
     $pdf->SetAutoPageBreak(TRUE, 5);
 
-    $pdf->AddFont('times','I','timesi.php');
+    $pdf->AddFont('freeserif','I','freeserifi.php');
     $pdf->AddFont('helvetica','I','helveticai.php');
     $pdf->setPrintHeader(false);
     $pdf->setPrintFooter(false);
 
 
     $pdf->AddPage();
-    HeaderPDF($data, $pdf, $folder); //реквизиты заголовка
-    BodyPDF($data, $pdf, $folder); //центральная часть
-    FooterPDF($data, $pdf, $folder);//реквизиты подвала
+    HeaderPDF($data, $pdf, $folder); //СЂРµРєРІРёР·РёС‚С‹ Р·Р°РіРѕР»РѕРІРєР°
+    BodyPDF($data, $pdf, $folder); //С†РµРЅС‚СЂР°Р»СЊРЅР°СЏ С‡Р°СЃС‚СЊ
+    FooterPDF($data, $pdf, $folder);//СЂРµРєРІРёР·РёС‚С‹ РїРѕРґРІР°Р»Р°
 
-    //добавление контракта
+    //РґРѕР±Р°РІР»РµРЅРёРµ РєРѕРЅС‚СЂР°РєС‚Р°
 
     $pdf->AddPage();
     ContractPDF($data, $pdf, $folder);
@@ -494,13 +494,13 @@ function ContractPDF($data, &$oPDF, $folder)
     $html = file_get_contents($path);
 
     $arSearch = array("#COMPANY_NAME_INVOICE#", "#PAY_NAME#", "#FIRST_NAME#", "#LAST_NAME#", "#DATE#");
-    $arReplace = array($data["COMPANY_NAME_INVOICE"], $data["PAY_NAME"], $data["FIRST_NAME"], $data["LAST_NAME"], $data["DATE"]);//заносим данные в html
+    $arReplace = array($data["COMPANY_NAME_INVOICE"], $data["PAY_NAME"], $data["FIRST_NAME"], $data["LAST_NAME"], $data["DATE"]);//Р·Р°РЅРѕСЃРёРј РґР°РЅРЅС‹Рµ РІ html
     $html = str_replace($arSearch, $arReplace, $html);
 
     $oPDF->SetFont('helvetica','',FONT_SIZE);
     $oPDF->writeHTML($html, true, false, false, false, '');
 
-    //печати и подписи
+    //РїРµС‡Р°С‚Рё Рё РїРѕРґРїРёСЃРё
     if($data["PAY_REQUISITE_XML"] == "IP")
     {
         $stampY = $oPDF->getY() - 30;
@@ -525,30 +525,30 @@ function ContractPDF($data, &$oPDF, $folder)
 
 function HeaderPDF($data, &$oPDF, $folder)
 {
-    //генерация хедера
-    //$oPDF->Image('/images/logo_for_pdf.jpg'); //логотип
+    //РіРµРЅРµСЂР°С†РёСЏ С…РµРґРµСЂР°
+    //$oPDF->Image('/images/logo_for_pdf.jpg'); //Р»РѕРіРѕС‚РёРї
 	$oPDF->ImageSVG($file='images/logo_ltm.svg', $x=10, $y=5, $w='40', $h='', $link='', $align='', $palign='', $border=0, $fitonpage=false);
 
 
-    //текст правой колонки
+    //С‚РµРєСЃС‚ РїСЂР°РІРѕР№ РєРѕР»РѕРЅРєРё
     $oPDF->setXY(0, 5);
-    $oPDF->SetFont('times','B',FONT_SIZE);
-    $oPDF->MultiCell(0, 5, "Ordering customer / Плательщик:\n", 0, "R");
+    $oPDF->SetFont('freeserif','B',FONT_SIZE);
+    $oPDF->MultiCell(0, 5, "Ordering customer / РџР»Р°С‚РµР»СЊС‰РёРє:\n", 0, "R");
     //$oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
 
-    //вывод инфо о компании
+    //РІС‹РІРѕРґ РёРЅС„Рѕ Рѕ РєРѕРјРїР°РЅРёРё
     $oPDF->setXY(80,$oPDF->getY());
-    $oPDF->SetFont('times','',FONT_SIZE);
+    $oPDF->SetFont('freeserif','',FONT_SIZE);
     $sData = "{$data["COMPANY_NAME_INVOICE"]}\n{$data["ADDRESS"]}\n{$data["CITY"]}\n{$data["COUNTRY"]}\n{$data["PHONE"]}";
     $oPDF->MultiCell(120, 5, $sData, 0, "R");
     $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
 
-    //вывод инфо получателя
-    $oPDF->SetFont('times','B',FONT_SIZE);
-    $oPDF->MultiCell(0, 5, "Beneficiary / Получатель:\n", 0, "R");
+    //РІС‹РІРѕРґ РёРЅС„Рѕ РїРѕР»СѓС‡Р°С‚РµР»СЏ
+    $oPDF->SetFont('freeserif','B',FONT_SIZE);
+    $oPDF->MultiCell(0, 5, "Beneficiary / РџРѕР»СѓС‡Р°С‚РµР»СЊ:\n", 0, "R");
     //$oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
 
-    $oPDF->SetFont('times','',FONT_SIZE);
+    $oPDF->SetFont('freeserif','',FONT_SIZE);
 
     $oPDF->MultiCell(0, 5, $data["BENEFICIARY"], 0, "R");
 
@@ -558,7 +558,7 @@ function HeaderPDF($data, &$oPDF, $folder)
 
 function BodyPDF($data, &$oPDF, $folder)
 {
-    //вывод оссновной информации
+    //РІС‹РІРѕРґ РѕСЃСЃРЅРѕРІРЅРѕР№ РёРЅС„РѕСЂРјР°С†РёРё
 
     $path = $folder . "{$data["CODE"]}/{$data["PAY_REQUISITE_XML"]}_invoice.txt";
     $data["DETAILS_OF_PAYMENT"] = file_get_contents($path);
@@ -568,38 +568,38 @@ function BodyPDF($data, &$oPDF, $folder)
 
 
 
-    $oPDF->SetFont('times','B',FONT_SIZE);
-    $oPDF->MultiCell(0, 5, "INVOICE N/ Счёт № {$data["PAY_NAME"]}-{$data["SHORT_NAME"]}\n", 0, "C");
+    $oPDF->SetFont('freeserif','B',FONT_SIZE);
+    $oPDF->MultiCell(0, 5, "INVOICE N/ РЎС‡С‘С‚ в„– {$data["PAY_NAME"]}-{$data["SHORT_NAME"]}\n", 0, "C");
     $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
 
-    $oPDF->SetFont('times','B',FONT_SIZE);
-    $oPDF->MultiCell(0, 5, "Details of payment / Предмет счёта:\n", 0, "C");
+    $oPDF->SetFont('freeserif','B',FONT_SIZE);
+    $oPDF->MultiCell(0, 5, "Details of payment / РџСЂРµРґРјРµС‚ СЃС‡С‘С‚Р°:\n", 0, "C");
     $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
 
-    $oPDF->SetFont('times','',FONT_SIZE);
+    $oPDF->SetFont('freeserif','',FONT_SIZE);
 
     $oPDF->MultiCell(0, 5, $data["DETAILS_OF_PAYMENT"], 0, "C");
     $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
 
     //
-    $oPDF->SetFont('times','B',FONT_SIZE);
-    $oPDF->MultiCell(0, 5, "Total amount of payment / Сумма платежа: {$data["PAY_COUNT"]} euro\n", 0, "C");
+    $oPDF->SetFont('freeserif','B',FONT_SIZE);
+    $oPDF->MultiCell(0, 5, "Total amount of payment / РЎСѓРјРјР° РїР»Р°С‚РµР¶Р°: {$data["PAY_COUNT"]} euro\n", 0, "C");
     $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
 
-    $oPDF->SetFont('times','B',FONT_SIZE);
-    $oPDF->MultiCell(0, 5, "Payment information / Детали платежа:\n", 0, "C");
+    $oPDF->SetFont('freeserif','B',FONT_SIZE);
+    $oPDF->MultiCell(0, 5, "Payment information / Р”РµС‚Р°Р»Рё РїР»Р°С‚РµР¶Р°:\n", 0, "C");
 
-    $oPDF->SetFont('times','',FONT_SIZE);
-    $oPDF->MultiCell(0, 5, "Please put the invoice number / Укажите номер счёта\n", 0, "C");
+    $oPDF->SetFont('freeserif','',FONT_SIZE);
+    $oPDF->MultiCell(0, 5, "Please put the invoice number / РЈРєР°Р¶РёС‚Рµ РЅРѕРјРµСЂ СЃС‡С‘С‚Р°\n", 0, "C");
     $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
 }
 
 function FooterPDF($data, &$oPDF, $folder)
 {
-    $oPDF->SetFont('times','B',FONT_SIZE);
-    $oPDF->MultiCell(0, 5, "Bank details / Банковские реквизиты:\n", 0, "C");
+    $oPDF->SetFont('freeserif','B',FONT_SIZE);
+    $oPDF->MultiCell(0, 5, "Bank details / Р‘Р°РЅРєРѕРІСЃРєРёРµ СЂРµРєРІРёР·РёС‚С‹:\n", 0, "C");
 
-    $oPDF->SetFont('times','',FONT_SIZE);
+    $oPDF->SetFont('freeserif','',FONT_SIZE);
     /*
     $sData  = "Beneficiary's Bank:\n";
     $sData .= "VTB Bank (open joint-stock company), Moscow, Russia\n";
@@ -610,36 +610,36 @@ function FooterPDF($data, &$oPDF, $folder)
     $oPDF->MultiCell(0, 5, $data["BANK_DETAILS"], 0, "C");
     $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
 
-    $oPDF->SetFont('times','B',FONT_SIZE);
+    $oPDF->SetFont('freeserif','B',FONT_SIZE);
     $oPDF->MultiCell(0, 5, "PLEASE NOTE THAT IBAN CODES DO NOT EXIST IN THE RUSSIAN FEDERATION\n", 0, "C");
     $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
 
-    $oPDF->SetFont('times','',FONT_SIZE);
+    $oPDF->SetFont('freeserif','',FONT_SIZE);
     $sData  = "This invoice is valid for payments within 30 days. Bank charges at payer's expense\n";
-    $sData .= "Инвойс действителен в течение 30 дней с момента выставления.\n";
-    $sData .= "Банковские сборы и комиссии за счет плательщика\n";
+    $sData .= "РРЅРІРѕР№СЃ РґРµР№СЃС‚РІРёС‚РµР»РµРЅ РІ С‚РµС‡РµРЅРёРµ 30 РґРЅРµР№ СЃ РјРѕРјРµРЅС‚Р° РІС‹СЃС‚Р°РІР»РµРЅРёСЏ.\n";
+    $sData .= "Р‘Р°РЅРєРѕРІСЃРєРёРµ СЃР±РѕСЂС‹ Рё РєРѕРјРёСЃСЃРёРё Р·Р° СЃС‡РµС‚ РїР»Р°С‚РµР»СЊС‰РёРєР°\n";
 
     $oPDF->MultiCell(0, 5, $sData, 0, "C");
     $oPDF->setXY(10,$oPDF->getY() + LINE_INDENT);
 
 
-    $oPDF->SetFont('times','',FONT_SIZE);
+    $oPDF->SetFont('freeserif','',FONT_SIZE);
     /*
     $sData  = "Elena Vetrova /\n";
-    $sData .= "Ветрова Елена Васильевна\n";
+    $sData .= "Р’РµС‚СЂРѕРІР° Р•Р»РµРЅР° Р’Р°СЃРёР»СЊРµРІРЅР°\n";
     */
     $oPDF->MultiCell(0, 5, $data["BENEFICIARY_NAME"], 0, "L");
     $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
 
-    $oPDF->SetFont('times','',FONT_SIZE);
-    $oPDF->MultiCell(0, 5, "(Electronic copy, without signature and company stamp / электронная копия, без подписи и печати)", 0, "C");
+    $oPDF->SetFont('freeserif','',FONT_SIZE);
+    $oPDF->MultiCell(0, 5, "(Electronic copy, without signature and company stamp / СЌР»РµРєС‚СЂРѕРЅРЅР°СЏ РєРѕРїРёСЏ, Р±РµР· РїРѕРґРїРёСЃРё Рё РїРµС‡Р°С‚Рё)", 0, "C");
 }
 
 
 /**
- * Сохранение данных $data в свойства пользователя с ID = PAY_COUNT
- * @param int $userID - ID Пользователя
- * @param array $data - Данные из POST (PPAY_NAME, AY_COUNT, PAY_REQUISITE, )
+ * РЎРѕС…СЂР°РЅРµРЅРёРµ РґР°РЅРЅС‹С… $data РІ СЃРІРѕР№СЃС‚РІР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ СЃ ID = PAY_COUNT
+ * @param int $userID - ID РџРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+ * @param array $data - Р”Р°РЅРЅС‹Рµ РёР· POST (PPAY_NAME, AY_COUNT, PAY_REQUISITE, )
  * @return boolean | array
  */
 function dataSave($userID, $data)

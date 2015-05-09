@@ -8,7 +8,7 @@ class CFormValidatorTextEn
 	{
 		return array(
 			"NAME" => "text_en", // unique validator string ID
-			"DESCRIPTION" => "Только латиница", // validator description
+			"DESCRIPTION" => "РўРѕР»СЊРєРѕ Р»Р°С‚РёРЅРёС†Р°", // validator description
 			"TYPES" => array("text", "textarea", "password", "email", "url"), //  list of types validator can be applied.
 			"HANDLER" => array("CFormValidatorTextEn", "DoValidate") // main validation method
 		);

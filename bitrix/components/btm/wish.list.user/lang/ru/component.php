@@ -1,13 +1,13 @@
 <?
-$MESS['WISH_LIST_WTF_TO_RECEIVE_THIS'] = "Íå ââåäåíû äàííûå ïî ïîëó÷àòåëþ! Âîçìîæíî íå ïðàâèëüûé çàïðîñ.";
-$MESS['WISH_LIST_WTF_IS_THIS_ACTION'] = "Íå ââåäåíû äàííûå ïî äåéñòâèþ! Âîçìîæíî íå ïðàâèëüûé çàïðîñ.";
-$MESS['WISH_LIST_NOT_LOGGED_IN'] = "Âû íå àâòîðèçîâàíû!";
-$MESS['WISH_LIST_MEETINGS_ARRANGMENT_LOCKED_BY_ADMIN'] = "Íàçíà÷åíèå âñòðå÷ çàáëîêèðîâàíî àäìèíèñòðàöèåé";
-$MESS['WISH_LIST_SEND_REQUEST_TO_WISH_LIST'] = "Ïîñëàòü çàïðîñ â Wish List";
-$MESS['WISH_LIST_USER_ALREADY_IN_WISH_LIST'] = "Ýòîò ïîëüçîâàòåëü óæå åñòü â âàøåì wish-ëèñòå.";
-$MESS['WISH_LIST_ALREADY_IN_USERS_WISH_LIST'] = "Âû óæå åñòü â wish-ëèñòå äàííîãî ïîëüçîâàòåëÿ.";
-$MESS['WISH_LIST_REQUEST_SEND_SUCCESSFULLY'] = "Âàøà çàÿâêà áûëà óñïåøíî îòïðàâëåíà";
-$MESS['WISH_LIST_NO_PERMISSION_TO_VIEW_THIS_PAGE'] = "Ó âàñ íåäîñòàòî÷íî ïðàâ äëÿ ïðîñìîòðà äàííîé ñòðàíèöû!";
+$MESS['WISH_LIST_WTF_TO_RECEIVE_THIS'] = "ÐÐµ Ð²Ð²ÐµÐ´ÐµÐ½Ñ‹ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¿Ð¾ Ð¿Ð¾Ð»ÑƒÑ‡Ð°Ñ‚ÐµÐ»ÑŽ! Ð’Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ Ð½Ðµ Ð¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÑ‹Ð¹ Ð·Ð°Ð¿Ñ€Ð¾Ñ.";
+$MESS['WISH_LIST_WTF_IS_THIS_ACTION'] = "ÐÐµ Ð²Ð²ÐµÐ´ÐµÐ½Ñ‹ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¿Ð¾ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸ÑŽ! Ð’Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ Ð½Ðµ Ð¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÑ‹Ð¹ Ð·Ð°Ð¿Ñ€Ð¾Ñ.";
+$MESS['WISH_LIST_NOT_LOGGED_IN'] = "Ð’Ñ‹ Ð½Ðµ Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð¾Ð²Ð°Ð½Ñ‹!";
+$MESS['WISH_LIST_MEETINGS_ARRANGMENT_LOCKED_BY_ADMIN'] = "ÐÐ°Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð²ÑÑ‚Ñ€ÐµÑ‡ Ð·Ð°Ð±Ð»Ð¾ÐºÐ¸Ñ€Ð¾Ð²Ð°Ð½Ð¾ Ð°Ð´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸ÐµÐ¹";
+$MESS['WISH_LIST_SEND_REQUEST_TO_WISH_LIST'] = "ÐŸÐ¾ÑÐ»Ð°Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ Ð² Wish List";
+$MESS['WISH_LIST_USER_ALREADY_IN_WISH_LIST'] = "Ð­Ñ‚Ð¾Ñ‚ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ ÑƒÐ¶Ðµ ÐµÑÑ‚ÑŒ Ð² Ð²Ð°ÑˆÐµÐ¼ wish-Ð»Ð¸ÑÑ‚Ðµ.";
+$MESS['WISH_LIST_ALREADY_IN_USERS_WISH_LIST'] = "Ð’Ñ‹ ÑƒÐ¶Ðµ ÐµÑÑ‚ÑŒ Ð² wish-Ð»Ð¸ÑÑ‚Ðµ Ð´Ð°Ð½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ.";
+$MESS['WISH_LIST_REQUEST_SEND_SUCCESSFULLY'] = "Ð’Ð°ÑˆÐ° Ð·Ð°ÑÐ²ÐºÐ° Ð±Ñ‹Ð»Ð° ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð°";
+$MESS['WISH_LIST_NO_PERMISSION_TO_VIEW_THIS_PAGE'] = "Ð£ Ð²Ð°Ñ Ð½ÐµÐ´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ Ð¿Ñ€Ð°Ð² Ð´Ð»Ñ Ð¿Ñ€Ð¾ÑÐ¼Ð¾Ñ‚Ñ€Ð° Ð´Ð°Ð½Ð½Ð¾Ð¹ ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ñ‹!";
 ?>
 
 

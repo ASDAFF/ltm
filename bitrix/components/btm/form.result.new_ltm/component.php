@@ -175,7 +175,7 @@ if (CModule::IncludeModule("form"))
 					{
 
 // ************************************************************* //
-//               ÐÅÃÈÑÒÐÈÐÓÅÌ ÍÎÂÎÃÎ ÏÎËÜÇÎÂÀÒÅËß                //
+//               Ð Ð•Ð“Ð˜Ð¡Ð¢Ð Ð˜Ð Ð£Ð•Ðœ ÐÐžÐ’ÐžÐ“Ðž ÐŸÐžÐ›Ð¬Ð—ÐžÐ’ÐÐ¢Ð•Ð›Ð¯                //
 // ************************************************************* //
 
 						if($arParams["REGIST_USER"] == "Y" && $arParams["REGIST_GROUP"] != '' && $arParams["LOGIN_FIELD"] != ''){
@@ -216,7 +216,7 @@ if (CModule::IncludeModule("form"))
 								}
 								else{
 									$arEventFields = array(
-										"ERROR"                  => 'Íå äîáàâèëñÿ ïîëüçîâàòåëü',
+										"ERROR"                  => 'ÐÐµ Ð´Ð¾Ð±Ð°Ð²Ð¸Ð»ÑÑ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ',
 										"UF_ANKETA"         => $RESULT_ID,
 										"EMAIL"          	  => $newEmail,
 										"NAME"          	  => $_POST["form_text_128"]." ".$_POST["form_text_129"],
@@ -261,7 +261,7 @@ if (CModule::IncludeModule("form"))
 								}
 								else{
 									$arEventFields = array(
-										"ERROR"                  => 'Íå äîáàâèëñÿ ïîëüçîâàòåëü',
+										"ERROR"                  => 'ÐÐµ Ð´Ð¾Ð±Ð°Ð²Ð¸Ð»ÑÑ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ',
 										"EMAIL"          	  => $newEmail,
 										"NAME"          	  => $_POST["form_text_128"]." ".$_POST["form_text_129"],
 										"UF_ANKETA"         => $RESULT_ID,

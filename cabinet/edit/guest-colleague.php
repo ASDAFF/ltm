@@ -12,7 +12,7 @@ try{
 	$resultId = $arUser["UF_ID_COMP"];
 	$curPage = "/cabinet/".$_REQUEST["EXHIBIT_CODE"]."/edit/colleague/".(isset($_REQUEST["UID"])?"?UID={$_REQUEST["UID"]}":"");
 
-	//получение id выставки
+	//РїРѕР»СѓС‡РµРЅРёРµ id РІС‹СЃС‚Р°РІРєРё
 	$exhCode = trim($_REQUEST["EXHIBIT_CODE"]);
 	if($exhCode && CModule::IncludeModule("iblock"))
 	{
@@ -20,7 +20,7 @@ try{
 	    if($arExhib = $rsExhib->Fetch())
 	    {
 	        $formID = CFormMatrix::getPFormIDByExh($arExhib["ID"]);
-	        $formPropName = CFormMatrix::getPropertyIDByExh($arExhib["ID"]);//получение имени свойства пользователя для текущей выставки
+	        $formPropName = CFormMatrix::getPropertyIDByExh($arExhib["ID"]);//РїРѕР»СѓС‡РµРЅРёРµ РёРјРµРЅРё СЃРІРѕР№СЃС‚РІР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РґР»СЏ С‚РµРєСѓС‰РµР№ РІС‹СЃС‚Р°РІРєРё
 	        $resultId = $arUser[$formPropName];
 	        $exhName = $arExhib["PROPERTY_SHORT_NAME_VALUE"];
 	        $exhDate = $arExhib["PROPERTY_DATE_VALUE"];
@@ -30,10 +30,10 @@ try{
 	    }
 	}
 
-	//тут запрещается редактирование
+	//С‚СѓС‚ Р·Р°РїСЂРµС‰Р°РµС‚СЃСЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ
 	if("Y" != $exhGuestEdit)
 	{
-	    echo "<p style='color:red;'>Редактирование закрыто администратором!</p>";
+	    echo "<p style='color:red;'>Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ Р·Р°РєСЂС‹С‚Рѕ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂРѕРј!</p>";
 
 	    if("POST" == $_SERVER["REQUEST_METHOD"])
 	    {
@@ -48,36 +48,36 @@ try{
 
 	$arQuestionToShow = array();
 	if(isset($arUser["UF_MR"]) && $arUser["UF_MR"]) {
-		$arQuestionToShow[] = array("NAME"=>"Коллега на утреннюю сессию", "ITEMS"=>array(
+		$arQuestionToShow[] = array("NAME"=>"РљРѕР»Р»РµРіР° РЅР° СѓС‚СЂРµРЅРЅСЋСЋ СЃРµСЃСЃРёСЋ", "ITEMS"=>array(
 				array("ID"=>"SIMPLE_QUESTION_873", "IS_PIC"=>true),
-				array("ID"=>"SIMPLE_QUESTION_816", "TITLE"=>"Имя"),
-				array("ID"=>"SIMPLE_QUESTION_596", "TITLE"=>"Фамилия"),
-				array("ID"=>"SIMPLE_QUESTION_304", "TITLE"=>"Должность"),
+				array("ID"=>"SIMPLE_QUESTION_816", "TITLE"=>"РРјСЏ"),
+				array("ID"=>"SIMPLE_QUESTION_596", "TITLE"=>"Р¤Р°РјРёР»РёСЏ"),
+				array("ID"=>"SIMPLE_QUESTION_304", "TITLE"=>"Р”РѕР»Р¶РЅРѕСЃС‚СЊ"),
 				array("ID"=>"SIMPLE_QUESTION_278", "TITLE"=>"E-mail")));
 	}
 
 	if(isset($arUser["UF_EV"]) && $arUser["UF_EV"]) {
-		$arQuestionToShow[] = array("NAME"=>"Коллега на вечернюю сессию", "ITEMS"=>array(
-				array("ID"=>"SIMPLE_QUESTION_367", "TITLE"=>"Имя"),
-				array("ID"=>"SIMPLE_QUESTION_482", "TITLE"=>"Фамилия"),
-				array("ID"=>"SIMPLE_QUESTION_187", "TITLE"=>"Должность"),
+		$arQuestionToShow[] = array("NAME"=>"РљРѕР»Р»РµРіР° РЅР° РІРµС‡РµСЂРЅСЋСЋ СЃРµСЃСЃРёСЋ", "ITEMS"=>array(
+				array("ID"=>"SIMPLE_QUESTION_367", "TITLE"=>"РРјСЏ"),
+				array("ID"=>"SIMPLE_QUESTION_482", "TITLE"=>"Р¤Р°РјРёР»РёСЏ"),
+				array("ID"=>"SIMPLE_QUESTION_187", "TITLE"=>"Р”РѕР»Р¶РЅРѕСЃС‚СЊ"),
 				array("ID"=>"SIMPLE_QUESTION_421", "TITLE"=>"E-mail")));
-		$arQuestionToShow[] = array("NAME"=>"Коллега на вечернюю сессию", "ITEMS"=>array(
-				array("ID"=>"SIMPLE_QUESTION_225", "TITLE"=>"Имя"),
-				array("ID"=>"SIMPLE_QUESTION_770", "TITLE"=>"Фамилия"),
-				array("ID"=>"SIMPLE_QUESTION_280", "TITLE"=>"Должность"),
+		$arQuestionToShow[] = array("NAME"=>"РљРѕР»Р»РµРіР° РЅР° РІРµС‡РµСЂРЅСЋСЋ СЃРµСЃСЃРёСЋ", "ITEMS"=>array(
+				array("ID"=>"SIMPLE_QUESTION_225", "TITLE"=>"РРјСЏ"),
+				array("ID"=>"SIMPLE_QUESTION_770", "TITLE"=>"Р¤Р°РјРёР»РёСЏ"),
+				array("ID"=>"SIMPLE_QUESTION_280", "TITLE"=>"Р”РѕР»Р¶РЅРѕСЃС‚СЊ"),
 				array("ID"=>"SIMPLE_QUESTION_384", "TITLE"=>"E-mail")));
-		$arQuestionToShow[] = array("NAME"=>"Коллега на вечернюю сессию", "ITEMS"=>array(
-				array("ID"=>"SIMPLE_QUESTION_765", "TITLE"=>"Имя"),
-				array("ID"=>"SIMPLE_QUESTION_627", "TITLE"=>"Фамилия"),
-				array("ID"=>"SIMPLE_QUESTION_788", "TITLE"=>"Должность"),
+		$arQuestionToShow[] = array("NAME"=>"РљРѕР»Р»РµРіР° РЅР° РІРµС‡РµСЂРЅСЋСЋ СЃРµСЃСЃРёСЋ", "ITEMS"=>array(
+				array("ID"=>"SIMPLE_QUESTION_765", "TITLE"=>"РРјСЏ"),
+				array("ID"=>"SIMPLE_QUESTION_627", "TITLE"=>"Р¤Р°РјРёР»РёСЏ"),
+				array("ID"=>"SIMPLE_QUESTION_788", "TITLE"=>"Р”РѕР»Р¶РЅРѕСЃС‚СЊ"),
 				array("ID"=>"SIMPLE_QUESTION_230", "TITLE"=>"E-mail")));
 	}
 
 	if(isset($_REQUEST["formresult"]) && $_REQUEST["formresult"] == "editok")
 	{
-	    //вывод информации об успешном сохранении
-	    echo "<p style='color:red;'>Внесенные изменения сохранены</p>";
+	    //РІС‹РІРѕРґ РёРЅС„РѕСЂРјР°С†РёРё РѕР± СѓСЃРїРµС€РЅРѕРј СЃРѕС…СЂР°РЅРµРЅРёРё
+	    echo "<p style='color:red;'>Р’РЅРµСЃРµРЅРЅС‹Рµ РёР·РјРµРЅРµРЅРёСЏ СЃРѕС…СЂР°РЅРµРЅС‹</p>";
 	}
 
 	$APPLICATION->IncludeComponent(
@@ -101,8 +101,8 @@ try{
 
 	<div class="exhibition-session">
 	    <div class="signature">
-    		<b>Если кто-то из ваших коллег хочет отдельные от вас встречи, то ему необходимо пройти процесс регистрации.</b><br>
-    		При загрузке фотографий учитывайте, что файлы должны быть не более 2мб и представлять лицо участника крупным планом или логотип компании.
+    		<b>Р•СЃР»Рё РєС‚Рѕ-С‚Рѕ РёР· РІР°С€РёС… РєРѕР»Р»РµРі С…РѕС‡РµС‚ РѕС‚РґРµР»СЊРЅС‹Рµ РѕС‚ РІР°СЃ РІСЃС‚СЂРµС‡Рё, С‚Рѕ РµРјСѓ РЅРµРѕР±С…РѕРґРёРјРѕ РїСЂРѕР№С‚Рё РїСЂРѕС†РµСЃСЃ СЂРµРіРёСЃС‚СЂР°С†РёРё.</b><br>
+    		РџСЂРё Р·Р°РіСЂСѓР·РєРµ С„РѕС‚РѕРіСЂР°С„РёР№ СѓС‡РёС‚С‹РІР°Р№С‚Рµ, С‡С‚Рѕ С„Р°Р№Р»С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РЅРµ Р±РѕР»РµРµ 2РјР± Рё РїСЂРµРґСЃС‚Р°РІР»СЏС‚СЊ Р»РёС†Рѕ СѓС‡Р°СЃС‚РЅРёРєР° РєСЂСѓРїРЅС‹Рј РїР»Р°РЅРѕРј РёР»Рё Р»РѕРіРѕС‚РёРї РєРѕРјРїР°РЅРёРё.
 		</div>
 	</div>
 <?}catch(Exception $e){}?>

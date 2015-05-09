@@ -1,1 +1,1 @@
-<span id = "develop">Разработано <a href="http://ae-studio.ru" target="_blank">AE! studio</a></span>
+<span id = "develop">Р Р°Р·СЂР°Р±РѕС‚Р°РЅРѕ <a href="http://ae-studio.ru" target="_blank">AE! studio</a></span>

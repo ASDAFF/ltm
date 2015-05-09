@@ -6,7 +6,7 @@
             <div class="wish-list">My wish list for appointments outside of the morning session</div>
                 <table class="morning-time">
                 <tr>
-                    <th>¹</th>
+                    <th>â„–</th>
                     <th>Company</th>
                 </tr>
 				<? $counter=0;
@@ -35,7 +35,7 @@
             <div class="wish-list">The following quests are  interested in an appointment with you outside of the morning session</div>
             <table class="morning-time">
                 <tr>
-                    <th>¹</th>
+                    <th>â„–</th>
                     <th>Company</th>
                 </tr>
 				<? $counter=0;

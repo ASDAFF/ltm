@@ -35,13 +35,13 @@ $APPLICATION->SetTitle("Register for LTM 2014");
 
   <h2>Terms &amp; Conditions:</h2>
  
-  <p>Confirmation and participation at the event is subject to the approval of the organizers only. Please note that completing the regis¬tration form doesn’t guarantee your automatic confirmation for the event. All registrations will be reviewed and potential exhibitors should meet the criteria for exhibition participants.</p>
+  <p>Confirmation and participation at the event is subject to the approval of the organizers only. Please note that completing the regisÂ¬tration form doesnâ€™t guarantee your automatic confirmation for the event. All registrations will be reviewed and potential exhibitors should meet the criteria for exhibition participants.</p>
 
 <p>Booking and payments must be carried out by the 15th of October 2013 at the latest. The payment terms are strict, and not negotiable.</p>
 
 <p>All cancelation of participation must be received in writing by fax or email. A full refund of the participation fee will be made if canceled by September 15, 2013. If canceled in the period from September 15, 2013 to October 15, 2013 - 50% of the participation fee will be charged for the cancelation. No refund of the participation fees will be made if canceled after the 15th of October 2012.</p>
 
-  <p>Included in the fee: participation in all events of the Luxury Travel Mart – morning session for top managers and directors of travel trade with pre-scheduled appointments (maximum 17), midday networking lunch, session for hosted buyers and evening workshop-cocktail for travel agents, corporate clients and press.</p>
+  <p>Included in the fee: participation in all events of the Luxury Travel Mart â€“ morning session for top managers and directors of travel trade with pre-scheduled appointments (maximum 17), midday networking lunch, session for hosted buyers and evening workshop-cocktail for travel agents, corporate clients and press.</p>
 
   <p>A block of rooms will be reserved at the venue hotel. Rates will be provided upon request.</p>
  

@@ -1,6 +1,6 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 /*--------------- TO DO -------------------*/
-//Добавить в параметры FORM_ID
+//Р”РѕР±Р°РІРёС‚СЊ РІ РїР°СЂР°РјРµС‚СЂС‹ FORM_ID
 
 
 $arResult["ERROR_MESSAGE"] = "";
@@ -19,12 +19,12 @@ if(strLen($arParams["AUTH_PAGE"])<=0){
 }
 
 if(strLen($arParams["USER"])<=0){
-	$arResult["ERROR_MESSAGE"] = "Не введены данные по Пользователю!<br />";
+	$arResult["ERROR_MESSAGE"] = "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ РџРѕР»СЊР·РѕРІР°С‚РµР»СЋ!<br />";
 }
 
 if(!($USER->IsAuthorized()))
 {
-	$arResult["ERROR_MESSAGE"] = "Вы не авторизованы!<br />";
+	$arResult["ERROR_MESSAGE"] = "Р’С‹ РЅРµ Р°РІС‚РѕСЂРёР·РѕРІР°РЅС‹!<br />";
 }
 
 if(strLen($arParams["FORM_ID"])<=0){
@@ -33,7 +33,7 @@ if(strLen($arParams["FORM_ID"])<=0){
 
 
 /*---------------------------------------------------*/
-//           ФОРМИРУЕМ ВЫВОД ДЛЯ ШАБЛОНА             //
+//           Р¤РћР РњРР РЈР•Рњ Р’Р«Р’РћР” Р”Р›РЇ РЁРђР‘Р›РћРќРђ             //
 /*---------------------------------------------------*/
 
 if($arResult["ERROR_MESSAGE"] == '')
@@ -53,7 +53,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 		$realUser["PASS"] = $thisUser["ADMIN_NOTES"];
 		$realUser["LOGIN"] = $thisUser["LOGIN"];
 
-		if($_REQUEST["pass_save"] == "Сохранить"){
+		if($_REQUEST["pass_save"] == "РЎРѕС…СЂР°РЅРёС‚СЊ"){
 			$user = new CUser;
 			$strError = '';
 			if($_REQUEST["pass"]){
@@ -69,7 +69,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 				$realUser["PASS"] = $_REQUEST["pass"];
 			}
 			else{
-				$strError .= "Вы не ввели пароль!";
+				$strError .= "Р’С‹ РЅРµ РІРІРµР»Рё РїР°СЂРѕР»СЊ!";
 			}
 			if(!$strError){
 				$arResult["MESSAGE"] = GetMessage("ADMIN_USER_PASS");
@@ -81,7 +81,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 		$arResult["USER"] = $realUser;
 	}
 	else{
-		$arResult["ERROR_MESSAGE"] = "У вас недостаточно прав для просмотра данной страницы!";
+		$arResult["ERROR_MESSAGE"] = "РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїСЂР°РІ РґР»СЏ РїСЂРѕСЃРјРѕС‚СЂР° РґР°РЅРЅРѕР№ СЃС‚СЂР°РЅРёС†С‹!";
 	}
 }
 

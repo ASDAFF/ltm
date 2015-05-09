@@ -40,7 +40,7 @@ $l['a_meta_dir'] = 'ltr';
 $l['a_meta_language'] = 'cs';
 
 // TRANSLATIONS --------------------------------------
-$l['w_page'] = 'stránky';
+$l['w_page'] = 'strГЎnky';
 
 //============================================================+
 // END OF FILE

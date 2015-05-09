@@ -1,6 +1,6 @@
 <?
-$MESS["REGISTER_FIELD_PERSONAL_STREET"] = "Straße, Nr.";
-$MESS["REGISTER_FIELD_WORK_STREET"] = "Straße, Nr.";
+$MESS["REGISTER_FIELD_PERSONAL_STREET"] = "StraÐ¯e, Nr.";
+$MESS["REGISTER_FIELD_WORK_STREET"] = "StraÐ¯e, Nr.";
 $MESS["REGISTER_AUTOMATED_AUTH"] = "Nutzer automatisch autorisieren";
 $MESS["REGISTER_FIELD_PERSONAL_BIRTHDAY"] = "Geburtsdatum";
 $MESS["REGISTER_FIELD_PERSONAL_CITY"] = "Ort";
@@ -30,11 +30,11 @@ $MESS["REGISTER_FIELD_PERSONAL_PHONE"] = "Telefon";
 $MESS["REGISTER_FIELD_WORK_PHONE"] = "Telefon";
 $MESS["REGISTER_FIELD_PERSONAL_PHOTO"] = "Foto";
 $MESS["REGISTER_FIELD_WORK_POSITION"] = "Position";
-$MESS["REGISTER_FIELD_WORK_PROFILE"] = "Tätigkeit";
+$MESS["REGISTER_FIELD_WORK_PROFILE"] = "TÐ´tigkeit";
 $MESS["REGISTER_REQUIRED_FIELDS"] = "Pflichtfelder";
 $MESS["REGISTER_FIELD_SECOND_NAME"] = "Zweiter Name";
-$MESS["REGISTER_USE_BACKURL"] = "Nutzer zurück schicken, falls der Link existiert";
-$MESS["USER_PROPERTY"] = "Zusätzliche Einstellungen anzeigen";
+$MESS["REGISTER_USE_BACKURL"] = "Nutzer zurÑŒck schicken, falls der Link existiert";
+$MESS["USER_PROPERTY"] = "ZusÐ´tzliche Einstellungen anzeigen";
 $MESS["REGISTER_FIELD_PERSONAL_STATE"] = "Bundesland";
 $MESS["REGISTER_FIELD_WORK_STATE"] = "Bundesland";
 $MESS["REGISTER_FIELD_PERSONAL_WWW"] = "WWW-Seite";

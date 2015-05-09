@@ -77,7 +77,7 @@ $pdf->AddPage();
 
 // create some HTML content
 $html = '<h1>HTML Example</h1>
-Some special characters: &lt; € &euro; &#8364; &amp; è &egrave; &copy; &gt; \\slash \\\\double-slash \\\\\\triple-slash
+Some special characters: &lt; в‚¬ &euro; &#8364; &amp; ГЁ &egrave; &copy; &gt; \\slash \\\\double-slash \\\\\\triple-slash
 <h2>List</h2>
 List example:
 <ol>
@@ -166,7 +166,7 @@ $html = '<h2>HTML TABLE:</h2>
 	</tr>
 	<tr>
 		<td>'.$subtable.'</td>
-		<td bgcolor="#0000FF" color="yellow" align="center">A2 € &euro; &#8364; &amp; è &egrave;<br/>A2 € &euro; &#8364; &amp; è &egrave;</td>
+		<td bgcolor="#0000FF" color="yellow" align="center">A2 в‚¬ &euro; &#8364; &amp; ГЁ &egrave;<br/>A2 в‚¬ &euro; &#8364; &amp; ГЁ &egrave;</td>
 		<td bgcolor="#FFFF00" align="left"><font color="#FF0000">Red</font> Yellow BG</td>
 		<td>4C</td>
 	</tr>

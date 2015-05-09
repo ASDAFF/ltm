@@ -48,8 +48,8 @@ else{
         <input type="hidden" name="USER_ID" id="USER_ID" value="<?=$arResult["POST_VALUES"]["USER_ID"]?>" readonly="readonly" />
         <?=bitrix_sessid_post()?>
         <div class="new-message">
-        	<input name="to" type="text" placeholder="Кому" value="<?=$arResult["USERS"]["TO"]?>" readonly="readonly">
-        	<input name="POST_SUBJ" type="text" placeholder="Тема сообщения" value="<? if($arResult["POST_VALUES"]["POST_SUBJ"]){ echo $arResult["POST_VALUES"]["POST_SUBJ"];}else{ echo $arResult["MESS"]["SUBJ"];}?>">
+        	<input name="to" type="text" placeholder="РљРѕРјСѓ" value="<?=$arResult["USERS"]["TO"]?>" readonly="readonly">
+        	<input name="POST_SUBJ" type="text" placeholder="РўРµРјР° СЃРѕРѕР±С‰РµРЅРёСЏ" value="<? if($arResult["POST_VALUES"]["POST_SUBJ"]){ echo $arResult["POST_VALUES"]["POST_SUBJ"];}else{ echo $arResult["MESS"]["SUBJ"];}?>">
             <textarea name="POST_MESSAGE" class="post_message" cols="35" rows="10" tabindex="<?=$tabIndex++;?>"><?=$arResult["POST_VALUES"]["POST_MESSAGE"]?></textarea>
             <div class="send"><input name="COPY_TO_OUTBOX" type="hidden" value="Y" id="COPY_TO_OUTBOX" tabindex="<?=$tabIndex++;?>" /><input type="submit" name="SAVE_BUTTON" id="SAVE_BUTTON" tabindex="<?=$tabIndex++;?>" value="<?=($arResult["action"] == "save" ? GetMessage("F_ACT_SAVE") : GetMessage("F_ACT_SEND"))?>" tabindex="<?=$tabIndex++;?>" /></div>
         </div>

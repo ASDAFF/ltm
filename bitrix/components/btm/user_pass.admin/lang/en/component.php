@@ -1,7 +1,7 @@
 <?
-$MESS ['ADMIN_USER_PASS'] = "Ïàðîëü óñðåøíî èçìåíåí";
-$MESS ['USER_PASS_USER_DATA_ERROR'] = "Íå ââåäåíû äàííûå ïî Ïîëüçîâàòåëþ!";
-$MESS ['USER_PASS_NOT_LOGGED_IN'] = "Âû íå àâòîðèçîâàíû!";
-$MESS ['USER_PASS_NO_PERMISSION'] = "Ó âàñ íåäîñòàòî÷íî ïðàâ äëÿ ïðîñìîòðà äàííîé ñòðàíèöû!";
-$MESS ['USER_PASS_ENTER_PASSWORD_MF'] = "Âû íå ââåëè ïàðîëü!";
+$MESS ['ADMIN_USER_PASS'] = "ÐŸÐ°Ñ€Ð¾Ð»ÑŒ ÑƒÑÑ€ÐµÑˆÐ½Ð¾ Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½";
+$MESS ['USER_PASS_USER_DATA_ERROR'] = "ÐÐµ Ð²Ð²ÐµÐ´ÐµÐ½Ñ‹ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¿Ð¾ ÐŸÐ¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŽ!";
+$MESS ['USER_PASS_NOT_LOGGED_IN'] = "Ð’Ñ‹ Ð½Ðµ Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð¾Ð²Ð°Ð½Ñ‹!";
+$MESS ['USER_PASS_NO_PERMISSION'] = "Ð£ Ð²Ð°Ñ Ð½ÐµÐ´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ Ð¿Ñ€Ð°Ð² Ð´Ð»Ñ Ð¿Ñ€Ð¾ÑÐ¼Ð¾Ñ‚Ñ€Ð° Ð´Ð°Ð½Ð½Ð¾Ð¹ ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ñ‹!";
+$MESS ['USER_PASS_ENTER_PASSWORD_MF'] = "Ð’Ñ‹ Ð½Ðµ Ð²Ð²ÐµÐ»Ð¸ Ð¿Ð°Ñ€Ð¾Ð»ÑŒ!";
 ?>

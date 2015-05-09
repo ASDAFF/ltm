@@ -15,7 +15,7 @@ AjaxPatch = <?=CUtil::PhpToJSObject($arResult["AJAX_PATCH"])?>;
 			<?if(!empty($arResult["EXHIBITION"])):?>
 				<table class="exh-select">
 				<?foreach ($arResult["EXHIBITION"] as $exhibID => $arItem):?>
-					<?if($arItem['PROPERTIES']['FOR_E']['VALUE'] != 'Y')//ïðîïóñêàåì, åñëè âûñòàâêà çàêðûòà äëÿ Ó÷àñòíèêîâ
+					<?if($arItem['PROPERTIES']['FOR_E']['VALUE'] != 'Y')//Ð¿Ñ€Ð¾Ð¿ÑƒÑÐºÐ°ÐµÐ¼, ÐµÑÐ»Ð¸ Ð²Ñ‹ÑÑ‚Ð°Ð²ÐºÐ° Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð° Ð´Ð»Ñ Ð£Ñ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¾Ð²
 					{
 						continue;
 					}
@@ -43,7 +43,7 @@ AjaxPatch = <?=CUtil::PhpToJSObject($arResult["AJAX_PATCH"])?>;
 	</div>
 	<div class="line-sep-g"></div>
 	
-		<?/* ÁËÎÊ ÍÅÌÍÎÃÎ ÈÍÔÎÐÌÀÖÈÈ Î ÂÀÑ*/?>
+		<?/* Ð‘Ð›ÐžÐš ÐÐ•ÐœÐÐžÐ“Ðž Ð˜ÐÐ¤ÐžÐ ÐœÐÐ¦Ð˜Ð˜ Ðž Ð’ÐÐ¡*/?>
 	
 	
 	<div class="some-information">
@@ -71,7 +71,7 @@ AjaxPatch = <?=CUtil::PhpToJSObject($arResult["AJAX_PATCH"])?>;
 			<?= ShowTextArea("SIMPLE_QUESTION_163","COMPANY_DESCRIPTION", $arResult["COMPANY_FORM"], "require description");?>
 			<div class="line-sep-small"></div>
 			
-			<?/*Ïðèîðèòåòíûå íàïðàâëåíèÿ*/?>
+			<?/*ÐŸÑ€Ð¸Ð¾Ñ€Ð¸Ñ‚ÐµÑ‚Ð½Ñ‹Ðµ Ð½Ð°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ñ*/?>
 			<div class="priority-areas">
 				<div class="priority-title"><?=GetMessage("R_E_SELECT_PRIORITY_AREAS")?></div>
 				<div class="priority-check-global">
@@ -146,7 +146,7 @@ AjaxPatch = <?=CUtil::PhpToJSObject($arResult["AJAX_PATCH"])?>;
 		</div>
 	</div>
 	<div class="line-sep-g"></div>
-	<?/* êíîïêè ïîäòâåðæäåíèÿ ðåãèñòðàöèè*/?>
+	<?/* ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð¸Ñ Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸Ð¸*/?>
 	<label class = "check-register"  for = "ckeck_register"><?=GetMessage("R_E_CONF_TERMS", array("#TERMS#" => $arParams["TERMS_LINK"]))?></label>
 	<input id="ckeck_register" type="checkbox" name="CONFIRM_TERMS" class = "hide" />
 	

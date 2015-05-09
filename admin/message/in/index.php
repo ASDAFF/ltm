@@ -1,6 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Âõîäÿùèå");
+$APPLICATION->SetTitle("Ð’Ñ…Ð¾Ð´ÑÑ‰Ð¸Ðµ");
 ?>
 <?$APPLICATION->IncludeComponent(
 	"btm:forum.pm.list",

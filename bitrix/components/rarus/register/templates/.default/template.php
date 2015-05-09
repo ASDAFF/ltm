@@ -40,7 +40,7 @@ if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)
 			<input type="hidden" name="confirmregister" id="confirmregister" value="Y">
 			<input type="hidden" name="usertype_change" id="usertype_change" value="N">
 			<input type="hidden" name="is_ajax_post" id="is_ajax_post" value="Y">
-			<?  /* !!!!!!!!! Òóò áóäóò êíîïêè ïîäòâåðæäåíèÿ ðåãèñòðàöèè    */?>
+			<?  /* !!!!!!!!! Ð¢ÑƒÑ‚ Ð±ÑƒÐ´ÑƒÑ‚ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð¸Ñ Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸Ð¸    */?>
 			
 			<div class="bx_ordercart_order_pay_center"><a href="javascript:void();" onClick="submitForm('Y'); return false;" class="checkout"><?=GetMessage("SOA_TEMPL_BUTTON")?></a></div>
 		</form>

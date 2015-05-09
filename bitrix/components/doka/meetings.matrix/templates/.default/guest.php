@@ -6,7 +6,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 <table class="table" id="results">
 	<thead>
 		<tr>
-			<th>Компания и представитель</th>
+			<th>РљРѕРјРїР°РЅРёСЏ Рё РїСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ</th>
 			<?foreach ($arResult['TIME'] as $timeslot):?>
 				<th><?=$timeslot['name']?></th>
 			<?endforeach;?>
@@ -33,7 +33,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 					<?=$user['schedule'][$timeslot['id']]['rep']?><br />
                     <a href="<?=$arResult['REJECT_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>"
                         target="_blank"
-                        onclick="newWind('<?=$arResult['REJECT_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>', 500, 400); return false;">Отменить</a>
+                        onclick="newWind('<?=$arResult['REJECT_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>', 500, 400); return false;">РћС‚РјРµРЅРёС‚СЊ</a>
                     <? //var_dump($user['schedule'][$timeslot['id']]);?>
 			<?elseif($user['schedule'][$timeslot['id']]['is_busy']):?>
 				<?
@@ -52,15 +52,15 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 					<?=$user['schedule'][$timeslot['id']]['rep']?><br />
 					<a href="<?=$arResult['CONFIRM_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>"
                         target="_blank"
-                        onclick="newWind('<?=$arResult['CONFIRM_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>', 500, 400); return false;">Подтвердить</a><br />
+                        onclick="newWind('<?=$arResult['CONFIRM_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>', 500, 400); return false;">РџРѕРґС‚РІРµСЂРґРёС‚СЊ</a><br />
                     <a href="<?=$arResult['REJECT_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>"
                         target="_blank"
-                        onclick="newWind('<?=$arResult['REJECT_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>', 500, 400); return false;">Отменить</a>
+                        onclick="newWind('<?=$arResult['REJECT_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>', 500, 400); return false;">РћС‚РјРµРЅРёС‚СЊ</a>
                     <?// var_dump($user['schedule'][$timeslot['id']]);?>
 			<?else:?>
 				<td class="times-list">
 					<a href="<?=$arResult['SEND_REQUEST_LINK']?>?id=<?=$user['id']?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>"
-                        target="_blank" data-timeslot="<?=$timeslot['id']?>">Назначить</a>
+                        target="_blank" data-timeslot="<?=$timeslot['id']?>">РќР°Р·РЅР°С‡РёС‚СЊ</a>
 
 			<?endif;?>
 			</td>

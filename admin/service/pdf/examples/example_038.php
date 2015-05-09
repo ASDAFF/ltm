@@ -73,7 +73,7 @@ $pdf->SetFont('arialunicid0', '', 20);
 $pdf->AddPage();
 
 $txt = 'Example of CID-0 CJK unembedded font.
-To display extended text you must have CJK fonts for your PDF reader: こんにちは世界';
+To display extended text you must have CJK fonts for your PDF reader: гЃ“г‚“гЃ«гЃЎгЃЇдё–з•Њ';
 
 $pdf->Write(0, $txt, '', 0, 'L', true, 0, false, false, 0);
 

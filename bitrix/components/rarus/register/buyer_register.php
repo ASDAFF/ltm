@@ -22,7 +22,7 @@ $evening = array();
 $exhibitionID = "";
 
 
-/*получаем выбор пользователя на утро или на вечер*/
+/*РїРѕР»СѓС‡Р°РµРј РІС‹Р±РѕСЂ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РЅР° СѓС‚СЂРѕ РёР»Рё РЅР° РІРµС‡РµСЂ*/
 foreach ($data["EXHIBITION"] as $exhibID => $arSelectedData)
 {
 	$exhibitionID = $exhibID;
@@ -40,28 +40,28 @@ foreach ($data["EXHIBITION"] as $exhibID => $arSelectedData)
 
 $arExhibition = &$arResult["EXHIBITION"][$exhibitionID];
 
-//получаем пароль и шифруем его для записи в пользовательское поле
+//РїРѕР»СѓС‡Р°РµРј РїР°СЂРѕР»СЊ Рё С€РёС„СЂСѓРµРј РµРіРѕ РґР»СЏ Р·Р°РїРёСЃРё РІ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРѕРµ РїРѕР»Рµ
 $password = $data["PASSWORD"];
 $passwordCoded = "";
 
-if(strlen($password) <= 0) //если пароль не задан, генерируем его
+if(strlen($password) <= 0) //РµСЃР»Рё РїР°СЂРѕР»СЊ РЅРµ Р·Р°РґР°РЅ, РіРµРЅРµСЂРёСЂСѓРµРј РµРіРѕ
 {
-	//Пароль рассчитан на 10! комбинаций / разных гостей
+	//РџР°СЂРѕР»СЊ СЂР°СЃСЃС‡РёС‚Р°РЅ РЅР° 10! РєРѕРјР±РёРЅР°С†РёР№ / СЂР°Р·РЅС‹С… РіРѕСЃС‚РµР№
 	$pasAr = array('d', 'p', '!', 'l', '9', '#', 'm', 'A', 'r', '2');
 	shuffle($pasAr);
 	$password = implode("", $pasAr);
 }
 
-//шифруем
+//С€РёС„СЂСѓРµРј
 $passwordCoded = base64_encode(strcode($password, 'luxoran'));
 
 $login = $data["LOGIN"];
-if(strlen($login) <= 0) //если логин не задан, генерируем его
+if(strlen($login) <= 0) //РµСЃР»Рё Р»РѕРіРёРЅ РЅРµ Р·Р°РґР°РЅ, РіРµРЅРµСЂРёСЂСѓРµРј РµРіРѕ
 {
-	/*получаем транслит первого слова названия выставки*/
+	/*РїРѕР»СѓС‡Р°РµРј С‚СЂР°РЅСЃР»РёС‚ РїРµСЂРІРѕРіРѕ СЃР»РѕРІР° РЅР°Р·РІР°РЅРёСЏ РІС‹СЃС‚Р°РІРєРё*/
 	$tok = strtok($arExhibition["CODE"], " -_");
 	
-	//добавляем первое слово с кода выставки, потом мыло, потом случайный набор цифр
+	//РґРѕР±Р°РІР»СЏРµРј РїРµСЂРІРѕРµ СЃР»РѕРІРѕ СЃ РєРѕРґР° РІС‹СЃС‚Р°РІРєРё, РїРѕС‚РѕРј РјС‹Р»Рѕ, РїРѕС‚РѕРј СЃР»СѓС‡Р°Р№РЅС‹Р№ РЅР°Р±РѕСЂ С†РёС„СЂ
 	$loginAr = array('1', '2', '3', '4', '5', '6', '7', '8', '9');
 	shuffle($loginAr);
 	$login = $tok.$data["EMAIL"].implode("", $loginAr);
@@ -74,23 +74,23 @@ if(strlen($webSite) > 0)
 }
 
 $arUserFormFields = array(
-		"form_text_204" => $data["COMPANY_NAME"], 						//название компании
-		"form_checkbox_SIMPLE_QUESTION_677" => $data["BUSINESS_TYPE"], 	//вид деятельности
-		"form_text_208" => $data["COMPANY_ADDRESS"], 					//фактический адрес компании
-		"form_text_209" => $data["INDEX"], 								//индекс
-		"form_text_210" => $data["CITY"],								//город
-		"form_dropdown_SIMPLE_QUESTION_678" => $data["COUNTRY"],		//страна
-		"form_text_216" => $data["NAME"],								//имя
-		"form_text_217" => $data["LAST_NAME"],							//фамилия
-		"form_text_218" => $data["JOB_POST"],							//должность
-		"form_text_219" => cutPhone($data["PHONE"]),					//телефон
+		"form_text_204" => $data["COMPANY_NAME"], 						//РЅР°Р·РІР°РЅРёРµ РєРѕРјРїР°РЅРёРё
+		"form_checkbox_SIMPLE_QUESTION_677" => $data["BUSINESS_TYPE"], 	//РІРёРґ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё
+		"form_text_208" => $data["COMPANY_ADDRESS"], 					//С„Р°РєС‚РёС‡РµСЃРєРёР№ Р°РґСЂРµСЃ РєРѕРјРїР°РЅРёРё
+		"form_text_209" => $data["INDEX"], 								//РёРЅРґРµРєСЃ
+		"form_text_210" => $data["CITY"],								//РіРѕСЂРѕРґ
+		"form_dropdown_SIMPLE_QUESTION_678" => $data["COUNTRY"],		//СЃС‚СЂР°РЅР°
+		"form_text_216" => $data["NAME"],								//РёРјСЏ
+		"form_text_217" => $data["LAST_NAME"],							//С„Р°РјРёР»РёСЏ
+		"form_text_218" => $data["JOB_POST"],							//РґРѕР»Р¶РЅРѕСЃС‚СЊ
+		"form_text_219" => cutPhone($data["PHONE"]),					//С‚РµР»РµС„РѕРЅ
 		"form_text_220" => $data["EMAIL"],								//email
-		"form_text_221" => $data["CONF_EMAIL"],							//подтверждение email
-		"form_text_1425" => cutPhone($data["MOBILE_PHONE"]),			//мобильный телефон
-		"form_text_222" => $webSite,									//веб сайт
-		"form_textarea_238" => $data["COMPANY_DESCRIPTION"],			//описание компании
+		"form_text_221" => $data["CONF_EMAIL"],							//РїРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ email
+		"form_text_1425" => cutPhone($data["MOBILE_PHONE"]),			//РјРѕР±РёР»СЊРЅС‹Р№ С‚РµР»РµС„РѕРЅ
+		"form_text_222" => $webSite,									//РІРµР± СЃР°Р№С‚
+		"form_textarea_238" => $data["COMPANY_DESCRIPTION"],			//РѕРїРёСЃР°РЅРёРµ РєРѕРјРїР°РЅРёРё
 		
-		/*Приоритетные направления*/
+		/*РџСЂРёРѕСЂРёС‚РµС‚РЅС‹Рµ РЅР°РїСЂР°РІР»РµРЅРёСЏ*/
 		"form_checkbox_SIMPLE_QUESTION_383" => getPriorityAreas($data["NORTH_AMERICA"]), 	//North America
 		"form_checkbox_SIMPLE_QUESTION_244" => getPriorityAreas($data["EUROPE"]), 			//Europe
 		"form_checkbox_SIMPLE_QUESTION_212" => getPriorityAreas($data["SOUTH_AMERICA"]), 	//South America
@@ -98,47 +98,47 @@ $arUserFormFields = array(
 		"form_checkbox_SIMPLE_QUESTION_526" => getPriorityAreas($data["ASIA"]), 			//Asia
 		"form_checkbox_SIMPLE_QUESTION_878" => getPriorityAreas($data["OCEANIA"]), 			//Oceania and Arctic and Antarctica
 		
-		/*логин пароль*/
-		"form_text_235" => $login,										//Введите логин/гостевое имя
-		"form_password_236" => $password,								//Введите пароль
-		"form_password_237" => $password,								//Повторите пароль
+		/*Р»РѕРіРёРЅ РїР°СЂРѕР»СЊ*/
+		"form_text_235" => $login,										//Р’РІРµРґРёС‚Рµ Р»РѕРіРёРЅ/РіРѕСЃС‚РµРІРѕРµ РёРјСЏ
+		"form_password_236" => $password,								//Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ
+		"form_password_237" => $password,								//РџРѕРІС‚РѕСЂРёС‚Рµ РїР°СЂРѕР»СЊ
 		
-		/*коллеги*/
+		/*РєРѕР»Р»РµРіРё*/
 		
-		/*на утро*/
-		"form_text_839" => $data["COLLEAGUE"]["MORNING"]["NAME"],		//Имя коллеги (на утро)
-		"form_text_840" => $data["COLLEAGUE"]["MORNING"]["LAST_NAME"],	//Фамилия коллеги (на утро)
-		"form_text_841" => $data["COLLEAGUE"]["MORNING"]["JOB_POST"],	//Должность коллеги (на утро)
-		"form_text_842" => $data["COLLEAGUE"]["MORNING"]["EMAIL"],		//E-mail коллеги (на утро)
+		/*РЅР° СѓС‚СЂРѕ*/
+		"form_text_839" => $data["COLLEAGUE"]["MORNING"]["NAME"],		//РРјСЏ РєРѕР»Р»РµРіРё (РЅР° СѓС‚СЂРѕ)
+		"form_text_840" => $data["COLLEAGUE"]["MORNING"]["LAST_NAME"],	//Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё (РЅР° СѓС‚СЂРѕ)
+		"form_text_841" => $data["COLLEAGUE"]["MORNING"]["JOB_POST"],	//Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё (РЅР° СѓС‚СЂРѕ)
+		"form_text_842" => $data["COLLEAGUE"]["MORNING"]["EMAIL"],		//E-mail РєРѕР»Р»РµРіРё (РЅР° СѓС‚СЂРѕ)
 		
-		/*на вечер 1*/
-		"form_text_223" => $data["COLLEAGUE"][0]["NAME"],				//Имя коллеги 1
-		"form_text_224" => $data["COLLEAGUE"][0]["LAST_NAME"],			//Фамилия коллеги 1
-		"form_text_225" => $data["COLLEAGUE"][0]["JOB_POST"],			//Должность коллеги 1
-		"form_text_226" => $data["COLLEAGUE"][0]["EMAIL"],				//E-mail коллеги 1
+		/*РЅР° РІРµС‡РµСЂ 1*/
+		"form_text_223" => $data["COLLEAGUE"][0]["NAME"],				//РРјСЏ РєРѕР»Р»РµРіРё 1
+		"form_text_224" => $data["COLLEAGUE"][0]["LAST_NAME"],			//Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё 1
+		"form_text_225" => $data["COLLEAGUE"][0]["JOB_POST"],			//Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё 1
+		"form_text_226" => $data["COLLEAGUE"][0]["EMAIL"],				//E-mail РєРѕР»Р»РµРіРё 1
 		
-		/*на вечер 2*/
-		"form_text_227" => $data["COLLEAGUE"][1]["NAME"],				//Имя коллеги 2
-		"form_text_228" => $data["COLLEAGUE"][1]["LAST_NAME"],			//Фамилия коллеги 2
-		"form_text_230" => $data["COLLEAGUE"][1]["JOB_POST"],			//Должность коллеги 2
-		"form_text_229" => $data["COLLEAGUE"][1]["EMAIL"],				//E-mail коллеги 2
+		/*РЅР° РІРµС‡РµСЂ 2*/
+		"form_text_227" => $data["COLLEAGUE"][1]["NAME"],				//РРјСЏ РєРѕР»Р»РµРіРё 2
+		"form_text_228" => $data["COLLEAGUE"][1]["LAST_NAME"],			//Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё 2
+		"form_text_230" => $data["COLLEAGUE"][1]["JOB_POST"],			//Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё 2
+		"form_text_229" => $data["COLLEAGUE"][1]["EMAIL"],				//E-mail РєРѕР»Р»РµРіРё 2
 		
-		/*на вечер 3*/
-		"form_text_231" => $data["COLLEAGUE"][2]["NAME"],				//Имя коллеги 3
-		"form_text_232" => $data["COLLEAGUE"][2]["LAST_NAME"],			//Фамилия коллеги 3
-		"form_text_233" => $data["COLLEAGUE"][2]["JOB_POST"],			//Должность коллеги 3
-		"form_text_234" => $data["COLLEAGUE"][2]["EMAIL"],				//E-mail коллеги 3
+		/*РЅР° РІРµС‡РµСЂ 3*/
+		"form_text_231" => $data["COLLEAGUE"][2]["NAME"],				//РРјСЏ РєРѕР»Р»РµРіРё 3
+		"form_text_232" => $data["COLLEAGUE"][2]["LAST_NAME"],			//Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё 3
+		"form_text_233" => $data["COLLEAGUE"][2]["JOB_POST"],			//Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё 3
+		"form_text_234" => $data["COLLEAGUE"][2]["EMAIL"],				//E-mail РєРѕР»Р»РµРіРё 3
 		
-		/*утро или вечер*/
-		"form_checkbox_SIMPLE_QUESTION_836" => $morning, 				//Утро
-		"form_checkbox_SIMPLE_QUESTION_156" => $evening, 				//Вечер
+		/*СѓС‚СЂРѕ РёР»Рё РІРµС‡РµСЂ*/
+		"form_checkbox_SIMPLE_QUESTION_836" => $morning, 				//РЈС‚СЂРѕ
+		"form_checkbox_SIMPLE_QUESTION_156" => $evening, 				//Р’РµС‡РµСЂ
 );
 
 
-// создадим новый результат
+// СЃРѕР·РґР°РґРёРј РЅРѕРІС‹Р№ СЂРµР·СѓР»СЊС‚Р°С‚
 $RESULT_ID = CFormResult::Add($arParams["GUEST_FORM_ID"], $arUserFormFields);
 
-/*Подготавливаем массив для создания пользователя*/
+/*РџРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј РјР°СЃСЃРёРІ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ*/
 
 $bConfirmReq = COption::GetOptionString("main", "new_user_registration_email_confirmation", "N") == "Y";
 
@@ -163,13 +163,13 @@ $arUserFields = array(
 		"UF_FIO" => $data["NAME"]." ".$data["LAST_NAME"]
 );
 
-/*Добавляем стандартные группы при регистрации*/
+/*Р”РѕР±Р°РІР»СЏРµРј СЃС‚Р°РЅРґР°СЂС‚РЅС‹Рµ РіСЂСѓРїРїС‹ РїСЂРё СЂРµРіРёСЃС‚СЂР°С†РёРё*/
 $def_group = COption::GetOptionString("main", "new_user_registration_def_group", "");
 
 if($def_group != "")
 	$arUserFields["GROUP_ID"] = explode(",", $def_group);
 
-/*Добавляем в группу неподтвержденных гостей выставки*/
+/*Р”РѕР±Р°РІР»СЏРµРј РІ РіСЂСѓРїРїСѓ РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… РіРѕСЃС‚РµР№ РІС‹СЃС‚Р°РІРєРё*/
 
 $ucGuestGroupID = $arExhibition["PROPERTIES"]["UC_GUESTS_GROUP"]["VALUE"];
 if($ucGuestGroupID)
@@ -177,7 +177,7 @@ if($ucGuestGroupID)
 	$arUserFields["GROUP_ID"][] = $ucGuestGroupID;
 }
 
-/*Записываем результаты вебформы в свойства пользователя*/
+/*Р—Р°РїРёСЃС‹РІР°РµРј СЂРµР·СѓР»СЊС‚Р°С‚С‹ РІРµР±С„РѕСЂРјС‹ РІ СЃРІРѕР№СЃС‚РІР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ*/
 
 $exhibPropName = CFormMatrix::getPropertyIDByExh($exhibitionID);
 if($exhibPropName && $RESULT_ID)
@@ -186,12 +186,12 @@ if($exhibPropName && $RESULT_ID)
 	$arUserFields["UF_ID_COMP"] = $RESULT_ID;
 }
 
-/*Запись гостя на утро или на вечер*/
+/*Р—Р°РїРёСЃСЊ РіРѕСЃС‚СЏ РЅР° СѓС‚СЂРѕ РёР»Рё РЅР° РІРµС‡РµСЂ*/
 //$arUserFields["UF_MR"] = (!empty($morning))?"Y":"N";
 //$arUserFields["UF_EV"] = (!empty($evening))?"Y":"N";
 
 
-/*отправляем в компонент*/
+/*РѕС‚РїСЂР°РІР»СЏРµРј РІ РєРѕРјРїРѕРЅРµРЅС‚*/
 $arResult["VALUES"] = $arUserFields;
 $bOk = true;
 
@@ -236,10 +236,10 @@ if (intval($USER_ID) > 0)
 	$event = new CEvent;
 	$eventName = array();
 	
-	/*Выбор типа почтового собырия*/
+	/*Р’С‹Р±РѕСЂ С‚РёРїР° РїРѕС‡С‚РѕРІРѕРіРѕ СЃРѕР±С‹СЂРёСЏ*/
 	switch ($exhibitionID)
 	{
-		case "361" ://Москва, Россия. 13 марта 2014
+		case "361" ://РњРѕСЃРєРІР°, Р РѕСЃСЃРёСЏ. 13 РјР°СЂС‚Р° 2014
 			{
 				if(!empty($morning))
 				{
@@ -251,7 +251,7 @@ if (intval($USER_ID) > 0)
 				}
 			}
 		break;
-		case "357" ://Баку, Азербайджан. 10 апреля 2014
+		case "357" ://Р‘Р°РєСѓ, РђР·РµСЂР±Р°Р№РґР¶Р°РЅ. 10 Р°РїСЂРµР»СЏ 2014
 			{
 				if(!empty($morning))
 				{
@@ -263,7 +263,7 @@ if (intval($USER_ID) > 0)
 				}
 			}
 		break;
-		case "360" ://Киев, Украина. 23 сентября 2014	
+		case "360" ://РљРёРµРІ, РЈРєСЂР°РёРЅР°. 23 СЃРµРЅС‚СЏР±СЂСЏ 2014	
 			{
 				if(!empty($morning))
 				{
@@ -275,7 +275,7 @@ if (intval($USER_ID) > 0)
 				}
 			}
 		break;
-		case "488" ://Москва, Россия. 12-13 марта 2015	
+		case "488" ://РњРѕСЃРєРІР°, Р РѕСЃСЃРёСЏ. 12-13 РјР°СЂС‚Р° 2015	
 			{
 				if(!empty($morning))
 				{
@@ -287,7 +287,7 @@ if (intval($USER_ID) > 0)
 				}
 			}
 		break;
-		case "358" ://Москва, Россия. 2 октября 2014	
+		case "358" ://РњРѕСЃРєРІР°, Р РѕСЃСЃРёСЏ. 2 РѕРєС‚СЏР±СЂСЏ 2014	
 			{
 				if(!empty($morning))
 				{
@@ -299,7 +299,7 @@ if (intval($USER_ID) > 0)
 				}
 			}
 		break;
-		case "359" ://Алматы, Казахстан. 26 сентября 2014
+		case "359" ://РђР»РјР°С‚С‹, РљР°Р·Р°С…СЃС‚Р°РЅ. 26 СЃРµРЅС‚СЏР±СЂСЏ 2014
 			{
 				if(!empty($morning))
 				{
@@ -379,7 +379,7 @@ if (intval($USER_ID) > 0)
 		$event->SendImmediate("NEW_USER_CONFIRM", SITE_ID, $arEventFields);
 	
 	
-	/*Отправка писем о регистрации*/
+	/*РћС‚РїСЂР°РІРєР° РїРёСЃРµРј Рѕ СЂРµРіРёСЃС‚СЂР°С†РёРё*/
 	
 	/*
 	$event->SendImmediate("NEW_USER", SITE_ID, $arEventFields);

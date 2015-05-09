@@ -1,17 +1,17 @@
 <?
-$MESS ['HLM_TITLE_NEW'] = "Íîâîå ñîîáùåíèå";
-$MESS ['HLM_TITLE_EDIT'] = "&laquo;#TITLE#&raquo; (ðåäàêòèðîâàíèå)";
-$MESS ['HLM_TITLE_NAV'] = "Ïåðñîíàëüíûå ñîîáùåíèÿ";
+$MESS ['HLM_TITLE_NEW'] = "ÐÐ¾Ð²Ð¾Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ";
+$MESS ['HLM_TITLE_EDIT'] = "&laquo;#TITLE#&raquo; (Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ)";
+$MESS ['HLM_TITLE_NAV'] = "ÐŸÐµÑ€ÑÐ¾Ð½Ð°Ð»ÑŒÐ½Ñ‹Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ";
 $MESS ['HLM_REPLY'] = "Re:";
-$MESS ['HLM_USER_NOT_FOUND'] = "Ïîëüçîâàòåëü ñ èìåíåì &laquo;##&raquo; íå íàéäåí.";
-$MESS ['HLM_NOT_RIGHT'] = "Íå äîñòàòî÷íî ïðàâ äëÿ äîñòóïà.";
-$MESS ['HLM_AUTH'] = "Äëÿ ïðîñìîòðà ýòîé ñòðàíèöû âû äîëæíû áûòü àâòîðèçîâàíû.";
-$MESS ['HL_NO_MODULE'] = "Ìîäóëü highloadblock íå óñòàíîâëåí.";
-$MESS ['HLM_FOLDER_INBOX'] = "Âõîäÿùèå";
-$MESS ['HLM_FOLDER_SENT'] = "Èñõîäÿùèå";
-$MESS ['HLM_FOLDER_TRASH'] = "Êîðçèíà";
-$MESS ['HL_ERR_SESS_FINISH'] = "Âàøà ñåññèÿ èñòåêëà. Ïîâòîðèòå äåéñòâèå.";
-$MESS ['HL_ACCESS_DENIED'] = "Äîñòóï çàïðåùåí.";
-$MESS ['HL_MESSAGE_NOT_FOUND'] = "Ñîîáùåíèå íå íàéäåíî.";
-$MESS ['HLM_MESSAGE_SUCCESS'] = "Âàøå ñîîáùåíèå îòïðàâëåíî.";
+$MESS ['HLM_USER_NOT_FOUND'] = "ÐŸÐ¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ Ñ Ð¸Ð¼ÐµÐ½ÐµÐ¼ &laquo;##&raquo; Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½.";
+$MESS ['HLM_NOT_RIGHT'] = "ÐÐµ Ð´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ Ð¿Ñ€Ð°Ð² Ð´Ð»Ñ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð°.";
+$MESS ['HLM_AUTH'] = "Ð”Ð»Ñ Ð¿Ñ€Ð¾ÑÐ¼Ð¾Ñ‚Ñ€Ð° ÑÑ‚Ð¾Ð¹ ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ñ‹ Ð²Ñ‹ Ð´Ð¾Ð»Ð¶Ð½Ñ‹ Ð±Ñ‹Ñ‚ÑŒ Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð¾Ð²Ð°Ð½Ñ‹.";
+$MESS ['HL_NO_MODULE'] = "ÐœÐ¾Ð´ÑƒÐ»ÑŒ highloadblock Ð½Ðµ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½.";
+$MESS ['HLM_FOLDER_INBOX'] = "Ð’Ñ…Ð¾Ð´ÑÑ‰Ð¸Ðµ";
+$MESS ['HLM_FOLDER_SENT'] = "Ð˜ÑÑ…Ð¾Ð´ÑÑ‰Ð¸Ðµ";
+$MESS ['HLM_FOLDER_TRASH'] = "ÐšÐ¾Ñ€Ð·Ð¸Ð½Ð°";
+$MESS ['HL_ERR_SESS_FINISH'] = "Ð’Ð°ÑˆÐ° ÑÐµÑÑÐ¸Ñ Ð¸ÑÑ‚ÐµÐºÐ»Ð°. ÐŸÐ¾Ð²Ñ‚Ð¾Ñ€Ð¸Ñ‚Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ.";
+$MESS ['HL_ACCESS_DENIED'] = "Ð”Ð¾ÑÑ‚ÑƒÐ¿ Ð·Ð°Ð¿Ñ€ÐµÑ‰ÐµÐ½.";
+$MESS ['HL_MESSAGE_NOT_FOUND'] = "Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð¾.";
+$MESS ['HLM_MESSAGE_SUCCESS'] = "Ð’Ð°ÑˆÐµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¾.";
 ?>

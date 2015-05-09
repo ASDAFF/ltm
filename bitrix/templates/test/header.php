@@ -27,7 +27,7 @@
 			<span id = "title">Luxury Travel Mart</span>
 			<div id = "lang">
 			    <a class = "en<?= (LANGUAGE_ID == "en")?" act":"";?>" href="<?= $APPLICATION->GetCurPageParam("lang_ui=en",array("lang_ui", "EXHIBIT_CODE", "CODE"));?>"><?= (LANGUAGE_ID == "en")?">":"";?>English</a>
-                <a class = "ru<?= (LANGUAGE_ID == "ru")?" act":"";?>" href="<?= $APPLICATION->GetCurPageParam("lang_ui=ru",array("lang_ui", "EXHIBIT_CODE", "CODE"));?>"><?= (LANGUAGE_ID == "ru")?">":"";?>Русский</a>
+                <a class = "ru<?= (LANGUAGE_ID == "ru")?" act":"";?>" href="<?= $APPLICATION->GetCurPageParam("lang_ui=ru",array("lang_ui", "EXHIBIT_CODE", "CODE"));?>"><?= (LANGUAGE_ID == "ru")?">":"";?>Р СѓСЃСЃРєРёР№</a>
 			</div>
 		</div>
 	</header>
@@ -61,7 +61,7 @@
 
 			    if($exhibCode)
 			    {
-			        $userType = $_SESSION["USER_TYPE"]; //генерится в компоненте авторизации rarus:auth.form
+			        $userType = $_SESSION["USER_TYPE"]; //РіРµРЅРµСЂРёС‚СЃСЏ РІ РєРѕРјРїРѕРЅРµРЅС‚Рµ Р°РІС‚РѕСЂРёР·Р°С†РёРё rarus:auth.form
 
 			        $userId;
 			        if($USER->IsAdmin() && isset($_REQUEST["UID"])) {
@@ -73,10 +73,10 @@
 			        $bUserTypeIsset = false;
 			        $arUserGroups = CUser::GetUserGroup($userId);
 
-    			    if(!$userType)//если не получилось получить из сессии получаем таким образом, обычно сюда не должно попадать
+    			    if(!$userType)//РµСЃР»Рё РЅРµ РїРѕР»СѓС‡РёР»РѕСЃСЊ РїРѕР»СѓС‡РёС‚СЊ РёР· СЃРµСЃСЃРёРё РїРѕР»СѓС‡Р°РµРј С‚Р°РєРёРј РѕР±СЂР°Р·РѕРј, РѕР±С‹С‡РЅРѕ СЃСЋРґР° РЅРµ РґРѕР»Р¶РЅРѕ РїРѕРїР°РґР°С‚СЊ
                     {
 
-                    	//прверка на участника
+                    	//РїСЂРІРµСЂРєР° РЅР° СѓС‡Р°СЃС‚РЅРёРєР°
                     	if(!$bUserTypeIsset)
                     	{
                     	    $arPartGroupID = array("10","9", "12", "11", "14","13", "16", "15", "18", "17", "21", "20");
@@ -91,7 +91,7 @@
                         	}
                     	}
 
-                    	//прверка на гостя
+                    	//РїСЂРІРµСЂРєР° РЅР° РіРѕСЃС‚СЏ
                     	if(!$bUserTypeIsset)
                     	{
                     	    $arGuestGroupID = array("22", "25", "23", "26", "24", "27", "19");
@@ -109,7 +109,7 @@
 
 			        if("PARTICIPANT" == $userType /* && ("Y" == PARTICIPANT_CABINET || $USER->IsAdmin())*/)
 			        {
-			            //проверка на доступ пользователя к кабинету участника
+			            //РїСЂРѕРІРµСЂРєР° РЅР° РґРѕСЃС‚СѓРї РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ Рє РєР°Р±РёРЅРµС‚Сѓ СѓС‡Р°СЃС‚РЅРёРєР°
 
 			            CModule::IncludeModule("iblock");
 			            $rsExhib = CIBlockElement::GetList(array(), array("IBLOCK_ID" => "15", "CODE" => $exhibCode, "ACTIVE" => "Y"), false, false, array("PROPERTY_USER_GROUP_ID"));
@@ -118,26 +118,26 @@
 
 			            	$exhibGoup = $arExhib["PROPERTY_USER_GROUP_ID_VALUE"];
 
-			            	if(in_array($exhibGoup, $arUserGroups) || $USER->IsAdmin())//если в группе подтвержденных
+			            	if(in_array($exhibGoup, $arUserGroups) || $USER->IsAdmin())//РµСЃР»Рё РІ РіСЂСѓРїРїРµ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С…
 			            	{
 
 			            	    $APPLICATION->IncludeComponent("bitrix:menu", "participant_top",
 			            	        Array(
-			            	            "ROOT_MENU_TYPE" => "participant.top",	// Тип меню для первого уровня
-			            	            "MAX_LEVEL" => "2",	// Уровень вложенности меню
-			            	            "CHILD_MENU_TYPE" => "",	// Тип меню для остальных уровней
-			            	            "USE_EXT" => "Y",	// Подключать файлы с именами вида .тип_меню.menu_ext.php
-			            	            "DELAY" => "N",	// Откладывать выполнение шаблона меню
-			            	            "ALLOW_MULTI_SELECT" => "N",	// Разрешить несколько активных пунктов одновременно
-			            	            "MENU_CACHE_TYPE" => "N",	// Тип кеширования
-			            	            "MENU_CACHE_TIME" => "3600",	// Время кеширования (сек.)
-			            	            "MENU_CACHE_USE_GROUPS" => "N",	// Учитывать права доступа
-			            	            "MENU_CACHE_GET_VARS" => "",	// Значимые переменные запроса
+			            	            "ROOT_MENU_TYPE" => "participant.top",	// РўРёРї РјРµРЅСЋ РґР»СЏ РїРµСЂРІРѕРіРѕ СѓСЂРѕРІРЅСЏ
+			            	            "MAX_LEVEL" => "2",	// РЈСЂРѕРІРµРЅСЊ РІР»РѕР¶РµРЅРЅРѕСЃС‚Рё РјРµРЅСЋ
+			            	            "CHILD_MENU_TYPE" => "",	// РўРёРї РјРµРЅСЋ РґР»СЏ РѕСЃС‚Р°Р»СЊРЅС‹С… СѓСЂРѕРІРЅРµР№
+			            	            "USE_EXT" => "Y",	// РџРѕРґРєР»СЋС‡Р°С‚СЊ С„Р°Р№Р»С‹ СЃ РёРјРµРЅР°РјРё РІРёРґР° .С‚РёРї_РјРµРЅСЋ.menu_ext.php
+			            	            "DELAY" => "N",	// РћС‚РєР»Р°РґС‹РІР°С‚СЊ РІС‹РїРѕР»РЅРµРЅРёРµ С€Р°Р±Р»РѕРЅР° РјРµРЅСЋ
+			            	            "ALLOW_MULTI_SELECT" => "N",	// Р Р°Р·СЂРµС€РёС‚СЊ РЅРµСЃРєРѕР»СЊРєРѕ Р°РєС‚РёРІРЅС‹С… РїСѓРЅРєС‚РѕРІ РѕРґРЅРѕРІСЂРµРјРµРЅРЅРѕ
+			            	            "MENU_CACHE_TYPE" => "N",	// РўРёРї РєРµС€РёСЂРѕРІР°РЅРёСЏ
+			            	            "MENU_CACHE_TIME" => "3600",	// Р’СЂРµРјСЏ РєРµС€РёСЂРѕРІР°РЅРёСЏ (СЃРµРє.)
+			            	            "MENU_CACHE_USE_GROUPS" => "N",	// РЈС‡РёС‚С‹РІР°С‚СЊ РїСЂР°РІР° РґРѕСЃС‚СѓРїР°
+			            	            "MENU_CACHE_GET_VARS" => "",	// Р—РЅР°С‡РёРјС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ Р·Р°РїСЂРѕСЃР°
 			            	        ),
 			            	        false
 	    			            );?>
 	    			            <?
-	    			            //тут будет название и место проведения выставки
+	    			            //С‚СѓС‚ Р±СѓРґРµС‚ РЅР°Р·РІР°РЅРёРµ Рё РјРµСЃС‚Рѕ РїСЂРѕРІРµРґРµРЅРёСЏ РІС‹СЃС‚Р°РІРєРё
 	    			            $APPLICATION->IncludeComponent("rarus:exhibition.header", "",
 	    		            		Array(
 	    		            				"EXHIB_IBLOCK_ID" => "15",
@@ -153,16 +153,16 @@
 	                            <div  class="exhibition-session">
 	    			    		<?$APPLICATION->IncludeComponent("bitrix:menu", "participant_bottom",
 	    			    		    Array(
-	    			    		        "ROOT_MENU_TYPE" => "participant.bottom",	// Тип меню для первого уровня
-	    			    		        "MAX_LEVEL" => "2",	// Уровень вложенности меню
-	    			    		        "CHILD_MENU_TYPE" => "",	// Тип меню для остальных уровней
-	    			    		        "USE_EXT" => "Y",	// Подключать файлы с именами вида .тип_меню.menu_ext.php
-	    			    		        "DELAY" => "N",	// Откладывать выполнение шаблона меню
-	    			    		        "ALLOW_MULTI_SELECT" => "N",	// Разрешить несколько активных пунктов одновременно
-	    			    		        "MENU_CACHE_TYPE" => "N",	// Тип кеширования
-	    			    		        "MENU_CACHE_TIME" => "3600",	// Время кеширования (сек.)
-	    			    		        "MENU_CACHE_USE_GROUPS" => "N",	// Учитывать права доступа
-	    			    		        "MENU_CACHE_GET_VARS" => "",	// Значимые переменные запроса
+	    			    		        "ROOT_MENU_TYPE" => "participant.bottom",	// РўРёРї РјРµРЅСЋ РґР»СЏ РїРµСЂРІРѕРіРѕ СѓСЂРѕРІРЅСЏ
+	    			    		        "MAX_LEVEL" => "2",	// РЈСЂРѕРІРµРЅСЊ РІР»РѕР¶РµРЅРЅРѕСЃС‚Рё РјРµРЅСЋ
+	    			    		        "CHILD_MENU_TYPE" => "",	// РўРёРї РјРµРЅСЋ РґР»СЏ РѕСЃС‚Р°Р»СЊРЅС‹С… СѓСЂРѕРІРЅРµР№
+	    			    		        "USE_EXT" => "Y",	// РџРѕРґРєР»СЋС‡Р°С‚СЊ С„Р°Р№Р»С‹ СЃ РёРјРµРЅР°РјРё РІРёРґР° .С‚РёРї_РјРµРЅСЋ.menu_ext.php
+	    			    		        "DELAY" => "N",	// РћС‚РєР»Р°РґС‹РІР°С‚СЊ РІС‹РїРѕР»РЅРµРЅРёРµ С€Р°Р±Р»РѕРЅР° РјРµРЅСЋ
+	    			    		        "ALLOW_MULTI_SELECT" => "N",	// Р Р°Р·СЂРµС€РёС‚СЊ РЅРµСЃРєРѕР»СЊРєРѕ Р°РєС‚РёРІРЅС‹С… РїСѓРЅРєС‚РѕРІ РѕРґРЅРѕРІСЂРµРјРµРЅРЅРѕ
+	    			    		        "MENU_CACHE_TYPE" => "N",	// РўРёРї РєРµС€РёСЂРѕРІР°РЅРёСЏ
+	    			    		        "MENU_CACHE_TIME" => "3600",	// Р’СЂРµРјСЏ РєРµС€РёСЂРѕРІР°РЅРёСЏ (СЃРµРє.)
+	    			    		        "MENU_CACHE_USE_GROUPS" => "N",	// РЈС‡РёС‚С‹РІР°С‚СЊ РїСЂР°РІР° РґРѕСЃС‚СѓРїР°
+	    			    		        "MENU_CACHE_GET_VARS" => "",	// Р—РЅР°С‡РёРјС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ Р·Р°РїСЂРѕСЃР°
 	    			    		    ),
 	    			    		    false
 	    			    		);
@@ -179,7 +179,7 @@
 			    	}
 			    	elseif("GUEST" == $userType/* && ("Y" == GUEST_CABINET || $USER->IsAdmin())*/)
 			    	{
-			    	    //проверка на доступ пользователя к кабинету участника
+			    	    //РїСЂРѕРІРµСЂРєР° РЅР° РґРѕСЃС‚СѓРї РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ Рє РєР°Р±РёРЅРµС‚Сѓ СѓС‡Р°СЃС‚РЅРёРєР°
 
 			    	    CModule::IncludeModule("iblock");
 			    	    $rsExhib = CIBlockElement::GetList(array(), array("IBLOCK_ID" => "15", "CODE" => $exhibCode, "ACTIVE" => "Y"), false, false, array("PROPERTY_C_GUESTS_GROUP"));
@@ -199,9 +199,9 @@
 			    	        	$menuType = 'guest.bottom';
 			    	        }
 
-			    	        if(in_array($exhibGoup, $arUserGroups) || $USER->IsAdmin())//если в группе подтвержденных
+			    	        if(in_array($exhibGoup, $arUserGroups) || $USER->IsAdmin())//РµСЃР»Рё РІ РіСЂСѓРїРїРµ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С…
 			    	        {
-			    	            //тут будет название и место проведения выставки
+			    	            //С‚СѓС‚ Р±СѓРґРµС‚ РЅР°Р·РІР°РЅРёРµ Рё РјРµСЃС‚Рѕ РїСЂРѕРІРµРґРµРЅРёСЏ РІС‹СЃС‚Р°РІРєРё
 			    	            $APPLICATION->IncludeComponent("rarus:exhibition.header", "",
 			    	                Array(
 			    	                    "EXHIB_IBLOCK_ID" => "15",
@@ -214,16 +214,16 @@
         			    	    <div class="exhibition-session<?=$classHB?>">
         			    	    <? $APPLICATION->IncludeComponent("bitrix:menu", "participant_bottom",
         			    	        Array(
-        			    	            "ROOT_MENU_TYPE" =>  $menuType,	// Тип меню для первого уровня
-        			    	            "MAX_LEVEL" => "2",	// Уровень вложенности меню
-        			    	            "CHILD_MENU_TYPE" => "",	// Тип меню для остальных уровней
-        			    	            "USE_EXT" => "Y",	// Подключать файлы с именами вида .тип_меню.menu_ext.php
-        			    	            "DELAY" => "N",	// Откладывать выполнение шаблона меню
-        			    	            "ALLOW_MULTI_SELECT" => "N",	// Разрешить несколько активных пунктов одновременно
-        			    	            "MENU_CACHE_TYPE" => "N",	// Тип кеширования
-        			    	            "MENU_CACHE_TIME" => "3600",	// Время кеширования (сек.)
-        			    	            "MENU_CACHE_USE_GROUPS" => "N",	// Учитывать права доступа
-        			    	            "MENU_CACHE_GET_VARS" => "",	// Значимые переменные запроса
+        			    	            "ROOT_MENU_TYPE" =>  $menuType,	// РўРёРї РјРµРЅСЋ РґР»СЏ РїРµСЂРІРѕРіРѕ СѓСЂРѕРІРЅСЏ
+        			    	            "MAX_LEVEL" => "2",	// РЈСЂРѕРІРµРЅСЊ РІР»РѕР¶РµРЅРЅРѕСЃС‚Рё РјРµРЅСЋ
+        			    	            "CHILD_MENU_TYPE" => "",	// РўРёРї РјРµРЅСЋ РґР»СЏ РѕСЃС‚Р°Р»СЊРЅС‹С… СѓСЂРѕРІРЅРµР№
+        			    	            "USE_EXT" => "Y",	// РџРѕРґРєР»СЋС‡Р°С‚СЊ С„Р°Р№Р»С‹ СЃ РёРјРµРЅР°РјРё РІРёРґР° .С‚РёРї_РјРµРЅСЋ.menu_ext.php
+        			    	            "DELAY" => "N",	// РћС‚РєР»Р°РґС‹РІР°С‚СЊ РІС‹РїРѕР»РЅРµРЅРёРµ С€Р°Р±Р»РѕРЅР° РјРµРЅСЋ
+        			    	            "ALLOW_MULTI_SELECT" => "N",	// Р Р°Р·СЂРµС€РёС‚СЊ РЅРµСЃРєРѕР»СЊРєРѕ Р°РєС‚РёРІРЅС‹С… РїСѓРЅРєС‚РѕРІ РѕРґРЅРѕРІСЂРµРјРµРЅРЅРѕ
+        			    	            "MENU_CACHE_TYPE" => "N",	// РўРёРї РєРµС€РёСЂРѕРІР°РЅРёСЏ
+        			    	            "MENU_CACHE_TIME" => "3600",	// Р’СЂРµРјСЏ РєРµС€РёСЂРѕРІР°РЅРёСЏ (СЃРµРє.)
+        			    	            "MENU_CACHE_USE_GROUPS" => "N",	// РЈС‡РёС‚С‹РІР°С‚СЊ РїСЂР°РІР° РґРѕСЃС‚СѓРїР°
+        			    	            "MENU_CACHE_GET_VARS" => "",	// Р—РЅР°С‡РёРјС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ Р·Р°РїСЂРѕСЃР°
         			    	        ),
         			    	        false
         			    	    );
@@ -245,7 +245,7 @@
 
 	    	        if($error && !$USER->IsAdmin())
 	    	        {
-	    	            LocalRedirect("/");// если пользователь пытается залезть в кабинет без доступа попадет на главную
+	    	            LocalRedirect("/");// РµСЃР»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РїС‹С‚Р°РµС‚СЃСЏ Р·Р°Р»РµР·С‚СЊ РІ РєР°Р±РёРЅРµС‚ Р±РµР· РґРѕСЃС‚СѓРїР° РїРѕРїР°РґРµС‚ РЅР° РіР»Р°РІРЅСѓСЋ
 	    	        }
 			    }
 			    else

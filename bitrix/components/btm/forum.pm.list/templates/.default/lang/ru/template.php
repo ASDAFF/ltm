@@ -1,14 +1,14 @@
 <?
-$MESS ['PM_EMPTY_FOLDER'] = "Íåò íè îäíîãî ïèñüìà.";
-$MESS ['PM_POST_FULLY'] = "Çàïîëíåíèå ÿùèêà:";
-$MESS ['PM_HEAD_SENDER'] = "Îòïðàâèòåëü";
-$MESS ['PM_HEAD_RECIPIENT'] = "Ïîëó÷àòåëü";
-$MESS ['PM_HEAD_AUTHOR'] = "Àâòîð";
-$MESS ['PM_HEAD_SUBJ'] = "Òåìà";
-$MESS ['PM_HEAD_DATE'] = "Äàòà";
-$MESS ['PM_ACT_MOVE'] = "Ïåðåìåñòèòü";
-$MESS ['PM_ACT_DELETE'] = "Óäàëèòü";
-$MESS ['PM_ACT_IN'] = "â";
-$MESS ['JS_NO_MESSAGES'] = "Íå óêàçàí ñïèñîê ñîîáùåíèé. Âûáåðèòå ñîîáùåíèÿ.";
-$MESS ['JS_DEL_MESSAGE'] = "Ñîîáùåíèÿ áóäóò óäàëåíû áåç âîçìîæíîñòè âîññòàíîâëåíèÿ. Óäàëèòü?";
+$MESS ['PM_EMPTY_FOLDER'] = "ÐÐµÑ‚ Ð½Ð¸ Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ð¿Ð¸ÑÑŒÐ¼Ð°.";
+$MESS ['PM_POST_FULLY'] = "Ð—Ð°Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ðµ ÑÑ‰Ð¸ÐºÐ°:";
+$MESS ['PM_HEAD_SENDER'] = "ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÐµÐ»ÑŒ";
+$MESS ['PM_HEAD_RECIPIENT'] = "ÐŸÐ¾Ð»ÑƒÑ‡Ð°Ñ‚ÐµÐ»ÑŒ";
+$MESS ['PM_HEAD_AUTHOR'] = "ÐÐ²Ñ‚Ð¾Ñ€";
+$MESS ['PM_HEAD_SUBJ'] = "Ð¢ÐµÐ¼Ð°";
+$MESS ['PM_HEAD_DATE'] = "Ð”Ð°Ñ‚Ð°";
+$MESS ['PM_ACT_MOVE'] = "ÐŸÐµÑ€ÐµÐ¼ÐµÑÑ‚Ð¸Ñ‚ÑŒ";
+$MESS ['PM_ACT_DELETE'] = "Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ";
+$MESS ['PM_ACT_IN'] = "Ð²";
+$MESS ['JS_NO_MESSAGES'] = "ÐÐµ ÑƒÐºÐ°Ð·Ð°Ð½ ÑÐ¿Ð¸ÑÐ¾Ðº ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ð¹. Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ.";
+$MESS ['JS_DEL_MESSAGE'] = "Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ Ð±ÑƒÐ´ÑƒÑ‚ ÑƒÐ´Ð°Ð»ÐµÐ½Ñ‹ Ð±ÐµÐ· Ð²Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ÑÑ‚Ð¸ Ð²Ð¾ÑÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸Ñ. Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ?";
 ?>

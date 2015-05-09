@@ -27,39 +27,39 @@ Params:
 	PROFILE_URL => path to page with profile component
 */
 
-$arParams["EXHIB_IBLOCK_ID"] = intval($arParams["EXHIB_IBLOCK_ID"]);//id инфоблока выставок
+$arParams["EXHIB_IBLOCK_ID"] = intval($arParams["EXHIB_IBLOCK_ID"]);//id РёРЅС„РѕР±Р»РѕРєР° РІС‹СЃС‚Р°РІРѕРє
 if(!$arParams["EXHIB_IBLOCK_ID"])
     $arParams["EXHIB_IBLOCK_ID"] = 15;
 
-//группы участников
+//РіСЂСѓРїРїС‹ СѓС‡Р°СЃС‚РЅРёРєРѕРІ
 foreach($arParams["PARTICPANT_GROUPS_ID"] as $index => &$groupID)
 {
     $groupID = intval($groupID);
     if(!$groupID)
     {
-    	unset($arParams["PARTICPANT_GROUPS_ID"][$index]);//удаляем неправильно записанные группы
+    	unset($arParams["PARTICPANT_GROUPS_ID"][$index]);//СѓРґР°Р»СЏРµРј РЅРµРїСЂР°РІРёР»СЊРЅРѕ Р·Р°РїРёСЃР°РЅРЅС‹Рµ РіСЂСѓРїРїС‹
     }
 }
-unset($groupID);//чтоб не затерлось другими циклами
+unset($groupID);//С‡С‚РѕР± РЅРµ Р·Р°С‚РµСЂР»РѕСЃСЊ РґСЂСѓРіРёРјРё С†РёРєР»Р°РјРё
 
-//группы гостей
+//РіСЂСѓРїРїС‹ РіРѕСЃС‚РµР№
 foreach($arParams["GUESTS_GROUPS_ID"] as $index => &$groupID)
 {
     $groupID = intval($groupID);
     if(!$groupID)
     {
-        unset($arParams["GUESTS_GROUPS_ID"][$index]);//удаляем неправильно записанные группы
+        unset($arParams["GUESTS_GROUPS_ID"][$index]);//СѓРґР°Р»СЏРµРј РЅРµРїСЂР°РІРёР»СЊРЅРѕ Р·Р°РїРёСЃР°РЅРЅС‹Рµ РіСЂСѓРїРїС‹
     }
 }
 unset($groupID);
 
-$arParams["EXHIB_IBLOCK_ID"] = intval($arParams["EXHIB_IBLOCK_ID"]);//id инфоблока выставок
+$arParams["EXHIB_IBLOCK_ID"] = intval($arParams["EXHIB_IBLOCK_ID"]);//id РёРЅС„РѕР±Р»РѕРєР° РІС‹СЃС‚Р°РІРѕРє
 if(!$arParams["EXHIB_IBLOCK_ID"])
     $arParams["EXHIB_IBLOCK_ID"] = 15;
 
 if(isset($_REQUEST["EXHIBIT_CODE"]))
 {
-    $arParams["EXHIB_CODE"] = trim($_REQUEST["EXHIBIT_CODE"]);//код выставки из реквеста
+    $arParams["EXHIB_CODE"] = trim($_REQUEST["EXHIBIT_CODE"]);//РєРѕРґ РІС‹СЃС‚Р°РІРєРё РёР· СЂРµРєРІРµСЃС‚Р°
 }
 
 
@@ -87,7 +87,7 @@ $arResult['ERROR'] = false;
 $arResult['SHOW_ERRORS'] = (array_key_exists('SHOW_ERRORS', $arParams) && $arParams['SHOW_ERRORS'] == 'Y'? 'Y' : 'N');
 
 
-//если пользователь не авторизован
+//РµСЃР»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РЅРµ Р°РІС‚РѕСЂРёР·РѕРІР°РЅ
 if(!$USER->IsAuthorized())
 {
 	$arResult["FORM_TYPE"] = "login";
@@ -185,7 +185,7 @@ if(!$USER->IsAuthorized())
 	else
 		$arResult["CAPTCHA_CODE"] = false;
 }
-else//если пользователь авторизован
+else//РµСЃР»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ Р°РІС‚РѕСЂРёР·РѕРІР°РЅ
 {
     $userId;
     if($USER->IsAdmin() && isset($_REQUEST["UID"])) {
@@ -195,20 +195,20 @@ else//если пользователь авторизован
     }
 
     $arUser = array();
-    //Если админ
+    //Р•СЃР»Рё Р°РґРјРёРЅ
     if($USER->IsAdmin())
     {
-        unset($_SESSION["USER_TYPE"]);//сбрасывам тип
+        unset($_SESSION["USER_TYPE"]);//СЃР±СЂР°СЃС‹РІР°Рј С‚РёРї
         $_SESSION["ADMIN"] = "Y";
     }
 
-    //проверяем тип пользователя
+    //РїСЂРѕРІРµСЂСЏРµРј С‚РёРї РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
     if(!isset($_SESSION["USER_TYPE"]))
     {
         $bUserTypeIsset = false;
     	$arUserGroups = CUser::GetUserGroup($userId);
 
-    	//прверка на участника
+    	//РїСЂРІРµСЂРєР° РЅР° СѓС‡Р°СЃС‚РЅРёРєР°
     	if(!$bUserTypeIsset)
     	{
         	foreach ($arParams["PARTICPANT_GROUPS_ID"] as $userGroupID)
@@ -222,7 +222,7 @@ else//если пользователь авторизован
         	}
     	}
 
-    	//прверка на гостя
+    	//РїСЂРІРµСЂРєР° РЅР° РіРѕСЃС‚СЏ
     	if(!$bUserTypeIsset)
     	{
         	foreach ($arParams["GUESTS_GROUPS_ID"] as $userGroupID)
@@ -252,7 +252,7 @@ else//если пользователь авторизован
 
 	$arResult["AUTH_URL"] = $currentUrl;
 	$arResult["PROFILE_URL"] = $arParams["PROFILE_URL"].(strpos($arParams["PROFILE_URL"], "?") !== false? "&" : "?")."backurl=".urlencode($currentUrl);
-/* затирает все
+/* Р·Р°С‚РёСЂР°РµС‚ РІСЃРµ
 	$arRes = array();
 	foreach($arResult as $key=>$value)
 	{

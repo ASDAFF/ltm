@@ -1,6 +1,6 @@
 <?$arTemplate = array(
-	"NAME" => "Ïóñòîé øàáëîí",
-	"DESCRIPTION" => "Äëÿ json, ajax  è ò.ï.",
+	"NAME" => "ÐŸÑƒÑÑ‚Ð¾Ð¹ ÑˆÐ°Ð±Ð»Ð¾Ð½",
+	"DESCRIPTION" => "Ð”Ð»Ñ json, ajax  Ð¸ Ñ‚.Ð¿.",
 	"SORT" => "",
 );
 ?>

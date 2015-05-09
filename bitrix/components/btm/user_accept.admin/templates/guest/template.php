@@ -11,7 +11,7 @@ if($arResult["ERROR_MESSAGE"] == ''){
 			<?
 			}
             if($arResult["USERS"]["COUNT"] == 0){
-				echo "<p style='font-size:14px;'><strong>В данной категории нет ни одного гостя.</strong></p>\n";
+				echo "<p style='font-size:14px;'><strong>Р’ РґР°РЅРЅРѕР№ РєР°С‚РµРіРѕСЂРёРё РЅРµС‚ РЅРё РѕРґРЅРѕРіРѕ РіРѕСЃС‚СЏ.</strong></p>\n";
             }
 			else{
 			?>
@@ -19,17 +19,17 @@ if($arResult["ERROR_MESSAGE"] == ''){
             <?
             if(isset($arResult["USERS"]["FORMAT"]) && $arResult["USERS"]["FORMAT"] == 'EVENING'){
 				?>
-            <p class="accept_users"><a href="/admin/service/excel.php?excel=user_evening" style="margin-left:10px;"><input name="excel" type="text" value="Генерировать Excel" style="cursor:pointer;" /></a>  <a href="/admin/service/excel.php?excel=user_evening_all" style="margin-left:10px;"><input name="excel" type="text" value="Excel (все люди)" style="cursor:pointer;" /></a></p>
+            <p class="accept_users"><a href="/admin/service/excel.php?excel=user_evening" style="margin-left:10px;"><input name="excel" type="text" value="Р“РµРЅРµСЂРёСЂРѕРІР°С‚СЊ Excel" style="cursor:pointer;" /></a>  <a href="/admin/service/excel.php?excel=user_evening_all" style="margin-left:10px;"><input name="excel" type="text" value="Excel (РІСЃРµ Р»СЋРґРё)" style="cursor:pointer;" /></a></p>
 				<?
 			}
 			elseif(isset($arResult["USERS"]["FORMAT"]) && $arResult["USERS"]["FORMAT"] == 'HB'){
 				?>
-            <p class="accept_users"><a href="/admin/service/excel.php?excel=user_hb" style="margin-left:10px;"><input name="excel" type="text" value="Генерировать Excel" style="cursor:pointer;" /></a>  <a href="/admin/service/excel.php?excel=user_hb_all" style="margin-left:10px;"><input name="excel" type="text" value="Excel (все люди)" style="cursor:pointer;" /></a></p>
+            <p class="accept_users"><a href="/admin/service/excel.php?excel=user_hb" style="margin-left:10px;"><input name="excel" type="text" value="Р“РµРЅРµСЂРёСЂРѕРІР°С‚СЊ Excel" style="cursor:pointer;" /></a>  <a href="/admin/service/excel.php?excel=user_hb_all" style="margin-left:10px;"><input name="excel" type="text" value="Excel (РІСЃРµ Р»СЋРґРё)" style="cursor:pointer;" /></a></p>
 				<?
 			}
 			else{
 				?>
-            <p class="accept_users"><a href="/admin/service/excel.php?excel=user_morning" style="margin-left:10px;"><input name="excel" type="text" value="Генерировать Excel" style="cursor:pointer;" /></a>  <a href="/admin/service/excel.php?excel=user_morning_all" style="margin-left:10px;"><input name="excel" type="text" value="Excel (все люди)" style="cursor:pointer;" /></a></p>
+            <p class="accept_users"><a href="/admin/service/excel.php?excel=user_morning" style="margin-left:10px;"><input name="excel" type="text" value="Р“РµРЅРµСЂРёСЂРѕРІР°С‚СЊ Excel" style="cursor:pointer;" /></a>  <a href="/admin/service/excel.php?excel=user_morning_all" style="margin-left:10px;"><input name="excel" type="text" value="Excel (РІСЃРµ Р»СЋРґРё)" style="cursor:pointer;" /></a></p>
 				<?
 			}
 			?>
@@ -40,7 +40,7 @@ if($arResult["ERROR_MESSAGE"] == ''){
 			  $countPhone = 0;
 			  $countName = 0;
               for($i=0; $i<$arResult["FIELDS"]["COUNT"]; $i++){
-			  	if($arResult["FIELDS"][$i]["TITLE"] == "Телефон"){
+			  	if($arResult["FIELDS"][$i]["TITLE"] == "РўРµР»РµС„РѕРЅ"){
 					if($countPhone == 0){
 						?>
 						<td width="100"><strong><?=$arResult["FIELDS"][$i]["TITLE"]?></strong></td>
@@ -48,25 +48,25 @@ if($arResult["ERROR_MESSAGE"] == ''){
 						$countPhone++;
 					}
 				}
-			  	elseif($arResult["FIELDS"][$i]["TITLE"] == "Имя" || $arResult["FIELDS"][$i]["TITLE"] == "Фамилия"){
+			  	elseif($arResult["FIELDS"][$i]["TITLE"] == "РРјСЏ" || $arResult["FIELDS"][$i]["TITLE"] == "Р¤Р°РјРёР»РёСЏ"){
 					if($countName == 0){
 						?>
-						<td width="100"><strong>Представитель</strong></td>
+						<td width="100"><strong>РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ</strong></td>
 						<?
 						$countName++;
 					}
 				}
-				elseif(strpos($arResult["FIELDS"][$i]["TITLE"], "(вечер)") === false && $arResult["FIELDS"][$i]["TITLE"] != "Альтернативный e-mail"){
+				elseif(strpos($arResult["FIELDS"][$i]["TITLE"], "(РІРµС‡РµСЂ)") === false && $arResult["FIELDS"][$i]["TITLE"] != "РђР»СЊС‚РµСЂРЅР°С‚РёРІРЅС‹Р№ e-mail"){
 			  	?>
                 <td width="100"><strong><?=$arResult["FIELDS"][$i]["TITLE"]?></strong></td>
 				<?
 				}
 			  }
 			  ?>
-                <td width="80"><strong>Редактировать</strong></td>
-                <td width="80"><strong>Расписание</strong></td>
-                <td width="80"><strong>Wish-лист</strong></td>
-                <td width="80"><strong>Спам</strong></td>
+                <td width="80"><strong>Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ</strong></td>
+                <td width="80"><strong>Р Р°СЃРїРёСЃР°РЅРёРµ</strong></td>
+                <td width="80"><strong>Wish-Р»РёСЃС‚</strong></td>
+                <td width="80"><strong>РЎРїР°Рј</strong></td>
               </tr>
               <?
               for($j=0; $j<$arResult["USERS"]["COUNT"]; $j++){
@@ -76,7 +76,7 @@ if($arResult["ERROR_MESSAGE"] == ''){
               <tr <? if(!($j % 2)){?>class="chet"<? }?>>
               <?
               for($i=0; $i<$arResult["FIELDS"]["COUNT"]; $i++){
-			  	if($arResult["FIELDS"][$i]["TITLE"] == "Телефон"){
+			  	if($arResult["FIELDS"][$i]["TITLE"] == "РўРµР»РµС„РѕРЅ"){
 					if($countPhone == 0){
 						?>
 						<td><nobr><?=$arResult["USERS"][$j]["FIELDS"][$i]?> 
@@ -96,7 +96,7 @@ if($arResult["ERROR_MESSAGE"] == ''){
 						$countPhone++;
 					}
 				}
-			  	elseif($arResult["FIELDS"][$i]["TITLE"] == "Имя" || $arResult["FIELDS"][$i]["TITLE"] == "Фамилия"){
+			  	elseif($arResult["FIELDS"][$i]["TITLE"] == "РРјСЏ" || $arResult["FIELDS"][$i]["TITLE"] == "Р¤Р°РјРёР»РёСЏ"){
 					if($countName == 0){
 						?>
 						<td width="100"><?=$arResult["USERS"][$j]["FIELDS"][$i]?> 
@@ -110,18 +110,18 @@ if($arResult["ERROR_MESSAGE"] == ''){
 						$countName++;
 					}
 				}
-				elseif(strpos($arResult["FIELDS"][$i]["TITLE"], "(вечер)") === false && $arResult["FIELDS"][$i]["TITLE"] != "Альтернативный e-mail"){
-					$arResult["USERS"][$j]["FIELDS"][$i]=str_replace("Вечерняя сессия (без предварительно назначенных встреч)","Вечерняя сессия",$arResult["USERS"][$j]["FIELDS"][$i]);
+				elseif(strpos($arResult["FIELDS"][$i]["TITLE"], "(РІРµС‡РµСЂ)") === false && $arResult["FIELDS"][$i]["TITLE"] != "РђР»СЊС‚РµСЂРЅР°С‚РёРІРЅС‹Р№ e-mail"){
+					$arResult["USERS"][$j]["FIELDS"][$i]=str_replace("Р’РµС‡РµСЂРЅСЏСЏ СЃРµСЃСЃРёСЏ (Р±РµР· РїСЂРµРґРІР°СЂРёС‚РµР»СЊРЅРѕ РЅР°Р·РЅР°С‡РµРЅРЅС‹С… РІСЃС‚СЂРµС‡)","Р’РµС‡РµСЂРЅСЏСЏ СЃРµСЃСЃРёСЏ",$arResult["USERS"][$j]["FIELDS"][$i]);
 			  	?>
                 <td><?=$arResult["USERS"][$j]["FIELDS"][$i]?></td>
 				<?
 				}
 			  }
 			  ?>
-                <td width="80"><a href="/admin/service/edit.php?id=<?=$arResult["USERS"][$j]["ID"]?>&result=<?=$arResult["USERS"][$j]["ANKETA"]?>&type=edit" target="_blank" onclick="newWind('/admin/service/edit.php?id=<?=$arResult["USERS"][$j]["ID"]?>&result=<?=$arResult["USERS"][$j]["ANKETA"]?>&type=edit', 500, 600); return false;">Редактировать</a></td>
-                <td width="80"><a href="/admin/service/shedule_guest.php?id=<?=$arResult["USERS"][$j]["ID"]?>" target="_blank" onclick="newWind('/admin/service/shedule_guest.php?id=<?=$arResult["USERS"][$j]["ID"]?>', 650, 600); return false;">Генерировать</a></td>
-                <td width="80"><a href="/admin/service/wish_guest.php?id=<?=$arResult["USERS"][$j]["ID"]?>" target="_blank" onclick="newWind('/admin/service/wish_guest.php?id=<?=$arResult["USERS"][$j]["ID"]?>', 650, 600); return false;">Генерировать</a></td>
-                <td width="80"><a href="/admin/guest/off/?id=<?=$arResult["USERS"][$j]["ID"]?>&type=spam">Спам</a></td>
+                <td width="80"><a href="/admin/service/edit.php?id=<?=$arResult["USERS"][$j]["ID"]?>&result=<?=$arResult["USERS"][$j]["ANKETA"]?>&type=edit" target="_blank" onclick="newWind('/admin/service/edit.php?id=<?=$arResult["USERS"][$j]["ID"]?>&result=<?=$arResult["USERS"][$j]["ANKETA"]?>&type=edit', 500, 600); return false;">Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ</a></td>
+                <td width="80"><a href="/admin/service/shedule_guest.php?id=<?=$arResult["USERS"][$j]["ID"]?>" target="_blank" onclick="newWind('/admin/service/shedule_guest.php?id=<?=$arResult["USERS"][$j]["ID"]?>', 650, 600); return false;">Р“РµРЅРµСЂРёСЂРѕРІР°С‚СЊ</a></td>
+                <td width="80"><a href="/admin/service/wish_guest.php?id=<?=$arResult["USERS"][$j]["ID"]?>" target="_blank" onclick="newWind('/admin/service/wish_guest.php?id=<?=$arResult["USERS"][$j]["ID"]?>', 650, 600); return false;">Р“РµРЅРµСЂРёСЂРѕРІР°С‚СЊ</a></td>
+                <td width="80"><a href="/admin/guest/off/?id=<?=$arResult["USERS"][$j]["ID"]?>&type=spam">РЎРїР°Рј</a></td>
               </tr>
               <?
 			  }

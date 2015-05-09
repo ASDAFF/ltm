@@ -1,4 +1,4 @@
 <?
-$MESS ['T_DEFAULT_DESC_NAME'] = "Îáùèé øàáëîí";
-$MESS ['T_DEFAULT_DESC_DESC'] = "Îáùèå âêëþ÷àåìûå ôàéëû, header.php è footer.php ïî óìîë÷àíèþ.";
+$MESS ['T_DEFAULT_DESC_NAME'] = "ÐžÐ±Ñ‰Ð¸Ð¹ ÑˆÐ°Ð±Ð»Ð¾Ð½";
+$MESS ['T_DEFAULT_DESC_DESC'] = "ÐžÐ±Ñ‰Ð¸Ðµ Ð²ÐºÐ»ÑŽÑ‡Ð°ÐµÐ¼Ñ‹Ðµ Ñ„Ð°Ð¹Ð»Ñ‹, header.php Ð¸ footer.php Ð¿Ð¾ ÑƒÐ¼Ð¾Ð»Ñ‡Ð°Ð½Ð¸ÑŽ.";
 ?>

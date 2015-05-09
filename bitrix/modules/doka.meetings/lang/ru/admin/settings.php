@@ -1,14 +1,14 @@
 <?
-$MESS["HLBLOCK_ADMIN_ROWS_ADD_NEW_BUTTON"] = "Äîáàâèòü çàïèñü";
-$MESS["HLBLOCK_ADMIN_ROWS_RETURN_TO_LIST_BUTTON"] = "Âåðíóòüñÿ â ñïèñîê";
-$MESS["HLBLOCK_ADMIN_DELETE_ROW_CONFIRM"] = "Óäàëèòü çàïèñü?";
-$MESS["HLBLOCK_ADMIN_ROWS_LIST_PAGE_TITLE"] = "Ñïèñîê âñòðå÷";
-$MESS["IBLIST_A_NAME"] = "Íàçâàíèå âûñòàâêè";
-$MESS["IBLIST_A_GUESTS_GROUP"] = "Ãðóïïà ãîñòåé";
-$MESS["IBLIST_A_MEMBERS_GROUP"] = "Ãðóïïà ó÷àñòíèêîâ";
-$MESS["IBLIST_A_IS_LOCKED"] = "Âñòðå÷è çàáëîêèðîâàíû";
-$MESS["IBLIST_A_TIMESLOTS"] = "Ñïèñîê òàéìñëîòîâ";
-$MESS["IBLIST_A_TIMESLOTS_SHOW"] = "Ñìîòðåòü";
-$MESS["DOKA_MEET_IS_LOCKED"] = "Äà";
-$MESS["DOKA_MEET_IS_NOT_LOCKED"] = "Íåò";
+$MESS["HLBLOCK_ADMIN_ROWS_ADD_NEW_BUTTON"] = "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ð¸ÑÑŒ";
+$MESS["HLBLOCK_ADMIN_ROWS_RETURN_TO_LIST_BUTTON"] = "Ð’ÐµÑ€Ð½ÑƒÑ‚ÑŒÑÑ Ð² ÑÐ¿Ð¸ÑÐ¾Ðº";
+$MESS["HLBLOCK_ADMIN_DELETE_ROW_CONFIRM"] = "Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ð¸ÑÑŒ?";
+$MESS["HLBLOCK_ADMIN_ROWS_LIST_PAGE_TITLE"] = "Ð¡Ð¿Ð¸ÑÐ¾Ðº Ð²ÑÑ‚Ñ€ÐµÑ‡";
+$MESS["IBLIST_A_NAME"] = "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð²Ñ‹ÑÑ‚Ð°Ð²ÐºÐ¸";
+$MESS["IBLIST_A_GUESTS_GROUP"] = "Ð“Ñ€ÑƒÐ¿Ð¿Ð° Ð³Ð¾ÑÑ‚ÐµÐ¹";
+$MESS["IBLIST_A_MEMBERS_GROUP"] = "Ð“Ñ€ÑƒÐ¿Ð¿Ð° ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¾Ð²";
+$MESS["IBLIST_A_IS_LOCKED"] = "Ð’ÑÑ‚Ñ€ÐµÑ‡Ð¸ Ð·Ð°Ð±Ð»Ð¾ÐºÐ¸Ñ€Ð¾Ð²Ð°Ð½Ñ‹";
+$MESS["IBLIST_A_TIMESLOTS"] = "Ð¡Ð¿Ð¸ÑÐ¾Ðº Ñ‚Ð°Ð¹Ð¼ÑÐ»Ð¾Ñ‚Ð¾Ð²";
+$MESS["IBLIST_A_TIMESLOTS_SHOW"] = "Ð¡Ð¼Ð¾Ñ‚Ñ€ÐµÑ‚ÑŒ";
+$MESS["DOKA_MEET_IS_LOCKED"] = "Ð”Ð°";
+$MESS["DOKA_MEET_IS_NOT_LOCKED"] = "ÐÐµÑ‚";
 ?>

@@ -1,27 +1,27 @@
 <?
 function DokaGeneratePdf($arResult) {
-	$pdf = new TCPDF('P', 'mm', 'A4', false, 'UTF-8', false);
+	$pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
 	$pdf->setPrintHeader(false);
 	$pdf->setPrintFooter(false);
 	$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-	// $pdf->AddFont('times','I','timesi.php');
+	// $pdf->AddFont('freeserif','I','freeserifi.php');
 	$pdf->AddPage();
 	$pdf->ImageSVG($file=DOKA_MEETINGS_MODULE_DIR . '/images/logo.svg', $x=30, $y=5, $w='150', $h='', $link='', $align='', $palign='', $border=0, $fitonpage=false);
 
 	$pdf->setXY(0,25);
-	$pdf->SetFont('times','B',18);
-	$pdf->multiCell(220, 6, iconv('utf-8', 'windows-1251', 'Personal diary during the morning session'), 0, C);
-	$pdf->SetFont('times','B',18);
+	$pdf->SetFont('freeserif','B',18);
+	$pdf->multiCell(220, 6, 'Personal diary during the morning session', 0, C);
+	$pdf->SetFont('freeserif','B',18);
 	if($arResult["EXHIBITION"]["IS_HB"]){
 		$arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'] .= " Hosted Buyers session";
 	}
 	$pdf->multiCell(200, 6, "at " . $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'], 0, C);
-	$pdf->SetFont('times','',15);
+	$pdf->SetFont('freeserif','',15);
 	$pdf->setXY(30,45);
 	$pdf->multiCell(210, 5, $arResult["USER"]['COMPANY'], 0, L);
-	$pdf->setXY(30,50);
-	$pdf->multiCell(210, 5, iconv('utf-8', 'windows-1251', $arResult["USER"]['REP']), 0, L);
-	$pdf->SetFont('times','',13);
+	$pdf->setXY(30,52);
+	$pdf->multiCell(210, 5, $arResult["USER"]['REP'], 0, L);
+	$pdf->SetFont('freeserif','',13);
 	$pdf->setXY(30,60);
 	if($arResult["EXHIBITION"]["IS_HB"] != '1'){
 		if($arResult["HALL"] != "None"){
@@ -32,10 +32,10 @@ function DokaGeneratePdf($arResult) {
 		}
 		$pdf->setXY(0,70);
 	}
-	$pdf->SetFont('Times','',11);
+	$pdf->SetFont('freeserif','',11);
 	$pdf->SetX(20);
 
-	/* ‘ÓÏËÛÂÏ Ú‡·ÎËˆÛ */
+	/* –§–æ—Ä–º–∏—Ä—É–µ–º —Ç–∞–±–ª–∏—Ü—É */
 	if($arResult["EXHIBITION"]["IS_HB"] == '1'){
 		$header = '
 		<table cellspacing="0" cellpadding="5" border="1">
@@ -57,48 +57,48 @@ function DokaGeneratePdf($arResult) {
 					<th align="center" width="90"> </th>
 				</tr>
 		';
-		$colspanGuest = 2;	
+		$colspanGuest = 2;
 	}
 
 	$tbl = $header;
 	$count = 0;
 	$countBreaks = 0;
-	foreach ($arResult['SCHEDULE'] as $timeslot) {
+	foreach ($arResult['SCHEDULE'] as $freeseriflot) {
 		$count++;
-		if ($timeslot['status'] == 'free') {
+		if ($freeseriflot['status'] == 'free') {
 			$tbl .= '<tr>
-				  <td>' . $timeslot['name'] . '</td>
+				  <td>' . $freeseriflot['name'] . '</td>
 				  <td colspan="'.$colspanGuest.'" align="center">Free time</td>
 			  </tr>';
 		}
-		else if($timeslot['status'] == 'coffe' && !$countBreaks){
+		else if($freeseriflot['status'] == 'coffe' && !$countBreaks){
 			$tbl .= '<tr>
-				  <td>' . $timeslot['name'] . '</td>
+				  <td>' . $freeseriflot['name'] . '</td>
 				  <td colspan="'.$colspanGuest.'" align="center">Coffee-break</td>
 			  </tr>';
 			  $countBreaks++;
 			}
-		else if($timeslot['status'] == 'coffe' && $countBreaks){
+		else if($freeseriflot['status'] == 'coffe' && $countBreaks){
 			$tbl .= '<tr>
-				  <td>' . $timeslot['name'] . '</td>
+				  <td>' . $freeseriflot['name'] . '</td>
 				  <td colspan="'.$colspanGuest.'" align="center">Lunch</td>
 			  </tr>';
 			}
 		else {
 			if(!$arResult["EXHIBITION"]["IS_HB"]){
 				$tbl .= '<tr>
-					  <td>' . $timeslot['name'] . '</td>
-					  <td>Company: ' . iconv('utf-8', 'windows-1251', $timeslot['company_name']) . '<br />Representative: ' . iconv('utf-8', 'windows-1251', $timeslot['company_rep']) . '</td>
-					  <td align="center">' . $timeslot['notes'] . '</td>
+					  <td>' . $freeseriflot['name'] . '</td>
+					  <td>Company: ' . $freeseriflot['company_name'] . '<br />Representative: ' . $freeseriflot['company_rep'] . '</td>
+					  <td align="center">' . $freeseriflot['notes'] . '</td>
 				  </tr>';
 			}
 			else{
 				$tbl .= '<tr>
-					  <td>' . $timeslot['name'] . '</td>
-					  <td>Company: ' . iconv('utf-8', 'windows-1251', $timeslot['company_name']) . '<br />Representative: ' . iconv('utf-8', 'windows-1251', $timeslot['company_rep']) . '</td>
-					  <td align="center">' . $timeslot['notes'] . '</td>';
-				if($timeslot['hall']){
-				 	$tbl .= '<td>'.$timeslot['hall'].', '.iconv('utf-8', 'windows-1251', $timeslot['table']).'</td>
+					  <td>' . $freeseriflot['name'] . '</td>
+					  <td>Company: ' . $freeseriflot['company_name'] . '<br />Representative: ' . $freeseriflot['company_rep'] . '</td>
+					  <td align="center">' . $freeseriflot['notes'] . '</td>';
+				if($freeseriflot['hall']){
+				 	$tbl .= '<td>'.$freeseriflot['hall'].', '.$freeseriflot['table'].'</td>
 							</tr>';
 				}
 				else{

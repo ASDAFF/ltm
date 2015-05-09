@@ -37,7 +37,7 @@ $l['a_meta_dir'] = 'ltr';
 $l['a_meta_language'] = 'cs';
 
 // TRANSLATIONS --------------------------------------
-$l['w_page'] = 'stránka';
+$l['w_page'] = 'strГЎnka';
 
 //============================================================+
 // END OF FILE

@@ -1,6 +1,6 @@
 <?
-$MESS['ADMIN_MENU_ERROR_ENTER'] = "Ó âàñ íåäîñòàòî÷íî ïðàâ äëÿ âõîäà â äàííûé ðàçäåë.";
-$MESS['F_NO_MODULE'] = "Íå íàéäåí ìîäóëü ôîðóìà.";
+$MESS['ADMIN_MENU_ERROR_ENTER'] = "Ð£ Ð²Ð°Ñ Ð½ÐµÐ´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ Ð¿Ñ€Ð°Ð² Ð´Ð»Ñ Ð²Ñ…Ð¾Ð´Ð° Ð² Ð´Ð°Ð½Ð½Ñ‹Ð¹ Ñ€Ð°Ð·Ð´ÐµÐ».";
+$MESS['F_NO_MODULE'] = "ÐÐµ Ð½Ð°Ð¹Ð´ÐµÐ½ Ð¼Ð¾Ð´ÑƒÐ»ÑŒ Ñ„Ð¾Ñ€ÑƒÐ¼Ð°.";
 $MESS['UPDATE_SUCCESS'] = "Thank you! Your registration info has been updated.";
 $MESS['IS_BLOKED'] = "Capability to edit the registration data is blocked by the organizers.";
 ?>

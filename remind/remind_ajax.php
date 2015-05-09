@@ -12,7 +12,7 @@ function strcode($str, $passw=""){
 		}
 		return $str^$gamma;
 	}
-//Ïðîâåðÿåì, åñòü ëè âîîáùå ââåä¸ííûé ïàðîëü â áàçå
+//ÐŸÑ€Ð¾Ð²ÐµÑ€ÑÐµÐ¼, ÐµÑÑ‚ÑŒ Ð»Ð¸ Ð²Ð¾Ð¾Ð±Ñ‰Ðµ Ð²Ð²ÐµÐ´Ñ‘Ð½Ð½Ñ‹Ð¹ Ð¿Ð°Ñ€Ð¾Ð»ÑŒ Ð² Ð±Ð°Ð·Ðµ
 $filter = Array("!UF_PAS" => "", 'LOGIN'=>$login); 
 $rsUsers = CUser::GetList(($by="id"), ($order="desc"), $filter, array("SELECT"=>array("UF_PAS")));
 while ($arUser = $rsUsers->Fetch()){

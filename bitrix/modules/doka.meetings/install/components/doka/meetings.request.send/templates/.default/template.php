@@ -7,9 +7,9 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 	<? echo implode('<br>', $arResult['ERROR_MESSAGE']); ?>
 <?elseif(isset($arResult['REQUEST_SENT'])):?>
 	<? if (isset($arResult['FORM_ERROR'])): ?>
-		Ошибка отправки. Слот занят.
+		РћС€РёР±РєР° РѕС‚РїСЂР°РІРєРё. РЎР»РѕС‚ Р·Р°РЅСЏС‚.
 	<? else: ?>
-		Запрос успешно отправлен. Закрытие через 5 секунд.
+		Р—Р°РїСЂРѕСЃ СѓСЃРїРµС€РЅРѕ РѕС‚РїСЂР°РІР»РµРЅ. Р—Р°РєСЂС‹С‚РёРµ С‡РµСЂРµР· 5 СЃРµРєСѓРЅРґ.
 	<? endif;?>
 	<script type="text/javascript">
 		setTimeout( function() { window.close(); }, 5000);

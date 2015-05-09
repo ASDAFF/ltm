@@ -5,7 +5,7 @@ if($arResult["ERROR_MESSAGE"] == ''){
 	?>
             <div class="main_table">
             <form method="post" action="" name="accept">
-            <p class="accept_users"><input name="accept" type="submit" value="Подтвердить участие" /> <a href="/admin/service/excel.php?excel=part_of" style="margin-left:10px;"><input name="excel" type="text" value="Генерировать Excel" style="cursor:pointer;" /></a></p>
+            <p class="accept_users"><input name="accept" type="submit" value="РџРѕРґС‚РІРµСЂРґРёС‚СЊ СѓС‡Р°СЃС‚РёРµ" /> <a href="/admin/service/excel.php?excel=part_of" style="margin-left:10px;"><input name="excel" type="text" value="Р“РµРЅРµСЂРёСЂРѕРІР°С‚СЊ Excel" style="cursor:pointer;" /></a></p>
             <?
             if($arResult["MESSAGE"]){
 			?>
@@ -34,7 +34,7 @@ if($arResult["ERROR_MESSAGE"] == ''){
 				}
 			  }
 			  ?>
-				<td width="80"><strong>Источник</strong></td>
+				<td width="80"><strong>РСЃС‚РѕС‡РЅРёРє</strong></td>
 				<td width="80"><strong>Company or Hotel</strong></td>
               </tr>
               <?

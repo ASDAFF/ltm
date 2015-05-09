@@ -5,7 +5,7 @@ IncludeModuleLangFile(__FILE__);
 class Wishlist
 {
 
-    const REASON_EMPTY     = 0; // Причина добавления не выбрана
+    const REASON_EMPTY     = 0; // РџСЂРёС‡РёРЅР° РґРѕР±Р°РІР»РµРЅРёСЏ РЅРµ РІС‹Р±СЂР°РЅР°
     const REASON_REJECTED  = 1;
     const REASON_TIMEOUT   = 2;
     const REASON_SELECTED  = 3;
@@ -190,7 +190,7 @@ class Wishlist
     }
 
     /**
-     * Дополняет массив необходимыми полями
+     * Р”РѕРїРѕР»РЅСЏРµС‚ РјР°СЃСЃРёРІ РЅРµРѕР±С…РѕРґРёРјС‹РјРё РїРѕР»СЏРјРё
      * @param  array $arFields
      * @return array $arFields
      */

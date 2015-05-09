@@ -1,6 +1,6 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 /*--------------- TO DO -------------------*/
-//Добавить количество временных интервалов
+//Р”РѕР±Р°РІРёС‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ РІСЂРµРјРµРЅРЅС‹С… РёРЅС‚РµСЂРІР°Р»РѕРІ
 
 $arResult["ERROR_MESSAGE"] = "";
 $arResult["MESSAGE"] = "";
@@ -48,23 +48,23 @@ if(!($USER->IsAuthorized()))
 CModule::IncludeModule('iblock');
 
 $times = array(
-	  '10:00 – 10:10', '10:15 – 10:25',
-	  '10:30 – 10:40', '10:45 – 10:55',
-	  '11:00 – 11:10', '11:15 – 11:25',
-	  '11:30 – 11:40', '11:45 – 11:55',
-	  '12:10 – 12:20', '12:25 – 12:35',
-	  '12:40 – 12:50', '12:55 – 13:05',
-	  '13:10 – 13:20', '13:25 – 13:35',
-	  '13:40 – 13:50', '13:55 – 14:05',
-	  '14:10 – 14:20'
+	  '10:00 вЂ“ 10:10', '10:15 вЂ“ 10:25',
+	  '10:30 вЂ“ 10:40', '10:45 вЂ“ 10:55',
+	  '11:00 вЂ“ 11:10', '11:15 вЂ“ 11:25',
+	  '11:30 вЂ“ 11:40', '11:45 вЂ“ 11:55',
+	  '12:10 вЂ“ 12:20', '12:25 вЂ“ 12:35',
+	  '12:40 вЂ“ 12:50', '12:55 вЂ“ 13:05',
+	  '13:10 вЂ“ 13:20', '13:25 вЂ“ 13:35',
+	  '13:40 вЂ“ 13:50', '13:55 вЂ“ 14:05',
+	  '14:10 вЂ“ 14:20'
   );
 
 /*---------------------------------------------------*/
-//           ФОРМИРУЕМ ВЫВОД ДЛЯ ШАБЛОНА             //
+//           Р¤РћР РњРР РЈР•Рњ Р’Р«Р’РћР” Р”Р›РЇ РЁРђР‘Р›РћРќРђ             //
 /*---------------------------------------------------*/
 if($arResult["ERROR_MESSAGE"] == '' && $USER->IsAdmin())
 {
-	//СПИСОК НЕОТМЕНЕННЫХ ВСТРЕЧ
+	//РЎРџРРЎРћРљ РќР•РћРўРњР•РќР•РќРќР«РҐ Р’РЎРўР Р•Р§
 	$meetingList = array();
 	$arFilterM = Array(
 	   "IBLOCK_ID" => $arParams["APP_ID"],
@@ -78,7 +78,7 @@ if($arResult["ERROR_MESSAGE"] == '' && $USER->IsAdmin())
 		$meetingList[$ar_meet["ID"]]["ACTIVE"] = $ar_meet["ACTIVE"];
 		$meetingList[$ar_meet["ID"]]["STATUS"] = $ar_meet['PROPERTY_STATUS_VALUE'];
 	}
-	//СПИСОК СВОБОДНЫХ ПОЛЬЗОВАТЕЛЕЙ ПО ВРЕМЕННЫМ ИНТЕРВАЛАМ
+	//РЎРџРРЎРћРљ РЎР’РћР‘РћР”РќР«РҐ РџРћР›Р¬Р—РћР’РђРўР•Р›Р•Р™ РџРћ Р’Р Р•РњР•РќРќР«Рњ РРќРўР•Р Р’РђР›РђРњ
 	$freeUsersTimes = array();
 	$usersList = array();
 	for($i=0; $i<$arParams["APP_COUNT"]; $i++){
@@ -91,7 +91,7 @@ if($arResult["ERROR_MESSAGE"] == '' && $USER->IsAdmin())
 	$filter = Array(
 		"GROUPS_ID"  => Array($arParams["GROUP_RECIVER_ID"])
 	);
-	$reciveUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // выбираем пользователей
+	$reciveUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // РІС‹Р±РёСЂР°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 	while($arUsersTemp=$reciveUsers->Fetch()){
 	  $usersList[$arUsersTemp["ID"]]["COMPANY"] = $arUsersTemp["WORK_COMPANY"];
 	  $usersList[$arUsersTemp["ID"]]["REP"] = $arUsersTemp["NAME"]." ".$arUsersTemp["LAST_NAME"];
@@ -104,16 +104,16 @@ if($arResult["ERROR_MESSAGE"] == '' && $USER->IsAdmin())
 	  }
 	}
 	
-	//СПИСОК ПОЛЬЗОВАТЕЛЕЙ
+	//РЎРџРРЎРћРљ РџРћР›Р¬Р—РћР’РђРўР•Р›Р•Р™
 	$userList = array();
 	$userList["LIST"]=array();
 	$userList["COUNT"]=0;
 	$filter = Array(
 		"GROUPS_ID"  => Array($arParams["GROUP_SENDER_ID"])
 	);
-	$rsUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // выбираем пользователей
-	$rsUsers->NavStart(30); // разбиваем постранично по 50 записей
-	$arResult["NAVIGATE"] = $rsUsers->GetPageNavStringEx($navComponentObject, "Пользователи", "");
+	$rsUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // РІС‹Р±РёСЂР°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
+	$rsUsers->NavStart(30); // СЂР°Р·Р±РёРІР°РµРј РїРѕСЃС‚СЂР°РЅРёС‡РЅРѕ РїРѕ 50 Р·Р°РїРёСЃРµР№
+	$arResult["NAVIGATE"] = $rsUsers->GetPageNavStringEx($navComponentObject, "РџРѕР»СЊР·РѕРІР°С‚РµР»Рё", "");
 
 	while($arUsersTemp=$rsUsers->Fetch()){
 		$userList["LIST"][$userList["COUNT"]]["ID"] = $arUsersTemp["ID"];

@@ -1,8 +1,8 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Партнеры");
+$APPLICATION->SetTitle("РџР°СЂС‚РЅРµСЂС‹");
 ?> 
-<h1>Партнеры</h1>
+<h1>РџР°СЂС‚РЅРµСЂС‹</h1>
  <?$APPLICATION->IncludeComponent(
 	"btm:sponsors",
 	"sponsors",

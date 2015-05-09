@@ -6,7 +6,7 @@
     <?=bitrix_sessid_post()?>
         <table>
             <tr>
-                <td></td><td>Название выставки</td><td>Статус выставки</td><td>Статус участника</td>
+                <td></td><td>РќР°Р·РІР°РЅРёРµ РІС‹СЃС‚Р°РІРєРё</td><td>РЎС‚Р°С‚СѓСЃ РІС‹СЃС‚Р°РІРєРё</td><td>РЎС‚Р°С‚СѓСЃ СѓС‡Р°СЃС‚РЅРёРєР°</td>
             </tr>
             <? foreach ($arResult["ITEMS"] as $arItem):?>
             <?
@@ -46,8 +46,8 @@
 
         </table>
         <br />
-        <input type="submit" name="save" value="Сохранить">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="reset" name="reset" value="Сбросить">
+        <input type="submit" name="save" value="РЎРѕС…СЂР°РЅРёС‚СЊ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="reset" name="reset" value="РЎР±СЂРѕСЃРёС‚СЊ">
     </form>
     <? endif;?>
 </div>

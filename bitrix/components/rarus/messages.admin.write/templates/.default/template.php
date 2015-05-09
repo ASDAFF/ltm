@@ -12,38 +12,38 @@ if($arResult["ERROR_MESSAGE"] == ''){
     </script>
     <? echo "<p class='link' style='color:#ff0000;'><strong>".$arResult["MESSAGE"]."</strong></p>";?>
     <form action="<?=$arResult["URL"]?>" method="post" name="admin_message">
-    <h1>Адресаты</h1>
+    <h1>РђРґСЂРµСЃР°С‚С‹</h1>
     <table width="700" border="0" cellspacing="0" cellpadding="7" class="admin_info">
       <tr class="odd">
         <td width="50" class="text-center"><input name="GUEST_M" type="checkbox" value="1" style="width:20px;"></td>
-        <td><strong>Всем гостям утренней сессии</strong></td>
+        <td><strong>Р’СЃРµРј РіРѕСЃС‚СЏРј СѓС‚СЂРµРЅРЅРµР№ СЃРµСЃСЃРёРё</strong></td>
       </tr>
       <tr class="even">
         <td width="50" class="text-center"><input name="GUEST_HB" type="checkbox" value="1" style="width:20px;"></td>
-        <td><strong>Всем гостям HB</strong></td>
+        <td><strong>Р’СЃРµРј РіРѕСЃС‚СЏРј HB</strong></td>
       </tr>
       <tr class="odd" class="text-center">
         <td class="text-center"><input name="PARTICIPANT" type="checkbox" value="1" style="width:20px;"></td>
-        <td><strong>Всем участникам</strong></td>
+        <td><strong>Р’СЃРµРј СѓС‡Р°СЃС‚РЅРёРєР°Рј</strong></td>
       </tr>
     </table>
-    <? printTable($arResult["GUEST_M"], "Гости утренней сессии", "guest")?>
-    <? printTable($arResult["GUEST_HB"], "Гости HB", "hb")?>
-    <? printTable($arResult["PARTICIPANT"], "Участники", "particip")?>
+    <? printTable($arResult["GUEST_M"], "Р“РѕСЃС‚Рё СѓС‚СЂРµРЅРЅРµР№ СЃРµСЃСЃРёРё", "guest")?>
+    <? printTable($arResult["GUEST_HB"], "Р“РѕСЃС‚Рё HB", "hb")?>
+    <? printTable($arResult["PARTICIPANT"], "РЈС‡Р°СЃС‚РЅРёРєРё", "particip")?>
 
-    <h1>Сообщение</h1>
+    <h1>РЎРѕРѕР±С‰РµРЅРёРµ</h1>
     <table width="700" border="0" cellspacing="0" cellpadding="7" class="admin_info">
       <tr>
-        <td><strong>Тема</strong></td>
+        <td><strong>РўРµРјР°</strong></td>
         <td><input name="subj" type="text" value="<?= $arResult["SUBJECT"]?>" size="110"/></td>
       </tr>
       <tr>
-        <td><strong>Текст сообщения</strong></td>
+        <td><strong>РўРµРєСЃС‚ СЃРѕРѕР±С‰РµРЅРёСЏ</strong></td>
         <td><textarea name="message_text" cols="112" rows="10"><?= $arResult["MESSAGE_TEXT"]?></textarea></td>
       </tr>
     </table>
     <input name="mes" type="hidden" value="write" />
-    <div><input name="submit" type="submit" value="Отправить" class="send_reg" /></div>
+    <div><input name="submit" type="submit" value="РћС‚РїСЂР°РІРёС‚СЊ" class="send_reg" /></div>
     </form>
 	<?
 }
@@ -59,10 +59,10 @@ function printTable($arUserShow, $sTitle, $type)
     <? if(!empty($arUserShow)):?>
     <table border="0" cellspacing="0" cellpadding="7" class="admin_info">
     <tr class="odd">
-    <td width="50"><strong>Написать</strong></td>
-    <td width="265"><strong>Представитель и Компания</strong></td>
-    <td width="50"><strong>Написать</strong></td>
-    <td width="265"><strong>Представитель и Компания</strong></td>
+    <td width="50"><strong>РќР°РїРёСЃР°С‚СЊ</strong></td>
+    <td width="265"><strong>РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ Рё РљРѕРјРїР°РЅРёСЏ</strong></td>
+    <td width="50"><strong>РќР°РїРёСЃР°С‚СЊ</strong></td>
+    <td width="265"><strong>РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ Рё РљРѕРјРїР°РЅРёСЏ</strong></td>
     </tr>
           <? $index = 1;?>
           <? for ($i = 0, $cnt = count($arUserShow); $i < $cnt; $i = $i + 2):?>
@@ -94,7 +94,7 @@ function printTable($arUserShow, $sTitle, $type)
         <? endfor;?>
     </table>
     <? else:?>
-        В данной категории пользователей нет.
+        Р’ РґР°РЅРЅРѕР№ РєР°С‚РµРіРѕСЂРёРё РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ РЅРµС‚.
     <? endif;?>
     </div>
         <?

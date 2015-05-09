@@ -1,6 +1,6 @@
 <?
-$MESS ['HLM_READ'] = "PM (ïðîñìîòð)";
-$MESS ['HLM_READ_DESCRIPTION'] = "Ïðîñìîòð ñîîáùåíèÿ";
-$MESS ['COMMUNICATION'] = "Îáùåíèå";
-$MESS ['PM'] = "PM (Ïåðñîíàëüíûå ñîîáùåíèÿ)";
+$MESS ['HLM_READ'] = "PM (Ð¿Ñ€Ð¾ÑÐ¼Ð¾Ñ‚Ñ€)";
+$MESS ['HLM_READ_DESCRIPTION'] = "ÐŸÑ€Ð¾ÑÐ¼Ð¾Ñ‚Ñ€ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ";
+$MESS ['COMMUNICATION'] = "ÐžÐ±Ñ‰ÐµÐ½Ð¸Ðµ";
+$MESS ['PM'] = "PM (ÐŸÐµÑ€ÑÐ¾Ð½Ð°Ð»ÑŒÐ½Ñ‹Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ)";
 ?>

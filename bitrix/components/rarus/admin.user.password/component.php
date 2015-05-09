@@ -1,6 +1,6 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 /*--------------- TO DO -------------------*/
-//Добавить в параметры FORM_ID
+//Р”РѕР±Р°РІРёС‚СЊ РІ РїР°СЂР°РјРµС‚СЂС‹ FORM_ID
 
 
 $arResult["ERROR_MESSAGE"] = "";
@@ -15,12 +15,12 @@ if(strLen($arParams["AUTH_PAGE"])<=0){
 }
 
 if(strLen($arParams["USER"])<=0){
-	$arResult["ERROR_MESSAGE"] = "Не введены данные по Пользователю!<br />";
+	$arResult["ERROR_MESSAGE"] = "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ РџРѕР»СЊР·РѕРІР°С‚РµР»СЋ!<br />";
 }
 
 if(!($USER->IsAuthorized()))
 {
-	$arResult["ERROR_MESSAGE"] = "Вы не авторизованы!<br />";
+	$arResult["ERROR_MESSAGE"] = "Р’С‹ РЅРµ Р°РІС‚РѕСЂРёР·РѕРІР°РЅС‹!<br />";
 }
 
 if(strLen($arParams["FORM_ID"])<=0){
@@ -39,7 +39,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 	        $strError = '';
 	        if(isset($_REQUEST["password"]) && strlen(trim($_REQUEST["password"])) > 0)
 	        {
-	            $pass = trim($_REQUEST["password"]);
+				$pass = trim($_REQUEST["password"]);
 	            $fields = array(
 	                "ADMIN_NOTES"      => $pass,
 	                "PASSWORD"       => $pass,
@@ -51,7 +51,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 	        }
 	        else
 	        {
-	            $strError .= "Вы не ввели пароль!<br />";
+	            $strError .= "Р’С‹ РЅРµ РІРІРµР»Рё РїР°СЂРѕР»СЊ!<br />";
 	        }
 
 	        if(!$strError)
@@ -81,12 +81,12 @@ if($arResult["ERROR_MESSAGE"] == '')
 	    }
 	    else
 	    {
-	        $arResult["ERROR_MESSAGE"] = "Пользовател с ID = {$arParams["USER"]} не найден!";
+	        $arResult["ERROR_MESSAGE"] = "РџРѕР»СЊР·РѕРІР°С‚РµР» СЃ ID = {$arParams["USER"]} РЅРµ РЅР°Р№РґРµРЅ!";
 	    }
 	}
 	else
 	{
-		$arResult["ERROR_MESSAGE"] = "У вас недостаточно прав для просмотра данной страницы!";
+		$arResult["ERROR_MESSAGE"] = "РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїСЂР°РІ РґР»СЏ РїСЂРѕСЃРјРѕС‚СЂР° РґР°РЅРЅРѕР№ СЃС‚СЂР°РЅРёС†С‹!";
 	}
 }
 

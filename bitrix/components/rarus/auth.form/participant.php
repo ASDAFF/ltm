@@ -8,9 +8,9 @@ if($USER->IsAdmin() && isset($_REQUEST["UID"]) && intval($_REQUEST["UID"]))
 {
 	$rsUser = CUser::GetByID($_REQUEST["UID"]);
 	$arUser = $rsUser->Fetch();
-	$arUserGroups = CUser::GetUserGroup($_REQUEST["UID"]); //переписываем группы пользователя
+	$arUserGroups = CUser::GetUserGroup($_REQUEST["UID"]); //РїРµСЂРµРїРёСЃС‹РІР°РµРј РіСЂСѓРїРїС‹ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 }
-else //если не админ получаем данные для текущего пользователя
+else //РµСЃР»Рё РЅРµ Р°РґРјРёРЅ РїРѕР»СѓС‡Р°РµРј РґР°РЅРЅС‹Рµ РґР»СЏ С‚РµРєСѓС‰РµРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 {
 	$arUserGroups = CUser::GetUserGroup($userId);
     $rsUser = CUser::GetByID($userId);
@@ -38,11 +38,11 @@ while($arMsg = $dbrMessages->GetNext())
 	}
 }*/
 
-// id результата заполнения формы компании
+// id СЂРµР·СѓР»СЊС‚Р°С‚Р° Р·Р°РїРѕР»РЅРµРЅРёСЏ С„РѕСЂРјС‹ РєРѕРјРїР°РЅРёРё
 $companyResultID = $arUser["UF_ID_COMP"];
 
 
-//получение результата заполнени формы о компании
+//РїРѕР»СѓС‡РµРЅРёРµ СЂРµР·СѓР»СЊС‚Р°С‚Р° Р·Р°РїРѕР»РЅРµРЅРё С„РѕСЂРјС‹ Рѕ РєРѕРјРїР°РЅРёРё
 $arResultAnswerCompany = array("RESULTS"=>array(), "QUESTIONS"=>array(), "ANSWERS"=>array(), "ANSWERS2"=>array());
 
 
@@ -55,7 +55,7 @@ CForm::GetResultAnswerArray(
 );
 
 
-//получение выставок
+//РїРѕР»СѓС‡РµРЅРёРµ РІС‹СЃС‚Р°РІРѕРє
 $arFilter = array(
     "IBLOCK_ID" => $arParams["EXHIB_IBLOCK_ID"],
     "ACTIVE" => "Y"
@@ -78,19 +78,19 @@ while($obElement = $rsElement->GetNextElement())
 
     $confirmedGroup = $arItem["PROPERTIES"]["USER_GROUP_ID"]["VALUE"];
 
-    //получение ид свойства пользователя в котором хранится результат заполнения формы участника
+    //РїРѕР»СѓС‡РµРЅРёРµ РёРґ СЃРІРѕР№СЃС‚РІР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РІ РєРѕС‚РѕСЂРѕРј С…СЂР°РЅРёС‚СЃСЏ СЂРµР·СѓР»СЊС‚Р°С‚ Р·Р°РїРѕР»РЅРµРЅРёСЏ С„РѕСЂРјС‹ СѓС‡Р°СЃС‚РЅРёРєР°
     $userExhibPropertyID = CFormMatrix::getPropertyIDByExh($arItem["ID"]);
 
     $formID = CFormMatrix::getPFormIDByExh($arItem["ID"]);
 
-    //id результата заполнения формы пользователя на текущую выставку
+    //id СЂРµР·СѓР»СЊС‚Р°С‚Р° Р·Р°РїРѕР»РЅРµРЅРёСЏ С„РѕСЂРјС‹ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РЅР° С‚РµРєСѓС‰СѓСЋ РІС‹СЃС‚Р°РІРєСѓ
     $userResultID = $arUser[$userExhibPropertyID];
 
    // pre($confirmedGroup, "amanda1876");
     //pre($userResultID, "amanda1876");
     if($userResultID)
     {
-        //получение результата заполнени формы пользователя
+        //РїРѕР»СѓС‡РµРЅРёРµ СЂРµР·СѓР»СЊС‚Р°С‚Р° Р·Р°РїРѕР»РЅРµРЅРё С„РѕСЂРјС‹ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
         $arResultAnswerUser = array("RESULTS"=>array(), "QUESTIONS"=>array(), "ANSWERS"=>array(), "ANSWERS2"=>array());
 
         CForm::GetResultAnswerArray(
@@ -104,7 +104,7 @@ while($obElement = $rsElement->GetNextElement())
         $arProfile = array();
         $arUserAnswer = $arResultAnswerUser["ANSWERS"][$userResultID];
 
-        //заполнение данных профиля
+        //Р·Р°РїРѕР»РЅРµРЅРёРµ РґР°РЅРЅС‹С… РїСЂРѕС„РёР»СЏ
 
         $arProfile["TYPE"] = "PARTICIPANT";
 
@@ -117,7 +117,7 @@ while($obElement = $rsElement->GetNextElement())
         $arProfile["LAST_NAME"] = $arUserAnswer[$lastNameQuestionsId][$lastNameAnswerId]["USER_TEXT"];
 
         $photoQuestionsId = CFormMatrix::getQIDByBase(101, $formID);//101 Participant first name
-        $photoAnswerId = CFormMatrix::getAnswerRelBase(195, $formID);//Персональное фото
+        $photoAnswerId = CFormMatrix::getAnswerRelBase(195, $formID);//РџРµСЂСЃРѕРЅР°Р»СЊРЅРѕРµ С„РѕС‚Рѕ
         $arProfile["PHOTO"] = $arUserAnswer[$photoQuestionsId][$photoAnswerId]["USER_FILE_ID"];
 
         if($arProfile["PHOTO"])
@@ -135,16 +135,16 @@ while($obElement = $rsElement->GetNextElement())
 
 
 
-        if($first && in_array($confirmedGroup, $arUserGroups))//если пользователь подтвержден на выставку беремпервую попавшуюся
+        if($first && in_array($confirmedGroup, $arUserGroups))//РµСЃР»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РїРѕРґС‚РІРµСЂР¶РґРµРЅ РЅР° РІС‹СЃС‚Р°РІРєСѓ Р±РµСЂРµРјРїРµСЂРІСѓСЋ РїРѕРїР°РІС€СѓСЋСЃСЏ
         {
             $arResult["PROFILE"] = $arProfile;
             $first = false;
         }
-        elseif(!isset($arResult["PROFILE"]))//запоминаем профиль с первой попавшейся выставки (для отображения профиля по умолчанию)
+        elseif(!isset($arResult["PROFILE"]))//Р·Р°РїРѕРјРёРЅР°РµРј РїСЂРѕС„РёР»СЊ СЃ РїРµСЂРІРѕР№ РїРѕРїР°РІС€РµР№СЃСЏ РІС‹СЃС‚Р°РІРєРё (РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РїСЂРѕС„РёР»СЏ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ)
         {
             $arResult["PROFILE"] = $arProfile;
         }
-        elseif($arItem["CODE"] == $arParams["EXHIB_CODE"])//если в параметрах есть код выставки переопределяем данные для этой выставки
+        elseif($arItem["CODE"] == $arParams["EXHIB_CODE"])//РµСЃР»Рё РІ РїР°СЂР°РјРµС‚СЂР°С… РµСЃС‚СЊ РєРѕРґ РІС‹СЃС‚Р°РІРєРё РїРµСЂРµРѕРїСЂРµРґРµР»СЏРµРј РґР°РЅРЅС‹Рµ РґР»СЏ СЌС‚РѕР№ РІС‹СЃС‚Р°РІРєРё
         {
             $arResult["PROFILE"] = $arProfile;
         }
@@ -154,7 +154,7 @@ while($obElement = $rsElement->GetNextElement())
     $arExhib["STATUS"] = $arItem["PROPERTIES"]["STATUS"]["VALUE"];
     $arExhib["STATUS_G_M"] = $arItem["PROPERTIES"]["STATUS_G_M"]["VALUE"];
     $arExhib["STATUS_G_E"] = $arItem["PROPERTIES"]["STATUS_G_E"]["VALUE"];
-    //если пользователь зарегистрирован на эту выставку
+    //РµСЃР»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅ РЅР° СЌС‚Сѓ РІС‹СЃС‚Р°РІРєСѓ
     if(in_array($confirmedGroup, $arUserGroups))
     {
 
@@ -187,7 +187,7 @@ while($obElement = $rsElement->GetNextElement())
 
         $arResult["EXHIBITION"]["CONFIRMED"][] = $arExhib;
     }
-    else//если не зарегистрирован
+    else//РµСЃР»Рё РЅРµ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅ
     {
         $arExhib["ID"] = $arItem["ID"];
         //$arExhib["PROPERTIES"] = $arItem["PROPERTIES"];

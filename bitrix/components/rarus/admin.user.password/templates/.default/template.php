@@ -13,28 +13,28 @@ if($arResult["ERROR_MESSAGE"] == ''){
         <td><?=$arResult["ID"]?></td>
       </tr>
       <tr>
-        <td width="150"><strong>Логин</strong></td>
+        <td width="150"><strong>Р›РѕРіРёРЅ</strong></td>
         <td><?=$arResult["LOGIN"]?></td>
       </tr>
       <tr>
-        <td width="150"><strong>Представитель</strong></td>
+        <td width="150"><strong>РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ</strong></td>
         <td><?=$arResult["NAME"]?> <?=$arResult["LAST_NAME"]?></td>
       </tr>
       <tr>
-        <td><strong>Компания</strong></td>
+        <td><strong>РљРѕРјРїР°РЅРёСЏ</strong></td>
         <td><?=$arResult["WORK_COMPANY"]?></td>
       </tr>
       <tr>
-        <td><strong>Старый пароль</strong></td>
+        <td><strong>РЎС‚Р°СЂС‹Р№ РїР°СЂРѕР»СЊ</strong></td>
         <td><?=$arResult["PASSWORD"]?></td>
       </tr>
       <tr>
-        <td><strong>Новый пароль</strong></td>
+        <td><strong>РќРѕРІС‹Р№ РїР°СЂРѕР»СЊ</strong></td>
         <td><input name="password" type="text" value="" autocomplete="off"/></td>
       </tr>
       <tr class="send">
         <td>&nbsp;</td>
-        <td><input type="submit" value="Сохранить" name="pass_save"/></td>
+        <td><input type="submit" value="РЎРѕС…СЂР°РЅРёС‚СЊ" name="pass_save"/></td>
       </tr>
     </table>
         <input name="type" type="hidden" value="form" />

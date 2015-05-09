@@ -6,7 +6,7 @@
 //
 // Description : Language module for TCPDF
 //               (contains translated texts)
-//               Norwegian Bokmål
+//               Norwegian BokmГҐl
 //
 // Author: Nicola Asuni
 //
@@ -23,12 +23,12 @@
 /**
  * TCPDF language file (contains translated texts).
  * @package com.tecnick.tcpdf
- * @brief TCPDF language file: Norwegian Bokmål
+ * @brief TCPDF language file: Norwegian BokmГҐl
  * @author Nicola Asuni
  * @since 2004-03-03
  */
 
-// Norwegian Bokmål
+// Norwegian BokmГҐl
 
 global $l;
 $l = Array();

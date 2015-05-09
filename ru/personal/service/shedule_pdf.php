@@ -2,19 +2,19 @@
   CModule::IncludeModule('iblock');
 
   $times = array(
-	  '10:00 – 10:10', '10:15 – 10:25',
-	  '10:30 – 10:40', '10:45 – 10:55',
-	  '11:00 – 11:10', '11:15 – 11:25',
-	  '11:30 – 11:40', '11:45 – 11:55',
-	  '12:10 – 12:20', '12:25 – 12:35',
-	  '12:40 – 12:50', '12:55 – 13:05',
-	  '13:10 – 13:20', '13:25 – 13:35',
-	  '13:40 – 13:50', '13:55 – 14:05',
-	  '14:10 – 14:20'
+	  '10:00 вЂ“ 10:10', '10:15 вЂ“ 10:25',
+	  '10:30 вЂ“ 10:40', '10:45 вЂ“ 10:55',
+	  '11:00 вЂ“ 11:10', '11:15 вЂ“ 11:25',
+	  '11:30 вЂ“ 11:40', '11:45 вЂ“ 11:55',
+	  '12:10 вЂ“ 12:20', '12:25 вЂ“ 12:35',
+	  '12:40 вЂ“ 12:50', '12:55 вЂ“ 13:05',
+	  '13:10 вЂ“ 13:20', '13:25 вЂ“ 13:35',
+	  '13:40 вЂ“ 13:50', '13:55 вЂ“ 14:05',
+	  '14:10 вЂ“ 14:20'
   );
 
   /*---------------------------------------------------*/
-  //           ФОРМИРУЕМ ВЫВОД ДЛЯ ШАБЛОНА             //
+  //           Р¤РћР РњРР РЈР•Рњ Р’Р«Р’РћР” Р”Р›РЇ РЁРђР‘Р›РћРќРђ             //
   /*---------------------------------------------------*/
 	  $rsUser = CUser::GetByID($USER->GetID());
 	  $thisUser = $rsUser->Fetch();
@@ -27,7 +27,7 @@
 	  $myFreeMeet = array();
 	  $myBeasyMeet = array();
 	  $myFreeCount = 0;
-	  //Формируем основу для массива встреч
+	  //Р¤РѕСЂРјРёСЂСѓРµРј РѕСЃРЅРѕРІСѓ РґР»СЏ РјР°СЃСЃРёРІР° РІСЃС‚СЂРµС‡
 	  for($i=1; $i<$arParams["APP_COUNT"]+1; $i++){
 		  $myShedule[$i]["ID"] = $thisUser["UF_SHEDULE_".$i];
 		  $myShedule[$i]["TITLE"] = $times[$i-1];
@@ -47,7 +47,7 @@
 			$myBeasyMeet[] = $thisUser["UF_SHEDULE_".$i];
 		  }
 	  }
-	  //СПИСОК НАЗНАЧЕННЫХ ВСТРЕЧ
+	  //РЎРџРРЎРћРљ РќРђР—РќРђР§Р•РќРќР«РҐ Р’РЎРўР Р•Р§
 	  if($myBeasyMeet){
 		  $arFilterM = Array(
 			 "IBLOCK_ID" => $arParams["APP_ID"],
@@ -76,11 +76,11 @@
 			}
 		  }
 	  }
-	  //СПИСОК ПОЛЬЗОВАТЕЛЕЙ
+	  //РЎРџРРЎРћРљ РџРћР›Р¬Р—РћР’РђРўР•Р›Р•Р™
 	  $filter = Array(
 		  "GROUPS_ID"  => Array($arParams["GROUP_RECIVER_ID"])
 	  );
-	  $rsUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // выбираем пользователей
+	  $rsUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // РІС‹Р±РёСЂР°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 	  $myWishIn = array();
 	  $myWishOut = array();
 	  $notFreeTimes = array();
@@ -120,7 +120,7 @@
 
 	$pdf->setXY(0,25);
 	$pdf->SetFont('times','B',17);
-	$pdf->multiCell(210, 6, "Расписание встреч\nна утренней сессии LTM Moscow 2013", 0, C);
+	$pdf->multiCell(210, 6, "Р Р°СЃРїРёСЃР°РЅРёРµ РІСЃС‚СЂРµС‡\nРЅР° СѓС‚СЂРµРЅРЅРµР№ СЃРµСЃСЃРёРё LTM Moscow 2013", 0, C);
 	$pdf->SetFont('times','',15);
 	$pdf->setXY(30,44);
 	$pdf->multiCell(210, 5, $arResult["USER"]["COMPANY"].", ". $arResult["USER"]["CITY"], 0, L);
@@ -128,18 +128,18 @@
 	$pdf->multiCell(210, 5,$arResult["USER"]['NAME']." ".$arResult["USER"]["LAST_NAME"], 0, L);
 	$pdf->SetFont('times','',13);
 	$pdf->setXY(0,60);
-	$pdf->multiCell(210, 5, "Ваше расписание", 0, C);
+	$pdf->multiCell(210, 5, "Р’Р°С€Рµ СЂР°СЃРїРёСЃР°РЅРёРµ", 0, C);
 
 	$pdf->setY(70);
 	$pdf->SetX(20);
 
-	/* Формируем таблицу */
+	/* Р¤РѕСЂРјРёСЂСѓРµРј С‚Р°Р±Р»РёС†Сѓ */
         $tbl = '<table cellspacing="0" cellpadding="5" border="1">
     <tr>
-        <td align="center" width="70">Время</td>
-        <td align="center" width="240">Участники</td>
-        <td align="center" width="90">Статус</td>
-        <td align="center" width="95">Зал, Стол</td>
+        <td align="center" width="70">Р’СЂРµРјСЏ</td>
+        <td align="center" width="240">РЈС‡Р°СЃС‚РЅРёРєРё</td>
+        <td align="center" width="90">РЎС‚Р°С‚СѓСЃ</td>
+        <td align="center" width="95">Р—Р°Р», РЎС‚РѕР»</td>
     </tr>';
 	$pdf->SetFont('times','',10);
 	$counter = 0;
@@ -147,15 +147,15 @@
 		if($arResult["SHEDULE"][$i]['NOTES'] == 'FREE'){
 			$tbl .= '<tr>
                         <td>'.$arResult["SHEDULE"][$i]['TITLE'].'</td>
-                        <td colspan="3" align="center">Свободно</td>
+                        <td colspan="3" align="center">РЎРІРѕР±РѕРґРЅРѕ</td>
                     </tr>';
 			$counter++;
 		}
 		elseif($arResult["SHEDULE"][$i]['NOTES'] == 'ACT'){
 			$tbl .= '<tr>
                         <td>'.$arResult["SHEDULE"][$i]['TITLE'].'</td>
-                        <td>Компания: '.$arResult["SHEDULE"][$i]['COMPANY'].'<br />Представитель: '.$arResult["SHEDULE"][$i]["REP"].'</td>
-                        <td align="center">Подтверждена</td>';
+                        <td>РљРѕРјРїР°РЅРёСЏ: '.$arResult["SHEDULE"][$i]['COMPANY'].'<br />РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ: '.$arResult["SHEDULE"][$i]["REP"].'</td>
+                        <td align="center">РџРѕРґС‚РІРµСЂР¶РґРµРЅР°</td>';
 			if($arResult["SHEDULE"][$i]['HALL']){
 				 $tbl .= '<td>'.$arResult["SHEDULE"][$i]['HALL'].', '.$arResult["SHEDULE"][$i]['TABLE'].'</td>
                         </tr>';
@@ -170,8 +170,8 @@
 			if($arResult["SHEDULE"][$i]['STATUS'] == 'MY'){
 				$tbl .= '<tr>
                                 <td>'.$arResult["SHEDULE"][$i]['TITLE'].'</td>
-                                <td>Компания: '.$arResult["SHEDULE"][$i]['COMPANY'].'<br />Представитель: '.$arResult["SHEDULE"][$i]["REP"].'</td>
-                                <td align="center">От меня</td>';
+                                <td>РљРѕРјРїР°РЅРёСЏ: '.$arResult["SHEDULE"][$i]['COMPANY'].'<br />РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ: '.$arResult["SHEDULE"][$i]["REP"].'</td>
+                                <td align="center">РћС‚ РјРµРЅСЏ</td>';
 				if($arResult["SHEDULE"][$i]['HALL']){
 					 $tbl .= '<td>'.$arResult["SHEDULE"][$i]['HALL'].', '.$arResult["SHEDULE"][$i]['TABLE'].'</td>
                                 </tr>';
@@ -184,8 +184,8 @@
 			elseif($arResult["SHEDULE"][$i]['STATUS'] == 'ADM'){
 				$tbl .= '<tr>
                                 <td>'.$arResult["SHEDULE"][$i]['TITLE'].'</td>
-                                <td>Компания: '.$arResult["SHEDULE"][$i]['COMPANY'].'<br />Представитель: '.$arResult["SHEDULE"][$i]["REP"].'</td>
-                                <td align="center">Назначено администратором</td>';
+                                <td>РљРѕРјРїР°РЅРёСЏ: '.$arResult["SHEDULE"][$i]['COMPANY'].'<br />РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ: '.$arResult["SHEDULE"][$i]["REP"].'</td>
+                                <td align="center">РќР°Р·РЅР°С‡РµРЅРѕ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂРѕРј</td>';
 				if($arResult["SHEDULE"][$i]['HALL']){
 					 $tbl .= '<td>'.$arResult["SHEDULE"][$i]['HALL'].', '.$arResult["SHEDULE"][$i]['TABLE'].'</td>
                                 </tr>';
@@ -198,8 +198,8 @@
 			else{
 				 $tbl .= '<tr>
                                 <td>'.$arResult["SHEDULE"][$i]['TITLE'].'</td>
-                                <td>Компания: '.$arResult["SHEDULE"][$i]['COMPANY'].'<br />Представитель: '.$arResult["SHEDULE"][$i]["REP"].'</td>
-                                <td align="center">Мне</td>';
+                                <td>РљРѕРјРїР°РЅРёСЏ: '.$arResult["SHEDULE"][$i]['COMPANY'].'<br />РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ: '.$arResult["SHEDULE"][$i]["REP"].'</td>
+                                <td align="center">РњРЅРµ</td>';
                                 if($arResult["SHEDULE"][$i]['HALL']){
                                     $tbl .= '<td>'.$arResult["SHEDULE"][$i]['HALL'].', '.$arResult["SHEDULE"][$i]['TABLE'].'</td>
                                 </tr>';
@@ -214,24 +214,24 @@
 		if ($counter == 8)
 		{
 			$tbl .= '<tr>
-                        <td>11:55 – 12:10</td>
-                        <td colspan="3" align="center">Перерыв на кофе</td>
+                        <td>11:55 вЂ“ 12:10</td>
+                        <td colspan="3" align="center">РџРµСЂРµСЂС‹РІ РЅР° РєРѕС„Рµ</td>
                     </tr>';
 		}
 	}
 	$tbl .= '</table>';
 	$pdf->writeHTML($tbl, true, false, false, false, '');
 	$pdf->setXY(0,$pdf->getY() + 1);
-	$pdf->multiCell(210, 5, "продолжение на следующей странице", 0, C);
+	$pdf->multiCell(210, 5, "РїСЂРѕРґРѕР»Р¶РµРЅРёРµ РЅР° СЃР»РµРґСѓСЋС‰РµР№ СЃС‚СЂР°РЅРёС†Рµ", 0, C);
 
 	$pdf->AddPage();
 
         $tbl = '<table cellspacing="0" cellpadding="5" border="1">
     <tr>
-        <td align="center" width="70">Время</td>
-        <td align="center" width="240">Участники</td>
-        <td align="center" width="90">Статус</td>
-        <td align="center" width="95">Зал, Стол</td>
+        <td align="center" width="70">Р’СЂРµРјСЏ</td>
+        <td align="center" width="240">РЈС‡Р°СЃС‚РЅРёРєРё</td>
+        <td align="center" width="90">РЎС‚Р°С‚СѓСЃ</td>
+        <td align="center" width="95">Р—Р°Р», РЎС‚РѕР»</td>
     </tr>';
 	$pdf->SetFont('times','',10);
 	$pdf->SetX(20);
@@ -239,15 +239,15 @@
 		if($arResult["SHEDULE"][$i]['NOTES'] == 'FREE'){
 			$tbl .= '<tr>
                         <td>'.$arResult["SHEDULE"][$i]['TITLE'].'</td>
-                        <td colspan="3" align="center">Свободно</td>
+                        <td colspan="3" align="center">РЎРІРѕР±РѕРґРЅРѕ</td>
                     </tr>';
 			$counter++;
 		}
 		elseif($arResult["SHEDULE"][$i]['NOTES'] == 'ACT'){
 			$tbl .= '<tr>
                         <td>'.$arResult["SHEDULE"][$i]['TITLE'].'</td>
-                        <td>Компания: '.$arResult["SHEDULE"][$i]['COMPANY'].'<br />Представитель: '.$arResult["SHEDULE"][$i]["REP"].'</td>
-                        <td align="center">Подтверждена</td>';
+                        <td>РљРѕРјРїР°РЅРёСЏ: '.$arResult["SHEDULE"][$i]['COMPANY'].'<br />РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ: '.$arResult["SHEDULE"][$i]["REP"].'</td>
+                        <td align="center">РџРѕРґС‚РІРµСЂР¶РґРµРЅР°</td>';
 			if($arResult["SHEDULE"][$i]['HALL']){
 				 $tbl .= '<td>'.$arResult["SHEDULE"][$i]['HALL'].', '.$arResult["SHEDULE"][$i]['TABLE'].'</td>
                         </tr>';
@@ -262,8 +262,8 @@
 			if($arResult["SHEDULE"][$i]['STATUS'] == 'MY'){
 				$tbl .= '<tr>
                                 <td>'.$arResult["SHEDULE"][$i]['TITLE'].'</td>
-                                <td>Компания: '.$arResult["SHEDULE"][$i]['COMPANY'].'<br />Представитель: '.$arResult["SHEDULE"][$i]["REP"].'</td>
-                                <td align="center">От меня</td>';
+                                <td>РљРѕРјРїР°РЅРёСЏ: '.$arResult["SHEDULE"][$i]['COMPANY'].'<br />РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ: '.$arResult["SHEDULE"][$i]["REP"].'</td>
+                                <td align="center">РћС‚ РјРµРЅСЏ</td>';
 				if($arResult["SHEDULE"][$i]['HALL']){
 					 $tbl .= '<td>'.$arResult["SHEDULE"][$i]['HALL'].', '.$arResult["SHEDULE"][$i]['TABLE'].'</td>
                                 </tr>';
@@ -276,8 +276,8 @@
 			elseif($arResult["SHEDULE"][$i]['STATUS'] == 'ADM'){
 				$tbl .= '<tr>
                                 <td>'.$arResult["SHEDULE"][$i]['TITLE'].'</td>
-                                <td>Компания: '.$arResult["SHEDULE"][$i]['COMPANY'].'<br />Представитель: '.$arResult["SHEDULE"][$i]["REP"].'</td>
-                                <td align="center">Назначено администратором</td>';
+                                <td>РљРѕРјРїР°РЅРёСЏ: '.$arResult["SHEDULE"][$i]['COMPANY'].'<br />РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ: '.$arResult["SHEDULE"][$i]["REP"].'</td>
+                                <td align="center">РќР°Р·РЅР°С‡РµРЅРѕ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂРѕРј</td>';
 				if($arResult["SHEDULE"][$i]['HALL']){
 					 $tbl .= '<td>'.$arResult["SHEDULE"][$i]['HALL'].', '.$arResult["SHEDULE"][$i]['TABLE'].'</td>
                                 </tr>';
@@ -290,8 +290,8 @@
 			else{
 				 $tbl .= '<tr>
                                 <td>'.$arResult["SHEDULE"][$i]['TITLE'].'</td>
-                                <td>Компания: '.$arResult["SHEDULE"][$i]['COMPANY'].'<br />Представитель: '.$arResult["SHEDULE"][$i]["REP"].'</td>
-                                <td align="center">Мне</td>';
+                                <td>РљРѕРјРїР°РЅРёСЏ: '.$arResult["SHEDULE"][$i]['COMPANY'].'<br />РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ: '.$arResult["SHEDULE"][$i]["REP"].'</td>
+                                <td align="center">РњРЅРµ</td>';
                                 if($arResult["SHEDULE"][$i]['HALL']){
                                     $tbl .= '<td>'.$arResult["SHEDULE"][$i]['HALL'].', '.$arResult["SHEDULE"][$i]['TABLE'].'</td>
                                 </tr>';
@@ -310,17 +310,17 @@
         
 	$pdf->setXY(20,$pdf->getY() + 2);
 	$y = $pdf->getY();
-	$html = '<b>Регистрация гостей и выдача бейджей</b> будет проходить в день мероприятия на стойке регистрации Luxury Travel Mart <b>на втором этаже отеля The Ritz-Carlton, Moscow c 09-30 до 11-30.</b>';
+	$html = '<b>Р РµРіРёСЃС‚СЂР°С†РёСЏ РіРѕСЃС‚РµР№ Рё РІС‹РґР°С‡Р° Р±РµР№РґР¶РµР№</b> Р±СѓРґРµС‚ РїСЂРѕС…РѕРґРёС‚СЊ РІ РґРµРЅСЊ РјРµСЂРѕРїСЂРёСЏС‚РёСЏ РЅР° СЃС‚РѕР№РєРµ СЂРµРіРёСЃС‚СЂР°С†РёРё Luxury Travel Mart <b>РЅР° РІС‚РѕСЂРѕРј СЌС‚Р°Р¶Рµ РѕС‚РµР»СЏ The Ritz-Carlton, Moscow c 09-30 РґРѕ 11-30.</b>';
 	$pdf->writeHTMLCell('', '', 20, $y, $html, $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true);
 
 	$pdf->setY($pdf->getY() + 10);
 	$y = $pdf->getY();
-	$html = 'Пожалуйста, имейте при себе <b>достаточное количество визитных карточек на английском</b> языке.';
+	$html = 'РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РёРјРµР№С‚Рµ РїСЂРё СЃРµР±Рµ <b>РґРѕСЃС‚Р°С‚РѕС‡РЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РІРёР·РёС‚РЅС‹С… РєР°СЂС‚РѕС‡РµРє РЅР° Р°РЅРіР»РёР№СЃРєРѕРј</b> СЏР·С‹РєРµ.';
 	$pdf->writeHTMLCell('', '', 20, $y, $html, $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true);
 
 	$pdf->setY($pdf->getY() + 5);
 	$y = $pdf->getY();
-	$html = '<b>Контактные телефоны</b> для экстренной связи в день мероприятия:<br /><br /><b>Туристические компании Москвы:</b><br />+7 925 847 2602, Марат Хазиханов<br /><br /><b>Туристические компании по программе Hosted Buyer:</b><br />+7 926 346 5886, Анна Марьина';
+	$html = '<b>РљРѕРЅС‚Р°РєС‚РЅС‹Рµ С‚РµР»РµС„РѕРЅС‹</b> РґР»СЏ СЌРєСЃС‚СЂРµРЅРЅРѕР№ СЃРІСЏР·Рё РІ РґРµРЅСЊ РјРµСЂРѕРїСЂРёСЏС‚РёСЏ:<br /><br /><b>РўСѓСЂРёСЃС‚РёС‡РµСЃРєРёРµ РєРѕРјРїР°РЅРёРё РњРѕСЃРєРІС‹:</b><br />+7 925 847 2602, РњР°СЂР°С‚ РҐР°Р·РёС…Р°РЅРѕРІ<br /><br /><b>РўСѓСЂРёСЃС‚РёС‡РµСЃРєРёРµ РєРѕРјРїР°РЅРёРё РїРѕ РїСЂРѕРіСЂР°РјРјРµ Hosted Buyer:</b><br />+7 926 346 5886, РђРЅРЅР° РњР°СЂСЊРёРЅР°';
 	$pdf->writeHTMLCell('', '', 20, $y, $html, $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true);
 
 

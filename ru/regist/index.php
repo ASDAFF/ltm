@@ -1,6 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Ðåãèñòðàöèÿ");
+$APPLICATION->SetTitle("Ð ÐµÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸Ñ");
 ?> 
  <?$APPLICATION->IncludeComponent(
 	"btm:form.result.new_ltm",

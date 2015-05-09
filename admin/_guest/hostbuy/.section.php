@@ -1,3 +1,3 @@
 <?
-$sSectionName="Гости Hosted Buyers";
+$sSectionName="Р“РѕСЃС‚Рё Hosted Buyers";
 ?>

@@ -6,7 +6,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 <table class="table" id="results">
 	<thead>
 		<tr>
-			<th>Компания и представитель</th>
+			<th>РљРѕРјРїР°РЅРёСЏ Рё РїСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ</th>
 			<?foreach ($arResult['TIME'] as $timeslot):?>
 				<th><?=$timeslot['name']?></th>
 			<?endforeach;?>
@@ -35,7 +35,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 						<?else:?>
 							<td>
 								<?if(!count($timeslot['companies'])):?>
-									Все таймслоты заняты
+									Р’СЃРµ С‚Р°Р№РјСЃР»РѕС‚С‹ Р·Р°РЅСЏС‚С‹
 								<?else:?>
 									<select>
 										<?foreach($timeslot['companies'] as $company):?>

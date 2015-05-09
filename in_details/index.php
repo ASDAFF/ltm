@@ -2,7 +2,7 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("LTM 2013 in details");
 ?> 
-<h1>The 9th Luxury Travel Mart – a stellar success</h1>
+<h1>The 9th Luxury Travel Mart â€“ a stellar success</h1>
  
 <p>The international exhibition <b>Luxury Travel Mart</b>, rightly considered to be one of the most prestigious professional events in the luxury tourism sector in Russia, took place in Moscow <b>on March 14, 2013.</b> As in previous years, the event was hosted by the The Ritz-Carlton, Moscow. This year the organizers selected a convenient date for the event, to avoid clashes with the famous Berlin exhibition ITB and MITT in Moscow. </p>
  

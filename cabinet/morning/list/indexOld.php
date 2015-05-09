@@ -10,7 +10,7 @@ if($_SESSION["USER_TYPE"] == "PARTICIPANT")
 {?>
 	<div class="morning-session" id="morning-session">
 		
-	<?//--> Список табов 2 уровня ?>
+	<?//--> РЎРїРёСЃРѕРє С‚Р°Р±РѕРІ 2 СѓСЂРѕРІРЅСЏ ?>
 	<ul class="pull-overflow sub-tab-session">
 		<li><a href="<?= $page . "schedule/" . (($userId)?"?UID=".$userId:"")?>" title="" >My schedule for the morning session</a></li>
 		<li class="ui-tabs-active" ><a href="<?= $page . "list/" . (($userId)?"?UID=".$userId:"")?>" title="" >Morning session guests</a></li>
@@ -25,10 +25,10 @@ elseif($_SESSION["USER_TYPE"] == "GUEST")
 {?>
   	<div class="morning-session" id="morning-session">
 		
-	<?//--> Список табов 2 уровня ?>
+	<?//--> РЎРїРёСЃРѕРє С‚Р°Р±РѕРІ 2 СѓСЂРѕРІРЅСЏ ?>
 	<ul class="pull-overflow sub-tab-session">
-		<li><a href="<?= $page . "schedule/" . (($userId)?"?UID=".$userId:"")?>" title="" >Расписание на утреннюю сессию</a></li>
-		<li class="ui-tabs-active"><a href="<?= $page . "list/" . (($userId)?"?UID=".$userId:"")?>" title="" >Список участников</a></li>
+		<li><a href="<?= $page . "schedule/" . (($userId)?"?UID=".$userId:"")?>" title="" >Р Р°СЃРїРёСЃР°РЅРёРµ РЅР° СѓС‚СЂРµРЅРЅСЋСЋ СЃРµСЃСЃРёСЋ</a></li>
+		<li class="ui-tabs-active"><a href="<?= $page . "list/" . (($userId)?"?UID=".$userId:"")?>" title="" >РЎРїРёСЃРѕРє СѓС‡Р°СЃС‚РЅРёРєРѕРІ</a></li>
 	</ul>
 		<div id="session-tab-1">
 		<? include("guest.php");?>

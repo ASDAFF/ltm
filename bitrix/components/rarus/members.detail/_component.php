@@ -57,7 +57,7 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 	}
 
 	$arResult["FORM_RESULT_COMMON"] = array("QUESTIONS"=>array(), "ANSWERS"=>array());
-    //ñïèñîê ðåçóëüòàòîâ îòâåòîâ ôîðìû "Ó÷àñòíèêè äàííûå êîìïàíèè ÂÑÅ ÂÛÑÒÀÂÊÈ"
+    //ÑÐ¿Ð¸ÑÐ¾Ðº Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð¾Ð² Ð¾Ñ‚Ð²ÐµÑ‚Ð¾Ð² Ñ„Ð¾Ñ€Ð¼Ñ‹ "Ð£Ñ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¸ Ð´Ð°Ð½Ð½Ñ‹Ðµ ÐºÐ¾Ð¼Ð¿Ð°Ð½Ð¸Ð¸ Ð’Ð¡Ð• Ð’Ð«Ð¡Ð¢ÐÐ’ÐšÐ˜"
     CForm::GetResultAnswerArray(
         $arParams["FORM_COMMON_ID"],
         $arResult["FORM_RESULT_COMMON"]["QUESTIONS"],
@@ -88,7 +88,7 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
     $arResult["ADDRESS"] = reset($arResult["MEMBER"][ $arParams["FORM_FIELD_ID_COMPANY_OFFICIAL_ADDRESS"] ]);
     $arResult["ADDRESS"] = $arResult["ADDRESS"]["USER_TEXT"];
 
-    //ïîëó÷àåì ëîãî êîìïàíèè
+    //Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð»Ð¾Ð³Ð¾ ÐºÐ¾Ð¼Ð¿Ð°Ð½Ð¸Ð¸
     if(isset($arResult["MEMBER"][ $arParams["FORM_FIELD_ID_COMPANY_LOGO"] ]) && !empty($arResult["MEMBER"][ $arParams["FORM_FIELD_ID_COMPANY_LOGO"] ])) {
         $logo = reset($arResult["MEMBER"][ $arParams["FORM_FIELD_ID_COMPANY_LOGO"] ]);
         if(isset($logo["USER_FILE_ID"]) && $logo["USER_FILE_ID"] > 0) {
@@ -99,7 +99,7 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
         }
     }
 
-    //ïîëó÷àåì ôîòî
+    //Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ñ„Ð¾Ñ‚Ð¾
     $rs = CIBlockSection::GetList(array(), array("IBLOCK_ID"=>$arParams["IBLOCK_ID_PHOTO"], "NAME"=>$arResult["NAME"]), false, array("ID"), array("nTopCount"=>1));
     if($ar = $rs->Fetch()) {
         $arResult["PHOTOS"] = array();

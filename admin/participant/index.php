@@ -1,7 +1,7 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Участники");
-?><h1>Участники</h1>
+$APPLICATION->SetTitle("РЈС‡Р°СЃС‚РЅРёРєРё");
+?><h1>РЈС‡Р°СЃС‚РЅРёРєРё</h1>
 
 <?
 

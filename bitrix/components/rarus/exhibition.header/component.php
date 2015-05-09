@@ -17,13 +17,13 @@
 
 if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 
-$arParams["EXHIB_IBLOCK_ID"] = intval($arParams["EXHIB_IBLOCK_ID"]);//id инфоблока выставок
+$arParams["EXHIB_IBLOCK_ID"] = intval($arParams["EXHIB_IBLOCK_ID"]);//id РёРЅС„РѕР±Р»РѕРєР° РІС‹СЃС‚Р°РІРѕРє
 if(!$arParams["EXHIB_IBLOCK_ID"])
 	$arParams["EXHIB_IBLOCK_ID"] = 15;
 
-$arParams["EXHIB_CODE"] = trim($arParams["EXHIB_CODE"]);//код выставки из реквеста
+$arParams["EXHIB_CODE"] = trim($arParams["EXHIB_CODE"]);//РєРѕРґ РІС‹СЃС‚Р°РІРєРё РёР· СЂРµРєРІРµСЃС‚Р°
 if(!$arParams)
-	trim($_REQUEST["EXHIBIT_CODE"]);//код выставки из реквеста
+	trim($_REQUEST["EXHIBIT_CODE"]);//РєРѕРґ РІС‹СЃС‚Р°РІРєРё РёР· СЂРµРєРІРµСЃС‚Р°
 
 $arParams["CACHE_TIME"] = intval($arParams["CACHE_TIME"]);
 if(!$arParams["CACHE_TIME"])

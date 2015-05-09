@@ -1,0 +1,101 @@
+Sentences that contain all letters commonly used in a language
+--------------------------------------------------------------
+
+Markus Kuhn <http://www.cl.cam.ac.uk/~mgk25/> -- 2001-09-02
+
+This file is UTF-8 encoded.
+
+
+Danish (da)
+---------
+
+  Quizdeltagerne spiste jordbГ¦r med flГёde, mens cirkusklovnen
+  Wolther spillede pГҐ xylofon.
+  (= Quiz contestants were eating strawbery with cream while Wolther
+  the circus clown played on xylophone.)
+
+German (de)
+-----------
+
+  Falsches Гњben von Xylophonmusik quГ¤lt jeden grГ¶Гџeren Zwerg
+  (= Wrongful practicing of xylophone music tortures every larger dwarf)
+
+  ZwГ¶lf BoxkГ¤mpfer jagten Eva quer Гјber den Sylter Deich
+  (= Twelve boxing fighters hunted Eva across the dike of Sylt)
+
+  HeizГ¶lrГјckstoГџabdГ¤mpfung
+  (= fuel oil recoil absorber)
+  (jqvwxy missing, but all non-ASCII letters in one word)
+
+English (en)
+------------
+
+  The quick brown fox jumps over the lazy dog
+
+Spanish (es)
+------------
+
+  El pingГјino Wenceslao hizo kilГіmetros bajo exhaustiva lluvia y 
+  frГ­o, aГ±oraba a su querido cachorro.
+  (Contains every letter and every accent, but not every combination
+  of vowel + acute.)
+
+French (fr)
+-----------
+
+  Portez ce vieux whisky au juge blond qui fume sur son Г®le intГ©rieure, Г 
+  cГґtГ© de l'alcГґve ovoГЇde, oГ№ les bГ»ches se consument dans l'Гўtre, ce
+  qui lui permet de penser Г  la cГ¦nogenГЁse de l'ГЄtre dont il est question
+  dans la cause ambiguГ« entendue Г  MoГї, dans un capharnaГјm qui,
+  pense-t-il, diminue Г§Г  et lГ  la qualitГ© de son Е“uvre. 
+
+  l'Г®le exiguГ«
+  OГ№ l'obГЁse jury mГ»r
+  FГЄte l'haГЇ volapГјk,
+  Г‚ne ex aГ©quo au whist,
+  Г”tez ce vЕ“u dГ©Г§u.
+
+  Le cЕ“ur dГ©Г§u mais l'Гўme plutГґt naГЇve, LouГїs rГЄva de crapaГјter en
+  canoГ« au delГ  des Г®les, prГЁs du mГ¤lstrГ¶m oГ№ brГ»lent les novГ¦.
+
+Irish Gaelic (ga)
+-----------------
+
+  D'fhuascail ГЌosa, Гљrmhac na hГ“ighe Beannaithe, pГіr Г‰ava agus ГЃdhaimh
+
+Hungarian (hu)
+--------------
+
+  ГЃrvГ­ztЕ±rЕ‘ tГјkГ¶rfГєrГіgГ©p
+  (= flood-proof mirror-drilling machine, only all non-ASCII letters)
+
+Icelandic (is)
+--------------
+
+  KГ¦mi nГЅ Г¶xi hГ©r ykist ГѕjГіfum nГє bГ¦Г°i vГ­l og ГЎdrepa
+
+  SГ¦vГ¶r grГ©t ГЎГ°an ГѕvГ­ Гєlpan var ГіnГЅt
+  (some ASCII letters missing)
+
+Greek (el)
+-------------
+
+  О“О±О¶О­ОµП‚ ОєО±бЅ¶ ОјП…ПЃП„О№бЅІП‚ ОґбЅІОЅ ОёбЅ° ОІПЃбї¶ ПЂО№бЅ° ПѓП„бЅё П‡ПЃП…ПѓО±П†бЅ¶ ОѕО­П†П‰П„Ої
+  (= No more shall I see acacias or myrtles in the golden clearing)
+
+  ОћОµПѓОєОµПЂО¬О¶П‰ П„бЅґОЅ П€П…П‡ОїП†ОёПЊПЃО± ОІОґОµО»П…ОіОјОЇО±
+  (= I uncover the soul-destroying abhorrence)
+
+Japanese (jp)
+-------------
+
+  Hiragana: (Iroha)
+
+  гЃ„г‚ЌгЃЇгЃ«гЃ»гЃёгЃЁгЃЎг‚ЉгЃ¬г‚‹г‚’
+  г‚ЏгЃ‹г‚€гЃџг‚ЊгЃќгЃ¤гЃ­гЃЄг‚‰г‚Ђ
+  гЃ†г‚ђгЃ®гЃЉгЃЏг‚„гЃѕгЃ‘гЃµгЃ“гЃ€гЃ¦
+  гЃ‚гЃ•гЃЌг‚†г‚ЃгЃїгЃ—г‚‘гЃІг‚‚гЃ›гЃ™
+
+  Katakana:
+
+  г‚¤гѓ­гѓЏгѓ‹гѓ›гѓ

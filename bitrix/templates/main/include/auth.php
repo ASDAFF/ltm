@@ -1,7 +1,7 @@
 <form method = "post">
-	<span class = "form_title">АВТОРИЗАЦИЯ<br>для участников и гостей</span>
+	<span class = "form_title">РђР’РўРћР РР—РђР¦РРЇ<br>РґР»СЏ СѓС‡Р°СЃС‚РЅРёРєРѕРІ Рё РіРѕСЃС‚РµР№</span>
 	<input type = "text" name = "mail" class = "mail" value = "johnpatterson@gmail.com" />
 	<input type = "password" name = "pass" class = "pass" value = "12345678" />
-	<input type = "button" name = "but" class = "but" value = "Вход" />
-	<a href = "#" class = "forgot">забыли пароль?</a>
+	<input type = "button" name = "but" class = "but" value = "Р’С…РѕРґ" />
+	<a href = "#" class = "forgot">Р·Р°Р±С‹Р»Рё РїР°СЂРѕР»СЊ?</a>
 </form>

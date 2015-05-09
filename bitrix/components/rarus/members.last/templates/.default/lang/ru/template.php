@@ -1,6 +1,6 @@
 <?
-$MESS["CT_BNL_ELEMENT_DELETE_CONFIRM"] = "Будет удалена вся информация, связанная с этой записью. Продолжить?";
+$MESS["CT_BNL_ELEMENT_DELETE_CONFIRM"] = "Р‘СѓРґРµС‚ СѓРґР°Р»РµРЅР° РІСЃСЏ РёРЅС„РѕСЂРјР°С†РёСЏ, СЃРІСЏР·Р°РЅРЅР°СЏ СЃ СЌС‚РѕР№ Р·Р°РїРёСЃСЊСЋ. РџСЂРѕРґРѕР»Р¶РёС‚СЊ?";
 $MESS["MEMBERS_LIST_TITLE"] = "THE MAIN EXHIBITION IN THE LUXURY TRAVEL INDUSTRY";
-$MESS["MEMBERS_LAST_TITLE"] = "ПОСЛЕДНИЕ РЕГИСТРАЦИИ<br />НА БЛИЖАЙШЕЕ МЕРОПРИЯТИЕ";
-$MESS["MEMBERS_LAST_SHOW_ALL"] = "ПОКАЗАТЬ ВСЕХ";
+$MESS["MEMBERS_LAST_TITLE"] = "РџРћРЎР›Р•Р”РќРР• Р Р•Р“РРЎРўР РђР¦РР<br />РќРђ Р‘Р›РР–РђР™РЁР•Р• РњР•Р РћРџР РРЇРўРР•";
+$MESS["MEMBERS_LAST_SHOW_ALL"] = "РџРћРљРђР—РђРўР¬ Р’РЎР•РҐ";
 ?>

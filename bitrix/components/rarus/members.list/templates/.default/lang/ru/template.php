@@ -1,7 +1,7 @@
 <?
-$MESS["CT_BNL_ELEMENT_DELETE_CONFIRM"] = "Áóäåò óäàëåíà âñÿ èíôîðìàöèÿ, ñâÿçàííàÿ ñ ýòîé çàïèñüþ. Ïðîäîëæèòü?";
+$MESS["CT_BNL_ELEMENT_DELETE_CONFIRM"] = "Ð‘ÑƒÐ´ÐµÑ‚ ÑƒÐ´Ð°Ð»ÐµÐ½Ð° Ð²ÑÑ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ñ, ÑÐ²ÑÐ·Ð°Ð½Ð½Ð°Ñ Ñ ÑÑ‚Ð¾Ð¹ Ð·Ð°Ð¿Ð¸ÑÑŒÑŽ. ÐŸÑ€Ð¾Ð´Ð¾Ð»Ð¶Ð¸Ñ‚ÑŒ?";
 $MESS["MEMBERS_LIST_TITLE"] = "THE MAIN EXHIBITION IN THE LUXURY TRAVEL INDUSTRY";
-$MESS["BY_CATEGORY"] = "Ïî êàòåãîðèÿì";
-$MESS["BY_COUNTRY"] = "Ïî ñòðàíàì";
-$MESS["BY_ALL"] = "Âñå";
+$MESS["BY_CATEGORY"] = "ÐŸÐ¾ ÐºÐ°Ñ‚ÐµÐ³Ð¾Ñ€Ð¸ÑÐ¼";
+$MESS["BY_COUNTRY"] = "ÐŸÐ¾ ÑÑ‚Ñ€Ð°Ð½Ð°Ð¼";
+$MESS["BY_ALL"] = "Ð’ÑÐµ";
 ?>

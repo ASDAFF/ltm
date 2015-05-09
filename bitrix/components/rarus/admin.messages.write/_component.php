@@ -1,9 +1,9 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 /*--------------- TO DO -------------------*/
-//В параметрах сделать ссылку на страницу Неподтвержденных госте
-//В параметрах сделать ссылку на страницу Неподтвержденных участников
-//В параметрах сделать ссылки на страницу Неоплативших (хотя может и не нужно)
-//Добавить про сообщения
+//Р’ РїР°СЂР°РјРµС‚СЂР°С… СЃРґРµР»Р°С‚СЊ СЃСЃС‹Р»РєСѓ РЅР° СЃС‚СЂР°РЅРёС†Сѓ РќРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… РіРѕСЃС‚Рµ
+//Р’ РїР°СЂР°РјРµС‚СЂР°С… СЃРґРµР»Р°С‚СЊ СЃСЃС‹Р»РєСѓ РЅР° СЃС‚СЂР°РЅРёС†Сѓ РќРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… СѓС‡Р°СЃС‚РЅРёРєРѕРІ
+//Р’ РїР°СЂР°РјРµС‚СЂР°С… СЃРґРµР»Р°С‚СЊ СЃСЃС‹Р»РєРё РЅР° СЃС‚СЂР°РЅРёС†Сѓ РќРµРѕРїР»Р°С‚РёРІС€РёС… (С…РѕС‚СЏ РјРѕР¶РµС‚ Рё РЅРµ РЅСѓР¶РЅРѕ)
+//Р”РѕР±Р°РІРёС‚СЊ РїСЂРѕ СЃРѕРѕР±С‰РµРЅРёСЏ
 
 
 $arResult["ERROR_MESSAGE"] = "";
@@ -21,20 +21,20 @@ if(strLen($arParams["AUTH_PAGE"])<=0){
 }
 
 if(strLen($arParams["GUEST"])<=0){
-	$arResult["ERROR_MESSAGE"] = "Не введены данные по Гостям!<br />";
+	$arResult["ERROR_MESSAGE"] = "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ Р“РѕСЃС‚СЏРј!<br />";
 }
 
 if(strLen($arParams["GUEST_HB"])<=0){
-	$arResult["ERROR_MESSAGE"] = "Не введены данные по Гостям hosted buyers!<br />";
+	$arResult["ERROR_MESSAGE"] = "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ Р“РѕСЃС‚СЏРј hosted buyers!<br />";
 }
 
 if(strLen($arParams["PARTICIP"])<=0){
-	$arResult["ERROR_MESSAGE"] = "Не введены данные по Участникам!<br />";
+	$arResult["ERROR_MESSAGE"] = "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ РЈС‡Р°СЃС‚РЅРёРєР°Рј!<br />";
 }
 
 /*
 if(strLen($arParams["MESSAGE"])<=0){
-	$arResult["ERROR_MESSAGE"] = "Не введены данные по Сообщениям!<br />";
+	$arResult["ERROR_MESSAGE"] = "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ РЎРѕРѕР±С‰РµРЅРёСЏРј!<br />";
 }
 */
 
@@ -45,14 +45,14 @@ if(!($USER->IsAuthorized()))
 elseif($arResult["ERROR_MESSAGE"] == '')
 {
 	if($USER->IsAdmin()){
-		//ГОСТИ
+		//Р“РћРЎРўР
 		$guest = array();
 		$guest["LIST"] = array();
 		$guest["COUNT"] = 0;
 		$filter = Array(
 			"GROUPS_ID"  => Array($arParams["GUEST"])
 		);
-		$rsUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter); // выбираем пользователей
+		$rsUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter); // РІС‹Р±РёСЂР°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 		while($arUsersTemp=$rsUsers->Fetch()){
 		  $guest["LIST"][$guest["COUNT"]]["ID"] = $arUsersTemp["ID"];
 		  $guest["LIST"][$guest["COUNT"]]["COMPANY"] = $arUsersTemp["WORK_COMPANY"];
@@ -61,14 +61,14 @@ elseif($arResult["ERROR_MESSAGE"] == '')
 		  $guest["COUNT"]++;
 		}
 		
-		//ГОСТИ HB
+		//Р“РћРЎРўР HB
 		$hb = array();
 		$hb["LIST"] = array();
 		$hb["COUNT"] = 0;
 		$filter = Array(
 			"GROUPS_ID"  => Array($arParams["GUEST_HB"])
 		);
-		$rsUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter); // выбираем пользователей
+		$rsUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter); // РІС‹Р±РёСЂР°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 		while($arUsersTemp=$rsUsers->Fetch()){
 		  $hb["LIST"][$hb["COUNT"]]["ID"] = $arUsersTemp["ID"];
 		  $hb["LIST"][$hb["COUNT"]]["COMPANY"] = $arUsersTemp["WORK_COMPANY"];
@@ -77,14 +77,14 @@ elseif($arResult["ERROR_MESSAGE"] == '')
 		  $hb["COUNT"]++;
 		}
 		
-		//УЧАСТНИКИ
+		//РЈР§РђРЎРўРќРРљР
 		$particip = array();
 		$particip["LIST"] = array();
 		$particip["COUNT"] = 0;
 		$filter = Array(
 			"GROUPS_ID"  => Array($arParams["PARTICIP"])
 		);
-		$rsUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter); // выбираем пользователей
+		$rsUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="asc"), $filter); // РІС‹Р±РёСЂР°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 		while($arUsersTemp=$rsUsers->Fetch()){
 		  $particip["LIST"][$particip["COUNT"]]["ID"] = $arUsersTemp["ID"];
 		  $particip["LIST"][$particip["COUNT"]]["COMPANY"] = $arUsersTemp["WORK_COMPANY"];
@@ -102,10 +102,10 @@ elseif($arResult["ERROR_MESSAGE"] == '')
 		if((isset($_POST['mes'])) and ($_POST['mes'] == 'write')){
 			$arResult["MESSAGE"] = '';
 			if(!(isset($_REQUEST["subj"])) || $_REQUEST["subj"] == ''){
-				$arResult["MESSAGE"] = "Вы не ввели Тему<br />";
+				$arResult["MESSAGE"] = "Р’С‹ РЅРµ РІРІРµР»Рё РўРµРјСѓ<br />";
 			}
 			if(!(isset($_REQUEST["message_text"])) || $_REQUEST["message_text"] == ''){
-				$arResult["MESSAGE"] .= "Вы не ввели Текст сообщения";
+				$arResult["MESSAGE"] .= "Р’С‹ РЅРµ РІРІРµР»Рё РўРµРєСЃС‚ СЃРѕРѕР±С‰РµРЅРёСЏ";
 			}
 			if($arResult["MESSAGE"] == ''){
 				$arFields = Array(
@@ -122,7 +122,7 @@ elseif($arResult["ERROR_MESSAGE"] == '')
 							$arFields["USER_ID"] = $arResult["GUEST"]["LIST"][$i]['ID'];
 							$ID = CForumPrivateMessage::Send($arFields);
 							if (IntVal($ID)<=0){
-							 $arResult["MESSAGE"] .= "Не отправилось Сообщение Пользователю ".$arResult["GUEST"]["LIST"][$i]['ID']."<br />";			
+							 $arResult["MESSAGE"] .= "РќРµ РѕС‚РїСЂР°РІРёР»РѕСЃСЊ РЎРѕРѕР±С‰РµРЅРёРµ РџРѕР»СЊР·РѕРІР°С‚РµР»СЋ ".$arResult["GUEST"]["LIST"][$i]['ID']."<br />";			
 							}
 							else{
 							  $arFieldsMes = array();
@@ -136,7 +136,7 @@ elseif($arResult["ERROR_MESSAGE"] == '')
 							$arFields["USER_ID"] = $arResult["HB"]["LIST"][$i]['ID'];
 							$ID = CForumPrivateMessage::Send($arFields);
 							if (IntVal($ID)<=0){
-							 $arResult["MESSAGE"] .= "Не отправилось Сообщение Пользователю ".$arResult["HB"]["LIST"][$i]['ID']."<br />";				
+							 $arResult["MESSAGE"] .= "РќРµ РѕС‚РїСЂР°РІРёР»РѕСЃСЊ РЎРѕРѕР±С‰РµРЅРёРµ РџРѕР»СЊР·РѕРІР°С‚РµР»СЋ ".$arResult["HB"]["LIST"][$i]['ID']."<br />";				
 							}
 							else{
 							  $arFieldsMes = array();
@@ -150,7 +150,7 @@ elseif($arResult["ERROR_MESSAGE"] == '')
 							$arFields["USER_ID"] = $arResult["PARTICIP"]["LIST"][$i]['ID'];
 							$ID = CForumPrivateMessage::Send($arFields);
 							if (IntVal($ID)<=0){
-							 $arResult["MESSAGE"] .= "Не отправилось Сообщение Пользователю ".$arResult["PARTICIP"]["LIST"][$i]['ID']."<br />";			
+							 $arResult["MESSAGE"] .= "РќРµ РѕС‚РїСЂР°РІРёР»РѕСЃСЊ РЎРѕРѕР±С‰РµРЅРёРµ РџРѕР»СЊР·РѕРІР°С‚РµР»СЋ ".$arResult["PARTICIP"]["LIST"][$i]['ID']."<br />";			
 							}
 							else{
 							  $arFieldsMes = array();
@@ -161,7 +161,7 @@ elseif($arResult["ERROR_MESSAGE"] == '')
 						}
 					}
 					if($arResult["MESSAGE"] == ''){
-						$arResult["MESSAGE"] = "Все ваши сообщения успешно отправлены.";
+						$arResult["MESSAGE"] = "Р’СЃРµ РІР°С€Рё СЃРѕРѕР±С‰РµРЅРёСЏ СѓСЃРїРµС€РЅРѕ РѕС‚РїСЂР°РІР»РµРЅС‹.";
 					}
 				}
 				elseif(isset($_POST['guests']) || isset($_POST['hb']) || isset($_POST['particip'])){
@@ -171,7 +171,7 @@ elseif($arResult["ERROR_MESSAGE"] == '')
 							$arFields["COPY_TO_OUTBOX"] = "Y";
 							$ID = CForumPrivateMessage::Send($arFields);
 							if (IntVal($ID)<=0){
-							 $arResult["MESSAGE"] .= "Не отправилось Сообщение Пользователю ".$reciverIDS."<br />";				
+							 $arResult["MESSAGE"] .= "РќРµ РѕС‚РїСЂР°РІРёР»РѕСЃСЊ РЎРѕРѕР±С‰РµРЅРёРµ РџРѕР»СЊР·РѕРІР°С‚РµР»СЋ ".$reciverIDS."<br />";				
 							}
 							else{
 							  $arFieldsMes = array();
@@ -187,7 +187,7 @@ elseif($arResult["ERROR_MESSAGE"] == '')
 							$arFields["COPY_TO_OUTBOX"] = "Y";
 							$ID = CForumPrivateMessage::Send($arFields);
 							if (IntVal($ID)<=0){
-							 $arResult["MESSAGE"] .= "Не отправилось Сообщение Пользователю ".$reciverIDS."<br />";				
+							 $arResult["MESSAGE"] .= "РќРµ РѕС‚РїСЂР°РІРёР»РѕСЃСЊ РЎРѕРѕР±С‰РµРЅРёРµ РџРѕР»СЊР·РѕРІР°С‚РµР»СЋ ".$reciverIDS."<br />";				
 							}
 							else{
 							  $arFieldsMes = array();
@@ -202,7 +202,7 @@ elseif($arResult["ERROR_MESSAGE"] == '')
 							$arFields["COPY_TO_OUTBOX"] = "Y";
 							$ID = CForumPrivateMessage::Send($arFields);
 							if (IntVal($ID)<=0){
-							 $arResult["MESSAGE"] .= "Не отправилось Сообщение Пользователю ".$reciverIDS."<br />";				
+							 $arResult["MESSAGE"] .= "РќРµ РѕС‚РїСЂР°РІРёР»РѕСЃСЊ РЎРѕРѕР±С‰РµРЅРёРµ РџРѕР»СЊР·РѕРІР°С‚РµР»СЋ ".$reciverIDS."<br />";				
 							}
 							else{
 							  $arFieldsMes = array();
@@ -212,11 +212,11 @@ elseif($arResult["ERROR_MESSAGE"] == '')
 						}						
 					}
 					if($arResult["MESSAGE"] == ''){
-						$arResult["MESSAGE"] = "Все ваши сообщения успешно отправлены.";
+						$arResult["MESSAGE"] = "Р’СЃРµ РІР°С€Рё СЃРѕРѕР±С‰РµРЅРёСЏ СѓСЃРїРµС€РЅРѕ РѕС‚РїСЂР°РІР»РµРЅС‹.";
 					}
 				}
 				else{
-					$arResult["MESSAGE"] = "Вы не выбрали ниодного адресата.";
+					$arResult["MESSAGE"] = "Р’С‹ РЅРµ РІС‹Р±СЂР°Р»Рё РЅРёРѕРґРЅРѕРіРѕ Р°РґСЂРµСЃР°С‚Р°.";
 				}
 			}
 		 
@@ -224,7 +224,7 @@ elseif($arResult["ERROR_MESSAGE"] == '')
 		
 	}
 	else{
-		$arResult["ERROR_MESSAGE"] = "У вас недостаточно прав для просмотра данной страницы!";
+		$arResult["ERROR_MESSAGE"] = "РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїСЂР°РІ РґР»СЏ РїСЂРѕСЃРјРѕС‚СЂР° РґР°РЅРЅРѕР№ СЃС‚СЂР°РЅРёС†С‹!";
 	}
 }
 

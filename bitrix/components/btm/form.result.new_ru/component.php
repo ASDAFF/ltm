@@ -1,6 +1,6 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?><?
-//Добавить в параметры Номера вопросов для проверки
-//Добавить в параметры Создавать ли пользователя
+//Р”РѕР±Р°РІРёС‚СЊ РІ РїР°СЂР°РјРµС‚СЂС‹ РќРѕРјРµСЂР° РІРѕРїСЂРѕСЃРѕРІ РґР»СЏ РїСЂРѕРІРµСЂРєРё
+//Р”РѕР±Р°РІРёС‚СЊ РІ РїР°СЂР°РјРµС‚СЂС‹ РЎРѕР·РґР°РІР°С‚СЊ Р»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 
 
 if (CModule::IncludeModule("form"))
@@ -164,15 +164,15 @@ if (CModule::IncludeModule("form"))
 			// check errors
 			$arResult["FORM_ERRORS"] = CForm::Check($arParams["WEB_FORM_ID"], $arResult["arrVALUES"], false, "Y", $arParams['USE_EXTENDED_ERRORS']);
 			
-/*/////////// ПРОВЕРКА СОВПАДЕНИЯ ПОЛЯ EMAIL ///////////*/
+/*/////////// РџР РћР’Р•Р РљРђ РЎРћР’РџРђР”Р•РќРРЇ РџРћР›РЇ EMAIL ///////////*/
 			if(isset($_REQUEST["form_email_63"]) && $_REQUEST["form_email_63"] != $_REQUEST["form_email_conf"]){
-				$arResult["FORM_ERRORS"]["SIMPLE_QUESTION_634_CONF"] = "Введенные Вами email не совпадают!";
+				$arResult["FORM_ERRORS"]["SIMPLE_QUESTION_634_CONF"] = "Р’РІРµРґРµРЅРЅС‹Рµ Р’Р°РјРё email РЅРµ СЃРѕРІРїР°РґР°СЋС‚!";
 			}
 			elseif(isset($_REQUEST["form_email_378"]) && $_REQUEST["form_email_378"] != $_REQUEST["form_email_conf"]){
 				$arResult["FORM_ERRORS"]["SIMPLE_QUESTION_579_CONF"] = "Email entered in field \"Please confirm your email\" isn't correct.";
 			}
 			if(isset($_REQUEST["form_text_310"]) && !isset($_POST[countries])){
-				$arResult["FORM_ERRORS"]["SIMPLE_QUESTION_310"] = "Не заполнены следующие обязательные поля: Приоритетные направления";
+				$arResult["FORM_ERRORS"]["SIMPLE_QUESTION_310"] = "РќРµ Р·Р°РїРѕР»РЅРµРЅС‹ СЃР»РµРґСѓСЋС‰РёРµ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Рµ РїРѕР»СЏ: РџСЂРёРѕСЂРёС‚РµС‚РЅС‹Рµ РЅР°РїСЂР°РІР»РµРЅРёСЏ";
 			}
 			if($arParams["CHECK_LOGIN"] != ''){
 				$tempUser = CUser::GetByLogin($_REQUEST[$arParams["CHECK_LOGIN"]]);
@@ -194,13 +194,13 @@ if (CModule::IncludeModule("form"))
 					$return = false;
 
 // ************************************************************* //
-//                    ПРОВЕРКА ВСТРЕЧ                            //
+//                    РџР РћР’Р•Р РљРђ Р’РЎРўР Р•Р§                            //
 // ************************************************************* //
 					if($arParams["STEP"] == "CHECK" && $arParams["SECOND_FORM_ID"] != ''){
 						if(array_search("66", $arResult["arrVALUES"][form_checkbox_SIMPLE_QUESTION_805]) !== false){
 							$arParams["REGIST_USER"] = "N";
 							$arParams["WEB_FORM_ID"] = $arParams["SECOND_FORM_ID"];
-							//Перепишем массив значений $arResult["arrVALUES"], чтобы можно было сохранить нужные данные
+							//РџРµСЂРµРїРёС€РµРј РјР°СЃСЃРёРІ Р·РЅР°С‡РµРЅРёР№ $arResult["arrVALUES"], С‡С‚РѕР±С‹ РјРѕР¶РЅРѕ Р±С‹Р»Рѕ СЃРѕС…СЂР°РЅРёС‚СЊ РЅСѓР¶РЅС‹Рµ РґР°РЅРЅС‹Рµ
 							$comparison = array();
 							$counter = 0;
 							foreach($arResult["arQuestions"] as $quest){
@@ -255,7 +255,7 @@ if (CModule::IncludeModule("form"))
 						}
 					}
 // ************************************************************* //
-//                      ПРОВЕРКА СТРАН                           //
+//                      РџР РћР’Р•Р РљРђ РЎРўР РђРќ                           //
 // ************************************************************* //
 					if(isset($_POST["countries"])){
 						$arResult["arrVALUES"]["form_text_310"] = implode(", ", $_POST["countries"]);
@@ -265,14 +265,14 @@ if (CModule::IncludeModule("form"))
 					if($RESULT_ID = CFormResult::Add($arParams["WEB_FORM_ID"], $arResult["arrVALUES"]))
 					{
 // ************************************************************* //
-//                 ПРОВЕРКА ВСТРЕЧ ШАГ2                          //
+//                 РџР РћР’Р•Р РљРђ Р’РЎРўР Р•Р§ РЁРђР“2                          //
 // ************************************************************* //
 						if($arParams["STEP"] == "CHECK"){
 							if(array_search("66", $arResult["arrVALUES"][form_checkbox_SIMPLE_QUESTION_805]) !== false){
-								$arParams["SUCCESS_URL"] = "/ru/regist/step1/"; // Перенаправляем на другой шаг регистрации
+								$arParams["SUCCESS_URL"] = "/ru/regist/step1/"; // РџРµСЂРµРЅР°РїСЂР°РІР»СЏРµРј РЅР° РґСЂСѓРіРѕР№ С€Р°Рі СЂРµРіРёСЃС‚СЂР°С†РёРё
 							}
 						}
-// ************ ДОБАВЛЕНИЕ РЕЗУЛЬТАТА В ОСНОВНУЮ ФОРМУ ************ //
+// ************ Р”РћР‘РђР’Р›Р•РќРР• Р Р•Р—РЈР›Р¬РўРђРўРђ Р’ РћРЎРќРћР’РќРЈР® Р¤РћР РњРЈ ************ //
 						if(isset($_POST["res_num"]) && $_POST["res_num"] != '' && $arParams["SECOND_FORM_ID"] != ''){
 							$questions = array();
 							$answers = array();
@@ -353,7 +353,7 @@ if (CModule::IncludeModule("form"))
 
 							foreach($newVal as $key => $value){
 								$arVALUE = array();
-								$FIELD_SID = $key; // символьный идентификатор вопроса
+								$FIELD_SID = $key; // СЃРёРјРІРѕР»СЊРЅС‹Р№ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РІРѕРїСЂРѕСЃР°
 								$ANSWER_ID = $newAns[$key];
 								if(is_array($value)){
 									$arVALUE = $value;
@@ -362,14 +362,14 @@ if (CModule::IncludeModule("form"))
 									$arVALUE[$ANSWER_ID] = $value;
 								}
 								if(!CFormResult::SetField($_POST["res_num"], $FIELD_SID, $arVALUE)){
-									echo "Ошибка<br />";
+									echo "РћС€РёР±РєР°<br />";
 								}
 							}
 							$RESULT_ID = $_POST["res_num"];
 						}					
 						elseif($arParams["SECOND_FORM_ID"] != '' && $arParams["STEP"] != "CHECK"){
 							$arParams["WEB_FORM_ID"] = $arParams["SECOND_FORM_ID"];
-							//Перепишем массив значений $arResult["arrVALUES"], чтобы можно было сохранить нужные данные
+							//РџРµСЂРµРїРёС€РµРј РјР°СЃСЃРёРІ Р·РЅР°С‡РµРЅРёР№ $arResult["arrVALUES"], С‡С‚РѕР±С‹ РјРѕР¶РЅРѕ Р±С‹Р»Рѕ СЃРѕС…СЂР°РЅРёС‚СЊ РЅСѓР¶РЅС‹Рµ РґР°РЅРЅС‹Рµ
 							$comparison = array();
 							$counter = 0;
 							foreach($arResult["arQuestions"] as $quest){
@@ -424,7 +424,7 @@ if (CModule::IncludeModule("form"))
 							$RESULT_ID = CFormResult::Add($arParams["WEB_FORM_ID"], $newVal);
 						}
 // ************************************************************* //
-//               РЕГИСТРИРУЕМ НОВОГО ПОЛЬЗОВАТЕЛЯ                //
+//               Р Р•Р“РРЎРўР РР РЈР•Рњ РќРћР’РћР“Рћ РџРћР›Р¬Р—РћР’РђРўР•Р›РЇ                //
 // ************************************************************* //
 						if($arParams["REGIST_USER"] == "Y" && $arParams["REGIST_GROUP"] != '' && isset($_POST["res_num"]) && $_POST["res_num"] != '' && $arParams["SECOND_FORM_ID"] != ''){
 							  function generatePassword($length = 8)

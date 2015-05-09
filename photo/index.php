@@ -4,7 +4,7 @@ $APPLICATION->SetPageProperty("description", "Photos");
 $title = "";
 if(LANGUAGE_ID == "ru")
 {
-	$title = "ÔÎÒÎ";
+	$title = "Ð¤ÐžÐ¢Ðž";
 }
 elseif(LANGUAGE_ID == "en")
 {
@@ -49,7 +49,7 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 </div>
 
 <div class="album-preview">
-  <div class="album-title"><a id="get-popup" href="javascript:void(0)" >LTM Moscow Autumn’2013</a></div>
+  <div class="album-title"><a id="get-popup" href="javascript:void(0)" >LTM Moscow Autumnâ€™2013</a></div>
 
   <div class="album-preview-bl">
   <a class="photo-gallery popup-link img-md" rel="group" href="img-sm.png" >
@@ -110,7 +110,7 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
   <div class="gallery-nav"> 		<b>1</b> 		<a >2</a> 		<a >3</a> 		<a >4</a> 	</div>
 
   <div class="name-album">
-    <div class="title">Luxury Travel Mart Moscow Autumn’2013</div>
+    <div class="title">Luxury Travel Mart Moscow Autumnâ€™2013</div>
    		The Ritz-Carlton Moscow 	</div>
  </div>
 
@@ -205,7 +205,7 @@ while($arSection = $rsSections->GetNext(true, false))
 	"PAGER_TEMPLATE" => ".default",
 	"DISPLAY_TOP_PAGER" => "N",
 	"DISPLAY_BOTTOM_PAGER" => "N",
-	"PAGER_TITLE" => "Íîâîñòè",
+	"PAGER_TITLE" => "ÐÐ¾Ð²Ð¾ÑÑ‚Ð¸",
 	"PAGER_SHOW_ALWAYS" => "N",
 	"PAGER_DESC_NUMBERING" => "N",
 	"PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
@@ -268,7 +268,7 @@ $APPLICATION->IncludeComponent("bitrix:news.list", "photo", array(
 	"PAGER_TEMPLATE" => ".default",
 	"DISPLAY_TOP_PAGER" => "N",
 	"DISPLAY_BOTTOM_PAGER" => "N",
-	"PAGER_TITLE" => "Íîâîñòè",
+	"PAGER_TITLE" => "ÐÐ¾Ð²Ð¾ÑÑ‚Ð¸",
 	"PAGER_SHOW_ALWAYS" => "N",
 	"PAGER_DESC_NUMBERING" => "N",
 	"PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",

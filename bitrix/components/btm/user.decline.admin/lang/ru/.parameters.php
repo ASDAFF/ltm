@@ -1,12 +1,12 @@
 <?
-$MESS ['ADMIN_USER_MAIN_SETTINGS'] = "Îñíîâíûå ïàðàìåòðû";
-$MESS ['ADMIN_USER_PATH_TO_KAB'] = "Ïóòü ê ïàïêå êàáèíåòà àäìèíèñòðàòîðà";
-$MESS ['ADMIN_USER_AUTH_PAGE'] = "Ñòðàíèöà àâòîðèçàöèè";
-$MESS ['ADMIN_USER_APP_ID'] = "ID ñèñòåìû Âñòðå÷";
-$MESS ['ADMIN_USER_TYPE'] = "Òèï ïîëüçîâàòåëåé";
-$MESS ['ADMIN_USER_ID'] = "ID ïîëüçîâàòåëÿ";
-$MESS ['ADMIN_USER_ON_GROUP_ID'] = "Ãðóïïà àêòèâíîãî";
-$MESS ['ADMIN_USER_OFF_GROUP_ID'] = "Ãðóïïû îòìåíåííîãî";
-$MESS ['ADMIN_USER_GROUP_DECLINE'] = "Ãðóïïà îòêëîíåííûõ âñòðå÷";
-$MESS ['ADMIN_USER_APP_DECLINE'] = "Òèï ïðèñâàåâàåìûé îòêëîíåííîé âñòðå÷è";
+$MESS ['ADMIN_USER_MAIN_SETTINGS'] = "ÐžÑÐ½Ð¾Ð²Ð½Ñ‹Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹";
+$MESS ['ADMIN_USER_PATH_TO_KAB'] = "ÐŸÑƒÑ‚ÑŒ Ðº Ð¿Ð°Ð¿ÐºÐµ ÐºÐ°Ð±Ð¸Ð½ÐµÑ‚Ð° Ð°Ð´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ð°";
+$MESS ['ADMIN_USER_AUTH_PAGE'] = "Ð¡Ñ‚Ñ€Ð°Ð½Ð¸Ñ†Ð° Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð°Ñ†Ð¸Ð¸";
+$MESS ['ADMIN_USER_APP_ID'] = "ID ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹ Ð’ÑÑ‚Ñ€ÐµÑ‡";
+$MESS ['ADMIN_USER_TYPE'] = "Ð¢Ð¸Ð¿ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹";
+$MESS ['ADMIN_USER_ID'] = "ID Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ";
+$MESS ['ADMIN_USER_ON_GROUP_ID'] = "Ð“Ñ€ÑƒÐ¿Ð¿Ð° Ð°ÐºÑ‚Ð¸Ð²Ð½Ð¾Ð³Ð¾";
+$MESS ['ADMIN_USER_OFF_GROUP_ID'] = "Ð“Ñ€ÑƒÐ¿Ð¿Ñ‹ Ð¾Ñ‚Ð¼ÐµÐ½ÐµÐ½Ð½Ð¾Ð³Ð¾";
+$MESS ['ADMIN_USER_GROUP_DECLINE'] = "Ð“Ñ€ÑƒÐ¿Ð¿Ð° Ð¾Ñ‚ÐºÐ»Ð¾Ð½ÐµÐ½Ð½Ñ‹Ñ… Ð²ÑÑ‚Ñ€ÐµÑ‡";
+$MESS ['ADMIN_USER_APP_DECLINE'] = "Ð¢Ð¸Ð¿ Ð¿Ñ€Ð¸ÑÐ²Ð°ÐµÐ²Ð°ÐµÐ¼Ñ‹Ð¹ Ð¾Ñ‚ÐºÐ»Ð¾Ð½ÐµÐ½Ð½Ð¾Ð¹ Ð²ÑÑ‚Ñ€ÐµÑ‡Ð¸";
 ?>

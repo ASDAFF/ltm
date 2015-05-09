@@ -1,17 +1,17 @@
-<p>The organizers’ telephone number in Moscow is <b>+7 495 111 11 11</b>,<br> please feel free to contact us with any questions.</p>
+<p>The organizersâ€™ telephone number in Moscow is <b>+7 495 111 11 11</b>,<br> please feel free to contact us with any questions.</p>
 			
 <h3>DEADLINES</h3>
 
 <p><b>July 1, 2013</b>: Opening of registration for the buyers.</p>
 <p><b>August 29, 2013</b>: Password, user name and detailed instructions on how to use the online system and to set up your appointments will be sent for your attention.</p>
-<p><b>September 2 – September 18, 2013</b>: Scheduling of appointments for the morning session.</p>
+<p><b>September 2 â€“ September 18, 2013</b>: Scheduling of appointments for the morning session.</p>
 <p><b>September 19, 2013</b>: Your schedule should be ready and available for printing.</p>
 <p><b>September 19, 2013</b>: Final exhibitors check for the badges.</p>
 
 <h3>PROGRAMM OF THE EVENT</h3>
 
 <p><b>Registration desk will be located in the foyer of the Grand Ballroom Hall (minus 2nd floor).</b></p>
-<p><b>10:00 – 14:20 – Morning session. Individual pre-scheduled appointments with top-buyers.</b> Each appointment will last 10 minutes according to the following scheme (5 minutes added for moving from one exhibitor to the next):</p>
+<p><b>10:00 â€“ 14:20 â€“ Morning session. Individual pre-scheduled appointments with top-buyers.</b> Each appointment will last 10 minutes according to the following scheme (5 minutes added for moving from one exhibitor to the next):</p>
 <p>10:00 - 10:10 / 10:15 - 10:25 / 10:30 - 10:40 / 10:45 - 10:55<br> 11:00 - 11:10 / 11:15 - 11:25 / 11:30 - 11:40 / 11:45 - 11:55</p>
 
 <p>11:55 - 12:10 - Coffee break.</p>
@@ -20,9 +20,9 @@
 
 <p>A bell will ring at the end/start of each appointment.</p>
 <p>Place: Grand Ballroom Hall, Conference Hall I&II (minus 2nd floor) and Meeting Room (2nd floor).</p>
-<p><b>14:30 – 15:30 – After-session networking and buffet-reception.<br> Place: foyer of the Grand Ballroom Hall (minus 2nd floor).</b></p>
-<p><b>15:30 – 18:00 – Non pre-scheduled appointments with hosted buyers.</b> Buyers will be seated, and exhibitors will move around. Each appointment – 5 minutes (40 hosted buyers).Place: Conference Hall I&II (minus 2nd floor).			</p>
-<p><b>18:30 – 21:00 – Evening session.</b> Workshop and cocktail reception for travel agents, corporate clients and journalists in a relaxed atmosphere. Place: Grand Ballroom Hall.</p>
+<p><b>14:30 â€“ 15:30 â€“ After-session networking and buffet-reception.<br> Place: foyer of the Grand Ballroom Hall (minus 2nd floor).</b></p>
+<p><b>15:30 â€“ 18:00 â€“ Non pre-scheduled appointments with hosted buyers.</b> Buyers will be seated, and exhibitors will move around. Each appointment â€“ 5 minutes (40 hosted buyers).Place: Conference Hall I&II (minus 2nd floor).			</p>
+<p><b>18:30 â€“ 21:00 â€“ Evening session.</b> Workshop and cocktail reception for travel agents, corporate clients and journalists in a relaxed atmosphere. Place: Grand Ballroom Hall.</p>
 
 <h2>FILES FOR DOWNLOAD h2</h2>
 <h3>FILES FOR DOWNLOAD h3</h3>

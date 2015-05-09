@@ -3,8 +3,8 @@
 		<img src="http://rarus.ru/bitrix/templates/1c-rarus_index/images/logo.png" />
 	</div>
 	<div>
-		<a href="http://rarus.com.ua/web/" target="_blank">1С-Рарус Севастополь</a><br />
-		тел: +7 (8692) 48-88-01<br />
+		<a href="http://rarus.com.ua/web/" target="_blank">1РЎ-Р Р°СЂСѓСЃ РЎРµРІР°СЃС‚РѕРїРѕР»СЊ</a><br />
+		С‚РµР»: +7 (8692) 48-88-01<br />
 		e-mail:  <a href="mailto:sevastopol@rarus.ru">sevastopol@rarus.ru</a>
 	</div>
 </div>

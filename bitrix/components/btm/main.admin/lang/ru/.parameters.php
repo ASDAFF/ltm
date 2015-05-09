@@ -1,13 +1,13 @@
 <?
-$MESS ['ADMIN_MAIN_MAIN_SETTINGS'] = "Îñíîâíûå ïàðàìåòðû";
-$MESS ['ADMIN_MAIN_PATH_TO_KAB'] = "Ïóòü ê ïàïêå êàáèíåòà àäìèíèñòðàòîðà";
-$MESS ['ADMIN_MAIN_AUTH_PAGE'] = "Ñòðàíèöà àâòîðèçàöèè";
-$MESS ['ADMIN_MAIN_GROUP_ID'] = "Ãðóïïû àäìèíèñòðàòîðîâ";
-$MESS ['ADMIN_MAIN_GUEST'] = "Ãîñòè íåïîäòâåðæäåííûå";
-$MESS ['ADMIN_MAIN_GUEST_ACCEPT'] = "Ãîñòè ïîäòâåðæäåííûå íà óòðî";
-$MESS ['ADMIN_MAIN_GUEST_EVENING'] = "Ãîñòè ïîäòâåðæäåííûå íà âå÷åð";
-$MESS ['ADMIN_MAIN_GUEST_HB'] = "Ãîñòè ïîäòâåðæäåííûå õîñòåä áàéåð";
-$MESS ['ADMIN_MAIN_PARTICIP'] = "Ó÷àñòíèêè íåïîäòâåðæäåííûå";
-$MESS ['ADMIN_MAIN_PARTICIP_ACCEPT'] = "Ó÷àñòíèêè ïîäòâåðæäåííûå";
-$MESS ['ADMIN_MAIN_MESSAGE'] = "Ñîîáùåíèÿ";
+$MESS ['ADMIN_MAIN_MAIN_SETTINGS'] = "ÐžÑÐ½Ð¾Ð²Ð½Ñ‹Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹";
+$MESS ['ADMIN_MAIN_PATH_TO_KAB'] = "ÐŸÑƒÑ‚ÑŒ Ðº Ð¿Ð°Ð¿ÐºÐµ ÐºÐ°Ð±Ð¸Ð½ÐµÑ‚Ð° Ð°Ð´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ð°";
+$MESS ['ADMIN_MAIN_AUTH_PAGE'] = "Ð¡Ñ‚Ñ€Ð°Ð½Ð¸Ñ†Ð° Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð°Ñ†Ð¸Ð¸";
+$MESS ['ADMIN_MAIN_GROUP_ID'] = "Ð“Ñ€ÑƒÐ¿Ð¿Ñ‹ Ð°Ð´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ð¾Ð²";
+$MESS ['ADMIN_MAIN_GUEST'] = "Ð“Ð¾ÑÑ‚Ð¸ Ð½ÐµÐ¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð½Ñ‹Ðµ";
+$MESS ['ADMIN_MAIN_GUEST_ACCEPT'] = "Ð“Ð¾ÑÑ‚Ð¸ Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð½Ñ‹Ðµ Ð½Ð° ÑƒÑ‚Ñ€Ð¾";
+$MESS ['ADMIN_MAIN_GUEST_EVENING'] = "Ð“Ð¾ÑÑ‚Ð¸ Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð½Ñ‹Ðµ Ð½Ð° Ð²ÐµÑ‡ÐµÑ€";
+$MESS ['ADMIN_MAIN_GUEST_HB'] = "Ð“Ð¾ÑÑ‚Ð¸ Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð½Ñ‹Ðµ Ñ…Ð¾ÑÑ‚ÐµÐ´ Ð±Ð°Ð¹ÐµÑ€";
+$MESS ['ADMIN_MAIN_PARTICIP'] = "Ð£Ñ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¸ Ð½ÐµÐ¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð½Ñ‹Ðµ";
+$MESS ['ADMIN_MAIN_PARTICIP_ACCEPT'] = "Ð£Ñ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¸ Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð½Ñ‹Ðµ";
+$MESS ['ADMIN_MAIN_MESSAGE'] = "Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ";
 ?>

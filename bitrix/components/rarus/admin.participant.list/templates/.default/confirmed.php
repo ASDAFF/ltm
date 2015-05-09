@@ -1,7 +1,7 @@
 <input class="custom-buttom" name="<?= ("Y" == $arParams["CONFIRMED"])?"CANCEL":"CONFIRM"?>" type="submit" value="<?= ("Y" == $arParams["CONFIRMED"])?GetMessage("ADM_PARC_CANCEL"):GetMessage("ADM_PARC_CONFIRM")?>">
 
-<a class="custom-buttom" href="/exel/particip.php?type=particip&app=<?=$arParams["EXHIB_CODE"]?>">Генерировать Excel</a>
-<a class="custom-buttom" href="/exel/particip.php?type=particip_all&app=<?=$arParams["EXHIB_CODE"]?>">Excel (все люди)</a>
+<a class="custom-buttom" href="/exel/particip.php?type=particip&app=<?=$arParams["EXHIB_CODE"]?>">Р“РµРЅРµСЂРёСЂРѕРІР°С‚СЊ Excel</a>
+<a class="custom-buttom" href="/exel/particip.php?type=particip_all&app=<?=$arParams["EXHIB_CODE"]?>">Excel (РІСЃРµ Р»СЋРґРё)</a>
 	<div class="navigate"><?=$arResult["NAVIGATE"]?></div>
 <div class="table-responsive">
 <table class="table">
@@ -13,7 +13,7 @@
             <? endforeach;?>
             </tr>
 
-            <? //вывод полей?>
+            <? //РІС‹РІРѕРґ РїРѕР»РµР№?>
             <? $index = 1;?>
             <?foreach ($arResult["EXHIBITION"]["PARTICIPANT"] as $arUser):?>
             <?
@@ -23,7 +23,7 @@
             ?>
              <tr class="<?= (($index++ % 2) != 0)?"even":"odd"?>">
                 <td class="text-center"><input type="checkbox" name="ACTION[]" value="<?= $arUser["ID"]?>"></td>
-                <? //данные из свойств пользователя?>
+                <? //РґР°РЅРЅС‹Рµ РёР· СЃРІРѕР№СЃС‚РІ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ?>
                 <td class="text-center"><?= $arUser["ID"]?></td>
                 <td><?= $arUser["LOGIN"]?></td>
                 <td>
@@ -36,12 +36,12 @@
                         onclick="newWind('<?= $href?>', 500, 300); return false;"
                         ><?= GetMessage("ADM_PARC_EDIT_PAS")?></a>
                 </td>
-                <? //данные из Общей формы по всем участникам?>
+                <? //РґР°РЅРЅС‹Рµ РёР· РћР±С‰РµР№ С„РѕСЂРјС‹ РїРѕ РІСЃРµРј СѓС‡Р°СЃС‚РЅРёРєР°Рј?>
                 <td><?= $arUser["FORM_DATA"][17]["VALUE"]?></td>
                 <td><?= $arUser["FORM_DATA"][19]["VALUE"]?></td>
                 <td><?= $arUser["FORM_DATA"][21]["VALUE"]?></td>
                 <td><?= $arUser["FORM_DATA"][22]["VALUE"]?></td>
-                <? // данные из форму представителя?>
+                <? // РґР°РЅРЅС‹Рµ РёР· С„РѕСЂРјСѓ РїСЂРµРґСЃС‚Р°РІРёС‚РµР»СЏ?>
                 <td><?= $arUser["FORM_USER"][CFormMatrix::getQIDByBase(32, $formID)]["VALUE"]?> <?= $arUser["FORM_USER"][CFormMatrix::getQIDByBase(33, $formID)]["VALUE"]?></td>
                 <td><?= $arUser["FORM_USER"][CFormMatrix::getQIDByBase(36, $formID)]["VALUE"]?></td>
                 <td><?= $arUser["FORM_USER"][CFormMatrix::getQIDByBase(37, $formID)]["VALUE"]?></td>

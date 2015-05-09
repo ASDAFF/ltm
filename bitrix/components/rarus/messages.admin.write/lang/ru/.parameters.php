@@ -1,19 +1,19 @@
 <?
-$MESS ['ADMIN_MAIN_MAIN_SETTINGS'] = "Îñíîâíûå ïàðàìåòðû";
-$MESS ['ADMIN_MAIN_PATH_TO_KAB'] = "Ïóòü ê ïàïêå êàáèíåòà àäìèíèñòðàòîðà";
-$MESS ['ADMIN_MAIN_AUTH_PAGE'] = "Ñòðàíèöà àâòîðèçàöèè";
-$MESS ['ADMIN_MAIN_GROUP_ID'] = "Ãðóïïû àäìèíèñòðàòîðîâ";
-$MESS ['ADMIN_MAIN_GUEST'] = "Ãîñòè";
-$MESS ['ADMIN_MAIN_GUEST_HB'] = "Ãîñòè õîñòåä áàéåð";
-$MESS ['ADMIN_MAIN_PARTICIP'] = "Ó÷àñòíèêè";
-$MESS ['ADMIN_MAIN_MESSAGE'] = "Ñîîáùåíèÿ";
-$MESS ['HLM_DEFAULT_EID'] = "ID âûñòàâêè";
+$MESS ['ADMIN_MAIN_MAIN_SETTINGS'] = "ÐžÑÐ½Ð¾Ð²Ð½Ñ‹Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹";
+$MESS ['ADMIN_MAIN_PATH_TO_KAB'] = "ÐŸÑƒÑ‚ÑŒ Ðº Ð¿Ð°Ð¿ÐºÐµ ÐºÐ°Ð±Ð¸Ð½ÐµÑ‚Ð° Ð°Ð´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ð°";
+$MESS ['ADMIN_MAIN_AUTH_PAGE'] = "Ð¡Ñ‚Ñ€Ð°Ð½Ð¸Ñ†Ð° Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð°Ñ†Ð¸Ð¸";
+$MESS ['ADMIN_MAIN_GROUP_ID'] = "Ð“Ñ€ÑƒÐ¿Ð¿Ñ‹ Ð°Ð´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ð¾Ð²";
+$MESS ['ADMIN_MAIN_GUEST'] = "Ð“Ð¾ÑÑ‚Ð¸";
+$MESS ['ADMIN_MAIN_GUEST_HB'] = "Ð“Ð¾ÑÑ‚Ð¸ Ñ…Ð¾ÑÑ‚ÐµÐ´ Ð±Ð°Ð¹ÐµÑ€";
+$MESS ['ADMIN_MAIN_PARTICIP'] = "Ð£Ñ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¸";
+$MESS ['ADMIN_MAIN_MESSAGE'] = "Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ";
+$MESS ['HLM_DEFAULT_EID'] = "ID Ð²Ñ‹ÑÑ‚Ð°Ð²ÐºÐ¸";
 $MESS ['HLM_DEFAULT_HLID'] = "ID Highload";
-$MESS ['HLM_COPY_TO_OUTBOX'] = "Êîïèðîâàòü â èñõîäÿùèå";
-$MESS ['HLM_SEND_EMAIL'] = "Îòïðàâëÿòü email ïîëó÷àòåëþ";
-$MESS ['HLM_DEFAULT_GROUP_WRITE'] = "Ãðóïïà ïîëüçîâàòåëåé (ïîëó÷àòåëè)";
-$MESS ['HLM_DEFAULT_GROUP_TYPE'] = "Òèï ãðóïïû ïîëüçîâàòåëåé";
-$MESS ['HLM_DATE_FORMAT'] = "Ôîðìàò ïîêàçà äàòû";
-$MESS ['HLM_DATE_TIME_FORMAT'] = "Ôîðìàò ïîêàçà äàòû è âðåìåíè";
-$MESS ['HLM_NEW_WINDOW'] = "Îòêðûâàòü â íîâîì îêíå";
+$MESS ['HLM_COPY_TO_OUTBOX'] = "ÐšÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð² Ð¸ÑÑ…Ð¾Ð´ÑÑ‰Ð¸Ðµ";
+$MESS ['HLM_SEND_EMAIL'] = "ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð»ÑÑ‚ÑŒ email Ð¿Ð¾Ð»ÑƒÑ‡Ð°Ñ‚ÐµÐ»ÑŽ";
+$MESS ['HLM_DEFAULT_GROUP_WRITE'] = "Ð“Ñ€ÑƒÐ¿Ð¿Ð° Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹ (Ð¿Ð¾Ð»ÑƒÑ‡Ð°Ñ‚ÐµÐ»Ð¸)";
+$MESS ['HLM_DEFAULT_GROUP_TYPE'] = "Ð¢Ð¸Ð¿ Ð³Ñ€ÑƒÐ¿Ð¿Ñ‹ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹";
+$MESS ['HLM_DATE_FORMAT'] = "Ð¤Ð¾Ñ€Ð¼Ð°Ñ‚ Ð¿Ð¾ÐºÐ°Ð·Ð° Ð´Ð°Ñ‚Ñ‹";
+$MESS ['HLM_DATE_TIME_FORMAT'] = "Ð¤Ð¾Ñ€Ð¼Ð°Ñ‚ Ð¿Ð¾ÐºÐ°Ð·Ð° Ð´Ð°Ñ‚Ñ‹ Ð¸ Ð²Ñ€ÐµÐ¼ÐµÐ½Ð¸";
+$MESS ['HLM_NEW_WINDOW'] = "ÐžÑ‚ÐºÑ€Ñ‹Ð²Ð°Ñ‚ÑŒ Ð² Ð½Ð¾Ð²Ð¾Ð¼ Ð¾ÐºÐ½Ðµ";
 ?>

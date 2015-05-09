@@ -1,6 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Ñïàì");
+$APPLICATION->SetTitle("Ð¡Ð¿Ð°Ð¼");
 ?>
 <?$APPLICATION->IncludeComponent(
 	"btm:user_off.admin",

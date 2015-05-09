@@ -17,15 +17,15 @@ if(strLen($arParams["AUTH_PAGE"])<=0){
 }
 
 if(strLen($arParams["USER"])<=0){
-	$arResult["ERROR_MESSAGE"] = "ÕÂ ‚‚Â‰ÂÌ˚ ‰‡ÌÌ˚Â ÔÓ œÓÎ¸ÁÓ‚‡ÚÂÎˇÏ!<br />";
+	$arResult["ERROR_MESSAGE"] = "–ù–µ –≤–≤–µ–¥–µ–Ω—ã –¥–∞–Ω–Ω—ã–µ –ø–æ –ü–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª—è–º!<br />";
 }
 
 if(strLen($arParams["USER_ACCEPT"])<=0){
-	$arResult["ERROR_MESSAGE"] = "ÕÂ ‚‚Â‰ÂÌ˚ ‰‡ÌÌ˚Â ÔÓ œÓ‰Ú‚ÂÊ‰ÂÌÌ˚Ï ÔÓÎ¸ÁÓ‚‡ÚÂÎˇÏ!<br />";
+	$arResult["ERROR_MESSAGE"] = "–ù–µ –≤–≤–µ–¥–µ–Ω—ã –¥–∞–Ω–Ω—ã–µ –ø–æ –ü–æ–¥—Ç–≤–µ—Ä–∂–¥–µ–Ω–Ω—ã–º –ø–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª—è–º!<br />";
 }
 
 if(strLen($arParams["USER_SPAM"])<=0){
-	$arResult["ERROR_MESSAGE"] = "ÕÂ ‚‚Â‰ÂÌ˚ ‰‡ÌÌ˚Â ÔÓ „ÛÔÔÂ ‰Îˇ —Ô‡Ï‡!<br />";
+	$arResult["ERROR_MESSAGE"] = "–ù–µ –≤–≤–µ–¥–µ–Ω—ã –¥–∞–Ω–Ω—ã–µ –ø–æ –≥—Ä—É–ø–ø–µ –¥–ª—è –°–ø–∞–º–∞!<br />";
 }
 
 if(strLen($arParams["USER_TYPE"])<=0){
@@ -33,14 +33,14 @@ if(strLen($arParams["USER_TYPE"])<=0){
 }
 
 if(strLen($arParams["FORM_ID"])<=0){
-	$arResult["ERROR_MESSAGE"] = "ÕÂ ‚‚Â‰ÂÌ˚ ‰‡ÌÌ˚Â ÔÓ –ÂÁÛÎ¸Ú‡Ú‡Ï ÔÓÎ¸ÁÓ‚‡ÚÂÎÂÈ!<br />";
+	$arResult["ERROR_MESSAGE"] = "–ù–µ –≤–≤–µ–¥–µ–Ω—ã –¥–∞–Ω–Ω—ã–µ –ø–æ –†–µ–∑—É–ª—å—Ç–∞—Ç–∞–º –ø–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª–µ–π!<br />";
 }
 if(!($USER->IsAuthorized()))
 {
 	LocalRedirect($arParams["AUTH_PAGE"]);
 }
 /*---------------------------------------------------*/
-//           œŒƒ“¬≈–∆ƒ¿≈Ã œŒÀ‹«Œ¬¿“≈À≈…              //
+//           –ü–û–î–¢–í–ï–†–ñ–î–ê–ï–ú –ü–û–õ–¨–ó–û–í–ê–¢–ï–õ–ï–ô              //
 /*---------------------------------------------------*/
 if(isset($_POST["accept"])){
 	$userId= $USER->GetID();
@@ -118,14 +118,14 @@ elseif(isset($_GET["type"]) && $_GET["type"] == "del_pay"){
 
 
 /*---------------------------------------------------*/
-//           ‘Œ–Ã»–”≈Ã ¬€¬Œƒ ƒÀﬂ ÿ¿¡ÀŒÕ¿             //
+//           –§–û–†–ú–ò–†–£–ï–ú –í–´–í–û–î –î–õ–Ø –®–ê–ë–õ–û–ù–ê             //
 /*---------------------------------------------------*/
 if($arResult["ERROR_MESSAGE"] == '')
 {
 	$userId= $USER->GetID();
 	$userGroups = CUser::GetUserGroup($userId);
 	if($USER->IsAdmin() || in_array($arParams["GROUP_ID"], $userGroups)){
-		//—œ»—Œ  œŒÀ‹«Œ¬¿“≈À≈…
+		//–°–ü–ò–°–û–ö –ü–û–õ–¨–ó–û–í–ê–¢–ï–õ–ï–ô
 		$filter = Array(
 			"GROUPS_ID"  => Array($arParams["USER"])
 		);
@@ -135,9 +135,9 @@ if($arResult["ERROR_MESSAGE"] == '')
 		else{
 			$sort = "UF_PAY";
 		}
-		$rsUsers = CUser::GetList(($by=$sort), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // ‚˚·Ë‡ÂÏ ÔÓÎ¸ÁÓ‚‡ÚÂÎÂÈ
-		$rsUsers->NavStart(100); // ‡Á·Ë‚‡ÂÏ ÔÓÒÚ‡ÌË˜ÌÓ ÔÓ 30 Á‡ÔËÒÂÈ
-		$arResult["NAVIGATE"] = $rsUsers->GetPageNavStringEx($navComponentObject, "œÓÎ¸ÁÓ‚‡ÚÂÎË", "");
+		$rsUsers = CUser::GetList(($by=$sort), ($order="asc"), $filter, array("SELECT"=>array("UF_*"))); // –≤—ã–±–∏—Ä–∞–µ–º –ø–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª–µ–π
+		$rsUsers->NavStart(100); // —Ä–∞–∑–±–∏–≤–∞–µ–º –ø–æ—Å—Ç—Ä–∞–Ω–∏—á–Ω–æ –ø–æ 30 –∑–∞–ø–∏—Å–µ–π
+		$arResult["NAVIGATE"] = $rsUsers->GetPageNavStringEx($navComponentObject, "–ü–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª–∏", "");
 		$countUsers = 0;
 		$resultFormId = "";
 		while($arUsersTemp=$rsUsers->Fetch()){
@@ -157,10 +157,10 @@ if($arResult["ERROR_MESSAGE"] == '')
 			$arResult["USERS"]["FORMAT"] = $arParams["USER_FORMAT"];
 		}
 
-		//–≈«”À‹“¿“€ œŒÀ‹«Œ¬¿“≈À≈…
+		//–†–ï–ó–£–õ–¨–¢–ê–¢–´ –ü–û–õ–¨–ó–û–í–ê–¢–ï–õ–ï–ô
 		CForm::GetResultAnswerArray($arParams["FORM_ID"], $arrColumns, $arrAnswers, $arrAnswersVarname, array("RESULT_ID" => $resultFormId));
 		
-		//—œ»—Œ   ŒÀŒÕŒ  ƒÀﬂ “¿¡À»÷€
+		//–°–ü–ò–°–û–ö –ö–û–õ–û–ù–û–ö –î–õ–Ø –¢–ê–ë–õ–ò–¶–´
 		$countColumns = 0;
 		$countReal = 0;
 		$arResult["FIELDS"]["COUNT"]=0;
@@ -177,7 +177,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 				}
 			}
 			else{
-				if($countReal!=0 && ($columnName["TITLE"] == $arResult["FIELDS"][$countReal-1]["TITLE"]." (‰Û„ÓÈ)" || $columnName["TITLE"] == $arResult["FIELDS"][$countReal-1]["TITLE"]." (‰Û„‡ˇ)" || $columnName["TITLE"] == $arResult["FIELDS"][$countReal-1]["TITLE"]." (‰Û„ËÂ)" || $columnName["TITLE"] == $arResult["FIELDS"][$countReal-1]["TITLE"]." (‰Û„ÓÂ)")){
+				if($countReal!=0 && ($columnName["TITLE"] == $arResult["FIELDS"][$countReal-1]["TITLE"]." (–¥—Ä—É–≥–æ–π)" || $columnName["TITLE"] == $arResult["FIELDS"][$countReal-1]["TITLE"]." (–¥—Ä—É–≥–∞—è)" || $columnName["TITLE"] == $arResult["FIELDS"][$countReal-1]["TITLE"]." (–¥—Ä—É–≥–∏–µ)" || $columnName["TITLE"] == $arResult["FIELDS"][$countReal-1]["TITLE"]." (–¥—Ä—É–≥–æ–µ)")){
 					$arResult["FIELDS"][$countReal]["OTHER"] = "Y";
 				}
 				else{
@@ -189,7 +189,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 		$arResult["FIELDS"]["COUNT"] = $countColumns;
 		$realFieldTemp = array();
 		
-		//—œ»—Œ  œŒÀ‹«Œ¬¿“≈À≈… — œŒÀﬂÃ»
+		//–°–ü–ò–°–û–ö –ü–û–õ–¨–ó–û–í–ê–¢–ï–õ–ï–ô –° –ü–û–õ–Ø–ú–ò
 		for($i=0; $i<$countUsers; $i++){
 			$arResult["USERS"][$i]["ID"] = $arUsers[$i]["ID"];
 			$arResult["USERS"][$i]["ANKETA"] = $arUsers[$i]["UF_ANKETA"];
@@ -238,11 +238,11 @@ if($arResult["ERROR_MESSAGE"] == '')
 						}
 					}
 					else{
-						if(strpos($arResult["FIELDS"][$j]["TITLE"], "¿‰ÂÒ") !== false){
-							$realFieldTemp[$j-$sdvig]["TITLE"] = "¿‰ÂÒ";
+						if(strpos($arResult["FIELDS"][$j]["TITLE"], "–ê–¥—Ä–µ—Å") !== false){
+							$realFieldTemp[$j-$sdvig]["TITLE"] = "–ê–¥—Ä–µ—Å";
 						}
-						elseif(strpos($arResult["FIELDS"][$j]["TITLE"], "“ÂÎÂÙÓÌ") !== false){
-							$realFieldTemp[$j-$sdvig]["TITLE"] = "“ÂÎÂÙÓÌ";
+						elseif(strpos($arResult["FIELDS"][$j]["TITLE"], "–¢–µ–ª–µ—Ñ–æ–Ω") !== false){
+							$realFieldTemp[$j-$sdvig]["TITLE"] = "–¢–µ–ª–µ—Ñ–æ–Ω";
 						}
 						else{
 							$realFieldTemp[$j-$sdvig]["TITLE"] = $arResult["FIELDS"][$j]["TITLE"];
@@ -256,7 +256,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 		$arResult["FIELDS"]["COUNT"] = $countColumns;
 	}
 	else{
-		$arResult["ERROR_MESSAGE"] = "” ‚‡Ò ÌÂ‰ÓÒÚ‡ÚÓ˜ÌÓ Ô‡‚ ‰Îˇ ÔÓÒÏÓÚ‡ ‰‡ÌÌÓÈ ÒÚ‡ÌËˆ˚!";
+		$arResult["ERROR_MESSAGE"] = "–£ –≤–∞—Å –Ω–µ–¥–æ—Å—Ç–∞—Ç–æ—á–Ω–æ –ø—Ä–∞–≤ –¥–ª—è –ø—Ä–æ—Å–º–æ—Ç—Ä–∞ –¥–∞–Ω–Ω–æ–π —Å—Ç—Ä–∞–Ω–∏—Ü—ã!";
 	}
 }
 //echo "<pre>"; print_r($realFieldTemp); echo "</pre>";

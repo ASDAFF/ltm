@@ -1,4 +1,4 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die(); ?>
 <?
 $MESS['PARTICIP_EXHIBITION_BLOCKED'] = 'Appointments schedule blocked by the organizers';
-$MESS['GUEST_EXHIBITION_BLOCKED'] = 'Íàçíà÷åíèå âñòðå÷ çàáëîêèðîâàíî àäìèíèñòðàöèåé';
+$MESS['GUEST_EXHIBITION_BLOCKED'] = 'ÐÐ°Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð²ÑÑ‚Ñ€ÐµÑ‡ Ð·Ð°Ð±Ð»Ð¾ÐºÐ¸Ñ€Ð¾Ð²Ð°Ð½Ð¾ Ð°Ð´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸ÐµÐ¹';

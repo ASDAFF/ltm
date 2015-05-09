@@ -59,13 +59,13 @@ foreach ($URL_NAME_DEFAULT as $URL => $URL_VALUE)
 ********************************************************************/
 
 
-// íà÷àëî ********************* highloadblock init ***************************************
+// Ğ½Ğ°Ñ‡Ğ°Ğ»Ğ¾ ********************* highloadblock init ***************************************
 
 use Bitrix\Highloadblock as HL;
 use Bitrix\Main\Entity;
 
 $hlblock = HL\HighloadBlockTable::getById($arParams["HLID"])->fetch();
-// ïîëó÷àåì ñóùíîñòü
+// Ğ¿Ğ¾Ğ»ÑƒÑ‡Ğ°ĞµĞ¼ ÑÑƒÑ‰Ğ½Ğ¾ÑÑ‚ÑŒ
 $entity = HL\HighloadBlockTable::compileEntity($hlblock);
 $HLDataClass = $entity->getDataClass();
 
@@ -74,7 +74,7 @@ global $USER_FIELD_MANAGER;
 $HLFields = $USER_FIELD_MANAGER->GetUserFields('HLBLOCK_'.$hlblock['ID'], 0, LANGUAGE_ID);
 
 
-// êîíåö ********************* highloadblock init *****************************************
+// ĞºĞ¾Ğ½ĞµÑ† ********************* highloadblock init *****************************************
 
 
 
@@ -85,7 +85,7 @@ $arResult["OK_MESSAGE"] = "";
 $arResult["sessid"] = bitrix_sessid_post();
 $arResult["FID"] = $arParams["FID"];
 
-// íà÷àëî ñîğòèğîâêà
+// Ğ½Ğ°Ñ‡Ğ°Ğ»Ğ¾ ÑĞ¾Ñ€Ñ‚Ğ¸Ñ€Ğ¾Ğ²ĞºĞ°
 
 $SortingField = "AUTHOR_NAME";
 if ($arParams["FID"] == 3)
@@ -105,7 +105,7 @@ $arResult["SortingEx"]["COMPANY"] = SortingEx($SortingFieldCompany);
 $arResult["SortingEx"]["POST_DATE"] = SortingEx("UF_POST_DATE");
 
 
-// êîíåö ñîğòèğîâêà
+// ĞºĞ¾Ğ½ĞµÑ† ÑĞ¾Ñ€Ñ‚Ğ¸Ñ€Ğ¾Ğ²ĞºĞ°
 
 // pagination
 $limit = array(
@@ -131,7 +131,7 @@ $select = array("ID", "UF_AUTHOR", "UF_RECIPIENT",  "UF_POST_DATE", "UF_IS_READ"
 
 $main_query = new Entity\Query($entity);
 $main_query->setSelect($select);
-if(strstr($by, "UF_") !== false)//äëÿ ñîğòèğîâêè ïî ñâîéñòâàì äîáàâëÿåì â âûáîğêó
+if(strstr($by, "UF_") !== false)//Ğ´Ğ»Ñ ÑĞ¾Ñ€Ñ‚Ğ¸Ñ€Ğ¾Ğ²ĞºĞ¸ Ğ¿Ğ¾ ÑĞ²Ğ¾Ğ¹ÑÑ‚Ğ²Ğ°Ğ¼ Ğ´Ğ¾Ğ±Ğ°Ğ²Ğ»ÑĞµĞ¼ Ğ² Ğ²Ñ‹Ğ±Ğ¾Ñ€ĞºÑƒ
 {
     $by = strtoupper($by);
     $order = strtoupper($order);
@@ -190,7 +190,7 @@ while ($arMessage = $rMessage->Fetch())
        $arItem[$newKey] = $v;
     }
 
-    //ïîëó÷åíèå äàííûõ àâòîğà
+    //Ğ¿Ğ¾Ğ»ÑƒÑ‡ĞµĞ½Ğ¸Ğµ Ğ´Ğ°Ğ½Ğ½Ñ‹Ñ… Ğ°Ğ²Ñ‚Ğ¾Ñ€Ğ°
     if($arItem["AUTHOR"] == 1)
     {
         $arItem["AUTHOR"] = array(
@@ -216,7 +216,7 @@ while ($arMessage = $rMessage->Fetch())
         }
     }
 
-    //ïîëó÷åíèå äàííûõ ïîëó÷àòåëÿ
+    //Ğ¿Ğ¾Ğ»ÑƒÑ‡ĞµĞ½Ğ¸Ğµ Ğ´Ğ°Ğ½Ğ½Ñ‹Ñ… Ğ¿Ğ¾Ğ»ÑƒÑ‡Ğ°Ñ‚ĞµĞ»Ñ
     if($arItem["RECIPIENT"] == 1)
     {
         $arItem["RECIPIENT"] = array(
@@ -266,7 +266,7 @@ while ($arMessage = $rMessage->Fetch())
     /************ URL_TEMPLATE ***************/
 
 
-//ñîğòèğîâêà ïî ïîëÿì íå âõîäÿùèìè â ñîîáùåíèå
+//ÑĞ¾Ñ€Ñ‚Ğ¸Ñ€Ğ¾Ğ²ĞºĞ° Ğ¿Ğ¾ Ğ¿Ğ¾Ğ»ÑĞ¼ Ğ½Ğµ Ğ²Ñ…Ğ¾Ğ´ÑÑ‰Ğ¸Ğ¼Ğ¸ Ğ² ÑĞ¾Ğ¾Ğ±Ñ‰ĞµĞ½Ğ¸Ğµ
 if(strstr($by, "UF_") === false)
 {
     switch ($by)
@@ -301,8 +301,8 @@ if(strstr($by, "UF_") === false)
 }
 }
 
-//ïàãèíàöèÿ
-//êîñòûëü, òàê êàê áèòğèêñîéäû íå ğåàëèçîâàëè íîğìàëüíî ıòîò ôóíêöèîíàë
+//Ğ¿Ğ°Ğ³Ğ¸Ğ½Ğ°Ñ†Ğ¸Ñ
+//ĞºĞ¾ÑÑ‚Ñ‹Ğ»ÑŒ, Ñ‚Ğ°Ğº ĞºĞ°Ğº Ğ±Ğ¸Ñ‚Ñ€Ğ¸ĞºÑĞ¾Ğ¹Ğ´Ñ‹ Ğ½Ğµ Ñ€ĞµĞ°Ğ»Ğ¸Ğ·Ğ¾Ğ²Ğ°Ğ»Ğ¸ Ğ½Ğ¾Ñ€Ğ¼Ğ°Ğ»ÑŒĞ½Ğ¾ ÑÑ‚Ğ¾Ñ‚ Ñ„ÑƒĞ½ĞºÑ†Ğ¸Ğ¾Ğ½Ğ°Ğ»
 
 $countQuery = new Entity\Query($entity);
 $countQuery->setSelect(array('CNT'=>array('expression' => array('COUNT(1)'), 'data_type'=>'integer')));

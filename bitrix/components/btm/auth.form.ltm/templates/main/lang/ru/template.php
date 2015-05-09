@@ -1,19 +1,19 @@
 <?
-$MESS ['AUTH_HEAD'] = "АВТОРИЗАЦИЯ";
-$MESS ['AUTH_LOGIN_BUTTON'] = "Войти";
-$MESS ['AUTH_LOGIN'] = "Логин";
-$MESS ['AUTH_PASSWORD'] = "Пароль";
-$MESS ['AUTH_REMEMBER_ME'] = "Запомнить меня на этом компьютере";
-$MESS ['AUTH_FORGOT_PASSWORD_2'] = '<a href="/ru/password.php">Забыли свой пароль?</a>';
-$MESS ['AUTH_REGISTER'] = "Регистрация";
-$MESS ['AUTH_LOGOUT_BUTTON'] = "Выйти";
-$MESS ['AUTH_PROFILE'] = "Мой профиль";
-$MESS ['AUTH_A_INTERNAL'] = "Встроенная авторизация";
+$MESS ['AUTH_HEAD'] = "РђР’РўРћР РР—РђР¦РРЇ";
+$MESS ['AUTH_LOGIN_BUTTON'] = "Р’РѕР№С‚Рё";
+$MESS ['AUTH_LOGIN'] = "Р›РѕРіРёРЅ";
+$MESS ['AUTH_PASSWORD'] = "РџР°СЂРѕР»СЊ";
+$MESS ['AUTH_REMEMBER_ME'] = "Р—Р°РїРѕРјРЅРёС‚СЊ РјРµРЅСЏ РЅР° СЌС‚РѕРј РєРѕРјРїСЊСЋС‚РµСЂРµ";
+$MESS ['AUTH_FORGOT_PASSWORD_2'] = '<a href="/ru/password.php">Р—Р°Р±С‹Р»Рё СЃРІРѕР№ РїР°СЂРѕР»СЊ?</a>';
+$MESS ['AUTH_REGISTER'] = "Р РµРіРёСЃС‚СЂР°С†РёСЏ";
+$MESS ['AUTH_LOGOUT_BUTTON'] = "Р’С‹Р№С‚Рё";
+$MESS ['AUTH_PROFILE'] = "РњРѕР№ РїСЂРѕС„РёР»СЊ";
+$MESS ['AUTH_A_INTERNAL'] = "Р’СЃС‚СЂРѕРµРЅРЅР°СЏ Р°РІС‚РѕСЂРёР·Р°С†РёСЏ";
 $MESS ['AUTH_A_OPENID'] = "OpenID";
 $MESS ['AUTH_OPENID'] = "OpenID";
 $MESS ['AUTH_A_LIVEID'] = "LiveID";
 $MESS ['AUTH_LIVEID_LOGIN'] = "Log In";
-$MESS ['AUTH_CAPTCHA_PROMT'] = "Введите слово на картинке";
-$MESS ['AUTH_DEJA'] = 'Вы уже авторизованы<br /><a href="/ru/personal/">Личный кабинет</a>';
-$MESS ['IS_BLOCKED'] = "Личные кабинеты не активны.";
+$MESS ['AUTH_CAPTCHA_PROMT'] = "Р’РІРµРґРёС‚Рµ СЃР»РѕРІРѕ РЅР° РєР°СЂС‚РёРЅРєРµ";
+$MESS ['AUTH_DEJA'] = 'Р’С‹ СѓР¶Рµ Р°РІС‚РѕСЂРёР·РѕРІР°РЅС‹<br /><a href="/ru/personal/">Р›РёС‡РЅС‹Р№ РєР°Р±РёРЅРµС‚</a>';
+$MESS ['IS_BLOCKED'] = "Р›РёС‡РЅС‹Рµ РєР°Р±РёРЅРµС‚С‹ РЅРµ Р°РєС‚РёРІРЅС‹.";
 ?>

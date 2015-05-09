@@ -1,5 +1,5 @@
 <?
-$MESS ["FORM_RESULT_NEW_COMPONENT_NAME"] = "Заполнение веб-формы (гости)";
-$MESS ["FORM_RESULT_NEW_COMPONENT_DESCR"] = "Заполнение веб-формы (гости)";
-$MESS ["FORM_SERVICE"] = "Веб-формы";
+$MESS ["FORM_RESULT_NEW_COMPONENT_NAME"] = "Р—Р°РїРѕР»РЅРµРЅРёРµ РІРµР±-С„РѕСЂРјС‹ (РіРѕСЃС‚Рё)";
+$MESS ["FORM_RESULT_NEW_COMPONENT_DESCR"] = "Р—Р°РїРѕР»РЅРµРЅРёРµ РІРµР±-С„РѕСЂРјС‹ (РіРѕСЃС‚Рё)";
+$MESS ["FORM_SERVICE"] = "Р’РµР±-С„РѕСЂРјС‹";
 ?>

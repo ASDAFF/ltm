@@ -11,7 +11,7 @@ if($bIblock)
 	foreach ($arResult["ITEMS"] as &$arItem)
 	{
 
-	    //переписываем поля по выбранному языку
+	    //РїРµСЂРµРїРёСЃС‹РІР°РµРј РїРѕР»СЏ РїРѕ РІС‹Р±СЂР°РЅРЅРѕРјСѓ СЏР·С‹РєСѓ
 	    if(LANGUAGE_ID != "ru")
 	    {
 	    	$value_name = ($arItem["PROPERTIES"]["DETAIL_TEXT_" . $lang]["VALUE"]["TYPE"] == "html")?"~VALUE":"VALUE";
@@ -26,7 +26,7 @@ if($bIblock)
 	}
 
 	$arSelect = array("ID", "NAME", "DESCRIPTION");
-	//получаем пользовательские свойства для других языков
+	//РїРѕР»СѓС‡Р°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёРµ СЃРІРѕР№СЃС‚РІР° РґР»СЏ РґСЂСѓРіРёС… СЏР·С‹РєРѕРІ
 	if(LANGUAGE_ID != "ru")
 	{
 	    $arSelect = array_merge($arSelect, array("UF_NAME_" . $lang, "UF_DESCRIPTION_" . $lang));
@@ -35,7 +35,7 @@ if($bIblock)
 	$rsSect = CIBlockSection::GetList(array(), array("IBLOCK_ID" => $arResult["ID"],"ID" => array_keys($arResult["ITEMS_BY_SECTIONS"])), false, $arSelect);
 	while($arSection = $rsSect->GetNext(true,false))
 	{
-	    //переписываем поля по выбранному языку
+	    //РїРµСЂРµРїРёСЃС‹РІР°РµРј РїРѕР»СЏ РїРѕ РІС‹Р±СЂР°РЅРЅРѕРјСѓ СЏР·С‹РєСѓ
 	    if(LANGUAGE_ID != "ru")
 	    {
 	        $arSection["DESCRIPTION"] = $arSection["UF_DESCRIPTION_" . $lang];

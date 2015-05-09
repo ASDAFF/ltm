@@ -1,2 +1,2 @@
-<span id = "author">Артём Поланский</span>
+<span id = "author">РђСЂС‚С‘Рј РџРѕР»Р°РЅСЃРєРёР№</span>
 <span id = "icon"></span>

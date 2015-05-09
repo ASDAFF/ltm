@@ -1,6 +1,6 @@
 <? if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 /*--------------- TO DO -------------------*/
-//Добавить формы гостей и участников
+//Р”РѕР±Р°РІРёС‚СЊ С„РѕСЂРјС‹ РіРѕСЃС‚РµР№ Рё СѓС‡Р°СЃС‚РЅРёРєРѕРІ
 
 
 $arResult["ERROR_MESSAGE"] = "";
@@ -19,15 +19,15 @@ if(strLen($arParams["ADMIN_URL"])<=0){
 }
 
 if(strLen($arParams["GUEST_GROUP"])<=0){
-	$arResult["ERROR_MESSAGE"] .= "Не введены данные по группе гостя!<br />";
+	$arResult["ERROR_MESSAGE"] .= "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ РіСЂСѓРїРїРµ РіРѕСЃС‚СЏ!<br />";
 }
 
 if(strLen($arParams["PARTICIP_GROUP"])<=0){
-	$arResult["ERROR_MESSAGE"] .= "Не введены данные по группе участника!<br />";
+	$arResult["ERROR_MESSAGE"] .= "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ РіСЂСѓРїРїРµ СѓС‡Р°СЃС‚РЅРёРєР°!<br />";
 }
 
 if(strLen($arParams["ADMIN_GROUP"])<=0){
-	$arResult["ERROR_MESSAGE"] .= "Не введены данные по группе администратора!<br />";
+	$arResult["ERROR_MESSAGE"] .= "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ РіСЂСѓРїРїРµ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР°!<br />";
 }
 
 if(!($USER->IsAuthorized()))
@@ -73,7 +73,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 
 		$arResult["MENU"][5]["LINK"] = "event/";
 		$arResult["MENU"][5]["ACTIVE"] = "N";
-		$arResult["MENU"][5]["NAME"] = "Event’s deadlines and info";
+		$arResult["MENU"][5]["NAME"] = "EventвЂ™s deadlines and info";
 
 		$arResult["MENU"][6]["LINK"] = "contact/";
 		$arResult["MENU"][6]["ACTIVE"] = "N";
@@ -86,23 +86,23 @@ if($arResult["ERROR_MESSAGE"] == '')
 
 		$arResult["MENU"][0]["LINK"] = "info/";
 		$arResult["MENU"][0]["ACTIVE"] = "N";
-		$arResult["MENU"][0]["NAME"] = "Мои регистрационные  данные";
+		$arResult["MENU"][0]["NAME"] = "РњРѕРё СЂРµРіРёСЃС‚СЂР°С†РёРѕРЅРЅС‹Рµ  РґР°РЅРЅС‹Рµ";
 
 		$arResult["MENU"][1]["LINK"] = "messages/";
 		$arResult["MENU"][1]["ACTIVE"] = "N";
-		$arResult["MENU"][1]["NAME"] = "Мои сообщения";
+		$arResult["MENU"][1]["NAME"] = "РњРѕРё СЃРѕРѕР±С‰РµРЅРёСЏ";
 
 		$arResult["MENU"][2]["LINK"] = "shedule/";
 		$arResult["MENU"][2]["ACTIVE"] = "N";
-		$arResult["MENU"][2]["NAME"] = "Моё расписание встреч";
+		$arResult["MENU"][2]["NAME"] = "РњРѕС‘ СЂР°СЃРїРёСЃР°РЅРёРµ РІСЃС‚СЂРµС‡";
 
 		$arResult["MENU"][3]["LINK"] = "particip/";
 		$arResult["MENU"][3]["ACTIVE"] = "N";
-		$arResult["MENU"][3]["NAME"] = "Список участников";
+		$arResult["MENU"][3]["NAME"] = "РЎРїРёСЃРѕРє СѓС‡Р°СЃС‚РЅРёРєРѕРІ";
 
 		$arResult["MENU"][4]["LINK"] = "contact/";
 		$arResult["MENU"][4]["ACTIVE"] = "N";
-		$arResult["MENU"][4]["NAME"] = "Связаться с администратором";
+		$arResult["MENU"][4]["NAME"] = "РЎРІСЏР·Р°С‚СЊСЃСЏ СЃ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂРѕРј";
 	}
 	else{
 		$arResult["USER"]["TYPE"] = 'PARTICIP';
@@ -130,7 +130,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 
 		$arResult["MENU"][5]["LINK"] = "event/";
 		$arResult["MENU"][5]["ACTIVE"] = "N";
-		$arResult["MENU"][5]["NAME"] = "Event’s deadlines and info";
+		$arResult["MENU"][5]["NAME"] = "EventвЂ™s deadlines and info";
 
 		$arResult["MENU"][6]["LINK"] = "contact/";
 		$arResult["MENU"][6]["ACTIVE"] = "N";

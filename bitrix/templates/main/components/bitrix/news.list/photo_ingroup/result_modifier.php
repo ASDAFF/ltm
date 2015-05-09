@@ -17,7 +17,7 @@ if($bIblock)
 {
 	foreach ($arResult["ITEMS"] as &$arItem)
 	{
-	    //ïîëó÷àåì ýëåìåíòû èç ýòîé ñåêöèè
+	    //Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ñ‹ Ð¸Ð· ÑÑ‚Ð¾Ð¹ ÑÐµÐºÑ†Ð¸Ð¸
 
 
 	       if(intval($arItem["~DETAIL_PICTURE"]) > 0)

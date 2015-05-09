@@ -4,7 +4,7 @@ $APPLICATION->SetPageProperty("description", "About LTM");
 $title = "";
 if(LANGUAGE_ID == "ru")
 {
-	$title = "О ВЫСТАВКЕ LTM";
+	$title = "Рћ Р’Р«РЎРўРђР’РљР• LTM";
 }
 elseif(LANGUAGE_ID == "en")
 {
@@ -17,53 +17,53 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 if(LANGUAGE_ID == "ru")
 {
 ?> 
-<p>Выставка Luxury Travel Mart давно уже стала одним из самых обсуждаемых и успешных профессиональных мероприятий в сфере роскошного отдыха. В 2014 году LTM отпраздновала 10 летний юбилей. За эти годы выставка Luxury Travel Mart заслуженно завоевала репутацию самого эффективного мероприятия в индустрии роскошного туризма в России среди международных гостиничных групп и компаний.</p>
+<p>Р’С‹СЃС‚Р°РІРєР° Luxury Travel Mart РґР°РІРЅРѕ СѓР¶Рµ СЃС‚Р°Р»Р° РѕРґРЅРёРј РёР· СЃР°РјС‹С… РѕР±СЃСѓР¶РґР°РµРјС‹С… Рё СѓСЃРїРµС€РЅС‹С… РїСЂРѕС„РµСЃСЃРёРѕРЅР°Р»СЊРЅС‹С… РјРµСЂРѕРїСЂРёСЏС‚РёР№ РІ СЃС„РµСЂРµ СЂРѕСЃРєРѕС€РЅРѕРіРѕ РѕС‚РґС‹С…Р°. Р’ 2014 РіРѕРґСѓ LTM РѕС‚РїСЂР°Р·РґРЅРѕРІР°Р»Р° 10 Р»РµС‚РЅРёР№ СЋР±РёР»РµР№. Р—Р° СЌС‚Рё РіРѕРґС‹ РІС‹СЃС‚Р°РІРєР° Luxury Travel Mart Р·Р°СЃР»СѓР¶РµРЅРЅРѕ Р·Р°РІРѕРµРІР°Р»Р° СЂРµРїСѓС‚Р°С†РёСЋ СЃР°РјРѕРіРѕ СЌС„С„РµРєС‚РёРІРЅРѕРіРѕ РјРµСЂРѕРїСЂРёСЏС‚РёСЏ РІ РёРЅРґСѓСЃС‚СЂРёРё СЂРѕСЃРєРѕС€РЅРѕРіРѕ С‚СѓСЂРёР·РјР° РІ Р РѕСЃСЃРёРё СЃСЂРµРґРё РјРµР¶РґСѓРЅР°СЂРѕРґРЅС‹С… РіРѕСЃС‚РёРЅРёС‡РЅС‹С… РіСЂСѓРїРї Рё РєРѕРјРїР°РЅРёР№.</p>
  
-<p>Luxury Travel Mart – мероприятие категории «бизнес для бизнеса» ориентировано на компании, предлагающие услуги элитного туризма и ставящие своей целью установить новые контакты и укрепить связи с партнерами из стран СНГ – туристическими компаниями, работающими с VIP-клиентами. </p>
+<p>Luxury Travel Mart вЂ“ РјРµСЂРѕРїСЂРёСЏС‚РёРµ РєР°С‚РµРіРѕСЂРёРё В«Р±РёР·РЅРµСЃ РґР»СЏ Р±РёР·РЅРµСЃР°В» РѕСЂРёРµРЅС‚РёСЂРѕРІР°РЅРѕ РЅР° РєРѕРјРїР°РЅРёРё, РїСЂРµРґР»Р°РіР°СЋС‰РёРµ СѓСЃР»СѓРіРё СЌР»РёС‚РЅРѕРіРѕ С‚СѓСЂРёР·РјР° Рё СЃС‚Р°РІСЏС‰РёРµ СЃРІРѕРµР№ С†РµР»СЊСЋ СѓСЃС‚Р°РЅРѕРІРёС‚СЊ РЅРѕРІС‹Рµ РєРѕРЅС‚Р°РєС‚С‹ Рё СѓРєСЂРµРїРёС‚СЊ СЃРІСЏР·Рё СЃ РїР°СЂС‚РЅРµСЂР°РјРё РёР· СЃС‚СЂР°РЅ РЎРќР“ вЂ“ С‚СѓСЂРёСЃС‚РёС‡РµСЃРєРёРјРё РєРѕРјРїР°РЅРёСЏРјРё, СЂР°Р±РѕС‚Р°СЋС‰РёРјРё СЃ VIP-РєР»РёРµРЅС‚Р°РјРё. </p>
  
-<p>Формат выставки позволяет за один день познакомиться с многочисленными представителями индустрии роскошных путешествий, узнать о громких премьерах в сфере гостиничного бизнеса, новых принимающих компаниях и предоставляемых услугах, наладить успешные партнерские отношения и укрепить уже существующие в рамках заранее назначенных встреч по расписанию на утренней сессии, либо без расписания во время вечерней сессии.</p>
+<p>Р¤РѕСЂРјР°С‚ РІС‹СЃС‚Р°РІРєРё РїРѕР·РІРѕР»СЏРµС‚ Р·Р° РѕРґРёРЅ РґРµРЅСЊ РїРѕР·РЅР°РєРѕРјРёС‚СЊСЃСЏ СЃ РјРЅРѕРіРѕС‡РёСЃР»РµРЅРЅС‹РјРё РїСЂРµРґСЃС‚Р°РІРёС‚РµР»СЏРјРё РёРЅРґСѓСЃС‚СЂРёРё СЂРѕСЃРєРѕС€РЅС‹С… РїСѓС‚РµС€РµСЃС‚РІРёР№, СѓР·РЅР°С‚СЊ Рѕ РіСЂРѕРјРєРёС… РїСЂРµРјСЊРµСЂР°С… РІ СЃС„РµСЂРµ РіРѕСЃС‚РёРЅРёС‡РЅРѕРіРѕ Р±РёР·РЅРµСЃР°, РЅРѕРІС‹С… РїСЂРёРЅРёРјР°СЋС‰РёС… РєРѕРјРїР°РЅРёСЏС… Рё РїСЂРµРґРѕСЃС‚Р°РІР»СЏРµРјС‹С… СѓСЃР»СѓРіР°С…, РЅР°Р»Р°РґРёС‚СЊ СѓСЃРїРµС€РЅС‹Рµ РїР°СЂС‚РЅРµСЂСЃРєРёРµ РѕС‚РЅРѕС€РµРЅРёСЏ Рё СѓРєСЂРµРїРёС‚СЊ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёРµ РІ СЂР°РјРєР°С… Р·Р°СЂР°РЅРµРµ РЅР°Р·РЅР°С‡РµРЅРЅС‹С… РІСЃС‚СЂРµС‡ РїРѕ СЂР°СЃРїРёСЃР°РЅРёСЋ РЅР° СѓС‚СЂРµРЅРЅРµР№ СЃРµСЃСЃРёРё, Р»РёР±Рѕ Р±РµР· СЂР°СЃРїРёСЃР°РЅРёСЏ РІРѕ РІСЂРµРјСЏ РІРµС‡РµСЂРЅРµР№ СЃРµСЃСЃРёРё.</p>
  
-<p>Среди компаний, участвующих в LTM, крупнейшие мировые группы отелей, частные отели, компании по аренде элитных автомобилей и ведущие мировые специалисты, организующие круизы и путешествия на мега-яхтах, туристические операторы и компании, предоставляющие услуги проката самолетов.</p>
+<p>РЎСЂРµРґРё РєРѕРјРїР°РЅРёР№, СѓС‡Р°СЃС‚РІСѓСЋС‰РёС… РІ LTM, РєСЂСѓРїРЅРµР№С€РёРµ РјРёСЂРѕРІС‹Рµ РіСЂСѓРїРїС‹ РѕС‚РµР»РµР№, С‡Р°СЃС‚РЅС‹Рµ РѕС‚РµР»Рё, РєРѕРјРїР°РЅРёРё РїРѕ Р°СЂРµРЅРґРµ СЌР»РёС‚РЅС‹С… Р°РІС‚РѕРјРѕР±РёР»РµР№ Рё РІРµРґСѓС‰РёРµ РјРёСЂРѕРІС‹Рµ СЃРїРµС†РёР°Р»РёСЃС‚С‹, РѕСЂРіР°РЅРёР·СѓСЋС‰РёРµ РєСЂСѓРёР·С‹ Рё РїСѓС‚РµС€РµСЃС‚РІРёСЏ РЅР° РјРµРіР°-СЏС…С‚Р°С…, С‚СѓСЂРёСЃС‚РёС‡РµСЃРєРёРµ РѕРїРµСЂР°С‚РѕСЂС‹ Рё РєРѕРјРїР°РЅРёРё, РїСЂРµРґРѕСЃС‚Р°РІР»СЏСЋС‰РёРµ СѓСЃР»СѓРіРё РїСЂРѕРєР°С‚Р° СЃР°РјРѕР»РµС‚РѕРІ.</p>
  
-<p>Для гостей из регионов на LTM действует специальная программа приглашенных гостей, предусматривающая:</p>
+<p>Р”Р»СЏ РіРѕСЃС‚РµР№ РёР· СЂРµРіРёРѕРЅРѕРІ РЅР° LTM РґРµР№СЃС‚РІСѓРµС‚ СЃРїРµС†РёР°Р»СЊРЅР°СЏ РїСЂРѕРіСЂР°РјРјР° РїСЂРёРіР»Р°С€РµРЅРЅС‹С… РіРѕСЃС‚РµР№, РїСЂРµРґСѓСЃРјР°С‚СЂРёРІР°СЋС‰Р°СЏ:</p>
  
 <ul class="static_ul"> 
-  <li>Бесплатное одноместное размещение на 2-3 ночи в одном из 5-звёздочных отелей в городе проведения выставки;</li>
+  <li>Р‘РµСЃРїР»Р°С‚РЅРѕРµ РѕРґРЅРѕРјРµСЃС‚РЅРѕРµ СЂР°Р·РјРµС‰РµРЅРёРµ РЅР° 2-3 РЅРѕС‡Рё РІ РѕРґРЅРѕРј РёР· 5-Р·РІС‘Р·РґРѕС‡РЅС‹С… РѕС‚РµР»РµР№ РІ РіРѕСЂРѕРґРµ РїСЂРѕРІРµРґРµРЅРёСЏ РІС‹СЃС‚Р°РІРєРё;</li>
  
-  <li>Деловой ужин со спонсором LTM накануне выставки;</li>
+  <li>Р”РµР»РѕРІРѕР№ СѓР¶РёРЅ СЃРѕ СЃРїРѕРЅСЃРѕСЂРѕРј LTM РЅР°РєР°РЅСѓРЅРµ РІС‹СЃС‚Р°РІРєРё;</li>
  
-  <li>Трансфер из отеля на мероприятие, предоставленный организаторами;</li>
+  <li>РўСЂР°РЅСЃС„РµСЂ РёР· РѕС‚РµР»СЏ РЅР° РјРµСЂРѕРїСЂРёСЏС‚РёРµ, РїСЂРµРґРѕСЃС‚Р°РІР»РµРЅРЅС‹Р№ РѕСЂРіР°РЅРёР·Р°С‚РѕСЂР°РјРё;</li>
  
-  <li>Частичную компенсацию транспортных расходов</li>
+  <li>Р§Р°СЃС‚РёС‡РЅСѓСЋ РєРѕРјРїРµРЅСЃР°С†РёСЋ С‚СЂР°РЅСЃРїРѕСЂС‚РЅС‹С… СЂР°СЃС…РѕРґРѕРІ</li>
  </ul>
  
-<p>Для регистрации по программе приглашенных региональных гостей, пожалуйста, свяжитесь с нами по <a href="/contacts" >электронной почте.</a></p>
+<p>Р”Р»СЏ СЂРµРіРёСЃС‚СЂР°С†РёРё РїРѕ РїСЂРѕРіСЂР°РјРјРµ РїСЂРёРіР»Р°С€РµРЅРЅС‹С… СЂРµРіРёРѕРЅР°Р»СЊРЅС‹С… РіРѕСЃС‚РµР№, РїРѕР¶Р°Р»СѓР№СЃС‚Р°, СЃРІСЏР¶РёС‚РµСЃСЊ СЃ РЅР°РјРё РїРѕ <a href="/contacts" >СЌР»РµРєС‚СЂРѕРЅРЅРѕР№ РїРѕС‡С‚Рµ.</a></p>
  
-<p>В настоящее время выставки Luxury Travel Mart проводятся 4 разв в год в следующих городах:</p>
+<p>Р’ РЅР°СЃС‚РѕСЏС‰РµРµ РІСЂРµРјСЏ РІС‹СЃС‚Р°РІРєРё Luxury Travel Mart РїСЂРѕРІРѕРґСЏС‚СЃСЏ 4 СЂР°Р·РІ РІ РіРѕРґ РІ СЃР»РµРґСѓСЋС‰РёС… РіРѕСЂРѕРґР°С…:</p>
  
-<p><b>Весенний Luxury Travel Mart Москва, Россия</b> 
+<p><b>Р’РµСЃРµРЅРЅРёР№ Luxury Travel Mart РњРѕСЃРєРІР°, Р РѕСЃСЃРёСЏ</b> 
   <br />
- Даты проведения в 2015: 12-13 марта 
+ Р”Р°С‚С‹ РїСЂРѕРІРµРґРµРЅРёСЏ РІ 2015: 12-13 РјР°СЂС‚Р° 
   <br />
- Место проведения: The Ritz-Carlton, Moscow</p>
+ РњРµСЃС‚Рѕ РїСЂРѕРІРµРґРµРЅРёСЏ: The Ritz-Carlton, Moscow</p>
  
-<p><b>Luxury Travel Mart Киев, Украина</b> 
+<p><b>Luxury Travel Mart РљРёРµРІ, РЈРєСЂР°РёРЅР°</b> 
   <br />
- Дата проведения в 2015: 22 сентября 
+ Р”Р°С‚Р° РїСЂРѕРІРµРґРµРЅРёСЏ РІ 2015: 22 СЃРµРЅС‚СЏР±СЂСЏ 
   <br />
- Место проведения: InterContinental Kiev</p>
+ РњРµСЃС‚Рѕ РїСЂРѕРІРµРґРµРЅРёСЏ: InterContinental Kiev</p>
  
-<p><b>Luxury Travel Mart Алматы, Казахстан</b> 
+<p><b>Luxury Travel Mart РђР»РјР°С‚С‹, РљР°Р·Р°С…СЃС‚Р°РЅ</b> 
   <br />
- Дата проведения в 2015: 25 сентября 
+ Р”Р°С‚Р° РїСЂРѕРІРµРґРµРЅРёСЏ РІ 2015: 25 СЃРµРЅС‚СЏР±СЂСЏ 
   <br />
- Место проведения: The Ritz-Carlton, Almaty</p>
+ РњРµСЃС‚Рѕ РїСЂРѕРІРµРґРµРЅРёСЏ: The Ritz-Carlton, Almaty</p>
  
-<p><b>Осенний Luxury Travel Mart Москва, Россия</b> 
+<p><b>РћСЃРµРЅРЅРёР№ Luxury Travel Mart РњРѕСЃРєРІР°, Р РѕСЃСЃРёСЏ</b> 
   <br />
- Дата проведения в 2015: 1 октября 
+ Р”Р°С‚Р° РїСЂРѕРІРµРґРµРЅРёСЏ РІ 2015: 1 РѕРєС‚СЏР±СЂСЏ 
   <br />
- Место проведения: The Ritz-Carlton, Moscow</p>
+ РњРµСЃС‚Рѕ РїСЂРѕРІРµРґРµРЅРёСЏ: The Ritz-Carlton, Moscow</p>
  <?
 }
 elseif(LANGUAGE_ID == "en")
@@ -73,7 +73,7 @@ elseif(LANGUAGE_ID == "en")
  
 <p>Companies that participate in the Luxury Travel Mart include five-star hotels and resorts, elite car companies, cruise and yacht charter companies, private jet charters, DMC and luxury operators. Most of the best-known brands in the luxury travel industry have participated and continue to participate in LTM each year.</p>
  
-<p>This B2B event has been carefully thought out and planned in such a way that sellers and potential buyers of services – companies working with VIP clients, have the opportunity to establish partnerships within the space of a single day. The main aim of the of the organizers of the Luxury Travel Mart is to expand the geography of sales of the exhibition’s participants and also to introduce layers to new areas and services to which they previously did not have access.</p>
+<p>This B2B event has been carefully thought out and planned in such a way that sellers and potential buyers of services вЂ“ companies working with VIP clients, have the opportunity to establish partnerships within the space of a single day. The main aim of the of the organizers of the Luxury Travel Mart is to expand the geography of sales of the exhibitionвЂ™s participants and also to introduce layers to new areas and services to which they previously did not have access.</p>
  
 <p>Luxury Travel Mart does not aim to set records in terms of quantity (although with every year the numbers increase for all exhibitors and visitors), but prefers instead to set the highest standards of quality.</p>
  
@@ -84,7 +84,7 @@ elseif(LANGUAGE_ID == "en")
 <ul class="static_ul"> 
   <li>The most successful event in this niche in the CIS</li>
  
-  <li>Number of repeat exhibitors – over 90%</li>
+  <li>Number of repeat exhibitors вЂ“ over 90%</li>
  
   <li>221 exhibitors participated in LTM Moscow Spring 2014, 48 at LTM Kiev 2014 (146 in 2013) and 88 at LTM Almaty 2014 (maximum capacity at all events)</li>
  
@@ -107,7 +107,7 @@ elseif(LANGUAGE_ID == "en")
  
 <p><b>Luxury Travel Mart Moscow, Russia, Spring Edition</b> 
   <br />
- Dates for 2015: March 12-13 (two-days event)     
+ Dates for 2015: March 12-13 (two-days event) В  В  
   <br />
  Venue: The Ritz-Carlton, Moscow 
   <br />
@@ -115,7 +115,7 @@ elseif(LANGUAGE_ID == "en")
  
 <p><b>Luxury Travel Mart Kiev, Ukraine</b> 
   <br />
- Date for 2015: September 22  
+ Date for 2015: September 22В  
   <br />
  Venue: InterContinental Kiev 
   <br />
@@ -123,7 +123,7 @@ elseif(LANGUAGE_ID == "en")
  
 <p><b>Luxury Travel Mart Almaty, Kazakhstan</b> 
   <br />
- Date for 2015: September 25  
+ Date for 2015: September 25В  
   <br />
  Venue: The Ritz-Carlton, Almaty 
   <br />
@@ -131,7 +131,7 @@ elseif(LANGUAGE_ID == "en")
  
 <p><b>Luxury Travel Mart Moscow, Russia, Autumn Edition</b> 
   <br />
- Date for 2015: October 1  
+ Date for 2015: October 1В  
   <br />
  Venue: The Ritz-Carlton, Moscow 
   <br />

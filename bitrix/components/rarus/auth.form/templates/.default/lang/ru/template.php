@@ -1,30 +1,30 @@
 <?
-$MESS["AUTH_LOGIN"] = "Логин";
-$MESS["AUTH_PASSWORD"] = "Пароль";
-$MESS["AUTH_REMEMBER_ME"] = "Запомнить меня на этом компьютере";
-$MESS["AUTH_FORGOT_PASSWORD_2"] = "Забыли свой пароль?";
-$MESS["AUTH_REGISTER"] = "Регистрация";
-$MESS["AUTH_LOGOUT_BUTTON"] = "Выйти";
-$MESS["AUTH_PROFILE"] = "Мой профиль";
-$MESS["AUTH_A_INTERNAL"] = "Встроенная авторизация";
+$MESS["AUTH_LOGIN"] = "Р›РѕРіРёРЅ";
+$MESS["AUTH_PASSWORD"] = "РџР°СЂРѕР»СЊ";
+$MESS["AUTH_REMEMBER_ME"] = "Р—Р°РїРѕРјРЅРёС‚СЊ РјРµРЅСЏ РЅР° СЌС‚РѕРј РєРѕРјРїСЊСЋС‚РµСЂРµ";
+$MESS["AUTH_FORGOT_PASSWORD_2"] = "Р—Р°Р±С‹Р»Рё СЃРІРѕР№ РїР°СЂРѕР»СЊ?";
+$MESS["AUTH_REGISTER"] = "Р РµРіРёСЃС‚СЂР°С†РёСЏ";
+$MESS["AUTH_LOGOUT_BUTTON"] = "Р’С‹Р№С‚Рё";
+$MESS["AUTH_PROFILE"] = "РњРѕР№ РїСЂРѕС„РёР»СЊ";
+$MESS["AUTH_A_INTERNAL"] = "Р’СЃС‚СЂРѕРµРЅРЅР°СЏ Р°РІС‚РѕСЂРёР·Р°С†РёСЏ";
 $MESS["AUTH_A_OPENID"] = "OpenID";
 $MESS["AUTH_OPENID"] = "OpenID";
 $MESS["AUTH_A_LIVEID"] = "LiveID";
 $MESS["AUTH_LIVEID_LOGIN"] = "Log In";
-$MESS["AUTH_CAPTCHA_PROMT"] = "Введите слово на картинке";
-$MESS["AUTH_REMEMBER_SHORT"] = "Запомнить меня";
-$MESS["socserv_as_user_form"] = "Войти как пользователь:";
-$MESS["AUTH_SECURE_NOTE"]="Перед отправкой формы авторизации пароль будет зашифрован в браузере. Это позволит избежать передачи пароля в открытом виде.";
-$MESS["AUTH_NONSECURE_NOTE"]="Пароль будет отправлен в открытом виде. Включите JavaScript в браузере, чтобы зашифровать пароль перед отправкой.";
+$MESS["AUTH_CAPTCHA_PROMT"] = "Р’РІРµРґРёС‚Рµ СЃР»РѕРІРѕ РЅР° РєР°СЂС‚РёРЅРєРµ";
+$MESS["AUTH_REMEMBER_SHORT"] = "Р—Р°РїРѕРјРЅРёС‚СЊ РјРµРЅСЏ";
+$MESS["socserv_as_user_form"] = "Р’РѕР№С‚Рё РєР°Рє РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ:";
+$MESS["AUTH_SECURE_NOTE"]="РџРµСЂРµРґ РѕС‚РїСЂР°РІРєРѕР№ С„РѕСЂРјС‹ Р°РІС‚РѕСЂРёР·Р°С†РёРё РїР°СЂРѕР»СЊ Р±СѓРґРµС‚ Р·Р°С€РёС„СЂРѕРІР°РЅ РІ Р±СЂР°СѓР·РµСЂРµ. Р­С‚Рѕ РїРѕР·РІРѕР»РёС‚ РёР·Р±РµР¶Р°С‚СЊ РїРµСЂРµРґР°С‡Рё РїР°СЂРѕР»СЏ РІ РѕС‚РєСЂС‹С‚РѕРј РІРёРґРµ.";
+$MESS["AUTH_NONSECURE_NOTE"]="РџР°СЂРѕР»СЊ Р±СѓРґРµС‚ РѕС‚РїСЂР°РІР»РµРЅ РІ РѕС‚РєСЂС‹С‚РѕРј РІРёРґРµ. Р’РєР»СЋС‡РёС‚Рµ JavaScript РІ Р±СЂР°СѓР·РµСЂРµ, С‡С‚РѕР±С‹ Р·Р°С€РёС„СЂРѕРІР°С‚СЊ РїР°СЂРѕР»СЊ РїРµСЂРµРґ РѕС‚РїСЂР°РІРєРѕР№.";
 
-$MESS["AUTH_AUTH"]="АВТОРИЗАЦИЯ";
-$MESS["AUTH_FOR_EXHIBITIRS"]="для участников и гостей";
-$MESS["AUTH_FORGOT_PASSWORD"] = "забыли пароль?";
-$MESS["AUTH_LOGIN_BUTTON"] = "Вход";
+$MESS["AUTH_AUTH"]="РђР’РўРћР РР—РђР¦РРЇ";
+$MESS["AUTH_FOR_EXHIBITIRS"]="РґР»СЏ СѓС‡Р°СЃС‚РЅРёРєРѕРІ Рё РіРѕСЃС‚РµР№";
+$MESS["AUTH_FORGOT_PASSWORD"] = "Р·Р°Р±С‹Р»Рё РїР°СЂРѕР»СЊ?";
+$MESS["AUTH_LOGIN_BUTTON"] = "Р’С…РѕРґ";
 
 
 
-//участник
+//СѓС‡Р°СЃС‚РЅРёРє
 $MESS["AUTH_P_CAB_CLOSE"] = "Personal cabinet is closed";
 $MESS["AUTH_P_CAB_UNCONFIRMED"] = "You have not access to the personal cabinet";
 
@@ -45,18 +45,18 @@ $MESS["AUTH_P_EDIT_COLLEAGUE"] = "Edit registration info</br>& add a colleague";
 $MESS["AUTH_P_CAN_REGISTER"] = "You may register for";
 $MESS["AUTH_P_REGISTER_FOR"] ="Registration for";
 
-//Гость
-$MESS["AUTH_G_CAB_CLOSE"] = "Личный кабинет закрыт";
-$MESS["AUTH_G_CAB_UNCONFIRMED"] = "У Вас нет доступа к личному кабинету";
+//Р“РѕСЃС‚СЊ
+$MESS["AUTH_G_CAB_CLOSE"] = "Р›РёС‡РЅС‹Р№ РєР°Р±РёРЅРµС‚ Р·Р°РєСЂС‹С‚";
+$MESS["AUTH_G_CAB_UNCONFIRMED"] = "РЈ Р’Р°СЃ РЅРµС‚ РґРѕСЃС‚СѓРїР° Рє Р»РёС‡РЅРѕРјСѓ РєР°Р±РёРЅРµС‚Сѓ";
 
 $MESS["AUTH_G_TYPE_EXHIBITOR"] = "exhibitor";
 $MESS["AUTH_G_TYPE_BUYER"] = "buyer";
 
-$MESS["AUTH_G_EDIT_PROFILE"] = "Изменить профиль<br>или информацию";
-$MESS["AUTH_G_EXIT"] = "ВЫХОД";
+$MESS["AUTH_G_EDIT_PROFILE"] = "РР·РјРµРЅРёС‚СЊ РїСЂРѕС„РёР»СЊ<br>РёР»Рё РёРЅС„РѕСЂРјР°С†РёСЋ";
+$MESS["AUTH_G_EXIT"] = "Р’Р«РҐРћР”";
 
-$MESS["AUTH_G_MESSAGES"] = "Мои сообщения";
-$MESS["AUTH_G_SHEDULE"] = "Мое расписание";
-$MESS["AUTH_G_EDIT_COLLEAGUE"] = "Зарегистрировать коллег";
+$MESS["AUTH_G_MESSAGES"] = "РњРѕРё СЃРѕРѕР±С‰РµРЅРёСЏ";
+$MESS["AUTH_G_SHEDULE"] = "РњРѕРµ СЂР°СЃРїРёСЃР°РЅРёРµ";
+$MESS["AUTH_G_EDIT_COLLEAGUE"] = "Р—Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊ РєРѕР»Р»РµРі";
 
 ?>

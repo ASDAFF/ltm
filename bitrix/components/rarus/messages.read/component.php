@@ -56,13 +56,13 @@ foreach ($URL_NAME_DEFAULT as $URL => $URL_VALUE)
 ********************************************************************/
 
 
-// начало ********************* highloadblock init ***************************************
+// РЅР°С‡Р°Р»Рѕ ********************* highloadblock init ***************************************
 
 use Bitrix\Highloadblock as HL;
 use Bitrix\Main\Entity;
 
 $hlblock = HL\HighloadBlockTable::getById($arParams["HLID"])->fetch();
-// получаем сущность
+// РїРѕР»СѓС‡Р°РµРј СЃСѓС‰РЅРѕСЃС‚СЊ
 $entity = HL\HighloadBlockTable::compileEntity($hlblock);
 $HLDataClass = $entity->getDataClass();
 
@@ -71,7 +71,7 @@ global $USER_FIELD_MANAGER;
 $HLFields = $USER_FIELD_MANAGER->GetUserFields('HLBLOCK_'.$hlblock['ID'], 0, LANGUAGE_ID);
 
 
-// конец ********************* highloadblock init *****************************************
+// РєРѕРЅРµС† ********************* highloadblock init *****************************************
 
 
 $arResult = array();
@@ -128,7 +128,7 @@ if ($rMessage && ($arMessage = $rMessage->Fetch()))
        $arItem[$newKey] = $v;
     }
 
-    //получение данных автора
+    //РїРѕР»СѓС‡РµРЅРёРµ РґР°РЅРЅС‹С… Р°РІС‚РѕСЂР°
     if($arItem["AUTHOR"] == 1)
     {
         $arItem["AUTHOR"] = array(
@@ -149,7 +149,7 @@ if ($rMessage && ($arMessage = $rMessage->Fetch()))
         );
     }
 
-    //получение данных получателя
+    //РїРѕР»СѓС‡РµРЅРёРµ РґР°РЅРЅС‹С… РїРѕР»СѓС‡Р°С‚РµР»СЏ
     if($arItem["RECIPIENT"] == 1)
     {
         $arItem["RECIPIENT"] = array(

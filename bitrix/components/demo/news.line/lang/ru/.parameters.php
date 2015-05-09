@@ -1,18 +1,18 @@
 <?
-$MESS ['IBLOCK_DETAIL_URL'] = "URL, âåäóùèé íà ñòðàíèöó ñ ñîäåðæèìûì ýëåìåíòà ðàçäåëà";
-$MESS ['T_IBLOCK_DESC_ASC'] = "Ïî âîçðàñòàíèþ";
-$MESS ['T_IBLOCK_DESC_DESC'] = "Ïî óáûâàíèþ";
+$MESS ['IBLOCK_DETAIL_URL'] = "URL, Ð²ÐµÐ´ÑƒÑ‰Ð¸Ð¹ Ð½Ð° ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ñƒ Ñ ÑÐ¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ñ‹Ð¼ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð° Ñ€Ð°Ð·Ð´ÐµÐ»Ð°";
+$MESS ['T_IBLOCK_DESC_ASC'] = "ÐŸÐ¾ Ð²Ð¾Ð·Ñ€Ð°ÑÑ‚Ð°Ð½Ð¸ÑŽ";
+$MESS ['T_IBLOCK_DESC_DESC'] = "ÐŸÐ¾ ÑƒÐ±Ñ‹Ð²Ð°Ð½Ð¸ÑŽ";
 $MESS ['T_IBLOCK_DESC_FID'] = "ID";
-$MESS ['T_IBLOCK_DESC_FNAME'] = "Íàçâàíèå";
-$MESS ['T_IBLOCK_DESC_FACT'] = "Äàòà íà÷àëà àêòèâíîñòè";
-$MESS ['T_IBLOCK_DESC_FSORT'] = "Ñîðòèðîâêà";
-$MESS ['T_IBLOCK_DESC_FTSAMP'] = "Äàòà ïîñëåäíåãî èçìåíåíèÿ";
-$MESS ['T_IBLOCK_DESC_IBORD1'] = "Ïîëå äëÿ ïåðâîé ñîðòèðîâêè íîâîñòåé";
-$MESS ['T_IBLOCK_DESC_IBBY1'] = "Íàïðàâëåíèå äëÿ ïåðâîé ñîðòèðîâêè íîâîñòåé";
-$MESS ['T_IBLOCK_DESC_IBORD2'] = "Ïîëå äëÿ âòîðîé ñîðòèðîâêè íîâîñòåé";
-$MESS ['T_IBLOCK_DESC_IBBY2'] = "Íàïðàâëåíèå äëÿ âòîðîé ñîðòèðîâêè íîâîñòåé";
-$MESS ['T_IBLOCK_DESC_LIST_ID'] = "Êîä èíôîðìàöèîííîãî áëîêà";
-$MESS ['T_IBLOCK_DESC_LIST_TYPE'] = "Òèï èíôîðìàöèîííîãî áëîêà";
-$MESS ['T_IBLOCK_DESC_LIST_CONT'] = "Êîëè÷åñòâî íîâîñòåé íà ñòðàíèöå";
-$MESS ['T_IBLOCK_DESC_ACTIVE_DATE_FORMAT'] = "Ôîðìàò ïîêàçà äàòû";
+$MESS ['T_IBLOCK_DESC_FNAME'] = "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ";
+$MESS ['T_IBLOCK_DESC_FACT'] = "Ð”Ð°Ñ‚Ð° Ð½Ð°Ñ‡Ð°Ð»Ð° Ð°ÐºÑ‚Ð¸Ð²Ð½Ð¾ÑÑ‚Ð¸";
+$MESS ['T_IBLOCK_DESC_FSORT'] = "Ð¡Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÐ°";
+$MESS ['T_IBLOCK_DESC_FTSAMP'] = "Ð”Ð°Ñ‚Ð° Ð¿Ð¾ÑÐ»ÐµÐ´Ð½ÐµÐ³Ð¾ Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½Ð¸Ñ";
+$MESS ['T_IBLOCK_DESC_IBORD1'] = "ÐŸÐ¾Ð»Ðµ Ð´Ð»Ñ Ð¿ÐµÑ€Ð²Ð¾Ð¹ ÑÐ¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÐ¸ Ð½Ð¾Ð²Ð¾ÑÑ‚ÐµÐ¹";
+$MESS ['T_IBLOCK_DESC_IBBY1'] = "ÐÐ°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð´Ð»Ñ Ð¿ÐµÑ€Ð²Ð¾Ð¹ ÑÐ¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÐ¸ Ð½Ð¾Ð²Ð¾ÑÑ‚ÐµÐ¹";
+$MESS ['T_IBLOCK_DESC_IBORD2'] = "ÐŸÐ¾Ð»Ðµ Ð´Ð»Ñ Ð²Ñ‚Ð¾Ñ€Ð¾Ð¹ ÑÐ¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÐ¸ Ð½Ð¾Ð²Ð¾ÑÑ‚ÐµÐ¹";
+$MESS ['T_IBLOCK_DESC_IBBY2'] = "ÐÐ°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð´Ð»Ñ Ð²Ñ‚Ð¾Ñ€Ð¾Ð¹ ÑÐ¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÐ¸ Ð½Ð¾Ð²Ð¾ÑÑ‚ÐµÐ¹";
+$MESS ['T_IBLOCK_DESC_LIST_ID'] = "ÐšÐ¾Ð´ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ð¾Ð½Ð½Ð¾Ð³Ð¾ Ð±Ð»Ð¾ÐºÐ°";
+$MESS ['T_IBLOCK_DESC_LIST_TYPE'] = "Ð¢Ð¸Ð¿ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ð¾Ð½Ð½Ð¾Ð³Ð¾ Ð±Ð»Ð¾ÐºÐ°";
+$MESS ['T_IBLOCK_DESC_LIST_CONT'] = "ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð½Ð¾Ð²Ð¾ÑÑ‚ÐµÐ¹ Ð½Ð° ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ðµ";
+$MESS ['T_IBLOCK_DESC_ACTIVE_DATE_FORMAT'] = "Ð¤Ð¾Ñ€Ð¼Ð°Ñ‚ Ð¿Ð¾ÐºÐ°Ð·Ð° Ð´Ð°Ñ‚Ñ‹";
 ?>

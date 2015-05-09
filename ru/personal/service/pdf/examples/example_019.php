@@ -43,7 +43,7 @@ $pdf->SetDocInfoUnicode(true);
 
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
-$pdf->SetAuthor('Nicola Asuni [€]');
+$pdf->SetAuthor('Nicola Asuni [в‚¬]');
 $pdf->SetTitle('TCPDF Example 019');
 $pdf->SetSubject('TCPDF Tutorial');
 $pdf->SetKeywords('TCPDF, PDF, example, test, guide');

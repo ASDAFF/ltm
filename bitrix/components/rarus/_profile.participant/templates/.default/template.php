@@ -1,14 +1,14 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 <? if(!isset($arResult["ERROR"])):?>
-<?php //--> Çàãîëîâêè?>
+<?php //--> Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²ÐºÐ¸?>
 	<h2><?= $arResult["NAME"]?></h2>
 	<div class="sub-headline"><?= $arResult["DATE"]?>, <?= $arResult["VENUE"]?></div>
-<?php //<-- Çàãîëîâêè?>
+<?php //<-- Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²ÐºÐ¸?>
 
-	<?php //--> Îáùèå áëîê äëÿ òàáîâ 1 óðîâíÿ ?>
+	<?php //--> ÐžÐ±Ñ‰Ð¸Ðµ Ð±Ð»Ð¾Ðº Ð´Ð»Ñ Ñ‚Ð°Ð±Ð¾Ð² 1 ÑƒÑ€Ð¾Ð²Ð½Ñ ?>
 	<div id="exhibition-session" class="exhibition-session">
 	
-		<?//--> Òàáû 1 óðîâíÿ ?>
+		<?//--> Ð¢Ð°Ð±Ñ‹ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ ?>
 			<ul class="pull-overflow main-tab">
 				<li><a href="#exhibition-tab-1" title=""><?= GetMessage("PROFILE_DEADLINES")?></a></li>
 				<li><a href="#exhibition-tab-2" title=""><?= GetMessage("PROFILE_M_SESSION")?></a></li>
@@ -16,51 +16,51 @@
 				<li><a href="#exhibition-tab-4" title=""><?= GetMessage("PROFILE_E_SESSION")?></a></li>
 				<li><a href="#exhibition-tab-5" title=""><?= GetMessage("PROFILE_MESSAGES")?></a></li>
 			</ul>
-		<?//<-- Òàáû 1 óðîâíÿ ?>
+		<?//<-- Ð¢Ð°Ð±Ñ‹ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ ?>
 		
-		<?//--> Ñîäåðæèìîå òàáà 1 ?>
+		<?//--> Ð¡Ð¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ð¾Ðµ Ñ‚Ð°Ð±Ð° 1 ?>
 		<div id="exhibition-tab-1">
 			<? include("tabs/deadline/deadline.php")?>
 		</div>
-		<?//<-- Ñîäåðæèìîå òàáà 1 ?>
+		<?//<-- Ð¡Ð¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ð¾Ðµ Ñ‚Ð°Ð±Ð° 1 ?>
 		
-		<?//--> Ñîäåðæèìîå òàáà 2?>
+		<?//--> Ð¡Ð¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ð¾Ðµ Ñ‚Ð°Ð±Ð° 2?>
 		<div id="exhibition-tab-2">
-			<?// Òàáû 2 óðîâíÿ ?>
+			<?// Ð¢Ð°Ð±Ñ‹ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ ?>
 			
 			<div class="morning-session" id="morning-session">
-				<?//--> Ñïèñîê òàáîâ 2 óðîâíÿ ?>
+				<?//--> Ð¡Ð¿Ð¸ÑÐ¾Ðº Ñ‚Ð°Ð±Ð¾Ð² 2 ÑƒÑ€Ð¾Ð²Ð½Ñ ?>
 				<ul class="pull-overflow sub-tab-session">
 					<li><a href="#session-tab-1" title=""><?= GetMessage("PROFILE_SCHEDULE_TAB")?></a></li>
 					<li><a href="#session-tab-2" title=""><?= GetMessage("PROFILE_M_GUESTS_TAB")?></a></li>
 				</ul>
-				<?//<--Ñïèñîê òàáîâ 2 óðîâíÿ ?>
+				<?//<--Ð¡Ð¿Ð¸ÑÐ¾Ðº Ñ‚Ð°Ð±Ð¾Ð² 2 ÑƒÑ€Ð¾Ð²Ð½Ñ ?>
 				
-				<?//-->Êîíòåéíåð ñîäåðæèìîãî òàáû 2 óðîâíÿ ?>
+				<?//-->ÐšÐ¾Ð½Ñ‚ÐµÐ¹Ð½ÐµÑ€ ÑÐ¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ð¾Ð³Ð¾ Ñ‚Ð°Ð±Ñ‹ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ ?>
 				<div id="session-tab-1">
 				<? include("tabs/morning_session/my_schedule.php")?>
 				</div>
 				
-				<?//-->Ñîäåðæèìîå òàáà 2 óðîâíÿ 2 âêëàäêà ?>
+				<?//-->Ð¡Ð¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ð¾Ðµ Ñ‚Ð°Ð±Ð° 2 ÑƒÑ€Ð¾Ð²Ð½Ñ 2 Ð²ÐºÐ»Ð°Ð´ÐºÐ° ?>
 				<div id="session-tab-2">
 				<? include("tabs/morning_session/morning_session_guests.php")?>
 				</div>
 			</div>
 		</div>
-		<?php //<--Ñîäåðæàíèå òàáà 2 ?>
+		<?php //<--Ð¡Ð¾Ð´ÐµÑ€Ð¶Ð°Ð½Ð¸Ðµ Ñ‚Ð°Ð±Ð° 2 ?>
 		
-		<?php //-->Cîäåðæèìîå òàáà 3 ?>
+		<?php //-->CÐ¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ð¾Ðµ Ñ‚Ð°Ð±Ð° 3 ?>
 			<div id="exhibition-tab-3">
 				<? include("tabs/hb_session/hb_session.php")?>
 			</div>
-		<?php //<--Ñîäåðæàíèå òàáà 3 ?>
-		<?php //-->Cîäåðæèìîå òàáà 4 ?>
+		<?php //<--Ð¡Ð¾Ð´ÐµÑ€Ð¶Ð°Ð½Ð¸Ðµ Ñ‚Ð°Ð±Ð° 3 ?>
+		<?php //-->CÐ¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ð¾Ðµ Ñ‚Ð°Ð±Ð° 4 ?>
 			<div id="exhibition-tab-4" class="evening-session">
 				<? include("tabs/evening_session/")?>
 			</div>
-		<?php //<--Ñîäåðæàíèå òàáà 4 ?>
+		<?php //<--Ð¡Ð¾Ð´ÐµÑ€Ð¶Ð°Ð½Ð¸Ðµ Ñ‚Ð°Ð±Ð° 4 ?>
 		
-		<?php //-->Cîäåðæèìîå òàáà 5 ?>
+		<?php //-->CÐ¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ð¾Ðµ Ñ‚Ð°Ð±Ð° 5 ?>
 			<div id="exhibition-tab-5" class="message-box">
 				<div id="message-box-function">
 					<ul class="message-list-tab pull-overflow">
@@ -86,7 +86,7 @@
 					</div>
 				</div>
 			</div>
-		<?php //<--Ñîäåðæàíèå òàáà 5 ?>
+		<?php //<--Ð¡Ð¾Ð´ÐµÑ€Ð¶Ð°Ð½Ð¸Ðµ Ñ‚Ð°Ð±Ð° 5 ?>
 	</div>
 <script>
 	$(function() {

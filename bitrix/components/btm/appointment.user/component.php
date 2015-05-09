@@ -1,7 +1,7 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 /*--------------- TO DO -------------------*/
-//Äîáàâèòü ïàðàìåòð îò êîãî
-//Äîáàâèòü ïàðàìåòð ãðóïïó äëÿ âñòðå÷
+//Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ Ð¾Ñ‚ ÐºÐ¾Ð³Ð¾
+//Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ Ð³Ñ€ÑƒÐ¿Ð¿Ñƒ Ð´Ð»Ñ Ð²ÑÑ‚Ñ€ÐµÑ‡
 
 $arResult["ERROR_MESSAGE"] = "";
 $arResult["MESSAGE"] = "";
@@ -55,22 +55,22 @@ if(strLen($arParams["IS_ACTIVE"])<=0 || $arParams["IS_ACTIVE"] == 'N'){
 CModule::IncludeModule('iblock');
 
 $times = array(
-	  '10:00 – 10:10', '10:15 – 10:25',
-	  '10:30 – 10:40', '10:45 – 10:55',
-	  '11:00 – 11:10', '11:15 – 11:25',
-	  '11:30 – 11:40', '11:45 – 11:55',
-	  '12:10 – 12:20', '12:25 – 12:35',
-	  '12:40 – 12:50', '12:55 – 13:05',
-	  '13:10 – 13:20', '13:25 – 13:35',
-	  '13:40 – 13:50', '13:55 – 14:05',
-	  '14:10 – 14:20'
+	  '10:00 â€“ 10:10', '10:15 â€“ 10:25',
+	  '10:30 â€“ 10:40', '10:45 â€“ 10:55',
+	  '11:00 â€“ 11:10', '11:15 â€“ 11:25',
+	  '11:30 â€“ 11:40', '11:45 â€“ 11:55',
+	  '12:10 â€“ 12:20', '12:25 â€“ 12:35',
+	  '12:40 â€“ 12:50', '12:55 â€“ 13:05',
+	  '13:10 â€“ 13:20', '13:25 â€“ 13:35',
+	  '13:40 â€“ 13:50', '13:55 â€“ 14:05',
+	  '14:10 â€“ 14:20'
   );
 if(isset($_REQUEST["to"]) && ($_REQUEST["to"] == 1 || $_REQUEST["to"] == 0)){
 	$arResult["ERROR_MESSAGE"] = GetMessage("APPOINTMENT_NO_USER");
 }
 
 /*---------------------------------------------------*/
-//           ÔÎÐÌÈÐÓÅÌ ÂÛÂÎÄ ÄËß ØÀÁËÎÍÀ             //
+//           Ð¤ÐžÐ ÐœÐ˜Ð Ð£Ð•Ðœ Ð’Ð«Ð’ÐžÐ” Ð”Ð›Ð¯ Ð¨ÐÐ‘Ð›ÐžÐÐ             //
 /*---------------------------------------------------*/
 if($arResult["ERROR_MESSAGE"] == '')
 {
@@ -126,25 +126,25 @@ if($arResult["ERROR_MESSAGE"] == '')
 			$PROP[4] = array("VALUE" => $arParams["APP_TYPE"]);
 			if($arParams["USER_TYPE"] == 'ADMIN'){
 				$arLoadProductArray = Array(
-				  "MODIFIED_BY"    => $arResult["SENDER"]["ID"], // ýëåìåíò èçìåíåí òåêóùèì ïîëüçîâàòåëåì
+				  "MODIFIED_BY"    => $arResult["SENDER"]["ID"], // ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½ Ñ‚ÐµÐºÑƒÑ‰Ð¸Ð¼ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¼
 				  "CREATED_BY"	   => $arResult["SENDER"]["ID"],
-				  "IBLOCK_SECTION_ID" => 7,          // ýëåìåíò ëåæèò â êîðíå ðàçäåëà
+				  "IBLOCK_SECTION_ID" => 7,          // ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð»ÐµÐ¶Ð¸Ñ‚ Ð² ÐºÐ¾Ñ€Ð½Ðµ Ñ€Ð°Ð·Ð´ÐµÐ»Ð°
 				  "IBLOCK_ID"      => $arParams["APP_ID"],
 				  "PROPERTY_VALUES"=> $PROP,
 				  "NAME"           => $arResult["TIME"]["TITLE"]." From ".$arResult["SENDER"]["ID"]." To ".$arResult["RECIVER"]["ID"],
-				  "ACTIVE"         => "Y",            // àêòèâåí
+				  "ACTIVE"         => "Y",            // Ð°ÐºÑ‚Ð¸Ð²ÐµÐ½
 				  "PREVIEW_TEXT"   => $arResult["TIME"]["TITLE"],
 				  "DETAIL_TEXT"    => $arResult["RECIVER"]["ID"]
 				  );
 			}
 			else{
 				$arLoadProductArray = Array(
-				  "MODIFIED_BY"    => $arResult["SENDER"]["ID"], // ýëåìåíò èçìåíåí òåêóùèì ïîëüçîâàòåëåì
-				  "IBLOCK_SECTION_ID" => false,          // ýëåìåíò ëåæèò â êîðíå ðàçäåëà
+				  "MODIFIED_BY"    => $arResult["SENDER"]["ID"], // ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½ Ñ‚ÐµÐºÑƒÑ‰Ð¸Ð¼ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¼
+				  "IBLOCK_SECTION_ID" => false,          // ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð»ÐµÐ¶Ð¸Ñ‚ Ð² ÐºÐ¾Ñ€Ð½Ðµ Ñ€Ð°Ð·Ð´ÐµÐ»Ð°
 				  "IBLOCK_ID"      => $arParams["APP_ID"],
 				  "PROPERTY_VALUES"=> $PROP,
 				  "NAME"           => $arResult["TIME"]["TITLE"]." From ".$arResult["SENDER"]["ID"]." To ".$arResult["RECIVER"]["ID"],
-				  "ACTIVE"         => "N",            // àêòèâåí
+				  "ACTIVE"         => "N",            // Ð°ÐºÑ‚Ð¸Ð²ÐµÐ½
 				  "PREVIEW_TEXT"   => $arResult["TIME"]["TITLE"],
 				  "DETAIL_TEXT"    => $arResult["RECIVER"]["ID"]
 				  );

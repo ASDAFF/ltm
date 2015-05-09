@@ -1,4 +1,4 @@
 <?
-$MESS["SESSION_PARTICIPANT"]="Ñåññèÿ ó÷àñòíèêà";
-$MESS["SESSION_PARTICIPANT_DESC"]="Âûâîäèò ñòðàíèöó ñ îïèñàíèåì ñåññèè ó÷àñòíèêà";
+$MESS["SESSION_PARTICIPANT"]="Ð¡ÐµÑÑÐ¸Ñ ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ°";
+$MESS["SESSION_PARTICIPANT_DESC"]="Ð’Ñ‹Ð²Ð¾Ð´Ð¸Ñ‚ ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ñƒ Ñ Ð¾Ð¿Ð¸ÑÐ°Ð½Ð¸ÐµÐ¼ ÑÐµÑÑÐ¸Ð¸ ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ°";
 ?>

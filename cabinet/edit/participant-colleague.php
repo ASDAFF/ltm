@@ -14,7 +14,7 @@ try{
 	$curPage = "/cabinet/".$_REQUEST["EXHIBIT_CODE"]."/edit/profile/".(isset($_REQUEST["UID"])?"?UID={$_REQUEST["UID"]}":"");
 
 
-	//получение id выставки
+	//РїРѕР»СѓС‡РµРЅРёРµ id РІС‹СЃС‚Р°РІРєРё
 	$exhCode = trim($_REQUEST["EXHIBIT_CODE"]);
 	if($exhCode && CModule::IncludeModule("iblock"))
 	{
@@ -22,7 +22,7 @@ try{
 		if($arExhib = $rsExhib->Fetch())
 		{
 			$formID = CFormMatrix::getPFormIDByExh($arExhib["ID"]);
-			$formPropName = CFormMatrix::getPropertyIDByExh($arExhib["ID"], 1);//получение имени свойства коллеги для текущей выставки
+			$formPropName = CFormMatrix::getPropertyIDByExh($arExhib["ID"], 1);//РїРѕР»СѓС‡РµРЅРёРµ РёРјРµРЅРё СЃРІРѕР№СЃС‚РІР° РєРѕР»Р»РµРіРё РґР»СЏ С‚РµРєСѓС‰РµР№ РІС‹СЃС‚Р°РІРєРё
 
 			$resultId = $arUser[$formPropName];
 
@@ -56,7 +56,7 @@ try{
 	"SIMPLE_QUESTION_859",//E-mail
 	"SIMPLE_QUESTION_585",//Please confirm your e-mail
 	"SIMPLE_QUESTION_749",//Alternative e-mail
-	"SIMPLE_QUESTION_575",//Персональное фото
+	"SIMPLE_QUESTION_575",//РџРµСЂСЃРѕРЅР°Р»СЊРЅРѕРµ С„РѕС‚Рѕ
 	"SIMPLE_QUESTION_889",//Salutation
 
 
@@ -64,7 +64,7 @@ try{
 
 	if(isset($_REQUEST["formresult"]) && $_REQUEST["formresult"] == "editok")
 	{
-	    //вывод информации об успешном сохранении
+	    //РІС‹РІРѕРґ РёРЅС„РѕСЂРјР°С†РёРё РѕР± СѓСЃРїРµС€РЅРѕРј СЃРѕС…СЂР°РЅРµРЅРёРё
 	    echo "<p style='color:red;'>Your information has been updated. Thank you!</p>";
 	}
 
@@ -84,7 +84,7 @@ try{
 		"USE_EXTENDED_ERRORS" => "N",
 		"QUESTION_TO_SHOW" => array(
 			array("NAME"=>"COLLEAGUE at " .$exhName . " " .$exhDate , "ITEMS"=>array(
-				array("ID"=>CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_575", $formID), "IS_PIC"=>true),//Персональное фото
+				array("ID"=>CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_575", $formID), "IS_PIC"=>true),//РџРµСЂСЃРѕРЅР°Р»СЊРЅРѕРµ С„РѕС‚Рѕ
                 array("ID"=>CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_446", $formID), "TITLE" => "First name"),//Participant first name
                 array("ID"=>CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_551", $formID), "TITLE" => "Last name"),//Participant last name
                 array("ID"=>CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_889", $formID), "TITLE" => "Title"),////Salutation

@@ -13,7 +13,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 		echo "<p><b>Error sending request. Time slot is not available.</b></p> <p>Window will close after 5 sec.</p>";
 			break;
 		case 'GUEST':
-		echo "<p><b>Ошибка отправки. Слот занят.</b></p><p> Закрытие через 5 секунд.</p>";
+		echo "<p><b>РћС€РёР±РєР° РѕС‚РїСЂР°РІРєРё. РЎР»РѕС‚ Р·Р°РЅСЏС‚.</b></p><p> Р—Р°РєСЂС‹С‚РёРµ С‡РµСЂРµР· 5 СЃРµРєСѓРЅРґ.</p>";
 	}}
 	else{
 		switch ($arResult['USER_TYPE']) {
@@ -22,7 +22,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 			echo "<p>Request sent. Window will close after 5 sec.</p>";
 			break;
 		case 'GUEST':
-			echo "<p>Запрос успешно отправлен. Закрытие через 5 секунд.</p>";
+			echo "<p>Р—Р°РїСЂРѕСЃ СѓСЃРїРµС€РЅРѕ РѕС‚РїСЂР°РІР»РµРЅ. Р—Р°РєСЂС‹С‚РёРµ С‡РµСЂРµР· 5 СЃРµРєСѓРЅРґ.</p>";
 	}}?>
 	<script type="text/javascript">
 		setTimeout( function() { window.close(); }, 5000);

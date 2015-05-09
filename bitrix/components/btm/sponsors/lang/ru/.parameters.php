@@ -1,13 +1,13 @@
 <?
-$MESS["CP_BCSL_IBLOCK_TYPE"] = "Òèï èíôî-áëîêà";
-$MESS["CP_BCSL_IBLOCK_ID"] = "Èíôî-áëîê";
-$MESS["CP_BCSL_SECTION_URL"] = "URL, âåäóùèé íà ñòðàíèöó ñ ñîäåðæèìûì ðàçäåëà";
-$MESS["CP_BCSL_SECTION_ID"] = "ID ðàçäåëà";
-$MESS["CP_BCSL_SECTION_CODE"] = "Êîä ðàçäåëà";
-$MESS["CP_BCSL_COUNT_ELEMENTS"] = "Ïîêàçûâàòü êîëè÷åñòâî ýëåìåíòîâ â ðàçäåëå";
-$MESS["CP_BCSL_TOP_DEPTH"] = "Ìàêñèìàëüíàÿ îòîáðàæàåìàÿ ãëóáèíà ðàçäåëîâ";
-$MESS["CP_BCSL_ADD_SECTIONS_CHAIN"] = "Âêëþ÷àòü ðàçäåë â öåïî÷êó íàâèãàöèè";
-$MESS["CP_BCSL_CACHE_GROUPS"] = "Ó÷èòûâàòü ïðàâà äîñòóïà";
-$MESS["CP_BCSL_SECTION_FIELDS"] = "Ïîëÿ ðàçäåëîâ";
-$MESS["CP_BCSL_SECTION_USER_FIELDS"] = "Ñâîéñòâà ðàçäåëîâ";
+$MESS["CP_BCSL_IBLOCK_TYPE"] = "Ð¢Ð¸Ð¿ Ð¸Ð½Ñ„Ð¾-Ð±Ð»Ð¾ÐºÐ°";
+$MESS["CP_BCSL_IBLOCK_ID"] = "Ð˜Ð½Ñ„Ð¾-Ð±Ð»Ð¾Ðº";
+$MESS["CP_BCSL_SECTION_URL"] = "URL, Ð²ÐµÐ´ÑƒÑ‰Ð¸Ð¹ Ð½Ð° ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ñƒ Ñ ÑÐ¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ñ‹Ð¼ Ñ€Ð°Ð·Ð´ÐµÐ»Ð°";
+$MESS["CP_BCSL_SECTION_ID"] = "ID Ñ€Ð°Ð·Ð´ÐµÐ»Ð°";
+$MESS["CP_BCSL_SECTION_CODE"] = "ÐšÐ¾Ð´ Ñ€Ð°Ð·Ð´ÐµÐ»Ð°";
+$MESS["CP_BCSL_COUNT_ELEMENTS"] = "ÐŸÐ¾ÐºÐ°Ð·Ñ‹Ð²Ð°Ñ‚ÑŒ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ";
+$MESS["CP_BCSL_TOP_DEPTH"] = "ÐœÐ°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð°Ñ Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶Ð°ÐµÐ¼Ð°Ñ Ð³Ð»ÑƒÐ±Ð¸Ð½Ð° Ñ€Ð°Ð·Ð´ÐµÐ»Ð¾Ð²";
+$MESS["CP_BCSL_ADD_SECTIONS_CHAIN"] = "Ð’ÐºÐ»ÑŽÑ‡Ð°Ñ‚ÑŒ Ñ€Ð°Ð·Ð´ÐµÐ» Ð² Ñ†ÐµÐ¿Ð¾Ñ‡ÐºÑƒ Ð½Ð°Ð²Ð¸Ð³Ð°Ñ†Ð¸Ð¸";
+$MESS["CP_BCSL_CACHE_GROUPS"] = "Ð£Ñ‡Ð¸Ñ‚Ñ‹Ð²Ð°Ñ‚ÑŒ Ð¿Ñ€Ð°Ð²Ð° Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð°";
+$MESS["CP_BCSL_SECTION_FIELDS"] = "ÐŸÐ¾Ð»Ñ Ñ€Ð°Ð·Ð´ÐµÐ»Ð¾Ð²";
+$MESS["CP_BCSL_SECTION_USER_FIELDS"] = "Ð¡Ð²Ð¾Ð¹ÑÑ‚Ð²Ð° Ñ€Ð°Ð·Ð´ÐµÐ»Ð¾Ð²";
 ?>

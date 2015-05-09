@@ -4,7 +4,7 @@ $APPLICATION->SetPageProperty("description", "Registration form for exhibitors a
 $title = "";
 if(LANGUAGE_ID == "ru")
 {
-	$title = "–≈√»—“–¿÷»ﬂ";
+	$title = "–†–ï–ì–ò–°–¢–†–ê–¶–ò–Ø";
 }
 elseif(LANGUAGE_ID == "en")
 {

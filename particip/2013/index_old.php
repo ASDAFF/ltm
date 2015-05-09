@@ -150,7 +150,7 @@ $APPLICATION->SetTitle("Participants 2011");
 
 <p class="area_title">DMC and Touroperators</p>
 <ul>
-  <li><strong><a href="http://www.7south.net" target="_blank" style="color: white;">7°South</a></strong></li>
+  <li><strong><a href="http://www.7south.net" target="_blank" style="color: white;">7Â°South</a></strong></li>
   <li><strong><a href="http://www.amandatour.com" target="_blank" style="color: white;">Amandatour</a></strong></li>
   <li><strong><a href="http://TBA" target="_blank" style="color: white;">Be Luxury by Full Services Group</a></strong></li>
   <li><strong><a href="http://LUX@jtb.jp" target="_blank" style="color: white;">Boutique JTB</a></strong></li>

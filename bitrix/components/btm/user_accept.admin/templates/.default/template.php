@@ -11,7 +11,7 @@ if($arResult["ERROR_MESSAGE"] == ''){
 			  $countPhone = 0;
 			  $countName = 0;
               for($i=0; $i<$arResult["FIELDS"]["COUNT"]; $i++){
-			  	if($arResult["FIELDS"][$i]["TITLE"] == "Телефон"){
+			  	if($arResult["FIELDS"][$i]["TITLE"] == "РўРµР»РµС„РѕРЅ"){
 					if($countPhone == 0){
 						?>
 						<td width="100"><strong><?=$arResult["FIELDS"][$i]["TITLE"]?></strong></td>
@@ -19,25 +19,25 @@ if($arResult["ERROR_MESSAGE"] == ''){
 						$countPhone++;
 					}
 				}
-			  	elseif($arResult["FIELDS"][$i]["TITLE"] == "Имя" || $arResult["FIELDS"][$i]["TITLE"] == "Фамилия"){
+			  	elseif($arResult["FIELDS"][$i]["TITLE"] == "РРјСЏ" || $arResult["FIELDS"][$i]["TITLE"] == "Р¤Р°РјРёР»РёСЏ"){
 					if($countName == 0){
 						?>
-						<td width="100"><strong>Представитель</strong></td>
+						<td width="100"><strong>РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ</strong></td>
 						<?
 						$countName++;
 					}
 				}
-				elseif($arResult["FIELDS"][$i]["TITLE"] != "Пароль" && strpos($arResult["FIELDS"][$i]["TITLE"], "коллеги") === false && $arResult["FIELDS"][$i]["TITLE"] != "Альтернативный e-mail"){
+				elseif($arResult["FIELDS"][$i]["TITLE"] != "РџР°СЂРѕР»СЊ" && strpos($arResult["FIELDS"][$i]["TITLE"], "РєРѕР»Р»РµРіРё") === false && $arResult["FIELDS"][$i]["TITLE"] != "РђР»СЊС‚РµСЂРЅР°С‚РёРІРЅС‹Р№ e-mail"){
 			  	?>
                 <td width="100"><strong><?=$arResult["FIELDS"][$i]["TITLE"]?></strong></td>
 				<?
 				}
 			  }
 			  ?>
-              	<td width="80"><strong>Подтвердить участие</strong></td>
-                <td width="80"><strong>Редактировать</strong></td>
-				<td width="80"><strong>Компания</strong></td>
-                <td width="80"><strong>Спам</strong></td>
+              	<td width="80"><strong>РџРѕРґС‚РІРµСЂРґРёС‚СЊ СѓС‡Р°СЃС‚РёРµ</strong></td>
+                <td width="80"><strong>Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ</strong></td>
+				<td width="80"><strong>РљРѕРјРїР°РЅРёСЏ</strong></td>
+                <td width="80"><strong>РЎРїР°Рј</strong></td>
               </tr>
               <?
               for($j=0; $j<$arResult["USERS"]["COUNT"]; $j++){
@@ -47,7 +47,7 @@ if($arResult["ERROR_MESSAGE"] == ''){
               <tr <? if(!($j % 2)){?>class="chet"<? }?>>
               <?
               for($i=0; $i<$arResult["FIELDS"]["COUNT"]; $i++){
-			  	if($arResult["FIELDS"][$i]["TITLE"] == "Телефон"){
+			  	if($arResult["FIELDS"][$i]["TITLE"] == "РўРµР»РµС„РѕРЅ"){
 					if($countPhone == 0){
 						?>
 						<td><nobr><?=$arResult["USERS"][$j]["FIELDS"][$i]?> 
@@ -67,7 +67,7 @@ if($arResult["ERROR_MESSAGE"] == ''){
 						$countPhone++;
 					}
 				}
-			  	elseif($arResult["FIELDS"][$i]["TITLE"] == "Имя" || $arResult["FIELDS"][$i]["TITLE"] == "Фамилия"){
+			  	elseif($arResult["FIELDS"][$i]["TITLE"] == "РРјСЏ" || $arResult["FIELDS"][$i]["TITLE"] == "Р¤Р°РјРёР»РёСЏ"){
 					if($countName == 0){
 						?>
 						<td width="100"><?=$arResult["USERS"][$j]["FIELDS"][$i]?> 
@@ -81,9 +81,9 @@ if($arResult["ERROR_MESSAGE"] == ''){
 						$countName++;
 					}
 				}
-				elseif($arResult["FIELDS"][$i]["TITLE"] != "Пароль" && strpos($arResult["FIELDS"][$i]["TITLE"], "коллеги") === false && $arResult["FIELDS"][$i]["TITLE"] != "Альтернативный e-mail"){
-					$arResult["USERS"][$j]["FIELDS"][$i]=str_replace("Индивидуальные встречи с участниками, по заранее составленному расписанию","Встречи с участниками",$arResult["USERS"][$j]["FIELDS"][$i]);
-					$arResult["USERS"][$j]["FIELDS"][$i]=str_replace("Посещение семинара A","Семинар А",$arResult["USERS"][$j]["FIELDS"][$i]);
+				elseif($arResult["FIELDS"][$i]["TITLE"] != "РџР°СЂРѕР»СЊ" && strpos($arResult["FIELDS"][$i]["TITLE"], "РєРѕР»Р»РµРіРё") === false && $arResult["FIELDS"][$i]["TITLE"] != "РђР»СЊС‚РµСЂРЅР°С‚РёРІРЅС‹Р№ e-mail"){
+					$arResult["USERS"][$j]["FIELDS"][$i]=str_replace("РРЅРґРёРІРёРґСѓР°Р»СЊРЅС‹Рµ РІСЃС‚СЂРµС‡Рё СЃ СѓС‡Р°СЃС‚РЅРёРєР°РјРё, РїРѕ Р·Р°СЂР°РЅРµРµ СЃРѕСЃС‚Р°РІР»РµРЅРЅРѕРјСѓ СЂР°СЃРїРёСЃР°РЅРёСЋ","Р’СЃС‚СЂРµС‡Рё СЃ СѓС‡Р°СЃС‚РЅРёРєР°РјРё",$arResult["USERS"][$j]["FIELDS"][$i]);
+					$arResult["USERS"][$j]["FIELDS"][$i]=str_replace("РџРѕСЃРµС‰РµРЅРёРµ СЃРµРјРёРЅР°СЂР° A","РЎРµРјРёРЅР°СЂ Рђ",$arResult["USERS"][$j]["FIELDS"][$i]);
 			  	?>
                 <td><?=$arResult["USERS"][$j]["FIELDS"][$i]?></td>
 				<?
@@ -91,9 +91,9 @@ if($arResult["ERROR_MESSAGE"] == ''){
 			  }
 			  ?>
               	<td width="80" align="center"><input name="accept[]" type="checkbox" value="<?=$arResult["USERS"][$j]["ID"]?>" /></td>
-                <td width="80"><a href="/admin/service/edit.php?id=<?=$arResult["USERS"][$j]["ID"]?>&result=<?=$arResult["USERS"][$j]["ANKETA"]?>&type=edit" target="_blank" onclick="newWind('/admin/service/edit.php?id=<?=$arResult["USERS"][$j]["ID"]?>&result=<?=$arResult["USERS"][$j]["ANKETA"]?>&type=edit', 500, 600); return false;">Редактировать</a></td>
+                <td width="80"><a href="/admin/service/edit.php?id=<?=$arResult["USERS"][$j]["ID"]?>&result=<?=$arResult["USERS"][$j]["ANKETA"]?>&type=edit" target="_blank" onclick="newWind('/admin/service/edit.php?id=<?=$arResult["USERS"][$j]["ID"]?>&result=<?=$arResult["USERS"][$j]["ANKETA"]?>&type=edit', 500, 600); return false;">Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ</a></td>
                 <td width="80"><?=$arResult["USERS"][$j]["FIELDS"][4]?></td>
-                <td width="80"><a href="/admin/particip/off/?id=<?=$arResult["USERS"][$j]["ID"]?>&type=spam">Спам</a></td>
+                <td width="80"><a href="/admin/particip/off/?id=<?=$arResult["USERS"][$j]["ID"]?>&type=spam">РЎРїР°Рј</a></td>
               </tr>
               <?
 			  }

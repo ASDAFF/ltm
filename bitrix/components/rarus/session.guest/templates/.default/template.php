@@ -10,7 +10,7 @@
 		$by = htmlspecialcharsEx(trim($_REQUEST["by"]));
 		$type = htmlspecialcharsEx(trim($_REQUEST["type"]));
 
-		//определение из какой группы брать данные
+		//РѕРїСЂРµРґРµР»РµРЅРёРµ РёР· РєР°РєРѕР№ РіСЂСѓРїРїС‹ Р±СЂР°С‚СЊ РґР°РЅРЅС‹Рµ
 		switch ($by)
 		{
 			case "alphabet" : $sort = "BY_ALPHABET"; break;
@@ -121,7 +121,7 @@
 					</tr>
 					<?
 				}
-				if(!$type && ($by == "priority_areas" || $by == "slots" || $by == "city"))//если нет типа выводим первый и выходим, а то выведет всех по много раз
+				if(!$type && ($by == "priority_areas" || $by == "slots" || $by == "city"))//РµСЃР»Рё РЅРµС‚ С‚РёРїР° РІС‹РІРѕРґРёРј РїРµСЂРІС‹Р№ Рё РІС‹С…РѕРґРёРј, Р° С‚Рѕ РІС‹РІРµРґРµС‚ РІСЃРµС… РїРѕ РјРЅРѕРіРѕ СЂР°Р·
 				{
 					break;
 				}
@@ -130,7 +130,7 @@
 		else
 		{
 			foreach ($arResult["SESSION"][$arParams["TYPE"]][$sort] as $data):
-			//Для всех пользователей
+			//Р”Р»СЏ РІСЃРµС… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 			$arUser = $arResult["SESSION"][$arParams["TYPE"]]["USERS"][$data];
 			$userFormData = $arUser["FORM_DATA"];
 			?>

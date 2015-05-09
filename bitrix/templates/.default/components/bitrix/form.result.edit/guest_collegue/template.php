@@ -69,7 +69,7 @@ $APPLICATION->AddHeadScript("/cabinet/edit/script.js");
 						<?if(isset($arShowQuestion["DISABLED"])) {
 							$arQuestion["HTML_CODE"] = str_replace("class=", "disabled class=", $arQuestion["HTML_CODE"]);
 						}?>
-						<? if(in_array($FIELD_SID, $arPriorArea)){continue;}//пропуск приоритетных направлений?>
+						<? if(in_array($FIELD_SID, $arPriorArea)){continue;}//РїСЂРѕРїСѓСЃРє РїСЂРёРѕСЂРёС‚РµС‚РЅС‹С… РЅР°РїСЂР°РІР»РµРЅРёР№?>
 						<div class="form-group">
 							<?if (is_array($arResult["FORM_ERRORS"]) && array_key_exists($FIELD_SID, $arResult['FORM_ERRORS'])):?>
 								<span class="error-fld" title="<?=$arResult["FORM_ERRORS"][$FIELD_SID]?>"></span>
@@ -84,13 +84,13 @@ $APPLICATION->AddHeadScript("/cabinet/edit/script.js");
 
 					<div class="pull-left company-info priority-wrap" style="display: block; clear: both;">
 	
-						<div class="title">Выберите приоритетные направления</div>
+						<div class="title">Р’С‹Р±РµСЂРёС‚Рµ РїСЂРёРѕСЂРёС‚РµС‚РЅС‹Рµ РЅР°РїСЂР°РІР»РµРЅРёСЏ</div>
 						
 						<div class="priority-check-global">
 							<label class="check-global" for="check_priority_global" type="checkbox">Global / Worldwide</label>
 							<input id="check_priority_global" type="checkbox" name="PRIORITY_GLOBAL" value="" class = "none" />
 						</div>
-				<? //вывод приоритетных направлений?>
+				<? //РІС‹РІРѕРґ РїСЂРёРѕСЂРёС‚РµС‚РЅС‹С… РЅР°РїСЂР°РІР»РµРЅРёР№?>
 				<? foreach ($arPriorArea as $SID):?>
 				<? 
 				$arQuestion = $arResult["QUESTIONS"][$SID]; 
@@ -102,7 +102,7 @@ $APPLICATION->AddHeadScript("/cabinet/edit/script.js");
 								<input id="check_<?=$SID?>_ALL" type="checkbox" name="<?=$SID?>_ALL" value="" class = "none" <?if(count($arQuestion["STRUCTURE"]) == count($arValues)):?>checked='checked'<?endif;?>/>
 								
 								<a href="javascript:void(0);" class="priority-toggle priority-name"><ins><?= $arQuestion["CAPTION"]?></ins></a>
-								<a href="javascript:void(0);" class="priority-toggle priority-switch"><ins>Показать все страны</ins></a>
+								<a href="javascript:void(0);" class="priority-toggle priority-switch"><ins>РџРѕРєР°Р·Р°С‚СЊ РІСЃРµ СЃС‚СЂР°РЅС‹</ins></a>
 							</div>
 
 	    					 <div class="priority-items" id="priority-items-<?= randString(5)?>">

@@ -1,6 +1,6 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 /*--------------- TO DO -------------------*/
-//Добавить в параметры FORM_ID
+//Р”РѕР±Р°РІРёС‚СЊ РІ РїР°СЂР°РјРµС‚СЂС‹ FORM_ID
 
 
 
@@ -25,7 +25,7 @@ if(strLen($arParams["USER_TYPE"])<=0){
 }
 
 if(strLen($arParams["USER"])<=0){
-	$arResult["ERROR_MESSAGE"] = "Не введены данные по Пользователю!<br />";
+	$arResult["ERROR_MESSAGE"] = "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ РџРѕР»СЊР·РѕРІР°С‚РµР»СЋ!<br />";
 }
 
 if($arParams["USER_TYPE"] == "PARTICIP"){
@@ -34,11 +34,11 @@ if($arParams["USER_TYPE"] == "PARTICIP"){
 
 if(!($USER->IsAuthorized()))
 {
-	$arResult["ERROR_MESSAGE"] = "Вы не авторизованы!<br />";
+	$arResult["ERROR_MESSAGE"] = "Р’С‹ РЅРµ Р°РІС‚РѕСЂРёР·РѕРІР°РЅС‹!<br />";
 }
 
 /*---------------------------------------------------*/
-//           ФОРМИРУЕМ ВЫВОД ДЛЯ ШАБЛОНА             //
+//           Р¤РћР РњРР РЈР•Рњ Р’Р«Р’РћР” Р”Р›РЇ РЁРђР‘Р›РћРќРђ             //
 /*---------------------------------------------------*/
 if($arResult["ERROR_MESSAGE"] == '')
 {
@@ -133,16 +133,16 @@ if($arResult["ERROR_MESSAGE"] == '')
 				$arResult["USER"] = $realUser;
 				
 /*---------------------------------------------------*/
-//           ФОРМИРУЕМ СЧЕТА НА ОТПРАВКУ             //
+//           Р¤РћР РњРР РЈР•Рњ РЎР§Р•РўРђ РќРђ РћРўРџР РђР’РљРЈ             //
 /*---------------------------------------------------*/
 				require('pdf/tcpdf.php');
 				if($_REQUEST["rekv"] == 1){
-					$string= "Ordering customer / Плательщик: \n".$realUser['COMPANY'].",\n ".$realUser['ADDRESS'].",\n ".$realUser['CITY'].", ".$realUser['COUNTRY'].",\n ".$realUser["PHONE"]."\n\n  Beneficiary / Получатель: Polanskiy Artem Valentinovich,\nregistered as independent entrepreneur\nwith State Registration Number 309503525800010\nat Federal Tax Service Inspectorate in \nPavlosvkiy Posad, Moscow Region\n\nИндивидуальный предприниматель \nПоланский Артём Валентинович,\nзарегистрированный Инспекцией Федеральной Налоговой Службы \nпо г. Павловский Посад Московской области, \nгосударственный регистрационный номер 309503525800010\nИНН 503507510512\n\nMoscow, Russia / Москва, Российская Федерация\n" . date("d.m.Y");
+					$string= "Ordering customer / РџР»Р°С‚РµР»СЊС‰РёРє: \n".$realUser['COMPANY'].",\n ".$realUser['ADDRESS'].",\n ".$realUser['CITY'].", ".$realUser['COUNTRY'].",\n ".$realUser["PHONE"]."\n\n  Beneficiary / РџРѕР»СѓС‡Р°С‚РµР»СЊ: Polanskiy Artem Valentinovich,\nregistered as independent entrepreneur\nwith State Registration Number 309503525800010\nat Federal Tax Service Inspectorate in \nPavlosvkiy Posad, Moscow Region\n\nРРЅРґРёРІРёРґСѓР°Р»СЊРЅС‹Р№ РїСЂРµРґРїСЂРёРЅРёРјР°С‚РµР»СЊ \nРџРѕР»Р°РЅСЃРєРёР№ РђСЂС‚С‘Рј Р’Р°Р»РµРЅС‚РёРЅРѕРІРёС‡,\nР·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅРЅС‹Р№ РРЅСЃРїРµРєС†РёРµР№ Р¤РµРґРµСЂР°Р»СЊРЅРѕР№ РќР°Р»РѕРіРѕРІРѕР№ РЎР»СѓР¶Р±С‹ \nРїРѕ Рі. РџР°РІР»РѕРІСЃРєРёР№ РџРѕСЃР°Рґ РњРѕСЃРєРѕРІСЃРєРѕР№ РѕР±Р»Р°СЃС‚Рё, \nРіРѕСЃСѓРґР°СЂСЃС‚РІРµРЅРЅС‹Р№ СЂРµРіРёСЃС‚СЂР°С†РёРѕРЅРЅС‹Р№ РЅРѕРјРµСЂ 309503525800010\nРРќРќ 503507510512\n\nMoscow, Russia / РњРѕСЃРєРІР°, Р РѕСЃСЃРёР№СЃРєР°СЏ Р¤РµРґРµСЂР°С†РёСЏ\n" . date("d.m.Y");
 					$pdf = new TCPDF('P', 'mm', 'A4', false, 'UTF-8', false);
 					$pdf->AddFont('times','I','timesi.php');
 					$pdf->setPrintHeader(false);
 					$pdf->setPrintFooter(false); 
-						/*Начало контракта*/
+						/*РќР°С‡Р°Р»Рѕ РєРѕРЅС‚СЂР°РєС‚Р°*/
 						$pdf->AddPage();
 						$pdf->setXY(0,20);
 						$pdf->SetFont('times','B',14);
@@ -178,7 +178,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 						$pdf->SetFont('times','BI',10);
 						$pdf->multiCell(190, 5, "5. Indemnity\n", 0, L);
 						$pdf->SetFont('times','',10);
-						$pdf->multiCell(190, 5, "5.1. The Exhibitor shall indemnify and hold harmless the Organizer against any loss, damages, costs, expenses or other claims arising from: a) Breach of these Terms by the Exhibitor or any person sharing the Stand; and b) Acts or omissions of the Exhibitor, it’s employees, agents, sub contractors or any person sharing the Stand, whether negligent or otherwise.\n\n", 0, L);
+						$pdf->multiCell(190, 5, "5.1. The Exhibitor shall indemnify and hold harmless the Organizer against any loss, damages, costs, expenses or other claims arising from: a) Breach of these Terms by the Exhibitor or any person sharing the Stand; and b) Acts or omissions of the Exhibitor, itвЂ™s employees, agents, sub contractors or any person sharing the Stand, whether negligent or otherwise.\n\n", 0, L);
 						$pdf->SetFont('times','BI',10);
 						$pdf->multiCell(190, 5, "6. General\n", 0, L);
 						$pdf->SetFont('times','',10);
@@ -193,23 +193,23 @@ if($arResult["ERROR_MESSAGE"] == '')
 						$pdf->SetFont('times','',10);
 						$pdf->multiCell(190, 5, "7.1. Except in respect of death or personal injury caused by negligence or as expressly provided in these Terms, neither the Organizer, its servants or agents shall be liable to the Exhibitor by reason of any representation (unless fraudulent), or any implied warranty, condition or other term, or any duty at common law, or under the express terms of the Agreement, for any loss of profit or any indirect, special or consequential loss, damage, costs, expenses or other claims (whether caused by the negligence of the Organizer, its servants or agents or otherwise) which arise out of or in connection with the Exhibition (including any delay or cancellation of the Exhibition).\n", 0, L);
 						$pdf->multiCell(190, 5, "7.2. Neither the Organizer nor the Venue operator or their agents or employees shall have any liability for any loss, damage or delay incurred by the Exhibitor arising: \na) as a result of an act of Force majeure; \nb) in relation to the movement of freight to and from the Venue; or \nc) other than personal injury or death, by fire, theft or injury of any nature.\n", 0, L);
-						$pdf->multiCell(190, 5, "7.3. If the Exhibition is cancelled, postponed, abandoned or curtailed, or the Venue becomes wholly or partially unavailable for the holding of the Exhibition as a result of; a) an act of Force majeure; or b) conflicts or misinterpretations arising with the national or local authorities of the host county, its sponsors, agents or other bodies regarding any and all aspects of the Exhibition; then: c) the Organizer or any of its agents or servants shall not have any liability for any loss, damage or delay to the Exhibitor arising as a result of such circumstances; d) the Organizer shall be entitled, but not obliged, to reschedule the Exhibition to another date and/or at an alternative site; and e) the Organizer shall be entitled to retain such part of all sums paid by the Exhibitor as it, in it’s absolute discretion, considers necessary to meet any expenses incurred by it in connection with the Exhibition.\n", 0, L);
+						$pdf->multiCell(190, 5, "7.3. If the Exhibition is cancelled, postponed, abandoned or curtailed, or the Venue becomes wholly or partially unavailable for the holding of the Exhibition as a result of; a) an act of Force majeure; or b) conflicts or misinterpretations arising with the national or local authorities of the host county, its sponsors, agents or other bodies regarding any and all aspects of the Exhibition; then: c) the Organizer or any of its agents or servants shall not have any liability for any loss, damage or delay to the Exhibitor arising as a result of such circumstances; d) the Organizer shall be entitled, but not obliged, to reschedule the Exhibition to another date and/or at an alternative site; and e) the Organizer shall be entitled to retain such part of all sums paid by the Exhibitor as it, in itвЂ™s absolute discretion, considers necessary to meet any expenses incurred by it in connection with the Exhibition.\n", 0, L);
 						$pdf->SetFont('times','BI',10);
 						$pdf->multiCell(190, 5, "8. Conduct of Exhibitor\n", 0, L);
 						$pdf->SetFont('times','',10);
-						$pdf->multiCell(190, 5, "8.1. The Exhibitor has no right to occupy any particular space, although the Organizer will endeavour to take into account the Exhibitor’s preferences when allocating space.\n", 0, L);
+						$pdf->multiCell(190, 5, "8.1. The Exhibitor has no right to occupy any particular space, although the Organizer will endeavour to take into account the ExhibitorвЂ™s preferences when allocating space.\n", 0, L);
 						$pdf->multiCell(190, 5, "8.2. The Exhibitor shall not assign any of its rights under the Agreement, or share, sub-let or grant licences in respect of the whole or any part of the Stand, save as permitted in writing by the Organizer.\n", 0, L);
 						$pdf->multiCell(190, 5, "8.3. The Exhibitor shall not:\n a) remove or dismantle any part of its exhibit from its Stand, prior to the official close of the Exhibition, and shall have an authorized representative present at the Stand at all times when the Exhibition is open to visitors and during installation and dismantling of the exhibit; b) obstruct the view of adjoining exhibits nor operate in any manner intrusive or damaging to other exhibitors, including, without limitation, unreasonable use of light, banners, and noise; or c) display or distribute any political, illegal, immoral or offensive material at the Exhibition. No lotteries, games of chance or raffles will be conducted without the prior written consent of the Organizer.\n", 0, L);
 						$pdf->multiCell(190, 5, "8.4. The Exhibitor shall comply with all reasonable instructions of the Organizer, the Venue operator and all statutory regulations.\n", 0, L);
 						$pdf->SetFont('times','BI',10);
 						$pdf->multiCell(190, 5, "9. General terms of participation (summary)\n", 0, L);
 						$pdf->SetFont('times','',10);
-						$pdf->multiCell(190, 5, "9.1. Participation at the Exhibition under this Agreement includes:\na) The Exhibitor’s participation at all events of the Exhibition, specified below.\nb) Working space (Stand) at all events, including the name sign of the Exhibitor\nc) Exhibitor’s inclusion in the Exhibition catalogue, including translation of the text from English to Russian, if necessary (maximum 800 words).\nd) Lunch and coffee breaks as at the schedule; drinks are included.\ne) Access to the Exhibition’s web site for appointment schedules and guests databases\n", 0, L);
-						$pdf->multiCell(190, 5, "9.2. The schedule of events of the Exhibition is as follows: 10:00 – 14:20 – Morning session with up to 17 pre-scheduled appointments, 14:30  – 15:30 – Lunch, 15:30 – 18:00 – non-pre scheduled appointments with the hosted buyers, 18:30 – 21:30 – Evening session at the cocktail-workshop format.\n", 0, L);
+						$pdf->multiCell(190, 5, "9.1. Participation at the Exhibition under this Agreement includes:\na) The ExhibitorвЂ™s participation at all events of the Exhibition, specified below.\nb) Working space (Stand) at all events, including the name sign of the Exhibitor\nc) ExhibitorвЂ™s inclusion in the Exhibition catalogue, including translation of the text from English to Russian, if necessary (maximum 800 words).\nd) Lunch and coffee breaks as at the schedule; drinks are included.\ne) Access to the ExhibitionвЂ™s web site for appointment schedules and guests databases\n", 0, L);
+						$pdf->multiCell(190, 5, "9.2. The schedule of events of the Exhibition is as follows: 10:00 вЂ“ 14:20 вЂ“ Morning session with up to 17 pre-scheduled appointments, 14:30  вЂ“ 15:30 вЂ“ Lunch, 15:30 вЂ“ 18:00 вЂ“ non-pre scheduled appointments with the hosted buyers, 18:30 вЂ“ 21:30 вЂ“ Evening session at the cocktail-workshop format.\n", 0, L);
 						$pdf->multiCell(190, 5, "Up to 17 appointments may be scheduled for exhibitors at the morning session. The Organizer cannot guarantee that the Exhibitor will meet only accounts in which the Exhibitor is interested, and the Organizer accepts no responsibility for no-shows (except for hosted buyers).\n", 0, L);
-						$pdf->multiCell(190, 5, "Stands will be allocated based on the registration and payment days, and it’s not possible to pre-book any particular Stand in advance.\n", 0, L);
+						$pdf->multiCell(190, 5, "Stands will be allocated based on the registration and payment days, and itвЂ™s not possible to pre-book any particular Stand in advance.\n", 0, L);
 						$pdf->multiCell(190, 5, "A maximum of 2 persons are allowed at the Stand of the Exhibitor. A third person may attend only at the evening session and at an additional cost of 500 (five hundred) euros + 18% VAT, payable in advance.\n", 0, L);
-						$pdf->multiCell(190, 5, "Stand sharing is possible subject to the Organizer’s approval only for hotels from the same geographical region (country or city). Stand sharing between hotels or hotel groups and other travel service providers are not allowed.\nNo banners and posters are allowed at the Exhibition.\n", 0, L);
+						$pdf->multiCell(190, 5, "Stand sharing is possible subject to the OrganizerвЂ™s approval only for hotels from the same geographical region (country or city). Stand sharing between hotels or hotel groups and other travel service providers are not allowed.\nNo banners and posters are allowed at the Exhibition.\n", 0, L);
 						$pdf->multiCell(190, 5, "9.3. The Organizer reserves the right to change the date and venue of the event, exhibitors will be notified in writing.\n", 0, L);
 						$pdf->SetFont('times','B',14);
 	$pdf->multiCell(190, 5, "\n\n I have read and agree to the terms and conditions of this agreement.\n", 0, C);
@@ -227,7 +227,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 						$pdf->MultiCell(100, 5, 'Signature _________________________'.$txt, 0, 'L', 0, 1, '', '', true);
 	$stampY = $pdf->getY();
 	$pdf->Image('images/stamp_polansky.png',75,$stampY,130,55,'','','',false,72,'',false,false,1);
-						/*Конец контракта*/
+						/*РљРѕРЅРµС† РєРѕРЅС‚СЂР°РєС‚Р°*/
 
 					$pdf->AddPage();
 					$pdf->Image('images/logo_ltm.jpg');
@@ -238,30 +238,30 @@ if($arResult["ERROR_MESSAGE"] == '')
 $pdf->setXY(0,$pdf->getY() + 5);
 
 					$pdf->SetFont('times','B',12);
-					$pdf->multiCell(200, 5, "INVOICE N/ Счёт № ".$realUser["ID"]."/Kiev\n\n", 0, C);
+					$pdf->multiCell(200, 5, "INVOICE N/ РЎС‡С‘С‚ в„– ".$realUser["ID"]."/Kiev\n\n", 0, C);
 					$pdf->SetFont('times','B',12);
-					$pdf->multiCell(190, 5, "Details of payment / Предмет счёта:", 0, C);
+					$pdf->multiCell(190, 5, "Details of payment / РџСЂРµРґРјРµС‚ СЃС‡С‘С‚Р°:", 0, C);
 					$pdf->SetFont('times','',10);
-					$pdf->multiCell(185, 0, "Participation in the Luxury Travel Mart exhibition on September 24, 2013 at the\n Intercontinental Hotel Kiev, Ukraine, organized by Artem Polanskiy.\nPayment made on non-contractual basis\n\nУчастие в выставке Luxury Travel Mart, организуемой ИП Поланский Артём Валентинович\n 24 сентября 2013 года в отеле Интерконтиненталь, Киев, Украина.\n Договор не заключался и не предусмотрен условиями участия.\n\n", 0, C); 
+					$pdf->multiCell(185, 0, "Participation in the Luxury Travel Mart exhibition on September 24, 2013 at the\n Intercontinental Hotel Kiev, Ukraine, organized by Artem Polanskiy.\nPayment made on non-contractual basis\n\nРЈС‡Р°СЃС‚РёРµ РІ РІС‹СЃС‚Р°РІРєРµ Luxury Travel Mart, РѕСЂРіР°РЅРёР·СѓРµРјРѕР№ РРџ РџРѕР»Р°РЅСЃРєРёР№ РђСЂС‚С‘Рј Р’Р°Р»РµРЅС‚РёРЅРѕРІРёС‡\n 24 СЃРµРЅС‚СЏР±СЂСЏ 2013 РіРѕРґР° РІ РѕС‚РµР»Рµ РРЅС‚РµСЂРєРѕРЅС‚РёРЅРµРЅС‚Р°Р»СЊ, РљРёРµРІ, РЈРєСЂР°РёРЅР°.\n Р”РѕРіРѕРІРѕСЂ РЅРµ Р·Р°РєР»СЋС‡Р°Р»СЃСЏ Рё РЅРµ РїСЂРµРґСѓСЃРјРѕС‚СЂРµРЅ СѓСЃР»РѕРІРёСЏРјРё СѓС‡Р°СЃС‚РёСЏ.\n\n", 0, C); 
 					$pdf->SetFont('times','B',14);
-					$pdf->multiCell(0, 5, "Total amount of payment / Сумма платежа: ".$realUser["PAY_COUNT"]." Euro\n", 0, C); 
+					$pdf->multiCell(0, 5, "Total amount of payment / РЎСѓРјРјР° РїР»Р°С‚РµР¶Р°: ".$realUser["PAY_COUNT"]." Euro\n", 0, C); 
 					$pdf->SetFont('times','B',12);
-					$pdf->multiCell(0, 5, "Payment information / Детали платежа:", 0, C); 
+					$pdf->multiCell(0, 5, "Payment information / Р”РµС‚Р°Р»Рё РїР»Р°С‚РµР¶Р°:", 0, C); 
 					$pdf->SetFont('times','',10);
-					$pdf->multiCell(0, 5, "Please put the invoice number / Укажите номер счёта\n\n", 0, C); 
+					$pdf->multiCell(0, 5, "Please put the invoice number / РЈРєР°Р¶РёС‚Рµ РЅРѕРјРµСЂ СЃС‡С‘С‚Р°\n\n", 0, C); 
 					$pdf->SetFont('times','B',12);
-					$pdf->multiCell(0, 5, "Bank details / Банковские реквизиты:", 0, C);
+					$pdf->multiCell(0, 5, "Bank details / Р‘Р°РЅРєРѕРІСЃРєРёРµ СЂРµРєРІРёР·РёС‚С‹:", 0, C);
 					$pdf->SetFont('times','',12); 
 					$pdf->multiCell(0, 5, "Beneficiary's Bank:\nVTB 24 (JSC), Moscow, Russia\nSWIFT: CBGURUMM\nBeneficiary: Polanskiy Artem Valentinovich\nAccount: 40802978700001002738\n\n", 0, C);
 					$pdf->SetFont('times','',10);
-					$pdf->multiCell(0, 10, "This invoice is valid for payments until the 20th of March 2013\nBank charges at payer's expense\nИнвойс действителен до 20 марта 2013 года\nБанковские сборы и комиссии за счет плательщика\n\n", 0, C);
+					$pdf->multiCell(0, 10, "This invoice is valid for payments until the 20th of March 2013\nBank charges at payer's expense\nРРЅРІРѕР№СЃ РґРµР№СЃС‚РІРёС‚РµР»РµРЅ РґРѕ 20 РјР°СЂС‚Р° 2013 РіРѕРґР°\nР‘Р°РЅРєРѕРІСЃРєРёРµ СЃР±РѕСЂС‹ Рё РєРѕРјРёСЃСЃРёРё Р·Р° СЃС‡РµС‚ РїР»Р°С‚РµР»СЊС‰РёРєР°\n\n", 0, C);
 					$pdf->SetFont('times','',12);
-					$pdf->multiCell(300, 5, "Artem V. Polanskiy /\nПоланский Артём Валентинович\n\n", 0, L);
+					$pdf->multiCell(300, 5, "Artem V. Polanskiy /\nРџРѕР»Р°РЅСЃРєРёР№ РђСЂС‚С‘Рј Р’Р°Р»РµРЅС‚РёРЅРѕРІРёС‡\n\n", 0, L);
 					$pdf->SetFont('times','',8);
-					$pdf->multiCell(0, 5, "(Electronic copy, without signature and company stamp / электронная копия, без подписи и печати)", 0, C);
+					$pdf->multiCell(0, 5, "(Electronic copy, without signature and company stamp / СЌР»РµРєС‚СЂРѕРЅРЅР°СЏ РєРѕРїРёСЏ, Р±РµР· РїРѕРґРїРёСЃРё Рё РїРµС‡Р°С‚Рё)", 0, C);
 				}
 				elseif($_REQUEST["rekv"] == 2){
-					$string= "Ordering customer / Плательщик: \n".$realUser['COMPANY'].",\n ".$realUser['ADDRESS'].",\n ".$realUser['CITY'].", ".$realUser['COUNTRY'].",\n ".$realUser["PHONE"]."\n\n  Beneficiary / Получатель: Travel Media,\nregistered as Society with limited liability\nwith State Registration Number 1047796617472\nat Federal Tax Service Inspectorate No 46 in\nMoscow\n\nОбщество с ограниченной ответственностью «Трэвэл Медиа»,\nзарегистрированное Инспекцией Федеральной Налоговой Службы № 46 \nпо г. Москве, \nгосударственный регистрационный номер 1047796617472\nИНН 7707525284\n\nMoscow, Russia / Москва, Российская Федерация\n" . date("d.m.Y");
+					$string= "Ordering customer / РџР»Р°С‚РµР»СЊС‰РёРє: \n".$realUser['COMPANY'].",\n ".$realUser['ADDRESS'].",\n ".$realUser['CITY'].", ".$realUser['COUNTRY'].",\n ".$realUser["PHONE"]."\n\n  Beneficiary / РџРѕР»СѓС‡Р°С‚РµР»СЊ: Travel Media,\nregistered as Society with limited liability\nwith State Registration Number 1047796617472\nat Federal Tax Service Inspectorate No 46 in\nMoscow\n\nРћР±С‰РµСЃС‚РІРѕ СЃ РѕРіСЂР°РЅРёС‡РµРЅРЅРѕР№ РѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕСЃС‚СЊСЋ В«РўСЂСЌРІСЌР» РњРµРґРёР°В»,\nР·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅРЅРѕРµ РРЅСЃРїРµРєС†РёРµР№ Р¤РµРґРµСЂР°Р»СЊРЅРѕР№ РќР°Р»РѕРіРѕРІРѕР№ РЎР»СѓР¶Р±С‹ в„– 46 \nРїРѕ Рі. РњРѕСЃРєРІРµ, \nРіРѕСЃСѓРґР°СЂСЃС‚РІРµРЅРЅС‹Р№ СЂРµРіРёСЃС‚СЂР°С†РёРѕРЅРЅС‹Р№ РЅРѕРјРµСЂ 1047796617472\nРРќРќ 7707525284\n\nMoscow, Russia / РњРѕСЃРєРІР°, Р РѕСЃСЃРёР№СЃРєР°СЏ Р¤РµРґРµСЂР°С†РёСЏ\n" . date("d.m.Y");
 					$pdf = new TCPDF('P', 'mm', 'A4', false, 'UTF-8', false);
 					$pdf->AddFont('times','I','timesi.php');
 					$pdf->setPrintHeader(false);
@@ -275,30 +275,30 @@ $pdf->setXY(0,$pdf->getY() + 5);
 $pdf->setXY(0,$pdf->getY() + 5);
 
 					$pdf->SetFont('times','B',12);
-					$pdf->multiCell(200, 5, "INVOICE N/ Счёт № ".$realUser["ID"]."/Kiev\n\n", 0, C);
+					$pdf->multiCell(200, 5, "INVOICE N/ РЎС‡С‘С‚ в„– ".$realUser["ID"]."/Kiev\n\n", 0, C);
 					$pdf->SetFont('times','B',12);
-					$pdf->multiCell(190, 5, "Details of payment / Предмет счёта:", 0, C);
+					$pdf->multiCell(190, 5, "Details of payment / РџСЂРµРґРјРµС‚ СЃС‡С‘С‚Р°:", 0, C);
 					$pdf->SetFont('times','',10);
-					$pdf->multiCell(185, 0, "Participation in the Luxury Travel Mart exhibition on September 24, 2013 at the\n Intercontinental Hotel Kiev, Ukraine, organized by Travel Media.\nPayment made on non-contractual basis\n\nУчастие в выставке Luxury Travel Mart, организуемой ООО «Трэвэл Медиа»\n 24 сентября 2013 года в отеле Интерконтиненталь, Киев, Украина.\n Договор не заключался и не предусмотрен условиями участия.\n\n", 0, C); 
+					$pdf->multiCell(185, 0, "Participation in the Luxury Travel Mart exhibition on September 24, 2013 at the\n Intercontinental Hotel Kiev, Ukraine, organized by Travel Media.\nPayment made on non-contractual basis\n\nРЈС‡Р°СЃС‚РёРµ РІ РІС‹СЃС‚Р°РІРєРµ Luxury Travel Mart, РѕСЂРіР°РЅРёР·СѓРµРјРѕР№ РћРћРћ В«РўСЂСЌРІСЌР» РњРµРґРёР°В»\n 24 СЃРµРЅС‚СЏР±СЂСЏ 2013 РіРѕРґР° РІ РѕС‚РµР»Рµ РРЅС‚РµСЂРєРѕРЅС‚РёРЅРµРЅС‚Р°Р»СЊ, РљРёРµРІ, РЈРєСЂР°РёРЅР°.\n Р”РѕРіРѕРІРѕСЂ РЅРµ Р·Р°РєР»СЋС‡Р°Р»СЃСЏ Рё РЅРµ РїСЂРµРґСѓСЃРјРѕС‚СЂРµРЅ СѓСЃР»РѕРІРёСЏРјРё СѓС‡Р°СЃС‚РёСЏ.\n\n", 0, C); 
 					$pdf->SetFont('times','B',14);
-					$pdf->multiCell(0, 5, "Total amount of payment / Сумма платежа: ".$realUser["PAY_COUNT"]." Euro\n", 0, C); 
+					$pdf->multiCell(0, 5, "Total amount of payment / РЎСѓРјРјР° РїР»Р°С‚РµР¶Р°: ".$realUser["PAY_COUNT"]." Euro\n", 0, C); 
 					$pdf->SetFont('times','B',12);
-					$pdf->multiCell(0, 5, "Payment information / Детали платежа:", 0, C); 
+					$pdf->multiCell(0, 5, "Payment information / Р”РµС‚Р°Р»Рё РїР»Р°С‚РµР¶Р°:", 0, C); 
 					$pdf->SetFont('times','',10);
-					$pdf->multiCell(0, 5, "Please put the invoice number / Укажите номер счёта\n\n", 0, C); 
+					$pdf->multiCell(0, 5, "Please put the invoice number / РЈРєР°Р¶РёС‚Рµ РЅРѕРјРµСЂ СЃС‡С‘С‚Р°\n\n", 0, C); 
 					$pdf->SetFont('times','B',12);
-					$pdf->multiCell(0, 5, "Bank details / Банковские реквизиты:", 0, C);
+					$pdf->multiCell(0, 5, "Bank details / Р‘Р°РЅРєРѕРІСЃРєРёРµ СЂРµРєРІРёР·РёС‚С‹:", 0, C);
 					$pdf->SetFont('times','',12); 
 					$pdf->multiCell(0, 5, "Beneficiary's Bank:\nVTB Bank (open joint-stock company), Moscow, Russia\nSWIFT: VTBRRUMM\nBeneficiary: Travel Media\nAccount: 40702978900140010240\n\n", 0, C);
 					$pdf->SetFont('times','',10);
-					$pdf->multiCell(0, 10, "This invoice is valid for payments until the 20th of March 2013\n Bank charges at payer's expense\n Инвойс действителен до 20 марта 2013 года\n Банковские сборы и комиссии за счет плательщика\n\n", 0, C);
+					$pdf->multiCell(0, 10, "This invoice is valid for payments until the 20th of March 2013\n Bank charges at payer's expense\n РРЅРІРѕР№СЃ РґРµР№СЃС‚РІРёС‚РµР»РµРЅ РґРѕ 20 РјР°СЂС‚Р° 2013 РіРѕРґР°\n Р‘Р°РЅРєРѕРІСЃРєРёРµ СЃР±РѕСЂС‹ Рё РєРѕРјРёСЃСЃРёРё Р·Р° СЃС‡РµС‚ РїР»Р°С‚РµР»СЊС‰РёРєР°\n\n", 0, C);
 					$pdf->SetFont('times','',12);
-					$pdf->multiCell(300, 5, "Elena Vetrova /\nВетрова Елена Васильевна, Генеральный директор\n\n", 0, L);
+					$pdf->multiCell(300, 5, "Elena Vetrova /\nР’РµС‚СЂРѕРІР° Р•Р»РµРЅР° Р’Р°СЃРёР»СЊРµРІРЅР°, Р“РµРЅРµСЂР°Р»СЊРЅС‹Р№ РґРёСЂРµРєС‚РѕСЂ\n\n", 0, L);
 					$pdf->SetFont('times','',8);
-					$pdf->multiCell(0, 5, "(Electronic copy, without signature and company stamp / электронная копия, без подписи и печати)", 0, C);
+					$pdf->multiCell(0, 5, "(Electronic copy, without signature and company stamp / СЌР»РµРєС‚СЂРѕРЅРЅР°СЏ РєРѕРїРёСЏ, Р±РµР· РїРѕРґРїРёСЃРё Рё РїРµС‡Р°С‚Рё)", 0, C);
 					}
 				else{
-					$string= "Ordering customer / Плательщик: \n".$realUser['COMPANY'].",\n ".$realUser['ADDRESS'].",\n ".$realUser['CITY'].", ".$realUser['COUNTRY'].",\n ".$realUser["PHONE"]."\n\n  Beneficiary / Получатель: Supralux Transit LLP\n Enterprise House, 82 Whitchurch Road,\n Cardiff, CF14 3LX, Wales, Great Britain\n\n\n Cardiff, United Kingdom\n\n" . date("d.m.Y");					
+					$string= "Ordering customer / РџР»Р°С‚РµР»СЊС‰РёРє: \n".$realUser['COMPANY'].",\n ".$realUser['ADDRESS'].",\n ".$realUser['CITY'].", ".$realUser['COUNTRY'].",\n ".$realUser["PHONE"]."\n\n  Beneficiary / РџРѕР»СѓС‡Р°С‚РµР»СЊ: Supralux Transit LLP\n Enterprise House, 82 Whitchurch Road,\n Cardiff, CF14 3LX, Wales, Great Britain\n\n\n Cardiff, United Kingdom\n\n" . date("d.m.Y");					
 					$pdf = new TCPDF('P', 'mm', 'A4', false, 'UTF-8', false);
 					$pdf->AddFont('times','I','timesi.php');
 					$pdf->setPrintHeader(false);
@@ -312,29 +312,29 @@ $pdf->setXY(0,$pdf->getY() + 5);
 $pdf->setXY(0,$pdf->getY() + 5);
 
 					$pdf->SetFont('times','B',12);
-					$pdf->multiCell(200, 5, "INVOICE N/ Счёт № ".$realUser["ID"]."/Kiev\n\n", 0, C);
+					$pdf->multiCell(200, 5, "INVOICE N/ РЎС‡С‘С‚ в„– ".$realUser["ID"]."/Kiev\n\n", 0, C);
 					$pdf->SetFont('times','B',12);
-					$pdf->multiCell(190, 5, "Details of payment / Предмет счёта:", 0, C);
+					$pdf->multiCell(190, 5, "Details of payment / РџСЂРµРґРјРµС‚ СЃС‡С‘С‚Р°:", 0, C);
 					$pdf->SetFont('times','',10);
-					$pdf->multiCell(185, 0, "Participation in the Luxury Travel Mart exhibition on September 24, 2013 at the\n Intercontinental Hotel Kiev, Ukraine, organized by Supralux Transit.\nPayment made on non-contractual basis\n\nУчастие в выставке Luxury Travel Mart, организуемой Supralux Transit\n 24 сентября 2013 года в отеле Интерконтиненталь, Киев, Украина.\n Договор не заключался и не предусмотрен условиями участия.\n\n", 0, C); 
+					$pdf->multiCell(185, 0, "Participation in the Luxury Travel Mart exhibition on September 24, 2013 at the\n Intercontinental Hotel Kiev, Ukraine, organized by Supralux Transit.\nPayment made on non-contractual basis\n\nРЈС‡Р°СЃС‚РёРµ РІ РІС‹СЃС‚Р°РІРєРµ Luxury Travel Mart, РѕСЂРіР°РЅРёР·СѓРµРјРѕР№ Supralux Transit\n 24 СЃРµРЅС‚СЏР±СЂСЏ 2013 РіРѕРґР° РІ РѕС‚РµР»Рµ РРЅС‚РµСЂРєРѕРЅС‚РёРЅРµРЅС‚Р°Р»СЊ, РљРёРµРІ, РЈРєСЂР°РёРЅР°.\n Р”РѕРіРѕРІРѕСЂ РЅРµ Р·Р°РєР»СЋС‡Р°Р»СЃСЏ Рё РЅРµ РїСЂРµРґСѓСЃРјРѕС‚СЂРµРЅ СѓСЃР»РѕРІРёСЏРјРё СѓС‡Р°СЃС‚РёСЏ.\n\n", 0, C); 
 					$pdf->SetFont('times','B',14);
-					$pdf->multiCell(0, 5, "Total amount of payment / Сумма платежа: ".$realUser["PAY_COUNT"]." Euro\n", 0, C); 
+					$pdf->multiCell(0, 5, "Total amount of payment / РЎСѓРјРјР° РїР»Р°С‚РµР¶Р°: ".$realUser["PAY_COUNT"]." Euro\n", 0, C); 
 					$pdf->SetFont('times','B',12);
-					$pdf->multiCell(0, 5, "Payment information / Детали платежа:", 0, C); 
+					$pdf->multiCell(0, 5, "Payment information / Р”РµС‚Р°Р»Рё РїР»Р°С‚РµР¶Р°:", 0, C); 
 					$pdf->SetFont('times','',10);
-					$pdf->multiCell(0, 5, "Please put the invoice number / Укажите номер счёта\n\n", 0, C); 
+					$pdf->multiCell(0, 5, "Please put the invoice number / РЈРєР°Р¶РёС‚Рµ РЅРѕРјРµСЂ СЃС‡С‘С‚Р°\n\n", 0, C); 
 					$pdf->SetFont('times','B',12);
-					$pdf->multiCell(0, 5, "Bank details / Банковские реквизиты:", 0, C);
+					$pdf->multiCell(0, 5, "Bank details / Р‘Р°РЅРєРѕРІСЃРєРёРµ СЂРµРєРІРёР·РёС‚С‹:", 0, C);
 					$pdf->SetFont('times','',12); 
 					$pdf->multiCell(0, 5, "SUPRALUX TRANSIT LLP\nBeneficiary account IBAN: LV86 KBRB 1111 2144 9100 1\nBank Of  Beneficiary: Trasta Komercbanka A/O, Miesnieku iela 9, Riga LV-1050, Latvija\nSWIFT: KBRBLV2X\n\n", 0, C);
 					$pdf->SetFont('times','',10);
-					$pdf->multiCell(0, 10, "This invoice is valid for payments until the 20th of March 2013\n Bank charges at payer's expense\n Инвойс действителен до 20 марта 2013 года\n Банковские сборы и комиссии за счет плательщика\n\n", 0, C);
+					$pdf->multiCell(0, 10, "This invoice is valid for payments until the 20th of March 2013\n Bank charges at payer's expense\n РРЅРІРѕР№СЃ РґРµР№СЃС‚РІРёС‚РµР»РµРЅ РґРѕ 20 РјР°СЂС‚Р° 2013 РіРѕРґР°\n Р‘Р°РЅРєРѕРІСЃРєРёРµ СЃР±РѕСЂС‹ Рё РєРѕРјРёСЃСЃРёРё Р·Р° СЃС‡РµС‚ РїР»Р°С‚РµР»СЊС‰РёРєР°\n\n", 0, C);
 					$pdf->SetFont('times','',12);
-					$pdf->multiCell(300, 5, "Valerii Dzuba / Валерий Дзюба,\nDirector / Директор\n\n", 0, L);
+					$pdf->multiCell(300, 5, "Valerii Dzuba / Р’Р°Р»РµСЂРёР№ Р”Р·СЋР±Р°,\nDirector / Р”РёСЂРµРєС‚РѕСЂ\n\n", 0, L);
 					$pdf->SetFont('times','',8);
-					$pdf->multiCell(0, 5, "(Electronic copy, without signature and company stamp / электронная копия, без подписи и печати)", 0, C);
+					$pdf->multiCell(0, 5, "(Electronic copy, without signature and company stamp / СЌР»РµРєС‚СЂРѕРЅРЅР°СЏ РєРѕРїРёСЏ, Р±РµР· РїРѕРґРїРёСЃРё Рё РїРµС‡Р°С‚Рё)", 0, C);
 				}
-// ОТПРАВЛЯЕМ ПИСЬМО СО СЧЕТОМ
+// РћРўРџР РђР’Р›РЇР•Рњ РџРРЎР¬РњРћ РЎРћ РЎР§Р•РўРћРњ
 				$headers = "From: noreply@luxurytravelmart.ru";
 				$fileatt_name = "LTM_invoice.pdf";
 				$fileatt_type = "application/pdf";
@@ -347,7 +347,7 @@ $pdf->setXY(0,$pdf->getY() + 5);
 <p><strong>By May 31, 2013</strong>: for the exhibitors catalogue please submit minimum 6 medium-resolution images of your hotel/company, logotype and the text you would like to have published (full A4 page).</p>
 <p><strong>July 1, 2013</strong>: Opening of registration for the buyers.</p>
 <p><strong>August 29, 2013</strong>: Password, user name and detailed instruction on how to use the online system and to set up your appointments will be sent for your attention.</p>
-<p><strong>September 2 – September 18, 2013</strong>: Scheduling of appointments for the morning session.</p>
+<p><strong>September 2 вЂ“ September 18, 2013</strong>: Scheduling of appointments for the morning session.</p>
 <p><strong>September 19, 2013</strong>: Your schedule should be ready and available for printing.</p>
 <p><strong>September 19, 2013</strong>: Final exhibitors check for the badges</p>
 <p><strong>General terms and conditions:</strong></p>
@@ -403,11 +403,11 @@ Luxury Travel Mart Team</p></body></html>";
 					}
 				  else{
 					$arResult["TYPE"] = "SENT";
-					$arResult["ERROR_MESSAGE"] = "Не удалось отправит счет<br />";
+					$arResult["ERROR_MESSAGE"] = "РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РїСЂР°РІРёС‚ СЃС‡РµС‚<br />";
 				  }
 				
 			}			
-			elseif($_REQUEST["count_save"] == "Сохранить"){
+			elseif($_REQUEST["count_save"] == "РЎРѕС…СЂР°РЅРёС‚СЊ"){
 				$user = new CUser;
 				$fields = Array(
 				  "NAME"              => $realUser["NAME"],
@@ -443,7 +443,7 @@ Luxury Travel Mart Team</p></body></html>";
 		}
 	}
 	else{
-		$arResult["ERROR_MESSAGE"] = "У вас недостаточно прав для просмотра данной страницы!";
+		$arResult["ERROR_MESSAGE"] = "РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїСЂР°РІ РґР»СЏ РїСЂРѕСЃРјРѕС‚СЂР° РґР°РЅРЅРѕР№ СЃС‚СЂР°РЅРёС†С‹!";
 	}
 }
 //echo "<pre>"; print_r($arrAnswers); echo "</pre>";

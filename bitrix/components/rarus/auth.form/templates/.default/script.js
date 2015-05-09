@@ -1,9 +1,9 @@
-function regForExhib(exhibID, userID, SID)
+function regForExhib(exhibID, userID)
 {
 	regData = new Object();
 	regData.exhibID = exhibID;
 	regData.userID = userID;
-	regData.SID = SID;
+	regData.SID = BX.bitrix_sessid();
 
 
 	$.ajax({

@@ -87,7 +87,7 @@ else
 				if(isset($_POST[$fieldAns])){
 					if(($_POST[$fieldAns] != $_POST["OLD_".$fieldAns] && $arrAns["TYPE"] != 'dropdown') || ($_POST[$fieldAns] != '' && $_POST[$fieldAns] != $arResult["QUEST"][$fieldAns]["ANSWER_ID"] && $arrAns["TYPE"] == 'dropdown')){
 						$arVALUE = array();
-						$ANSWER_ID = $arrAns["ANSWER_ID"]; // ID поля ответа
+						$ANSWER_ID = $arrAns["ANSWER_ID"]; // ID РїРѕР»СЏ РѕС‚РІРµС‚Р°
 						if($arrAns["TYPE"] == 'dropdown'){
 							$arVALUE[$_POST[$fieldAns]] = '';
 							$newAns = '';
@@ -96,7 +96,7 @@ else
 									$newAns .= $optField["MESSAGE"]."; ";
 								}
 							}
-							$sendMessage .= "Поле ".$arResult["QUEST"][$fieldAns]["TITLE"].". Старое значение: ".$arResult["QUEST"][$fieldAns]["VALUE"]." Новое значение: ".$newAns."\n";
+							$sendMessage .= "РџРѕР»Рµ ".$arResult["QUEST"][$fieldAns]["TITLE"].". РЎС‚Р°СЂРѕРµ Р·РЅР°С‡РµРЅРёРµ: ".$arResult["QUEST"][$fieldAns]["VALUE"]." РќРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ: ".$newAns."\n";
 						}
 						elseif($fieldAns == "directions"){
 							$arVALUE = array();
@@ -106,7 +106,7 @@ else
 						}
 						else{
 							$arVALUE[$ANSWER_ID] = $_POST[$fieldAns];
-							$sendMessage .= "Поле ".$arResult["QUEST"][$fieldAns]["TITLE"].". Старое значение: ".$arResult["QUEST"][$fieldAns]["VALUE"]." Новое значение: ".$_POST[$fieldAns]."\n";
+							$sendMessage .= "РџРѕР»Рµ ".$arResult["QUEST"][$fieldAns]["TITLE"].". РЎС‚Р°СЂРѕРµ Р·РЅР°С‡РµРЅРёРµ: ".$arResult["QUEST"][$fieldAns]["VALUE"]." РќРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ: ".$_POST[$fieldAns]."\n";
 						}
 						CFormResult::SetField($RESULT_ID, $fieldAns, $arVALUE);
 						if($sendMessage != ''){

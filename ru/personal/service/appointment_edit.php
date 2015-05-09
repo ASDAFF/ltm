@@ -1,6 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Íàçíà÷åíèå âñòðå÷");
+$APPLICATION->SetTitle("ÐÐ°Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð²ÑÑ‚Ñ€ÐµÑ‡");
 ?><?$APPLICATION->IncludeComponent(
 	"btm:appointment.edit.user",
 	"particip",

@@ -13,29 +13,29 @@ if($arResult["ERROR_MESSAGE"] == ''){
     </script>
     <? echo "<p class='link' style='color:#ff0000;'><strong>".$arResult["MESSAGE"]."</strong></p>";?>
     <form action="" method="post" name="reg_update">
-    <h1>Адресаты</h1>
+    <h1>РђРґСЂРµСЃР°С‚С‹</h1>
     <table width="700" border="0" cellspacing="0" cellpadding="7" class="admin_info">
       <tr class="chet">
         <td width="50"><input name="all_guest" type="checkbox" value="1" style="width:20px;"></td>
-        <td><strong>Всем гостям утренней сессии</strong></td>
+        <td><strong>Р’СЃРµРј РіРѕСЃС‚СЏРј СѓС‚СЂРµРЅРЅРµР№ СЃРµСЃСЃРёРё</strong></td>
       </tr>
       <tr>
         <td width="50"><input name="all_hb" type="checkbox" value="1" style="width:20px;"></td>
-        <td><strong>Всем гостям HB</strong></td>
+        <td><strong>Р’СЃРµРј РіРѕСЃС‚СЏРј HB</strong></td>
       </tr>
       <tr class="chet">
         <td><input name="all_particip" type="checkbox" value="1" style="width:20px;"></td>
-        <td><strong>Всем участникам</strong></td>
+        <td><strong>Р’СЃРµРј СѓС‡Р°СЃС‚РЅРёРєР°Рј</strong></td>
       </tr>
     </table>
-    <p class="link" style="text-align:left;"><a href="#" onclick="toggle_desc('guest'); return false;">Гости утренней сессии</a></p>
+    <p class="link" style="text-align:left;"><a href="#" onclick="toggle_desc('guest'); return false;">Р“РѕСЃС‚Рё СѓС‚СЂРµРЅРЅРµР№ СЃРµСЃСЃРёРё</a></p>
     <div id="desc_guest" style="display:none;">
       <table border="0" cellspacing="0" cellpadding="7" class="admin_info">
           <tr class="chet">
-              <td width="50"><strong>Написать</strong></td>
-              <td width="265"><strong>Представитель и Компания</strong></td>
-              <td width="50"><strong>Написать</strong></td>
-              <td width="265"><strong>Представитель и Компания</strong></td>
+              <td width="50"><strong>РќР°РїРёСЃР°С‚СЊ</strong></td>
+              <td width="265"><strong>РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ Рё РљРѕРјРїР°РЅРёСЏ</strong></td>
+              <td width="50"><strong>РќР°РїРёСЃР°С‚СЊ</strong></td>
+              <td width="265"><strong>РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ Рё РљРѕРјРїР°РЅРёСЏ</strong></td>
           </tr>
           <tr>
 	<?
@@ -63,14 +63,14 @@ if($arResult["ERROR_MESSAGE"] == ''){
         </tr>
     </table>
     </div>
-    <p class="link" style="text-align:left;"><a href="#" onclick="toggle_desc('hb'); return false;">Гости HB</a></p>
+    <p class="link" style="text-align:left;"><a href="#" onclick="toggle_desc('hb'); return false;">Р“РѕСЃС‚Рё HB</a></p>
     <div id="desc_hb" style="display:none;">
       <table border="0" cellspacing="0" cellpadding="7" class="admin_info">
           <tr class="chet">
-              <td width="50"><strong>Написать</strong></td>
-              <td width="250"><strong>Представитель и Компания</strong></td>
-              <td width="50"><strong>Написать</strong></td>
-              <td width="250"><strong>Представитель и Компания</strong></td>
+              <td width="50"><strong>РќР°РїРёСЃР°С‚СЊ</strong></td>
+              <td width="250"><strong>РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ Рё РљРѕРјРїР°РЅРёСЏ</strong></td>
+              <td width="50"><strong>РќР°РїРёСЃР°С‚СЊ</strong></td>
+              <td width="250"><strong>РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ Рё РљРѕРјРїР°РЅРёСЏ</strong></td>
           </tr>
           <tr>
 	<?
@@ -98,14 +98,14 @@ if($arResult["ERROR_MESSAGE"] == ''){
         </tr>
     </table>
     </div>
-    <p class="link" style="text-align:left;"><a href="#" onclick="toggle_desc('particip'); return false;">Участники</a></p>
+    <p class="link" style="text-align:left;"><a href="#" onclick="toggle_desc('particip'); return false;">РЈС‡Р°СЃС‚РЅРёРєРё</a></p>
     <div id="desc_particip" style="display:none;">
       <table border="0" cellspacing="0" cellpadding="7" class="admin_info">
           <tr class="chet">
-              <td width="50"><strong>Написать</strong></td>
-              <td width="250"><strong>Представитель и Компания</strong></td>
-              <td width="50"><strong>Написать</strong></td>
-              <td width="250"><strong>Представитель и Компания</strong></td>
+              <td width="50"><strong>РќР°РїРёСЃР°С‚СЊ</strong></td>
+              <td width="250"><strong>РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ Рё РљРѕРјРїР°РЅРёСЏ</strong></td>
+              <td width="50"><strong>РќР°РїРёСЃР°С‚СЊ</strong></td>
+              <td width="250"><strong>РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ Рё РљРѕРјРїР°РЅРёСЏ</strong></td>
           </tr>
           <tr>
 	<?
@@ -133,19 +133,19 @@ if($arResult["ERROR_MESSAGE"] == ''){
         </tr>
     </table>
     </div>
-    <h1>Сообщение</h1>
+    <h1>РЎРѕРѕР±С‰РµРЅРёРµ</h1>
     <table width="700" border="0" cellspacing="0" cellpadding="7" class="admin_info">
       <tr class="chet">
-        <td><strong>Тема</strong></td>
+        <td><strong>РўРµРјР°</strong></td>
         <td><input name="subj" type="text" value="<?=$arResult["MESS"]["SUBJ"]?>" /></td>
       </tr>
       <tr>
-        <td><strong>Текст сообщения</strong></td>
+        <td><strong>РўРµРєСЃС‚ СЃРѕРѕР±С‰РµРЅРёСЏ</strong></td>
         <td><textarea name="message_text"><?=$arResult["MESS"]["TEXT"]?></textarea></td>
       </tr>
     </table>
     <input name="mes" type="hidden" value="write" />
-    <div><input name="submit" type="submit" value="Отправить" class="send_reg" /></div>
+    <div><input name="submit" type="submit" value="РћС‚РїСЂР°РІРёС‚СЊ" class="send_reg" /></div>
     </form>
 	<?
 }

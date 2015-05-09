@@ -1,10 +1,10 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die(); ?>
 <?
-$MESS['ERROR_EMPTY_USER_TYPE'] = 'Òèï þçåðà íå óêàçàí';
-$MESS['ERROR_EMPTY_USER_ID'] = 'Þçåð íå àâòîðèçîâàí';
-$MESS['PARTICIP_IS_LOCKED'] = 'Âñòðå÷è çàáëîêèðîâàíû';
-$MESS['GUEST_IS_LOCKED'] = 'Âñòðå÷è çàáëîêèðîâàíû';
+$MESS['ERROR_EMPTY_USER_TYPE'] = 'Ð¢Ð¸Ð¿ ÑŽÐ·ÐµÑ€Ð° Ð½Ðµ ÑƒÐºÐ°Ð·Ð°Ð½';
+$MESS['ERROR_EMPTY_USER_ID'] = 'Ð®Ð·ÐµÑ€ Ð½Ðµ Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð¾Ð²Ð°Ð½';
+$MESS['PARTICIP_IS_LOCKED'] = 'Ð’ÑÑ‚Ñ€ÐµÑ‡Ð¸ Ð·Ð°Ð±Ð»Ð¾ÐºÐ¸Ñ€Ð¾Ð²Ð°Ð½Ñ‹';
+$MESS['GUEST_IS_LOCKED'] = 'Ð’ÑÑ‚Ñ€ÐµÑ‡Ð¸ Ð·Ð°Ð±Ð»Ð¾ÐºÐ¸Ñ€Ð¾Ð²Ð°Ð½Ñ‹';
 $MESS['PARTICIP_navigate'] = 'requests';
-$MESS['GUEST_navigate'] = 'çàïðîñû';
+$MESS['GUEST_navigate'] = 'Ð·Ð°Ð¿Ñ€Ð¾ÑÑ‹';
 
 ?>

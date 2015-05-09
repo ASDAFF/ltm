@@ -3,8 +3,8 @@ if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 
 if($arResult["ERROR_MESSAGE"] == ''){
 	?>
-      Добро пожаловать,  <?=$arResult["NAME"]?><br />
-      У Вас <span><?=$arResult["NEW_APP"]?></span> неподтвержденных запросов на встречи и <span><?=$arResult["NEW_MESSAGES"]?></span> новых сообщений
+      Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ,  <?=$arResult["NAME"]?><br />
+      РЈ Р’Р°СЃ <span><?=$arResult["NEW_APP"]?></span> РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… Р·Р°РїСЂРѕСЃРѕРІ РЅР° РІСЃС‚СЂРµС‡Рё Рё <span><?=$arResult["NEW_MESSAGES"]?></span> РЅРѕРІС‹С… СЃРѕРѕР±С‰РµРЅРёР№
 	<?
 }
 ?>

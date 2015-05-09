@@ -3,19 +3,19 @@ $arCancelUsersID = $_REQUEST["ACTION"];
 
 foreach($arCancelUsersID as $userID)
 {
-	//получаем группы пользователя
+	//РїРѕР»СѓС‡Р°РµРј РіСЂСѓРїРїС‹ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
     $arGroups = CUser::GetUserGroup($userID);
 
     $groupConfirmID = $arResult["EXHIBITION"]["PROPERTIES"]["USER_GROUP_ID"]["VALUE"];
     $groupUConfirmID = $arResult["EXHIBITION"]["PROPERTIES"]["UC_PARTICIPANTS_GROUP"]["VALUE"];
 
-    if(!$groupConfirmID || !$groupUConfirmID)//выход если не заданы группы участников
+    if(!$groupConfirmID || !$groupUConfirmID)//РІС‹С…РѕРґ РµСЃР»Рё РЅРµ Р·Р°РґР°РЅС‹ РіСЂСѓРїРїС‹ СѓС‡Р°СЃС‚РЅРёРєРѕРІ
     {
     	break;
     }
 
     $needUpdate = false;
-    foreach ($arGroups as $index => $group)//добавляем пользователя из группы неподтвержденных пользоватейлей в подтвержденных
+    foreach ($arGroups as $index => $group)//РґРѕР±Р°РІР»СЏРµРј РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РёР· РіСЂСѓРїРїС‹ РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР№Р»РµР№ РІ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С…
     {
     	if($group == $groupConfirmID)
     	{

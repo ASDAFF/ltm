@@ -37,12 +37,12 @@ class CHLMFunctions
         $rsUser = CUser::GetByID($USER_ID);
         $arUser = $rsUser->Fetch();
 
-        if(in_array($arExhib["PROPERTY_USER_GROUP_ID_VALUE"], $arUserGroups))//участник
+        if(in_array($arExhib["PROPERTY_USER_GROUP_ID_VALUE"], $arUserGroups))//СѓС‡Р°СЃС‚РЅРёРє
         {
             return self::GetParticipantInfo($arUser, $arExhib);
         }
 
-        if(in_array($arExhib["PROPERTY_C_GUESTS_GROUP_VALUE"], $arUserGroups))//гость
+        if(in_array($arExhib["PROPERTY_C_GUESTS_GROUP_VALUE"], $arUserGroups))//РіРѕСЃС‚СЊ
         {
             return self::GetGuestInfo($arUser, $arExhib);
         }
@@ -57,15 +57,15 @@ class CHLMFunctions
     private function GetParticipantInfo($arUser, $arExhib)
     {
         CModule::IncludeModule("form");
-        $formID = 3;//форма компании представители всех выставок
+        $formID = 3;//С„РѕСЂРјР° РєРѕРјРїР°РЅРёРё РїСЂРµРґСЃС‚Р°РІРёС‚РµР»Рё РІСЃРµС… РІС‹СЃС‚Р°РІРѕРє
         $companyResultID = $arUser["UF_ID_COMP"];
 
-        //получение названия компании
+        //РїРѕР»СѓС‡РµРЅРёРµ РЅР°Р·РІР°РЅРёСЏ РєРѕРјРїР°РЅРёРё
         $arAnswer = CFormResult::GetDataByID(
             $companyResultID,
             array(
-                "SIMPLE_QUESTION_163",// описание компании
-                "SIMPLE_QUESTION_988"//название компании
+                "SIMPLE_QUESTION_163",// РѕРїРёСЃР°РЅРёРµ РєРѕРјРїР°РЅРёРё
+                "SIMPLE_QUESTION_988"//РЅР°Р·РІР°РЅРёРµ РєРѕРјРїР°РЅРёРё
             ),
             $arResult,
             $arAnswerDescr
@@ -73,9 +73,9 @@ class CHLMFunctions
         $arAnswerCompName = reset($arAnswerDescr["SIMPLE_QUESTION_988"]);
         $compName = $arAnswerCompName["USER_TEXT"];
 
-        //получаем данные пользователя
+        //РїРѕР»СѓС‡Р°РµРј РґР°РЅРЅС‹Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
         $formID = CFormMatrix::getPFormIDByExh($arExhib["ID"]);
-        $formPropName = CFormMatrix::getPropertyIDByExh($arExhib["ID"]);//получение имени свойства пользователя для текущей выставки
+        $formPropName = CFormMatrix::getPropertyIDByExh($arExhib["ID"]);//РїРѕР»СѓС‡РµРЅРёРµ РёРјРµРЅРё СЃРІРѕР№СЃС‚РІР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РґР»СЏ С‚РµРєСѓС‰РµР№ РІС‹СЃС‚Р°РІРєРё
         $resultId = $arUser[$formPropName];
 
         $FieldSID = array(
@@ -86,7 +86,7 @@ class CHLMFunctions
             "EMAIL" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_859",$formID),//E-mail
             "EMAIL_CONF" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_585",$formID),//Please confirm your e-mail
             "EMAIL_ALT" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_749",$formID),//Alternative e-mail
-            "PHOTO" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_575",$formID),//Персональное фото
+            "PHOTO" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_575",$formID),//РџРµСЂСЃРѕРЅР°Р»СЊРЅРѕРµ С„РѕС‚Рѕ
             "SALUTATION" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_889",$formID),//Salutation
         );
 
@@ -134,11 +134,11 @@ class CHLMFunctions
     private function GetGuestInfo($arUser, $arExhib)
     {
         CModule::IncludeModule("form");
-        $formID = 10; //одна форма для всех гостей
-        $formPropName = CFormMatrix::getPropertyIDByExh($arExhib["ID"]);//получение имени свойства пользователя для текущей выставки
+        $formID = 10; //РѕРґРЅР° С„РѕСЂРјР° РґР»СЏ РІСЃРµС… РіРѕСЃС‚РµР№
+        $formPropName = CFormMatrix::getPropertyIDByExh($arExhib["ID"]);//РїРѕР»СѓС‡РµРЅРёРµ РёРјРµРЅРё СЃРІРѕР№СЃС‚РІР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РґР»СЏ С‚РµРєСѓС‰РµР№ РІС‹СЃС‚Р°РІРєРё
         $userResultID = $arUser[$formPropName];
 
-               //получение результата заполнени формы пользователя
+               //РїРѕР»СѓС‡РµРЅРёРµ СЂРµР·СѓР»СЊС‚Р°С‚Р° Р·Р°РїРѕР»РЅРµРЅРё С„РѕСЂРјС‹ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
         $arResultAnswerUser = array("RESULTS"=>array(), "QUESTIONS"=>array(), "ANSWERS"=>array(), "ANSWERS2"=>array());
 
         CForm::GetResultAnswerArray(
@@ -152,11 +152,11 @@ class CHLMFunctions
         $arProfile = array();
         $arUserAnswer = $arResultAnswerUser["ANSWERS"][$userResultID];
 
-        //заполненные данные из фомры
-        $arProfile["NAME"] = $arUserAnswer[113][216]["USER_TEXT"];//FIELD_ID 113 , ANSWER_ID 216, TITLE => Имя
-        $arProfile["LAST_NAME"] = $arUserAnswer[114][217]["USER_TEXT"];//FIELD_ID 114 , ANSWER_ID 217, TITLE => Фамилия
-        $arProfile["COMPANY_NAME"] = $arUserAnswer[107][204]["USER_TEXT"];//FIELD_ID 107 , ANSWER_ID 204, TITLE => Название компании
-        $arProfile["EMAIL"] = $arUserAnswer[117][220]["USER_TEXT"];//FIELD_ID 117 , ANSWER_ID 220, TITLE => Е-mail
+        //Р·Р°РїРѕР»РЅРµРЅРЅС‹Рµ РґР°РЅРЅС‹Рµ РёР· С„РѕРјСЂС‹
+        $arProfile["NAME"] = $arUserAnswer[113][216]["USER_TEXT"];//FIELD_ID 113 , ANSWER_ID 216, TITLE => РРјСЏ
+        $arProfile["LAST_NAME"] = $arUserAnswer[114][217]["USER_TEXT"];//FIELD_ID 114 , ANSWER_ID 217, TITLE => Р¤Р°РјРёР»РёСЏ
+        $arProfile["COMPANY_NAME"] = $arUserAnswer[107][204]["USER_TEXT"];//FIELD_ID 107 , ANSWER_ID 204, TITLE => РќР°Р·РІР°РЅРёРµ РєРѕРјРїР°РЅРёРё
+        $arProfile["EMAIL"] = $arUserAnswer[117][220]["USER_TEXT"];//FIELD_ID 117 , ANSWER_ID 220, TITLE => Р•-mail
 
         return $arProfile;
     }
@@ -245,13 +245,13 @@ class CHLMFunctions
 
     function GetMessagesCount($hlid = 2, $EID, $UID, $FID, $bIsRead = false)
     {
-        // начало ********************* highloadblock init ***************************************
+        // РЅР°С‡Р°Р»Рѕ ********************* highloadblock init ***************************************
 
         $hlblock = HL\HighloadBlockTable::getById($hlid)->fetch();
-        // получаем сущность
+        // РїРѕР»СѓС‡Р°РµРј СЃСѓС‰РЅРѕСЃС‚СЊ
         $entity = HL\HighloadBlockTable::compileEntity($hlblock);
 
-        // конец ********************* highloadblock init *****************************************
+        // РєРѕРЅРµС† ********************* highloadblock init *****************************************
 
         $filter = array(
             "UF_EXHIBITION" => intval($EID),
@@ -259,7 +259,7 @@ class CHLMFunctions
             "UF_IS_READ" => $bIsRead,
         );
 
-        if($FID == 3)//входящие
+        if($FID == 3)//РІС…РѕРґСЏС‰РёРµ
         {
             $filter["UF_RECIPIENT"] = $UID;
         }

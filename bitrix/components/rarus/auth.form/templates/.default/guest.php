@@ -1,10 +1,10 @@
-<?php // Блок с данными пользователя ?>
+<?php // Р‘Р»РѕРє СЃ РґР°РЅРЅС‹РјРё РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ ?>
 
 <?
 $curDir = $APPLICATION->GetCurDir();
 ?>
 	<div id="form" class="form rus">
-		<?php // Выводим фото + имя?>
+		<?php // Р’С‹РІРѕРґРёРј С„РѕС‚Рѕ + РёРјСЏ?>
 		<div class="information-data pull-overflow">
 			<div class="member">
 			<? if(isset($arResult["PROFILE"]["PHOTO"]) && strlen($arResult["PROFILE"]["PHOTO"]["src"]) > 0)
@@ -21,7 +21,7 @@ $curDir = $APPLICATION->GetCurDir();
 		</div>
 
 		<? if($USER->IsAdmin() || (GUEST_CABINET == "Y" && $arResult["CONFIRMED"] == "Y")):?>
-		<?php // Редактировать данные ?>
+		<?php // Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РґР°РЅРЅС‹Рµ ?>
 		<div class="edit-profile">
 			<div class="redact"><a href="<?= $arResult["PROFILE"]["EDIT_LINK"]?>" title="Edit profile" <?= ($curDir == stristr($arResult["PROFILE"]["EDIT_LINK"], "?", true))?"class='bolder'":"";?>><?= GetMessage("AUTH_G_EDIT_PROFILE")?></a></div>
 			<div class="colleague-reg"><a href="<?= $arResult["PROFILE"]["EDIT_COLLEAGUE_LINK"]?>" title="" <?= ($curDir == stristr($arResult["PROFILE"]["EDIT_COLLEAGUE_LINK"], "?", true))?"class='bolder'":"";?>><?= GetMessage("AUTH_G_EDIT_COLLEAGUE")?></a></div>
@@ -36,12 +36,12 @@ $curDir = $APPLICATION->GetCurDir();
 			<? endif;?>
 		<? endif;?>
 
-		<?php // Выход?>
+		<?php // Р’С‹С…РѕРґ?>
 		<div class="leave pull-overflow">
 		    <? if($USER->IsAdmin() || (GUEST_CABINET == "Y" && $arResult["CONFIRMED"] == "Y")):?>
-		        <a href="<?= $arResult["PROFILE"]["PERSONAL_LINK"]?>" title="Личный кабинет" class="pc">Личный кабинет</a>
+		        <a href="<?= $arResult["PROFILE"]["PERSONAL_LINK"]?>" title="Р›РёС‡РЅС‹Р№ РєР°Р±РёРЅРµС‚" class="pc">Р›РёС‡РЅС‹Р№ РєР°Р±РёРЅРµС‚</a>
 			<? endif;?>
 			<a href="/?logout=yes" title="EXIT" class="exit type-helvetical"><?=GetMessage("AUTH_P_EXIT")?></a>
 		</div>
 	</div>
-<?php // Блок с данными пользователя ?>
+<?php // Р‘Р»РѕРє СЃ РґР°РЅРЅС‹РјРё РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ ?>

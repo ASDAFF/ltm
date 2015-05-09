@@ -1,6 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-//ÿçûêîâîé ôàéë
+//ÑÐ·Ñ‹ÐºÐ¾Ð²Ð¾Ð¹ Ñ„Ð°Ð¹Ð»
 include(GetLangFileName(dirname(dirname(__FILE__)).'/lang/', '/index.php'));
 ?>
 <div id="exhibition-tab-5" class="message-box">
@@ -32,7 +32,7 @@ endif
 
 
 <? if(!$close):?>
-	<?//--> Ñïèñîê òàáîâ 2 óðîâíÿ ?>
+	<?//--> Ð¡Ð¿Ð¸ÑÐ¾Ðº Ñ‚Ð°Ð±Ð¾Ð² 2 ÑƒÑ€Ð¾Ð²Ð½Ñ ?>
     <ul class="message-list-tab pull-overflow">
         <li class="ui-tabs-active"><a href="<?= $page . "inbox/" . (($userId)?"?UID=".$userId:"")?>" title="<?=GetMessage("MESSAGES_INBOX")?>"><?=GetMessage("MESSAGES_INBOX")?></a></li>
         <li><a href="<?= $page . "sent/" . (($userId)?"?UID=".$userId:"")?>" title="<?=GetMessage("MESSAGES_SENT")?>"><?=GetMessage("MESSAGES_SENT")?></a></li>

@@ -1,4 +1,4 @@
-<?define("NEED_AUTH");?>
+<?define("NEED_AUTH", true);?>
 <?require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");?>
 <script  src="<?=SITE_TEMPLATE_PATH?>/js/ajaxupload.3.5.js"></script>
 <? 
@@ -22,7 +22,7 @@ try{
     $arUser = $rsUser->Fetch();
     $curPage = "/cabinet/".$_REQUEST["EXHIBIT_CODE"]."/edit/company/".(isset($_REQUEST["UID"])?"?UID={$_REQUEST["UID"]}":"");
 
-    $formID = 3;//форма компании представители всех выставок
+    $formID = 3;//С„РѕСЂРјР° РєРѕРјРїР°РЅРёРё РїСЂРµРґСЃС‚Р°РІРёС‚РµР»Рё РІСЃРµС… РІС‹СЃС‚Р°РІРѕРє
     $resultId = $arUser["UF_ID_COMP"];
 
     $exhibCode = trim($_REQUEST["EXHIBIT_CODE"]);
@@ -39,7 +39,7 @@ try{
         }
     }
 
-    //получение количества незагруженных фотографий
+    //РїРѕР»СѓС‡РµРЅРёРµ РєРѕР»РёС‡РµСЃС‚РІР° РЅРµР·Р°РіСЂСѓР¶РµРЅРЅС‹С… С„РѕС‚РѕРіСЂР°С„РёР№
     $galleryID = $arUser["UF_ID_GROUP"];
 
     $rsSectionElement = CIBlockElement::GetList(array(), array("ACTIVE" => "Y", "SECTION_ID" => $galleryID, "IBLOCK_ID" => PHOTO_GALLERY_ID), false, false, array("ID", "NAME"));
@@ -81,12 +81,12 @@ SIMPLE_QUESTION_395 - Logo
 		"SIMPLE_QUESTION_284" => array($_POST["SIMPLE_QUESTION_284"] => $_POST["SIMPLE_QUESTION_284"]),	
 	);
 
-	//получение старого описания компании
+	//РїРѕР»СѓС‡РµРЅРёРµ СЃС‚Р°СЂРѕРіРѕ РѕРїРёСЃР°РЅРёСЏ РєРѕРјРїР°РЅРёРё
 	$arAnswer = CFormResult::GetDataByID(
 	    $resultId,
 	    array(
-	        "SIMPLE_QUESTION_163",// описание компании
-	        "SIMPLE_QUESTION_988"//название компании
+	        "SIMPLE_QUESTION_163",// РѕРїРёСЃР°РЅРёРµ РєРѕРјРїР°РЅРёРё
+	        "SIMPLE_QUESTION_988"//РЅР°Р·РІР°РЅРёРµ РєРѕРјРїР°РЅРёРё
 	    ),
 	    $arResult,
 	    $arAnswerDescr);
@@ -97,12 +97,12 @@ SIMPLE_QUESTION_395 - Logo
 	$arAnswerCompName = reset($arAnswerDescr["SIMPLE_QUESTION_988"]);
 	$compName = $arAnswerCompName["USER_TEXT"];
 
-	//лого
+	//Р»РѕРіРѕ
 	if(isset($_POST["SIMPLE_QUESTION_395"]))
 	{
 		$path = $_POST["SIMPLE_QUESTION_395"]["PATH"];
 		$filear =  CFile::MakeFileArray($path);
-		$logotipFileId = CFile::SaveFile($filear, "upload");
+		$logotipFileId = CFile::SaveFile($filear, "logo");
 		$logotipResize = CFile::ResizeImageGet($logotipFileId, array('width'=>100, 'height'=> 99999), BX_RESIZE_IMAGE_PROPORTIONAL, true);
 		$filear = CFile::MakeFileArray($logotipResize['src']);
 
@@ -117,7 +117,7 @@ SIMPLE_QUESTION_395 - Logo
 		CFormResult::SetField($resultId, $SID, $value);
 	}
 
-	//фото
+	//С„РѕС‚Рѕ
 	if(isset($_POST["PHOTO"]))
 	{
 		$el = new CIBlockElement;
@@ -130,11 +130,11 @@ SIMPLE_QUESTION_395 - Logo
 			$path = htmlspecialcharsBx($path);
 
 			$arFields = array(
-				"MODIFIED_BY"    => $arUser["ID"], // элемент изменен текущим пользователем
-				"IBLOCK_SECTION_ID" => $galleryID,          // элемент лежит в корне раздела
-				"IBLOCK_ID"      => PHOTO_GALLERY_ID,//галерея
-				"NAME"           => "Фото " . (++$photoCount),
-				"ACTIVE"         => "Y",            // активен
+				"MODIFIED_BY"    => $arUser["ID"], // СЌР»РµРјРµРЅС‚ РёР·РјРµРЅРµРЅ С‚РµРєСѓС‰РёРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј
+				"IBLOCK_SECTION_ID" => $galleryID,          // СЌР»РµРјРµРЅС‚ Р»РµР¶РёС‚ РІ РєРѕСЂРЅРµ СЂР°Р·РґРµР»Р°
+				"IBLOCK_ID"      => PHOTO_GALLERY_ID,//РіР°Р»РµСЂРµСЏ
+				"NAME"           => "Р¤РѕС‚Рѕ " . (++$photoCount),
+				"ACTIVE"         => "Y",            // Р°РєС‚РёРІРµРЅ
 				"PREVIEW_PICTURE" => CFile::MakeFileArray($path)
 			);
 
@@ -142,7 +142,7 @@ SIMPLE_QUESTION_395 - Logo
 		}
 	}
 
-	//отправка почтового сообщения администратору
+	//РѕС‚РїСЂР°РІРєР° РїРѕС‡С‚РѕРІРѕРіРѕ СЃРѕРѕР±С‰РµРЅРёСЏ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂСѓ
 
 	$newCompanyDescription = htmlspecialcharsBx($_POST["SIMPLE_QUESTION_163"]);
 
@@ -154,7 +154,7 @@ SIMPLE_QUESTION_395 - Logo
 	);
 
     //CEvent::Send("COMPANY_INFO", "s1", $arSendFields);
-    //вывод информации об успешном сохранении
+    //РІС‹РІРѕРґ РёРЅС„РѕСЂРјР°С†РёРё РѕР± СѓСЃРїРµС€РЅРѕРј СЃРѕС…СЂР°РЅРµРЅРёРё
     echo "<p style='color:green;'>Your information has been updated. Thank you!</p>";
 }
 
@@ -163,7 +163,7 @@ if("Y" != $exhParticipantEdit)
     echo "<p style='color:red;'>Data editing is blocked by the administrator!</p>";
 }
 
-    //выборка данных для вывода в форме
+    //РІС‹Р±РѕСЂРєР° РґР°РЅРЅС‹С… РґР»СЏ РІС‹РІРѕРґР° РІ С„РѕСЂРјРµ
     $arResult = array(); $arAnswers = array();
     $data  = CFormResult::GetDataByID($resultId, array(), $arResult, $arAnswers);
     $WebFormId = CForm::GetDataByID(
@@ -192,7 +192,7 @@ if("Y" != $exhParticipantEdit)
 			<div class="pull-left company-info data-control">
 				<div class="title">Select area of business</div>
 				
-				<? $arAnswer = reset($arAnswers["SIMPLE_QUESTION_284"]); //pre($arAnswer, "b", "test2_partc");?>
+				<? $arAnswer = reset($arAnswers["SIMPLE_QUESTION_284"]);?>
 				
 				<div class="dropdown-group">
 					<div class="dropdown-name"><?=$arAnswer["ANSWER_TEXT"]?></div>
@@ -223,7 +223,7 @@ if("Y" != $exhParticipantEdit)
 				$value = $arAnswer["USER_TEXT"];
 				?>
 			<textarea name="SIMPLE_QUESTION_163" id="" cols="30" rows="10"><?= $value?></textarea>
-			<div class="title">	Please upload a minimum of 6 (maximum 12) photos of your company/hotel. The maximum size of each photo is 3mb. Don’t forget &mdash; the better the quality of your photos, the better the impression of your company/hotel.</div>
+			<div class="title">	Please upload a minimum of 6 (maximum 12) photos of your company/hotel. The maximum size of each photo is 3mb. DonвЂ™t forget &mdash; the better the quality of your photos, the better the impression of your company/hotel.</div>
 			<label class="button-dark ltm-btn" id="upload_photo">upload photos<? /*<input type="file" name="" id="" value=""/>*/?></label>
 			<span>You can upload <span id="photo_count"><?= MAX_PHOTO_COUNT - $photoCount?></span> photos</span>
 		</div>
@@ -323,7 +323,7 @@ $(function(){
 			{
 				btnUploadLogo.next().remove();
 			}
-			response = $.parseJSON(response);
+			response = BX.parseJSON(response);
 
 			if(response.STATUS == "OK")
 			{
@@ -369,7 +369,7 @@ $(function(){
 			{
 				btnUploadPhoto.next().remove();
 			}
-			response = $.parseJSON(response);
+			response = BX.parseJSON(response);
 
 			if(response.STATUS == "OK")
 			{

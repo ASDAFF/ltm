@@ -1,6 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Èçìåíåíèå ïàðîëÿ");
+$APPLICATION->SetTitle("Ð˜Ð·Ð¼ÐµÐ½ÐµÐ½Ð¸Ðµ Ð¿Ð°Ñ€Ð¾Ð»Ñ");
 ?><?$APPLICATION->IncludeComponent(
 	"rarus:admin.user.password",
 	"",

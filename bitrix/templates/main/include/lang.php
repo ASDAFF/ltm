@@ -1,3 +1,3 @@
 <span class = "change">Choose you language:</span>
 <span class = "en">English</span>
-<span class = "rus act">>Русский</span>
+<span class = "rus act">>Р СѓСЃСЃРєРёР№</span>

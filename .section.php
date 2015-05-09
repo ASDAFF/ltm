@@ -1,8 +1,8 @@
 <?
-$sSectionName = "Ãëàâíàÿ";
+$sSectionName = "Ð“Ð»Ð°Ð²Ð½Ð°Ñ";
 $arDirProperties = array(
-   "description" => "1Ñ-Áèòðèêñ: Óïðàâëåíèå ñàéòîì",
-   "keywords" => "1Ñ-Áèòðèêñ, CMS, PHP, bitrix, ñèñòåìà óïðàâëåíèÿ êîíòåíòîì",
+   "description" => "1Ð¡-Ð‘Ð¸Ñ‚Ñ€Ð¸ÐºÑ: Ð£Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ ÑÐ°Ð¹Ñ‚Ð¾Ð¼",
+   "keywords" => "1Ð¡-Ð‘Ð¸Ñ‚Ñ€Ð¸ÐºÑ, CMS, PHP, bitrix, ÑÐ¸ÑÑ‚ÐµÐ¼Ð° ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ñ ÐºÐ¾Ð½Ñ‚ÐµÐ½Ñ‚Ð¾Ð¼",
    "robots" => "index, follow"
 );
 ?>

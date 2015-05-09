@@ -21,14 +21,14 @@ if (strLen($arParams["AUTH_PAGE"]) <= 0) {
 }
 
 if (strLen($arParams["USER"]) <= 0) {
-    $arResult["ERROR_MESSAGE"] = "ÕÂ ‚‚Â‰ÂÌ˚ ‰‡ÌÌ˚Â ÔÓ œÓÎ¸ÁÓ‚‡ÚÂÎˇÏ!<br />";
+    $arResult["ERROR_MESSAGE"] = "–ù–µ –≤–≤–µ–¥–µ–Ω—ã –¥–∞–Ω–Ω—ã–µ –ø–æ –ü–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª—è–º!<br />";
 }
 
 if (strLen($arParams["FORM_ID"]) <= 0) {
-    $arResult["ERROR_MESSAGE"] = "ÕÂ ‚‚Â‰ÂÌ˚ ‰‡ÌÌ˚Â ÔÓ –ÂÁÛÎ¸Ú‡Ú‡Ï ÔÓÎ¸ÁÓ‚‡ÚÂÎÂÈ!<br />";
+    $arResult["ERROR_MESSAGE"] = "–ù–µ –≤–≤–µ–¥–µ–Ω—ã –¥–∞–Ω–Ω—ã–µ –ø–æ –†–µ–∑—É–ª—å—Ç–∞—Ç–∞–º –ø–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª–µ–π!<br />";
 }
 /* --------------------------------------------------- */
-//          ‘Œ–Ã»–”≈Ã ‘»À‹“– œŒ ¿À‘¿¬»“”             //
+//          –§–û–†–ú–ò–†–£–ï–ú –§–ò–õ–¨–¢–† –ü–û –ê–õ–§–ê–í–ò–¢–£             //
 /* --------------------------------------------------- */
 $letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0";
 $letter_filt = '';
@@ -59,14 +59,14 @@ if ($isLetter) {
 $arResult["FILTER"]["ALP"] = $letter_filt;
 
 /* --------------------------------------------------- */
-//           ‘Œ–Ã»–”≈Ã ¬€¬Œƒ ƒÀﬂ ÿ¿¡ÀŒÕ¿             //
+//           –§–û–†–ú–ò–†–£–ï–ú –í–´–í–û–î –î–õ–Ø –®–ê–ë–õ–û–ù–ê             //
 /* --------------------------------------------------- */
 if ($arResult["ERROR_MESSAGE"] == '') {
-    //—œ»—Œ  œŒÀ‹«Œ¬¿“≈À≈…
+    //–°–ü–ò–°–û–ö –ü–û–õ–¨–ó–û–í–ê–¢–ï–õ–ï–ô
     $filter = Array(
         "GROUPS_ID" => Array($arParams["USER"])
     );
-    $rsUsers = CUser::GetList(($by = "id"), ($order = "asc"), $filter, array("SELECT" => array("UF_*"))); // ‚˚·Ë‡ÂÏ ÔÓÎ¸ÁÓ‚‡ÚÂÎÂÈ
+    $rsUsers = CUser::GetList(($by = "id"), ($order = "asc"), $filter, array("SELECT" => array("UF_*"))); // –≤—ã–±–∏—Ä–∞–µ–º –ø–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª–µ–π
     $countUsers = 0;
     $resultFormId = "";
     while ($arUsersTemp = $rsUsers->Fetch()) {
@@ -83,10 +83,10 @@ if ($arResult["ERROR_MESSAGE"] == '') {
     $resultFormId = substr($resultFormId, 3);
     $arResult["USERS"]["COUNT"] = $countUsers;
 
-    //–≈«”À‹“¿“€ œŒÀ‹«Œ¬¿“≈À≈…
+    //–†–ï–ó–£–õ–¨–¢–ê–¢–´ –ü–û–õ–¨–ó–û–í–ê–¢–ï–õ–ï–ô
     CForm::GetResultAnswerArray($arParams["FORM_ID"], $arrColumns, $arrAnswers, $arrAnswersVarname, array("RESULT_ID" => $resultFormId));
 
-    //—œ»—Œ   ŒÀŒÕŒ  ƒÀﬂ “¿¡À»÷€
+    //–°–ü–ò–°–û–ö –ö–û–õ–û–ù–û–ö –î–õ–Ø –¢–ê–ë–õ–ò–¶–´
     $countReal = 0;
     $QUESTION_ID = "";
     $arResult["FIELDS"]["COUNT"] = 0;
@@ -100,7 +100,7 @@ if ($arResult["ERROR_MESSAGE"] == '') {
     }
     $arResult["FIELDS"]["COUNT"] = $countReal;
 
-    //—œ»—Œ   ¿“≈√Œ–»…
+    //–°–ü–ò–°–û–ö –ö–ê–¢–ï–ì–û–†–ò–ô
     $arCategory = array();
     $countCategory = 0;
     $filterAr = array();
@@ -179,7 +179,7 @@ if ($arResult["ERROR_MESSAGE"] == '') {
         }
     }
 
-    //—Œ–“»–Œ¬ ¿ –≈«”À‹“»–”ﬁŸ≈√Œ Ã¿——»¬¿
+    //–°–û–†–¢–ò–†–û–í–ö–ê –†–ï–ó–£–õ–¨–¢–ò–†–£–Æ–©–ï–ì–û –ú–ê–°–°–ò–í–ê
     for ($k = 0; $k < $countCategory; $k++) {
         array_multisort($arCategory[$k]["COMPANYS"]["COMPANY"], $arCategory[$k]["COMPANYS"]["ID"], $arCategory[$k]["COMPANYS"]["DESC"], $arCategory[$k]["COMPANYS"]["SITE"]);
     }

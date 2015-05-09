@@ -1,6 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Ó÷àñòíèêè ÑÏÀÌ");
+$APPLICATION->SetTitle("Ğ£Ñ‡Ğ°ÑÑ‚Ğ½Ğ¸ĞºĞ¸ Ğ¡ĞŸĞĞœ");
 ?>
 <?$APPLICATION->IncludeComponent(
 	"rarus:admin.participant.list",

@@ -1,63 +1,63 @@
 <?
 $aMenuLinks = Array(
 	Array(
-		"Ãëàâíàÿ", 
+		"Ð“Ð»Ð°Ð²Ð½Ð°Ñ", 
 		"/ru/index.php", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
-		"Î ìåðîïðèÿòèè", 
+		"Ðž Ð¼ÐµÑ€Ð¾Ð¿Ñ€Ð¸ÑÑ‚Ð¸Ð¸", 
 		"/ru/about/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
-		"Ïðîãðàììà", 
+		"ÐŸÑ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ð°", 
 		"/ru/detailed/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
-		"Îðãàíèçàòîðû", 
+		"ÐžÑ€Ð³Ð°Ð½Ð¸Ð·Ð°Ñ‚Ð¾Ñ€Ñ‹", 
 		"/ru/organizers/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
-		"Ïàðòíåðû", 
+		"ÐŸÐ°Ñ€Ñ‚Ð½ÐµÑ€Ñ‹", 
 		"/ru/partners", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
-		"Êîíòàêòû", 
+		"ÐšÐ¾Ð½Ñ‚Ð°ÐºÑ‚Ñ‹", 
 		"/ru/contacts/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
-		"Ó÷àñòíèêè 2013", 
+		"Ð£Ñ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¸ 2013", 
 		"/ru/particip/2013/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
-		"Ó÷àñòíèêè 2012", 
+		"Ð£Ñ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¸ 2012", 
 		"/ru/particip/2012/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
-		"LTM â ôîòîãðàôèÿõ", 
+		"LTM Ð² Ñ„Ð¾Ñ‚Ð¾Ð³Ñ€Ð°Ñ„Ð¸ÑÑ…", 
 		"/ru/photo/", 
 		Array(), 
 		Array(), 

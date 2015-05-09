@@ -36,14 +36,14 @@ if($arResult["ERROR_MESSAGE"] == ''){
 			return false;
 		}
         </script>
-      <p class="reg_update"><a href="/ru/personal/service/shedule_pdf.php" target="_blank">Генерировать в PDF</a></p>
+      <p class="reg_update"><a href="/ru/personal/service/shedule_pdf.php" target="_blank">Р“РµРЅРµСЂРёСЂРѕРІР°С‚СЊ РІ PDF</a></p>
       <table width="100%" border="0" cellspacing="0" cellpadding="7" class="regist_info">
           <tr class="chet">
-              <td width="100"><strong>Время</strong></td>
-              <td width="260"><strong>Компания</strong></td>
-              <td width="175"><strong>Представитель</strong></td>
-              <td width="95"><strong>Статус</strong></td>
-              <td colspan="2"><strong>Заметки</strong></td>
+              <td width="100"><strong>Р’СЂРµРјСЏ</strong></td>
+              <td width="260"><strong>РљРѕРјРїР°РЅРёСЏ</strong></td>
+              <td width="175"><strong>РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ</strong></td>
+              <td width="95"><strong>РЎС‚Р°С‚СѓСЃ</strong></td>
+              <td colspan="2"><strong>Р—Р°РјРµС‚РєРё</strong></td>
           </tr>
           <?
 		  for($i=1; $i<$arResult["APP_COUNT"]+1; $i++){
@@ -56,7 +56,7 @@ if($arResult["ERROR_MESSAGE"] == ''){
               <td><?=$arResult["SHEDULE"][$i]['TITLE']?></td>
               <td colspan="2">
               <select name="companys" style="width:430px;" id="companys_<?=$counter?>">
-                  <option value="0">Выберите компанию</option>
+                  <option value="0">Р’С‹Р±РµСЂРёС‚Рµ РєРѕРјРїР°РЅРёСЋ</option>
                   <? 
                   foreach($arResult["SHEDULE"][$i]["LIST"]["COMPANYS"] as $key => $value){
                       echo "<option value='".$value["ID"]."'>".$value["NAME"]."</option>"."\n";
@@ -67,16 +67,16 @@ if($arResult["ERROR_MESSAGE"] == ''){
               <?
 			  if($arParams["IS_ACTIVE"] == 'N'){
 				  ?>
-              <td>Заблокировано</td>
+              <td>Р—Р°Р±Р»РѕРєРёСЂРѕРІР°РЅРѕ</td>
 				  <?
 			  }
 			  else{
 				  ?>
-              <td><a href="/ru/personal/service/appointment.php?id=1&time='<?=$counter?>'" target="_blank" onclick="newRequest('<?=$counter?>', '<?=$counter?>'); return false;">Послать запрос</a></td>
+              <td><a href="/ru/personal/service/appointment.php?id=1&time='<?=$counter?>'" target="_blank" onclick="newRequest('<?=$counter?>', '<?=$counter?>'); return false;">РџРѕСЃР»Р°С‚СЊ Р·Р°РїСЂРѕСЃ</a></td>
 				  <?
 			  }
               ?>
-              <td colspan="2">Не занято</td>
+              <td colspan="2">РќРµ Р·Р°РЅСЏС‚Рѕ</td>
           </tr>
 				<?
 			}
@@ -86,9 +86,9 @@ if($arResult["ERROR_MESSAGE"] == ''){
               <td><?=$arResult["SHEDULE"][$i]['TITLE']?></td>
               <td><?=$arResult["SHEDULE"][$i]["COMPANY"]?></td>
               <td><?=$arResult["SHEDULE"][$i]["REP"]?></td>
-              <td>Подтверждено</td>
-              <td><? if($arResult["SHEDULE"][$i]["STATUS"] == 'ADM'){?>Назначено администратором<? } else{?>Подтверждено<? }?></td>
-              <td><a href="/ru/personal/service/write.php?id=<?=$arResult["SHEDULE"][$i]["PARTNER_ID"]?>" target="_blank" onclick="newMessWind('/ru/personal/service/write.php?id=<?=$arResult["SHEDULE"][$i]["PARTNER_ID"]?>'); return false;">Послать сообщение</a></td>
+              <td>РџРѕРґС‚РІРµСЂР¶РґРµРЅРѕ</td>
+              <td><? if($arResult["SHEDULE"][$i]["STATUS"] == 'ADM'){?>РќР°Р·РЅР°С‡РµРЅРѕ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂРѕРј<? } else{?>РџРѕРґС‚РІРµСЂР¶РґРµРЅРѕ<? }?></td>
+              <td><a href="/ru/personal/service/write.php?id=<?=$arResult["SHEDULE"][$i]["PARTNER_ID"]?>" target="_blank" onclick="newMessWind('/ru/personal/service/write.php?id=<?=$arResult["SHEDULE"][$i]["PARTNER_ID"]?>'); return false;">РџРѕСЃР»Р°С‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ</a></td>
           </tr>
 				<?
 			}		  
@@ -101,25 +101,25 @@ if($arResult["ERROR_MESSAGE"] == ''){
               <?
               if($arResult["SHEDULE"][$i]["STATUS"] == 'MY'){
 				  ?>
-              <td><a href="/ru/personal/service/appointment_edit.php?meetact=decline&meet_id=<?=$arResult["SHEDULE"][$i]['ID']?>" target="_blank" onclick="newWind('/ru/personal/service/appointment_edit.php?meetact=decline&meet_id=<?=$arResult["SHEDULE"][$i]['ID']?>'); return false;">Отменить</a></td>
-              <td>Отправлен Вами</td>
-              <td><a href="/ru/personal/service/write.php?id=<?=$arResult["SHEDULE"][$i]["PARTNER_ID"]?>" target="_blank" onclick="newMessWind('/ru/personal/service/write.php?id=<?=$arResult["SHEDULE"][$i]["PARTNER_ID"]?>'); return false;">Послать сообщение</a></td>
+              <td><a href="/ru/personal/service/appointment_edit.php?meetact=decline&meet_id=<?=$arResult["SHEDULE"][$i]['ID']?>" target="_blank" onclick="newWind('/ru/personal/service/appointment_edit.php?meetact=decline&meet_id=<?=$arResult["SHEDULE"][$i]['ID']?>'); return false;">РћС‚РјРµРЅРёС‚СЊ</a></td>
+              <td>РћС‚РїСЂР°РІР»РµРЅ Р’Р°РјРё</td>
+              <td><a href="/ru/personal/service/write.php?id=<?=$arResult["SHEDULE"][$i]["PARTNER_ID"]?>" target="_blank" onclick="newMessWind('/ru/personal/service/write.php?id=<?=$arResult["SHEDULE"][$i]["PARTNER_ID"]?>'); return false;">РџРѕСЃР»Р°С‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ</a></td>
 				  <?
 			  }
 			  elseif($arResult["SHEDULE"][$i]["STATUS"] == 'ADM'){
 				  ?>
-              <td><a href="/ru/personal/service/appointment_edit.php?meetact=accept&meet_id=<?=$arResult["SHEDULE"][$i]['ID']?>" target="_blank" onclick="newWind('/ru/personal/service/appointment_edit.php?meetact=accept&meet_id=<?=$arResult["SHEDULE"][$i]['ID']?>'); return false;">Принять</a><br />
-              <a href="/ru/personal/service/appointment_edit.php?meetact=decline&meet_id=<?=$arResult["SHEDULE"][$i]['ID']?>" target="_blank" onclick="newWind('/ru/personal/service/appointment_edit.php?meetact=decline&meet_id=<?=$arResult["SHEDULE"][$i]['ID']?>'); return false;">Отклонить</a></td>
-              <td>Назначено администратором</td>
-              <td><a href="/ru/personal/service/write.php?id=<?=$arResult["SHEDULE"][$i]["PARTNER_ID"]?>" target="_blank" onclick="newMessWind('/ru/personal/service/write.php?id=<?=$arResult["SHEDULE"][$i]["PARTNER_ID"]?>'); return false;">Послать сообщение</a></td>
+              <td><a href="/ru/personal/service/appointment_edit.php?meetact=accept&meet_id=<?=$arResult["SHEDULE"][$i]['ID']?>" target="_blank" onclick="newWind('/ru/personal/service/appointment_edit.php?meetact=accept&meet_id=<?=$arResult["SHEDULE"][$i]['ID']?>'); return false;">РџСЂРёРЅСЏС‚СЊ</a><br />
+              <a href="/ru/personal/service/appointment_edit.php?meetact=decline&meet_id=<?=$arResult["SHEDULE"][$i]['ID']?>" target="_blank" onclick="newWind('/ru/personal/service/appointment_edit.php?meetact=decline&meet_id=<?=$arResult["SHEDULE"][$i]['ID']?>'); return false;">РћС‚РєР»РѕРЅРёС‚СЊ</a></td>
+              <td>РќР°Р·РЅР°С‡РµРЅРѕ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂРѕРј</td>
+              <td><a href="/ru/personal/service/write.php?id=<?=$arResult["SHEDULE"][$i]["PARTNER_ID"]?>" target="_blank" onclick="newMessWind('/ru/personal/service/write.php?id=<?=$arResult["SHEDULE"][$i]["PARTNER_ID"]?>'); return false;">РџРѕСЃР»Р°С‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ</a></td>
 				  <?
 			  }
 			  else{
 				  ?>
-              <td><a href="/ru/personal/service/appointment_edit.php?meetact=accept&meet_id=<?=$arResult["SHEDULE"][$i]['ID']?>" target="_blank" onclick="newWind('/ru/personal/service/appointment_edit.php?meetact=accept&meet_id=<?=$arResult["SHEDULE"][$i]['ID']?>'); return false;">Принять</a><br />
-              <a href="/ru/personal/service/appointment_edit.php?meetact=decline&meet_id=<?=$arResult["SHEDULE"][$i]['ID']?>" target="_blank" onclick="newWind('/ru/personal/service/appointment_edit.php?meetact=decline&meet_id=<?=$arResult["SHEDULE"][$i]['ID']?>'); return false;">Отклонить</a></td>
-              <td>Отправлен Вам</td>
-              <td><a href="/ru/personal/service/write.php?id=<?=$arResult["SHEDULE"][$i]["PARTNER_ID"]?>" target="_blank" onclick="newMessWind('/ru/personal/service/write.php?id=<?=$arResult["SHEDULE"][$i]["PARTNER_ID"]?>'); return false;">Послать сообщение</a></td>
+              <td><a href="/ru/personal/service/appointment_edit.php?meetact=accept&meet_id=<?=$arResult["SHEDULE"][$i]['ID']?>" target="_blank" onclick="newWind('/ru/personal/service/appointment_edit.php?meetact=accept&meet_id=<?=$arResult["SHEDULE"][$i]['ID']?>'); return false;">РџСЂРёРЅСЏС‚СЊ</a><br />
+              <a href="/ru/personal/service/appointment_edit.php?meetact=decline&meet_id=<?=$arResult["SHEDULE"][$i]['ID']?>" target="_blank" onclick="newWind('/ru/personal/service/appointment_edit.php?meetact=decline&meet_id=<?=$arResult["SHEDULE"][$i]['ID']?>'); return false;">РћС‚РєР»РѕРЅРёС‚СЊ</a></td>
+              <td>РћС‚РїСЂР°РІР»РµРЅ Р’Р°Рј</td>
+              <td><a href="/ru/personal/service/write.php?id=<?=$arResult["SHEDULE"][$i]["PARTNER_ID"]?>" target="_blank" onclick="newMessWind('/ru/personal/service/write.php?id=<?=$arResult["SHEDULE"][$i]["PARTNER_ID"]?>'); return false;">РџРѕСЃР»Р°С‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ</a></td>
 				  <?
 			  }
 			  ?>
@@ -133,23 +133,23 @@ if($arResult["ERROR_MESSAGE"] == ''){
       </table>
       
       <p>&nbsp;</p>
-      <p class="reg_update"><a href="/ru/personal/service/wish_pdf.php" target="_blank">Генерировать PDF для запросов</a></p>
-      <p>Здесь вы можете запросить только тех участников, чьи расписания уже полные.</p>
+      <p class="reg_update"><a href="/ru/personal/service/wish_pdf.php" target="_blank">Р“РµРЅРµСЂРёСЂРѕРІР°С‚СЊ PDF РґР»СЏ Р·Р°РїСЂРѕСЃРѕРІ</a></p>
+      <p>Р—РґРµСЃСЊ РІС‹ РјРѕР¶РµС‚Рµ Р·Р°РїСЂРѕСЃРёС‚СЊ С‚РѕР»СЊРєРѕ С‚РµС… СѓС‡Р°СЃС‚РЅРёРєРѕРІ, С‡СЊРё СЂР°СЃРїРёСЃР°РЅРёСЏ СѓР¶Рµ РїРѕР»РЅС‹Рµ.</p>
       <table width="100%" border="0">
         <tr>
           <td width="350">
-              <p><strong>Вы также хотели бы встретиться с</strong></p>
+              <p><strong>Р’С‹ С‚Р°РєР¶Рµ С…РѕС‚РµР»Рё Р±С‹ РІСЃС‚СЂРµС‚РёС‚СЊСЃСЏ СЃ</strong></p>
           </td>
           <td>
-          <p><strong>С Вами также хотели бы встретиться следующие участники</strong></p>
+          <p><strong>РЎ Р’Р°РјРё С‚Р°РєР¶Рµ С…РѕС‚РµР»Рё Р±С‹ РІСЃС‚СЂРµС‚РёС‚СЊСЃСЏ СЃР»РµРґСѓСЋС‰РёРµ СѓС‡Р°СЃС‚РЅРёРєРё</strong></p>
           </td>
         </tr>
         <tr>
           <td valign="top" width="350">
               <table width="100%" border="0" cellspacing="0" cellpadding="7" class="regist_info">
                   <tr class="chet">
-                      <td width="20"><strong>№</strong></td>
-                      <td><strong>Компания</strong></td>
+                      <td width="20"><strong>в„–</strong></td>
+                      <td><strong>РљРѕРјРїР°РЅРёСЏ</strong></td>
                   </tr>
                   <?
 				  $counter = 0;
@@ -164,9 +164,9 @@ if($arResult["ERROR_MESSAGE"] == ''){
 				  }
 				  ?>
               </table>
-              <p><strong><a href="/ru/personal/service/wish.php?id=0&wish=welcom" target="_blank" onclick="newWish('out'); return false;">Послать запрос</a></strong></p>
+              <p><strong><a href="/ru/personal/service/wish.php?id=0&wish=welcom" target="_blank" onclick="newWish('out'); return false;">РџРѕСЃР»Р°С‚СЊ Р·Р°РїСЂРѕСЃ</a></strong></p>
               <select name="companys_out" style="width:250px;" id="companys_out" class="companys_out">
-                  <option value="0">Выберите компанию</option>
+                  <option value="0">Р’С‹Р±РµСЂРёС‚Рµ РєРѕРјРїР°РЅРёСЋ</option>
                   <?
 				  foreach($arResult["NOT_FREE"] as $key => $value){
 					  echo "<option value='".$key."'>".$value."</option>"."\n";
@@ -177,8 +177,8 @@ if($arResult["ERROR_MESSAGE"] == ''){
           <td valign="top">
             <table width="100%" border="0" cellspacing="0" cellpadding="7" class="regist_info">
               <tr class="chet">
-                  <td width="20"><strong>№</strong></td>
-                  <td width="190"><strong>Компания</strong></td>
+                  <td width="20"><strong>в„–</strong></td>
+                  <td width="190"><strong>РљРѕРјРїР°РЅРёСЏ</strong></td>
                   <td><strong>&nbsp;</strong></td>
               </tr>
                   <?
@@ -188,7 +188,7 @@ if($arResult["ERROR_MESSAGE"] == ''){
                   <tr <? if($counter % 2){?>class="chet"<? }?>>
                       <td><?=$counter+1?></td>
                       <td><?=$value?></td>
-                      <td><a href="/ru/personal/service/write.php?id=<?=$key?>" target="_blank" onclick="newMessWind('/ru/personal/service/write.php?id=<?=$key?>'); return false;">Послать сообщение</a></td>
+                      <td><a href="/ru/personal/service/write.php?id=<?=$key?>" target="_blank" onclick="newMessWind('/ru/personal/service/write.php?id=<?=$key?>'); return false;">РџРѕСЃР»Р°С‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ</a></td>
                   </tr>
 					  <?
 					  $counter++;

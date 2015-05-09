@@ -19,28 +19,28 @@ if(strLen($arParams["AUTH_PAGE"])<=0){
 }
 
 if(strLen($arParams["EXHIB_IBLOCK_ID"])<=0){
-    $arResult["ERROR_MESSAGE"] = "Не введены данные по Выставке!<br />";
+    $arResult["ERROR_MESSAGE"] = "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ Р’С‹СЃС‚Р°РІРєРµ!<br />";
 }
 
 if(!($USER->IsAuthorized()))
 {
-    $arResult["ERROR_MESSAGE"] = "Вы не авторизованы!<br />";
+    $arResult["ERROR_MESSAGE"] = "Р’С‹ РЅРµ Р°РІС‚РѕСЂРёР·РѕРІР°РЅС‹!<br />";
 }
 
 if(!($USER->IsAdmin()))
 {
-    $arResult["ERROR_MESSAGE"] = "Вы не администратор!<br />";
+    $arResult["ERROR_MESSAGE"] = "Р’С‹ РЅРµ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂ!<br />";
 }
 
 if(!CModule::IncludeModule("iblock") || !CModule::IncludeModule("form") || CModule::IncludeModule("forum"))
 {
-    $arResult["ERROR_MESSAGE"] = "Ошибка подключения модулей!<br />";
+    $arResult["ERROR_MESSAGE"] = "РћС€РёР±РєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ РјРѕРґСѓР»РµР№!<br />";
 }
 
 $arResult = array();
 
 
-//получение выставок
+//РїРѕР»СѓС‡РµРЅРёРµ РІС‹СЃС‚Р°РІРѕРє
 $arFilter = array(
 	"IBLOCK_ID" => $arParams["EXHIB_IBLOCK_ID"],
     "ACTIVE" => "Y"
@@ -66,7 +66,7 @@ while($obElement = $rsElement->GetNextElement(true, false))
     $arItem["PROPERTIES"] = $obElement->GetProperties();
 
     $resIdPropName = CFormMatrix::getPropertyIDByExh($arItem["ID"]);
-    //получение данных о группе пользователей
+    //РїРѕР»СѓС‡РµРЅРёРµ РґР°РЅРЅС‹С… Рѕ РіСЂСѓРїРїРµ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
     $arGroupsPropName = array("USER_GROUP_ID", "UC_PARTICIPANTS_GROUP", "C_GUESTS_GROUP", "UC_GUESTS_GROUP", "PARTICIPANT_SPAM_GROUP", "GUEST_SPAM_GROUP");
 
     foreach ($arGroupsPropName as $propName)
@@ -80,7 +80,7 @@ while($obElement = $rsElement->GetNextElement(true, false))
     }
 
 
-    //получение данных по подтвержденным гостям
+    //РїРѕР»СѓС‡РµРЅРёРµ РґР°РЅРЅС‹С… РїРѕ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рј РіРѕСЃС‚СЏРј
     $guestGroupID = $arItem["PROPERTIES"]["C_GUESTS_GROUP"]["VALUE"];
 
 
@@ -93,7 +93,7 @@ while($obElement = $rsElement->GetNextElement(true, false))
     	$arParameters = array(
     		"FIELDS" => array("ID", "LOGIN", "EMAIL", "WORK_COMPANY", "ACTIVE"),
     	    "SELECT" => array("UF_*")
-    	    //UF_ID - москва осень, UF_ID2 - баку, UF_ID3 - киев, UF_ID4 - алмата, UF_ID5 - москва осень, UF_MR - гость на утро, UF_EV - гость на вечер, UF_HB -Hosted Buyers
+    	    //UF_ID - РјРѕСЃРєРІР° РѕСЃРµРЅСЊ, UF_ID2 - Р±Р°РєСѓ, UF_ID3 - РєРёРµРІ, UF_ID4 - Р°Р»РјР°С‚Р°, UF_ID5 - РјРѕСЃРєРІР° РѕСЃРµРЅСЊ, UF_MR - РіРѕСЃС‚СЊ РЅР° СѓС‚СЂРѕ, UF_EV - РіРѕСЃС‚СЊ РЅР° РІРµС‡РµСЂ, UF_HB -Hosted Buyers
     	);
 
     	$rsUsers = CUser::GetList(($by="id"), ($order="asc"), $arFilter, $arParameters);
@@ -116,7 +116,7 @@ while($obElement = $rsElement->GetNextElement(true, false))
     	}
     }
 
-    //получение данных по неподтвержденным гостям
+    //РїРѕР»СѓС‡РµРЅРёРµ РґР°РЅРЅС‹С… РїРѕ РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рј РіРѕСЃС‚СЏРј
     $guestGroupID = $arItem["PROPERTIES"]["UC_GUESTS_GROUP"]["VALUE"];
 
     if($guestGroupID)
@@ -128,7 +128,7 @@ while($obElement = $rsElement->GetNextElement(true, false))
         $arParameters = array(
             "FIELDS" => array("ID", "LOGIN", "EMAIL", "WORK_COMPANY", "ACTIVE"),
             "SELECT" => array("UF_*")
-            //UF_ID - москва осень, UF_ID2 - баку, UF_ID3 - киев, UF_ID4 - алмата, UF_ID5 - москва осень, UF_MR - гость на утро, UF_EV - гость на вечер, UF_HB -Hosted Buyers
+            //UF_ID - РјРѕСЃРєРІР° РѕСЃРµРЅСЊ, UF_ID2 - Р±Р°РєСѓ, UF_ID3 - РєРёРµРІ, UF_ID4 - Р°Р»РјР°С‚Р°, UF_ID5 - РјРѕСЃРєРІР° РѕСЃРµРЅСЊ, UF_MR - РіРѕСЃС‚СЊ РЅР° СѓС‚СЂРѕ, UF_EV - РіРѕСЃС‚СЊ РЅР° РІРµС‡РµСЂ, UF_HB -Hosted Buyers
         );
 
         $rsUsers = CUser::GetList(($by="id"), ($order="asc"), $arFilter, $arParameters);
@@ -142,7 +142,7 @@ while($obElement = $rsElement->GetNextElement(true, false))
         }
     }
 
-    //получение данных по спам гостям
+    //РїРѕР»СѓС‡РµРЅРёРµ РґР°РЅРЅС‹С… РїРѕ СЃРїР°Рј РіРѕСЃС‚СЏРј
     $guestGroupID = $arItem["PROPERTIES"]["GUEST_SPAM_GROUP"]["VALUE"];
 
     if($guestGroupID)
@@ -154,7 +154,7 @@ while($obElement = $rsElement->GetNextElement(true, false))
         $arParameters = array(
             "FIELDS" => array("ID", "LOGIN", "EMAIL", "WORK_COMPANY", "ACTIVE"),
             "SELECT" => array("UF_*")
-            //UF_ID - москва осень, UF_ID2 - баку, UF_ID3 - киев, UF_ID4 - алмата, UF_ID5 - москва осень, UF_MR - гость на утро, UF_EV - гость на вечер, UF_HB -Hosted Buyers
+            //UF_ID - РјРѕСЃРєРІР° РѕСЃРµРЅСЊ, UF_ID2 - Р±Р°РєСѓ, UF_ID3 - РєРёРµРІ, UF_ID4 - Р°Р»РјР°С‚Р°, UF_ID5 - РјРѕСЃРєРІР° РѕСЃРµРЅСЊ, UF_MR - РіРѕСЃС‚СЊ РЅР° СѓС‚СЂРѕ, UF_EV - РіРѕСЃС‚СЊ РЅР° РІРµС‡РµСЂ, UF_HB -Hosted Buyers
         );
 
         $rsUsers = CUser::GetList(($by="id"), ($order="asc"), $arFilter, $arParameters);
@@ -168,7 +168,7 @@ while($obElement = $rsElement->GetNextElement(true, false))
     }
 
 
-    //получение данных подтвержденных участников
+    //РїРѕР»СѓС‡РµРЅРёРµ РґР°РЅРЅС‹С… РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… СѓС‡Р°СЃС‚РЅРёРєРѕРІ
     $participantGroupID = $arItem["PROPERTIES"]["USER_GROUP_ID"]["VALUE"];
 
     if($participantGroupID)
@@ -180,7 +180,7 @@ while($obElement = $rsElement->GetNextElement(true, false))
         $arParameters = array(
             "FIELDS" => array("ID", "LOGIN", "EMAIL", "WORK_COMPANY", "ACTIVE"),
             "SELECT" => array("UF_*")
-            //UF_ID - москва осень, UF_ID2 - баку, UF_ID3 - киев, UF_ID4 - алмата, UF_ID5 - москва осень, UF_MR - гость на утро, UF_EV - гость на вечер, UF_HB -Hosted Buyers
+            //UF_ID - РјРѕСЃРєРІР° РѕСЃРµРЅСЊ, UF_ID2 - Р±Р°РєСѓ, UF_ID3 - РєРёРµРІ, UF_ID4 - Р°Р»РјР°С‚Р°, UF_ID5 - РјРѕСЃРєРІР° РѕСЃРµРЅСЊ, UF_MR - РіРѕСЃС‚СЊ РЅР° СѓС‚СЂРѕ, UF_EV - РіРѕСЃС‚СЊ РЅР° РІРµС‡РµСЂ, UF_HB -Hosted Buyers
         );
 
         $rsUsers = CUser::GetList(($by="id"), ($order="asc"), $arFilter, $arParameters);
@@ -191,7 +191,7 @@ while($obElement = $rsElement->GetNextElement(true, false))
         }
     }
 
-    //получение данных неподтвержденных участников
+    //РїРѕР»СѓС‡РµРЅРёРµ РґР°РЅРЅС‹С… РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… СѓС‡Р°СЃС‚РЅРёРєРѕРІ
     $participantGroupID = $arItem["PROPERTIES"]["UC_PARTICIPANTS_GROUP"]["VALUE"];
 
     if($participantGroupID)
@@ -203,7 +203,7 @@ while($obElement = $rsElement->GetNextElement(true, false))
         $arParameters = array(
             "FIELDS" => array("ID", "LOGIN", "EMAIL", "WORK_COMPANY", "ACTIVE"),
             "SELECT" => array("UF_*")
-            //UF_ID - москва осень, UF_ID2 - баку, UF_ID3 - киев, UF_ID4 - алмата, UF_ID5 - москва осень,UF_ID11 - Участники Представители Москва Весна - 2015, UF_MR - гость на утро, UF_EV - гость на вечер, UF_HB -Hosted Buyers
+            //UF_ID - РјРѕСЃРєРІР° РѕСЃРµРЅСЊ, UF_ID2 - Р±Р°РєСѓ, UF_ID3 - РєРёРµРІ, UF_ID4 - Р°Р»РјР°С‚Р°, UF_ID5 - РјРѕСЃРєРІР° РѕСЃРµРЅСЊ,UF_ID11 - РЈС‡Р°СЃС‚РЅРёРєРё РџСЂРµРґСЃС‚Р°РІРёС‚РµР»Рё РњРѕСЃРєРІР° Р’РµСЃРЅР° - 2015, UF_MR - РіРѕСЃС‚СЊ РЅР° СѓС‚СЂРѕ, UF_EV - РіРѕСЃС‚СЊ РЅР° РІРµС‡РµСЂ, UF_HB -Hosted Buyers
         );
 
         $rsUsers = CUser::GetList(($by="id"), ($order="asc"), $arFilter, $arParameters);
@@ -214,7 +214,7 @@ while($obElement = $rsElement->GetNextElement(true, false))
         }
     }
 
-    //получение данных спам участников
+    //РїРѕР»СѓС‡РµРЅРёРµ РґР°РЅРЅС‹С… СЃРїР°Рј СѓС‡Р°СЃС‚РЅРёРєРѕРІ
     $participantGroupID = $arItem["PROPERTIES"]["PARTICIPANT_SPAM_GROUP"]["VALUE"];
 
     if($participantGroupID)
@@ -226,7 +226,7 @@ while($obElement = $rsElement->GetNextElement(true, false))
         $arParameters = array(
             "FIELDS" => array("ID", "LOGIN", "EMAIL", "WORK_COMPANY", "ACTIVE"),
             "SELECT" => array("UF_*")
-            //UF_ID - москва осень, UF_ID2 - баку, UF_ID3 - киев, UF_ID4 - алмата, UF_ID5 - москва осень,UF_ID11 - Участники Представители Москва Весна - 2015, UF_MR - гость на утро, UF_EV - гость на вечер, UF_HB -Hosted Buyers
+            //UF_ID - РјРѕСЃРєРІР° РѕСЃРµРЅСЊ, UF_ID2 - Р±Р°РєСѓ, UF_ID3 - РєРёРµРІ, UF_ID4 - Р°Р»РјР°С‚Р°, UF_ID5 - РјРѕСЃРєРІР° РѕСЃРµРЅСЊ,UF_ID11 - РЈС‡Р°СЃС‚РЅРёРєРё РџСЂРµРґСЃС‚Р°РІРёС‚РµР»Рё РњРѕСЃРєРІР° Р’РµСЃРЅР° - 2015, UF_MR - РіРѕСЃС‚СЊ РЅР° СѓС‚СЂРѕ, UF_EV - РіРѕСЃС‚СЊ РЅР° РІРµС‡РµСЂ, UF_HB -Hosted Buyers
         );
 
         $rsUsers = CUser::GetList(($by="id"), ($order="asc"), $arFilter, $arParameters);
@@ -237,7 +237,7 @@ while($obElement = $rsElement->GetNextElement(true, false))
         }
     }
 
-    //получение сообщений
+    //РїРѕР»СѓС‡РµРЅРёРµ СЃРѕРѕР±С‰РµРЅРёР№
 
     $arItem["MESSAGES"]["INBOX"] = CHLMFunctions::GetMessagesCount(2, $arItem["ID"] , 1, 3);//CForumPrivateMessage::GetListEx(array(), array("USER_ID"=> UID, "FOLDER_ID"=>FID_INBOX), true);
     $arItem["MESSAGES"]["SENT"] = CHLMFunctions::GetMessagesCount(2, $arItem["ID"] , 1, 4);///CForumPrivateMessage::GetListEx(array(), array("USER_ID"=> UID, "FOLDER_ID"=>FID_SENT), true);
@@ -245,5 +245,5 @@ while($obElement = $rsElement->GetNextElement(true, false))
     $arResult["ITEMS"][] = $arItem;
 }
 
-//вызов шаблона
+//РІС‹Р·РѕРІ С€Р°Р±Р»РѕРЅР°
 $this->IncludeComponentTemplate();

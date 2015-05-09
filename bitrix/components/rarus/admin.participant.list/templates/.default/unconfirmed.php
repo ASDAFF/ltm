@@ -16,7 +16,7 @@
 		<? endforeach;?>
 	</tr>
 
-	<? //âûâîä ïîëåé?>
+	<? //Ð²Ñ‹Ð²Ð¾Ð´ Ð¿Ð¾Ð»ÐµÐ¹?>
 	<? $index = 1;?>
 	<?foreach ($arResult["EXHIBITION"]["PARTICIPANT"] as $arUser):?>
     <?
@@ -30,7 +30,7 @@
     ?>
 		<tr class="<?= (($index++ % 2) != 0)?"even":"odd"?>">
 			<td class="text-center"><input type="checkbox" name="ACTION[]" value="<?= $arUser["ID"]?>"></td>
-				<? //äàííûå èç Îáùåé ôîðìû ïî âñåì ó÷àñòíèêàì?>
+				<? //Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¸Ð· ÐžÐ±Ñ‰ÐµÐ¹ Ñ„Ð¾Ñ€Ð¼Ñ‹ Ð¿Ð¾ Ð²ÑÐµÐ¼ ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ°Ð¼?>
 				<td><?= $arUser["FORM_DATA"][17]["VALUE"]?></td>
 				<td><?= $arUser["FORM_DATA"][19]["VALUE"]?></td>
 				<td><?= $arUser["FORM_DATA"][21]["VALUE"]?></td>
@@ -38,7 +38,7 @@
 				<td><?= $arUser["FORM_DATA"][20]["VALUE"]?></td>
 				<td><?= $arUser["FORM_DATA"][23]["VALUE"]?></td>
 				<td class="description"><div><?= $arUser["FORM_DATA"][24]["VALUE"]?></div></td>
-				<? // äàííûå èç ôîðìó ïðåäñòàâèòåëÿ?>
+				<? // Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¸Ð· Ñ„Ð¾Ñ€Ð¼Ñƒ Ð¿Ñ€ÐµÐ´ÑÑ‚Ð°Ð²Ð¸Ñ‚ÐµÐ»Ñ?>
 				<td><?= $arUser["FORM_USER"][32]["VALUE"]?> <?= $arUser["FORM_USER"][33]["VALUE"]?></td>
 				<td><?= $arUser["FORM_USER"][106]["VALUE"]?></td>
 				<td><?= $arUser["FORM_USER"][35]["VALUE"]?></td>

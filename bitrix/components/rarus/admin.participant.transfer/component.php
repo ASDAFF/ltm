@@ -19,7 +19,7 @@ if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 
 define("COMPANY_FORM_ID", 3);
 
-$arParams["EXHIB_IBLOCK_ID"] = intval($arParams["EXHIB_IBLOCK_ID"]);//id инфоблока выставок
+$arParams["EXHIB_IBLOCK_ID"] = intval($arParams["EXHIB_IBLOCK_ID"]);//id РёРЅС„РѕР±Р»РѕРєР° РІС‹СЃС‚Р°РІРѕРє
 if(!$arParams["EXHIB_IBLOCK_ID"])
     $arParams["EXHIB_IBLOCK_ID"] = 15;
 
@@ -35,28 +35,28 @@ $userId = $arParams["USER_ID"];
 
 if(!($USER->IsAuthorized()))
 {
-    $arResult["ERROR_MESSAGE"] = "Вы не авторизованы!<br />";
+    $arResult["ERROR_MESSAGE"] = "Р’С‹ РЅРµ Р°РІС‚РѕСЂРёР·РѕРІР°РЅС‹!<br />";
 }
 
 if(intval($arParams["USER_ID"]) <= 0){
-    $arResult["ERROR_MESSAGE"] = "Не введены данные по Пользователю!<br />";
+    $arResult["ERROR_MESSAGE"] = "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ РџРѕР»СЊР·РѕРІР°С‚РµР»СЋ!<br />";
 }
 
 if(!($USER->IsAdmin()))
 {
-    $arResult["ERROR_MESSAGE"] = "Вы не администратор!<br />";
+    $arResult["ERROR_MESSAGE"] = "Р’С‹ РЅРµ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂ!<br />";
 }
 
 if(!CModule::IncludeModule("iblock") || !CModule::IncludeModule("form"))
 {
-    $arResult["ERROR_MESSAGE"] = "Ошибка подключения модулей!<br />";
+    $arResult["ERROR_MESSAGE"] = "РћС€РёР±РєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ РјРѕРґСѓР»РµР№!<br />";
 }
 
 
 $rsUser = CUser::GetByID($userId);
 $arUser = $rsUser->Fetch();
 
-$arUserGroups = CUser::GetUserGroup($userId); //группы пользователя
+$arUserGroups = CUser::GetUserGroup($userId); //РіСЂСѓРїРїС‹ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 
 $arResult["URL"] = $APPLICATION->GetCurUri();
 
@@ -91,15 +91,15 @@ if($arResult["ERROR_MESSAGE"] == '')
         	$arItem["UC_PARTICIPANTS_GROUP"] = $arItem["PROPERTY_UC_PARTICIPANTS_GROUP_VALUE"];
         	$arItem["EXH_STATUS"] = $arItem["PROPERTY_STATUS_VALUE"];
 
-        	if(in_array($arItem["USER_GROUP_ID"], $arUserGroups))//если в группе подтвержденных
+        	if(in_array($arItem["USER_GROUP_ID"], $arUserGroups))//РµСЃР»Рё РІ РіСЂСѓРїРїРµ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С…
         	{
         	    $arItem["STATUS"] = "CONFIRMED";
         	}
-        	elseif(in_array($arItem["UC_PARTICIPANTS_GROUP"], $arUserGroups))//если в группе не подтвержденных
+        	elseif(in_array($arItem["UC_PARTICIPANTS_GROUP"], $arUserGroups))//РµСЃР»Рё РІ РіСЂСѓРїРїРµ РЅРµ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С…
         	{
         	    $arItem["STATUS"] = "UNCONFIRMED";
         	}
-        	else //если не находится ни в каких группах
+        	else //РµСЃР»Рё РЅРµ РЅР°С…РѕРґРёС‚СЃСЏ РЅРё РІ РєР°РєРёС… РіСЂСѓРїРїР°С…
         	{
         	    $arItem["STATUS"] = "NONE";
         	}
@@ -125,23 +125,23 @@ if($arResult["ERROR_MESSAGE"] == '')
 			CHTTP::SetStatus("404 Not Found");
 	}
 
-	//обработка поста
+	//РѕР±СЂР°Р±РѕС‚РєР° РїРѕСЃС‚Р°
 
 	if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["save"]) && check_bitrix_sessid())
 	{
 		foreach ($arResult["ITEMS"] as &$arItem)
 		{
-			if("CONFIRMED" == $arItem["STATUS"])//если участник подтвержден ничего не делаем в любом случае
+			if("CONFIRMED" == $arItem["STATUS"])//РµСЃР»Рё СѓС‡Р°СЃС‚РЅРёРє РїРѕРґС‚РІРµСЂР¶РґРµРЅ РЅРёС‡РµРіРѕ РЅРµ РґРµР»Р°РµРј РІ Р»СЋР±РѕРј СЃР»СѓС‡Р°Рµ
 			{
 				continue;
 			}
-			elseif("UNCONFIRMED" == $arItem["STATUS"])//если участник в неподтвержденных на данную выставку, то можем его удалить из нее
+			elseif("UNCONFIRMED" == $arItem["STATUS"])//РµСЃР»Рё СѓС‡Р°СЃС‚РЅРёРє РІ РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… РЅР° РґР°РЅРЅСѓСЋ РІС‹СЃС‚Р°РІРєСѓ, С‚Рѕ РјРѕР¶РµРј РµРіРѕ СѓРґР°Р»РёС‚СЊ РёР· РЅРµРµ
 			{
-				if(isset($_POST["EXH"][$arItem["ID"]]) && "on" == $_POST["EXH"][$arItem["ID"]])//был в неподтвержденных и остался
+				if(isset($_POST["EXH"][$arItem["ID"]]) && "on" == $_POST["EXH"][$arItem["ID"]])//Р±С‹Р» РІ РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… Рё РѕСЃС‚Р°Р»СЃСЏ
 				{
 					continue;
 				}
-				else//решили удалить из неподтвержденных
+				else//СЂРµС€РёР»Рё СѓРґР°Р»РёС‚СЊ РёР· РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С…
 				{
 					$index = array_search($arItem["UC_PARTICIPANTS_GROUP"], $arUserGroups);
 					if($index)
@@ -155,12 +155,12 @@ if($arResult["ERROR_MESSAGE"] == '')
 			}
 			elseif("NONE" == $arItem["STATUS"])
 			{
-			    if(isset($_POST["EXH"][$arItem["ID"]]) && "on" == $_POST["EXH"][$arItem["ID"]])//не был в группе неподтвержденных, но решили добавить
+			    if(isset($_POST["EXH"][$arItem["ID"]]) && "on" == $_POST["EXH"][$arItem["ID"]])//РЅРµ Р±С‹Р» РІ РіСЂСѓРїРїРµ РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С…, РЅРѕ СЂРµС€РёР»Рё РґРѕР±Р°РІРёС‚СЊ
 			    {
 			        $arUserGroups[] = $arItem["UC_PARTICIPANTS_GROUP"];
 			        $arItem["STATUS"] = "UNCONFIRMED";
 			    }
-			    else//если на эту выставку ничего не отмечено
+			    else//РµСЃР»Рё РЅР° СЌС‚Сѓ РІС‹СЃС‚Р°РІРєСѓ РЅРёС‡РµРіРѕ РЅРµ РѕС‚РјРµС‡РµРЅРѕ
 			    {
 			        continue;
 			    }

@@ -1,6 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Äîáàâëåíèå â wish-ëèñò");
+$APPLICATION->SetTitle("Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð² wish-Ð»Ð¸ÑÑ‚");
 ?>
 <?$APPLICATION->IncludeComponent(
 	"btm:wish.list.user",

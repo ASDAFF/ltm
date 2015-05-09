@@ -5,10 +5,10 @@ $APPLICATION->SetPageProperty("NOT_SHOW_NAV_CHAIN", "Y");
 $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 ?>
 
-<?php //Îáùèö êîíòåéíåð äëÿ ËÊ?>
+<?php //ÐžÐ±Ñ‰Ð¸Ñ† ÐºÐ¾Ð½Ñ‚ÐµÐ¹Ð½ÐµÑ€ Ð´Ð»Ñ Ð›Ðš?>
 <div class="exhibition-block">
 	
-	<?php //-->Òàáû êîíôåðåíöèé?>
+	<?php //-->Ð¢Ð°Ð±Ñ‹ ÐºÐ¾Ð½Ñ„ÐµÑ€ÐµÐ½Ñ†Ð¸Ð¹?>
 		<div class="exhibition-list pull-overflow">
 			<ul>
 				<li><a href="#" title="">LTM Moscow 2014</a></li>
@@ -20,19 +20,19 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 				<li><a href="" title="">LTM Moscow 2014.</a></li>
 			</ul>
 		</div>
-	<?php //<--Òàáû êîíôåðåíöèé?>
+	<?php //<--Ð¢Ð°Ð±Ñ‹ ÐºÐ¾Ð½Ñ„ÐµÑ€ÐµÐ½Ñ†Ð¸Ð¹?>
 	
 	
-	<?php //--> Çàãîëîâêè?>
-		<h2>LUXURY TRAVEL MART MOSCOW SPRING’ 2014, 13 March</h2>
+	<?php //--> Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²ÐºÐ¸?>
+		<h2>LUXURY TRAVEL MART MOSCOW SPRINGâ€™ 2014, 13 March</h2>
 		<div class="sub-headline">The Ritz-Carlton Moscow</div>
-	<?php //<-- Çàãîëîâêè?>
+	<?php //<-- Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²ÐºÐ¸?>
 	
 	
-	<?php //--> Îáùèå áëîê äëÿ òàáîâ 1 óðîâíÿ ?>
+	<?php //--> ÐžÐ±Ñ‰Ð¸Ðµ Ð±Ð»Ð¾Ðº Ð´Ð»Ñ Ñ‚Ð°Ð±Ð¾Ð² 1 ÑƒÑ€Ð¾Ð²Ð½Ñ ?>
 	<div id="exhibition-session" class="exhibition-session">
 	
-		<?//--> Òàáû 1 óðîâíÿ ?>
+		<?//--> Ð¢Ð°Ð±Ñ‹ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ ?>
 			<ul class="pull-overflow main-tab">
 				<li><a href="#exhibition-tab-1" title="">Deadlines & info</a></li>
 				<li><a href="#exhibition-tab-2" title="">Morning session</a></li>
@@ -40,24 +40,24 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 				<li><a href="#exhibition-tab-4" title="">Evening session</a></li>
 				<li><a href="#exhibition-tab-5" title="">Messages</a></li>
 			</ul>
-		<?//<-- Òàáû 1 óðîâíÿ ?>
+		<?//<-- Ð¢Ð°Ð±Ñ‹ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ ?>
 		
-		<?//--> Ñîäåðæèìîå òàáà 1 ?>
+		<?//--> Ð¡Ð¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ð¾Ðµ Ñ‚Ð°Ð±Ð° 1 ?>
 		<div id="exhibition-tab-1">
-			<p>The organizers’ telephone number in Moscow is <b>+7 495 111 11 11</b>,<br> please feel free to contact us with any questions.</p>
+			<p>The organizersâ€™ telephone number in Moscow is <b>+7 495 111 11 11</b>,<br> please feel free to contact us with any questions.</p>
 			
 			<h3>DEADLINES</h3>
 			
 			<p><b>July 1, 2013</b>: Opening of registration for the buyers.</p>
 			<p><b>August 29, 2013</b>: Password, user name and detailed instructions on how to use the online system and to set up your appointments will be sent for your attention.</p>
-			<p><b>September 2 – September 18, 2013</b>: Scheduling of appointments for the morning session.</p>
+			<p><b>September 2 â€“ September 18, 2013</b>: Scheduling of appointments for the morning session.</p>
 			<p><b>September 19, 2013</b>: Your schedule should be ready and available for printing.</p>
 			<p><b>September 19, 2013</b>: Final exhibitors check for the badges.</p>
 			
 			<h3>PROGRAMM OF THE EVENT</h3>
 			
 			<p><b>Registration desk will be located in the foyer of the Grand Ballroom Hall (minus 2nd floor).</b></p>
-			<p><b>10:00 – 14:20 – Morning session. Individual pre-scheduled appointments with top-buyers.</b> Each appointment will last 10 minutes according to the following scheme (5 minutes added for moving from one exhibitor to the next):</p>
+			<p><b>10:00 â€“ 14:20 â€“ Morning session. Individual pre-scheduled appointments with top-buyers.</b> Each appointment will last 10 minutes according to the following scheme (5 minutes added for moving from one exhibitor to the next):</p>
 			<p>10:00 - 10:10 / 10:15 - 10:25 / 10:30 - 10:40 / 10:45 - 10:55<br> 11:00 - 11:10 / 11:15 - 11:25 / 11:30 - 11:40 / 11:45 - 11:55</p>
 			
 			<p>11:55 - 12:10 - Coffee break.</p>
@@ -66,9 +66,9 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 			
 			<p>A bell will ring at the end/start of each appointment.</p>
 			<p>Place: Grand Ballroom Hall, Conference Hall I&II (minus 2nd floor) and Meeting Room (2nd floor).</p>
-			<p><b>14:30 – 15:30 – After-session networking and buffet-reception.<br> Place: foyer of the Grand Ballroom Hall (minus 2nd floor).</b></p>
-			<p><b>15:30 – 18:00 – Non pre-scheduled appointments with hosted buyers.</b> Buyers will be seated, and exhibitors will move around. Each appointment – 5 minutes (40 hosted buyers).Place: Conference Hall I&II (minus 2nd floor).			</p>
-			<p><b>18:30 – 21:00 – Evening session.</b> Workshop and cocktail reception for travel agents, corporate clients and journalists in a relaxed atmosphere. Place: Grand Ballroom Hall.</p>
+			<p><b>14:30 â€“ 15:30 â€“ After-session networking and buffet-reception.<br> Place: foyer of the Grand Ballroom Hall (minus 2nd floor).</b></p>
+			<p><b>15:30 â€“ 18:00 â€“ Non pre-scheduled appointments with hosted buyers.</b> Buyers will be seated, and exhibitors will move around. Each appointment â€“ 5 minutes (40 hosted buyers).Place: Conference Hall I&II (minus 2nd floor).			</p>
+			<p><b>18:30 â€“ 21:00 â€“ Evening session.</b> Workshop and cocktail reception for travel agents, corporate clients and journalists in a relaxed atmosphere. Place: Grand Ballroom Hall.</p>
 			
 			<h2>FILES FOR DOWNLOAD h2</h2>
 			<h3>FILES FOR DOWNLOAD h3</h3>
@@ -87,27 +87,27 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 				attend the Luxury Travel Mart Kiev as visitors.
 			</div>
 		</div>
-		<?//<-- Ñîäåðæèìîå òàáà 1 ?>
+		<?//<-- Ð¡Ð¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ð¾Ðµ Ñ‚Ð°Ð±Ð° 1 ?>
 		
-		<?//--> Ñîäåðæèìîå òàáà 2?>
+		<?//--> Ð¡Ð¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ð¾Ðµ Ñ‚Ð°Ð±Ð° 2?>
 		<div id="exhibition-tab-2">
-			<?// Òàáû 2 óðîâíÿ ?>
+			<?// Ð¢Ð°Ð±Ñ‹ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ ?>
 			
 			<div class="morning-session" id="morning-session">
 			
-				<?//--> Ñïèñîê òàáîâ 2 óðîâíÿ ?>
+				<?//--> Ð¡Ð¿Ð¸ÑÐ¾Ðº Ñ‚Ð°Ð±Ð¾Ð² 2 ÑƒÑ€Ð¾Ð²Ð½Ñ ?>
 				<ul class="pull-overflow sub-tab-session">
 					<li><a href="#session-tab-1" title="">My schedule for the morning session</a></li>
 					<li><a href="#session-tab-2" title="">Morning session guests</a></li>
 				</ul>
-				<?//<--Ñïèñîê òàáîâ 2 óðîâíÿ ?>
+				<?//<--Ð¡Ð¿Ð¸ÑÐ¾Ðº Ñ‚Ð°Ð±Ð¾Ð² 2 ÑƒÑ€Ð¾Ð²Ð½Ñ ?>
 				
-				<?//-->Êîíòåéíåð ñîäåðæèìîãî òàáû 2 óðîâíÿ ?>
+				<?//-->ÐšÐ¾Ð½Ñ‚ÐµÐ¹Ð½ÐµÑ€ ÑÐ¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ð¾Ð³Ð¾ Ñ‚Ð°Ð±Ñ‹ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ ?>
 				<div id="session-tab-1">
 				
-					<?//-->Òàáëèöà   ?>
+					<?//-->Ð¢Ð°Ð±Ð»Ð¸Ñ†Ð°   ?>
 					<?// include("shedule.php");?>
-					<?//<--Òàáëèöà   ?>
+					<?//<--Ð¢Ð°Ð±Ð»Ð¸Ñ†Ð°   ?>
 					
 					<div class="pull-overflow generate-file">
 						<div class="pull-left">
@@ -127,7 +127,7 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 									<form action="">
 										<table class="morning-time">
 											<tr>
-												<th>¹</th>
+												<th>â„–</th>
 												<th>Company</th>
 											</tr>
 											<tr>
@@ -154,7 +154,7 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 									<div class="wish-list">The following quests are  interested in an appointment with you outside of the morning session</div>
 									<table class="morning-time">
 										<tr>
-											<th>¹</th>
+											<th>â„–</th>
 											<th>Company</th>
 										</tr>
 										<tr>
@@ -169,7 +169,7 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 					
 				</div>
 				
-				<?//-->Ñîäåðæèìîå òàáà 2 óðîâíÿ 2 âêëàäêà ?>
+				<?//-->Ð¡Ð¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ð¾Ðµ Ñ‚Ð°Ð±Ð° 2 ÑƒÑ€Ð¾Ð²Ð½Ñ 2 Ð²ÐºÐ»Ð°Ð´ÐºÐ° ?>
 				<div id="session-tab-2">
 					<div class="pull-overflow sorting-company">
 						<div class="pull-left">
@@ -230,7 +230,7 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 							<td class="contact"><a href="" title="">Send<br> a message</a></td>
 							<td class="free-slots">
 								<select name="" id="">
-									<option value="">10:00 – 10:10</option>
+									<option value="">10:00 â€“ 10:10</option>
 								</select>
 							</td>
 							<td class="request"><a href="" title="">Send <br>a request</a></td>
@@ -244,7 +244,7 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 							<td class="contact"><a href="" title="">Send<br> a message</a></td>
 							<td class="free-slots">
 								<select name="" id="">
-									<option value="">10:00 – 10:10</option>
+									<option value="">10:00 â€“ 10:10</option>
 								</select>
 							</td>
 							<td class="request"><a href="" title="">Send <br>a request</a></td>
@@ -258,7 +258,7 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 							<td class="contact"><a href="" title="">Send<br> a message</a></td>
 							<td class="free-slots">
 								<select name="" id="">
-									<option value="">10:00 – 10:10</option>
+									<option value="">10:00 â€“ 10:10</option>
 								</select>
 							</td>
 							<td class="request"><a href="" title="">Send <br>a request</a></td>
@@ -272,7 +272,7 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 							<td class="contact"><a href="" title="">Send<br> a message</a></td>
 							<td class="free-slots">
 								<select name="" id="">
-									<option value="">10:00 – 10:10</option>
+									<option value="">10:00 â€“ 10:10</option>
 								</select>
 							</td>
 							<td class="request"><a href="" title="">Send <br>a request</a></td>
@@ -281,11 +281,11 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 				</div>
 			</div>
 		</div>
-		<?php //-->Cîäåðæèìîå òàáà 3 ?>
+		<?php //-->CÐ¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ð¾Ðµ Ñ‚Ð°Ð±Ð° 3 ?>
 			<div id="exhibition-tab-3">
 				<div class="hosted-session">
 					<h4>Hosted Buyers Session details</h4>
-					<p>Time: 15:30 – 18:00</p>
+					<p>Time: 15:30 â€“ 18:00</p>
 					<p>Place: Conference Hall I & II.</p>
 					<p>Format: Buyers will be seated, and exhibitors will move from one buyer to another, without pre- scheduled appointments. 5 minutes strictly for each appointment; at the end of each appointment a bell will ring. Please respect other exhibitors and move forward to another buyer immediately after the bell.</p>
 					<p>Please note that if you are sharing space with another hotel or colleague, you must attend all meetings with the hosted buyers together, no separate appointments are allowed in this case.</p>
@@ -351,7 +351,7 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 							<td class="contact"><a href="" title="">Send<br> a message</a></td>
 							<td class="free-slots">
 								<select name="" id="">
-									<option value="">10:00 – 10:10</option>
+									<option value="">10:00 â€“ 10:10</option>
 								</select>
 							</td>
 							<td class="request"><a href="" title="">Send <br>a request</a></td>
@@ -365,7 +365,7 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 							<td class="contact"><a href="" title="">Send<br> a message</a></td>
 							<td class="free-slots">
 								<select name="" id="">
-									<option value="">10:00 – 10:10</option>
+									<option value="">10:00 â€“ 10:10</option>
 								</select>
 							</td>
 							<td class="request"><a href="" title="">Send <br>a request</a></td>
@@ -379,7 +379,7 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 							<td class="contact"><a href="" title="">Send<br> a message</a></td>
 							<td class="free-slots">
 								<select name="" id="">
-									<option value="">10:00 – 10:10</option>
+									<option value="">10:00 â€“ 10:10</option>
 								</select>
 							</td>
 							<td class="request"><a href="" title="">Send <br>a request</a></td>
@@ -393,7 +393,7 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 							<td class="contact"><a href="" title="">Send<br> a message</a></td>
 							<td class="free-slots">
 								<select name="" id="">
-									<option value="">10:00 – 10:10</option>
+									<option value="">10:00 â€“ 10:10</option>
 								</select>
 							</td>
 							<td class="request"><a href="" title="">Send <br>a request</a></td>
@@ -401,9 +401,9 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 					</table>
 				</div>
 			</div>
-		<?php //<--Ñîäåðæàíèå òàáà 3 ?>
+		<?php //<--Ð¡Ð¾Ð´ÐµÑ€Ð¶Ð°Ð½Ð¸Ðµ Ñ‚Ð°Ð±Ð° 3 ?>
 		
-		<?php //-->Cîäåðæèìîå òàáà 4 ?>
+		<?php //-->CÐ¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ð¾Ðµ Ñ‚Ð°Ð±Ð° 4 ?>
 			<div id="exhibition-tab-4" class="evening-session">
 				<div class="morning-session">
 					<div class="pull-overflow sorting-company">
@@ -487,9 +487,9 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 					</table>
 				</div>
 			</div>
-		<?php //<--Ñîäåðæàíèå òàáà 4 ?>
+		<?php //<--Ð¡Ð¾Ð´ÐµÑ€Ð¶Ð°Ð½Ð¸Ðµ Ñ‚Ð°Ð±Ð° 4 ?>
 		
-		<?php //-->Cîäåðæèìîå òàáà 5 ?>
+		<?php //-->CÐ¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ð¾Ðµ Ñ‚Ð°Ð±Ð° 5 ?>
 			<div id="exhibition-tab-5" class="message-box">
 				<div id="message-box-function">
 					<ul class="message-list-tab pull-overflow">
@@ -572,18 +572,18 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 					</div>
 				</div>
 			</div>
-		<?php //<--Ñîäåðæàíèå òàáà 5 ?>
+		<?php //<--Ð¡Ð¾Ð´ÐµÑ€Ð¶Ð°Ð½Ð¸Ðµ Ñ‚Ð°Ð±Ð° 5 ?>
 	</div>
-	<?php //<-- Òàáû 1 óðîâíÿ ?>
+	<?php //<-- Ð¢Ð°Ð±Ñ‹ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ ?>
 	
 </div>
 
-<?php //-->Ðåäàêòèðîâàíèå ïðîôèëÿ ?>
+<?php //-->Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¿Ñ€Ð¾Ñ„Ð¸Ð»Ñ ?>
 <div class="edit-profil pull-overflow">
 	<form action="">
 		<div class="profil pull-overflow">
 		
-			<div class="pull-overflow headline">PARTICIPANT on LTM MOSCOW SPRING’ 2014, 13 March</div>
+			<div class="pull-overflow headline">PARTICIPANT on LTM MOSCOW SPRINGâ€™ 2014, 13 March</div>
 			
 			<div class="pull-left profil-photo">
 			<div class="member">
@@ -641,7 +641,7 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 		</div>
 		<div class="profil pull-overflow">
 		
-			<div class="pull-overflow headline">COLLEGUE on LTM MOSCOW SPRING’ 2014, 13 March</div>
+			<div class="pull-overflow headline">COLLEGUE on LTM MOSCOW SPRINGâ€™ 2014, 13 March</div>
 			
 			<div class="pull-left profil-photo">
 			<div class="member">
@@ -683,13 +683,13 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label" for="inputdemo">Collegue’s emai</label>
+					<label class="control-label" for="inputdemo">Collegueâ€™s emai</label>
 					<div class="data-control">
 						<input type="text" placeholder="E-mail" id="inputdemo" class="form-control">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label" for="inputdemo">Cinfirm collegue’s email</label>
+					<label class="control-label" for="inputdemo">Cinfirm collegueâ€™s email</label>
 					<div class="data-control">
 						<input type="text" placeholder="Confirm email" id="inputdemo" class="form-control">
 					</div>
@@ -703,7 +703,7 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 		</div>
 	</form>
 </div>
-<?php //<--Ðåäàêòèðîâàíèå ïðîôèëÿ ?>
+<?php //<--Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¿Ñ€Ð¾Ñ„Ð¸Ð»Ñ ?>
 
 <div class="create-page">
 	<div class="create-page-result">
@@ -730,7 +730,7 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 		<div class="description">
 			<div class="title"> Please enter a description of your company and service</div>
 			<textarea name="" id="" cols="30" rows="10"></textarea>
-			<div class="title">	Please upload a minimum of 6 (maximum 12) photos of your company/hotel. The maximum size of each photo is 3mb. Don’t forget &mdash; the better the quality of your photos, the better the impression of your company/hotel.</div>
+			<div class="title">	Please upload a minimum of 6 (maximum 12) photos of your company/hotel. The maximum size of each photo is 3mb. Donâ€™t forget &mdash; the better the quality of your photos, the better the impression of your company/hotel.</div>
 			<label class="button-dark ltm-btn" >upload photos<input type="file" name="" id="" value=""/></label>
 		</div>
 	

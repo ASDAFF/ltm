@@ -31,11 +31,11 @@
 		<?endif?>
 
 		<?if (isset($arItem["DISPLAY_PROPERTIES"]["FORUM_MESSAGE_CNT"])):?>
-			<span class="news-date-time">|&nbsp;<img src="<?=$templateFolder?>/images/comments.gif" width="10" height="10" border="0" alt="">&nbsp;комментариев: <?=$arItem["DISPLAY_PROPERTIES"]["FORUM_MESSAGE_CNT"]["VALUE"]?></span>
+			<span class="news-date-time">|&nbsp;<img src="<?=$templateFolder?>/images/comments.gif" width="10" height="10" border="0" alt="">&nbsp;РєРѕРјРјРµРЅС‚Р°СЂРёРµРІ: <?=$arItem["DISPLAY_PROPERTIES"]["FORUM_MESSAGE_CNT"]["VALUE"]?></span>
 		<?endif?>
 
 		<?if (isset($arItem["DISPLAY_PROPERTIES"]["rating"])):?>
-			<span class="news-date-time">|&nbsp;<img src="<?=$templateFolder?>/images/rating.gif" width="11" height="11" border="0" alt="">&nbsp;Рейтинг: <?=$arItem["DISPLAY_PROPERTIES"]["rating"]["VALUE"]?></span>
+			<span class="news-date-time">|&nbsp;<img src="<?=$templateFolder?>/images/rating.gif" width="11" height="11" border="0" alt="">&nbsp;Р РµР№С‚РёРЅРі: <?=$arItem["DISPLAY_PROPERTIES"]["rating"]["VALUE"]?></span>
 		<?endif?>
 	</p>
 <?endforeach;?>

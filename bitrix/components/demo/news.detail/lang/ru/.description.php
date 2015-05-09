@@ -1,6 +1,6 @@
 <?
-$MESS ['MY_NEWS_DETAIL_NAME'] = "Новость детально";
-$MESS ['MY_NEWS_DETAIL_DESC'] = "Показывает новость подробно";
-$MESS ['MY_COMPONENTS'] = "Мои компоненты";
-$MESS ['MY_NEWS'] = "Новости";
+$MESS ['MY_NEWS_DETAIL_NAME'] = "РќРѕРІРѕСЃС‚СЊ РґРµС‚Р°Р»СЊРЅРѕ";
+$MESS ['MY_NEWS_DETAIL_DESC'] = "РџРѕРєР°Р·С‹РІР°РµС‚ РЅРѕРІРѕСЃС‚СЊ РїРѕРґСЂРѕР±РЅРѕ";
+$MESS ['MY_COMPONENTS'] = "РњРѕРё РєРѕРјРїРѕРЅРµРЅС‚С‹";
+$MESS ['MY_NEWS'] = "РќРѕРІРѕСЃС‚Рё";
 ?>

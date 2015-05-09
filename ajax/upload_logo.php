@@ -34,7 +34,9 @@ else
 		mkdir($newPath, 0777, true);
 	}
 
-	$newFile = $newPath . randString(10) . "_" . $file["name"];
+
+
+	$newFile = $newPath . randString(10) . "_" . translit_file_name($file["name"]);
 	
 	if(move_uploaded_file($file['tmp_name'],  $newFile ))
 	{
@@ -48,5 +50,5 @@ else
 	}
 }
 
-echo (json_encode($result));
+echo (CUtil::PhpToJSObject($result));
 ?>

@@ -3,7 +3,7 @@ $type = strip_tags($_REQUEST['type']);
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include.php");
 if($type == 'yes'){
 	if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
-		//Все пользователи группы "Участники Москва Осень подтвержденные (не все)"
+		//Р’СЃРµ РїРѕР»СЊР·РѕРІР°С‚РµР»Рё РіСЂСѓРїРїС‹ "РЈС‡Р°СЃС‚РЅРёРєРё РњРѕСЃРєРІР° РћСЃРµРЅСЊ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ (РЅРµ РІСЃРµ)"
 		$userExelAr = array();
 		$exExelAr = array();
 		$exelAr = array();
@@ -15,7 +15,7 @@ if($type == 'yes'){
 			$userExelAr[$i]['LOGIN']    = $arUser['LOGIN'];
 			$userExelAr[$i]['PASSWORD'] = LuxorConfig::returnPas($arUser['UF_PAS']);
 			
-			//Представитель 1
+			//РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ 1
 			if($arUser['UF_ID5'] != ''){
 				LuxorConfig::getAnswerFormSimple(
 					LuxorConfig::ID_E_MOSC_OT, 
@@ -25,7 +25,7 @@ if($type == 'yes'){
 				$keys1[] = $i;
 			}	
 			
-			//Коллега
+			//РљРѕР»Р»РµРіР°
 			if($arUser['UF_ID10'] != ''){
 				LuxorConfig::getAnswerFormSimple(
 					LuxorConfig::ID_E_MOSC_OT,  
@@ -35,7 +35,7 @@ if($type == 'yes'){
 				$keys6[] = $i;
 			}
 			
-			//результат формы "Участники данные компании ВСЕ ВЫСТАВКИ"
+			//СЂРµР·СѓР»СЊС‚Р°С‚ С„РѕСЂРјС‹ "РЈС‡Р°СЃС‚РЅРёРєРё РґР°РЅРЅС‹Рµ РєРѕРјРїР°РЅРёРё Р’РЎР• Р’Р«РЎРўРђР’РљР"
 			if($arUser['UF_ID_COMP'] != ''){
 				LuxorConfig::getAnswerFormSimple(
 					LuxorConfig::ID_E_FORM, 
@@ -128,13 +128,13 @@ if($type == 'yes'){
 	//c($arrAnswersVarnameE);
 	//die();
 	
-	//сортировка по названию компании
+	//СЃРѕСЂС‚РёСЂРѕРІРєР° РїРѕ РЅР°Р·РІР°РЅРёСЋ РєРѕРјРїР°РЅРёРё
 	foreach($exelAr as $k=>$v){
 		$exelArMod[$k] = array_merge($v, $userExelAr[$k], (array)$exExelAr[0][$k], (array)$exExelAr[5][$k]);
 	}
 	
 	$data_year=array();
-	//Генерируем "определяющий" массив
+	//Р“РµРЅРµСЂРёСЂСѓРµРј "РѕРїСЂРµРґРµР»СЏСЋС‰РёР№" РјР°СЃСЃРёРІ
 	foreach($exelArMod as $key=>$arr){
 		$data_year[$key]=$arr['NAME_COMP'];
 	}
@@ -374,9 +374,9 @@ if($type == 'yes'){
 	// Set active sheet index to the first sheet, so Excel opens this as the first sheet
 	$objPHPExcel->setActiveSheetIndex(0);
 
-	// Redirect output to a client’s web browser (Excel5)
+	// Redirect output to a clientвЂ™s web browser (Excel5)
 	header('Content-Type: application/vnd.ms-excel');
-	header('Content-Disposition: attachment;filename="Участники Москва Осень подтвержденные.xls"');
+	header('Content-Disposition: attachment;filename="РЈС‡Р°СЃС‚РЅРёРєРё РњРѕСЃРєРІР° РћСЃРµРЅСЊ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ.xls"');
 	header('Cache-Control: max-age=0');
 	// If you're serving to IE 9, then the following may be needed
 	header('Cache-Control: max-age=1');
@@ -392,7 +392,7 @@ if($type == 'yes'){
 	exit;
 }elseif($type == 'yes_all'){
 	if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
-		//Все пользователи группы "Участники Москва Осень подтвержденные (все)"
+		//Р’СЃРµ РїРѕР»СЊР·РѕРІР°С‚РµР»Рё РіСЂСѓРїРїС‹ "РЈС‡Р°СЃС‚РЅРёРєРё РњРѕСЃРєРІР° РћСЃРµРЅСЊ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ (РІСЃРµ)"
 		$userExelAr = array();
 		$exExelAr = array();
 		$exelAr = array();
@@ -404,7 +404,7 @@ if($type == 'yes'){
 			$userExelAr[$i]['LOGIN']    = $arUser['LOGIN'];
 			$userExelAr[$i]['PASSWORD'] = LuxorConfig::returnPas($arUser['UF_PAS']);
 			
-			//Представитель 1
+			//РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ 1
 			if($arUser['UF_ID5'] != ''){
 				LuxorConfig::getAnswerFormSimple(
 					LuxorConfig::ID_E_MOSC_OT,  
@@ -413,7 +413,7 @@ if($type == 'yes'){
 				);
 				$keys1[] = $i;
 			}	
-			//Коллега
+			//РљРѕР»Р»РµРіР°
 			if($arUser['UF_ID10'] != ''){
 				LuxorConfig::getAnswerFormSimple(
 					LuxorConfig::ID_E_MOSC_OT, 
@@ -422,7 +422,7 @@ if($type == 'yes'){
 				);
 				$keys6[] = $i;
 			}
-			//результат формы "Участники данные компании ВСЕ ВЫСТАВКИ"
+			//СЂРµР·СѓР»СЊС‚Р°С‚ С„РѕСЂРјС‹ "РЈС‡Р°СЃС‚РЅРёРєРё РґР°РЅРЅС‹Рµ РєРѕРјРїР°РЅРёРё Р’РЎР• Р’Р«РЎРўРђР’РљР"
 			if($arUser['UF_ID_COMP'] != ''){
 				LuxorConfig::getAnswerFormSimple(
 					LuxorConfig::ID_E_FORM,  
@@ -513,13 +513,13 @@ if($type == 'yes'){
 
 	
 	
-	//сортировка по названию компании
+	//СЃРѕСЂС‚РёСЂРѕРІРєР° РїРѕ РЅР°Р·РІР°РЅРёСЋ РєРѕРјРїР°РЅРёРё
 	foreach($exelAr as $k=>$v){
 		$exelArMod[$k] = array_merge($v, $userExelAr[$k], (array)$exExelAr[0][$k], (array)$exExelAr[5][$k]);
 	}
 	
 	$data_year=array();
-	//Генерируем "определяющий" массив
+	//Р“РµРЅРµСЂРёСЂСѓРµРј "РѕРїСЂРµРґРµР»СЏСЋС‰РёР№" РјР°СЃСЃРёРІ
 	foreach($exelArMod as $key=>$arr){
 		$data_year[$key]=$arr['NAME_COMP'];
 	}
@@ -532,7 +532,7 @@ if($type == 'yes'){
 	
 	
 	
-	//массивы готовы для записи
+	//РјР°СЃСЃРёРІС‹ РіРѕС‚РѕРІС‹ РґР»СЏ Р·Р°РїРёСЃРё
 	/** Error reporting */
 	//error_reporting(E_ALL);
 	ini_set('display_errors', TRUE);
@@ -749,9 +749,9 @@ if($type == 'yes'){
 			$aSheet->setCellValue('G'.$strNext, $mas['CITY_COMP']);
 			$aSheet->setCellValue('H'.$strNext, $mas['COUNTRY_COMP']);
 			$aSheet->setCellValue('I'.$strNext, $mas['SITE_COMP']);
-			$mas['DESCR_COMP'] = str_replace(' ', ' ', $mas['DESCR_COMP']); //крокозябра
+			$mas['DESCR_COMP'] = str_replace(' ', ' ', $mas['DESCR_COMP']); //РєСЂРѕРєРѕР·СЏР±СЂР°
 			//$aSheet->setCellValue('J'.$str, iconv('WINDOWS-1251', 'UTF-8', $mas['DESCR_COMP']));
-			if(preg_match("#[а-яё]+#iu", $mas['DESCR_COMP'])){
+			if(preg_match("#[Р°-СЏС‘]+#iu", $mas['DESCR_COMP'])){
 				$aSheet->setCellValue('J'.$strNext, iconv('WINDOWS-1251', 'UTF-8', $mas['DESCR_COMP']));
 			}else{
 				$aSheet->setCellValue('J'.$strNext, $mas['DESCR_COMP']);
@@ -804,9 +804,9 @@ if($type == 'yes'){
 
 	// Set active sheet index to the first sheet, so Excel opens this as the first sheet
 	$objPHPExcel->setActiveSheetIndex(0);
-	// Redirect output to a client’s web browser (Excel5)
+	// Redirect output to a clientвЂ™s web browser (Excel5)
 	header('Content-Type: application/vnd.ms-excel');
-	header('Content-Disposition: attachment;filename="Участники Москва Осень подтвержденные (коллеги отдельно).xls"');
+	header('Content-Disposition: attachment;filename="РЈС‡Р°СЃС‚РЅРёРєРё РњРѕСЃРєРІР° РћСЃРµРЅСЊ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ (РєРѕР»Р»РµРіРё РѕС‚РґРµР»СЊРЅРѕ).xls"');
 	header('Cache-Control: max-age=0');
 	// If you're serving to IE 9, then the following may be needed
 	header('Cache-Control: max-age=1');
@@ -822,7 +822,7 @@ if($type == 'yes'){
 	exit;
 }elseif($type == 'no'){
 	if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
-		//Все пользователи группы "Участники Москва Осень неподтвержденные (не все)"
+		//Р’СЃРµ РїРѕР»СЊР·РѕРІР°С‚РµР»Рё РіСЂСѓРїРїС‹ "РЈС‡Р°СЃС‚РЅРёРєРё РњРѕСЃРєРІР° РћСЃРµРЅСЊ РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ (РЅРµ РІСЃРµ)"
 		$userExelAr = array();
 		$exExelAr = array();
 		$exelAr = array();
@@ -834,7 +834,7 @@ if($type == 'yes'){
 			$userExelAr[$i]['LOGIN']    = $arUser['LOGIN'];
 			$userExelAr[$i]['PASSWORD'] = LuxorConfig::returnPas($arUser['UF_PAS']);
 			
-			//Представитель 1
+			//РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ 1
 			if($arUser['UF_ID5'] != ''){
 				LuxorConfig::getAnswerFormSimple(
 					LuxorConfig::ID_E_MOSC_OT, 
@@ -844,7 +844,7 @@ if($type == 'yes'){
 				$keys1[] = $i;
 			}	
 			
-			//Коллега
+			//РљРѕР»Р»РµРіР°
 			if($arUser['UF_ID10'] != ''){
 				LuxorConfig::getAnswerFormSimple(
 					LuxorConfig::ID_E_MOSC_OT,  
@@ -854,7 +854,7 @@ if($type == 'yes'){
 				$keys6[] = $i;
 			}
 			
-			//результат формы "Участники данные компании ВСЕ ВЫСТАВКИ"
+			//СЂРµР·СѓР»СЊС‚Р°С‚ С„РѕСЂРјС‹ "РЈС‡Р°СЃС‚РЅРёРєРё РґР°РЅРЅС‹Рµ РєРѕРјРїР°РЅРёРё Р’РЎР• Р’Р«РЎРўРђР’РљР"
 			if($arUser['UF_ID_COMP'] != ''){
 				LuxorConfig::getAnswerFormSimple(
 					LuxorConfig::ID_E_FORM, 
@@ -943,13 +943,13 @@ if($type == 'yes'){
 		//c($exelAr);
 	}
 	
-	//сортировка по названию компании
+	//СЃРѕСЂС‚РёСЂРѕРІРєР° РїРѕ РЅР°Р·РІР°РЅРёСЋ РєРѕРјРїР°РЅРёРё
 	foreach($exelAr as $k=>$v){
 		$exelArMod[$k] = array_merge($v, $userExelAr[$k], (array)$exExelAr[0][$k], (array)$exExelAr[5][$k]);
 	}
 
 	$data_year=array();
-	//Генерируем "определяющий" массив
+	//Р“РµРЅРµСЂРёСЂСѓРµРј "РѕРїСЂРµРґРµР»СЏСЋС‰РёР№" РјР°СЃСЃРёРІ
 	foreach($exelArMod as $key=>$arr){
 		$data_year[$key]=trim($arr['NAME_COMP']);
 	}
@@ -1180,9 +1180,9 @@ if($type == 'yes'){
 	// Set active sheet index to the first sheet, so Excel opens this as the first sheet
 	$objPHPExcel->setActiveSheetIndex(0);
 
-	// Redirect output to a client’s web browser (Excel5)
+	// Redirect output to a clientвЂ™s web browser (Excel5)
 	header('Content-Type: application/vnd.ms-excel');
-	header('Content-Disposition: attachment;filename="Участники Москва Осень неподтвержденные (не все).xls"');
+	header('Content-Disposition: attachment;filename="РЈС‡Р°СЃС‚РЅРёРєРё РњРѕСЃРєРІР° РћСЃРµРЅСЊ РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ (РЅРµ РІСЃРµ).xls"');
 	header('Cache-Control: max-age=0');
 	// If you're serving to IE 9, then the following may be needed
 	header('Cache-Control: max-age=1');
@@ -1198,7 +1198,7 @@ if($type == 'yes'){
 	exit;
 }elseif($type == 'no_all'){
 	if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
-		//Все пользователи группы "Участники Москва Осень неподтвержденные (все)"
+		//Р’СЃРµ РїРѕР»СЊР·РѕРІР°С‚РµР»Рё РіСЂСѓРїРїС‹ "РЈС‡Р°СЃС‚РЅРёРєРё РњРѕСЃРєРІР° РћСЃРµРЅСЊ РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ (РІСЃРµ)"
 		$userExelAr = array();
 		$exExelAr = array();
 		$exelAr = array();
@@ -1210,7 +1210,7 @@ if($type == 'yes'){
 			$userExelAr[$i]['LOGIN']    = $arUser['LOGIN'];
 			$userExelAr[$i]['PASSWORD'] = LuxorConfig::returnPas($arUser['UF_PAS']);
 			
-			//Представитель 1
+			//РџСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ 1
 			if($arUser['UF_ID5'] != ''){
 				LuxorConfig::getAnswerFormSimple(
 					LuxorConfig::ID_E_MOSC_OT,  
@@ -1219,7 +1219,7 @@ if($type == 'yes'){
 				);
 				$keys1[] = $i;
 			}	
-			//Коллега
+			//РљРѕР»Р»РµРіР°
 			if($arUser['UF_ID10'] != ''){
 				LuxorConfig::getAnswerFormSimple(
 					LuxorConfig::ID_E_MOSC_OT, 
@@ -1228,7 +1228,7 @@ if($type == 'yes'){
 				);
 				$keys6[] = $i;
 			}
-			//результат формы "Участники данные компании ВСЕ ВЫСТАВКИ"
+			//СЂРµР·СѓР»СЊС‚Р°С‚ С„РѕСЂРјС‹ "РЈС‡Р°СЃС‚РЅРёРєРё РґР°РЅРЅС‹Рµ РєРѕРјРїР°РЅРёРё Р’РЎР• Р’Р«РЎРўРђР’РљР"
 			if($arUser['UF_ID_COMP'] != ''){
 				LuxorConfig::getAnswerFormSimple(
 					LuxorConfig::ID_E_FORM,  
@@ -1317,13 +1317,13 @@ if($type == 'yes'){
 		//c($exelAr);
 	}
 	
-	//сортировка по названию компании
+	//СЃРѕСЂС‚РёСЂРѕРІРєР° РїРѕ РЅР°Р·РІР°РЅРёСЋ РєРѕРјРїР°РЅРёРё
 	foreach($exelAr as $k=>$v){
 		$exelArMod[$k] = array_merge($v, $userExelAr[$k], (array)$exExelAr[0][$k], (array)$exExelAr[5][$k]);
 	}
 	
 	$data_year=array();
-	//Генерируем "определяющий" массив
+	//Р“РµРЅРµСЂРёСЂСѓРµРј "РѕРїСЂРµРґРµР»СЏСЋС‰РёР№" РјР°СЃСЃРёРІ
 	foreach($exelArMod as $key=>$arr){
 		$data_year[$key]=$arr['NAME_COMP'];
 	}
@@ -1334,7 +1334,7 @@ if($type == 'yes'){
 		array_multisort($data_year, SORT_STRING, $exelArMod);
 	}
 	
-	//массивы готовы для записи
+	//РјР°СЃСЃРёРІС‹ РіРѕС‚РѕРІС‹ РґР»СЏ Р·Р°РїРёСЃРё
 	/** Error reporting */
 	//error_reporting(E_ALL);
 	ini_set('display_errors', TRUE);
@@ -1553,7 +1553,7 @@ if($type == 'yes'){
 			$aSheet->setCellValue('I'.$strNext, $mas['SITE_COMP']);
 			
 			//$aSheet->setCellValue('J'.$str, iconv('WINDOWS-1251', 'UTF-8', $mas['DESCR_COMP']));
-			if(preg_match("#[а-яё]+#iu", $mas['DESCR_COMP'])){
+			if(preg_match("#[Р°-СЏС‘]+#iu", $mas['DESCR_COMP'])){
 				$aSheet->setCellValue('J'.$str, iconv('WINDOWS-1251', 'UTF-8', $mas['DESCR_COMP']));
 			}else{
 				$aSheet->setCellValue('J'.$str, $mas['DESCR_COMP']);
@@ -1626,9 +1626,9 @@ if($type == 'yes'){
 			$aSheet->setCellValue('G'.$strNext, $mas['CITY_COMP']);
 			$aSheet->setCellValue('H'.$strNext, $mas['COUNTRY_COMP']);
 			$aSheet->setCellValue('I'.$strNext, $mas['SITE_COMP']);
-			$mas['DESCR_COMP'] = str_replace(' ', ' ', $mas['DESCR_COMP']); //крокозябра
+			$mas['DESCR_COMP'] = str_replace(' ', ' ', $mas['DESCR_COMP']); //РєСЂРѕРєРѕР·СЏР±СЂР°
 			//$aSheet->setCellValue('J'.$str, iconv('WINDOWS-1251', 'UTF-8', $mas['DESCR_COMP']));
-			if(preg_match("#[а-яё]+#iu", $mas['DESCR_COMP'])){
+			if(preg_match("#[Р°-СЏС‘]+#iu", $mas['DESCR_COMP'])){
 				$aSheet->setCellValue('J'.$str, iconv('WINDOWS-1251', 'UTF-8', $mas['DESCR_COMP']));
 			}else{
 				$aSheet->setCellValue('J'.$str, $mas['DESCR_COMP']);
@@ -1680,9 +1680,9 @@ if($type == 'yes'){
 
 	// Set active sheet index to the first sheet, so Excel opens this as the first sheet
 	$objPHPExcel->setActiveSheetIndex(0);
-	// Redirect output to a client’s web browser (Excel5)
+	// Redirect output to a clientвЂ™s web browser (Excel5)
 	header('Content-Type: application/vnd.ms-excel');
-	header('Content-Disposition: attachment;filename="Участники Москва Осень неподтвержденные (все).xls"');
+	header('Content-Disposition: attachment;filename="РЈС‡Р°СЃС‚РЅРёРєРё РњРѕСЃРєРІР° РћСЃРµРЅСЊ РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ (РІСЃРµ).xls"');
 	header('Cache-Control: max-age=0');
 	// If you're serving to IE 9, then the following may be needed
 	header('Cache-Control: max-age=1');
@@ -1698,7 +1698,7 @@ if($type == 'yes'){
 	exit;
 }elseif($type == 'guests'){
 	if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
-		//Все пользователи группы "Гости Москва осень подтвержденные" на утро
+		//Р’СЃРµ РїРѕР»СЊР·РѕРІР°С‚РµР»Рё РіСЂСѓРїРїС‹ "Р“РѕСЃС‚Рё РњРѕСЃРєРІР° РѕСЃРµРЅСЊ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ" РЅР° СѓС‚СЂРѕ
 		$userExelAr = array();
 		$exExelAr = array();
 		$exelAr = array();
@@ -1711,10 +1711,10 @@ if($type == 'yes'){
 			$exelAr[$i]['PASSWORD'] = LuxorConfig::returnPas($arUser['UF_PAS']);
 			$exelAr[$i]['RESULT'] = $arUser['UF_ID_COMP'];
 			
-			//результат формы "Участники данные компании ВСЕ ВЫСТАВКИ"
+			//СЂРµР·СѓР»СЊС‚Р°С‚ С„РѕСЂРјС‹ "РЈС‡Р°СЃС‚РЅРёРєРё РґР°РЅРЅС‹Рµ РєРѕРјРїР°РЅРёРё Р’РЎР• Р’Р«РЎРўРђР’РљР"
 			if($arUser['UF_ID_COMP'] != ''){
 				LuxorConfig::getAnswerFormSimple(
-					10, //!!!!!!!!!!!!! По идее тут id формы на город, но сейчас все в форме для Москвы
+					10, //!!!!!!!!!!!!! РџРѕ РёРґРµРµ С‚СѓС‚ id С„РѕСЂРјС‹ РЅР° РіРѕСЂРѕРґ, РЅРѕ СЃРµР№С‡Р°СЃ РІСЃРµ РІ С„РѕСЂРјРµ РґР»СЏ РњРѕСЃРєРІС‹
 					$arrAnswersVarname, 
 					array('RESULT_ID'=>$arUser['UF_ID_COMP'])
 				);
@@ -1743,18 +1743,18 @@ if($type == 'yes'){
 			}
 			
 
-			//Вид деятельности
+			//Р’РёРґ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё
 			foreach($v['SIMPLE_QUESTION_677'] as $ar){
 				$exelAr[$i]['VID_D'][] = $ar['ANSWER_TEXT'];
 			}
 			
-			//коллега
+			//РєРѕР»Р»РµРіР°
 			$exelAr[$i]['COLLEGA_NAME']     = $v['SIMPLE_QUESTION_816'][0]['USER_TEXT'];
 			$exelAr[$i]['COLLEGA_L_NAME']   = $v['SIMPLE_QUESTION_596'][0]['USER_TEXT'];
 			$exelAr[$i]['COLLEGA_JOB']      = $v['SIMPLE_QUESTION_304'][0]['USER_TEXT'];
 			$exelAr[$i]['COLLEGA_MAIL']     = $v['SIMPLE_QUESTION_278'][0]['USER_TEXT'];
 			
-			//Приоритетные направления
+			//РџСЂРёРѕСЂРёС‚РµС‚РЅС‹Рµ РЅР°РїСЂР°РІР»РµРЅРёСЏ
 			//Europe
 			foreach($v['SIMPLE_QUESTION_244'] as $ar){
 				$exelAr[$i]['PR_NAPR'][] = $ar['ANSWER_TEXT'];
@@ -1833,61 +1833,61 @@ if($type == 'yes'){
 	$aSheet->setCellValue('A1', 'uID');
 	$aSheet->getStyle('A1')->applyFromArray($baseFont);
 	$aSheet->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('B1', iconv('WINDOWS-1251', 'UTF-8', 'Логин'));
+	$aSheet->setCellValue('B1', iconv('WINDOWS-1251', 'UTF-8', 'Р›РѕРіРёРЅ'));
 	$aSheet->getStyle('B1')->applyFromArray($baseFont);
 	$aSheet->getStyle('B1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('C1', iconv('WINDOWS-1251', 'UTF-8', 'Пароль'));
+	$aSheet->setCellValue('C1', iconv('WINDOWS-1251', 'UTF-8', 'РџР°СЂРѕР»СЊ'));
 	$aSheet->getStyle('C1')->applyFromArray($baseFont);
 	$aSheet->getStyle('C1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('D1', iconv('WINDOWS-1251', 'UTF-8', 'Компания'));
+	$aSheet->setCellValue('D1', iconv('WINDOWS-1251', 'UTF-8', 'РљРѕРјРїР°РЅРёСЏ'));
 	$aSheet->getStyle('D1')->applyFromArray($baseFont);
 	$aSheet->getStyle('D1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('E1', iconv('WINDOWS-1251', 'UTF-8', 'Вид деятельности'));
+	$aSheet->setCellValue('E1', iconv('WINDOWS-1251', 'UTF-8', 'Р’РёРґ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё'));
 	$aSheet->getStyle('E1')->applyFromArray($baseFont);
 	$aSheet->getStyle('E1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('F1', iconv('WINDOWS-1251', 'UTF-8', 'Адрес'));
+	$aSheet->setCellValue('F1', iconv('WINDOWS-1251', 'UTF-8', 'РђРґСЂРµСЃ'));
 	$aSheet->getStyle('F1')->applyFromArray($baseFont);
 	$aSheet->getStyle('F1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('G1', iconv('WINDOWS-1251', 'UTF-8', 'Индекс'));
+	$aSheet->setCellValue('G1', iconv('WINDOWS-1251', 'UTF-8', 'РРЅРґРµРєСЃ'));
 	$aSheet->getStyle('G1')->applyFromArray($baseFont);
 	$aSheet->getStyle('G1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('H1', iconv('WINDOWS-1251', 'UTF-8', 'Город'));
+	$aSheet->setCellValue('H1', iconv('WINDOWS-1251', 'UTF-8', 'Р“РѕСЂРѕРґ'));
 	$aSheet->getStyle('H1')->applyFromArray($baseFont);
 	$aSheet->getStyle('H1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('I1', iconv('WINDOWS-1251', 'UTF-8', "Страна"));
+	$aSheet->setCellValue('I1', iconv('WINDOWS-1251', 'UTF-8', "РЎС‚СЂР°РЅР°"));
 	$aSheet->getStyle('I1')->applyFromArray($baseFont);
 	$aSheet->getStyle('I1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('J1', iconv('WINDOWS-1251', 'UTF-8', 'Имя Фамилия'));
+	$aSheet->setCellValue('J1', iconv('WINDOWS-1251', 'UTF-8', 'РРјСЏ Р¤Р°РјРёР»РёСЏ'));
 	$aSheet->getStyle('J1')->applyFromArray($baseFont);
 	$aSheet->getStyle('J1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('K1', iconv('WINDOWS-1251', 'UTF-8', "Должность"));
+	$aSheet->setCellValue('K1', iconv('WINDOWS-1251', 'UTF-8', "Р”РѕР»Р¶РЅРѕСЃС‚СЊ"));
 	$aSheet->getStyle('K1')->applyFromArray($baseFont);
 	$aSheet->getStyle('K1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('L1', iconv('WINDOWS-1251', 'UTF-8', "Телефон"));
+	$aSheet->setCellValue('L1', iconv('WINDOWS-1251', 'UTF-8', "РўРµР»РµС„РѕРЅ"));
 	$aSheet->getStyle('L1')->applyFromArray($baseFont);
 	$aSheet->getStyle('L1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 	$aSheet->setCellValue('M1', iconv('WINDOWS-1251', 'UTF-8', "E-mail"));
 	$aSheet->getStyle('M1')->applyFromArray($baseFont);
 	$aSheet->getStyle('M1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('N1', iconv('WINDOWS-1251', 'UTF-8', "Web-site компании"));
+	$aSheet->setCellValue('N1', iconv('WINDOWS-1251', 'UTF-8', "Web-site РєРѕРјРїР°РЅРёРё"));
 	$aSheet->getStyle('N1')->applyFromArray($baseFont);
 	$aSheet->getStyle('N1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('O1', iconv('WINDOWS-1251', 'UTF-8', "Приоритетные направления"));
+	$aSheet->setCellValue('O1', iconv('WINDOWS-1251', 'UTF-8', "РџСЂРёРѕСЂРёС‚РµС‚РЅС‹Рµ РЅР°РїСЂР°РІР»РµРЅРёСЏ"));
 	$aSheet->getStyle('O1')->applyFromArray($baseFont);
 	$aSheet->getStyle('O1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('P1', iconv('WINDOWS-1251', 'UTF-8', "Описание компании"));
+	$aSheet->setCellValue('P1', iconv('WINDOWS-1251', 'UTF-8', "РћРїРёСЃР°РЅРёРµ РєРѕРјРїР°РЅРёРё"));
 	$aSheet->getStyle('P1')->applyFromArray($baseFont);
 	$aSheet->getStyle('P1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('Q1', iconv('WINDOWS-1251', 'UTF-8', "Имя коллеги (на утро)"));
+	$aSheet->setCellValue('Q1', iconv('WINDOWS-1251', 'UTF-8', "РРјСЏ РєРѕР»Р»РµРіРё (РЅР° СѓС‚СЂРѕ)"));
 	$aSheet->getStyle('Q1')->applyFromArray($baseFont);
 	$aSheet->getStyle('Q1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('R1', iconv('WINDOWS-1251', 'UTF-8', "Фамилия коллеги (на утро)"));
+	$aSheet->setCellValue('R1', iconv('WINDOWS-1251', 'UTF-8', "Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё (РЅР° СѓС‚СЂРѕ)"));
 	$aSheet->getStyle('R1')->applyFromArray($baseFont);
 	$aSheet->getStyle('R1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('S1', iconv('WINDOWS-1251', 'UTF-8', "Должность коллеги (на утро)"));
+	$aSheet->setCellValue('S1', iconv('WINDOWS-1251', 'UTF-8', "Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё (РЅР° СѓС‚СЂРѕ)"));
 	$aSheet->getStyle('S1')->applyFromArray($baseFont);
 	$aSheet->getStyle('S1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('T1', iconv('WINDOWS-1251', 'UTF-8', "E-mail коллеги (на утро)"));
+	$aSheet->setCellValue('T1', iconv('WINDOWS-1251', 'UTF-8', "E-mail РєРѕР»Р»РµРіРё (РЅР° СѓС‚СЂРѕ)"));
 	$aSheet->getStyle('T1')->applyFromArray($baseFont);
 	$aSheet->getStyle('T1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 
@@ -1914,7 +1914,7 @@ if($type == 'yes'){
 		$aSheet->setCellValue('N'.$str, $mas['SITE']);
 		$aSheet->setCellValue('O'.$str, $mas['PR_NAPR_ALL']);
 		$aSheet->getStyle('O'.$str)->getAlignment()->setWrapText(1);
-		$mas['DESC_COMP'] = str_replace('', ' ', $mas['DESC_COMP']);// крокозябра
+		$mas['DESC_COMP'] = str_replace('', ' ', $mas['DESC_COMP']);// РєСЂРѕРєРѕР·СЏР±СЂР°
 		$aSheet->setCellValue('P'.$str, iconv('WINDOWS-1251', 'UTF-8', $mas['DESC_COMP']));
 		$aSheet->getStyle('P'.$str)->getAlignment()->setWrapText(1);
 		$aSheet->setCellValue('Q'.$str, iconv('WINDOWS-1251', 'UTF-8', $mas['COLLEGA_NAME']));
@@ -1930,9 +1930,9 @@ if($type == 'yes'){
 	// Set active sheet index to the first sheet, so Excel opens this as the first sheet
 	$objPHPExcel->setActiveSheetIndex(0);
 	
-	// Redirect output to a client’s web browser (Excel5)
+	// Redirect output to a clientвЂ™s web browser (Excel5)
 	header('Content-Type: application/vnd.ms-excel');
-	header('Content-Disposition: attachment;filename="Гости Москва осень на утро.xls"');
+	header('Content-Disposition: attachment;filename="Р“РѕСЃС‚Рё РњРѕСЃРєРІР° РѕСЃРµРЅСЊ РЅР° СѓС‚СЂРѕ.xls"');
 	header('Cache-Control: max-age=0');
 	// If you're serving to IE 9, then the following may be needed
 	header('Cache-Control: max-age=1');
@@ -1948,7 +1948,7 @@ if($type == 'yes'){
 	exit;
 }elseif($type == 'guests_all'){
 	if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
-		//Все пользователи группы "Гости Москва осень подтвержденные" на утро
+		//Р’СЃРµ РїРѕР»СЊР·РѕРІР°С‚РµР»Рё РіСЂСѓРїРїС‹ "Р“РѕСЃС‚Рё РњРѕСЃРєРІР° РѕСЃРµРЅСЊ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ" РЅР° СѓС‚СЂРѕ
 		$userExelAr = array();
 		$exExelAr = array();
 		$exelAr = array();
@@ -1960,7 +1960,7 @@ if($type == 'yes'){
 			$exelAr[$i]['LOGIN']    = $arUser['LOGIN'];
 			$exelAr[$i]['PASSWORD'] = LuxorConfig::returnPas($arUser['UF_PAS']);
 			
-			//результат формы "Участники данные компании ВСЕ ВЫСТАВКИ"
+			//СЂРµР·СѓР»СЊС‚Р°С‚ С„РѕСЂРјС‹ "РЈС‡Р°СЃС‚РЅРёРєРё РґР°РЅРЅС‹Рµ РєРѕРјРїР°РЅРёРё Р’РЎР• Р’Р«РЎРўРђР’РљР"
 			if($arUser['UF_ID_COMP'] != ''){
 				LuxorConfig::getAnswerFormSimple(
 					10,
@@ -1992,19 +1992,19 @@ if($type == 'yes'){
 			}
 			
 
-			//Вид деятельности
+			//Р’РёРґ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё
 			foreach($v['SIMPLE_QUESTION_677'] as $ar){
 				$exelAr[$i]['VID_D'][] = $ar['ANSWER_TEXT'];
 			}
 			
-			//коллега
+			//РєРѕР»Р»РµРіР°
 			$exelAr[$i]['COLLEGA_NAME']     = $v['SIMPLE_QUESTION_816'][0]['USER_TEXT'];
 			//$exelAr[$i]['COLLEGA_L_NAME']   = $v['SIMPLE_QUESTION_596'][0]['USER_TEXT'];
 			$exelAr[$i]['COLLEGA_F_NAME']   = $v['SIMPLE_QUESTION_816'][0]['USER_TEXT'].' '.$v['SIMPLE_QUESTION_596'][0]['USER_TEXT'];
 			$exelAr[$i]['COLLEGA_JOB']      = $v['SIMPLE_QUESTION_304'][0]['USER_TEXT'];
 			$exelAr[$i]['COLLEGA_MAIL']     = $v['SIMPLE_QUESTION_278'][0]['USER_TEXT'];
 			
-			//Приоритетные направления
+			//РџСЂРёРѕСЂРёС‚РµС‚РЅС‹Рµ РЅР°РїСЂР°РІР»РµРЅРёСЏ
 			//Europe
 			foreach($v['SIMPLE_QUESTION_244'] as $ar){
 				$exelAr[$i]['PR_NAPR'][] = $ar['ANSWER_TEXT'];
@@ -2083,46 +2083,46 @@ if($type == 'yes'){
 	$aSheet->setCellValue('A1', 'uID');
 	$aSheet->getStyle('A1')->applyFromArray($baseFont);
 	$aSheet->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('B1', iconv('WINDOWS-1251', 'UTF-8', 'Логин'));
+	$aSheet->setCellValue('B1', iconv('WINDOWS-1251', 'UTF-8', 'Р›РѕРіРёРЅ'));
 	$aSheet->getStyle('B1')->applyFromArray($baseFont);
 	$aSheet->getStyle('B1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('C1', iconv('WINDOWS-1251', 'UTF-8', 'Пароль'));
+	$aSheet->setCellValue('C1', iconv('WINDOWS-1251', 'UTF-8', 'РџР°СЂРѕР»СЊ'));
 	$aSheet->getStyle('C1')->applyFromArray($baseFont);
 	$aSheet->getStyle('C1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('D1', iconv('WINDOWS-1251', 'UTF-8', 'Компания'));
+	$aSheet->setCellValue('D1', iconv('WINDOWS-1251', 'UTF-8', 'РљРѕРјРїР°РЅРёСЏ'));
 	$aSheet->getStyle('D1')->applyFromArray($baseFont);
 	$aSheet->getStyle('D1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('E1', iconv('WINDOWS-1251', 'UTF-8', 'Вид деятельности'));
+	$aSheet->setCellValue('E1', iconv('WINDOWS-1251', 'UTF-8', 'Р’РёРґ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё'));
 	$aSheet->getStyle('E1')->applyFromArray($baseFont);
 	$aSheet->getStyle('E1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('F1', iconv('WINDOWS-1251', 'UTF-8', 'Адрес'));
+	$aSheet->setCellValue('F1', iconv('WINDOWS-1251', 'UTF-8', 'РђРґСЂРµСЃ'));
 	$aSheet->getStyle('F1')->applyFromArray($baseFont);
 	$aSheet->getStyle('F1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('G1', iconv('WINDOWS-1251', 'UTF-8', 'Индекс'));
+	$aSheet->setCellValue('G1', iconv('WINDOWS-1251', 'UTF-8', 'РРЅРґРµРєСЃ'));
 	$aSheet->getStyle('G1')->applyFromArray($baseFont);
 	$aSheet->getStyle('G1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('H1', iconv('WINDOWS-1251', 'UTF-8', 'Город'));
+	$aSheet->setCellValue('H1', iconv('WINDOWS-1251', 'UTF-8', 'Р“РѕСЂРѕРґ'));
 	$aSheet->getStyle('H1')->applyFromArray($baseFont);
 	$aSheet->getStyle('H1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('I1', iconv('WINDOWS-1251', 'UTF-8', "Страна"));
+	$aSheet->setCellValue('I1', iconv('WINDOWS-1251', 'UTF-8', "РЎС‚СЂР°РЅР°"));
 	$aSheet->getStyle('I1')->applyFromArray($baseFont);
 	$aSheet->getStyle('I1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('J1', iconv('WINDOWS-1251', 'UTF-8', 'Описание компании'));
+	$aSheet->setCellValue('J1', iconv('WINDOWS-1251', 'UTF-8', 'РћРїРёСЃР°РЅРёРµ РєРѕРјРїР°РЅРёРё'));
 	$aSheet->getStyle('J1')->applyFromArray($baseFont);
 	$aSheet->getStyle('J1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('K1', iconv('WINDOWS-1251', 'UTF-8', 'Приоритетные направление'));
+	$aSheet->setCellValue('K1', iconv('WINDOWS-1251', 'UTF-8', 'РџСЂРёРѕСЂРёС‚РµС‚РЅС‹Рµ РЅР°РїСЂР°РІР»РµРЅРёРµ'));
 	$aSheet->getStyle('K1')->applyFromArray($baseFont);
 	$aSheet->getStyle('K1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('L1', iconv('WINDOWS-1251', 'UTF-8', 'Web-site компании'));
+	$aSheet->setCellValue('L1', iconv('WINDOWS-1251', 'UTF-8', 'Web-site РєРѕРјРїР°РЅРёРё'));
 	$aSheet->getStyle('L1')->applyFromArray($baseFont);
 	$aSheet->getStyle('L1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('M1', iconv('WINDOWS-1251', 'UTF-8', 'Имя Фамилия'));
+	$aSheet->setCellValue('M1', iconv('WINDOWS-1251', 'UTF-8', 'РРјСЏ Р¤Р°РјРёР»РёСЏ'));
 	$aSheet->getStyle('M1')->applyFromArray($baseFont);
 	$aSheet->getStyle('M1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('N1', iconv('WINDOWS-1251', 'UTF-8', "Должность"));
+	$aSheet->setCellValue('N1', iconv('WINDOWS-1251', 'UTF-8', "Р”РѕР»Р¶РЅРѕСЃС‚СЊ"));
 	$aSheet->getStyle('N1')->applyFromArray($baseFont);
 	$aSheet->getStyle('N1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('O1', iconv('WINDOWS-1251', 'UTF-8', "Телефон"));
+	$aSheet->setCellValue('O1', iconv('WINDOWS-1251', 'UTF-8', "РўРµР»РµС„РѕРЅ"));
 	$aSheet->getStyle('O1')->applyFromArray($baseFont);
 	$aSheet->getStyle('O1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 	$aSheet->setCellValue('P1', iconv('WINDOWS-1251', 'UTF-8', "E-mail"));
@@ -2132,49 +2132,49 @@ if($type == 'yes'){
 	$aSheet->setCellValue('A2', 'uID');
 	$aSheet->getStyle('A2')->applyFromArray($baseFont);
 	$aSheet->getStyle('A2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('B2', iconv('WINDOWS-1251', 'UTF-8', 'Логин'));
+	$aSheet->setCellValue('B2', iconv('WINDOWS-1251', 'UTF-8', 'Р›РѕРіРёРЅ'));
 	$aSheet->getStyle('B2')->applyFromArray($baseFont);
 	$aSheet->getStyle('B2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('C2', iconv('WINDOWS-1251', 'UTF-8', 'Пароль'));
+	$aSheet->setCellValue('C2', iconv('WINDOWS-1251', 'UTF-8', 'РџР°СЂРѕР»СЊ'));
 	$aSheet->getStyle('C2')->applyFromArray($baseFont);
 	$aSheet->getStyle('C2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('D2', iconv('WINDOWS-1251', 'UTF-8', 'Компания'));
+	$aSheet->setCellValue('D2', iconv('WINDOWS-1251', 'UTF-8', 'РљРѕРјРїР°РЅРёСЏ'));
 	$aSheet->getStyle('D2')->applyFromArray($baseFont);
 	$aSheet->getStyle('D2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('E2', iconv('WINDOWS-1251', 'UTF-8', 'Вид деятельности'));
+	$aSheet->setCellValue('E2', iconv('WINDOWS-1251', 'UTF-8', 'Р’РёРґ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё'));
 	$aSheet->getStyle('E2')->applyFromArray($baseFont);
 	$aSheet->getStyle('E2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('F2', iconv('WINDOWS-1251', 'UTF-8', 'Адрес'));
+	$aSheet->setCellValue('F2', iconv('WINDOWS-1251', 'UTF-8', 'РђРґСЂРµСЃ'));
 	$aSheet->getStyle('F2')->applyFromArray($baseFont);
 	$aSheet->getStyle('F2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('G2', iconv('WINDOWS-1251', 'UTF-8', 'Индекс'));
+	$aSheet->setCellValue('G2', iconv('WINDOWS-1251', 'UTF-8', 'РРЅРґРµРєСЃ'));
 	$aSheet->getStyle('G2')->applyFromArray($baseFont);
 	$aSheet->getStyle('G2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('H2', iconv('WINDOWS-1251', 'UTF-8', 'Город'));
+	$aSheet->setCellValue('H2', iconv('WINDOWS-1251', 'UTF-8', 'Р“РѕСЂРѕРґ'));
 	$aSheet->getStyle('H2')->applyFromArray($baseFont);
 	$aSheet->getStyle('H2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('I2', iconv('WINDOWS-1251', 'UTF-8', "Страна"));
+	$aSheet->setCellValue('I2', iconv('WINDOWS-1251', 'UTF-8', "РЎС‚СЂР°РЅР°"));
 	$aSheet->getStyle('I2')->applyFromArray($baseFont);
 	$aSheet->getStyle('I2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('J2', iconv('WINDOWS-1251', 'UTF-8', 'Описание компании'));
+	$aSheet->setCellValue('J2', iconv('WINDOWS-1251', 'UTF-8', 'РћРїРёСЃР°РЅРёРµ РєРѕРјРїР°РЅРёРё'));
 	$aSheet->getStyle('J2')->applyFromArray($baseFont);
 	$aSheet->getStyle('J2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('K2', iconv('WINDOWS-1251', 'UTF-8', 'Приоритетные направление'));
+	$aSheet->setCellValue('K2', iconv('WINDOWS-1251', 'UTF-8', 'РџСЂРёРѕСЂРёС‚РµС‚РЅС‹Рµ РЅР°РїСЂР°РІР»РµРЅРёРµ'));
 	$aSheet->getStyle('K2')->applyFromArray($baseFont);
 	$aSheet->getStyle('K2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('L2', iconv('WINDOWS-1251', 'UTF-8', 'Web-site компании'));
+	$aSheet->setCellValue('L2', iconv('WINDOWS-1251', 'UTF-8', 'Web-site РєРѕРјРїР°РЅРёРё'));
 	$aSheet->getStyle('L2')->applyFromArray($baseFont);
 	$aSheet->getStyle('L2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('M2', iconv('WINDOWS-1251', 'UTF-8', 'Имя Фамилия (коллега)'));
+	$aSheet->setCellValue('M2', iconv('WINDOWS-1251', 'UTF-8', 'РРјСЏ Р¤Р°РјРёР»РёСЏ (РєРѕР»Р»РµРіР°)'));
 	$aSheet->getStyle('M2')->applyFromArray($baseFont);
 	$aSheet->getStyle('M2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('N2', iconv('WINDOWS-1251', 'UTF-8', "Должность коллеги (на утро)"));
+	$aSheet->setCellValue('N2', iconv('WINDOWS-1251', 'UTF-8', "Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё (РЅР° СѓС‚СЂРѕ)"));
 	$aSheet->getStyle('N2')->applyFromArray($baseFont);
 	$aSheet->getStyle('N2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('O2', iconv('WINDOWS-1251', 'UTF-8', "Телефон (дублируем)"));
+	$aSheet->setCellValue('O2', iconv('WINDOWS-1251', 'UTF-8', "РўРµР»РµС„РѕРЅ (РґСѓР±Р»РёСЂСѓРµРј)"));
 	$aSheet->getStyle('O2')->applyFromArray($baseFont);
 	$aSheet->getStyle('O2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('P2', iconv('WINDOWS-1251', 'UTF-8', "E-mail коллеги (на утро)"));
+	$aSheet->setCellValue('P2', iconv('WINDOWS-1251', 'UTF-8', "E-mail РєРѕР»Р»РµРіРё (РЅР° СѓС‚СЂРѕ)"));
 	$aSheet->getStyle('P2')->applyFromArray($baseFont);
 	$aSheet->getStyle('P2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 	
@@ -2196,7 +2196,7 @@ if($type == 'yes'){
 		$aSheet->setCellValue('G'.$str, $mas['INDEX']);
 		$aSheet->setCellValue('H'.$str, $mas['CITY_COMP']);
 		$aSheet->setCellValue('I'.$str, iconv('WINDOWS-1251', 'UTF-8', $mas['COUNTRY_COMP']));
-		$mas['DESC_COMP'] = str_replace(' ', ' ', $mas['DESC_COMP']);//крокозябра
+		$mas['DESC_COMP'] = str_replace(' ', ' ', $mas['DESC_COMP']);//РєСЂРѕРєРѕР·СЏР±СЂР°
 		$aSheet->setCellValue('J'.$str, iconv('WINDOWS-1251', 'UTF-8', $mas['DESC_COMP']));
 		$aSheet->getStyle('J'.$str)->getAlignment()->setWrapText(1);
 		$aSheet->setCellValue('K'.$str, $mas['PR_NAPR_ALL']);
@@ -2220,7 +2220,7 @@ if($type == 'yes'){
 			$aSheet->setCellValue('G'.$str2, $mas['INDEX']);
 			$aSheet->setCellValue('H'.$str2, iconv('WINDOWS-1251', 'UTF-8', $mas['CITY_COMP']));
 			$aSheet->setCellValue('I'.$str2, $mas['COUNTRY_COMP']);
-			$mas['DESC_COMP'] = str_replace(' ', ' ', $mas['DESC_COMP']);//крокозябра
+			$mas['DESC_COMP'] = str_replace(' ', ' ', $mas['DESC_COMP']);//РєСЂРѕРєРѕР·СЏР±СЂР°
 			$aSheet->setCellValue('J'.$str2, iconv('WINDOWS-1251', 'UTF-8', $mas['DESC_COMP']));
 			$aSheet->getStyle('J'.$str2)->getAlignment()->setWrapText(1);
 			$aSheet->setCellValue('K'.$str2, $mas['PR_NAPR_ALL']);
@@ -2240,9 +2240,9 @@ if($type == 'yes'){
 	// Set active sheet index to the first sheet, so Excel opens this as the first sheet
 	$objPHPExcel->setActiveSheetIndex(0);
 	
-	// Redirect output to a client’s web browser (Excel5)
+	// Redirect output to a clientвЂ™s web browser (Excel5)
 	header('Content-Type: application/vnd.ms-excel');
-	header('Content-Disposition: attachment;filename="Гости Москва осень на утро (все люди).xls"');
+	header('Content-Disposition: attachment;filename="Р“РѕСЃС‚Рё РњРѕСЃРєРІР° РѕСЃРµРЅСЊ РЅР° СѓС‚СЂРѕ (РІСЃРµ Р»СЋРґРё).xls"');
 	header('Cache-Control: max-age=0');
 	// If you're serving to IE 9, then the following may be needed
 	header('Cache-Control: max-age=1');
@@ -2258,7 +2258,7 @@ if($type == 'yes'){
 	exit;
 }elseif($type == 'guests_hb'){
 	if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
-		//Все пользователи группы "Гости Москва осень подтвержденные" на утро
+		//Р’СЃРµ РїРѕР»СЊР·РѕРІР°С‚РµР»Рё РіСЂСѓРїРїС‹ "Р“РѕСЃС‚Рё РњРѕСЃРєРІР° РѕСЃРµРЅСЊ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ" РЅР° СѓС‚СЂРѕ
 		$userExelAr = array();
 		$exExelAr = array();
 		$exelAr = array();
@@ -2270,7 +2270,7 @@ if($type == 'yes'){
 			$exelAr[$i]['LOGIN']    = $arUser['LOGIN'];
 			$exelAr[$i]['PASSWORD'] = LuxorConfig::returnPas($arUser['UF_PAS']);
 			
-			//результат формы "Участники данные компании ВСЕ ВЫСТАВКИ"
+			//СЂРµР·СѓР»СЊС‚Р°С‚ С„РѕСЂРјС‹ "РЈС‡Р°СЃС‚РЅРёРєРё РґР°РЅРЅС‹Рµ РєРѕРјРїР°РЅРёРё Р’РЎР• Р’Р«РЎРўРђР’РљР"
 			if($arUser['UF_ID_COMP'] != ''){
 				LuxorConfig::getAnswerFormSimple(
 					10, 
@@ -2303,18 +2303,18 @@ if($type == 'yes'){
 			}
 			
 
-			//Вид деятельности
+			//Р’РёРґ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё
 			foreach($v['SIMPLE_QUESTION_677'] as $ar){
 				$exelAr[$i]['VID_D'][] = $ar['ANSWER_TEXT'];
 			}
 			
-			//коллега
+			//РєРѕР»Р»РµРіР°
 			$exelAr[$i]['COLLEGA_NAME']     = $v['SIMPLE_QUESTION_816'][0]['USER_TEXT'];
 			$exelAr[$i]['COLLEGA_L_NAME']   = $v['SIMPLE_QUESTION_596'][0]['USER_TEXT'];
 			$exelAr[$i]['COLLEGA_JOB']      = $v['SIMPLE_QUESTION_304'][0]['USER_TEXT'];
 			$exelAr[$i]['COLLEGA_MAIL']     = $v['SIMPLE_QUESTION_278'][0]['USER_TEXT'];
 			
-			//Приоритетные направления
+			//РџСЂРёРѕСЂРёС‚РµС‚РЅС‹Рµ РЅР°РїСЂР°РІР»РµРЅРёСЏ
 			//Europe
 			foreach($v['SIMPLE_QUESTION_244'] as $ar){
 				$exelAr[$i]['PR_NAPR'][] = $ar['ANSWER_TEXT'];
@@ -2392,61 +2392,61 @@ if($type == 'yes'){
 	$aSheet->setCellValue('A1', 'uID');
 	$aSheet->getStyle('A1')->applyFromArray($baseFont);
 	$aSheet->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('B1', iconv('WINDOWS-1251', 'UTF-8', 'Логин'));
+	$aSheet->setCellValue('B1', iconv('WINDOWS-1251', 'UTF-8', 'Р›РѕРіРёРЅ'));
 	$aSheet->getStyle('B1')->applyFromArray($baseFont);
 	$aSheet->getStyle('B1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('C1', iconv('WINDOWS-1251', 'UTF-8', 'Пароль'));
+	$aSheet->setCellValue('C1', iconv('WINDOWS-1251', 'UTF-8', 'РџР°СЂРѕР»СЊ'));
 	$aSheet->getStyle('C1')->applyFromArray($baseFont);
 	$aSheet->getStyle('C1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('D1', iconv('WINDOWS-1251', 'UTF-8', 'Компания'));
+	$aSheet->setCellValue('D1', iconv('WINDOWS-1251', 'UTF-8', 'РљРѕРјРїР°РЅРёСЏ'));
 	$aSheet->getStyle('D1')->applyFromArray($baseFont);
 	$aSheet->getStyle('D1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('E1', iconv('WINDOWS-1251', 'UTF-8', 'Вид деятельности'));
+	$aSheet->setCellValue('E1', iconv('WINDOWS-1251', 'UTF-8', 'Р’РёРґ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё'));
 	$aSheet->getStyle('E1')->applyFromArray($baseFont);
 	$aSheet->getStyle('E1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('F1', iconv('WINDOWS-1251', 'UTF-8', 'Адрес'));
+	$aSheet->setCellValue('F1', iconv('WINDOWS-1251', 'UTF-8', 'РђРґСЂРµСЃ'));
 	$aSheet->getStyle('F1')->applyFromArray($baseFont);
 	$aSheet->getStyle('F1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('G1', iconv('WINDOWS-1251', 'UTF-8', 'Индекс'));
+	$aSheet->setCellValue('G1', iconv('WINDOWS-1251', 'UTF-8', 'РРЅРґРµРєСЃ'));
 	$aSheet->getStyle('G1')->applyFromArray($baseFont);
 	$aSheet->getStyle('G1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('H1', iconv('WINDOWS-1251', 'UTF-8', 'Город'));
+	$aSheet->setCellValue('H1', iconv('WINDOWS-1251', 'UTF-8', 'Р“РѕСЂРѕРґ'));
 	$aSheet->getStyle('H1')->applyFromArray($baseFont);
 	$aSheet->getStyle('H1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('I1', iconv('WINDOWS-1251', 'UTF-8', "Страна"));
+	$aSheet->setCellValue('I1', iconv('WINDOWS-1251', 'UTF-8', "РЎС‚СЂР°РЅР°"));
 	$aSheet->getStyle('I1')->applyFromArray($baseFont);
 	$aSheet->getStyle('I1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('J1', iconv('WINDOWS-1251', 'UTF-8', 'Имя Фамилия'));
+	$aSheet->setCellValue('J1', iconv('WINDOWS-1251', 'UTF-8', 'РРјСЏ Р¤Р°РјРёР»РёСЏ'));
 	$aSheet->getStyle('J1')->applyFromArray($baseFont);
 	$aSheet->getStyle('J1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('K1', iconv('WINDOWS-1251', 'UTF-8', "Должность"));
+	$aSheet->setCellValue('K1', iconv('WINDOWS-1251', 'UTF-8', "Р”РѕР»Р¶РЅРѕСЃС‚СЊ"));
 	$aSheet->getStyle('K1')->applyFromArray($baseFont);
 	$aSheet->getStyle('K1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('L1', iconv('WINDOWS-1251', 'UTF-8', "Телефон"));
+	$aSheet->setCellValue('L1', iconv('WINDOWS-1251', 'UTF-8', "РўРµР»РµС„РѕРЅ"));
 	$aSheet->getStyle('L1')->applyFromArray($baseFont);
 	$aSheet->getStyle('L1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 	$aSheet->setCellValue('M1', iconv('WINDOWS-1251', 'UTF-8', "E-mail"));
 	$aSheet->getStyle('M1')->applyFromArray($baseFont);
 	$aSheet->getStyle('M1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('N1', iconv('WINDOWS-1251', 'UTF-8', "Web-site компании"));
+	$aSheet->setCellValue('N1', iconv('WINDOWS-1251', 'UTF-8', "Web-site РєРѕРјРїР°РЅРёРё"));
 	$aSheet->getStyle('N1')->applyFromArray($baseFont);
 	$aSheet->getStyle('N1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('O1', iconv('WINDOWS-1251', 'UTF-8', "Приоритетные направления"));
+	$aSheet->setCellValue('O1', iconv('WINDOWS-1251', 'UTF-8', "РџСЂРёРѕСЂРёС‚РµС‚РЅС‹Рµ РЅР°РїСЂР°РІР»РµРЅРёСЏ"));
 	$aSheet->getStyle('O1')->applyFromArray($baseFont);
 	$aSheet->getStyle('O1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('P1', iconv('WINDOWS-1251', 'UTF-8', "Описание компании"));
+	$aSheet->setCellValue('P1', iconv('WINDOWS-1251', 'UTF-8', "РћРїРёСЃР°РЅРёРµ РєРѕРјРїР°РЅРёРё"));
 	$aSheet->getStyle('P1')->applyFromArray($baseFont);
 	$aSheet->getStyle('P1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('Q1', iconv('WINDOWS-1251', 'UTF-8', "Имя коллеги (на утро)"));
+	$aSheet->setCellValue('Q1', iconv('WINDOWS-1251', 'UTF-8', "РРјСЏ РєРѕР»Р»РµРіРё (РЅР° СѓС‚СЂРѕ)"));
 	$aSheet->getStyle('Q1')->applyFromArray($baseFont);
 	$aSheet->getStyle('Q1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('R1', iconv('WINDOWS-1251', 'UTF-8', "Фамилия коллеги (на утро)"));
+	$aSheet->setCellValue('R1', iconv('WINDOWS-1251', 'UTF-8', "Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё (РЅР° СѓС‚СЂРѕ)"));
 	$aSheet->getStyle('R1')->applyFromArray($baseFont);
 	$aSheet->getStyle('R1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('S1', iconv('WINDOWS-1251', 'UTF-8', "Должность коллеги (на утро)"));
+	$aSheet->setCellValue('S1', iconv('WINDOWS-1251', 'UTF-8', "Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё (РЅР° СѓС‚СЂРѕ)"));
 	$aSheet->getStyle('S1')->applyFromArray($baseFont);
 	$aSheet->getStyle('S1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('T1', iconv('WINDOWS-1251', 'UTF-8', "E-mail коллеги (на утро)"));
+	$aSheet->setCellValue('T1', iconv('WINDOWS-1251', 'UTF-8', "E-mail РєРѕР»Р»РµРіРё (РЅР° СѓС‚СЂРѕ)"));
 	$aSheet->getStyle('T1')->applyFromArray($baseFont);
 	$aSheet->getStyle('T1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 
@@ -2473,7 +2473,7 @@ if($type == 'yes'){
 		$aSheet->setCellValue('N'.$str, $mas['SITE']);
 		$aSheet->setCellValue('O'.$str, $mas['PR_NAPR_ALL']);
 		$aSheet->getStyle('O'.$str)->getAlignment()->setWrapText(1);
-		$mas['DESC_COMP'] = str_replace(' ', ' ', $mas['DESC_COMP']);//крокозябра
+		$mas['DESC_COMP'] = str_replace(' ', ' ', $mas['DESC_COMP']);//РєСЂРѕРєРѕР·СЏР±СЂР°
 		$aSheet->setCellValue('P'.$str, iconv('WINDOWS-1251', 'UTF-8', $mas['DESC_COMP']));
 		$aSheet->getStyle('P'.$str)->getAlignment()->setWrapText(1);
 		$aSheet->setCellValue('Q'.$str, $mas['COLLEGA_NAME']);
@@ -2489,9 +2489,9 @@ if($type == 'yes'){
 	// Set active sheet index to the first sheet, so Excel opens this as the first sheet
 	$objPHPExcel->setActiveSheetIndex(0);
 	
-	// Redirect output to a client’s web browser (Excel5)
+	// Redirect output to a clientвЂ™s web browser (Excel5)
 	header('Content-Type: application/vnd.ms-excel');
-	header('Content-Disposition: attachment;filename="Гости Москва осень (Hosted Buyers).xls"');
+	header('Content-Disposition: attachment;filename="Р“РѕСЃС‚Рё РњРѕСЃРєРІР° РѕСЃРµРЅСЊ (Hosted Buyers).xls"');
 	header('Cache-Control: max-age=0');
 	// If you're serving to IE 9, then the following may be needed
 	header('Cache-Control: max-age=1');
@@ -2507,7 +2507,7 @@ if($type == 'yes'){
 	exit;
 }elseif($type == 'guests_hb_all'){
 	if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
-		//Все пользователи группы "Гости Москва Весна подтвержденные" на утро
+		//Р’СЃРµ РїРѕР»СЊР·РѕРІР°С‚РµР»Рё РіСЂСѓРїРїС‹ "Р“РѕСЃС‚Рё РњРѕСЃРєРІР° Р’РµСЃРЅР° РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ" РЅР° СѓС‚СЂРѕ
 		$userExelAr = array();
 		$exExelAr = array();
 		$exelAr = array();
@@ -2519,7 +2519,7 @@ if($type == 'yes'){
 			$exelAr[$i]['LOGIN']    = $arUser['LOGIN'];
 			$exelAr[$i]['PASSWORD'] = LuxorConfig::returnPas($arUser['UF_PAS']);
 			
-			//результат формы "Участники данные компании ВСЕ ВЫСТАВКИ"
+			//СЂРµР·СѓР»СЊС‚Р°С‚ С„РѕСЂРјС‹ "РЈС‡Р°СЃС‚РЅРёРєРё РґР°РЅРЅС‹Рµ РєРѕРјРїР°РЅРёРё Р’РЎР• Р’Р«РЎРўРђР’РљР"
 			if($arUser['UF_ID_COMP'] != ''){
 				LuxorConfig::getAnswerFormSimple(
 					10,  
@@ -2552,19 +2552,19 @@ if($type == 'yes'){
 			}
 			
 
-			//Вид деятельности
+			//Р’РёРґ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё
 			foreach($v['SIMPLE_QUESTION_677'] as $ar){
 				$exelAr[$i]['VID_D'][] = $ar['ANSWER_TEXT'];
 			}
 			
-			//коллега
+			//РєРѕР»Р»РµРіР°
 			$exelAr[$i]['COLLEGA_NAME']     = $v['SIMPLE_QUESTION_816'][0]['USER_TEXT'];
 			//$exelAr[$i]['COLLEGA_L_NAME']   = $v['SIMPLE_QUESTION_596'][0]['USER_TEXT'];
 			$exelAr[$i]['COLLEGA_F_NAME']     = $v['SIMPLE_QUESTION_816'][0]['USER_TEXT'].' '.$v['SIMPLE_QUESTION_596'][0]['USER_TEXT'];
 			$exelAr[$i]['COLLEGA_JOB']      = $v['SIMPLE_QUESTION_304'][0]['USER_TEXT'];
 			$exelAr[$i]['COLLEGA_MAIL']     = $v['SIMPLE_QUESTION_278'][0]['USER_TEXT'];
 			
-			//Приоритетные направления
+			//РџСЂРёРѕСЂРёС‚РµС‚РЅС‹Рµ РЅР°РїСЂР°РІР»РµРЅРёСЏ
 			//Europe
 			foreach($v['SIMPLE_QUESTION_244'] as $ar){
 				$exelAr[$i]['PR_NAPR'][] = $ar['ANSWER_TEXT'];
@@ -2643,43 +2643,43 @@ if($type == 'yes'){
 	$aSheet->setCellValue('A1', 'uID');
 	$aSheet->getStyle('A1')->applyFromArray($baseFont);
 	$aSheet->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('B1', iconv('WINDOWS-1251', 'UTF-8', 'Логин'));
+	$aSheet->setCellValue('B1', iconv('WINDOWS-1251', 'UTF-8', 'Р›РѕРіРёРЅ'));
 	$aSheet->getStyle('B1')->applyFromArray($baseFont);
 	$aSheet->getStyle('B1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('C1', iconv('WINDOWS-1251', 'UTF-8', 'Пароль'));
+	$aSheet->setCellValue('C1', iconv('WINDOWS-1251', 'UTF-8', 'РџР°СЂРѕР»СЊ'));
 	$aSheet->getStyle('C1')->applyFromArray($baseFont);
 	$aSheet->getStyle('C1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('D1', iconv('WINDOWS-1251', 'UTF-8', 'Компания'));
+	$aSheet->setCellValue('D1', iconv('WINDOWS-1251', 'UTF-8', 'РљРѕРјРїР°РЅРёСЏ'));
 	$aSheet->getStyle('D1')->applyFromArray($baseFont);
 	$aSheet->getStyle('D1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('E1', iconv('WINDOWS-1251', 'UTF-8', 'Вид деятельности'));
+	$aSheet->setCellValue('E1', iconv('WINDOWS-1251', 'UTF-8', 'Р’РёРґ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё'));
 	$aSheet->getStyle('E1')->applyFromArray($baseFont);
 	$aSheet->getStyle('E1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('F1', iconv('WINDOWS-1251', 'UTF-8', 'Адрес'));
+	$aSheet->setCellValue('F1', iconv('WINDOWS-1251', 'UTF-8', 'РђРґСЂРµСЃ'));
 	$aSheet->getStyle('F1')->applyFromArray($baseFont);
 	$aSheet->getStyle('F1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('G1', iconv('WINDOWS-1251', 'UTF-8', 'Индекс'));
+	$aSheet->setCellValue('G1', iconv('WINDOWS-1251', 'UTF-8', 'РРЅРґРµРєСЃ'));
 	$aSheet->getStyle('G1')->applyFromArray($baseFont);
 	$aSheet->getStyle('G1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('H1', iconv('WINDOWS-1251', 'UTF-8', 'Город'));
+	$aSheet->setCellValue('H1', iconv('WINDOWS-1251', 'UTF-8', 'Р“РѕСЂРѕРґ'));
 	$aSheet->getStyle('H1')->applyFromArray($baseFont);
 	$aSheet->getStyle('H1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('I1', iconv('WINDOWS-1251', 'UTF-8', "Страна"));
+	$aSheet->setCellValue('I1', iconv('WINDOWS-1251', 'UTF-8', "РЎС‚СЂР°РЅР°"));
 	$aSheet->getStyle('I1')->applyFromArray($baseFont);
 	$aSheet->getStyle('I1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('J1', iconv('WINDOWS-1251', 'UTF-8', 'Описание компании'));
+	$aSheet->setCellValue('J1', iconv('WINDOWS-1251', 'UTF-8', 'РћРїРёСЃР°РЅРёРµ РєРѕРјРїР°РЅРёРё'));
 	$aSheet->getStyle('J1')->applyFromArray($baseFont);
 	$aSheet->getStyle('J1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('K1', iconv('WINDOWS-1251', 'UTF-8', 'Web-site компании'));
+	$aSheet->setCellValue('K1', iconv('WINDOWS-1251', 'UTF-8', 'Web-site РєРѕРјРїР°РЅРёРё'));
 	$aSheet->getStyle('K1')->applyFromArray($baseFont);
 	$aSheet->getStyle('K1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('L1', iconv('WINDOWS-1251', 'UTF-8', 'Имя Фамилия'));
+	$aSheet->setCellValue('L1', iconv('WINDOWS-1251', 'UTF-8', 'РРјСЏ Р¤Р°РјРёР»РёСЏ'));
 	$aSheet->getStyle('L1')->applyFromArray($baseFont);
 	$aSheet->getStyle('L1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('M1', iconv('WINDOWS-1251', 'UTF-8', "Должность"));
+	$aSheet->setCellValue('M1', iconv('WINDOWS-1251', 'UTF-8', "Р”РѕР»Р¶РЅРѕСЃС‚СЊ"));
 	$aSheet->getStyle('M1')->applyFromArray($baseFont);
 	$aSheet->getStyle('M1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('N1', iconv('WINDOWS-1251', 'UTF-8', "Телефон"));
+	$aSheet->setCellValue('N1', iconv('WINDOWS-1251', 'UTF-8', "РўРµР»РµС„РѕРЅ"));
 	$aSheet->getStyle('N1')->applyFromArray($baseFont);
 	$aSheet->getStyle('N1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 	$aSheet->setCellValue('O1', iconv('WINDOWS-1251', 'UTF-8', "E-mail"));
@@ -2689,46 +2689,46 @@ if($type == 'yes'){
 	$aSheet->setCellValue('A2', 'uID');
 	$aSheet->getStyle('A2')->applyFromArray($baseFont);
 	$aSheet->getStyle('A2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('B2', iconv('WINDOWS-1251', 'UTF-8', 'Логин'));
+	$aSheet->setCellValue('B2', iconv('WINDOWS-1251', 'UTF-8', 'Р›РѕРіРёРЅ'));
 	$aSheet->getStyle('B2')->applyFromArray($baseFont);
 	$aSheet->getStyle('B2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('C2', iconv('WINDOWS-1251', 'UTF-8', 'Пароль'));
+	$aSheet->setCellValue('C2', iconv('WINDOWS-1251', 'UTF-8', 'РџР°СЂРѕР»СЊ'));
 	$aSheet->getStyle('C2')->applyFromArray($baseFont);
 	$aSheet->getStyle('C2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('D2', iconv('WINDOWS-1251', 'UTF-8', 'Компания'));
+	$aSheet->setCellValue('D2', iconv('WINDOWS-1251', 'UTF-8', 'РљРѕРјРїР°РЅРёСЏ'));
 	$aSheet->getStyle('D2')->applyFromArray($baseFont);
 	$aSheet->getStyle('D2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('E2', iconv('WINDOWS-1251', 'UTF-8', 'Вид деятельности'));
+	$aSheet->setCellValue('E2', iconv('WINDOWS-1251', 'UTF-8', 'Р’РёРґ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё'));
 	$aSheet->getStyle('E2')->applyFromArray($baseFont);
 	$aSheet->getStyle('E2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('F2', iconv('WINDOWS-1251', 'UTF-8', 'Адрес'));
+	$aSheet->setCellValue('F2', iconv('WINDOWS-1251', 'UTF-8', 'РђРґСЂРµСЃ'));
 	$aSheet->getStyle('F2')->applyFromArray($baseFont);
 	$aSheet->getStyle('F2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('G2', iconv('WINDOWS-1251', 'UTF-8', 'Индекс'));
+	$aSheet->setCellValue('G2', iconv('WINDOWS-1251', 'UTF-8', 'РРЅРґРµРєСЃ'));
 	$aSheet->getStyle('G2')->applyFromArray($baseFont);
 	$aSheet->getStyle('G2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('H2', iconv('WINDOWS-1251', 'UTF-8', 'Город'));
+	$aSheet->setCellValue('H2', iconv('WINDOWS-1251', 'UTF-8', 'Р“РѕСЂРѕРґ'));
 	$aSheet->getStyle('H2')->applyFromArray($baseFont);
 	$aSheet->getStyle('H2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('I2', iconv('WINDOWS-1251', 'UTF-8', "Страна"));
+	$aSheet->setCellValue('I2', iconv('WINDOWS-1251', 'UTF-8', "РЎС‚СЂР°РЅР°"));
 	$aSheet->getStyle('I2')->applyFromArray($baseFont);
 	$aSheet->getStyle('I2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('J2', iconv('WINDOWS-1251', 'UTF-8', 'Описание компании'));
+	$aSheet->setCellValue('J2', iconv('WINDOWS-1251', 'UTF-8', 'РћРїРёСЃР°РЅРёРµ РєРѕРјРїР°РЅРёРё'));
 	$aSheet->getStyle('J2')->applyFromArray($baseFont);
 	$aSheet->getStyle('J2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('K2', iconv('WINDOWS-1251', 'UTF-8', 'Web-site компании'));
+	$aSheet->setCellValue('K2', iconv('WINDOWS-1251', 'UTF-8', 'Web-site РєРѕРјРїР°РЅРёРё'));
 	$aSheet->getStyle('K2')->applyFromArray($baseFont);
 	$aSheet->getStyle('K2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('L2', iconv('WINDOWS-1251', 'UTF-8', 'Имя Фамилия (коллега)'));
+	$aSheet->setCellValue('L2', iconv('WINDOWS-1251', 'UTF-8', 'РРјСЏ Р¤Р°РјРёР»РёСЏ (РєРѕР»Р»РµРіР°)'));
 	$aSheet->getStyle('L2')->applyFromArray($baseFont);
 	$aSheet->getStyle('L2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('M2', iconv('WINDOWS-1251', 'UTF-8', "Должность коллеги (на утро)"));
+	$aSheet->setCellValue('M2', iconv('WINDOWS-1251', 'UTF-8', "Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё (РЅР° СѓС‚СЂРѕ)"));
 	$aSheet->getStyle('M2')->applyFromArray($baseFont);
 	$aSheet->getStyle('M2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('N2', iconv('WINDOWS-1251', 'UTF-8', "Телефон (дублируем)"));
+	$aSheet->setCellValue('N2', iconv('WINDOWS-1251', 'UTF-8', "РўРµР»РµС„РѕРЅ (РґСѓР±Р»РёСЂСѓРµРј)"));
 	$aSheet->getStyle('N2')->applyFromArray($baseFont);
 	$aSheet->getStyle('N2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('O2', iconv('WINDOWS-1251', 'UTF-8', "E-mail коллеги (на утро)"));
+	$aSheet->setCellValue('O2', iconv('WINDOWS-1251', 'UTF-8', "E-mail РєРѕР»Р»РµРіРё (РЅР° СѓС‚СЂРѕ)"));
 	$aSheet->getStyle('O2')->applyFromArray($baseFont);
 	$aSheet->getStyle('O2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 	
@@ -2750,7 +2750,7 @@ if($type == 'yes'){
 		$aSheet->setCellValue('G'.$str, $mas['INDEX']);
 		$aSheet->setCellValue('H'.$str, $mas['CITY_COMP']);
 		$aSheet->setCellValue('I'.$str, $mas['COUNTRY_COMP']);
-		$mas['DESC_COMP'] = str_replace(' ', ' ', $mas['DESC_COMP']);//крокозябра
+		$mas['DESC_COMP'] = str_replace(' ', ' ', $mas['DESC_COMP']);//РєСЂРѕРєРѕР·СЏР±СЂР°
 		$aSheet->setCellValue('J'.$str, iconv('WINDOWS-1251', 'UTF-8', $mas['DESC_COMP']));
 		$aSheet->getStyle('J'.$str)->getAlignment()->setWrapText(1);
 		$aSheet->setCellValue('K'.$str, $mas['SITE']);
@@ -2772,7 +2772,7 @@ if($type == 'yes'){
 			$aSheet->setCellValue('G'.$str2, $mas['INDEX']);
 			$aSheet->setCellValue('H'.$str2, $mas['CITY_COMP']);
 			$aSheet->setCellValue('I'.$str2, $mas['COUNTRY_COMP']);
-			$mas['DESC_COMP'] = str_replace(' ', ' ', $mas['DESC_COMP']);//крокозябра
+			$mas['DESC_COMP'] = str_replace(' ', ' ', $mas['DESC_COMP']);//РєСЂРѕРєРѕР·СЏР±СЂР°
 			$aSheet->setCellValue('J'.$str2, iconv('WINDOWS-1251', 'UTF-8', $mas['DESC_COMP']));
 			$aSheet->getStyle('J'.$str2)->getAlignment()->setWrapText(1);
 			$aSheet->setCellValue('K'.$str2, $mas['SITE']);
@@ -2790,9 +2790,9 @@ if($type == 'yes'){
 	// Set active sheet index to the first sheet, so Excel opens this as the first sheet
 	$objPHPExcel->setActiveSheetIndex(0);
 	
-	// Redirect output to a client’s web browser (Excel5)
+	// Redirect output to a clientвЂ™s web browser (Excel5)
 	header('Content-Type: application/vnd.ms-excel');
-	header('Content-Disposition: attachment;filename="Гости Москва осень Hosted Buyers (все люди).xls"');
+	header('Content-Disposition: attachment;filename="Р“РѕСЃС‚Рё РњРѕСЃРєРІР° РѕСЃРµРЅСЊ Hosted Buyers (РІСЃРµ Р»СЋРґРё).xls"');
 	header('Cache-Control: max-age=0');
 	// If you're serving to IE 9, then the following may be needed
 	header('Cache-Control: max-age=1');
@@ -2808,7 +2808,7 @@ if($type == 'yes'){
 	exit;
 }elseif($type == 'guests_ev'){
 	if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
-		//Все пользователи группы "Гости Москва осень подтвержденные" на утро
+		//Р’СЃРµ РїРѕР»СЊР·РѕРІР°С‚РµР»Рё РіСЂСѓРїРїС‹ "Р“РѕСЃС‚Рё РњРѕСЃРєРІР° РѕСЃРµРЅСЊ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ" РЅР° СѓС‚СЂРѕ
 		$userExelAr = array();
 		$exExelAr = array();
 		$exelAr = array();
@@ -2820,7 +2820,7 @@ if($type == 'yes'){
 			$exelAr[$i]['LOGIN']    = $arUser['LOGIN'];
 			$exelAr[$i]['PASSWORD'] = LuxorConfig::returnPas($arUser['UF_PAS']);
 
-			//результат формы "Участники данные компании ВСЕ ВЫСТАВКИ"
+			//СЂРµР·СѓР»СЊС‚Р°С‚ С„РѕСЂРјС‹ "РЈС‡Р°СЃС‚РЅРёРєРё РґР°РЅРЅС‹Рµ РєРѕРјРїР°РЅРёРё Р’РЎР• Р’Р«РЎРўРђР’РљР"
 			if($arUser['UF_ID_COMP'] != ''){
 				LuxorConfig::getAnswerFormSimple(
 					10, 
@@ -2853,76 +2853,76 @@ if($type == 'yes'){
 			}
 			
 
-			//Вид деятельности
+			//Р’РёРґ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё
 			foreach($v['SIMPLE_QUESTION_677'] as $ar){
 				$exelAr[$i]['VID_D'][] = $ar['ANSWER_TEXT'];
 			}
 			
-			//коллега
-			if($v['SIMPLE_QUESTION_367'][0]['USER_TEXT'] == 'Имя коллеги'){
+			//РєРѕР»Р»РµРіР°
+			if($v['SIMPLE_QUESTION_367'][0]['USER_TEXT'] == 'РРјСЏ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_NAME']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_NAME']     = $v['SIMPLE_QUESTION_367'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_482'][0]['USER_TEXT'] == 'Фамилия коллеги'){
+			if($v['SIMPLE_QUESTION_482'][0]['USER_TEXT'] == 'Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_L_NAME']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_L_NAME']     = $v['SIMPLE_QUESTION_482'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_187'][0]['USER_TEXT'] == 'Должность коллеги'){
+			if($v['SIMPLE_QUESTION_187'][0]['USER_TEXT'] == 'Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_JOB']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_JOB']     = $v['SIMPLE_QUESTION_187'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_421'][0]['USER_TEXT'] == 'E-mail коллеги'){
+			if($v['SIMPLE_QUESTION_421'][0]['USER_TEXT'] == 'E-mail РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_MAIL']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_MAIL']     = $v['SIMPLE_QUESTION_421'][0]['USER_TEXT'];
 			}
-			//коллега 2
-			if($v['SIMPLE_QUESTION_225'][0]['USER_TEXT'] == 'Имя коллеги'){
+			//РєРѕР»Р»РµРіР° 2
+			if($v['SIMPLE_QUESTION_225'][0]['USER_TEXT'] == 'РРјСЏ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_NAME2']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_NAME2']     = $v['SIMPLE_QUESTION_225'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_770'][0]['USER_TEXT'] == 'Фамилия коллеги'){
+			if($v['SIMPLE_QUESTION_770'][0]['USER_TEXT'] == 'Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_L_NAME2']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_L_NAME2']     = $v['SIMPLE_QUESTION_770'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_280'][0]['USER_TEXT'] == 'Должность коллеги'){
+			if($v['SIMPLE_QUESTION_280'][0]['USER_TEXT'] == 'Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_JOB2']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_JOB2']     = $v['SIMPLE_QUESTION_280'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_384'][0]['USER_TEXT'] == 'E-mail коллеги'){
+			if($v['SIMPLE_QUESTION_384'][0]['USER_TEXT'] == 'E-mail РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_MAIL2']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_MAIL2']     = $v['SIMPLE_QUESTION_384'][0]['USER_TEXT'];
 			}
-			//коллега 3
-			if($v['SIMPLE_QUESTION_765'][0]['USER_TEXT'] == 'Имя коллеги'){
+			//РєРѕР»Р»РµРіР° 3
+			if($v['SIMPLE_QUESTION_765'][0]['USER_TEXT'] == 'РРјСЏ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_NAME3']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_NAME3']     = $v['SIMPLE_QUESTION_765'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_627'][0]['USER_TEXT'] == 'Фамилия коллеги'){
+			if($v['SIMPLE_QUESTION_627'][0]['USER_TEXT'] == 'Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_L_NAME3']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_L_NAME3']     = $v['SIMPLE_QUESTION_627'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_788'][0]['USER_TEXT'] == 'Должность коллеги'){
+			if($v['SIMPLE_QUESTION_788'][0]['USER_TEXT'] == 'Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_JOB3']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_JOB3']     = $v['SIMPLE_QUESTION_788'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_230'][0]['USER_TEXT'] == 'E-mail коллеги'){
+			if($v['SIMPLE_QUESTION_230'][0]['USER_TEXT'] == 'E-mail РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_MAIL3']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_MAIL3']     = $v['SIMPLE_QUESTION_230'][0]['USER_TEXT'];
 			}
 			
-			//Приоритетные направления
+			//РџСЂРёРѕСЂРёС‚РµС‚РЅС‹Рµ РЅР°РїСЂР°РІР»РµРЅРёСЏ
 			//Europe
 			foreach($v['SIMPLE_QUESTION_244'] as $ar){
 				$exelAr[$i]['PR_NAPR'][] = $ar['ANSWER_TEXT'];
@@ -3005,73 +3005,73 @@ if($type == 'yes'){
 	$aSheet->setCellValue('A1', 'uID');
 	$aSheet->getStyle('A1')->applyFromArray($baseFont);
 	$aSheet->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('B1', iconv('WINDOWS-1251', 'UTF-8', 'Название компании'));
+	$aSheet->setCellValue('B1', iconv('WINDOWS-1251', 'UTF-8', 'РќР°Р·РІР°РЅРёРµ РєРѕРјРїР°РЅРёРё'));
 	$aSheet->getStyle('B1')->applyFromArray($baseFont);
 	$aSheet->getStyle('B1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('C1', iconv('WINDOWS-1251', 'UTF-8', 'Вид деятельности'));
+	$aSheet->setCellValue('C1', iconv('WINDOWS-1251', 'UTF-8', 'Р’РёРґ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё'));
 	$aSheet->getStyle('C1')->applyFromArray($baseFont);
 	$aSheet->getStyle('C1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('D1', iconv('WINDOWS-1251', 'UTF-8', 'Адрес'));
+	$aSheet->setCellValue('D1', iconv('WINDOWS-1251', 'UTF-8', 'РђРґСЂРµСЃ'));
 	$aSheet->getStyle('D1')->applyFromArray($baseFont);
 	$aSheet->getStyle('D1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('E1', iconv('WINDOWS-1251', 'UTF-8', 'Индекс'));
+	$aSheet->setCellValue('E1', iconv('WINDOWS-1251', 'UTF-8', 'РРЅРґРµРєСЃ'));
 	$aSheet->getStyle('E1')->applyFromArray($baseFont);
 	$aSheet->getStyle('E1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('F1', iconv('WINDOWS-1251', 'UTF-8', 'Город'));
+	$aSheet->setCellValue('F1', iconv('WINDOWS-1251', 'UTF-8', 'Р“РѕСЂРѕРґ'));
 	$aSheet->getStyle('F1')->applyFromArray($baseFont);
 	$aSheet->getStyle('F1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('G1', iconv('WINDOWS-1251', 'UTF-8', "Страна"));
+	$aSheet->setCellValue('G1', iconv('WINDOWS-1251', 'UTF-8', "РЎС‚СЂР°РЅР°"));
 	$aSheet->getStyle('G1')->applyFromArray($baseFont);
 	$aSheet->getStyle('G1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('H1', iconv('WINDOWS-1251', 'UTF-8', 'Имя Фамилия'));
+	$aSheet->setCellValue('H1', iconv('WINDOWS-1251', 'UTF-8', 'РРјСЏ Р¤Р°РјРёР»РёСЏ'));
 	$aSheet->getStyle('H1')->applyFromArray($baseFont);
 	$aSheet->getStyle('H1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('I1', iconv('WINDOWS-1251', 'UTF-8', "Должность"));
+	$aSheet->setCellValue('I1', iconv('WINDOWS-1251', 'UTF-8', "Р”РѕР»Р¶РЅРѕСЃС‚СЊ"));
 	$aSheet->getStyle('I1')->applyFromArray($baseFont);
 	$aSheet->getStyle('I1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('J1', iconv('WINDOWS-1251', 'UTF-8', "Телефон"));
+	$aSheet->setCellValue('J1', iconv('WINDOWS-1251', 'UTF-8', "РўРµР»РµС„РѕРЅ"));
 	$aSheet->getStyle('J1')->applyFromArray($baseFont);
 	$aSheet->getStyle('J1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 	$aSheet->setCellValue('K1', iconv('WINDOWS-1251', 'UTF-8', "E-mail"));
 	$aSheet->getStyle('K1')->applyFromArray($baseFont);
 	$aSheet->getStyle('K1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('L1', iconv('WINDOWS-1251', 'UTF-8', "Web-site компании"));
+	$aSheet->setCellValue('L1', iconv('WINDOWS-1251', 'UTF-8', "Web-site РєРѕРјРїР°РЅРёРё"));
 	$aSheet->getStyle('L1')->applyFromArray($baseFont);
 	$aSheet->getStyle('L1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('M1', iconv('WINDOWS-1251', 'UTF-8', "Имя коллеги 1"));
+	$aSheet->setCellValue('M1', iconv('WINDOWS-1251', 'UTF-8', "РРјСЏ РєРѕР»Р»РµРіРё 1"));
 	$aSheet->getStyle('M1')->applyFromArray($baseFont);
 	$aSheet->getStyle('M1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('N1', iconv('WINDOWS-1251', 'UTF-8', "Фамилия коллеги 1"));
+	$aSheet->setCellValue('N1', iconv('WINDOWS-1251', 'UTF-8', "Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё 1"));
 	$aSheet->getStyle('N1')->applyFromArray($baseFont);
 	$aSheet->getStyle('N1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('O1', iconv('WINDOWS-1251', 'UTF-8', "Должность коллеги 1"));
+	$aSheet->setCellValue('O1', iconv('WINDOWS-1251', 'UTF-8', "Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё 1"));
 	$aSheet->getStyle('O1')->applyFromArray($baseFont);
 	$aSheet->getStyle('O1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('P1', iconv('WINDOWS-1251', 'UTF-8', "E-mail коллеги 1"));
+	$aSheet->setCellValue('P1', iconv('WINDOWS-1251', 'UTF-8', "E-mail РєРѕР»Р»РµРіРё 1"));
 	$aSheet->getStyle('P1')->applyFromArray($baseFont);
 	$aSheet->getStyle('P1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('Q1', iconv('WINDOWS-1251', 'UTF-8', "Имя коллеги 2"));
+	$aSheet->setCellValue('Q1', iconv('WINDOWS-1251', 'UTF-8', "РРјСЏ РєРѕР»Р»РµРіРё 2"));
 	$aSheet->getStyle('Q1')->applyFromArray($baseFont);
 	$aSheet->getStyle('Q1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('R1', iconv('WINDOWS-1251', 'UTF-8', "Фамилия коллеги 2"));
+	$aSheet->setCellValue('R1', iconv('WINDOWS-1251', 'UTF-8', "Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё 2"));
 	$aSheet->getStyle('R1')->applyFromArray($baseFont);
 	$aSheet->getStyle('R1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('S1', iconv('WINDOWS-1251', 'UTF-8', "Должность коллеги 2"));
+	$aSheet->setCellValue('S1', iconv('WINDOWS-1251', 'UTF-8', "Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё 2"));
 	$aSheet->getStyle('S1')->applyFromArray($baseFont);
 	$aSheet->getStyle('S1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('T1', iconv('WINDOWS-1251', 'UTF-8', "E-mail коллеги 2"));
+	$aSheet->setCellValue('T1', iconv('WINDOWS-1251', 'UTF-8', "E-mail РєРѕР»Р»РµРіРё 2"));
 	$aSheet->getStyle('T1')->applyFromArray($baseFont);
 	$aSheet->getStyle('T1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('U1', iconv('WINDOWS-1251', 'UTF-8', "Имя коллеги 3"));
+	$aSheet->setCellValue('U1', iconv('WINDOWS-1251', 'UTF-8', "РРјСЏ РєРѕР»Р»РµРіРё 3"));
 	$aSheet->getStyle('U1')->applyFromArray($baseFont);
 	$aSheet->getStyle('U1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('V1', iconv('WINDOWS-1251', 'UTF-8', "Фамилия коллеги 3"));
+	$aSheet->setCellValue('V1', iconv('WINDOWS-1251', 'UTF-8', "Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё 3"));
 	$aSheet->getStyle('V1')->applyFromArray($baseFont);
 	$aSheet->getStyle('V1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('W1', iconv('WINDOWS-1251', 'UTF-8', "Должность коллеги 3"));
+	$aSheet->setCellValue('W1', iconv('WINDOWS-1251', 'UTF-8', "Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё 3"));
 	$aSheet->getStyle('W1')->applyFromArray($baseFont);
 	$aSheet->getStyle('W1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('X1', iconv('WINDOWS-1251', 'UTF-8', "E-mail коллеги 3"));
+	$aSheet->setCellValue('X1', iconv('WINDOWS-1251', 'UTF-8', "E-mail РєРѕР»Р»РµРіРё 3"));
 	$aSheet->getStyle('X1')->applyFromArray($baseFont);
 	$aSheet->getStyle('X1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 	
@@ -3117,9 +3117,9 @@ if($type == 'yes'){
 	// Set active sheet index to the first sheet, so Excel opens this as the first sheet
 	$objPHPExcel->setActiveSheetIndex(0);
 	
-	// Redirect output to a client’s web browser (Excel5)
+	// Redirect output to a clientвЂ™s web browser (Excel5)
 	header('Content-Type: application/vnd.ms-excel');
-	header('Content-Disposition: attachment;filename="Гости Москва Осень вечер.xls"');
+	header('Content-Disposition: attachment;filename="Р“РѕСЃС‚Рё РњРѕСЃРєРІР° РћСЃРµРЅСЊ РІРµС‡РµСЂ.xls"');
 	header('Cache-Control: max-age=0');
 	// If you're serving to IE 9, then the following may be needed
 	header('Cache-Control: max-age=1');
@@ -3135,7 +3135,7 @@ if($type == 'yes'){
 	exit;
 }elseif($type == 'guests_ev_all'){
 	if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
-		//Все пользователи группы "Гости Москва осень подтвержденные" на утро
+		//Р’СЃРµ РїРѕР»СЊР·РѕРІР°С‚РµР»Рё РіСЂСѓРїРїС‹ "Р“РѕСЃС‚Рё РњРѕСЃРєРІР° РѕСЃРµРЅСЊ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ" РЅР° СѓС‚СЂРѕ
 		$userExelAr = array();
 		$exExelAr = array();
 		$exelAr = array();
@@ -3147,7 +3147,7 @@ if($type == 'yes'){
 			$exelAr[$i]['LOGIN']    = $arUser['LOGIN'];
 			$exelAr[$i]['PASSWORD'] = LuxorConfig::returnPas($arUser['UF_PAS']);
 
-			//результат формы "Участники данные компании ВСЕ ВЫСТАВКИ"
+			//СЂРµР·СѓР»СЊС‚Р°С‚ С„РѕСЂРјС‹ "РЈС‡Р°СЃС‚РЅРёРєРё РґР°РЅРЅС‹Рµ РєРѕРјРїР°РЅРёРё Р’РЎР• Р’Р«РЎРўРђР’РљР"
 			if($arUser['UF_ID_COMP'] != ''){
 				LuxorConfig::getAnswerFormSimple(
 					10, 
@@ -3179,76 +3179,76 @@ if($type == 'yes'){
 			}
 			
 
-			//Вид деятельности
+			//Р’РёРґ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё
 			foreach($v['SIMPLE_QUESTION_677'] as $ar){
 				$exelAr[$i]['VID_D'][] = $ar['ANSWER_TEXT'];
 			}
 			
-			//коллега
-			if($v['SIMPLE_QUESTION_367'][0]['USER_TEXT'] == 'Имя коллеги'){
+			//РєРѕР»Р»РµРіР°
+			if($v['SIMPLE_QUESTION_367'][0]['USER_TEXT'] == 'РРјСЏ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_NAME']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_NAME']     = $v['SIMPLE_QUESTION_367'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_482'][0]['USER_TEXT'] == 'Фамилия коллеги'){
+			if($v['SIMPLE_QUESTION_482'][0]['USER_TEXT'] == 'Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_L_NAME']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_L_NAME']     = $v['SIMPLE_QUESTION_482'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_187'][0]['USER_TEXT'] == 'Должность коллеги'){
+			if($v['SIMPLE_QUESTION_187'][0]['USER_TEXT'] == 'Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_JOB']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_JOB']     = $v['SIMPLE_QUESTION_187'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_421'][0]['USER_TEXT'] == 'E-mail коллеги'){
+			if($v['SIMPLE_QUESTION_421'][0]['USER_TEXT'] == 'E-mail РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_MAIL']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_MAIL']     = $v['SIMPLE_QUESTION_421'][0]['USER_TEXT'];
 			}
-			//коллега 2
-			if($v['SIMPLE_QUESTION_225'][0]['USER_TEXT'] == 'Имя коллеги'){
+			//РєРѕР»Р»РµРіР° 2
+			if($v['SIMPLE_QUESTION_225'][0]['USER_TEXT'] == 'РРјСЏ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_NAME2']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_NAME2']     = $v['SIMPLE_QUESTION_225'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_770'][0]['USER_TEXT'] == 'Фамилия коллеги'){
+			if($v['SIMPLE_QUESTION_770'][0]['USER_TEXT'] == 'Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_L_NAME2']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_L_NAME2']     = $v['SIMPLE_QUESTION_770'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_280'][0]['USER_TEXT'] == 'Должность коллеги'){
+			if($v['SIMPLE_QUESTION_280'][0]['USER_TEXT'] == 'Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_JOB2']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_JOB2']     = $v['SIMPLE_QUESTION_280'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_384'][0]['USER_TEXT'] == 'E-mail коллеги'){
+			if($v['SIMPLE_QUESTION_384'][0]['USER_TEXT'] == 'E-mail РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_MAIL2']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_MAIL2']     = $v['SIMPLE_QUESTION_384'][0]['USER_TEXT'];
 			}
-			//коллега 3
-			if($v['SIMPLE_QUESTION_765'][0]['USER_TEXT'] == 'Имя коллеги'){
+			//РєРѕР»Р»РµРіР° 3
+			if($v['SIMPLE_QUESTION_765'][0]['USER_TEXT'] == 'РРјСЏ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_NAME3']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_NAME3']     = $v['SIMPLE_QUESTION_765'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_627'][0]['USER_TEXT'] == 'Фамилия коллеги'){
+			if($v['SIMPLE_QUESTION_627'][0]['USER_TEXT'] == 'Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_L_NAME3']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_L_NAME3']     = $v['SIMPLE_QUESTION_627'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_788'][0]['USER_TEXT'] == 'Должность коллеги'){
+			if($v['SIMPLE_QUESTION_788'][0]['USER_TEXT'] == 'Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_JOB3']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_JOB3']     = $v['SIMPLE_QUESTION_788'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_230'][0]['USER_TEXT'] == 'E-mail коллеги'){
+			if($v['SIMPLE_QUESTION_230'][0]['USER_TEXT'] == 'E-mail РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_MAIL3']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_MAIL3']     = $v['SIMPLE_QUESTION_230'][0]['USER_TEXT'];
 			}
 			
-			//Приоритетные направления
+			//РџСЂРёРѕСЂРёС‚РµС‚РЅС‹Рµ РЅР°РїСЂР°РІР»РµРЅРёСЏ
 			//Europe
 			foreach($v['SIMPLE_QUESTION_244'] as $ar){
 				$exelAr[$i]['PR_NAPR'][] = $ar['ANSWER_TEXT'];
@@ -3319,37 +3319,37 @@ if($type == 'yes'){
 	$aSheet->setCellValue('A1', 'uID');
 	$aSheet->getStyle('A1')->applyFromArray($baseFont);
 	$aSheet->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('B1', iconv('WINDOWS-1251', 'UTF-8', 'Название компании'));
+	$aSheet->setCellValue('B1', iconv('WINDOWS-1251', 'UTF-8', 'РќР°Р·РІР°РЅРёРµ РєРѕРјРїР°РЅРёРё'));
 	$aSheet->getStyle('B1')->applyFromArray($baseFont);
 	$aSheet->getStyle('B1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('C1', iconv('WINDOWS-1251', 'UTF-8', 'Вид деятельности'));
+	$aSheet->setCellValue('C1', iconv('WINDOWS-1251', 'UTF-8', 'Р’РёРґ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё'));
 	$aSheet->getStyle('C1')->applyFromArray($baseFont);
 	$aSheet->getStyle('C1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('D1', iconv('WINDOWS-1251', 'UTF-8', 'Адрес'));
+	$aSheet->setCellValue('D1', iconv('WINDOWS-1251', 'UTF-8', 'РђРґСЂРµСЃ'));
 	$aSheet->getStyle('D1')->applyFromArray($baseFont);
 	$aSheet->getStyle('D1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('E1', iconv('WINDOWS-1251', 'UTF-8', 'Индекс'));
+	$aSheet->setCellValue('E1', iconv('WINDOWS-1251', 'UTF-8', 'РРЅРґРµРєСЃ'));
 	$aSheet->getStyle('E1')->applyFromArray($baseFont);
 	$aSheet->getStyle('E1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('F1', iconv('WINDOWS-1251', 'UTF-8', 'Город'));
+	$aSheet->setCellValue('F1', iconv('WINDOWS-1251', 'UTF-8', 'Р“РѕСЂРѕРґ'));
 	$aSheet->getStyle('F1')->applyFromArray($baseFont);
 	$aSheet->getStyle('F1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('G1', iconv('WINDOWS-1251', 'UTF-8', "Страна"));
+	$aSheet->setCellValue('G1', iconv('WINDOWS-1251', 'UTF-8', "РЎС‚СЂР°РЅР°"));
 	$aSheet->getStyle('G1')->applyFromArray($baseFont);
 	$aSheet->getStyle('G1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('H1', iconv('WINDOWS-1251', 'UTF-8', 'Имя Фамилия'));
+	$aSheet->setCellValue('H1', iconv('WINDOWS-1251', 'UTF-8', 'РРјСЏ Р¤Р°РјРёР»РёСЏ'));
 	$aSheet->getStyle('H1')->applyFromArray($baseFont);
 	$aSheet->getStyle('H1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('I1', iconv('WINDOWS-1251', 'UTF-8', "Должность"));
+	$aSheet->setCellValue('I1', iconv('WINDOWS-1251', 'UTF-8', "Р”РѕР»Р¶РЅРѕСЃС‚СЊ"));
 	$aSheet->getStyle('I1')->applyFromArray($baseFont);
 	$aSheet->getStyle('I1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('J1', iconv('WINDOWS-1251', 'UTF-8', "Телефон"));
+	$aSheet->setCellValue('J1', iconv('WINDOWS-1251', 'UTF-8', "РўРµР»РµС„РѕРЅ"));
 	$aSheet->getStyle('J1')->applyFromArray($baseFont);
 	$aSheet->getStyle('J1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 	$aSheet->setCellValue('K1', iconv('WINDOWS-1251', 'UTF-8', "E-mail"));
 	$aSheet->getStyle('K1')->applyFromArray($baseFont);
 	$aSheet->getStyle('K1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('L1', iconv('WINDOWS-1251', 'UTF-8', "Web-site компании"));
+	$aSheet->setCellValue('L1', iconv('WINDOWS-1251', 'UTF-8', "Web-site РєРѕРјРїР°РЅРёРё"));
 	$aSheet->getStyle('L1')->applyFromArray($baseFont);
 	$aSheet->getStyle('L1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 	
@@ -3443,9 +3443,9 @@ if($type == 'yes'){
 	// Set active sheet index to the first sheet, so Excel opens this as the first sheet
 	$objPHPExcel->setActiveSheetIndex(0);
 	
-	// Redirect output to a client’s web browser (Excel5)
+	// Redirect output to a clientвЂ™s web browser (Excel5)
 	header('Content-Type: application/vnd.ms-excel');
-	header('Content-Disposition: attachment;filename="Гости Москва Осень вечер (все люди).xls"');
+	header('Content-Disposition: attachment;filename="Р“РѕСЃС‚Рё РњРѕСЃРєРІР° РћСЃРµРЅСЊ РІРµС‡РµСЂ (РІСЃРµ Р»СЋРґРё).xls"');
 	header('Cache-Control: max-age=0');
 	// If you're serving to IE 9, then the following may be needed
 	header('Cache-Control: max-age=1');
@@ -3461,7 +3461,7 @@ if($type == 'yes'){
 	exit;
 }elseif($type == 'guests_inact'){
 	if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
-		//Все пользователи группы "Гости Москва осень неподтвержденные" на утро
+		//Р’СЃРµ РїРѕР»СЊР·РѕРІР°С‚РµР»Рё РіСЂСѓРїРїС‹ "Р“РѕСЃС‚Рё РњРѕСЃРєРІР° РѕСЃРµРЅСЊ РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ" РЅР° СѓС‚СЂРѕ
 		$userExelAr = array();
 		$exExelAr = array();
 		$exelAr = array();
@@ -3473,7 +3473,7 @@ if($type == 'yes'){
 			$exelAr[$i]['LOGIN']    = $arUser['LOGIN'];
 			$exelAr[$i]['PASSWORD'] = LuxorConfig::returnPas($arUser['UF_PAS']);
 
-			//результат формы "Участники данные компании ВСЕ ВЫСТАВКИ"
+			//СЂРµР·СѓР»СЊС‚Р°С‚ С„РѕСЂРјС‹ "РЈС‡Р°СЃС‚РЅРёРєРё РґР°РЅРЅС‹Рµ РєРѕРјРїР°РЅРёРё Р’РЎР• Р’Р«РЎРўРђР’РљР"
 			if($arUser['UF_ID_COMP'] != ''){
 				LuxorConfig::getAnswerFormSimple(
 					10, 
@@ -3506,76 +3506,76 @@ if($type == 'yes'){
 			}
 			
 
-			//Вид деятельности
+			//Р’РёРґ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё
 			foreach($v['SIMPLE_QUESTION_677'] as $ar){
 				$exelAr[$i]['VID_D'][] = $ar['ANSWER_TEXT'];
 			}
 			
-			//коллега
-			if($v['SIMPLE_QUESTION_367'][0]['USER_TEXT'] == 'Имя коллеги'){
+			//РєРѕР»Р»РµРіР°
+			if($v['SIMPLE_QUESTION_367'][0]['USER_TEXT'] == 'РРјСЏ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_NAME']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_NAME']     = $v['SIMPLE_QUESTION_367'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_482'][0]['USER_TEXT'] == 'Фамилия коллеги'){
+			if($v['SIMPLE_QUESTION_482'][0]['USER_TEXT'] == 'Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_L_NAME']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_L_NAME']     = $v['SIMPLE_QUESTION_482'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_187'][0]['USER_TEXT'] == 'Должность коллеги'){
+			if($v['SIMPLE_QUESTION_187'][0]['USER_TEXT'] == 'Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_JOB']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_JOB']     = $v['SIMPLE_QUESTION_187'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_421'][0]['USER_TEXT'] == 'E-mail коллеги'){
+			if($v['SIMPLE_QUESTION_421'][0]['USER_TEXT'] == 'E-mail РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_MAIL']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_MAIL']     = $v['SIMPLE_QUESTION_421'][0]['USER_TEXT'];
 			}
-			//коллега 2
-			if($v['SIMPLE_QUESTION_225'][0]['USER_TEXT'] == 'Имя коллеги'){
+			//РєРѕР»Р»РµРіР° 2
+			if($v['SIMPLE_QUESTION_225'][0]['USER_TEXT'] == 'РРјСЏ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_NAME2']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_NAME2']     = $v['SIMPLE_QUESTION_225'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_770'][0]['USER_TEXT'] == 'Фамилия коллеги'){
+			if($v['SIMPLE_QUESTION_770'][0]['USER_TEXT'] == 'Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_L_NAME2']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_L_NAME2']     = $v['SIMPLE_QUESTION_770'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_280'][0]['USER_TEXT'] == 'Должность коллеги'){
+			if($v['SIMPLE_QUESTION_280'][0]['USER_TEXT'] == 'Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_JOB2']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_JOB2']     = $v['SIMPLE_QUESTION_280'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_384'][0]['USER_TEXT'] == 'E-mail коллеги'){
+			if($v['SIMPLE_QUESTION_384'][0]['USER_TEXT'] == 'E-mail РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_MAIL2']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_MAIL2']     = $v['SIMPLE_QUESTION_384'][0]['USER_TEXT'];
 			}
-			//коллега 3
-			if($v['SIMPLE_QUESTION_765'][0]['USER_TEXT'] == 'Имя коллеги'){
+			//РєРѕР»Р»РµРіР° 3
+			if($v['SIMPLE_QUESTION_765'][0]['USER_TEXT'] == 'РРјСЏ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_NAME3']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_NAME3']     = $v['SIMPLE_QUESTION_765'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_627'][0]['USER_TEXT'] == 'Фамилия коллеги'){
+			if($v['SIMPLE_QUESTION_627'][0]['USER_TEXT'] == 'Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_L_NAME3']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_L_NAME3']     = $v['SIMPLE_QUESTION_627'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_788'][0]['USER_TEXT'] == 'Должность коллеги'){
+			if($v['SIMPLE_QUESTION_788'][0]['USER_TEXT'] == 'Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_JOB3']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_JOB3']     = $v['SIMPLE_QUESTION_788'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_230'][0]['USER_TEXT'] == 'E-mail коллеги'){
+			if($v['SIMPLE_QUESTION_230'][0]['USER_TEXT'] == 'E-mail РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_MAIL3']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_MAIL3']     = $v['SIMPLE_QUESTION_230'][0]['USER_TEXT'];
 			}
 			
-			//Приоритетные направления
+			//РџСЂРёРѕСЂРёС‚РµС‚РЅС‹Рµ РЅР°РїСЂР°РІР»РµРЅРёСЏ
 			//Europe
 			foreach($v['SIMPLE_QUESTION_244'] as $ar){
 				$exelAr[$i]['PR_NAPR'][] = $ar['ANSWER_TEXT'];
@@ -3658,73 +3658,73 @@ if($type == 'yes'){
 	$aSheet->setCellValue('A1', 'uID');
 	$aSheet->getStyle('A1')->applyFromArray($baseFont);
 	$aSheet->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('B1', iconv('WINDOWS-1251', 'UTF-8', 'Название компании'));
+	$aSheet->setCellValue('B1', iconv('WINDOWS-1251', 'UTF-8', 'РќР°Р·РІР°РЅРёРµ РєРѕРјРїР°РЅРёРё'));
 	$aSheet->getStyle('B1')->applyFromArray($baseFont);
 	$aSheet->getStyle('B1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('C1', iconv('WINDOWS-1251', 'UTF-8', 'Вид деятельности'));
+	$aSheet->setCellValue('C1', iconv('WINDOWS-1251', 'UTF-8', 'Р’РёРґ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё'));
 	$aSheet->getStyle('C1')->applyFromArray($baseFont);
 	$aSheet->getStyle('C1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('D1', iconv('WINDOWS-1251', 'UTF-8', 'Адрес'));
+	$aSheet->setCellValue('D1', iconv('WINDOWS-1251', 'UTF-8', 'РђРґСЂРµСЃ'));
 	$aSheet->getStyle('D1')->applyFromArray($baseFont);
 	$aSheet->getStyle('D1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('E1', iconv('WINDOWS-1251', 'UTF-8', 'Индекс'));
+	$aSheet->setCellValue('E1', iconv('WINDOWS-1251', 'UTF-8', 'РРЅРґРµРєСЃ'));
 	$aSheet->getStyle('E1')->applyFromArray($baseFont);
 	$aSheet->getStyle('E1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('F1', iconv('WINDOWS-1251', 'UTF-8', 'Город'));
+	$aSheet->setCellValue('F1', iconv('WINDOWS-1251', 'UTF-8', 'Р“РѕСЂРѕРґ'));
 	$aSheet->getStyle('F1')->applyFromArray($baseFont);
 	$aSheet->getStyle('F1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('G1', iconv('WINDOWS-1251', 'UTF-8', "Страна"));
+	$aSheet->setCellValue('G1', iconv('WINDOWS-1251', 'UTF-8', "РЎС‚СЂР°РЅР°"));
 	$aSheet->getStyle('G1')->applyFromArray($baseFont);
 	$aSheet->getStyle('G1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('H1', iconv('WINDOWS-1251', 'UTF-8', 'Имя Фамилия'));
+	$aSheet->setCellValue('H1', iconv('WINDOWS-1251', 'UTF-8', 'РРјСЏ Р¤Р°РјРёР»РёСЏ'));
 	$aSheet->getStyle('H1')->applyFromArray($baseFont);
 	$aSheet->getStyle('H1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('I1', iconv('WINDOWS-1251', 'UTF-8', "Должность"));
+	$aSheet->setCellValue('I1', iconv('WINDOWS-1251', 'UTF-8', "Р”РѕР»Р¶РЅРѕСЃС‚СЊ"));
 	$aSheet->getStyle('I1')->applyFromArray($baseFont);
 	$aSheet->getStyle('I1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('J1', iconv('WINDOWS-1251', 'UTF-8', "Телефон"));
+	$aSheet->setCellValue('J1', iconv('WINDOWS-1251', 'UTF-8', "РўРµР»РµС„РѕРЅ"));
 	$aSheet->getStyle('J1')->applyFromArray($baseFont);
 	$aSheet->getStyle('J1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 	$aSheet->setCellValue('K1', iconv('WINDOWS-1251', 'UTF-8', "E-mail"));
 	$aSheet->getStyle('K1')->applyFromArray($baseFont);
 	$aSheet->getStyle('K1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('L1', iconv('WINDOWS-1251', 'UTF-8', "Web-site компании"));
+	$aSheet->setCellValue('L1', iconv('WINDOWS-1251', 'UTF-8', "Web-site РєРѕРјРїР°РЅРёРё"));
 	$aSheet->getStyle('L1')->applyFromArray($baseFont);
 	$aSheet->getStyle('L1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('M1', iconv('WINDOWS-1251', 'UTF-8', "Имя коллеги 1"));
+	$aSheet->setCellValue('M1', iconv('WINDOWS-1251', 'UTF-8', "РРјСЏ РєРѕР»Р»РµРіРё 1"));
 	$aSheet->getStyle('M1')->applyFromArray($baseFont);
 	$aSheet->getStyle('M1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('N1', iconv('WINDOWS-1251', 'UTF-8', "Фамилия коллеги 1"));
+	$aSheet->setCellValue('N1', iconv('WINDOWS-1251', 'UTF-8', "Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё 1"));
 	$aSheet->getStyle('N1')->applyFromArray($baseFont);
 	$aSheet->getStyle('N1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('O1', iconv('WINDOWS-1251', 'UTF-8', "Должность коллеги 1"));
+	$aSheet->setCellValue('O1', iconv('WINDOWS-1251', 'UTF-8', "Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё 1"));
 	$aSheet->getStyle('O1')->applyFromArray($baseFont);
 	$aSheet->getStyle('O1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('P1', iconv('WINDOWS-1251', 'UTF-8', "E-mail коллеги 1"));
+	$aSheet->setCellValue('P1', iconv('WINDOWS-1251', 'UTF-8', "E-mail РєРѕР»Р»РµРіРё 1"));
 	$aSheet->getStyle('P1')->applyFromArray($baseFont);
 	$aSheet->getStyle('P1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('Q1', iconv('WINDOWS-1251', 'UTF-8', "Имя коллеги 2"));
+	$aSheet->setCellValue('Q1', iconv('WINDOWS-1251', 'UTF-8', "РРјСЏ РєРѕР»Р»РµРіРё 2"));
 	$aSheet->getStyle('Q1')->applyFromArray($baseFont);
 	$aSheet->getStyle('Q1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('R1', iconv('WINDOWS-1251', 'UTF-8', "Фамилия коллеги 2"));
+	$aSheet->setCellValue('R1', iconv('WINDOWS-1251', 'UTF-8', "Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё 2"));
 	$aSheet->getStyle('R1')->applyFromArray($baseFont);
 	$aSheet->getStyle('R1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('S1', iconv('WINDOWS-1251', 'UTF-8', "Должность коллеги 2"));
+	$aSheet->setCellValue('S1', iconv('WINDOWS-1251', 'UTF-8', "Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё 2"));
 	$aSheet->getStyle('S1')->applyFromArray($baseFont);
 	$aSheet->getStyle('S1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('T1', iconv('WINDOWS-1251', 'UTF-8', "E-mail коллеги 2"));
+	$aSheet->setCellValue('T1', iconv('WINDOWS-1251', 'UTF-8', "E-mail РєРѕР»Р»РµРіРё 2"));
 	$aSheet->getStyle('T1')->applyFromArray($baseFont);
 	$aSheet->getStyle('T1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('U1', iconv('WINDOWS-1251', 'UTF-8', "Имя коллеги 3"));
+	$aSheet->setCellValue('U1', iconv('WINDOWS-1251', 'UTF-8', "РРјСЏ РєРѕР»Р»РµРіРё 3"));
 	$aSheet->getStyle('U1')->applyFromArray($baseFont);
 	$aSheet->getStyle('U1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('V1', iconv('WINDOWS-1251', 'UTF-8', "Фамилия коллеги 3"));
+	$aSheet->setCellValue('V1', iconv('WINDOWS-1251', 'UTF-8', "Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё 3"));
 	$aSheet->getStyle('V1')->applyFromArray($baseFont);
 	$aSheet->getStyle('V1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('W1', iconv('WINDOWS-1251', 'UTF-8', "Должность коллеги 3"));
+	$aSheet->setCellValue('W1', iconv('WINDOWS-1251', 'UTF-8', "Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё 3"));
 	$aSheet->getStyle('W1')->applyFromArray($baseFont);
 	$aSheet->getStyle('W1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('X1', iconv('WINDOWS-1251', 'UTF-8', "E-mail коллеги 3"));
+	$aSheet->setCellValue('X1', iconv('WINDOWS-1251', 'UTF-8', "E-mail РєРѕР»Р»РµРіРё 3"));
 	$aSheet->getStyle('X1')->applyFromArray($baseFont);
 	$aSheet->getStyle('X1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 	
@@ -3770,9 +3770,9 @@ if($type == 'yes'){
 	// Set active sheet index to the first sheet, so Excel opens this as the first sheet
 	$objPHPExcel->setActiveSheetIndex(0);
 	
-	// Redirect output to a client’s web browser (Excel5)
+	// Redirect output to a clientвЂ™s web browser (Excel5)
 	header('Content-Type: application/vnd.ms-excel');
-	header('Content-Disposition: attachment;filename="Гости Москва Осень неподтвержденные.xls"');
+	header('Content-Disposition: attachment;filename="Р“РѕСЃС‚Рё РњРѕСЃРєРІР° РћСЃРµРЅСЊ РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ.xls"');
 	header('Cache-Control: max-age=0');
 	// If you're serving to IE 9, then the following may be needed
 	header('Cache-Control: max-age=1');
@@ -3788,7 +3788,7 @@ if($type == 'yes'){
 	exit;
 }elseif($type == 'guests_inact_all'){
 	if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
-		//Все пользователи группы "Гости Москва осень неподтвержденные" на утро
+		//Р’СЃРµ РїРѕР»СЊР·РѕРІР°С‚РµР»Рё РіСЂСѓРїРїС‹ "Р“РѕСЃС‚Рё РњРѕСЃРєРІР° РѕСЃРµРЅСЊ РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ" РЅР° СѓС‚СЂРѕ
 		$userExelAr = array();
 		$exExelAr = array();
 		$exelAr = array();
@@ -3800,7 +3800,7 @@ if($type == 'yes'){
 			$exelAr[$i]['LOGIN']    = $arUser['LOGIN'];
 			$exelAr[$i]['PASSWORD'] = LuxorConfig::returnPas($arUser['UF_PAS']);
 
-			//результат формы "Участники данные компании ВСЕ ВЫСТАВКИ"
+			//СЂРµР·СѓР»СЊС‚Р°С‚ С„РѕСЂРјС‹ "РЈС‡Р°СЃС‚РЅРёРєРё РґР°РЅРЅС‹Рµ РєРѕРјРїР°РЅРёРё Р’РЎР• Р’Р«РЎРўРђР’РљР"
 			if($arUser['UF_ID_COMP'] != ''){
 				LuxorConfig::getAnswerFormSimple(
 					10, 
@@ -3832,76 +3832,76 @@ if($type == 'yes'){
 			}
 			
 
-			//Вид деятельности
+			//Р’РёРґ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё
 			foreach($v['SIMPLE_QUESTION_677'] as $ar){
 				$exelAr[$i]['VID_D'][] = $ar['ANSWER_TEXT'];
 			}
 			
-			//коллега
-			if($v['SIMPLE_QUESTION_367'][0]['USER_TEXT'] == 'Имя коллеги'){
+			//РєРѕР»Р»РµРіР°
+			if($v['SIMPLE_QUESTION_367'][0]['USER_TEXT'] == 'РРјСЏ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_NAME']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_NAME']     = $v['SIMPLE_QUESTION_367'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_482'][0]['USER_TEXT'] == 'Фамилия коллеги'){
+			if($v['SIMPLE_QUESTION_482'][0]['USER_TEXT'] == 'Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_L_NAME']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_L_NAME']     = $v['SIMPLE_QUESTION_482'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_187'][0]['USER_TEXT'] == 'Должность коллеги'){
+			if($v['SIMPLE_QUESTION_187'][0]['USER_TEXT'] == 'Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_JOB']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_JOB']     = $v['SIMPLE_QUESTION_187'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_421'][0]['USER_TEXT'] == 'E-mail коллеги'){
+			if($v['SIMPLE_QUESTION_421'][0]['USER_TEXT'] == 'E-mail РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_MAIL']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_MAIL']     = $v['SIMPLE_QUESTION_421'][0]['USER_TEXT'];
 			}
-			//коллега 2
-			if($v['SIMPLE_QUESTION_225'][0]['USER_TEXT'] == 'Имя коллеги'){
+			//РєРѕР»Р»РµРіР° 2
+			if($v['SIMPLE_QUESTION_225'][0]['USER_TEXT'] == 'РРјСЏ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_NAME2']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_NAME2']     = $v['SIMPLE_QUESTION_225'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_770'][0]['USER_TEXT'] == 'Фамилия коллеги'){
+			if($v['SIMPLE_QUESTION_770'][0]['USER_TEXT'] == 'Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_L_NAME2']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_L_NAME2']     = $v['SIMPLE_QUESTION_770'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_280'][0]['USER_TEXT'] == 'Должность коллеги'){
+			if($v['SIMPLE_QUESTION_280'][0]['USER_TEXT'] == 'Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_JOB2']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_JOB2']     = $v['SIMPLE_QUESTION_280'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_384'][0]['USER_TEXT'] == 'E-mail коллеги'){
+			if($v['SIMPLE_QUESTION_384'][0]['USER_TEXT'] == 'E-mail РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_MAIL2']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_MAIL2']     = $v['SIMPLE_QUESTION_384'][0]['USER_TEXT'];
 			}
-			//коллега 3
-			if($v['SIMPLE_QUESTION_765'][0]['USER_TEXT'] == 'Имя коллеги'){
+			//РєРѕР»Р»РµРіР° 3
+			if($v['SIMPLE_QUESTION_765'][0]['USER_TEXT'] == 'РРјСЏ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_NAME3']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_NAME3']     = $v['SIMPLE_QUESTION_765'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_627'][0]['USER_TEXT'] == 'Фамилия коллеги'){
+			if($v['SIMPLE_QUESTION_627'][0]['USER_TEXT'] == 'Р¤Р°РјРёР»РёСЏ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_L_NAME3']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_L_NAME3']     = $v['SIMPLE_QUESTION_627'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_788'][0]['USER_TEXT'] == 'Должность коллеги'){
+			if($v['SIMPLE_QUESTION_788'][0]['USER_TEXT'] == 'Р”РѕР»Р¶РЅРѕСЃС‚СЊ РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_JOB3']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_JOB3']     = $v['SIMPLE_QUESTION_788'][0]['USER_TEXT'];
 			}
-			if($v['SIMPLE_QUESTION_230'][0]['USER_TEXT'] == 'E-mail коллеги'){
+			if($v['SIMPLE_QUESTION_230'][0]['USER_TEXT'] == 'E-mail РєРѕР»Р»РµРіРё'){
 				$exelAr[$i]['COLLEGA_MAIL3']     = '';
 			}else{
 				$exelAr[$i]['COLLEGA_MAIL3']     = $v['SIMPLE_QUESTION_230'][0]['USER_TEXT'];
 			}
 			
-			//Приоритетные направления
+			//РџСЂРёРѕСЂРёС‚РµС‚РЅС‹Рµ РЅР°РїСЂР°РІР»РµРЅРёСЏ
 			//Europe
 			foreach($v['SIMPLE_QUESTION_244'] as $ar){
 				$exelAr[$i]['PR_NAPR'][] = $ar['ANSWER_TEXT'];
@@ -3972,37 +3972,37 @@ if($type == 'yes'){
 	$aSheet->setCellValue('A1', 'uID');
 	$aSheet->getStyle('A1')->applyFromArray($baseFont);
 	$aSheet->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('B1', iconv('WINDOWS-1251', 'UTF-8', 'Название компании'));
+	$aSheet->setCellValue('B1', iconv('WINDOWS-1251', 'UTF-8', 'РќР°Р·РІР°РЅРёРµ РєРѕРјРїР°РЅРёРё'));
 	$aSheet->getStyle('B1')->applyFromArray($baseFont);
 	$aSheet->getStyle('B1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('C1', iconv('WINDOWS-1251', 'UTF-8', 'Вид деятельности'));
+	$aSheet->setCellValue('C1', iconv('WINDOWS-1251', 'UTF-8', 'Р’РёРґ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё'));
 	$aSheet->getStyle('C1')->applyFromArray($baseFont);
 	$aSheet->getStyle('C1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('D1', iconv('WINDOWS-1251', 'UTF-8', 'Адрес'));
+	$aSheet->setCellValue('D1', iconv('WINDOWS-1251', 'UTF-8', 'РђРґСЂРµСЃ'));
 	$aSheet->getStyle('D1')->applyFromArray($baseFont);
 	$aSheet->getStyle('D1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('E1', iconv('WINDOWS-1251', 'UTF-8', 'Индекс'));
+	$aSheet->setCellValue('E1', iconv('WINDOWS-1251', 'UTF-8', 'РРЅРґРµРєСЃ'));
 	$aSheet->getStyle('E1')->applyFromArray($baseFont);
 	$aSheet->getStyle('E1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('F1', iconv('WINDOWS-1251', 'UTF-8', 'Город'));
+	$aSheet->setCellValue('F1', iconv('WINDOWS-1251', 'UTF-8', 'Р“РѕСЂРѕРґ'));
 	$aSheet->getStyle('F1')->applyFromArray($baseFont);
 	$aSheet->getStyle('F1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('G1', iconv('WINDOWS-1251', 'UTF-8', "Страна"));
+	$aSheet->setCellValue('G1', iconv('WINDOWS-1251', 'UTF-8', "РЎС‚СЂР°РЅР°"));
 	$aSheet->getStyle('G1')->applyFromArray($baseFont);
 	$aSheet->getStyle('G1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('H1', iconv('WINDOWS-1251', 'UTF-8', 'Имя Фамилия'));
+	$aSheet->setCellValue('H1', iconv('WINDOWS-1251', 'UTF-8', 'РРјСЏ Р¤Р°РјРёР»РёСЏ'));
 	$aSheet->getStyle('H1')->applyFromArray($baseFont);
 	$aSheet->getStyle('H1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('I1', iconv('WINDOWS-1251', 'UTF-8', "Должность"));
+	$aSheet->setCellValue('I1', iconv('WINDOWS-1251', 'UTF-8', "Р”РѕР»Р¶РЅРѕСЃС‚СЊ"));
 	$aSheet->getStyle('I1')->applyFromArray($baseFont);
 	$aSheet->getStyle('I1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('J1', iconv('WINDOWS-1251', 'UTF-8', "Телефон"));
+	$aSheet->setCellValue('J1', iconv('WINDOWS-1251', 'UTF-8', "РўРµР»РµС„РѕРЅ"));
 	$aSheet->getStyle('J1')->applyFromArray($baseFont);
 	$aSheet->getStyle('J1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 	$aSheet->setCellValue('K1', iconv('WINDOWS-1251', 'UTF-8', "E-mail"));
 	$aSheet->getStyle('K1')->applyFromArray($baseFont);
 	$aSheet->getStyle('K1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	$aSheet->setCellValue('L1', iconv('WINDOWS-1251', 'UTF-8', "Web-site компании"));
+	$aSheet->setCellValue('L1', iconv('WINDOWS-1251', 'UTF-8', "Web-site РєРѕРјРїР°РЅРёРё"));
 	$aSheet->getStyle('L1')->applyFromArray($baseFont);
 	$aSheet->getStyle('L1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 	
@@ -4096,9 +4096,9 @@ if($type == 'yes'){
 	// Set active sheet index to the first sheet, so Excel opens this as the first sheet
 	$objPHPExcel->setActiveSheetIndex(0);
 	
-	// Redirect output to a client’s web browser (Excel5)
+	// Redirect output to a clientвЂ™s web browser (Excel5)
 	header('Content-Type: application/vnd.ms-excel');
-	header('Content-Disposition: attachment;filename="Гости Москва Осень неподтвержденные (все люди).xls"');
+	header('Content-Disposition: attachment;filename="Р“РѕСЃС‚Рё РњРѕСЃРєРІР° РћСЃРµРЅСЊ РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ (РІСЃРµ Р»СЋРґРё).xls"');
 	header('Cache-Control: max-age=0');
 	// If you're serving to IE 9, then the following may be needed
 	header('Cache-Control: max-age=1');

@@ -1,6 +1,6 @@
 <? if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 /*--------------- TO DO -------------------*/
-//Добавить формы гостей и участников
+//Р”РѕР±Р°РІРёС‚СЊ С„РѕСЂРјС‹ РіРѕСЃС‚РµР№ Рё СѓС‡Р°СЃС‚РЅРёРєРѕРІ
 
 
 $arResult["ERROR_MESSAGE"] = "";
@@ -19,15 +19,15 @@ if(strLen($arParams["ADMIN_URL"])<=0){
 }
 
 if(strLen($arParams["GUEST_GROUP"])<=0){
-	$arResult["ERROR_MESSAGE"] .= "Не введены данные по группе гостя!<br />";
+	$arResult["ERROR_MESSAGE"] .= "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ РіСЂСѓРїРїРµ РіРѕСЃС‚СЏ!<br />";
 }
 
 if(strLen($arParams["PARTICIP_GROUP"])<=0){
-	$arResult["ERROR_MESSAGE"] .= "Не введены данные по группе участника!<br />";
+	$arResult["ERROR_MESSAGE"] .= "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ РіСЂСѓРїРїРµ СѓС‡Р°СЃС‚РЅРёРєР°!<br />";
 }
 
 if(strLen($arParams["ADMIN_GROUP"])<=0){
-	$arResult["ERROR_MESSAGE"] .= "Не введены данные по группе администратора!<br />";
+	$arResult["ERROR_MESSAGE"] .= "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ РіСЂСѓРїРїРµ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР°!<br />";
 }
 
 if(strLen($arParams["USER_TYPE"])<=0){
@@ -35,11 +35,11 @@ if(strLen($arParams["USER_TYPE"])<=0){
 }
 
 if(strLen($arParams["USER_GROUP"])<=0){
-	$arResult["ERROR_MESSAGE"] .= "Не введены данные по группе пользователя!<br />";
+	$arResult["ERROR_MESSAGE"] .= "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ РіСЂСѓРїРїРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ!<br />";
 }
 
 if(strLen($arParams["USER_FORM"])<=0){
-	$arResult["ERROR_MESSAGE"] .= "Не введены данные по Результатам пользователей!<br />";
+	$arResult["ERROR_MESSAGE"] .= "РќРµ РІРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РїРѕ Р РµР·СѓР»СЊС‚Р°С‚Р°Рј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№!<br />";
 }
 
 if(!($USER->IsAuthorized()))
@@ -84,7 +84,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 		$arResult["WELCOME"] = 'Welcome, ';
 		$arResult["USER"]["LOGOUT"] = $arParams["PARTICIP_URL"].'logout.php';
 		
-		//РЕЗУЛЬТАТЫ ПОЛЬЗОВАТЕЛЕЙ
+		//Р Р•Р—РЈР›Р¬РўРђРўР« РџРћР›Р¬Р—РћР’РђРўР•Р›Р•Р™
 		CForm::GetResultAnswerArray('1', $arrColumns, $arrAnswers, $arrAnswersVarname, array("RESULT_ID" => $arResult["USER"]["UF_ANKETA"]));
 		foreach($arrAnswersVarname[$arResult["USER"]["UF_ANKETA"]] as $userField){
 			switch ($userField[0]["TITLE"]){
@@ -108,24 +108,24 @@ if($arResult["ERROR_MESSAGE"] == '')
 		$arResult["WELCOME2"] = "You have <span>".$arResult["USER"]["MEETINGS"]."</span> unconfirmed appointment requests and <span>".$arResult["USER"]["MESSAGES"]."</span> new messages.";
 	}
 	elseif(in_array($arParams["GUEST_GROUP"], $userGroups)){
-		$arResult["WELCOME"] = 'Добро пожаловать, ';
+		$arResult["WELCOME"] = 'Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ, ';
 		$arResult["USER"]["LOGOUT"] = $arParams["GUEST_URL"].'logout.php';
 		if($arResult["USER"]["LAST_NAME"] == '' || $arResult["USER"]["NAME"] == ''){
-			//РЕЗУЛЬТАТЫ ПОЛЬЗОВАТЕЛЕЙ
+			//Р Р•Р—РЈР›Р¬РўРђРўР« РџРћР›Р¬Р—РћР’РђРўР•Р›Р•Р™
 			CForm::GetResultAnswerArray('4', $arrColumns, $arrAnswers, $arrAnswersVarname, array("RESULT_ID" => $arResult["USER"]["UF_ANKETA"]));
 			foreach($arrAnswersVarname[$arResult["USER"]["UF_ANKETA"]] as $userField){
 				switch ($userField[0]["TITLE"]){
-					case "Имя":
+					case "РРјСЏ":
 						$arResult["USER"]["NAME"] = $userField[0]["USER_TEXT"];
 						break;
-					case "Фамилия":
+					case "Р¤Р°РјРёР»РёСЏ":
 						$arResult["USER"]["LAST_NAME"] = $userField[0]["USER_TEXT"];
 						break;
 				}
 			}
 		}
 		$arResult["WELCOME"] .= $arResult["USER"]["NAME"]." ".$arResult["USER"]["LAST_NAME"];
-		$arResult["WELCOME2"] = "У вас <span>".$arResult["USER"]["MEETINGS"]."</span> неподтвержденных запросов на встречи и <span>".$arResult["USER"]["MESSAGES"]."</span> новых сообщений.";
+		$arResult["WELCOME2"] = "РЈ РІР°СЃ <span>".$arResult["USER"]["MEETINGS"]."</span> РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… Р·Р°РїСЂРѕСЃРѕРІ РЅР° РІСЃС‚СЂРµС‡Рё Рё <span>".$arResult["USER"]["MESSAGES"]."</span> РЅРѕРІС‹С… СЃРѕРѕР±С‰РµРЅРёР№.";
 	}
 	else{
 		//$rsUser = CUser::GetByID($userId);
@@ -137,22 +137,22 @@ if($arResult["ERROR_MESSAGE"] == '')
 		$arResult["USER"]["LAST_NAME"] = $arUser["LAST_NAME"];
 		$arResult["USER"]["MEETINGS"] = ($arUser["UF_MEETING"] == '') ? "0" : $arUser["UF_MEETING"];
 		$arResult["USER"]["MESSAGES"] = ($arUser["UF_MESSAGE"] == '') ? "0" : $arUser["UF_MESSAGE"];
-		$arResult["WELCOME"] = 'Добро пожаловать ';
+		$arResult["WELCOME"] = 'Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ ';
 		$arResult["USER"]["LOGOUT"] = $arParams["GUEST_URL"].'logout.php';
-		//РЕЗУЛЬТАТЫ ПОЛЬЗОВАТЕЛЕЙ
+		//Р Р•Р—РЈР›Р¬РўРђРўР« РџРћР›Р¬Р—РћР’РђРўР•Р›Р•Р™
 		CForm::GetResultAnswerArray('4', $arrColumns, $arrAnswers, $arrAnswersVarname, array("RESULT_ID" => $arResult["USER"]["UF_ANKETA"]));
 		foreach($arrAnswersVarname[$arResult["USER"]["UF_ANKETA"]] as $userField){
 			switch ($userField[0]["TITLE"]){
-				case "Имя":
+				case "РРјСЏ":
 					$arResult["USER"]["NAME"] = $userField[0]["USER_TEXT"];
 					break;
-				case "Фамилия":
+				case "Р¤Р°РјРёР»РёСЏ":
 					$arResult["USER"]["LAST_NAME"] = $userField[0]["USER_TEXT"];
 					break;
 			}
 		}
 		$arResult["WELCOME"] .= $arResult["USER"]["NAME"]." ".$arResult["USER"]["LAST_NAME"];
-		$arResult["WELCOME2"] = "У вас <span>".$arResult["USER"]["MEETINGS"]."</span> неподтвержденных запросов на встречи и <span>".$arResult["USER"]["MESSAGES"]."</span> новых сообщений.";
+		$arResult["WELCOME2"] = "РЈ РІР°СЃ <span>".$arResult["USER"]["MEETINGS"]."</span> РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… Р·Р°РїСЂРѕСЃРѕРІ РЅР° РІСЃС‚СЂРµС‡Рё Рё <span>".$arResult["USER"]["MESSAGES"]."</span> РЅРѕРІС‹С… СЃРѕРѕР±С‰РµРЅРёР№.";
 	}
 }
 

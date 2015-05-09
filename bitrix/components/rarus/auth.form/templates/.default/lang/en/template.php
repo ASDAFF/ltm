@@ -23,7 +23,7 @@ $MESS["AUTH_FORGOT_PASSWORD"] = "forgot your password?";
 $MESS["AUTH_LOGIN_BUTTON"] = "ENTER";
 
 
-//участник
+//СѓС‡Р°СЃС‚РЅРёРє
 $MESS["AUTH_P_CAB_CLOSE"] = "Personal cabinet is closed";
 $MESS["AUTH_P_CAB_UNCONFIRMED"] = "You don't have an access to the personal cabinet";
 
@@ -44,17 +44,17 @@ $MESS["AUTH_P_EDIT_COLLEAGUE"] = "Edit registration info</br>& add a colleague";
 $MESS["AUTH_P_CAN_REGISTER"] = "You may register for";
 $MESS["AUTH_P_REGISTER_FOR"] ="Registration for";
 
-//Гость
-$MESS["AUTH_G_CAB_CLOSE"] = "Личный кабинет закрыт";
-$MESS["AUTH_G_CAB_UNCONFIRMED"] = "У Вас нет доступа к личному кабинету";
+//Р“РѕСЃС‚СЊ
+$MESS["AUTH_G_CAB_CLOSE"] = "Р›РёС‡РЅС‹Р№ РєР°Р±РёРЅРµС‚ Р·Р°РєСЂС‹С‚";
+$MESS["AUTH_G_CAB_UNCONFIRMED"] = "РЈ Р’Р°СЃ РЅРµС‚ РґРѕСЃС‚СѓРїР° Рє Р»РёС‡РЅРѕРјСѓ РєР°Р±РёРЅРµС‚Сѓ";
 
 $MESS["AUTH_G_TYPE_EXHIBITOR"] = "exhibitor";
 $MESS["AUTH_G_TYPE_BUYER"] = "buyer";
 
-$MESS["AUTH_G_EDIT_PROFILE"] = "Изменить профиль<br>или информацию";
-$MESS["AUTH_G_EXIT"] = "ВЫХОД";
+$MESS["AUTH_G_EDIT_PROFILE"] = "РР·РјРµРЅРёС‚СЊ РїСЂРѕС„РёР»СЊ<br>РёР»Рё РёРЅС„РѕСЂРјР°С†РёСЋ";
+$MESS["AUTH_G_EXIT"] = "Р’Р«РҐРћР”";
 
-$MESS["AUTH_G_MESSAGES"] = "Мои сообщения";
-$MESS["AUTH_G_SHEDULE"] = "Мое расписание";
-$MESS["AUTH_G_EDIT_COLLEAGUE"] = "Зарегистрировать коллег";
+$MESS["AUTH_G_MESSAGES"] = "РњРѕРё СЃРѕРѕР±С‰РµРЅРёСЏ";
+$MESS["AUTH_G_SHEDULE"] = "РњРѕРµ СЂР°СЃРїРёСЃР°РЅРёРµ";
+$MESS["AUTH_G_EDIT_COLLEAGUE"] = "Р—Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊ РєРѕР»Р»РµРі";
 ?>

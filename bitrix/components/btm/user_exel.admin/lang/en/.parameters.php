@@ -1,14 +1,14 @@
 <?
-$MESS ['ADMIN_USER_OFF_MAIN_SETTINGS'] = "Îñíîâíûå ïàðàìåòðû";
-$MESS ['ADMIN_USER_OFF_PATH_TO_KAB'] = "Ïóòü ê ïàïêå êàáèíåòà àäìèíèñòðàòîðà";
-$MESS ['ADMIN_USER_OFF_AUTH_PAGE'] = "Ñòðàíèöà àâòîðèçàöèè";
-$MESS ['ADMIN_USER_OFF_GROUP_ID'] = "Ãðóïïû àäìèíèñòðàòîðîâ";
-$MESS ['ADMIN_GUEST_SPAM'] = "Ñïàì ãîñòè";
-$MESS ['ADMIN_PARTICIP_SPAM'] = "Ñïàì ó÷àñòíèêè";
-$MESS ['ADMIN_GUEST_OFF'] = "Ãî÷òè íåïîäòâåðæäåííûå";
-$MESS ['ADMIN_PARTICIP_OFF'] = "Ó÷àñòíèêè íåïîäòâåðæäåííûå";
-$MESS ['ADMIN_GUEST_ACCEPT'] = "Ãîñòè ïîäòâåðæäåííûå";
-$MESS ['ADMIN_PARTICIP_ACCEPT'] = "Ó÷àñòíèêè ïîäòâåðæäåííûå";
-$MESS ['ADMIN_GUEST_FORM_ID'] = "ID ôîðìû ñ äàííûìè ãîñòÿ";
-$MESS ['ADMIN_PARTICIP_FORM_ID'] = "ID ôîðìû ñ äàííûìè ó÷àñòíèêà";
+$MESS ['ADMIN_USER_OFF_MAIN_SETTINGS'] = "ÐžÑÐ½Ð¾Ð²Ð½Ñ‹Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹";
+$MESS ['ADMIN_USER_OFF_PATH_TO_KAB'] = "ÐŸÑƒÑ‚ÑŒ Ðº Ð¿Ð°Ð¿ÐºÐµ ÐºÐ°Ð±Ð¸Ð½ÐµÑ‚Ð° Ð°Ð´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ð°";
+$MESS ['ADMIN_USER_OFF_AUTH_PAGE'] = "Ð¡Ñ‚Ñ€Ð°Ð½Ð¸Ñ†Ð° Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð°Ñ†Ð¸Ð¸";
+$MESS ['ADMIN_USER_OFF_GROUP_ID'] = "Ð“Ñ€ÑƒÐ¿Ð¿Ñ‹ Ð°Ð´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ð¾Ð²";
+$MESS ['ADMIN_GUEST_SPAM'] = "Ð¡Ð¿Ð°Ð¼ Ð³Ð¾ÑÑ‚Ð¸";
+$MESS ['ADMIN_PARTICIP_SPAM'] = "Ð¡Ð¿Ð°Ð¼ ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¸";
+$MESS ['ADMIN_GUEST_OFF'] = "Ð“Ð¾Ñ‡Ñ‚Ð¸ Ð½ÐµÐ¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð½Ñ‹Ðµ";
+$MESS ['ADMIN_PARTICIP_OFF'] = "Ð£Ñ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¸ Ð½ÐµÐ¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð½Ñ‹Ðµ";
+$MESS ['ADMIN_GUEST_ACCEPT'] = "Ð“Ð¾ÑÑ‚Ð¸ Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð½Ñ‹Ðµ";
+$MESS ['ADMIN_PARTICIP_ACCEPT'] = "Ð£Ñ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¸ Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð½Ñ‹Ðµ";
+$MESS ['ADMIN_GUEST_FORM_ID'] = "ID Ñ„Ð¾Ñ€Ð¼Ñ‹ Ñ Ð´Ð°Ð½Ð½Ñ‹Ð¼Ð¸ Ð³Ð¾ÑÑ‚Ñ";
+$MESS ['ADMIN_PARTICIP_FORM_ID'] = "ID Ñ„Ð¾Ñ€Ð¼Ñ‹ Ñ Ð´Ð°Ð½Ð½Ñ‹Ð¼Ð¸ ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ°";
 ?>

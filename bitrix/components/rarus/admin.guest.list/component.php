@@ -24,7 +24,7 @@ $arResult = array();
 		throw new Exception("Can't load modules iblock form");
 	}
 
-	//получаем данные по выставке
+	//РїРѕР»СѓС‡Р°РµРј РґР°РЅРЅС‹Рµ РїРѕ РІС‹СЃС‚Р°РІРєРµ
 	$rs = CIBlockElement::GetList(array("SORT"=>"ASC"),
 	        array("IBLOCK_ID"=>intval($arParams["IBLOCK_ID_EXHIB"]), "CODE"=>$arParams["EXHIBIT_CODE"]/*, "ACTIVE"=>"Y"*/),
 	        false, array("nTopCount"=>1),
@@ -49,7 +49,7 @@ $arResult = array();
 		default: $groupId = false;
 	}
 
-    //список пользователей
+    //СЃРїРёСЃРѕРє РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
     $arUserFilter = array("GROUPS_ID"=>$groupId, "ACTIVE"=>"Y");
     switch($arParams["ACT"]) {
     	case "morning": $arUserFilter["UF_MR"] = true; break;
@@ -64,8 +64,8 @@ $arResult = array();
     $arUserListAll = array();
     $arUserFormAnswersId = array();
     $rs = CUser::GetList(($by = "work_company"), ($order = "asc"), $arUserFilter, array("SELECT"=>array("UF_*"), "FIELDS"=>array("ID", "LOGIN")));
-	$rs->NavStart(30); // разбиваем постранично по 30 записей
-	$arResult["NAVIGATE"] = $rs->GetPageNavStringEx($navComponentObject, "Пользователи", "");
+	$rs->NavStart(30); // СЂР°Р·Р±РёРІР°РµРј РїРѕСЃС‚СЂР°РЅРёС‡РЅРѕ РїРѕ 30 Р·Р°РїРёСЃРµР№
+	$arResult["NAVIGATE"] = $rs->GetPageNavStringEx($navComponentObject, "РџРѕР»СЊР·РѕРІР°С‚РµР»Рё", "");
 
     while($ar = $rs->GetNext(true, false)) {
     	$arUserListAll[ $ar["LOGIN"] ] = $ar;
@@ -79,10 +79,10 @@ $arResult = array();
          echo ("There are 0 users.");
      }
 
-    //получаем код поля, где хранится айди формы гостя
+    //РїРѕР»СѓС‡Р°РµРј РєРѕРґ РїРѕР»СЏ, РіРґРµ С…СЂР°РЅРёС‚СЃСЏ Р°Р№РґРё С„РѕСЂРјС‹ РіРѕСЃС‚СЏ
 //     $guestFormIdFieldCode = CFormMatrix::getPropertyIDByExh($arResult["EXHIB"]["ID"]);
 
-    //гости этой выставки
+    //РіРѕСЃС‚Рё СЌС‚РѕР№ РІС‹СЃС‚Р°РІРєРё
 //     $arResult["USERS_LIST"] = array();
 //     $arFormAnswersId = array();
 //     foreach($arUserListAll as $key=>$arUser) {
@@ -99,10 +99,10 @@ $arResult = array();
     }
     else
     {
-        //айди формы
+        //Р°Р№РґРё С„РѕСЂРјС‹
         //$arParams["GUEST_FORM_ID"] = CFormMatrix::getGResultIDByExh($arResult["EXHIB"]["ID"]);
         /*
-        //список результатов ответов в форме
+        //СЃРїРёСЃРѕРє СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ РѕС‚РІРµС‚РѕРІ РІ С„РѕСЂРјРµ
         $arAnswersFilter = array("RESULT_ID"=>implode("|", $arFormAnswersId));
 
         $arAnswers = array();
@@ -138,7 +138,7 @@ $arResult = array();
         		}
             }
 
-            //добавляем к инфо пользователя
+            //РґРѕР±Р°РІР»СЏРµРј Рє РёРЅС„Рѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
             $userLogin = $ar[ $loginFieldId ];
             if(isset($arResult["USERS_LIST"][$userLogin])) {
                 foreach($ar as $key=>$val) {
@@ -147,7 +147,7 @@ $arResult = array();
             }
         } */
 
-        //список результатов ответов в форме
+        //СЃРїРёСЃРѕРє СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ РѕС‚РІРµС‚РѕРІ РІ С„РѕСЂРјРµ
         $arAnswersFilter = array("RESULT_ID"=>implode("|", $arUserFormAnswersId));
 
         $arAnswers = array();
@@ -190,7 +190,7 @@ $arResult = array();
 
             //pre($ar);
 
-            //добавляем к инфо пользователя
+            //РґРѕР±Р°РІР»СЏРµРј Рє РёРЅС„Рѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
             $userLogin = $arUserFormAnswersLoginById[$key];
             $arResult["USERS_LIST"][$userLogin]["FORM_RESULT_ID"] = $key;
             if(isset($arResult["USERS_LIST"][$userLogin])) {

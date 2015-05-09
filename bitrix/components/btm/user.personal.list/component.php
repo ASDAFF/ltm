@@ -17,14 +17,14 @@ if(strLen($arParams["AUTH_PAGE"])<=0){
 }
 
 if(strLen($arParams["USER"])<=0){
-	$arResult["ERROR_MESSAGE"] = "ÕÂ ‚‚Â‰ÂÌ˚ ‰‡ÌÌ˚Â ÔÓ œÓÎ¸ÁÓ‚‡ÚÂÎˇÏ!<br />";
+	$arResult["ERROR_MESSAGE"] = "–ù–µ –≤–≤–µ–¥–µ–Ω—ã –¥–∞–Ω–Ω—ã–µ –ø–æ –ü–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª—è–º!<br />";
 }
 
 if(strLen($arParams["FORM_ID"])<=0){
-	$arResult["ERROR_MESSAGE"] = "ÕÂ ‚‚Â‰ÂÌ˚ ‰‡ÌÌ˚Â ÔÓ –ÂÁÛÎ¸Ú‡Ú‡Ï ÔÓÎ¸ÁÓ‚‡ÚÂÎÂÈ!<br />";
+	$arResult["ERROR_MESSAGE"] = "–ù–µ –≤–≤–µ–¥–µ–Ω—ã –¥–∞–Ω–Ω—ã–µ –ø–æ –†–µ–∑—É–ª—å—Ç–∞—Ç–∞–º –ø–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª–µ–π!<br />";
 }
 /*---------------------------------------------------*/
-//        ‘Œ–Ã»–”≈Ã ‘»À‹“–€ ¬≈–’Õﬂﬂ —“–Œ ¿           //
+//        –§–û–†–ú–ò–†–£–ï–ú –§–ò–õ–¨–¢–†–´ –í–ï–†–•–ù–Ø–Ø –°–¢–†–û–ö–ê           //
 /*---------------------------------------------------*/
 	$thisUrl = str_replace('index.php','',$APPLICATION->GetCurPage());
 	$arResult["FILTERS"]["MAIN"][0]["ID"] = 'abc';
@@ -53,17 +53,17 @@ if(strLen($arParams["FORM_ID"])<=0){
 	$arResult["FILTERS"]["MAIN"][4]["ACTIVE"] = 'N';
 
 /*---------------------------------------------------*/
-//        ‘Œ–Ã»–”≈Ã ‘»À‹“–€ Õ»∆Õﬂﬂ —“–Œ ¿           //
+//        –§–û–†–ú–ò–†–£–ï–ú –§–ò–õ–¨–¢–†–´ –ù–ò–ñ–ù–Ø–Ø –°–¢–†–û–ö–ê           //
 /*---------------------------------------------------*/
 	$realAnkets = '';
 	$realUsers = array();
 	$realUsers["COUNT"] = 0;
-	//---------------------- ¿À‘¿¬»“ --------------------------
+	//---------------------- –ê–õ–§–ê–í–ò–¢ --------------------------
 	if(((isset($_GET['ussort'])) and ($_GET['ussort'] == $arResult["FILTERS"]["MAIN"][0]["ID"])) || !isset($_GET['ussort'])){
 		$filterTmp = Array(
 			"GROUPS_ID"  => Array($arParams["USER"])
 		);
-		$rsUsersTmp = CUser::GetList(($by="id"), ($order="asc"), $filterTmp, array("SELECT"=>array("UF_ANKETA", "ID"))); // ‚˚·Ë‡ÂÏ ÔÓÎ¸ÁÓ‚‡ÚÂÎÂÈ
+		$rsUsersTmp = CUser::GetList(($by="id"), ($order="asc"), $filterTmp, array("SELECT"=>array("UF_ANKETA", "ID"))); // –≤—ã–±–∏—Ä–∞–µ–º –ø–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª–µ–π
 		$resultFormIdTmp = "";
 		$countUsers = 0;
 		while($arUsersTemp=$rsUsersTmp->Fetch()){
@@ -74,7 +74,7 @@ if(strLen($arParams["FORM_ID"])<=0){
 		}
 		$resultFormIdTmp = substr($resultFormIdTmp, 3);
 	
-		//–≈«”À‹“¿“€ œŒÀ‹«Œ¬¿“≈À≈…
+		//–†–ï–ó–£–õ–¨–¢–ê–¢–´ –ü–û–õ–¨–ó–û–í–ê–¢–ï–õ–ï–ô
 		CForm::GetResultAnswerArray($arParams["FORM_ID"], $arrColumnsTmp, $arrAnswersTmp, $arrAnswersVarnameTmp, array("RESULT_ID" => $resultFormIdTmp, "FIELD_ID" => 55));
 
 		$letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0";
@@ -136,13 +136,13 @@ if(strLen($arParams["FORM_ID"])<=0){
 		$realAnkets = substr($realAnkets, 3);
 		$arResult["USERS"]["COUNT"] = $realUsers["COUNT"];
 	}
-	//---------------------- Œ¡À¿—“‹ »Õ“≈–≈—Œ¬ --------------------------
+	//---------------------- –û–ë–õ–ê–°–¢–¨ –ò–ù–¢–ï–†–ï–°–û–í --------------------------
 	elseif((isset($_GET['ussort'])) and ($_GET['ussort'] == $arResult["FILTERS"]["MAIN"][1]["ID"])){
-		//—œ»—Œ  œŒÀ‹«Œ¬¿“≈À≈…
+		//–°–ü–ò–°–û–ö –ü–û–õ–¨–ó–û–í–ê–¢–ï–õ–ï–ô
 		$filterTmp = Array(
 			"GROUPS_ID"  => Array($arParams["USER"])
 		);
-		$rsUsersTmp = CUser::GetList(($by="id"), ($order="asc"), $filterTmp, array("SELECT"=>array("UF_ANKETA", "ID"))); // ‚˚·Ë‡ÂÏ ÔÓÎ¸ÁÓ‚‡ÚÂÎÂÈ
+		$rsUsersTmp = CUser::GetList(($by="id"), ($order="asc"), $filterTmp, array("SELECT"=>array("UF_ANKETA", "ID"))); // –≤—ã–±–∏—Ä–∞–µ–º –ø–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª–µ–π
 		$resultFormIdTmp = "";
 		$countUsers = 0;
 		while($arUsersTemp=$rsUsersTmp->Fetch()){
@@ -153,7 +153,7 @@ if(strLen($arParams["FORM_ID"])<=0){
 		}
 		$resultFormIdTmp = substr($resultFormIdTmp, 3);
 	
-		//–≈«”À‹“¿“€ œŒÀ‹«Œ¬¿“≈À≈…
+		//–†–ï–ó–£–õ–¨–¢–ê–¢–´ –ü–û–õ–¨–ó–û–í–ê–¢–ï–õ–ï–ô
 		CForm::GetResultAnswerArray($arParams["FORM_ID"], $arrColumnsTmp, $arrAnswersTmp, $arrAnswersVarnameTmp, array("RESULT_ID" => $resultFormIdTmp, "FIELD_ID" => 77));
 		
 		$country = array();
@@ -234,13 +234,13 @@ if(strLen($arParams["FORM_ID"])<=0){
 		$realAnkets = substr($realAnkets, 3);
 		$arResult["USERS"]["COUNT"] = $realUsers["COUNT"];
 	}
-	//---------------------- √Œ–Œƒ --------------------------
+	//---------------------- –ì–û–†–û–î --------------------------
 	elseif((isset($_GET['ussort'])) and ($_GET['ussort'] == $arResult["FILTERS"]["MAIN"][2]["ID"])){
-		//—œ»—Œ  œŒÀ‹«Œ¬¿“≈À≈…
+		//–°–ü–ò–°–û–ö –ü–û–õ–¨–ó–û–í–ê–¢–ï–õ–ï–ô
 		$filterTmp = Array(
 			"GROUPS_ID"  => Array($arParams["USER"])
 		);
-		$rsUsersTmp = CUser::GetList(($by="id"), ($order="asc"), $filterTmp, array("SELECT"=>array("UF_ANKETA", "ID"))); // ‚˚·Ë‡ÂÏ ÔÓÎ¸ÁÓ‚‡ÚÂÎÂÈ
+		$rsUsersTmp = CUser::GetList(($by="id"), ($order="asc"), $filterTmp, array("SELECT"=>array("UF_ANKETA", "ID"))); // –≤—ã–±–∏—Ä–∞–µ–º –ø–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª–µ–π
 		$resultFormIdTmp = "";
 		$countUsers = 0;
 		while($arUsersTemp=$rsUsersTmp->Fetch()){
@@ -251,7 +251,7 @@ if(strLen($arParams["FORM_ID"])<=0){
 		}
 		$resultFormIdTmp = substr($resultFormIdTmp, 3);
 	
-		//–≈«”À‹“¿“€ œŒÀ‹«Œ¬¿“≈À≈…
+		//–†–ï–ó–£–õ–¨–¢–ê–¢–´ –ü–û–õ–¨–ó–û–í–ê–¢–ï–õ–ï–ô
 		CForm::GetResultAnswerArray($arParams["FORM_ID"], $arrColumnsTmp, $arrAnswersTmp, $arrAnswersVarnameTmp, array("RESULT_ID" => $resultFormIdTmp, "FIELD_ID" => 58));
 
 		$country = array();
@@ -312,7 +312,7 @@ if(strLen($arParams["FORM_ID"])<=0){
 		$filterTmp = Array(
 			"GROUPS_ID"  => Array($arParams["USER"])
 		);
-		$rsUsersTmp = CUser::GetList(($by="id"), ($order="asc"), $filterTmp, array("SELECT"=>array("UF_ANKETA", "ID"))); // ‚˚·Ë‡ÂÏ ÔÓÎ¸ÁÓ‚‡ÚÂÎÂÈ
+		$rsUsersTmp = CUser::GetList(($by="id"), ($order="asc"), $filterTmp, array("SELECT"=>array("UF_ANKETA", "ID"))); // –≤—ã–±–∏—Ä–∞–µ–º –ø–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª–µ–π
 		$resultFormIdTmp = "";
 		$countUsers = 0;
 		while($arUsersTemp=$rsUsersTmp->Fetch()){
@@ -328,14 +328,14 @@ if(strLen($arParams["FORM_ID"])<=0){
 		$arResult["FILTERS"]["MAIN"][4]["ACTIVE"] = 'Y';
 	}
 /*---------------------------------------------------*/
-//           ‘Œ–Ã»–”≈Ã ¬€¬Œƒ ƒÀﬂ ÿ¿¡ÀŒÕ¿             //
+//           –§–û–†–ú–ò–†–£–ï–ú –í–´–í–û–î –î–õ–Ø –®–ê–ë–õ–û–ù–ê             //
 /*---------------------------------------------------*/
 if($arResult["ERROR_MESSAGE"] == '' && $arResult["USERS"]["COUNT"] != 0)
 {
-	//–≈«”À‹“¿“€ œŒÀ‹«Œ¬¿“≈À≈…
+	//–†–ï–ó–£–õ–¨–¢–ê–¢–´ –ü–û–õ–¨–ó–û–í–ê–¢–ï–õ–ï–ô
 	CForm::GetResultAnswerArray($arParams["FORM_ID"], $arrColumns, $arrAnswers, $arrAnswersVarname, array("RESULT_ID" => $realAnkets));
 	
-	//—œ»—Œ   ŒÀŒÕŒ  ƒÀﬂ “¿¡À»÷€
+	//–°–ü–ò–°–û–ö –ö–û–õ–û–ù–û–ö –î–õ–Ø –¢–ê–ë–õ–ò–¶–´
 	$countColumns = 0;
 	$countReal = 0;
 	$arResult["FIELDS"]["COUNT"]=0;
@@ -352,7 +352,7 @@ if($arResult["ERROR_MESSAGE"] == '' && $arResult["USERS"]["COUNT"] != 0)
 			}
 		}
 		else{
-			if($countReal!=0 && ($columnName["TITLE"] == $arResult["FIELDS"][$countReal-1]["TITLE"]." (‰Û„ÓÈ)" || $columnName["TITLE"] == $arResult["FIELDS"][$countReal-1]["TITLE"]." (‰Û„‡ˇ)" || $columnName["TITLE"] == $arResult["FIELDS"][$countReal-1]["TITLE"]." (‰Û„ËÂ)" || $columnName["TITLE"] == $arResult["FIELDS"][$countReal-1]["TITLE"]." (‰Û„ÓÂ)")){
+			if($countReal!=0 && ($columnName["TITLE"] == $arResult["FIELDS"][$countReal-1]["TITLE"]." (–¥—Ä—É–≥–æ–π)" || $columnName["TITLE"] == $arResult["FIELDS"][$countReal-1]["TITLE"]." (–¥—Ä—É–≥–∞—è)" || $columnName["TITLE"] == $arResult["FIELDS"][$countReal-1]["TITLE"]." (–¥—Ä—É–≥–∏–µ)" || $columnName["TITLE"] == $arResult["FIELDS"][$countReal-1]["TITLE"]." (–¥—Ä—É–≥–æ–µ)")){
 				$arResult["FIELDS"][$countReal]["OTHER"] = "Y";
 			}
 			else{
@@ -365,7 +365,7 @@ if($arResult["ERROR_MESSAGE"] == '' && $arResult["USERS"]["COUNT"] != 0)
 	$realFieldTemp = array();
 	
 	
-	//—œ»—Œ  œŒÀ‹«Œ¬¿“≈À≈… — œŒÀﬂÃ»
+	//–°–ü–ò–°–û–ö –ü–û–õ–¨–ó–û–í–ê–¢–ï–õ–ï–ô –° –ü–û–õ–Ø–ú–ò
 	for($i=0; $i<$realUsers["COUNT"]; $i++){
 		$arResult["USERS"][$i]["ID"] = $realUsers["USERS"][$i]["ID"];
 		$arResult["USERS"][$i]["ANKETA"] = $realUsers["USERS"][$i]["UF_ANKETA"];
@@ -410,11 +410,11 @@ if($arResult["ERROR_MESSAGE"] == '' && $arResult["USERS"]["COUNT"] != 0)
 					}
 				}
 				else{
-					if(strpos($arResult["FIELDS"][$j]["TITLE"], "¿‰ÂÒ") !== false){
-						$realFieldTemp[$j-$sdvig]["TITLE"] = "¿‰ÂÒ";
+					if(strpos($arResult["FIELDS"][$j]["TITLE"], "–ê–¥—Ä–µ—Å") !== false){
+						$realFieldTemp[$j-$sdvig]["TITLE"] = "–ê–¥—Ä–µ—Å";
 					}
-					elseif(strpos($arResult["FIELDS"][$j]["TITLE"], "“ÂÎÂÙÓÌ") !== false){
-						$realFieldTemp[$j-$sdvig]["TITLE"] = "“ÂÎÂÙÓÌ";
+					elseif(strpos($arResult["FIELDS"][$j]["TITLE"], "–¢–µ–ª–µ—Ñ–æ–Ω") !== false){
+						$realFieldTemp[$j-$sdvig]["TITLE"] = "–¢–µ–ª–µ—Ñ–æ–Ω";
 					}
 					else{
 						$realFieldTemp[$j-$sdvig]["TITLE"] = $arResult["FIELDS"][$j]["TITLE"];

@@ -35,11 +35,11 @@ $pasStr = implode('', $pasAr);
 $pas = base64_encode(strcode($pasStr, 'luxoran'));
 $pas2 = strcode(base64_decode($pas), 'luxoran');
 
-echo $pas.' - зашифрованный';
+echo $pas.' - Р·Р°С€РёС„СЂРѕРІР°РЅРЅС‹Р№';
 echo '<br>';
-echo $pasStr.' - исходный';
+echo $pasStr.' - РёСЃС…РѕРґРЅС‹Р№';
 echo '<br>';
-echo $pas2.' - расшифрованный';
+echo $pas2.' - СЂР°СЃС€РёС„СЂРѕРІР°РЅРЅС‹Р№';
 echo '<br>';
 */
 /*
@@ -96,7 +96,7 @@ $arFields = Array(
 
 $ID = $user->Add($arFields);
 if (intval($ID) > 0)
-    echo "Пользователь успешно добавлен.";
+    echo "РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅ.";
 else
     echo $user->LAST_ERROR;
 */

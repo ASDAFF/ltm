@@ -1,4 +1,4 @@
 <?
-$MESS ['CHOOSE_LANGUAGE'] = "Âûáåðèòå ÿçûê:";
+$MESS ['CHOOSE_LANGUAGE'] = "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ ÑÐ·Ñ‹Ðº:";
 
 ?>

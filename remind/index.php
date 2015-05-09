@@ -7,22 +7,22 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 <? 
 $mes =array();
 
-$mes["RU"]["TITLE"] = "Âîññòàíîâëåíèå ïàðîëÿ";
+$mes["RU"]["TITLE"] = "Ð’Ð¾ÑÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð°Ñ€Ð¾Ð»Ñ";
 $mes["EN"]["TITLE"] = "Password recovery";
 
-$mes["RU"]["NO_LOGIN"] = "Âû äîëæíû ââåñòè ñâîé ëîãèí!";
+$mes["RU"]["NO_LOGIN"] = "Ð’Ñ‹ Ð´Ð¾Ð»Ð¶Ð½Ñ‹ Ð²Ð²ÐµÑÑ‚Ð¸ ÑÐ²Ð¾Ð¹ Ð»Ð¾Ð³Ð¸Ð½!";
 $mes["EN"]["NO_LOGIN"] = "You must enter your login!";
 
-$mes["RU"]["ER_LOGIN"] = "Ëîãèí çàäàí íåïðàâèëüíî!";
+$mes["RU"]["ER_LOGIN"] = "Ð›Ð¾Ð³Ð¸Ð½ Ð·Ð°Ð´Ð°Ð½ Ð½ÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð¾!";
 $mes["EN"]["ER_LOGIN"] = "Login is invalid!";
 
-$mes["RU"]["PASS_SEND"] = "Âàø ïàðîëü îòïðàâëåí Âàì íà e-mail.";
+$mes["RU"]["PASS_SEND"] = "Ð’Ð°Ñˆ Ð¿Ð°Ñ€Ð¾Ð»ÑŒ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½ Ð’Ð°Ð¼ Ð½Ð° e-mail.";
 $mes["EN"]["PASS_SEND"] = "Your password has been sent to your e-mail.";
 
-$mes["RU"]["ENTER_LOGIN"] = "Ââåäèòå ñþäà ñâîé ëîãèí";
+$mes["RU"]["ENTER_LOGIN"] = "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÑŽÐ´Ð° ÑÐ²Ð¾Ð¹ Ð»Ð¾Ð³Ð¸Ð½";
 $mes["EN"]["ENTER_LOGIN"] = "Enter your login here";
 
-$mes["RU"]["REMIND"] = "Íàïîìíèòü";
+$mes["RU"]["REMIND"] = "ÐÐ°Ð¿Ð¾Ð¼Ð½Ð¸Ñ‚ÑŒ";
 $mes["EN"]["REMIND"] = "Remind";
 
 $lang = strtoupper(LANGUAGE_ID);

@@ -19,10 +19,10 @@ class Chandlers
 
 	function onBeforeResultAddHandlers($WEB_FORM_ID, $arFields, $arrVALUES)
 	{
-	    //пишем логи по подтверждению
+	    //РїРёС€РµРј Р»РѕРіРё РїРѕ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЋ
 	    $file = $_SERVER["DOCUMENT_ROOT"] . "/upload/webform.log";
 
-	    file_put_contents($file, "Дата:" . date("d.m.Y H:m:s") . "\r\n", FILE_APPEND);
+	    file_put_contents($file, "Р”Р°С‚Р°:" . date("d.m.Y H:m:s") . "\r\n", FILE_APPEND);
 	    file_put_contents($file, "WEB_FORM_ID:" . $WEB_FORM_ID . "\r\n", FILE_APPEND);
 	    file_put_contents($file, "arFields:\r\n" . print_r($arFields,true). "\r\n", FILE_APPEND);
 	    file_put_contents($file, "arrVALUES:\r\n" . print_r($arrVALUES,true). "\r\n", FILE_APPEND);

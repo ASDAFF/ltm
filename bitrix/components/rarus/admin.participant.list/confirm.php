@@ -5,29 +5,29 @@ $answerid = array("text", "textarea", "password", "date", "file", "image", "hidd
 $answersid = array("dropdown", "checkbox", "multiselect", "radio");
 
 $skipFields = array(
-		"SIMPLE_QUESTION_732", 		//Зал
-		"SIMPLE_QUESTION_148", 		//Стол
-		"SIMPLE_QUESTION_539", 		//Номер счета
-		"SIMPLE_QUESTION_680",		//Сумма счета
-		"SIMPLE_QUESTION_667"		//Реквизиты
+		"SIMPLE_QUESTION_732", 		//Р—Р°Р»
+		"SIMPLE_QUESTION_148", 		//РЎС‚РѕР»
+		"SIMPLE_QUESTION_539", 		//РќРѕРјРµСЂ СЃС‡РµС‚Р°
+		"SIMPLE_QUESTION_680",		//РЎСѓРјРјР° СЃС‡РµС‚Р°
+		"SIMPLE_QUESTION_667"		//Р РµРєРІРёР·РёС‚С‹
 );
 
 foreach($arConfirmUsersID as $userID)
 {
 //pre($userID);
-	//получаем группы пользователя
+	//РїРѕР»СѓС‡Р°РµРј РіСЂСѓРїРїС‹ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
     $arGroups = CUser::GetUserGroup($userID);
 
     $groupConfirmID = $arResult["EXHIBITION"]["PROPERTIES"]["USER_GROUP_ID"]["VALUE"];
     $groupUConfirmID = $arResult["EXHIBITION"]["PROPERTIES"]["UC_PARTICIPANTS_GROUP"]["VALUE"];
 
-    if(!$groupConfirmID || !$groupUConfirmID)//выход если не заданы группы участников
+    if(!$groupConfirmID || !$groupUConfirmID)//РІС‹С…РѕРґ РµСЃР»Рё РЅРµ Р·Р°РґР°РЅС‹ РіСЂСѓРїРїС‹ СѓС‡Р°СЃС‚РЅРёРєРѕРІ
     {
     	break;
     }
 
     $needUpdate = false;
-    foreach ($arGroups as $index => $group)//добавляем пользователя из группы неподтвержденных пользоватейлей в подтвержденных
+    foreach ($arGroups as $index => $group)//РґРѕР±Р°РІР»СЏРµРј РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РёР· РіСЂСѓРїРїС‹ РЅРµРїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР№Р»РµР№ РІ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С…
     {
     	if($group == $groupUConfirmID)
     	{
@@ -50,12 +50,12 @@ foreach($arConfirmUsersID as $userID)
     }
 
 
-	//если отсутствует результат вебформы на данную выставку, то добавляем пользователя и пустой для его коллеги
+	//РµСЃР»Рё РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ СЂРµР·СѓР»СЊС‚Р°С‚ РІРµР±С„РѕСЂРјС‹ РЅР° РґР°РЅРЅСѓСЋ РІС‹СЃС‚Р°РІРєСѓ, С‚Рѕ РґРѕР±Р°РІР»СЏРµРј РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ Рё РїСѓСЃС‚РѕР№ РґР»СЏ РµРіРѕ РєРѕР»Р»РµРіРё
     if(empty($arUser[$memberOneID]))
     {
         $arNewFields = array();
 
-        foreach ($arUser["FORM_USER"] as $question)//подготовка массива для формы
+        foreach ($arUser["FORM_USER"] as $question)//РїРѕРґРіРѕС‚РѕРІРєР° РјР°СЃСЃРёРІР° РґР»СЏ С„РѕСЂРјС‹
         {
         	if(in_array($question["SID"], $skipFields))
         	{
@@ -109,7 +109,7 @@ foreach($arConfirmUsersID as $userID)
            $b = $USER->Update($userID, $arUserFields);
        }
        
-       //добавляем второму пользователю пустой результат вебформы
+       //РґРѕР±Р°РІР»СЏРµРј РІС‚РѕСЂРѕРјСѓ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ РїСѓСЃС‚РѕР№ СЂРµР·СѓР»СЊС‚Р°С‚ РІРµР±С„РѕСЂРјС‹
        $resMemberTwoID = CFormResult::Add($formID);
        $USER->Update($userID, array($memberTwoID => $resMemberTwoID));
 
@@ -118,10 +118,10 @@ foreach($arConfirmUsersID as $userID)
            CUser::SetUserGroup($userID, $arGroups);
        }
 
-    }//если результат есть, но нет результата коллеги, добавляем пустой результат коллеги
+    }//РµСЃР»Рё СЂРµР·СѓР»СЊС‚Р°С‚ РµСЃС‚СЊ, РЅРѕ РЅРµС‚ СЂРµР·СѓР»СЊС‚Р°С‚Р° РєРѕР»Р»РµРіРё, РґРѕР±Р°РІР»СЏРµРј РїСѓСЃС‚РѕР№ СЂРµР·СѓР»СЊС‚Р°С‚ РєРѕР»Р»РµРіРё
     elseif(empty($arUser[$memberTwoID]))
     {
-    	//добавляем второпу пользователю пустой результат вебформы
+    	//РґРѕР±Р°РІР»СЏРµРј РІС‚РѕСЂРѕРїСѓ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ РїСѓСЃС‚РѕР№ СЂРµР·СѓР»СЊС‚Р°С‚ РІРµР±С„РѕСЂРјС‹
         $resMemberTwoID = CFormResult::Add($formID);
         $USER->Update($userID, array($memberTwoID => $resMemberTwoID));
 
@@ -129,13 +129,13 @@ foreach($arConfirmUsersID as $userID)
         {
             CUser::SetUserGroup($userID, $arGroups);
         }
-    }//если есть все результаты, просто записываем пользователя в новые подтвержденные группы
+    }//РµСЃР»Рё РµСЃС‚СЊ РІСЃРµ СЂРµР·СѓР»СЊС‚Р°С‚С‹, РїСЂРѕСЃС‚Рѕ Р·Р°РїРёСЃС‹РІР°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РІ РЅРѕРІС‹Рµ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ РіСЂСѓРїРїС‹
     else
     {
         CUser::SetUserGroup($userID, $arGroups);
     }
 
-    //обновляем у пользователя данные в профиле
+    //РѕР±РЅРѕРІР»СЏРµРј Сѓ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РґР°РЅРЅС‹Рµ РІ РїСЂРѕС„РёР»Рµ
        $name = $arUser["FORM_USER"][32]["VALUE"]; //32 id Participant first name
        $lastName = $arUser["FORM_USER"][33]["VALUE"]; //33 id Participant last name
        $workCompany = $arUser["FORM_DATA"][17]["VALUE"]; //17 id Company or hotel name

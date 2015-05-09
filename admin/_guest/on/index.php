@@ -1,6 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Гости подтвержденные утро");
+$APPLICATION->SetTitle("Р“РѕСЃС‚Рё РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹Рµ СѓС‚СЂРѕ");
 ?>
 <?$APPLICATION->IncludeComponent(
 	"btm:user_accept.admin",

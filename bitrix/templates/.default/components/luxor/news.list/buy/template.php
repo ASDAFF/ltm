@@ -1,8 +1,8 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 <table id = "t_step2">
 	<tr>
-		<td style = "font-size: 12px;">српн</td>
-		<td style = "font-size: 12px;">бевеп</td>
+		<td style = "font-size: 12px;">пёп╒п═п·</td>
+		<td style = "font-size: 12px;">п▓п∙п╖п∙п═</td>
 	</tr>
 <?foreach($arResult["ITEMS"] as $arItem):?>
 	<?
