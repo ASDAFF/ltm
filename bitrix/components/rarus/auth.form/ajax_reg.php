@@ -40,10 +40,10 @@ if($exhibID && $userID)
 
 
 	$arEventFields = array(
-	    "LOGIN"            => $arUser["LOGIN"],
-	    "MAIL"             => $arUser["EMAIL"],
-	    "COMP_NAME"        => $arUser["WORK_COMPANY"],
-	    "PASSWORD"         => $aruser["UF_PAS"]
+		"LOGIN"            => $arUser["LOGIN"],
+		"MAIL"             => $arUser["EMAIL"],
+		"COMP_NAME"        => $arUser["WORK_COMPANY"],
+		"PASSWORD"         => $aruser["UF_PAS"]
 	);
 
 	$sendType;
@@ -62,8 +62,8 @@ if($exhibID && $userID)
 
 	if($ucExhibGroupID && !array_search($ucExhibGroupID, $arUserGroups))
 	{
-	    $arUserGroups[] = $ucExhibGroupID;
-	    $user->SetUserGroup($userID, $arUserGroups);
+		$arUserGroups[] = $ucExhibGroupID;
+		$user->SetUserGroup($userID, $arUserGroups);
 
 		#копируем значение вебформы в базовую
 		$arFormData = copyExhDataToDefault($userID);
@@ -74,12 +74,12 @@ if($exhibID && $userID)
 			$arEventFields["MAIL"] = $arFormData["EMAIL"];
 		}
 
-	    if($sendType && !empty($arEventFields))
-	    {
-	        CEvent::Send($sendType, 's1', $arEventFields);
-	    }
+		if($sendType && !empty($arEventFields))
+		{
+			CEvent::Send($sendType, 's1', $arEventFields);
+		}
 
-	    echo "OK";
+		echo "OK";
 		die();
 	}
 	else
@@ -107,14 +107,14 @@ function copyExhDataToDefault($userId)
 	$arUser = $USER->GetByID($userId)->Fetch();
 
 	$arExhibFilter = array(
-			"IBLOCK_ID" => 15,
-			"PROPERTY_USER_GROUP_ID" => $arUserGroup,
-			"<=PROPERTY_DATE_TIME" => date("Y-m-d")
+		"IBLOCK_ID" => 15,
+		"PROPERTY_USER_GROUP_ID" => $arUserGroup,
+		"<=PROPERTY_DATE_TIME" => date("Y-m-d")
 	);
 	$arSelect = array(
-			"ID",
-			"IBLOCK",
-			"PROPERTY_USER_GROUP_ID"
+		"ID",
+		"IBLOCK",
+		"PROPERTY_USER_GROUP_ID"
 	);
 
 	$rsExhib = CIBlockElement::GetList(array("PROPERTY_DATE_TIME" => "desc"), $arExhibFilter, false, array("nTopCount" => 1), $arSelect);
@@ -130,32 +130,32 @@ function copyExhDataToDefault($userId)
 		$baseResultID = $arUser["UF_ID"];
 
 		$FieldSID = array(
-				"NAME" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_446",$formID),//Participant first name
-				"LAST_NAME" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_551",$formID),//Participant last name
-				"JOB_TITLE" =>CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_729",$formID),//Job title
-				"PHONE" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_394",$formID),//Telephone
-				"EMAIL" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_859",$formID),//E-mail
-				"EMAIL_CONF" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_585",$formID),//Please confirm your e-mail
-				"EMAIL_ALT" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_749",$formID),//Alternative e-mail
-				"PHOTO" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_575",$formID),//Персональное фото
-				"SALUTATION" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_889",$formID),//Salutation
+			"NAME" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_446",$formID),//Participant first name
+			"LAST_NAME" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_551",$formID),//Participant last name
+			"JOB_TITLE" =>CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_729",$formID),//Job title
+			"PHONE" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_394",$formID),//Telephone
+			"EMAIL" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_859",$formID),//E-mail
+			"EMAIL_CONF" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_585",$formID),//Please confirm your e-mail
+			"EMAIL_ALT" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_749",$formID),//Alternative e-mail
+			"PHOTO" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_575",$formID),//Персональное фото
+			"SALUTATION" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_889",$formID),//Salutation
 		);
 
 		$arAnswer = CFormResult::GetDataByID(
-				$resultId,
-				array(
-						$FieldSID["NAME"],
-						$FieldSID["LAST_NAME"],
-						$FieldSID["JOB_TITLE"],
-						$FieldSID["PHONE"],
-						$FieldSID["EMAIL"],
-						$FieldSID["EMAIL_CONF"],
-						$FieldSID["EMAIL_ALT"],
-						$FieldSID["PHOTO"],
-						$FieldSID["SALUTATION"],
-				),
-				$arResult,
-				$arAnswerSID);
+			$resultId,
+			array(
+				$FieldSID["NAME"],
+				$FieldSID["LAST_NAME"],
+				$FieldSID["JOB_TITLE"],
+				$FieldSID["PHONE"],
+				$FieldSID["EMAIL"],
+				$FieldSID["EMAIL_CONF"],
+				$FieldSID["EMAIL_ALT"],
+				$FieldSID["PHOTO"],
+				$FieldSID["SALUTATION"],
+			),
+			$arResult,
+			$arAnswerSID);
 
 		$newArAnswerSID = array();
 
@@ -178,16 +178,16 @@ function copyExhDataToDefault($userId)
 
 		/*Заполняем массив для вебформы участника*/
 		$arPersonalFormFields = array(
-				"form_text_84" => $newArAnswerSID["NAME"], 								//Participant first name
-				"form_text_85" => $newArAnswerSID["LAST_NAME"], 						//Participant last name
-				"form_text_87" => $newArAnswerSID["JOB_TITLE"], 						//Job title
-				"form_text_88" => $newArAnswerSID["PHONE"], 							//Telephone
-				"form_text_89" => $newArAnswerSID["EMAIL"],								//E-mail
-				"form_text_90" => $newArAnswerSID["EMAIL_CONF"],						//Please confirm your e-mail
-				"form_text_91" => $newArAnswerSID["EMAIL_ALT"],							//Alternative e-mail
-				"form_dropdown_SIMPLE_QUESTION_889" =>
+			"form_text_84" => $newArAnswerSID["NAME"], 								//Participant first name
+			"form_text_85" => $newArAnswerSID["LAST_NAME"], 						//Participant last name
+			"form_text_87" => $newArAnswerSID["JOB_TITLE"], 						//Job title
+			"form_text_88" => $newArAnswerSID["PHONE"], 							//Telephone
+			"form_text_89" => $newArAnswerSID["EMAIL"],								//E-mail
+			"form_text_90" => $newArAnswerSID["EMAIL_CONF"],						//Please confirm your e-mail
+			"form_text_91" => $newArAnswerSID["EMAIL_ALT"],							//Alternative e-mail
+			"form_dropdown_SIMPLE_QUESTION_889" =>
 				CFormMatrix::getAnswerSalutationBase($newArAnswerSID["SALUTATION"],$formID),	//Salutation
-				"form_image_195" => Cfile::MakeFileArray($newArAnswerSID["PHOTO"]),		//Персональное фото
+			"form_image_195" => Cfile::MakeFileArray($newArAnswerSID["PHOTO"]),		//Персональное фото
 		);
 
 		//обновляем результат
