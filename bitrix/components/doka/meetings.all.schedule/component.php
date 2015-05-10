@@ -5,7 +5,6 @@
   * Убрать все лишнее
   */
 
-ini_set("output_buffering","0");
 set_time_limit(0);
 ignore_user_abort(true);
 
@@ -181,7 +180,7 @@ while ($arUser = $rsGUsers->Fetch()) {
 $rsCompanies = $req_obj->getAllMeetTimesByGroup($group_search_id);
 
 $path = '/upload/pdf/'.strtolower($arParams["EXIB_CODE"]).'/';
-$shotPath = $_SERVER['DOCUMENT_ROOT'].'/upload/pdf/';
+$shotPath = '/upload/pdf/';
 CheckDirPath($_SERVER['DOCUMENT_ROOT'].$path);
 $pdfFolder = $_SERVER['DOCUMENT_ROOT'].$path;
 
@@ -250,10 +249,10 @@ while ($data = $rsCompanies->Fetch()) {
 	$company['exhibition'] = $req_obj->getOptions();
 	DokaGeneratePdf($company);
 }
-
+/* Создание архива и удаление папки */
 include_once($_SERVER["DOCUMENT_ROOT"]."/local/php_interface/lib/pclzip.lib.php"); //Подключаем библиотеку.
-$archive = new PclZip($pdfFolder.strtolower($arParams["EXIB_CODE"]).'.zip'); //Создаём объект и в качестве аргумента, указываем название архива, с которым работаем.
-$result = $archive->create($pdfFolder, PCLZIP_OPT_REMOVE_PATH, $shotPath); // Этим методом класса мы создаём архив с заданным выше названием
+$archive = new PclZip($_SERVER['DOCUMENT_ROOT'].$shotPath.$arParams["EXIB_CODE"].'.zip'); //Создаём объект и в качестве аргумента, указываем название архива, с которым работаем.
+$result = $archive->create($pdfFolder, PCLZIP_OPT_REMOVE_PATH, $_SERVER['DOCUMENT_ROOT'].$shotPath); // Этим методом класса мы создаём архив с заданным выше названием
 if($result == 0) {
 	echo $archive->errorInfo(true); //Возращает причину ошибки
 }
@@ -263,10 +262,13 @@ else{
 		"EXIBITION" => $exhibitionParam["TITLE"],
 		"TYPE" => "расписание",
 		"USER_TYPE" => strtolower($arParams["USER_TYPE"]),
-		"LINK" => "http://".$_SERVER['SERVER_NAME'].$path.strtolower($arParams["EXIB_CODE"]).'.zip'
+		"LINK" => "http://".$_SERVER['SERVER_NAME'].$shotPath.strtolower($arParams["EXIB_CODE"]).'.zip'
 	);
 	CEvent::SendImmediate("ARCHIVE_READY ", "s1", $arEventFields);
 }
+
+fullRemove_ff($pdfFolder);
+
 
 function DokaGetNote($meet, $user_type, $curUser) {
 	global $USER, $arParams;
@@ -289,5 +291,34 @@ function DokaGetNote($meet, $user_type, $curUser) {
 			break;
 	}
 	return $msg;
+}
+
+function fullRemove_ff($path,$t="1") {
+	$rtrn="1";
+	if (file_exists($path) && is_dir($path)) {
+		$dirHandle = opendir($path);
+		while (false !== ($file = readdir($dirHandle))) {
+			if ($file!='.' && $file!='..') {
+				$tmpPath=$path.'/'.$file;
+				chmod($tmpPath, 0777);
+				if (is_dir($tmpPath)) {
+					fullRemove_ff($tmpPath);
+				} else {
+					if (file_exists($tmpPath)) {
+						unlink($tmpPath);
+					}
+				}
+			}
+		}
+		closedir($dirHandle);
+		if ($t=="1") {
+			if (file_exists($path)) {
+				rmdir($path);
+			}
+		}
+	} else {
+		$rtrn="0";
+	}
+	return $rtrn;
 }
 ?>
