@@ -35,7 +35,8 @@ $(document).ready(function() { // вся магия после загрузки 
                 $("#pdf_error").removeClass("error");
                 $("#pdf_error").text("На ваш email будет отправлена ссылка на архивю");
                 $("#pdf_error").addClass("sucsess");
-                $.post("/ajax/all_pdf_shedule.php", { type: curType, app: curApp, email: curEmail} );
+                var req = $.post("/ajax/all_pdf_shedule.php", { type: curType, app: curApp, email: curEmail} );
+                req.abort();
                 setTimeout(function () {
                     $('#modal_form')
                         .animate({opacity: 0, top: '45%'}, 200,  // плавно меняем прозрачность на 0 и одновременно двигаем окно вверх
