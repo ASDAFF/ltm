@@ -5,7 +5,6 @@
   * Убрать все лишнее
   */
 
-ini_set("output_buffering","0");
 set_time_limit(0);
 ignore_user_abort(true);
 
@@ -252,7 +251,7 @@ while ($data = $rsCompanies->Fetch()) {
 }
 /* Создание архива и удаление папки */
 include_once($_SERVER["DOCUMENT_ROOT"]."/local/php_interface/lib/pclzip.lib.php"); //Подключаем библиотеку.
-$archive = new PclZip($_SERVER['DOCUMENT_ROOT'].$shotPath.strtolower($arParams["EXIB_CODE"]).'.zip'); //Создаём объект и в качестве аргумента, указываем название архива, с которым работаем.
+$archive = new PclZip($_SERVER['DOCUMENT_ROOT'].$shotPath.$arParams["EXIB_CODE"].'.zip'); //Создаём объект и в качестве аргумента, указываем название архива, с которым работаем.
 $result = $archive->create($pdfFolder, PCLZIP_OPT_REMOVE_PATH, $_SERVER['DOCUMENT_ROOT'].$shotPath); // Этим методом класса мы создаём архив с заданным выше названием
 if($result == 0) {
 	echo $archive->errorInfo(true); //Возращает причину ошибки
@@ -267,7 +266,8 @@ else{
 	);
 	CEvent::SendImmediate("ARCHIVE_READY ", "s1", $arEventFields);
 }
-removeDir($pdfFolder);
+
+fullRemove_ff($pdfFolder);
 
 
 function DokaGetNote($meet, $user_type, $curUser) {
@@ -293,12 +293,32 @@ function DokaGetNote($meet, $user_type, $curUser) {
 	return $msg;
 }
 
-function removeDir($path) {
-	if (is_file($path)) {
-		@unlink($path);
+function fullRemove_ff($path,$t="1") {
+	$rtrn="1";
+	if (file_exists($path) && is_dir($path)) {
+		$dirHandle = opendir($path);
+		while (false !== ($file = readdir($dirHandle))) {
+			if ($file!='.' && $file!='..') {
+				$tmpPath=$path.'/'.$file;
+				chmod($tmpPath, 0777);
+				if (is_dir($tmpPath)) {
+					fullRemove_ff($tmpPath);
+				} else {
+					if (file_exists($tmpPath)) {
+						unlink($tmpPath);
+					}
+				}
+			}
+		}
+		closedir($dirHandle);
+		if ($t=="1") {
+			if (file_exists($path)) {
+				rmdir($path);
+			}
+		}
 	} else {
-		array_map('removeDir',glob('/*')) == @rmdir($path);
+		$rtrn="0";
 	}
-	@rmdir($path);
+	return $rtrn;
 }
 ?>
