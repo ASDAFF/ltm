@@ -187,7 +187,6 @@ $pdfFolder = $_SERVER['DOCUMENT_ROOT'].$path;
 
 require(DOKA_MEETINGS_MODULE_DIR . '/classes/pdf/tcpdf.php');
 require_once(DOKA_MEETINGS_MODULE_DIR . '/classes/pdf/templates/schedule_all_' . $arParams['USER_TYPE'] . '.php');
-$counter = 0;
 while ($data = $rsCompanies->Fetch()) {
 	$pdfName = str_replace(" ", "_", $data["WORK_COMPANY"])."_".$data["ID"].".pdf";
 	$pdfName = str_replace("/", "", $pdfName);
@@ -250,11 +249,6 @@ while ($data = $rsCompanies->Fetch()) {
 	$APPLICATION->RestartBuffer();
 	$company['exhibition'] = $req_obj->getOptions();
 	DokaGeneratePdf($company);
-	$counter++;
-	if($counter > 1){
-		$counter = 0;
-		break;
-	}
 }
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/local/php_interface/lib/pclzip.lib.php"); //Подключаем библиотеку.
@@ -269,9 +263,9 @@ else{
 		"EXIBITION" => $exhibitionParam["TITLE"],
 		"TYPE" => "расписание",
 		"USER_TYPE" => strtolower($arParams["USER_TYPE"]),
-		"LINK" => $_SERVER['SERVER_NAME'].$path.strtolower($arParams["EXIB_CODE"]).'.zip'
+		"LINK" => "http://".$_SERVER['SERVER_NAME'].$path.strtolower($arParams["EXIB_CODE"]).'.zip'
 	);
-	CEvent::Send("ARCHIVE_READY ", "s1", $arEventFields);
+	CEvent::SendImmediate("ARCHIVE_READY ", "s1", $arEventFields);
 }
 
 function DokaGetNote($meet, $user_type, $curUser) {
