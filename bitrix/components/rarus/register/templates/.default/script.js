@@ -22,30 +22,30 @@ $(function() {
 	};
 	
 	var ru = {
-			"require":"Это поле является обязательным.",
-			"email":"Некорректный E-mail.",
-			"web":"Это поле должно быть отформатирован как URL.",
-			"phone":"Это поле должно быть в формате телефонного номера.",
-			"minLength": "Минимальная длина составляет 3 символа.",
-			"maxLength": "Максимальная длина составляет 16 символов.",
-			"login": "Логин должен состоять из букв, цифр или символов подчеркивания.",
-			"conf_email": "E-mail не совпадают.",
-			"exhib":"Вы не выбрали мероприятие.",
-			"priority": "Приоритетные направления не выбраны.",
-			"minPhoto": "Минимум 6 фотографий.",
-			"en": "Только латинские символы.",
-			"area":"Вид деятельности не выбран.",
-			"space":"Пробел недопустим.",
-			"conf_pass":"Пароли не совпадают.",
-			"en_num":"Только латинские символы и цифры.",
-			"login_busy": "Логин уже занят."
+			"require":"Р­С‚Рѕ РїРѕР»Рµ СЏРІР»СЏРµС‚СЃСЏ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Рј.",
+			"email":"РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ E-mail.",
+			"web":"Р­С‚Рѕ РїРѕР»Рµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РѕС‚С„РѕСЂРјР°С‚РёСЂРѕРІР°РЅ РєР°Рє URL.",
+			"phone":"Р­С‚Рѕ РїРѕР»Рµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РІ С„РѕСЂРјР°С‚Рµ С‚РµР»РµС„РѕРЅРЅРѕРіРѕ РЅРѕРјРµСЂР°.",
+			"minLength": "РњРёРЅРёРјР°Р»СЊРЅР°СЏ РґР»РёРЅР° СЃРѕСЃС‚Р°РІР»СЏРµС‚ 3 СЃРёРјРІРѕР»Р°.",
+			"maxLength": "РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ РґР»РёРЅР° СЃРѕСЃС‚Р°РІР»СЏРµС‚ 16 СЃРёРјРІРѕР»РѕРІ.",
+			"login": "Р›РѕРіРёРЅ РґРѕР»Р¶РµРЅ СЃРѕСЃС‚РѕСЏС‚СЊ РёР· Р±СѓРєРІ, С†РёС„СЂ РёР»Рё СЃРёРјРІРѕР»РѕРІ РїРѕРґС‡РµСЂРєРёРІР°РЅРёСЏ.",
+			"conf_email": "E-mail РЅРµ СЃРѕРІРїР°РґР°СЋС‚.",
+			"exhib":"Р’С‹ РЅРµ РІС‹Р±СЂР°Р»Рё РјРµСЂРѕРїСЂРёСЏС‚РёРµ.",
+			"priority": "РџСЂРёРѕСЂРёС‚РµС‚РЅС‹Рµ РЅР°РїСЂР°РІР»РµРЅРёСЏ РЅРµ РІС‹Р±СЂР°РЅС‹.",
+			"minPhoto": "РњРёРЅРёРјСѓРј 6 С„РѕС‚РѕРіСЂР°С„РёР№.",
+			"en": "РўРѕР»СЊРєРѕ Р»Р°С‚РёРЅСЃРєРёРµ СЃРёРјРІРѕР»С‹.",
+			"area":"Р’РёРґ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё РЅРµ РІС‹Р±СЂР°РЅ.",
+			"space":"РџСЂРѕР±РµР» РЅРµРґРѕРїСѓСЃС‚РёРј.",
+			"conf_pass":"РџР°СЂРѕР»Рё РЅРµ СЃРѕРІРїР°РґР°СЋС‚.",
+			"en_num":"РўРѕР»СЊРєРѕ Р»Р°С‚РёРЅСЃРєРёРµ СЃРёРјРІРѕР»С‹ Рё С†РёС„СЂС‹.",
+			"login_busy": "Р›РѕРіРёРЅ СѓР¶Рµ Р·Р°РЅСЏС‚."
 				
 	};
 	
 
 	$errorText = {"en":en, "ru":ru};
 	
-	//проверка имейла налету
+	//РїСЂРѕРІРµСЂРєР° РёРјРµР№Р»Р° РЅР°Р»РµС‚Сѓ
 	$("#REGISTER_FORM").on("keyup", "input[name=CONF_EMAIL]", function(eventObject){
 		
 		var inpConfEmail = $(this);
@@ -81,7 +81,7 @@ $(function() {
 	});
 
 	/*
-	//копирования из названия компании
+	//РєРѕРїРёСЂРѕРІР°РЅРёСЏ РёР· РЅР°Р·РІР°РЅРёСЏ РєРѕРјРїР°РЅРёРё
 	$("#REGISTER_FORM").on("change", ".registr_exh input[name=COMPANY_NAME]", function(){
 		
 		var inpCompanyName = $(this);
@@ -100,7 +100,7 @@ $(function() {
 	});
 	*/
 	
-	//ajax проверка логина
+	//ajax РїСЂРѕРІРµСЂРєР° Р»РѕРіРёРЅР°
 	$("#REGISTER_FORM").on("focusout", "input[name=LOGIN]", function(){
 		
 		var loginInput = $(this);
@@ -184,7 +184,7 @@ $(function() {
 	
 	//$.validity.setup({ scrollTo: true });
 	
-	//Клик по регистрации участника
+	//РљР»РёРє РїРѕ СЂРµРіРёСЃС‚СЂР°С†РёРё СѓС‡Р°СЃС‚РЅРёРєР°
 	$("#REGISTER_FORM").on("click", ".registr_exh input[name=register_button]", function(){
 		
 		$(this).prop('disabled',true);
@@ -199,7 +199,7 @@ $(function() {
 		$(this).prop('disabled',false);
 	});
 	
-	//Клик по регистрации гостя
+	//РљР»РёРє РїРѕ СЂРµРіРёСЃС‚СЂР°С†РёРё РіРѕСЃС‚СЏ
 	$("#REGISTER_FORM").on("click", ".registr_buy input[name=register_button]", function(){
 		$(this).prop('disabled',true);
 		if($("input#ckeck_register").prop("checked") && validateRegFormB())
@@ -213,7 +213,7 @@ $(function() {
 		$(this).prop('disabled',false);
 	});
 	
-	/*Выбор выставок участниками*/
+	/*Р’С‹Р±РѕСЂ РІС‹СЃС‚Р°РІРѕРє СѓС‡Р°СЃС‚РЅРёРєР°РјРё*/
 	$("#register_form_content").on("click", ".registr_exh table.exh-select input:checkbox", function(){
 		
 		var checkbox = $(this);
@@ -222,13 +222,13 @@ $(function() {
 		var row = checkbox.closest("tr");
 		var table = checkbox.closest("table.exh-select");
 		
-		/*Если на выставку нельзя зарегистрироваться не даем ее чекнуть*/
+		/*Р•СЃР»Рё РЅР° РІС‹СЃС‚Р°РІРєСѓ РЅРµР»СЊР·СЏ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊСЃСЏ РЅРµ РґР°РµРј РµРµ С‡РµРєРЅСѓС‚СЊ*/
 		if(row.hasClass("not-available"))
 		{
 			return false;
 		}
 		 
-		/*Если выставку выбрали меняем стиль лейбла*/
+		/*Р•СЃР»Рё РІС‹СЃС‚Р°РІРєСѓ РІС‹Р±СЂР°Р»Рё РјРµРЅСЏРµРј СЃС‚РёР»СЊ Р»РµР№Р±Р»Р°*/
 		if(label.hasClass("active-exh"))
 		{
 			label.removeClass("active-exh");
@@ -239,7 +239,7 @@ $(function() {
 		}
 		
 		var newText = "";
-		/*отмечаем все выбранные выставки в спец поле*/
+		/*РѕС‚РјРµС‡Р°РµРј РІСЃРµ РІС‹Р±СЂР°РЅРЅС‹Рµ РІС‹СЃС‚Р°РІРєРё РІ СЃРїРµС† РїРѕР»Рµ*/
 		table.find("input:checkbox:checked").each(function(ind, check){
 			var row = $(check).closest("tr");
 			if(!row.hasClass("not-available"))
@@ -254,7 +254,7 @@ $(function() {
 
 		$("#selected-exhibition").text(newText);
 		
-		 //проверка выбора выставки
+		 //РїСЂРѕРІРµСЂРєР° РІС‹Р±РѕСЂР° РІС‹СЃС‚Р°РІРєРё
 		if(!isExhibSelected())
 		{
 			var block = $("#REGISTER_FORM .exh-select");
@@ -267,7 +267,7 @@ $(function() {
 		}
 	});
 	
-	/*Выбор выставки гостем*/
+	/*Р’С‹Р±РѕСЂ РІС‹СЃС‚Р°РІРєРё РіРѕСЃС‚РµРј*/
 	$("#register_form_content").on("click", ".registr_buy table.exh-select input:checkbox", function(){
 		
 		var checkbox = $(this);
@@ -276,13 +276,13 @@ $(function() {
 		var row = checkbox.closest("tr");
 		var table = checkbox.closest("table.exh-select");
 
-		/*Если на выставку нельзя зарегистрироваться не даем ее чекнуть*/
+		/*Р•СЃР»Рё РЅР° РІС‹СЃС‚Р°РІРєСѓ РЅРµР»СЊР·СЏ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊСЃСЏ РЅРµ РґР°РµРј РµРµ С‡РµРєРЅСѓС‚СЊ*/
 		if(row.hasClass("not-available"))
 		{
 			return false;
 		}
 		
-		/*Если выставку выбрали меняем стиль лейбла*/
+		/*Р•СЃР»Рё РІС‹СЃС‚Р°РІРєСѓ РІС‹Р±СЂР°Р»Рё РјРµРЅСЏРµРј СЃС‚РёР»СЊ Р»РµР№Р±Р»Р°*/
 		if(label.hasClass("active-exh"))
 		{
 			label.removeClass("active-exh");
@@ -292,7 +292,7 @@ $(function() {
 			label.addClass("active-exh");
 		}
 		
-		/*если есть чекнутые выставки блокируем остальные*/
+		/*РµСЃР»Рё РµСЃС‚СЊ С‡РµРєРЅСѓС‚С‹Рµ РІС‹СЃС‚Р°РІРєРё Р±Р»РѕРєРёСЂСѓРµРј РѕСЃС‚Р°Р»СЊРЅС‹Рµ*/
 		if(table.find("input:checkbox:checked").length > 0)
 		{
 			table.find("tr").each(function(ind, element){
@@ -365,12 +365,12 @@ $(function() {
 					
 				}
 				
-				/*Показываем дополнительные поля формы*/
+				/*РџРѕРєР°Р·С‹РІР°РµРј РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ РїРѕР»СЏ С„РѕСЂРјС‹*/
 				
 				
 			});
 		}
-		else	/*если чекнутых вообще нет удаляем неактивные выставки*/
+		else	/*РµСЃР»Рё С‡РµРєРЅСѓС‚С‹С… РІРѕРѕР±С‰Рµ РЅРµС‚ СѓРґР°Р»СЏРµРј РЅРµР°РєС‚РёРІРЅС‹Рµ РІС‹СЃС‚Р°РІРєРё*/
 		{
 			table.find("tr").each(function(ind, element){
 				var $row = $(element); 
@@ -401,7 +401,7 @@ $(function() {
 		
 		
 		var newText = "";
-		/*отмечаем все выбранные выставки в спец поле*/
+		/*РѕС‚РјРµС‡Р°РµРј РІСЃРµ РІС‹Р±СЂР°РЅРЅС‹Рµ РІС‹СЃС‚Р°РІРєРё РІ СЃРїРµС† РїРѕР»Рµ*/
 		table.find("input:checkbox:checked").each(function(ind, check){
 			var row = $(check).closest("tr");
 			
@@ -414,7 +414,7 @@ $(function() {
 
 		$("#selected-exhibition").text(newText);
 		
-		 //проверка выбора выставки
+		 //РїСЂРѕРІРµСЂРєР° РІС‹Р±РѕСЂР° РІС‹СЃС‚Р°РІРєРё
 		if(!isExhibSelected())
 		{
 			var block = $("#REGISTER_FORM .exh-select");
@@ -427,10 +427,10 @@ $(function() {
 		}
 	});
 	
-	/*Выбор выставки гостем*/
+	/*Р’С‹Р±РѕСЂ РІС‹СЃС‚Р°РІРєРё РіРѕСЃС‚РµРј*/
 	$("#register_form_content").on("click", ".registr_buy div.check-group input:checkbox", function(){
 		
-		 //проверка вида деятельности
+		 //РїСЂРѕРІРµСЂРєР° РІРёРґР° РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё
 		if(!checkGroup())
 		{
 			showErrorMessage($("#REGISTER_FORM div.check-group"),$errorText[errorLang]["area"]);
@@ -443,7 +443,7 @@ $(function() {
 	
 	
 	
-	/*Согласие с условиями*/
+	/*РЎРѕРіР»Р°СЃРёРµ СЃ СѓСЃР»РѕРІРёСЏРјРё*/
 	$("#register_form_content").on("click", "input[name=CONFIRM_TERMS]:checkbox", function(){
 
 		var checkbox = $(this);
@@ -451,7 +451,7 @@ $(function() {
 		var label = checkbox.siblings("label[for="+checkboxId+"]");
 		var regButton = checkbox.siblings("input[type=button].register-button");
 
-		/*Если принимаем условия*/
+		/*Р•СЃР»Рё РїСЂРёРЅРёРјР°РµРј СѓСЃР»РѕРІРёСЏ*/
 		if(label.hasClass("active-register"))
 		{
 			label.removeClass("active-register");
@@ -465,7 +465,7 @@ $(function() {
 		}
 	});
 	
-	/*Групповые чекбоксы разворачивание*/
+	/*Р“СЂСѓРїРїРѕРІС‹Рµ С‡РµРєР±РѕРєСЃС‹ СЂР°Р·РІРѕСЂР°С‡РёРІР°РЅРёРµ*/
 	$("#register_form_content").on("click", ".group-name", function(event){
 		//$(this).siblings("div.group-items").toggle(100);
 		
@@ -489,11 +489,11 @@ $(function() {
 		
 	});
 	
-	/*DropDown разворачивание*/
+	/*DropDown СЂР°Р·РІРѕСЂР°С‡РёРІР°РЅРёРµ*/
 	$("#register_form_content").on("click", ".dropdown-name", function(event){
 		//$(this).siblings("ul.dropdown-items").toggle(300);
 		
-		//сворачивание селектов и приоритетных направлений при клике мимо
+		//СЃРІРѕСЂР°С‡РёРІР°РЅРёРµ СЃРµР»РµРєС‚РѕРІ Рё РїСЂРёРѕСЂРёС‚РµС‚РЅС‹С… РЅР°РїСЂР°РІР»РµРЅРёР№ РїСЂРё РєР»РёРєРµ РјРёРјРѕ
 		var selectDiv = $(this).siblings("ul.dropdown-items");
 		var selectDivId = selectDiv.attr("id");
 		
@@ -513,7 +513,7 @@ $(function() {
 	    event.preventDefault();
 	});
 	
-	/*Групповые чекбоксы приоритетные направления разворачивание*/
+	/*Р“СЂСѓРїРїРѕРІС‹Рµ С‡РµРєР±РѕРєСЃС‹ РїСЂРёРѕСЂРёС‚РµС‚РЅС‹Рµ РЅР°РїСЂР°РІР»РµРЅРёСЏ СЂР°Р·РІРѕСЂР°С‡РёРІР°РЅРёРµ*/
 	$("#register_form_content").on("click", ".priority-check-all", function(){
 		//$(this).siblings("div.priority-items").toggle(100);
 		
@@ -540,13 +540,13 @@ $(function() {
 
 	
 	
-	/*Групповые чекбоксы выбор*/
+	/*Р“СЂСѓРїРїРѕРІС‹Рµ С‡РµРєР±РѕРєСЃС‹ РІС‹Р±РѕСЂ*/
 	$("#register_form_content").on("click", ".group-items input:checkbox", function(){
 		var checkbox = $(this);
 		var checkboxId = checkbox.attr("id");
 		var label = checkbox.siblings("label[for="+checkboxId+"]");
 	
-		/*Если выставку выбрали меняем стиль лейбла*/
+		/*Р•СЃР»Рё РІС‹СЃС‚Р°РІРєСѓ РІС‹Р±СЂР°Р»Рё РјРµРЅСЏРµРј СЃС‚РёР»СЊ Р»РµР№Р±Р»Р°*/
 		if(label.hasClass("active-group"))
 		{
 			label.removeClass("active-group");
@@ -557,18 +557,18 @@ $(function() {
 		}
 	});
 	
-	/*Групповые чекбоксы приоритетные направления выбор поодиночно*/
+	/*Р“СЂСѓРїРїРѕРІС‹Рµ С‡РµРєР±РѕРєСЃС‹ РїСЂРёРѕСЂРёС‚РµС‚РЅС‹Рµ РЅР°РїСЂР°РІР»РµРЅРёСЏ РІС‹Р±РѕСЂ РїРѕРѕРґРёРЅРѕС‡РЅРѕ*/
 	$("#register_form_content").on("click", ".priority-items input:checkbox", function(){
 		var checkbox = $(this);
 		var checkboxId = checkbox.attr("id");
 		var label = checkbox.siblings("label[for="+checkboxId+"]");
 	
-		/*Если выставку выбрали меняем стиль лейбла*/
+		/*Р•СЃР»Рё РІС‹СЃС‚Р°РІРєСѓ РІС‹Р±СЂР°Р»Рё РјРµРЅСЏРµРј СЃС‚РёР»СЊ Р»РµР№Р±Р»Р°*/
 		if(label.hasClass("active-group"))
 		{
 			label.removeClass("active-group");
 			
-			/*удаляем чекбокс выбраны все, если щелкнут*/
+			/*СѓРґР°Р»СЏРµРј С‡РµРєР±РѕРєСЃ РІС‹Р±СЂР°РЅС‹ РІСЃРµ, РµСЃР»Рё С‰РµР»РєРЅСѓС‚*/
 			var checkboxAll = checkbox.closest(".priority-items").siblings(".priority-check-all").find("input:checkbox");
 		
 			if(checkboxAll.prop("checked"))
@@ -583,12 +583,12 @@ $(function() {
 		}
 	});
 	
-	/*Отключаем клик по лейблу*/
+	/*РћС‚РєР»СЋС‡Р°РµРј РєР»РёРє РїРѕ Р»РµР№Р±Р»Сѓ*/
 	$("#register_form_content").on("click", ".priority-check-all label", function(event){
 		event.stopPropagation();
 	});
 	
-	/*Групповые чекбоксы приоритетные направления выбор всех*/
+	/*Р“СЂСѓРїРїРѕРІС‹Рµ С‡РµРєР±РѕРєСЃС‹ РїСЂРёРѕСЂРёС‚РµС‚РЅС‹Рµ РЅР°РїСЂР°РІР»РµРЅРёСЏ РІС‹Р±РѕСЂ РІСЃРµС…*/
 	$("#register_form_content").on("click", ".priority-check-all input:checkbox", function(event){
 		event.stopPropagation();
 		
@@ -596,7 +596,7 @@ $(function() {
 		var checkboxId = checkbox.attr("id");
 		var label = checkbox.siblings("label[for="+checkboxId+"]");
 	
-		/*Если выбрали чекбокс меняем лейбл*/
+		/*Р•СЃР»Рё РІС‹Р±СЂР°Р»Рё С‡РµРєР±РѕРєСЃ РјРµРЅСЏРµРј Р»РµР№Р±Р»*/
 		if(label.hasClass("active-all"))
 		{
 			label.removeClass("active-all");
@@ -606,7 +606,7 @@ $(function() {
 			label.addClass("active-all");
 		}
 
-		/*чекаем все чекбоксы*/
+		/*С‡РµРєР°РµРј РІСЃРµ С‡РµРєР±РѕРєСЃС‹*/
 		var items = checkbox.closest(".priority-check-all").siblings(".priority-items");
 		
 		var delay = 0;
@@ -634,7 +634,7 @@ $(function() {
 		var label = checkbox.siblings("label[for="+checkboxId+"]");
 		var priorityBlock = checkbox.closest(".priority-check-global").siblings(".priority-wrap");
 		
-		/*Если выбрали чекбокс меняем лейбл*/
+		/*Р•СЃР»Рё РІС‹Р±СЂР°Р»Рё С‡РµРєР±РѕРєСЃ РјРµРЅСЏРµРј Р»РµР№Р±Р»*/
 		if(label.hasClass("active-global"))
 		{
 			label.removeClass("active-global");
@@ -666,7 +666,7 @@ $(function() {
 		
 	});
 	
-	/*DropDown выбор*/
+	/*DropDown РІС‹Р±РѕСЂ*/
 	$("#register_form_content").on("click", "ul.dropdown-items li", function(){
 		var selectedLi = $(this);
 		var selectedId = selectedLi.data("id");
@@ -680,7 +680,7 @@ $(function() {
 		name.text(selectedLi.text());
 		name.trigger("click");
 		
-		/*если выбрали Другую страну*/
+		/*РµСЃР»Рё РІС‹Р±СЂР°Р»Рё Р”СЂСѓРіСѓСЋ СЃС‚СЂР°РЅСѓ*/
 		if(selectedId == 509)
 		{
 			country_other.removeClass("hide");
@@ -695,7 +695,7 @@ $(function() {
 
 	});
 	
-	/*Удаление файлов*/
+	/*РЈРґР°Р»РµРЅРёРµ С„Р°Р№Р»РѕРІ*/
 	$("#register_form_content").on("click", "div.delete-photo", function(){
 		var delBtn = $(this);
 		var sid = delBtn.data("sid");
@@ -710,7 +710,7 @@ $(function() {
 				
 				if(data.STATUS == "success")
 				{
-					/*Снимаем количество*/
+					/*РЎРЅРёРјР°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ*/
 					
 					var photoBlockId = delBtn.closest("ul").siblings(".upload-photos").attr("id");
 
@@ -788,7 +788,7 @@ $(function() {
 
 
 
-/*Загрузка файлов*/
+/*Р—Р°РіСЂСѓР·РєР° С„Р°Р№Р»РѕРІ*/
 
 function photoUpload()
 {
@@ -807,7 +807,7 @@ function photoUpload()
 		return true;
 	}
 	
-/*Персональное фото*/
+/*РџРµСЂСЃРѕРЅР°Р»СЊРЅРѕРµ С„РѕС‚Рѕ*/
 $(function(){
 	
 	var btnUploadPP=$('#personal-photo');
@@ -859,7 +859,7 @@ $(function(){
 	}
 });
 
-/*Логотип*/
+/*Р›РѕРіРѕС‚РёРї*/
 $(function(){
 	
 	var btnUploadLogo=$('#company-logo');
@@ -911,7 +911,7 @@ $(function(){
 	}
 });
 
-/*Фотографии*/
+/*Р¤РѕС‚РѕРіСЂР°С„РёРё*/
 $(function(){
 	
 	var btnUploadPhotos=$('#company-photos');
@@ -1042,7 +1042,7 @@ function isOnlyEvening()
 
 function checkPriorityAreas()
 { 
-	/*если чекнуто на вечер, то не проверяем*/
+	/*РµСЃР»Рё С‡РµРєРЅСѓС‚Рѕ РЅР° РІРµС‡РµСЂ, С‚Рѕ РЅРµ РїСЂРѕРІРµСЂСЏРµРј*/
 	var evening = isOnlyEvening();
 	
 	if(evening)
@@ -1105,7 +1105,7 @@ function showErrorMessage(element, erText, hideLabel)
 		}
 		else if(errorTextDiv.length > 0)
 		{
-			//если есть, то не добавляем
+			//РµСЃР»Рё РµСЃС‚СЊ, С‚Рѕ РЅРµ РґРѕР±Р°РІР»СЏРµРј
 			var oldText = errorTextDiv.html();
 			
 			if(oldText.length > 0)
@@ -1164,10 +1164,10 @@ function hideErrorMessage(element, erText, hideLabel)
 		var errorTextDiv = input.siblings(".input-error-text");
 		var status = input.siblings(".input-status");
 		
-		//если ошибок нет стави галочку, что все ок
+		//РµСЃР»Рё РѕС€РёР±РѕРє РЅРµС‚ СЃС‚Р°РІРё РіР°Р»РѕС‡РєСѓ, С‡С‚Рѕ РІСЃРµ РѕРє
 		if(errorTextDiv.length > 0)
 		{
-			//если есть, то не добавляем
+			//РµСЃР»Рё РµСЃС‚СЊ, С‚Рѕ РЅРµ РґРѕР±Р°РІР»СЏРµРј
 			var oldText = errorTextDiv.html();
 			
 			if(oldText.length > 0)
@@ -1189,7 +1189,7 @@ function hideErrorMessage(element, erText, hideLabel)
 			input.css("border","");
 		}
 		
-		//находим поновой, вдруг удалили
+		//РЅР°С…РѕРґРёРј РїРѕРЅРѕРІРѕР№, РІРґСЂСѓРі СѓРґР°Р»РёР»Рё
 		errorTextDiv = input.siblings(".input-error-text");
 		
 		if(errorTextDiv.length == 0)
@@ -1220,15 +1220,15 @@ function hideErrorMessage(element, erText, hideLabel)
 	
 }
 
-//валидация
+//РІР°Р»РёРґР°С†РёСЏ
 
-//английский язык
+//Р°РЅРіР»РёР№СЃРєРёР№ СЏР·С‹Рє
 $(function() {
 	$("#REGISTER_FORM").on("focusout", ".en", function(){
 		var input = $(this);
 		var value = input.val();
 		
-		if(!value.match(/^[^а-яА-Я]+$/) && value.length > 0)
+		if(!value.match(/^[^Р°-СЏРђ-РЇ]+$/) && value.length > 0)
 		{
 			showErrorMessage(this,$errorText[errorLang]["en"]);
 		}
@@ -1239,7 +1239,7 @@ $(function() {
 	});
 });
 
-//обязательные поля
+//РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Рµ РїРѕР»СЏ
 $(function() {
 	$("#REGISTER_FORM").on("focusout", ".require", function(){
 		var input = $(this);
@@ -1461,18 +1461,18 @@ $(function() {
 	});
 });
 
-/*Валидация формы гостя*/
+/*Р’Р°Р»РёРґР°С†РёСЏ С„РѕСЂРјС‹ РіРѕСЃС‚СЏ*/
 function validateRegFormB()
 {
 	correctly = true;
-	//проверка на заполнение полей
+	//РїСЂРѕРІРµСЂРєР° РЅР° Р·Р°РїРѕР»РЅРµРЅРёРµ РїРѕР»РµР№
 	 $("#REGISTER_FORM .require, .email, .index, .web, .phone, .country_other").each(function(ind, elem)
 		{
 			 $(elem).trigger("focusout");
 		}
 	 );
 	
-		//проверка выбора селектов
+		//РїСЂРѕРІРµСЂРєР° РІС‹Р±РѕСЂР° СЃРµР»РµРєС‚РѕРІ
 	 $("#REGISTER_FORM select").each(function(ind, elem)
 		{
 		 	$(elem).trigger("change");
@@ -1487,7 +1487,7 @@ function validateRegFormB()
    	   			}
    	   		 );
    	   	 
-   			 //проверка приоритетных направлений
+   			 //РїСЂРѕРІРµСЂРєР° РїСЂРёРѕСЂРёС‚РµС‚РЅС‹С… РЅР°РїСЂР°РІР»РµРЅРёР№
    		 	if(!checkPriorityAreas())
    		 	{
    		 		showErrorMessage($("#REGISTER_FORM .priority-wrap"),$errorText[errorLang]["priority"], true);
@@ -1499,7 +1499,7 @@ function validateRegFormB()
     }
 	
     
-	 //проверка выбора выставки
+	 //РїСЂРѕРІРµСЂРєР° РІС‹Р±РѕСЂР° РІС‹СЃС‚Р°РІРєРё
 	if(!isExhibSelected())
 	{
 		var block = $("#REGISTER_FORM .exh-select");
@@ -1512,7 +1512,7 @@ function validateRegFormB()
 	}
 	
 	
-	 //проверка вида деятельности
+	 //РїСЂРѕРІРµСЂРєР° РІРёРґР° РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё
 	if(!checkGroup())
 	{
 		showErrorMessage($("#REGISTER_FORM div.check-group"),$errorText[errorLang]["area"]);
@@ -1525,26 +1525,26 @@ function validateRegFormB()
 	 return correctly;
 }
 
-/*Валидация формы участника*/
+/*Р’Р°Р»РёРґР°С†РёСЏ С„РѕСЂРјС‹ СѓС‡Р°СЃС‚РЅРёРєР°*/
 function validateRegFormP()
 {
 	correctly = true;
 	
-	//проверка на заполнение полей
+	//РїСЂРѕРІРµСЂРєР° РЅР° Р·Р°РїРѕР»РЅРµРЅРёРµ РїРѕР»РµР№
 	 $("#REGISTER_FORM input[type=text], #REGISTER_FORM textarea").each(function(ind, elem)
 		{
 			 $(elem).trigger("focusout");
 		}
 	 );
 	
-	//проверка выбора селектов
+	//РїСЂРѕРІРµСЂРєР° РІС‹Р±РѕСЂР° СЃРµР»РµРєС‚РѕРІ
 	 $("#REGISTER_FORM select").each(function(ind, elem)
 		{
 		 	$(elem).trigger("change");
 		}
 	 );
 	 
-	 //проверка приоритетных направлений
+	 //РїСЂРѕРІРµСЂРєР° РїСЂРёРѕСЂРёС‚РµС‚РЅС‹С… РЅР°РїСЂР°РІР»РµРЅРёР№
 	if(!checkPriorityAreas())
 	{
 		showErrorMessage($("#REGISTER_FORM .priority-wrap"),$errorText[errorLang]["priority"], true);
@@ -1554,9 +1554,9 @@ function validateRegFormP()
 		hideErrorMessage($("#REGISTER_FORM .priority-wrap"),$errorText[errorLang]["priority"], true);
 	}
 	 
-	//проверка загруженных фотографий
+	//РїСЂРѕРІРµСЂРєР° Р·Р°РіСЂСѓР¶РµРЅРЅС‹С… С„РѕС‚РѕРіСЂР°С„РёР№
 	 
-	 //проверка фото компании
+	 //РїСЂРѕРІРµСЂРєР° С„РѕС‚Рѕ РєРѕРјРїР°РЅРёРё
 	if(!checkCompanyPhoto())
 	{
 		var block = $("#REGISTER_FORM .block-upload-photo:has(#company-photos)");
@@ -1568,7 +1568,7 @@ function validateRegFormP()
 		hideErrorMessage(block,$errorText[errorLang]["minPhoto"]);
 	}
 	
-	 //проверка выбора выставки
+	 //РїСЂРѕРІРµСЂРєР° РІС‹Р±РѕСЂР° РІС‹СЃС‚Р°РІРєРё
 	if(!isExhibSelected())
 	{
 		var block = $("#REGISTER_FORM .exh-select");
