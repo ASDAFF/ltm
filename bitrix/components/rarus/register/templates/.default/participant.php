@@ -129,6 +129,8 @@ AjaxPatch = <?=CUtil::PhpToJSObject($arResult["AJAX_PATCH"])?>;
 			<?= ShowText("SIMPLE_QUESTION_729","JOB_POST", $arResult["PARTICIPANT_FORM"], "require en");?>
 			<?/*Telephone*/?>
 			<?= ShowText("SIMPLE_QUESTION_394","PHONE", $arResult["PARTICIPANT_FORM"], "require phone");?>
+			<?/*Skype */?>
+			<?= ShowText("SIMPLE_QUESTION_211","SKYPE", $arResult["PARTICIPANT_FORM"], "skype en");?>
 			<?/*E-mail*/?>
 			<?= ShowText("SIMPLE_QUESTION_859","EMAIL", $arResult["PARTICIPANT_FORM"], "require email");?>
 			<?/*Please confirm your e-mail*/?>

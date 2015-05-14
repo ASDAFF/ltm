@@ -38,11 +38,12 @@
 				<td><?= $arUser["FORM_DATA"][20]["VALUE"]?></td>
 				<td><?= $arUser["FORM_DATA"][23]["VALUE"]?></td>
 				<td class="description"><div><?= $arUser["FORM_DATA"][24]["VALUE"]?></div></td>
-				<? // данные из форму представителя?>
+				<? // данные из формы представителя?>
 				<td><?= $arUser["FORM_USER"][32]["VALUE"]?> <?= $arUser["FORM_USER"][33]["VALUE"]?></td>
 				<td><?= $arUser["FORM_USER"][106]["VALUE"]?></td>
 				<td><?= $arUser["FORM_USER"][35]["VALUE"]?></td>
 				<td><?= $arUser["FORM_USER"][36]["VALUE"]?></td>
+				<td><?= $arUser["FORM_USER"][586]["VALUE"]?></td>
 				<td><?= $arUser["FORM_USER"][37]["VALUE"]?></td>
 				<td><?= $arUser["FORM_DATA"][17]["VALUE"]?></td>
 				<td class="text-center">
