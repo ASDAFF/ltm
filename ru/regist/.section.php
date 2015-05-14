@@ -1,6 +1,0 @@
-<?
-$sSectionName = "Регистрация";
-$arDirProperties = array(
-
-);
-?>

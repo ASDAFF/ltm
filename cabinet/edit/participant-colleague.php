@@ -90,6 +90,7 @@ try{
                 array("ID"=>CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_889", $formID), "TITLE" => "Title"),////Salutation
                 array("ID"=>CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_729", $formID), "TITLE" => "Job title"),//Job title
                 array("ID"=>CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_394", $formID), "TITLE" => "Telephone"),//Telephone
+                array("ID"=>CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_211", $formID), "TITLE" => "Skype"),//Telephone
                 array("ID"=>CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_859", $formID), "TITLE" => "E-mail"),//E-mail
                 array("ID"=>CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_749", $formID), "TITLE" => "Alternative e-mail"),//Alternative e-mail
 
@@ -98,6 +99,6 @@ try{
 		"EMAIL_SID" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_859", $formID),
 		"CONF_EMAIL_SID" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_585", $formID)
 		)
-);?>
+);
 
-<?}catch(Exception $e){}?>
+}catch(Exception $e){};?>
