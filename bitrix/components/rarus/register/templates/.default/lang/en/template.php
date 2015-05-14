@@ -14,16 +14,14 @@ $MESS["R_EXHIBITIONS_NONE"] = "Exhibitions a missing";
 $MESS["R_E_EXTEND_TITLE"] = "EXHIBITOR";
 $MESS["R_B_EXTEND_TITLE"] = "ГОСТЬ (VIP BUYER, BUYER, HOSTED BUYER)";
 $MESS["R_E_EXHIBITION_TITLE"] = "PLEASE SELECT THE EVENT YOU WOULD LIKE TO REGISTER FOR";
-$MESS["R_B_EXHIBITION_TITLE"] = "<p>Обращаем ваше внимание, что в 2015 выставка LTM проводится в два дня:</p>
+$MESS["R_B_EXHIBITION_TITLE"] = "<p>Здесь должен быть какой-то приветственный текст.</p>
 
-<p><strong><i>12 марта, четверг, 10:00 – 18:00</i></strong> – заранее назначенные встречи, участие доступно только для компаний из регионов России и ближнего зарубежья</p>
-	
-<p><strong><i>13 марта, пятница, 10:00 – 16:00</i></strong> – заранее назначенные встречи, участие доступно для компаний из Москвы, регионов России и ближнего зарубежья</p>
-<p>Участие в вечернем приёме 13 марта (19:00 - 00:00) возможно только по приглашению от организаторов.</p>";
+<p>Артем, пожалуйста, пришли мне его на мой емейл <a href='mailto:mail@ae-studio.ru' target='_blank'>mail@ae-studio.ru</a></p>";
+
 $MESS["R_E_YOUR_CHOICE"] = "YOUR CHOICE";
 $MESS["R_B_YOUR_CHOICE"] = "ВЫ ВЫБРАЛИ";
-$MESS["R_MORNING"] = "LTM 2015";
-$MESS["R_EVENING"] = "";
+$MESS["R_MORNING"] = "Утро";
+$MESS["R_EVENING"] = "Вечер";
 
 $MESS["R_E_SALUTATION"] = "Title";
 
