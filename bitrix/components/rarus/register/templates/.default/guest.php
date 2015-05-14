@@ -92,7 +92,9 @@ AjaxPatch = <?=CUtil::PhpToJSObject($arResult["AJAX_PATCH"])?>
 			<?/*Телефон*/?>
 			<?= ShowText("SIMPLE_QUESTION_636","PHONE", $arResult["GUEST_FORM"], "require phone");?>
 			<?/*мобильный телефон*/?>
-			<?= ShowText("SIMPLE_QUESTION_844","MOBILE_PHONE", $arResult["GUEST_FORM"], "phone");?>
+			<?= ShowText("SIMPLE_QUESTION_844","MOBILE_PHONE", $arResult["GUEST_FORM"], "en phone");?>
+			<?/*Скайп */?>
+			<?= ShowText("SIMPLE_QUESTION_111","SKYPE", $arResult["GUEST_FORM"], "skype");?>
 			<?/*email*/?>
 			<?= ShowText("SIMPLE_QUESTION_373","EMAIL", $arResult["GUEST_FORM"], "require email");?>
 			<?/*confemail*/?>

@@ -130,15 +130,16 @@ function copyExhDataToDefault($userId)
 		$baseResultID = $arUser["UF_ID"];
 
 		$FieldSID = array(
-			"NAME" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_446",$formID),//Participant first name
-			"LAST_NAME" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_551",$formID),//Participant last name
-			"JOB_TITLE" =>CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_729",$formID),//Job title
-			"PHONE" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_394",$formID),//Telephone
-			"EMAIL" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_859",$formID),//E-mail
-			"EMAIL_CONF" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_585",$formID),//Please confirm your e-mail
-			"EMAIL_ALT" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_749",$formID),//Alternative e-mail
-			"PHOTO" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_575",$formID),//Персональное фото
-			"SALUTATION" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_889",$formID),//Salutation
+			"NAME" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_446",$formID),		//Participant first name
+			"LAST_NAME" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_551",$formID),	//Participant last name
+			"JOB_TITLE" =>CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_729",$formID),	//Job title
+			"PHONE" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_394",$formID),		//Telephone
+			"SKYPE" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_211",$formID),		//Skype
+			"EMAIL" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_859",$formID),		//E-mail
+			"EMAIL_CONF" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_585",$formID),	//Please confirm your e-mail
+			"EMAIL_ALT" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_749",$formID),	//Alternative e-mail
+			"PHOTO" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_575",$formID),		//Персональное фото
+			"SALUTATION" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_889",$formID),	//Salutation
 		);
 
 		$arAnswer = CFormResult::GetDataByID(
@@ -148,6 +149,7 @@ function copyExhDataToDefault($userId)
 				$FieldSID["LAST_NAME"],
 				$FieldSID["JOB_TITLE"],
 				$FieldSID["PHONE"],
+				$FieldSID["SKYPE"],
 				$FieldSID["EMAIL"],
 				$FieldSID["EMAIL_CONF"],
 				$FieldSID["EMAIL_ALT"],
@@ -182,6 +184,7 @@ function copyExhDataToDefault($userId)
 			"form_text_85" => $newArAnswerSID["LAST_NAME"], 						//Participant last name
 			"form_text_87" => $newArAnswerSID["JOB_TITLE"], 						//Job title
 			"form_text_88" => $newArAnswerSID["PHONE"], 							//Telephone
+			"form_text_1474" => $newArAnswerSID["SKYPE"], 							//Skype
 			"form_text_89" => $newArAnswerSID["EMAIL"],								//E-mail
 			"form_text_90" => $newArAnswerSID["EMAIL_CONF"],						//Please confirm your e-mail
 			"form_text_91" => $newArAnswerSID["EMAIL_ALT"],							//Alternative e-mail
