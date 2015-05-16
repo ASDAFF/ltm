@@ -116,6 +116,19 @@ function printVal($ar, $glue)
 <?if(empty($arResult["USERS_LIST"])):?>
 	В данной категории нет гостей
 <?else:?>
+	<div id="modal_form"><!-- Само окно -->
+		<span id="modal_close">X</span> <!-- Кнопка закрыть -->
+		<form action="/ajax/all_pdf_shedule.php">
+			<input type="hidden" name="type" value="guest" id="pdf_type"/>
+			<input type="hidden" name="hb" value="" id="pdf_hb"/>
+			<input type="hidden" name="app" value="<?=$arResult["EXHIB"]["CODE"]?>" id="pdf_app"/>
+			<p class="error" id="pdf_error"></p>
+			<p>Введи Email на который нужно отправить ссылку для скачивания</p>
+			<input type="text" name="email" value="" id="pdf_email"/>
+			<button type="submit" name="send" value="send" id="generate_pdf">Отправить</button>
+		</form>
+	</div>
+	<div id="overlay"></div><!-- Подложка -->
 <form action="" method="post">
 	<?switch($arParams["ACT"]):
 		case "off":?>
@@ -145,6 +158,7 @@ function printVal($ar, $glue)
 		<?case "morning":?>		
             <a class="custom-buttom" href="/exel/guest.php?type=guests&app=<?=$arResult["EXHIB"]["CODE"]?>">Генерировать Excel</a>
             <a class="custom-buttom" href="/exel/guest.php?type=guests_all&app=<?=$arResult["EXHIB"]["CODE"]?>">Excel (все люди)</a>
+			<a class="custom-buttom" href="/ajax/all_pdf_shedule.php?type=guest&app=<?=$arResult["EXHIB"]["CODE"]?>" id="go" data-hb="">PDF (все расписания)</a>
 			<? /*<input class="custom-buttom" type="button" name="edit" disabled value="Редактировать">$arParams["EXHIBIT_CODE"]
 			<input class="custom-buttom" type="button" name="generate-schedule" disabled value="Генерировать расписание">
 			<input class="custom-buttom" type="button" name="generate-wishlist" disabled value="Генерировать вишлист">
@@ -155,6 +169,7 @@ function printVal($ar, $glue)
 		<?case "hostbuy":?>
 		    <a class="custom-buttom" href="/exel/guest.php?type=guests_hb&app=<?=$arResult["EXHIB"]["CODE"]?>">Генерировать Excel</a>
             <a class="custom-buttom" href="/exel/guest.php?type=guests_hb_all&app=<?=$arResult["EXHIB"]["CODE"]?>">Excel (все люди)</a>
+			<a class="custom-buttom" href="/ajax/all_pdf_shedule.php?type=particip&app=<?=$arResult["EXHIB"]["CODE"]?>&hb=y" id="go" data-hb="y">PDF HB(все расписания)</a>
 			<? /*<input class="custom-buttom" type="button" name="edit" disabled value="Редактировать">$arParams["EXHIBIT_CODE"]
 			<input class="custom-buttom" type="button" name="generate-schedule" disabled value="Генерировать расписание">
 			<input class="custom-buttom" type="button" name="generate-wishlist" disabled value="Генерировать вишлист">
