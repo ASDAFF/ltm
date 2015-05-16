@@ -123,6 +123,8 @@ $path = '/upload/pdf/'.strtolower($arParams['USER_TYPE']).'/wish_'.strtolower($a
 $shotPath = '/upload/pdf/'.strtolower($arParams['USER_TYPE']).'/';
 CheckDirPath($_SERVER['DOCUMENT_ROOT'].$path);
 $pdfFolder = $_SERVER['DOCUMENT_ROOT'].$path;
+
+@unlink($_SERVER['DOCUMENT_ROOT'].$shotPath."wish_".$arParams["EXIB_CODE"].$isHB.'.zip');
 require(DOKA_MEETINGS_MODULE_DIR . '/classes/pdf/tcpdf.php');
 require_once(DOKA_MEETINGS_MODULE_DIR . '/classes/pdf/templates/wishlist_all_' . $arParams['USER_TYPE'] . '.php');
 
@@ -164,7 +166,6 @@ while ($arUser = $rsUsers->Fetch()) {
 }
 /* Создание архива и удаление папки */
 include_once($_SERVER["DOCUMENT_ROOT"]."/local/php_interface/lib/pclzip.lib.php"); //Подключаем библиотеку.
-@unlink($_SERVER['DOCUMENT_ROOT'].$shotPath."wish_".$arParams["EXIB_CODE"].$isHB.'.zip');
 $archive = new PclZip($_SERVER['DOCUMENT_ROOT'].$shotPath."wish_".$arParams["EXIB_CODE"].$isHB.'.zip'); //Создаём объект и в качестве аргумента, указываем название архива, с которым работаем.
 $result = $archive->create($pdfFolder, PCLZIP_OPT_REMOVE_PATH, $_SERVER['DOCUMENT_ROOT'].$shotPath); // Этим методом класса мы создаём архив с заданным выше названием
 if($result == 0) {
