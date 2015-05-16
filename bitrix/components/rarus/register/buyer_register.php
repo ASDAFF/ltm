@@ -311,6 +311,42 @@ if (intval($USER_ID) > 0)
 				}
 			}
 		break;
+		case "3522" ://Киев, Украина. 22 сентября 2015
+		{
+			if(!empty($morning))
+			{
+				$eventName["M"] = "REG_NEW_B_KIEV_M";
+			}
+			if(!empty($evening))
+			{
+				$eventName["E"] = "REG_NEW_B_KIEV_E";
+			}
+		}
+		break;
+		case "3523" ://Москва, Россия. 1 октября 2015
+		{
+			if(!empty($morning))
+			{
+				$eventName["M"] = "REG_NEW_B_MOSOT_M";
+			}
+			if(!empty($evening))
+			{
+				$eventName["E"] = "REG_NEW_B_MOSOT_E";
+			}
+		}
+			break;
+		case "3521" ://Алматы, Казахстан. 25 сентября 2015
+		{
+			if(!empty($morning))
+			{
+				$eventName["M"] = "REG_NEW_B_ALM_M";
+			}
+			if(!empty($evening))
+			{
+				$eventName["E"] = "REG_NEW_B_ALM_E";
+			}
+		}
+			break;
 	}
 
 	foreach ($eventName as $when => $eventNameElem)
