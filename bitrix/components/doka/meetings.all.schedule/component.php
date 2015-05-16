@@ -6,6 +6,7 @@
   */
 
 set_time_limit(0);
+session_write_close();
 ignore_user_abort(true);
 
 if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
