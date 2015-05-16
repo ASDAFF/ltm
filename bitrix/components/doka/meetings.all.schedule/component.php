@@ -1,13 +1,12 @@
 <? /* TODO посмотреть какие поля реально нужны для блока со встречами
-    * ID, CODE, PROPERTY_APP_ID, PROPERTY_APP_HB_ID, PROPERTY_V_EN
+    * ID, CODE, PROPERTY_APP_ID, PROPERTY_APP_HB_ID, PROPERTY_V_EN, PROPERTY_V_RU
   * Переписать определение данных об участниках из форм. Сделать 1 запрос, а не много маленьких
-  * Переписать чтобы генерировалось в фоне
   * Убрать все лишнее
   */
 
 set_time_limit(0);
-session_write_close();
 ignore_user_abort(true);
+session_write_close();
 
 if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 
@@ -20,7 +19,11 @@ if (!CModule::IncludeModule("doka.meetings") || !CModule::IncludeModule("iblock"
 	CHTTP::SetStatus("404 Not Found");
 }
 
+if(!isset($arParams["EXHIB_IBLOCK_ID"]) || $arParams["EXHIB_IBLOCK_ID"] == ''){
+	$arParams["EXHIB_IBLOCK_ID"] = 15;
+}
 $arResult = array();
+
 if(isset($arParams["EXIB_CODE"]) && $arParams["EXIB_CODE"]!=''){
 	$rsExhib = CIBlockElement::GetList(
 			array(),
@@ -256,6 +259,7 @@ while ($data = $rsCompanies->Fetch()) {
 }
 /* Создание архива и удаление папки */
 include_once($_SERVER["DOCUMENT_ROOT"]."/local/php_interface/lib/pclzip.lib.php"); //Подключаем библиотеку.
+@unlink($_SERVER['DOCUMENT_ROOT'].$shotPath.$arParams["EXIB_CODE"].$isHB.'.zip');
 $archive = new PclZip($_SERVER['DOCUMENT_ROOT'].$shotPath.$arParams["EXIB_CODE"].$isHB.'.zip'); //Создаём объект и в качестве аргумента, указываем название архива, с которым работаем.
 $result = $archive->create($pdfFolder, PCLZIP_OPT_REMOVE_PATH, $_SERVER['DOCUMENT_ROOT'].$shotPath); // Этим методом класса мы создаём архив с заданным выше названием
 if($result == 0) {
@@ -267,9 +271,9 @@ else{
 		"EXIBITION" => $exhibitionParam["TITLE"],
 		"TYPE" => "расписание",
 		"USER_TYPE" => strtolower($arParams["USER_TYPE"]),
-		"LINK" => "http://".$_SERVER['SERVER_NAME'].$shotPath.strtolower($arParams["EXIB_CODE"]).'.zip'
+		"LINK" => "http://".$_SERVER['SERVER_NAME'].$shotPath.strtolower($arParams["EXIB_CODE"]).$isHB.'.zip'
 	);
-	CEvent::SendImmediate("ARCHIVE_READY ", "s1", $arEventFields);
+	CEvent::SendImmediate("ARCHIVE_READY ", "s1", $arEventFields, $Duplicate = "Y");
 }
 
 fullRemove_ff($pdfFolder);
