@@ -19,7 +19,7 @@ $APPLICATION->IncludeComponent(
 		"SEND_REQUEST_LINK" => "/ru/personal/service/write.php",
 		"CONFIRM_REQUEST_LINK" => "/ru/personal/service/write.php",
 		"REJECT_REQUEST_LINK" => "/ru/personal/service/write.php",
-		"CUT" => "9",
+		"CUT" => "10",
 		"HALL" => "10",
 		"TABLE" => "10",
 		"FORM_RESULT" => "UF_ID2"

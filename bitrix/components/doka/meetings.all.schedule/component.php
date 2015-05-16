@@ -117,7 +117,7 @@ $users_list = array();
 // Добавляем участников
 $selectPart = array( 'SELECT' => array($propertyNameParticipant),
 	'FIELDS' => array('WORK_COMPANY', 'ID') );
-$filter = array( "GROUPS_ID"  => array($req_obj->getOption('MEMBERS_GROUP')) );
+$filter = array( "GROUPS_ID"  => array($req_obj->getOption('MEMBERS_GROUP'), 20) );
 $rsUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="desc"), $filter, $selectPart);
 while ($arUser = $rsUsers->Fetch()) {
 	$arAnswer = CFormResult::GetDataByID(
@@ -150,7 +150,7 @@ else{
 	$filter = array( "GROUPS_ID"  => array($req_obj->getOption('GUESTS_GROUP')),
 		"UF_MR" => "1" );
 }
-$selectGuest = array('FIELDS' => array('WORK_COMPANY', 'ID', 'NAME', 'LAST_NAME'));
+$selectGuest = array('FIELDS' => array('WORK_COMPANY', 'ID', 'NAME', 'LAST_NAME'), 'SELECT' => array($propertyNameParticipant));
 $rsGUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="desc"), $filter, $selectGuest);
 while ($arUser = $rsGUsers->Fetch()) {
 	$arAnswer = CFormResult::GetDataByID(
@@ -181,8 +181,10 @@ while ($arUser = $rsGUsers->Fetch()) {
 
 // Список компаний, для которых выведем занятость
 $rsCompanies = $req_obj->getAllMeetTimesByGroup($group_search_id);
-
-$path = '/upload/pdf/'.strtolower($arParams["EXIB_CODE"]).'/';
+$isHB = '';
+if(isset($arParams["IS_HB"]) && $arParams["IS_HB"] == 'Y')
+	$isHB = "_hb";
+$path = '/upload/pdf/'.strtolower($arParams["EXIB_CODE"]).$isHB.'/';
 $shotPath = '/upload/pdf/';
 CheckDirPath($_SERVER['DOCUMENT_ROOT'].$path);
 $pdfFolder = $_SERVER['DOCUMENT_ROOT'].$path;
@@ -254,7 +256,7 @@ while ($data = $rsCompanies->Fetch()) {
 }
 /* Создание архива и удаление папки */
 include_once($_SERVER["DOCUMENT_ROOT"]."/local/php_interface/lib/pclzip.lib.php"); //Подключаем библиотеку.
-$archive = new PclZip($_SERVER['DOCUMENT_ROOT'].$shotPath.$arParams["EXIB_CODE"].'.zip'); //Создаём объект и в качестве аргумента, указываем название архива, с которым работаем.
+$archive = new PclZip($_SERVER['DOCUMENT_ROOT'].$shotPath.$arParams["EXIB_CODE"].$isHB.'.zip'); //Создаём объект и в качестве аргумента, указываем название архива, с которым работаем.
 $result = $archive->create($pdfFolder, PCLZIP_OPT_REMOVE_PATH, $_SERVER['DOCUMENT_ROOT'].$shotPath); // Этим методом класса мы создаём архив с заданным выше названием
 if($result == 0) {
 	echo $archive->errorInfo(true); //Возращает причину ошибки
