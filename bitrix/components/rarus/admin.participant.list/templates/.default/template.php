@@ -9,6 +9,7 @@
         <span id="modal_close">X</span> <!-- Кнопка закрыть -->
         <form action="/ajax/all_pdf_shedule.php">
             <input type="hidden" name="type" value="particip" id="pdf_type"/>
+            <input type="hidden" name="hb" value="" id="pdf_hb"/>
             <input type="hidden" name="app" value="<?=$arParams["EXHIB_CODE"]?>" id="pdf_app"/>
             <p class="error" id="pdf_error"></p>
             <p>Введи Email на который нужно отправить ссылку для скачивания</p>

@@ -1,7 +1,8 @@
 <input class="custom-buttom" name="<?= ("Y" == $arParams["CONFIRMED"])?"CANCEL":"CONFIRM"?>" type="submit" value="<?= ("Y" == $arParams["CONFIRMED"])?GetMessage("ADM_PARC_CANCEL"):GetMessage("ADM_PARC_CONFIRM")?>">
 <a class="custom-buttom" href="/exel/particip.php?type=particip&app=<?=$arParams["EXHIB_CODE"]?>">Генерировать Excel</a>
 <a class="custom-buttom" href="/exel/particip.php?type=particip_all&app=<?=$arParams["EXHIB_CODE"]?>">Excel (все люди)</a>
-<a class="custom-buttom" href="/ajax/all_pdf_shedule.php?type=particip&app=<?=$arParams["EXHIB_CODE"]?>" id="go">PDF (все расписания)</a>
+<a class="custom-buttom" href="/ajax/all_pdf_shedule.php?type=particip&app=<?=$arParams["EXHIB_CODE"]?>" id="go" data-hb="">PDF (все расписания)</a>
+<a class="custom-buttom" href="/ajax/all_pdf_shedule.php?type=particip&app=<?=$arParams["EXHIB_CODE"]?>&hb=y" id="go" data-hb="y">PDF HB(все расписания)</a>
 	<div class="navigate"><?=$arResult["NAVIGATE"]?></div>
 <div class="table-responsive">
 <table class="table">
