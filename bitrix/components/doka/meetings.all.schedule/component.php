@@ -117,7 +117,7 @@ $users_list = array();
 // Добавляем участников
 $selectPart = array( 'SELECT' => array($propertyNameParticipant),
 	'FIELDS' => array('WORK_COMPANY', 'ID') );
-$filter = array( "GROUPS_ID"  => array($req_obj->getOption('MEMBERS_GROUP'), 20) );
+$filter = array( "GROUPS_ID"  => array($req_obj->getOption('MEMBERS_GROUP')) );
 $rsUsers = CUser::GetList(($by="WORK_COMPANY"), ($order="desc"), $filter, $selectPart);
 while ($arUser = $rsUsers->Fetch()) {
 	$arAnswer = CFormResult::GetDataByID(
