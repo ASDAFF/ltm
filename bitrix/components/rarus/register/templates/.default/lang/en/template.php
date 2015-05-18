@@ -14,9 +14,7 @@ $MESS["R_EXHIBITIONS_NONE"] = "Exhibitions a missing";
 $MESS["R_E_EXTEND_TITLE"] = "EXHIBITOR";
 $MESS["R_B_EXTEND_TITLE"] = "ГОСТЬ (VIP BUYER, BUYER, HOSTED BUYER)";
 $MESS["R_E_EXHIBITION_TITLE"] = "PLEASE SELECT THE EVENT YOU WOULD LIKE TO REGISTER FOR";
-$MESS["R_B_EXHIBITION_TITLE"] = "<p>Здесь должен быть какой-то приветственный текст.</p>
-
-<p>Артем, пожалуйста, пришли мне его на мой емейл <a href='mailto:mail@ae-studio.ru' target='_blank'>mail@ae-studio.ru</a></p>";
+$MESS["R_B_EXHIBITION_TITLE"] = "<p>Пожалуйста, выберите интересующую вас выставку:</p>";
 
 $MESS["R_E_YOUR_CHOICE"] = "YOUR CHOICE";
 $MESS["R_B_YOUR_CHOICE"] = "ВЫ ВЫБРАЛИ";
