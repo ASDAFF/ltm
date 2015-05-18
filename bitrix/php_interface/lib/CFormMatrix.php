@@ -1,8 +1,6 @@
 <?
 class CFormMatrix
 {
-
-
 	private static $arAnswerSalutationIDByForm = array(
 		4 => array(
 			200,//Mr.
@@ -65,7 +63,6 @@ class CFormMatrix
 			1459//Dr.
 		),
 	);
-
 	private static $arAnswerRequisiteIDByForm = array(
 		4 => array(
 			1338,//ИП Поланский Артем Валентинович
@@ -108,28 +105,23 @@ class CFormMatrix
 			1473,//Трэвэл Медиа
 		),
 	);
-
-
 	static function getIndexRequisiteIDByForm($id, $formID)
 	{
 		$index = array_search($id, self::$arAnswerRequisiteIDByForm[$formID]);
-
 		return $index;
 	}
-
 	static function getIndexRequisiteRelBase($id, $formID)
 	{
 		$index = array_search($id, self::$arAnswerRequisiteIDByForm[4]);
-
 		return self::$arAnswerRequisiteIDByForm[$formID][$index];
 	}
-
 	private static $arFormQuestions = array(
 		4 => array(
 			32,//Participant first name
 			33,//Participant last name
 			35,//Job title
 			36,//Telephone
+			586,//Skype
 			37,//E-mail
 			38,//Please confirm your e-mail
 			39,//Alternative e-mail
@@ -146,6 +138,7 @@ class CFormMatrix
 			41,//Participant last name
 			43,//Job title
 			44,//Telephone
+			588,//Skype
 			45,//E-mail
 			46,//Please confirm your e-mail
 			47,//Alternative e-mail
@@ -162,6 +155,7 @@ class CFormMatrix
 			49,//Participant last name
 			51,//Job title
 			52,//Telephone
+			589,//Skype
 			53,//E-mail
 			54,//Please confirm your e-mail
 			55,//Alternative e-mail
@@ -178,6 +172,7 @@ class CFormMatrix
 			57,//Participant last name
 			59,//Job title
 			60,//Telephone
+			590,//Skype
 			61,//E-mail
 			62,//Please confirm your e-mail
 			63,//Alternative e-mail
@@ -194,6 +189,7 @@ class CFormMatrix
 			65,//Participant last name
 			67,//Job title
 			68,//Telephone
+			590,//Skype
 			69,//E-mail
 			70,//Please confirm your e-mail
 			71,//Alternative e-mail
@@ -210,6 +206,7 @@ class CFormMatrix
 			484,//Participant last name
 			485,//Job title
 			486,//Telephone
+			592,//Skype
 			487,//E-mail
 			488,//Please confirm your e-mail
 			489,//Alternative e-mail
@@ -226,6 +223,7 @@ class CFormMatrix
 			528,//Participant last name
 			530,//Job title
 			531,//Telephone
+			594,//Skype
 			532,//E-mail
 			533,//Please confirm your e-mail
 			534,//Alternative e-mail
@@ -242,6 +240,7 @@ class CFormMatrix
 			542,//Participant last name
 			544,//Job title
 			545,//Telephone
+			593,//Skype
 			546,//E-mail
 			547,//Please confirm your e-mail
 			548,//Alternative e-mail
@@ -258,6 +257,7 @@ class CFormMatrix
 			556,//Participant last name
 			558,//Job title
 			559,//Telephone
+			595,//Skype
 			560,//E-mail
 			561,//Please confirm your e-mail
 			562,//Alternative e-mail
@@ -274,6 +274,7 @@ class CFormMatrix
 			573,//Participant last name
 			574,//Job title
 			575,//Telephone
+			587,//Skype
 			576,//E-mail
 			577,//Please confirm your e-mail
 			578,//Alternative e-mail
@@ -285,15 +286,14 @@ class CFormMatrix
 			584, //Сумма счета
 			585, //Реквизиты
 		)
-
 	);
-
 	private static $arAnswerIDByForm = array(
 		4 => array(
 			84,//Participant first name
 			85,//Participant last name
 			87,//Job title
 			88,//Telephone
+			1474,//Skype
 			89,//E-mail
 			90,//Please confirm your e-mail
 			91,//Alternative e-mail
@@ -310,6 +310,7 @@ class CFormMatrix
 			93,//Participant last name
 			95,//Job title
 			96,//Telephone
+			1473,//Skype
 			97,//E-mail
 			98,//Please confirm your e-mail
 			99,//Alternative e-mail
@@ -326,6 +327,7 @@ class CFormMatrix
 			101,//Participant last name
 			103,//Job title
 			104,//Telephone
+			1477,//Skype
 			105,//E-mail
 			106,//Please confirm your e-mail
 			107,//Alternative e-mail
@@ -342,6 +344,7 @@ class CFormMatrix
 			109,//Participant last name
 			111,//Job title
 			112,//Telephone
+			1478,//Skype
 			113,//E-mail
 			114,//Please confirm your e-mail
 			115,//Alternative e-mail
@@ -358,6 +361,7 @@ class CFormMatrix
 			117,//Participant last name
 			119,//Job title
 			120,//Telephone
+			1479,//Skype
 			121,//E-mail
 			122,//Please confirm your e-mail
 			123,//Alternative e-mail
@@ -374,6 +378,7 @@ class CFormMatrix
 			1214,//Participant last name
 			1215,//Job title
 			1216,//Telephone
+			1480,//Skype
 			1217,//E-mail
 			1218,//Please confirm your e-mail
 			1219,//Alternative e-mail
@@ -390,6 +395,7 @@ class CFormMatrix
 			1369,//Participant last name
 			1374,//Job title
 			1375,//Telephone
+			1482,//Skype
 			1376,//E-mail
 			1377,//Please confirm your e-mail
 			1378,//Alternative e-mail
@@ -406,6 +412,7 @@ class CFormMatrix
 			1388,//Participant last name
 			1393,//Job title
 			1394,//Telephone
+			1481,//Skype
 			1395,//E-mail
 			1396,//Please confirm your e-mail
 			1397,//Alternative e-mail
@@ -422,6 +429,7 @@ class CFormMatrix
 			1407,//Participant last name
 			1412,//Job title
 			1413,//Telephone
+			1483,//Skype
 			1414,//E-mail
 			1415,//Please confirm your e-mail
 			1416,//Alternative e-mail
@@ -438,6 +446,7 @@ class CFormMatrix
 			1449,//Participant last name
 			1450,//Job title
 			1451,//Telephone
+			1475,//Skype
 			1452,//E-mail
 			1453,//Please confirm your e-mail
 			1454,//Alternative e-mail
@@ -450,13 +459,13 @@ class CFormMatrix
 			"SIMPLE_QUESTION_667",//Реквизиты
 		),//Участники Представители Москва Весна 2016
 	);
-
 	private static $arSIDByForm = array(
 		4 => array(
 			"SIMPLE_QUESTION_446",//Participant first name
 			"SIMPLE_QUESTION_551",//Participant last name
 			"SIMPLE_QUESTION_729",//Job title
 			"SIMPLE_QUESTION_394",//Telephone
+			"SIMPLE_QUESTION_211",//Skype
 			"SIMPLE_QUESTION_859",//E-mail
 			"SIMPLE_QUESTION_585",//Please confirm your e-mail
 			"SIMPLE_QUESTION_749",//Alternative e-mail
@@ -473,6 +482,7 @@ class CFormMatrix
 			"SIMPLE_QUESTION_599",//Participant last name
 			"SIMPLE_QUESTION_895",//Job title
 			"SIMPLE_QUESTION_622",//Telephone
+			"SIMPLE_QUESTION_141",//Skype
 			"SIMPLE_QUESTION_650",//E-mail
 			"SIMPLE_QUESTION_294",//Please confirm your e-mail
 			"SIMPLE_QUESTION_359",//Alternative e-mail
@@ -489,6 +499,7 @@ class CFormMatrix
 			"SIMPLE_QUESTION_409",//Participant last name
 			"SIMPLE_QUESTION_468",//Job title
 			"SIMPLE_QUESTION_992",//Telephone
+			"SIMPLE_QUESTION_318",//Skype
 			"SIMPLE_QUESTION_279",//E-mail
 			"SIMPLE_QUESTION_857",//Please confirm your e-mail
 			"SIMPLE_QUESTION_527",//Alternative e-mail
@@ -505,6 +516,7 @@ class CFormMatrix
 			"SIMPLE_QUESTION_159",//Participant last name
 			"SIMPLE_QUESTION_993",//Job title
 			"SIMPLE_QUESTION_434",//Telephone
+			"SIMPLE_QUESTION_563",//Skype
 			"SIMPLE_QUESTION_742",//E-mail
 			"SIMPLE_QUESTION_111",//Please confirm your e-mail
 			"SIMPLE_QUESTION_528",//Alternative e-mail
@@ -521,6 +533,7 @@ class CFormMatrix
 			"SIMPLE_QUESTION_869",//Participant last name
 			"SIMPLE_QUESTION_652",//Job title
 			"SIMPLE_QUESTION_227",//Telephone
+			"SIMPLE_QUESTION_686",//Skype
 			"SIMPLE_QUESTION_786",//E-mail
 			"SIMPLE_QUESTION_321",//Please confirm your e-mail
 			"SIMPLE_QUESTION_294",//Alternative e-mail
@@ -537,6 +550,7 @@ class CFormMatrix
 			"SIMPLE_QUESTION_551",//Participant last name
 			"SIMPLE_QUESTION_729",//Job title
 			"SIMPLE_QUESTION_394",//Telephone
+			"SIMPLE_QUESTION_119",//Skype
 			"SIMPLE_QUESTION_859",//E-mail
 			"SIMPLE_QUESTION_585",//Please confirm your e-mail
 			"SIMPLE_QUESTION_749",//Alternative e-mail
@@ -553,6 +567,7 @@ class CFormMatrix
 			"SIMPLE_QUESTION_159",//Participant last name
 			"SIMPLE_QUESTION_993",//Job title
 			"SIMPLE_QUESTION_434",//Telephone
+			"SIMPLE_QUESTION_495",//Skype
 			"SIMPLE_QUESTION_742",//E-mail
 			"SIMPLE_QUESTION_111",//Please confirm your e-mail
 			"SIMPLE_QUESTION_528",//Alternative e-mail
@@ -569,6 +584,7 @@ class CFormMatrix
 			"SIMPLE_QUESTION_409",//Participant last name
 			"SIMPLE_QUESTION_468",//Job title
 			"SIMPLE_QUESTION_992",//Telephone
+			"SIMPLE_QUESTION_952",//Skype
 			"SIMPLE_QUESTION_279",//E-mail
 			"SIMPLE_QUESTION_857",//Please confirm your e-mail
 			"SIMPLE_QUESTION_527",//Alternative e-mail
@@ -585,6 +601,7 @@ class CFormMatrix
 			"SIMPLE_QUESTION_869",//Participant last name
 			"SIMPLE_QUESTION_652",//Job title
 			"SIMPLE_QUESTION_227",//Telephone
+			"SIMPLE_QUESTION_830",//Skype
 			"SIMPLE_QUESTION_786",//E-mail
 			"SIMPLE_QUESTION_321",//Please confirm your e-mail
 			"SIMPLE_QUESTION_294",//Alternative e-mail
@@ -601,6 +618,7 @@ class CFormMatrix
 			"SIMPLE_QUESTION_551",//Participant last name
 			"SIMPLE_QUESTION_729",//Job title
 			"SIMPLE_QUESTION_394",//Telephone
+			"SIMPLE_QUESTION_400",//Skype
 			"SIMPLE_QUESTION_859",//E-mail
 			"SIMPLE_QUESTION_585",//Please confirm your e-mail
 			"SIMPLE_QUESTION_749",//Alternative e-mail
@@ -613,8 +631,6 @@ class CFormMatrix
 			"SIMPLE_QUESTION_732",//Зал
 		),//Участники Представители Москва Весна 2016
 	);
-
-
 	static function getAnswerRelBase($baseQ, $needFormID)
 	{
 		if(empty($baseQ) || !intval($needFormID))
@@ -622,10 +638,8 @@ class CFormMatrix
 			return false;
 		}
 		$index = array_search($baseQ, self::$arAnswerIDByForm[4]);
-
 		return self::$arAnswerIDByForm[$needFormID][$index];
 	}
-
 	static function getSIDRelBase($baseQ, $needFormID)
 	{
 		if(empty($baseQ) || !intval($needFormID))
@@ -633,10 +647,8 @@ class CFormMatrix
 			return false;
 		}
 		$index = array_search($baseQ, self::$arSIDByForm[4]);
-
 		return self::$arSIDByForm[$needFormID][$index];
 	}
-
 	static function getAnswerSalutationRelBase($baseQ, $needFormID)
 	{
 		if(empty($baseQ) || !intval($needFormID))
@@ -644,7 +656,6 @@ class CFormMatrix
 			return false;
 		}
 		$index = array_search($baseQ, self::$arAnswerSalutationIDByForm[4]);
-
 		return self::$arAnswerSalutationIDByForm[$needFormID][$index];
 	}
 
@@ -670,6 +681,7 @@ class CFormMatrix
 		"Country",
 		"Representative",
 		"Telephone number",
+		"Skype",
 		"Email",
 		"Table",
 		"Hall",
@@ -677,7 +689,6 @@ class CFormMatrix
 		"Сумма счета",
 		"Действия"
 	);
-
 	static $arUCParticipantField = array(
 		"Групповые действия",
 		"Company or hotel name",
@@ -691,11 +702,11 @@ class CFormMatrix
 		"Title",
 		"Job title",
 		"Telephone number",
+		"Skype",
 		"Email",
 		"Company or hotel name",
 		"Действия"
 	);
-
 	static $arExelCompParticipantField = array(
 		"NAMES" => array(
 			"0" => "Company or hotel name",
@@ -711,7 +722,6 @@ class CFormMatrix
 			"10" => "Priority destinations",
 			"11" => "Priority destinations",
 			"12" => "Priority destinations"
-
 		),
 		"QUEST_ID" => array(
 			"0" => "17",
@@ -774,7 +784,6 @@ class CFormMatrix
 			"12" => "DESTINITIONS"
 		),
 	);
-
 	static $arExelRepParticipantField = array(
 		"NAMES" => array(
 			"0" => "Title (salutation)",
@@ -782,16 +791,16 @@ class CFormMatrix
 			"2" => "Participant last name",
 			"3" => "Job Title",
 			"4" => "Telephone number",
-			"5" => "Email",
-			"6" => "Alternative e-mail",
-			"7" => "Title College (Salutation)",
-			"8" => "First Name College",
-			"9" => "Last Name College",
-			"10" => "Job Title College",
-			"11" => "Email College",
-			"12" => "Table",
-			"13" => "Hall"
-
+			"5" => "Skype",
+			"6" => "Email",
+			"7" => "Alternative e-mail",
+			"8" => "Title College (Salutation)",
+			"9" => "First Name College",
+			"10" => "Last Name College",
+			"11" => "Job Title College",
+			"12" => "Email College",
+			"13" => "Table",
+			"14" => "Hall"
 		),
 		"QUEST_CODE" => array(
 			"0" => "SIMPLE_QUESTION_889",
@@ -799,17 +808,17 @@ class CFormMatrix
 			"2" => "SIMPLE_QUESTION_551",
 			"3" => "SIMPLE_QUESTION_729",
 			"4" => "SIMPLE_QUESTION_394",
-			"5" => "SIMPLE_QUESTION_859",
-			"6" => "SIMPLE_QUESTION_749",
-			"7" => "SIMPLE_QUESTION_889",
-			"8" => "SIMPLE_QUESTION_446",
-			"9" => "SIMPLE_QUESTION_551",
-			"10" => "SIMPLE_QUESTION_729",
-			"11" => "SIMPLE_QUESTION_859",
-			"12" => "SIMPLE_QUESTION_148",
-			"13" => "SIMPLE_QUESTION_732"
+			"5" => "SIMPLE_QUESTION_211",
+			"6" => "SIMPLE_QUESTION_859",
+			"7" => "SIMPLE_QUESTION_749",
+			"8" => "SIMPLE_QUESTION_889",
+			"9" => "SIMPLE_QUESTION_446",
+			"10" => "SIMPLE_QUESTION_551",
+			"11" => "SIMPLE_QUESTION_729",
+			"12" => "SIMPLE_QUESTION_859",
+			"13" => "SIMPLE_QUESTION_148",
+			"14" => "SIMPLE_QUESTION_732"
 		),//Участники Представители Москва Весна
-
 		"ANS_TYPE" => array(
 			"0" => "ANSWER_TEXT",
 			"1" => "USER_TEXT",
@@ -818,13 +827,14 @@ class CFormMatrix
 			"4" => "USER_TEXT",
 			"5" => "USER_TEXT",
 			"6" => "USER_TEXT",
-			"7" => "ANSWER_TEXT",
-			"8" => "USER_TEXT",
+			"7" => "USER_TEXT",
+			"8" => "ANSWER_TEXT",
 			"9" => "USER_TEXT",
 			"10" => "USER_TEXT",
 			"11" => "USER_TEXT",
 			"12" => "USER_TEXT",
-			"13" => "ANSWER_TEXT"
+			"13" => "USER_TEXT",
+			"14" => "ANSWER_TEXT"
 		),
 		"NAMES_AR" => array(
 			"0" => "TITLE",
@@ -832,18 +842,18 @@ class CFormMatrix
 			"2" => "L_NAME",
 			"3" => "JOB",
 			"4" => "PHONE",
-			"5" => "EMAIL",
-			"6" => "EMAIL_ALT",
-			"7" => "TITLE_COL",
-			"8" => "F_NAME_COL",
-			"9" => "L_NAME_COL",
-			"10" => "JOB_COL",
-			"11" => "EMAIL_COL",
-			"12" => "TABLE",
-			"13" => "HALL"
+			"5" => "SKYPE",
+			"6" => "EMAIL",
+			"7" => "EMAIL_ALT",
+			"8" => "TITLE_COL",
+			"9" => "F_NAME_COL",
+			"10" => "L_NAME_COL",
+			"11" => "JOB_COL",
+			"12" => "EMAIL_COL",
+			"13" => "TABLE",
+			"14" => "HALL"
 		),
 	);
-
 	static $arExelGuestField = array(
 		"NAMES" => array(
 			"0" => "Компания",
@@ -862,17 +872,18 @@ class CFormMatrix
 			"13" => "Страна (other)",
 			"14" => "Индекс",
 			"15" => "Телефон",
-			"16" => "E-mail",
-			"17" => "Web-site компании",
-			"18" => "Приоритетные направления",
+			"16" => "Skype",
+			"17" => "E-mail",
+			"18" => "Web-site компании",
 			"19" => "Приоритетные направления",
 			"20" => "Приоритетные направления",
 			"21" => "Приоритетные направления",
 			"22" => "Приоритетные направления",
 			"23" => "Приоритетные направления",
-			"24" => "Описание компании",
-			"25" => "Зал",
-			"26" => "Стол"
+			"24" => "Приоритетные направления",
+			"25" => "Описание компании",
+			"26" => "Зал",
+			"27" => "Стол"
 		),
 		"QUEST_CODE" => array(
 			"0" => "SIMPLE_QUESTION_115",
@@ -891,17 +902,18 @@ class CFormMatrix
 			"13" => "SIMPLE_QUESTION_243",
 			"14" => "SIMPLE_QUESTION_756",
 			"15" => "SIMPLE_QUESTION_636",
-			"16" => "SIMPLE_QUESTION_373",
-			"17" => "SIMPLE_QUESTION_552",
-			"18" => "SIMPLE_QUESTION_383",
-			"19" => "SIMPLE_QUESTION_244",
-			"20" => "SIMPLE_QUESTION_212",
-			"21" => "SIMPLE_QUESTION_497",
-			"22" => "SIMPLE_QUESTION_526",
-			"23" => "SIMPLE_QUESTION_878",
-			"24" => "SIMPLE_QUESTION_166",
-			"25" => "SIMPLE_QUESTION_762",
-			"26" => "SIMPLE_QUESTION_211"
+			"16" => "SIMPLE_QUESTION_111",
+			"17" => "SIMPLE_QUESTION_373",
+			"18" => "SIMPLE_QUESTION_552",
+			"19" => "SIMPLE_QUESTION_383",
+			"20" => "SIMPLE_QUESTION_244",
+			"21" => "SIMPLE_QUESTION_212",
+			"22" => "SIMPLE_QUESTION_497",
+			"23" => "SIMPLE_QUESTION_526",
+			"24" => "SIMPLE_QUESTION_878",
+			"25" => "SIMPLE_QUESTION_166",
+			"26" => "SIMPLE_QUESTION_762",
+			"27" => "SIMPLE_QUESTION_211"
 		),
 		"ANS_TYPE" => array(
 			"0" => "USER_TEXT",
@@ -922,15 +934,16 @@ class CFormMatrix
 			"15" => "USER_TEXT",
 			"16" => "USER_TEXT",
 			"17" => "USER_TEXT",
-			"18" => "ANSWER_TEXT",
+			"18" => "USER_TEXT",
 			"19" => "ANSWER_TEXT",
 			"20" => "ANSWER_TEXT",
 			"21" => "ANSWER_TEXT",
 			"22" => "ANSWER_TEXT",
 			"23" => "ANSWER_TEXT",
-			"24" => "USER_TEXT",
-			"25" => "ANSWER_TEXT",
-			"26" => "USER_TEXT"
+			"24" => "ANSWER_TEXT",
+			"25" => "USER_TEXT",
+			"26" => "ANSWER_TEXT",
+			"27" => "USER_TEXT"
 		),
 		"NAMES_AR" => array(
 			"0" => "COMPANY",
@@ -949,20 +962,20 @@ class CFormMatrix
 			"13" => "COUNTRY",
 			"14" => "INDEX",
 			"15" => "PHONE",
-			"16" => "EMAIL",
-			"17" => "SITE",
-			"18" => "DESTINITIONS",
+			"16" => "SKYPE",
+			"17" => "EMAIL",
+			"18" => "SITE",
 			"19" => "DESTINITIONS",
 			"20" => "DESTINITIONS",
 			"21" => "DESTINITIONS",
 			"22" => "DESTINITIONS",
 			"23" => "DESTINITIONS",
-			"24" => "DESC",
-			"25" => "HALL",
-			"26" => "TABLE"
+			"24" => "DESTINITIONS",
+			"25" => "DESC",
+			"26" => "HALL",
+			"27" => "TABLE"
 		),
 	);
-
 	static $arExelEvGuestField = array(
 		"NAMES" => array(
 			"0" => "Компания",
@@ -977,58 +990,60 @@ class CFormMatrix
 			"9" => "Должность",
 			"10" => "Телефон",
 			"11" => "Моб. телефон",
-			"12" => "E-mail",
-			"13" => "Web-site компании",
-			"14" => "Имя коллеги 1",
-			"15" => "Фамилия коллеги 1",
-			"16" => "Должность коллеги 1",
-			"17" => "E-mail коллеги 1",
-			"18" => "Имя коллеги 2",
-			"19" => "Фамилия коллеги 2",
-			"20" => "Должность коллеги 2",
-			"21" => "E-mail коллеги 2",
-			"22" => "Имя коллеги 3",
-			"23" => "Фамилия коллеги 3",
-			"24" => "Должность коллеги 3",
-			"25" => "E-mail коллеги 3"
+			"12" => "Скайп",
+			"13" => "E-mail",
+			"14" => "Web-site компании",
+			"15" => "Имя коллеги 1",
+			"16" => "Фамилия коллеги 1",
+			"17" => "Должность коллеги 1",
+			"18" => "E-mail коллеги 1",
+			"19" => "Имя коллеги 2",
+			"20" => "Фамилия коллеги 2",
+			"21" => "Должность коллеги 2",
+			"22" => "E-mail коллеги 2",
+			"23" => "Имя коллеги 3",
+			"24" => "Фамилия коллеги 3",
+			"25" => "Должность коллеги 3",
+			"26" => "E-mail коллеги 3"
 		),
 		"QUEST_CODE" => array(
-			"0" => "SIMPLE_QUESTION_115",
-			"1" => "SIMPLE_QUESTION_677",
-			"2" => "SIMPLE_QUESTION_773",
-			"3" => "SIMPLE_QUESTION_756",
-			"4" => "SIMPLE_QUESTION_672",
-			"5" => "SIMPLE_QUESTION_678",
-			"6" => "SIMPLE_QUESTION_243",
-			"7" => "SIMPLE_QUESTION_750",
-			"8" => "SIMPLE_QUESTION_823",
-			"9" => "SIMPLE_QUESTION_391",
-			"10" => "SIMPLE_QUESTION_636",
-			"11" => "SIMPLE_QUESTION_844",
-			"12" => "SIMPLE_QUESTION_373",
-			"13" => "SIMPLE_QUESTION_552",
-			"14" => "SIMPLE_QUESTION_367",
-			"15" => "SIMPLE_QUESTION_482",
-			"16" => "SIMPLE_QUESTION_187",
-			"17" => "SIMPLE_QUESTION_421",
-			"18" => "SIMPLE_QUESTION_225",
-			"19" => "SIMPLE_QUESTION_770",
-			"20" => "SIMPLE_QUESTION_280",
-			"21" => "SIMPLE_QUESTION_384",
-			"22" => "SIMPLE_QUESTION_765",
-			"23" => "SIMPLE_QUESTION_627",
-			"24" => "SIMPLE_QUESTION_788",
-			"25" => "SIMPLE_QUESTION_230"
+			"0" => "SIMPLE_QUESTION_115", //назв комп
+			"1" => "SIMPLE_QUESTION_677", //вид деят
+			"2" => "SIMPLE_QUESTION_773", //факт адр
+			"3" => "SIMPLE_QUESTION_756", //индекс
+			"4" => "SIMPLE_QUESTION_672", //город
+			"5" => "SIMPLE_QUESTION_678", //страна
+			"6" => "SIMPLE_QUESTION_243", //Страна (other)
+			"7" => "SIMPLE_QUESTION_750", //Имя
+			"8" => "SIMPLE_QUESTION_823", //Фамилия
+			"9" => "SIMPLE_QUESTION_391", //Должность
+			"10" => "SIMPLE_QUESTION_636", //Телефон
+			"11" => "SIMPLE_QUESTION_844", //Мобильный телефон
+			"12" => "SIMPLE_QUESTION_111", //Skype
+			"13" => "SIMPLE_QUESTION_373", //E-mail
+			"14" => "SIMPLE_QUESTION_552", //http://
+			"15" => "SIMPLE_QUESTION_367", //Имя коллеги 1
+			"16" => "SIMPLE_QUESTION_482", //Фамилия коллеги 1
+			"17" => "SIMPLE_QUESTION_187", //Должность коллеги 1
+			"18" => "SIMPLE_QUESTION_421", //E-mail коллеги 1
+			"19" => "SIMPLE_QUESTION_225", //Имя коллеги 2
+			"20" => "SIMPLE_QUESTION_770", //Фамилия коллеги 2
+			"21" => "SIMPLE_QUESTION_280", //Должность коллеги 2
+			"22" => "SIMPLE_QUESTION_384", //E-mail коллеги 2
+			"23" => "SIMPLE_QUESTION_765", //Имя коллеги 3
+			"24" => "SIMPLE_QUESTION_627", //Фамилия коллеги 3
+			"25" => "SIMPLE_QUESTION_788", //Должность коллеги 3
+			"26" => "SIMPLE_QUESTION_230" //E-mail коллеги 3
 		),
 		"ANS_TYPE" => array(
-			"0" => "USER_TEXT",
-			"1" => "ANSWER_TEXT",
-			"2" => "USER_TEXT",
-			"3" => "USER_TEXT",
-			"4" => "USER_TEXT",
-			"5" => "ANSWER_TEXT",
-			"6" => "USER_TEXT",
-			"7" => "USER_TEXT",
+			"0" => "USER_TEXT",//назв комп
+			"1" => "ANSWER_TEXT",//вид деят
+			"2" => "USER_TEXT",//факт адр
+			"3" => "USER_TEXT",//индекс
+			"4" => "USER_TEXT",//город
+			"5" => "ANSWER_TEXT",//страна
+			"6" => "USER_TEXT",//Страна (other)
+			"7" => "USER_TEXT",//Имя
 			"8" => "USER_TEXT",
 			"9" => "USER_TEXT",
 			"10" => "USER_TEXT",
@@ -1046,7 +1061,8 @@ class CFormMatrix
 			"22" => "USER_TEXT",
 			"23" => "USER_TEXT",
 			"24" => "USER_TEXT",
-			"25" => "USER_TEXT"
+			"25" => "USER_TEXT",
+			"26" => "USER_TEXT"
 		),
 		"NAMES_AR" => array(
 			"0" => "COMPANY",
@@ -1061,23 +1077,23 @@ class CFormMatrix
 			"9" => "JOB",
 			"10" => "PHONE",
 			"11" => "MOB_PHONE",
-			"12" => "EMAIL",
-			"13" => "SITE",
-			"14" => "F_NAME_COL1",
-			"15" => "L_NAME_COL1",
-			"16" => "JOB_COL1",
-			"17" => "EMAIL_COL1",
-			"18" => "F_NAME_COL2",
-			"19" => "L_NAME_COL2",
-			"20" => "JOB_COL2",
-			"21" => "EMAIL_COL2",
-			"22" => "F_NAME_COL3",
-			"23" => "L_NAME_COL3",
-			"24" => "JOB_COL3",
-			"25" => "EMAIL_COL3"
+			"12" => "SKYPE",
+			"13" => "EMAIL",
+			"14" => "SITE",
+			"15" => "F_NAME_COL1",
+			"16" => "L_NAME_COL1",
+			"17" => "JOB_COL1",
+			"18" => "EMAIL_COL1",
+			"19" => "F_NAME_COL2",
+			"20" => "L_NAME_COL2",
+			"21" => "JOB_COL2",
+			"22" => "EMAIL_COL2",
+			"23" => "F_NAME_COL3",
+			"24" => "L_NAME_COL3",
+			"25" => "JOB_COL3",
+			"26" => "EMAIL_COL3"
 		),
 	);
-
 	private static $arFormGuestQuestions = array(
 		"NAMES" => array(
 			"0"=>"Название компании",
@@ -1091,39 +1107,41 @@ class CFormMatrix
 			"8"=>"Фамилия",
 			"9"=>"Должность",
 			"10"=>"Телефон",
-			"11"=>"E-mail",
-			"12"=>"Введите E-mail ещё раз",
-			"13"=>"http://",
-			"14"=>"Имя коллеги 1",
-			"15"=>"Фамилия коллеги 1",
-			"16"=>"Должность коллеги 1",
-			"17"=>"E-mail коллеги 1",
-			"18"=>"Имя коллеги 2",
-			"19"=>"Фамилия коллеги 2",
-			"20"=>"E-mail коллеги 2",
-			"21"=>"Должность коллеги 2",
-			"22"=>"Имя коллеги 3",
-			"23"=>"Фамилия коллеги 3",
-			"24"=>"Должность коллеги 3",
-			"25"=>"E-mail коллеги 3",
+			"11"=>"Мобильный телефон",
+			"12"=>"Скайп",
+			"13"=>"E-mail",
+			"14"=>"Введите E-mail ещё раз",
+			"15"=>"http://",
+			"16"=>"Имя коллеги 1",
+			"17"=>"Фамилия коллеги 1",
+			"18"=>"Должность коллеги 1",
+			"19"=>"E-mail коллеги 1",
+			"20"=>"Имя коллеги 2",
+			"21"=>"Фамилия коллеги 2",
+			"22"=>"E-mail коллеги 2",
+			"23"=>"Должность коллеги 2",
+			"24"=>"Имя коллеги 3",
+			"25"=>"Фамилия коллеги 3",
+			"26"=>"Должность коллеги 3",
+			"27"=>"E-mail коллеги 3",
 			"LOGIN"=>"Введите логин/гостевое имя",
-			"27"=>"Введите пароль",
-			"28"=>"Повторите пароль",
-			"29"=>"Введите краткое описание",
-			"30"=>"North America",
-			"31"=>"Europe",
-			"32"=>"South America",
-			"33"=>"Africa",
-			"34"=>"Asia",
-			"35"=>"Oceania",
-			"36"=>"Имя коллеги (на утро)",
-			"37"=>"Фамилия коллеги (на утро)",
-			"38"=>"Должность коллеги (на утро)",
-			"39"=>"E-mail коллеги (на утро)",
-			"40"=>"Утро",
-			"41"=>"Вечер",
-			"42"=>"Зал",
-			"43"=>"Стол"
+			"29"=>"Введите пароль",
+			"30"=>"Повторите пароль",
+			"31"=>"Введите краткое описание",
+			"32"=>"North America",
+			"33"=>"Europe",
+			"34"=>"South America",
+			"35"=>"Africa",
+			"36"=>"Asia",
+			"37"=>"Oceania",
+			"38"=>"Имя коллеги (на утро)",
+			"39"=>"Фамилия коллеги (на утро)",
+			"40"=>"Должность коллеги (на утро)",
+			"41"=>"E-mail коллеги (на утро)",
+			"42"=>"Утро",
+			"43"=>"Вечер",
+			"44"=>"Зал",
+			"45"=>"Стол"
 		),
 		10 => array(
 			"0"=>"107",
@@ -1137,39 +1155,41 @@ class CFormMatrix
 			"8"=>"114",
 			"9"=>"115",
 			"10"=>"116",
-			"11"=>"117",
-			"12"=>"118",
-			"13"=>"119",
-			"14"=>"120",
-			"15"=>"121",
-			"16"=>"122",
-			"17"=>"123",
-			"18"=>"124",
-			"19"=>"125",
-			"20"=>"126",
-			"21"=>"127",
-			"22"=>"128",
-			"23"=>"129",
-			"24"=>"130",
-			"25"=>"131",
+			"11"=>"569", //моб телефон
+			"12"=>"596", //скайп
+			"13"=>"117",
+			"14"=>"118",
+			"15"=>"119",
+			"16"=>"120",
+			"17"=>"121",
+			"18"=>"122",
+			"19"=>"123",
+			"20"=>"124",
+			"21"=>"125",
+			"22"=>"126",
+			"23"=>"127",
+			"24"=>"128",
+			"25"=>"129",
+			"26"=>"130",
+			"27"=>"131",
 			"LOGIN"=>"132",
-			"27"=>"133",
-			"28"=>"134",
-			"29"=>"135",
-			"30"=>"136",
-			"31"=>"137",
-			"32"=>"138",
-			"33"=>"139",
-			"34"=>"475",
-			"35"=>"476",
-			"36"=>"477",
-			"37"=>"478",
-			"38"=>"479",
-			"39"=>"480",
-			"40"=>"481",
-			"41"=>"482",
-			"42"=>"570",
-			"43"=>"571"
+			"29"=>"133",
+			"30"=>"134",
+			"31"=>"135",
+			"32"=>"136",
+			"33"=>"137",
+			"34"=>"138",
+			"35"=>"139",
+			"36"=>"475",
+			"37"=>"476",
+			"38"=>"477",
+			"39"=>"478",
+			"40"=>"479",
+			"41"=>"480",
+			"42"=>"481",
+			"43"=>"482",
+			"44"=>"570",
+			"45"=>"571"
 		),
 		21 => array(
 			"0"=>"339",
@@ -1348,7 +1368,6 @@ class CFormMatrix
 			"41"=>"",
 		)
 	);
-
 	private static $arFormGuestQuestionsSID = array(
 		"NAMES" => array(
 			"0"=>"Название компании",
@@ -1362,39 +1381,41 @@ class CFormMatrix
 			"8"=>"Фамилия",
 			"9"=>"Должность",
 			"10"=>"Телефон",
-			"11"=>"E-mail",
-			"12"=>"Введите E-mail ещё раз",
-			"13"=>"http://",
-			"14"=>"Имя коллеги 1",
-			"15"=>"Фамилия коллеги 1",
-			"16"=>"Должность коллеги 1",
-			"17"=>"E-mail коллеги 1",
-			"18"=>"Имя коллеги 2",
-			"19"=>"Фамилия коллеги 2",
-			"20"=>"Должность коллеги 2",
-			"21"=>"E-mail коллеги 2",
-			"22"=>"Имя коллеги 3",
-			"23"=>"Фамилия коллеги 3",
-			"24"=>"Должность коллеги 3",
-			"25"=>"E-mail коллеги 3",
-			"26"=>"Введите логин/гостевое имя",
-			"27"=>"Введите пароль",
-			"28"=>"Повторите пароль",
-			"29"=>"Введите краткое описание",
-			"30"=>"North America",
-			"31"=>"Europe",
-			"32"=>"South America",
-			"33"=>"Africa",
-			"34"=>"Asia",
-			"35"=>"Oceania",
-			"36"=>"Имя коллеги (на утро)",
-			"37"=>"Фамилия коллеги (на утро)",
-			"38"=>"Должность коллеги (на утро)",
-			"39"=>"E-mail коллеги (на утро)",
-			"40"=>"Утро",
-			"41"=>"Вечер",
-			"42"=>"Зал",
-			"43"=>"Стол"
+			"11"=>"Мобильный телефон",
+			"12"=>"Скайп",
+			"13"=>"E-mail",
+			"14"=>"Введите E-mail ещё раз",
+			"15"=>"http://",
+			"16"=>"Имя коллеги 1",
+			"17"=>"Фамилия коллеги 1",
+			"18"=>"Должность коллеги 1",
+			"19"=>"E-mail коллеги 1",
+			"20"=>"Имя коллеги 2",
+			"21"=>"Фамилия коллеги 2",
+			"22"=>"Должность коллеги 2",
+			"23"=>"E-mail коллеги 2",
+			"24"=>"Имя коллеги 3",
+			"25"=>"Фамилия коллеги 3",
+			"26"=>"Должность коллеги 3",
+			"27"=>"E-mail коллеги 3",
+			"28"=>"Введите логин/гостевое имя",
+			"29"=>"Введите пароль",
+			"30"=>"Повторите пароль",
+			"31"=>"Введите краткое описание",
+			"32"=>"North America",
+			"33"=>"Europe",
+			"34"=>"South America",
+			"35"=>"Africa",
+			"36"=>"Asia",
+			"37"=>"Oceania",
+			"38"=>"Имя коллеги (на утро)",
+			"39"=>"Фамилия коллеги (на утро)",
+			"40"=>"Должность коллеги (на утро)",
+			"41"=>"E-mail коллеги (на утро)",
+			"42"=>"Утро",
+			"43"=>"Вечер",
+			"44"=>"Зал",
+			"45"=>"Стол"
 		),
 		"NAMES_AR" => array(
 			"0"=>"COMPANY",
@@ -1408,39 +1429,41 @@ class CFormMatrix
 			"8"=>"L_NAME",
 			"9"=>"JOB",
 			"10"=>"PHONE",
-			"11"=>"EMAIL",
-			"12"=>"EMAIL_REP",
-			"13"=>"SITE",
-			"14"=>"F_NAME_COL1",
-			"15"=>"L_NAME_COL1",
-			"16"=>"JOB_COL1",
-			"17"=>"EMAIL_COL1",
-			"18"=>"F_NAME_COL2",
-			"19"=>"L_NAME_COL2",
-			"20"=>"JOB_COL2",
-			"21"=>"EMAIL_COL2",
-			"22"=>"F_NAME_COL3",
-			"23"=>"L_NAME_COL3",
-			"24"=>"JOB_COL3",
-			"25"=>"EMAIL_COL3",
-			"26"=>"LOGIN",
-			"27"=>"PASSWORD",
-			"28"=>"PASSWORD_REP",
-			"29"=>"DESC",
-			"30"=>"DESTINITIONS",
-			"31"=>"DESTINITIONS",
+			"11"=>"MOBILE_PHONE",
+			"12"=>"SKYPE",
+			"13"=>"EMAIL",
+			"14"=>"EMAIL_REP",
+			"15"=>"SITE",
+			"16"=>"F_NAME_COL1",
+			"17"=>"L_NAME_COL1",
+			"18"=>"JOB_COL1",
+			"19"=>"EMAIL_COL1",
+			"20"=>"F_NAME_COL2",
+			"21"=>"L_NAME_COL2",
+			"22"=>"JOB_COL2",
+			"23"=>"EMAIL_COL2",
+			"24"=>"F_NAME_COL3",
+			"25"=>"L_NAME_COL3",
+			"26"=>"JOB_COL3",
+			"27"=>"EMAIL_COL3",
+			"28"=>"LOGIN",
+			"29"=>"PASSWORD",
+			"30"=>"PASSWORD_REP",
+			"31"=>"DESC",
 			"32"=>"DESTINITIONS",
 			"33"=>"DESTINITIONS",
 			"34"=>"DESTINITIONS",
 			"35"=>"DESTINITIONS",
-			"36"=>"F_NAME_COL",
-			"37"=>"L_NAME_COL",
-			"38"=>"JOB_COL",
-			"39"=>"EMAIL_COL",
-			"40"=>"MORNING",
-			"41"=>"EVENING",
-			"42"=>"HALL",
-			"43"=>"TABLE"
+			"36"=>"DESTINITIONS",
+			"37"=>"DESTINITIONS",
+			"38"=>"F_NAME_COL",
+			"39"=>"L_NAME_COL",
+			"40"=>"JOB_COL",
+			"41"=>"EMAIL_COL",
+			"42"=>"MORNING",
+			"43"=>"EVENING",
+			"44"=>"HALL",
+			"45"=>"TABLE"
 		),
 		"QUEST_CODE" => array(
 			"0"=>"SIMPLE_QUESTION_115",
@@ -1454,42 +1477,43 @@ class CFormMatrix
 			"8"=>"SIMPLE_QUESTION_823",
 			"9"=>"SIMPLE_QUESTION_391",
 			"10"=>"SIMPLE_QUESTION_636",
-			"11"=>"SIMPLE_QUESTION_373",
-			"12"=>"SIMPLE_QUESTION_279",
-			"13"=>"SIMPLE_QUESTION_552",
-			"14"=>"SIMPLE_QUESTION_367",
-			"15"=>"SIMPLE_QUESTION_482",
-			"16"=>"SIMPLE_QUESTION_187",
-			"17"=>"SIMPLE_QUESTION_421",
-			"18"=>"SIMPLE_QUESTION_225",
-			"19"=>"SIMPLE_QUESTION_770",
-			"20"=>"SIMPLE_QUESTION_280",
-			"21"=>"SIMPLE_QUESTION_384",
-			"22"=>"SIMPLE_QUESTION_765",
-			"23"=>"SIMPLE_QUESTION_627",
-			"24"=>"SIMPLE_QUESTION_788",
-			"25"=>"SIMPLE_QUESTION_230",
-			"26"=>"SIMPLE_QUESTION_474",
-			"27"=>"SIMPLE_QUESTION_435",
-			"28"=>"SIMPLE_QUESTION_300",
-			"29"=>"SIMPLE_QUESTION_166",
-			"30"=>"SIMPLE_QUESTION_383",
-			"31"=>"SIMPLE_QUESTION_244",
-			"32"=>"SIMPLE_QUESTION_212",
-			"33"=>"SIMPLE_QUESTION_497",
-			"34"=>"SIMPLE_QUESTION_526",
-			"35"=>"SIMPLE_QUESTION_878",
-			"36"=>"SIMPLE_QUESTION_816",
-			"37"=>"SIMPLE_QUESTION_596",
-			"38"=>"SIMPLE_QUESTION_304",
-			"39"=>"SIMPLE_QUESTION_278",
-			"40"=>"SIMPLE_QUESTION_836",
-			"41"=>"SIMPLE_QUESTION_156",
-			"42"=>"SIMPLE_QUESTION_762",
-			"43"=>"SIMPLE_QUESTION_211"
+			"11"=>"SIMPLE_QUESTION_844",
+			"12"=>"SIMPLE_QUESTION_111",
+			"13"=>"SIMPLE_QUESTION_373",
+			"14"=>"SIMPLE_QUESTION_279",
+			"15"=>"SIMPLE_QUESTION_552",
+			"16"=>"SIMPLE_QUESTION_367",
+			"17"=>"SIMPLE_QUESTION_482",
+			"18"=>"SIMPLE_QUESTION_187",
+			"19"=>"SIMPLE_QUESTION_421",
+			"20"=>"SIMPLE_QUESTION_225",
+			"21"=>"SIMPLE_QUESTION_770",
+			"22"=>"SIMPLE_QUESTION_280",
+			"23"=>"SIMPLE_QUESTION_384",
+			"24"=>"SIMPLE_QUESTION_765",
+			"25"=>"SIMPLE_QUESTION_627",
+			"26"=>"SIMPLE_QUESTION_788",
+			"27"=>"SIMPLE_QUESTION_230",
+			"28"=>"SIMPLE_QUESTION_474",
+			"29"=>"SIMPLE_QUESTION_435",
+			"30"=>"SIMPLE_QUESTION_300",
+			"31"=>"SIMPLE_QUESTION_166",
+			"32"=>"SIMPLE_QUESTION_383",
+			"33"=>"SIMPLE_QUESTION_244",
+			"34"=>"SIMPLE_QUESTION_212",
+			"35"=>"SIMPLE_QUESTION_497",
+			"36"=>"SIMPLE_QUESTION_526",
+			"37"=>"SIMPLE_QUESTION_878",
+			"38"=>"SIMPLE_QUESTION_816",
+			"39"=>"SIMPLE_QUESTION_596",
+			"40"=>"SIMPLE_QUESTION_304",
+			"41"=>"SIMPLE_QUESTION_278",
+			"42"=>"SIMPLE_QUESTION_836",
+			"43"=>"SIMPLE_QUESTION_156",
+			"44"=>"SIMPLE_QUESTION_762",
+			"45"=>"SIMPLE_QUESTION_211"
 		)
 	);
-
 	private static $arExhForm = array(
 		358 => 8, //Москва, Россия. 2 октября 2014
 		357 => 5, //Баку, Айзербайджан. 10 апреля 2014
@@ -1502,7 +1526,6 @@ class CFormMatrix
 		3522 => 27, //Киев, Украина. сентябрь 2015
 		3523 => 28 //Москва, Россия. октябрь 2015
 	);
-
 	private static $arExhGuestForm = array(
 		358 => 24, //Москва, Россия. 2 октября 2014
 		357 => 21, //Баку, Айзербайджан. 10 апреля 2014
@@ -1514,7 +1537,6 @@ class CFormMatrix
 		3521 => 23, //Алматы, Казахстан. 26 сентября 2014
 		3522 => 22, //Киев, Украина. 23 сентября 2014
 	);
-
 	//id почтовых событий для гостей
 	private static $arPostTemplateByExhibID = array(
 		358 => array("GUEST_EVENING"=>82, "GUEST_MORNING"=>72), //Москва, Россия. 2 октября 2014
@@ -1522,12 +1544,11 @@ class CFormMatrix
 		359 => array("GUEST_EVENING"=>81, "GUEST_MORNING"=>73), //Алматы, Казахстан. 26 сентября 2014
 		360 => array("GUEST_EVENING"=>80, "GUEST_MORNING"=>74), //Киев, Украина. 23 сентября 2014
 		361 => array("GUEST_EVENING"=>71, "GUEST_MORNING"=>70), //Москва, Россия. 13 марта 2014
-		488 => array("GUEST_EVENING"=>78, "GUEST_MORNING"=>76), //Москва, Россия. 12 марта 2015 ??
+		488 => array("GUEST_EVENING"=>78, "GUEST_MORNING"=>76), //Москва, Россия. 12 марта 2015
 		3523 => array("GUEST_EVENING"=>82, "GUEST_MORNING"=>72), //Москва, Россия. октябрь 2015
 		3521 => array("GUEST_EVENING"=>81, "GUEST_MORNING"=>73), //Алматы, Казахстан. сентябрь 2015
 		3522 => array("GUEST_EVENING"=>80, "GUEST_MORNING"=>74), //Киев, Украина. сентябрь 2015
 	);
-
 	private static $arExhProp = array(
 		358 => array("UF_ID5", "UF_ID10"),//Москва, Россия. 2 октября 2014
 		357 => array("UF_ID2", "UF_ID7"),//Баку, Айзербайджан. 10 апреля 2014
@@ -1542,42 +1563,34 @@ class CFormMatrix
 	);
 
 	static $userFields = array("UF_MSCSPRING2016", "UF_ID2", "UF_ID3", "UF_ID4", "UF_ID5","UF_ID11", "UF_ALM2015", "UF_KIEV2015", "UF_MSCAUT2015");
-
 	static function getPostTemplateByExhibID($exhibId, $name) {
 		return isset(self::$arPostTemplateByExhibID[$exhibId][$name]) ? self::$arPostTemplateByExhibID[$exhibId][$name] : false;
 	}
-
 	static function getFormQuestionIdByFormIDAndQuestionName($formId, $questionName) {
 		return isset(self::$arFormGuestQuestions[$formId][$questionName]) ? self::$arFormGuestQuestions[$formId][$questionName] : false;
 	}
-
 	static function getPFormIDByExh($id)
 	{
 		if(intval($id) == 0)
 		{
 			return false;
 		}
-
 		return self::$arExhForm[$id];
 	}
-
 	static function getGResultIDByExh($id)
 	{
 		if(intval($id) == 0)
 		{
 			return false;
 		}
-
 		return self::$arExhGuestForm[$id];
 	}
-
 	static function getPropertyIDByExh($id, $member = 0)
 	{
 		if(intval($id) == 0)
 		{
 			return false;
 		}
-
 		if(1 == $member)
 		{
 			return self::$arExhProp[$id][1];
@@ -1586,16 +1599,13 @@ class CFormMatrix
 		{
 			return self::$arExhProp[$id][0];
 		}
-
 	}
-
 	static function getFormIDByQID($id)
 	{
 		if(intval($id) == 0)
 		{
 			return false;
 		}
-
 		foreach (self::$arFormQuestions as $formID => $questions)
 		{
 			if(in_array($id, $questions))
@@ -1605,14 +1615,12 @@ class CFormMatrix
 		}
 		return false;
 	}
-
 	static function getIndexQ($id, $form)
 	{
 		if(!intval($id))
 		{
 			return false;
 		}
-
 		if(intval($form))
 		{
 			return array_search($id, self::$arFormQuestions[$form]);
@@ -1630,7 +1638,6 @@ class CFormMatrix
 		}
 		return false;
 	}
-
 	static function getQByIndex($index, $form)
 	{
 		if(intval($form))
@@ -1650,14 +1657,12 @@ class CFormMatrix
 		}
 		return false;
 	}
-
 	static function getQIDByBase($id, $form)
 	{
 		if(!intval($id))
 		{
 			return false;
 		}
-
 		if(intval($form))
 		{
 			$id = array_search($id, self::$arFormQuestions[4]);
