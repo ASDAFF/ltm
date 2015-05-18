@@ -84,6 +84,7 @@ $arUserFormFields = array(
 		"form_text_217" => $data["LAST_NAME"],							//фамилия
 		"form_text_218" => $data["JOB_POST"],							//должность
 		"form_text_219" => cutPhone($data["PHONE"]),					//телефон
+		"form_text_1484" => $data["SKYPE"],								//скайп 
 		"form_text_220" => $data["EMAIL"],								//email
 		"form_text_221" => $data["CONF_EMAIL"],							//подтверждение email
 		"form_text_1425" => cutPhone($data["MOBILE_PHONE"]),			//мобильный телефон

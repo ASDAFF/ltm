@@ -160,15 +160,16 @@ $COMPANY_RESULT_ID = CFormResult::Add($arParams["COMPANY_FORM_ID"], $arCompanyFo
 
 /*Заполняем массив для вебформы участника*/
 $arPersonalFormFields = array(
-		"form_text_84" => $data["NAME"], 							//Participant first name
-		"form_text_85" => $data["LAST_NAME"], 				//Participant last name
-		"form_text_87" => $data["JOB_POST"], 									//Job title
+		"form_text_84" => $data["NAME"], 									//Participant first name
+		"form_text_85" => $data["LAST_NAME"], 								//Participant last name
+		"form_text_87" => $data["JOB_POST"], 								//Job title
 		"form_text_88" => cutPhone($data["PHONE"]), 						//Telephone
+		"form_text_1474" => $data["SKYPE"], 								//Skype 
 		"form_text_89" => $data["EMAIL"],									//E-mail
-		"form_text_90" => $data["CONF_EMAIL"],									//Please confirm your e-mail
-		"form_text_91" => $data["ALT_EMAIL"],									//Alternative e-mail
+		"form_text_90" => $data["CONF_EMAIL"],								//Please confirm your e-mail
+		"form_text_91" => $data["ALT_EMAIL"],								//Alternative e-mail
 		"form_dropdown_SIMPLE_QUESTION_889" => $data["SALUTATION"],			//Salutation
-		"form_image_195" => $arPersonal,					//Персональное фото
+		"form_image_195" => $arPersonal,									//Персональное фото
 );
 
 // создадим новый результат
