@@ -91,25 +91,27 @@ try{
 		"USE_EXTENDED_ERRORS" => "N",
 		"QUESTION_TO_SHOW" => array(
 			array("ITEMS"=>array(
-				array("ID"=>"SIMPLE_QUESTION_269", "IS_PIC"=>true),
-				array("ID"=>"SIMPLE_QUESTION_750"),
-				array("ID"=>"SIMPLE_QUESTION_823"),
-				array("ID"=>"SIMPLE_QUESTION_115", "DISABLED"=>true),
-				array("ID"=>"SIMPLE_QUESTION_391"),
-				array("ID"=>"SIMPLE_QUESTION_773", "TITLE"=>"Адрес"),
-				array("ID"=>"SIMPLE_QUESTION_672"),
-				array("ID"=>"SIMPLE_QUESTION_678"),
-				array("ID"=>"SIMPLE_QUESTION_756"),
-				array("ID"=>"SIMPLE_QUESTION_636"),
-				array("ID"=>"SIMPLE_QUESTION_373"),
-				array("ID"=>"SIMPLE_QUESTION_552", "TITLE"=>"Web-сайт"),
-				array("ID"=>"SIMPLE_QUESTION_166", "TITLE"=>"Описание компании"),
-				array("ID"=>"SIMPLE_QUESTION_383"),
-				array("ID"=>"SIMPLE_QUESTION_244"),
-				array("ID"=>"SIMPLE_QUESTION_212"),
-				array("ID"=>"SIMPLE_QUESTION_497"),
-				array("ID"=>"SIMPLE_QUESTION_526"),
-				array("ID"=>"SIMPLE_QUESTION_878"),
+				array("ID"=>"SIMPLE_QUESTION_269", "IS_PIC"=>true),					//Фото
+				array("ID"=>"SIMPLE_QUESTION_750"),									//Имя
+				array("ID"=>"SIMPLE_QUESTION_823"),									//Фамилия
+				array("ID"=>"SIMPLE_QUESTION_115", "DISABLED"=>true),				//Название компании
+				array("ID"=>"SIMPLE_QUESTION_391"),									//Должность
+				array("ID"=>"SIMPLE_QUESTION_773", "TITLE"=>"Адрес"),				//Фактический адрес компании
+				array("ID"=>"SIMPLE_QUESTION_672"),									//Город
+				array("ID"=>"SIMPLE_QUESTION_678"),									//Страна
+				array("ID"=>"SIMPLE_QUESTION_756"),									//Индекс
+				array("ID"=>"SIMPLE_QUESTION_636"),									//Телефон
+				array("ID"=>"SIMPLE_QUESTION_844"),									//Мобильный телефон
+				array("ID"=>"SIMPLE_QUESTION_111"),									//Skype
+				array("ID"=>"SIMPLE_QUESTION_373"),									//E-mail
+				array("ID"=>"SIMPLE_QUESTION_552", "TITLE"=>"Web-сайт"),			//http://
+				array("ID"=>"SIMPLE_QUESTION_166", "TITLE"=>"Описание компании"),	//Введите краткое описание
+				array("ID"=>"SIMPLE_QUESTION_383"),									//North America
+				array("ID"=>"SIMPLE_QUESTION_244"),									//Europe
+				array("ID"=>"SIMPLE_QUESTION_212"),									//South America
+				array("ID"=>"SIMPLE_QUESTION_497"),									//Africa
+				array("ID"=>"SIMPLE_QUESTION_526"),									//Asia
+				array("ID"=>"SIMPLE_QUESTION_878"),									//Oceania
 			))),
 	    "EDITING" => $exhGuestEdit
 		)

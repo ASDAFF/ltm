@@ -116,7 +116,7 @@ label.active {
 
 
 
-/* блок выбора выставки*/
+/* пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/
 
 .exhibition-select-block{
 	margin-top: 7px;
@@ -194,7 +194,7 @@ label.active-exh {
 
 
 
-/*НЕМНОГО ИНФОРМАЦИИ О ВАС*/
+/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ*/
 div.some-information{
 	margin-top: 15px;
 	margin-bottom: 20px;
@@ -324,7 +324,7 @@ textarea{
 }
 
 
-/*Оборачиваем групповой чекбокс*/
+/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/
 div.check-group
 {
 	background: url("images/ex_sel.png") no-repeat scroll 0 0 transparent;
@@ -375,7 +375,7 @@ label.active-group
 	background: url("images/check_act.png") no-repeat scroll 7px -4px transparent;
 }
 
-/*Оборачиваем DropDown*/
+/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ DropDown*/
 
 
 div.dropdown-group
@@ -425,7 +425,7 @@ div.dropdown-name
 	cursor: pointer;
 }
 
-/*оборачиваем приоритетные направления*/
+/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/
 
 .priority-wrap
 {
@@ -453,7 +453,7 @@ div.dropdown-name
 	color: #000;
 	font-size: 18px;
 	margin-top: 5px;
-	width: 401px;
+	width: 400px;
 	cursor: pointer;
 	position: relative;
 	height: 32px;

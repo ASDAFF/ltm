@@ -46,12 +46,13 @@ try{
 
 	//сохранение имени, фамилии и фио в поля пользователя
 	$fieldName = "form_text_" . CFormMatrix::getAnswerRelBase(84, $formID); //Participant first name
-	$fieldLastName = "form_text_" . CFormMatrix::getAnswerRelBase(85, $formID); //Participant first name
-	$fieldEmail =  "form_text_" . CFormMatrix::getAnswerRelBase(89, $formID); //Participant first name
+	$fieldLastName = "form_text_" . CFormMatrix::getAnswerRelBase(85, $formID); //Participant last name
+	$fieldEmail =  "form_text_" . CFormMatrix::getAnswerRelBase(89, $formID); //Email
 	$fieldJobTitle = "form_text_" . CFormMatrix::getAnswerRelBase(87, $formID);//Job title
 	$fieldPhone = "form_text_" . CFormMatrix::getAnswerRelBase(88, $formID);//Telephone
 	$fieldEmailAlt = "form_text_" . CFormMatrix::getAnswerRelBase(91, $formID);//Alternative e-mail
 	$fieldSalutation = "form_dropdown_" . CFormMatrix::getAnswerRelBase("SIMPLE_QUESTION_889", $formID);//Salutation
+	$fieldSkype = "form_text_" . CFormMatrix::getAnswerRelBase(1474, $formID);//Skype
 
 	//получение приветствия из базы
 	$rsSalutation = CFormAnswer::GetByID($_REQUEST[$fieldSalutation]);
@@ -64,6 +65,7 @@ try{
 	    "LAST_NAME" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_551",$formID),//Participant last name
 	    "JOB_TITLE" =>CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_729",$formID),//Job title
 	    "PHONE" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_394",$formID),//Telephone
+	    "SKYPE" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_211",$formID),//Skype
 	    "EMAIL" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_859",$formID),//E-mail
 	    "EMAIL_CONF" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_585",$formID),//Please confirm your e-mail
 	    "EMAIL_ALT" => CFormMatrix::getSIDRelBase("SIMPLE_QUESTION_749",$formID),//Alternative e-mail
@@ -126,20 +128,21 @@ try{
 
 
 		$arAnswer = CFormResult::GetDataByID(
-		    $resultId,
-		    array(
-		        $FieldSID["NAME"],
-		        $FieldSID["LAST_NAME"],
-		        $FieldSID["JOB_TITLE"],
-		        $FieldSID["PHONE"],
-		        $FieldSID["EMAIL"],
-		        $FieldSID["EMAIL_CONF"],
-		        $FieldSID["EMAIL_ALT"],
-		        $FieldSID["PHOTO"],
-		        $FieldSID["SALUTATION"],
-		    ),
-		    $arResult,
-		    $arAnswerSID);
+			$resultId,
+			array(
+				$FieldSID["NAME"],
+				$FieldSID["LAST_NAME"],
+				$FieldSID["JOB_TITLE"],
+				$FieldSID["PHONE"],
+				$FieldSID["SKYPE"],
+				$FieldSID["EMAIL"],
+				$FieldSID["EMAIL_CONF"],
+				$FieldSID["EMAIL_ALT"],
+				$FieldSID["PHOTO"],
+				$FieldSID["SALUTATION"],
+			),
+			$arResult,
+			$arAnswerSID);
 
 
 		$oldFields = array();
@@ -168,6 +171,7 @@ try{
 		    "LAST_NAME_OLD" => $oldFields["LAST_NAME_OLD"],
 		    "JOB_TITLE_OLD" => $oldFields["JOB_TITLE_OLD"],
 		    "PHONE_OLD" => $oldFields["PHONE_OLD"],
+			"SKYPE_OLD" => $oldFields["SKYPE_OLD"],
 		    "EMAIL_OLD" => $oldFields["EMAIL_OLD"],
 		    "EMAIL_ALT_OLD" => $oldFields["EMAIL_ALT_OLD"],
 		    "SALUTATION_OLD" => $oldFields["SALUTATION_OLD"],
@@ -176,6 +180,7 @@ try{
 		    "LAST_NAME_NEW" => $_REQUEST[$fieldLastName],
 		    "JOB_TITLE_NEW" => $_REQUEST[$fieldJobTitle],
 		    "PHONE_NEW" => $_REQUEST[$fieldPhone],
+			"SKYPE_NEW" => $_REQUEST[$fieldSkype],
 		    "EMAIL_NEW" => $_REQUEST[$fieldEmail],
 		    "EMAIL_ALT_NEW" => $_REQUEST[$fieldEmailAlt],
 		    "SALUTATION_NEW" => $fieldSalutation,
@@ -216,6 +221,7 @@ try{
                 array("ID"=>$FieldSID["SALUTATION"], "TITLE" => "Title"),////Salutation
                 array("ID"=>$FieldSID["JOB_TITLE"], "TITLE" => "Job title"),//Job title
                 array("ID"=>$FieldSID["PHONE"], "TITLE" => "Telephone"),//Telephone
+				array("ID"=>$FieldSID["SKYPE"], "TITLE" => "Skype"),//Skype
                 array("ID"=>$FieldSID["EMAIL"], "TITLE" => "E-mail"),//E-mail
                 array("ID"=>$FieldSID["EMAIL_ALT"], "TITLE" => "Alternative e-mail"),//Alternative e-mail
 			    )

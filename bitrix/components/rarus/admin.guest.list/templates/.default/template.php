@@ -5,6 +5,7 @@
 Подтвердить утро 	Подтвердить вечер 	Подтвердить HB
 Редактировать 	Спам*/?>
 <?
+//значение из CFormMatrix::$arFormGuestQuestions
 $arShowedTableCols = array(
 		"ID"=>"ID",
 		"Компания"=>0,
@@ -15,51 +16,53 @@ $arShowedTableCols = array(
 		"Страна"=>array(5, 6),
 		"Индекс"=>3,
 		"Телефон"=>10,
-		"Емейл"=>11,
-		"Веб-сайт"=>13
+		"Мобильный телефон"=>11,
+		"Скайп"=>12,
+		"Емейл"=>13,
+		"Веб-сайт"=>15
 );
 $arShowedTableColsBool = array();
 switch($arParams["ACT"]) {
 	case "off":
-		$arShowedTableCols["Описание деятельности"] = "29";
-		$arShowedTableCols["Форма посещения"] =  array(40, 41);
+		$arShowedTableCols["Описание деятельности"] = "31";
+		$arShowedTableCols["Форма посещения"] =  array(42, 43);
 		$arShowedTableColsBool = array("Подтв. утро"=>"UF_MR", "Подтв. вечер"=>"UF_EV", "Подтв. НВ"=>"UF_HB");
 	break;
 
 	case "evening":
-		$arShowedTableCols["Форма посещения"] =  array(40, 41);
-		$arShowedTableCols["Имя коллеги (вечер)"] = "14";
-		$arShowedTableCols["Фамилия коллеги (вечер)"] = "15";
-		$arShowedTableCols["Должность коллеги (вечер)"] = "16";
-		$arShowedTableCols["Емейл коллеги (вечер)"] = "17";
-		$arShowedTableCols["Имя коллеги2 (вечер)"] = "18";
-		$arShowedTableCols["Фамилия коллеги2 (вечер)"] = "19";
-		$arShowedTableCols["Емейл коллеги2 (вечер)"] = "20";
-		$arShowedTableCols["Должность коллеги2 (вечер)"] = "21";
-		$arShowedTableCols["Имя коллеги3 (вечер)"] = "22";
-		$arShowedTableCols["Фамилия коллеги3 (вечер)"] = "23";
-		$arShowedTableCols["Должность коллеги3 (вечер)"] = "24";
-		$arShowedTableCols["Емейл коллеги3 (вечер)"] = "25";
+		$arShowedTableCols["Форма посещения"] =  array(42, 43);
+		$arShowedTableCols["Имя коллеги (вечер)"] = "16";
+		$arShowedTableCols["Фамилия коллеги (вечер)"] = "17";
+		$arShowedTableCols["Должность коллеги (вечер)"] = "18";
+		$arShowedTableCols["Емейл коллеги (вечер)"] = "19";
+		$arShowedTableCols["Имя коллеги2 (вечер)"] = "20";
+		$arShowedTableCols["Фамилия коллеги2 (вечер)"] = "21";
+		$arShowedTableCols["Емейл коллеги2 (вечер)"] = "22";
+		$arShowedTableCols["Должность коллеги2 (вечер)"] = "23";
+		$arShowedTableCols["Имя коллеги3 (вечер)"] = "24";
+		$arShowedTableCols["Фамилия коллеги3 (вечер)"] = "25";
+		$arShowedTableCols["Должность коллеги3 (вечер)"] = "26";
+		$arShowedTableCols["Емейл коллеги3 (вечер)"] = "27";
 	break;
 
 	case "morning":case"hostbuy":
 		$arShowedTableCols["Логин"] = "LOGIN";
-		$arShowedTableCols["Пароль"] = "27";
-		$arShowedTableCols["Имя коллеги на утро"] = "36";
-		$arShowedTableCols["Фамилия коллеги на утро"] = "37";
-		$arShowedTableCols["Должность коллеги"] = "38";
-		$arShowedTableCols["Емейл коллеги"] = "39";
-		$arShowedTableCols["Описание деятельности"] = "29";
-		$arShowedTableCols["Приоритет. направл."] = array(30, 31, 32, 33, 34, 35);
-		$arShowedTableCols["Форма посещения"] =  array(40, 41);
+		$arShowedTableCols["Пароль"] = "29";
+		$arShowedTableCols["Имя коллеги на утро"] = "38";
+		$arShowedTableCols["Фамилия коллеги на утро"] = "39";
+		$arShowedTableCols["Должность коллеги"] = "40";
+		$arShowedTableCols["Емейл коллеги"] = "41";
+		$arShowedTableCols["Описание деятельности"] = "31";
+		$arShowedTableCols["Приоритет. направл."] = array(32, 33, 34, 35, 36, 37);
+		$arShowedTableCols["Форма посещения"] =  array(42, 43);
 	break;
 }
 
 //добавляем поля зал и стол для HB
 if($arParams["ACT"] == "hostbuy")
 {
-	$arShowedTableCols["Зал"] = "42";
-	$arShowedTableCols["Стол"] = "43";
+	$arShowedTableCols["Зал"] = "44";
+	$arShowedTableCols["Стол"] = "45";
 }
 
 function getValById($ar, $id, $formId)

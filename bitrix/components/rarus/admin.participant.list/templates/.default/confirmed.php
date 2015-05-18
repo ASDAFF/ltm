@@ -47,6 +47,7 @@
                 <? // данные из форму представителя?>
                 <td><?= $arUser["FORM_USER"][CFormMatrix::getQIDByBase(32, $formID)]["VALUE"]?> <?= $arUser["FORM_USER"][CFormMatrix::getQIDByBase(33, $formID)]["VALUE"]?></td>
                 <td><?= $arUser["FORM_USER"][CFormMatrix::getQIDByBase(36, $formID)]["VALUE"]?></td>
+                <td><?= $arUser["FORM_USER"][CFormMatrix::getQIDByBase(586, $formID)]["VALUE"]?></td>
                 <td><?= $arUser["FORM_USER"][CFormMatrix::getQIDByBase(37, $formID)]["VALUE"]?></td>
                 <td><?= $arUser["FORM_USER"][CFormMatrix::getQIDByBase(497, $formID)]["VALUE"]?></td>
                 <td><?= $arUser["FORM_USER"][CFormMatrix::getQIDByBase(496, $formID)]["VALUE"]?></td>
