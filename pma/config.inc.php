@@ -21,7 +21,6 @@ $cfg['Servers'][$i]['password'] = '';
 $cfg['Servers'][$i]['nopassword'] = true;
 $cfg['Servers'][$i]['AllowNoPassword'] = true;
 $cfg['Servers'][$i]['extension'] = 'mysqli';
-
 /* End of servers configuration */
 
 $cfg['blowfish_secret'] = '55297d461d7cd3.66870807';
@@ -29,4 +28,5 @@ $cfg['DefaultLang'] = 'ru';
 $cfg['ServerDefault'] = 1;
 $cfg['UploadDir'] = '';
 $cfg['SaveDir'] = '';
+$cfg['CheckConfigurationPermissions'] = false;
 ?>
