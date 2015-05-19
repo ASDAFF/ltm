@@ -1561,7 +1561,6 @@ class CFormMatrix
 		3522 => array("UF_KIEV2015", "UF_KIEV2015COL"), //Киев, Украина. сентябрь 2015
 		3523 => array("UF_MSCAUT2015", "UF_MSCAUT2015COL") //Москва, Россия. октябрь 2015
 	);
-
 	static $userFields = array("UF_MSCSPRING2016", "UF_ID2", "UF_ID3", "UF_ID4", "UF_ID5","UF_ID11", "UF_ALM2015", "UF_KIEV2015", "UF_MSCAUT2015");
 	static function getPostTemplateByExhibID($exhibId, $name) {
 		return isset(self::$arPostTemplateByExhibID[$exhibId][$name]) ? self::$arPostTemplateByExhibID[$exhibId][$name] : false;
