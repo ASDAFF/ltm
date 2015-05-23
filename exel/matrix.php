@@ -51,7 +51,7 @@ $fileName = $arResult["EXIB"]["NAME"]; // Название файла == Наз�
 if($arParams["USER_TYPE"] == 'PARTICIP'){
 	$fileName = "Участники ".$fileName;
 }
-elseif($arParams["TYPE"] == 'GUEST'){
+elseif($arParams["USER_TYPE"] == 'GUEST'){
 	$fileName = "Гости ".$fileName;
 }
 else{
@@ -88,12 +88,13 @@ $meet_timeslots = $req_obj->getMeetTimeslotsIds();
 $statuses_free = $req_obj->getStatusesFree();
 
 // Определяем для какой группы выводить матрицу
-if ($arResult['USER_TYPE'] != 'PARTICIP'){
+if ($arParams['USER_TYPE'] != 'PARTICIP'){
 	$group_search_id = $req_obj->getOption('GUESTS_GROUP');
 	$group_opposite_id = $req_obj->getOption('MEMBERS_GROUP');}
 else{
 	$group_search_id = $req_obj->getOption('MEMBERS_GROUP');
-	$group_opposite_id = $req_obj->getOption('GUESTS_GROUP');}
+	$group_opposite_id = $req_obj->getOption('GUESTS_GROUP');
+}
 
 // Список таймслотов со списком компаний
 $arResult['TIME'] = array();
