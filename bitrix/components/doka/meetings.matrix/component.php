@@ -49,6 +49,8 @@ if (empty($arParams["USER_TYPE"])) {
 
 $arResult['USER_TYPE'] = $arParams['USER_TYPE'];
 $arResult['APP'] = $arParams['APP_ID'];
+$arResult['APP_CODE'] = $arParams["EXIB_CODE"];
+
 $fioParticip = "";
 $formId = CFormMatrix::getPFormIDByExh($arResult["PARAM_EXHIBITION"]["ID"]);
 $propertyNameParticipant = CFormMatrix::getPropertyIDByExh($arResult["PARAM_EXHIBITION"]["ID"], 0);//свойство участника
@@ -211,7 +213,9 @@ while ($data = $rsCompanies->Fetch()) {
 	$arResult['USERS'][] = $company;
 }
 unset($meet_timeslots);
-
+$arResult["IS_HB"] = $arParams["IS_HB"];
+if($arResult["IS_HB"] == '')
+	$arResult["IS_HB"] = "N";
 
 $this->IncludeComponentTemplate();
 ?>
