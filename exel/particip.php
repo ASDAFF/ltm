@@ -85,6 +85,13 @@ elseif($arParams["TYPE"] == 'particip_no_all'){
 	$isAll = true;
 	$fileName = "Участники ".$fileName." неподтвержденные (коллеги отдельно).xls";
 }
+elseif($arParams["TYPE"] == 'particip_spam'){
+	$filter["GROUPS_ID"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["PARTICIPANT_SPAM_GROUP"]["VALUE"];
+	$formId = 4;
+	$resultCode = "UF_ID";//свойство представителя
+	$resultCode2 = "UF_ID6";
+	$fileName = "Участники ".$fileName." спам.xls";
+}
 else{
 	echo 'Oops, we are not found this type.';
 } 

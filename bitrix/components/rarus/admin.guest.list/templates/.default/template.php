@@ -144,6 +144,7 @@ function printVal($ar, $glue)
 		<?break?>
 		<?case "spam":?>
 			<input class="custom-buttom spam-guest-button-mass" type="button" name="spam"  value="Восстановить">
+			<a class="custom-buttom" href="/exel/guest.php?type=guests_spam&app=<?=$arResult["EXHIB"]["CODE"]?>">Генерировать Excel</a>
 			<input type="hidden" name="SPAM_TYPE"  value="N">
 
 		<?break?>
