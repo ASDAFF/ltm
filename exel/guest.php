@@ -139,11 +139,11 @@ else
 
 foreach ($arTmpUsers as $arUser) {
 	/*Данные из пользователя*/
-	$arResult["ANSWERS"][$j]["ID"] = $arUser['ID'];
-	if($isEvening){
+	if(!$isEvening){
 		$arResult["ANSWERS"][$j]["LOGIN"] = $arUser['LOGIN'];
 		$arResult["ANSWERS"][$j]["PASSWORD"] = $arUser['PASSWORD'];
 	}
+	$arResult["ANSWERS"][$j]["ID"] = $arUser['ID'];
 	/* Данные о компании */
 	if(!$isAll){
 		foreach ($arCompField["QUEST_CODE"] as $idQuest => $codeRes){
@@ -249,12 +249,12 @@ foreach ($arTmpUsers as $arUser) {
 	}	
 	$j++;	
 }
-
-$arResultTitles = array("uId");
-if($isEvening){
+$arResultTitles = array();
+if(!$isEvening){
 	$arResultTitles[] ="Login";
 	$arResultTitles[] ="Password";
 }
+$arResultTitles[] =  "uId";
 $isDestinationsWrite = false;
 foreach($arCompField["QUEST_CODE"] as $idQuest => $codeRes){
 	if($arCompField["NAMES_AR"][$idQuest] == 'DESTINITIONS'){
@@ -276,10 +276,6 @@ foreach($arCompField["QUEST_CODE"] as $idQuest => $codeRes){
 	else{//Если у нас все представители, то коллега отдельной строкой
 		$arResultTitles[] = $arCompField["NAMES"][$idQuest];
 	}
-}
-if(!$isEvening){
-	$arResultTitles[] ="Login";
-	$arResultTitles[] ="Password";
 }
 
 ini_set('display_errors', TRUE);
@@ -318,24 +314,31 @@ $baseFont = array(
 );
 
 /*Устанавливаем ширину колонок (разная инфа, лучше индивидуально)*/
-$aSheet->getColumnDimension('A')->setWidth(7);	//uId
-$aSheet->getColumnDimension('B')->setWidth(18);	//Login
-$aSheet->getColumnDimension('C')->setWidth(18);	//Password
+if(!$isEvening){
+	$aSheet->getColumnDimension('A')->setWidth(18);	//Login
+	$aSheet->getColumnDimension('B')->setWidth(18);	//Password
+	$aSheet->getColumnDimension('C')->setWidth(7);	//uId
+}
+else{
+	$aSheet->getColumnDimension('A')->setWidth(7);	//uId
+	$aSheet->getColumnDimension('B')->setWidth(20);
+	$aSheet->getColumnDimension('C')->setWidth(20);
+}
 $aSheet->getColumnDimension('D')->setWidth(35);	//Компания
-$aSheet->getColumnDimension('E')->setWidth(20);	//Вид деятельности
-$aSheet->getColumnDimension('F')->setWidth(40); //Адрес
-$aSheet->getColumnDimension('G')->setWidth(10);	//Индекс
-$aSheet->getColumnDimension('H')->setWidth(20);	//Город
-$aSheet->getColumnDimension('I')->setWidth(15); //Страна
-$aSheet->getColumnDimension('J')->setWidth(20); //Имя
-$aSheet->getColumnDimension('K')->setWidth(25); //Фамилия
-$aSheet->getColumnDimension('L')->setWidth(25); //Должность
-$aSheet->getColumnDimension('M')->setWidth(25); //Телефон
-$aSheet->getColumnDimension('N')->setWidth(25); //Моб Телефон
-$aSheet->getColumnDimension('O')->setWidth(35); //E-mail
-$aSheet->getColumnDimension('P')->setWidth(35); //Сайт
-$aSheet->getColumnDimension('Q')->setWidth(70); //Приоритетные направления
-$aSheet->getColumnDimension('R')->setWidth(70); //Описание компании
+$aSheet->getColumnDimension('E')->setWidth(20); //Имя
+$aSheet->getColumnDimension('F')->setWidth(25); //Фамилия
+$aSheet->getColumnDimension('G')->setWidth(25); //Должность
+$aSheet->getColumnDimension('H')->setWidth(25); //Телефон
+$aSheet->getColumnDimension('I')->setWidth(25); //Моб Телефон
+$aSheet->getColumnDimension('J')->setWidth(20);	//Вид деятельности
+$aSheet->getColumnDimension('K')->setWidth(20); //Адрес
+$aSheet->getColumnDimension('L')->setWidth(20);	//Индекс
+$aSheet->getColumnDimension('M')->setWidth(20);	//Город
+$aSheet->getColumnDimension('N')->setWidth(20); //Страна
+$aSheet->getColumnDimension('O')->setWidth(20); //E-mail
+$aSheet->getColumnDimension('P')->setWidth(20); //Сайт
+$aSheet->getColumnDimension('Q')->setWidth(20); //Приоритетные направления
+$aSheet->getColumnDimension('R')->setWidth(20); //Описание компании
 if(!$isAll || strpos($arRepField["NAMES"][$idQuest], '(на утро)') === false){
 	$aSheet->getColumnDimension('S')->setWidth(20); //Имя коллеги (на утро)
 	$aSheet->getColumnDimension('T')->setWidth(25); //Фамилия коллеги (на утро)
