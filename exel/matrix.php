@@ -256,56 +256,106 @@ $styleConfirmed = array(
 		'wrap'       	=> true,
 	)
 );
-$styleToUser = array(
-	'font'=>array(
-		'name'=>'Arial',
-		'size'=>'12',
-		'bold'=>false
-	),
-	'alignment' => array (
-		'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
-		'vertical'   	=> PHPExcel_Style_Alignment::VERTICAL_TOP,
-		'wrap'       	=> true,
-	),
-	'fill' => array(
-		'type' => PHPExcel_Style_Fill::FILL_SOLID,
-		'color' => array (
-			'rgb' => 'FFFA7F'
+if($arParams["USER_TYPE"] == 'PARTICIP'){
+	$styleToUser = array(
+		'font'=>array(
+			'name'=>'Arial',
+			'size'=>'12',
+			'bold'=>false
+		),
+		'alignment' => array (
+			'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+			'vertical'   	=> PHPExcel_Style_Alignment::VERTICAL_TOP,
+			'wrap'       	=> true,
+		),
+		'fill' => array(
+			'type' => PHPExcel_Style_Fill::FILL_SOLID,
+			'color' => array (
+				'rgb' => 'FFFA7F'
+			)
+		),
+		'alignment' => array (
+			'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+			'vertical'   	=> PHPExcel_Style_Alignment::VERTICAL_TOP,
+			'wrap'       	=> true,
 		)
-	),
-	'alignment' => array (
-		'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
-		'vertical'   	=> PHPExcel_Style_Alignment::VERTICAL_TOP,
-		'wrap'       	=> true,
-	)
-);
-$styleFromUser = array(
-	'font'=>array(
-		'name'=>'Arial',
-		'size'=>'12',
-		'bold'=>false
-	),
-	'fill' => array(
-		'type' => PHPExcel_Style_Fill::FILL_SOLID,
-		'color' => array (
-			'rgb' => 'FF7F7F'
+	);
+	$styleFromUser = array(
+		'font'=>array(
+			'name'=>'Arial',
+			'size'=>'12',
+			'bold'=>false
+		),
+		'fill' => array(
+			'type' => PHPExcel_Style_Fill::FILL_SOLID,
+			'color' => array (
+				'rgb' => 'FF7F7F'
+			)
+		),
+		'alignment' => array (
+			'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+			'vertical'   	=> PHPExcel_Style_Alignment::VERTICAL_TOP,
+			'wrap'       	=> true,
 		)
-	),
-	'alignment' => array (
-		'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
-		'vertical'   	=> PHPExcel_Style_Alignment::VERTICAL_TOP,
-		'wrap'       	=> true,
-	)
-);
+	);
+}
+else{
+	$styleFromUser = array(
+		'font'=>array(
+			'name'=>'Arial',
+			'size'=>'12',
+			'bold'=>false
+		),
+		'alignment' => array (
+			'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+			'vertical'   	=> PHPExcel_Style_Alignment::VERTICAL_TOP,
+			'wrap'       	=> true,
+		),
+		'fill' => array(
+			'type' => PHPExcel_Style_Fill::FILL_SOLID,
+			'color' => array (
+				'rgb' => 'FFFA7F'
+			)
+		),
+		'alignment' => array (
+			'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+			'vertical'   	=> PHPExcel_Style_Alignment::VERTICAL_TOP,
+			'wrap'       	=> true,
+		)
+	);
+	$styleToUser = array(
+		'font'=>array(
+			'name'=>'Arial',
+			'size'=>'12',
+			'bold'=>false
+		),
+		'fill' => array(
+			'type' => PHPExcel_Style_Fill::FILL_SOLID,
+			'color' => array (
+				'rgb' => 'FF7F7F'
+			)
+		),
+		'alignment' => array (
+			'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+			'vertical'   	=> PHPExcel_Style_Alignment::VERTICAL_TOP,
+			'wrap'       	=> true,
+		)
+	);
+}
+
 $arABC = array("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V",
 				"W", "X", "Y", "Z", "AA", "AB", "AC", "AD", "AE");
 /*Устанавливаем ширину колонок (разная инфа, лучше индивидуально)*/
-for($i=0; $i < count($arResult["TIME"]); $i++){
+$aSheet->getColumnDimension($arABC[0])->setWidth(25);
+for($i=1; $i < count($arResult["TIME"])+1; $i++){
 	$aSheet->getColumnDimension($arABC[$i])->setWidth(25);
 }
 /* Шапка таблицы */
 $row_count = 1;
-$col_count = 0;
+$col_count = 1;
+$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(0, $row_count, "Компания и представитель");
+$objPHPExcel->getActiveSheet()->getStyleByColumnAndRow(0, $row_count)->applyFromArray($baseFont);
+$objPHPExcel->getActiveSheet()->getStyleByColumnAndRow(0, $row_count)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
 foreach($arResult["TIME"] as $timeslot){
  	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, $timeslot["name"]);
 	$objPHPExcel->getActiveSheet()->getStyleByColumnAndRow($col_count, $row_count)->applyFromArray($baseFont);
@@ -321,22 +371,21 @@ foreach ($arResult["USERS"] as $user) {
 	$objPHPExcel->getActiveSheet()->getStyleByColumnAndRow($col_count, $row_count)->applyFromArray($baseFont);
 	$objPHPExcel->getActiveSheet()->getStyleByColumnAndRow($col_count, $row_count)->getAlignment()->setWrapText(true);
 	$col_count++;
-	foreach($user["schedule"] as $userTimes){
-		if($userTimes['status'] == 'confirmed'){
-			$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, "Подтверждена, ".$userTimes["company_name"].", ".$userTimes["rep"]);
+	foreach($arResult['TIME'] as $timeslot){
+		if($user["schedule"][ $timeslot["id"] ]['status'] == 'confirmed'){
+			$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, "Подтверждена, ".$user["schedule"][ $timeslot["id"] ]["company_name"].", ".$user["schedule"][ $timeslot["id"] ]["rep"]);
 			$objPHPExcel->getActiveSheet()->getStyleByColumnAndRow($col_count, $row_count)->applyFromArray($styleConfirmed);
 		}
-		elseif($userTimes["is_busy"]){
-			if($userTimes["user_is_sender"]){
-				$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, "Отправлена компанией, ".$userTimes["company_name"].", ".$userTimes["rep"]);
+		elseif($user["schedule"][ $timeslot["id"] ]["is_busy"]){
+			if($user["schedule"][ $timeslot["id"] ]["user_is_sender"]){
+				$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, "Отправлена компанией, ".$user["schedule"][ $timeslot["id"] ]["company_name"].", ".$user["schedule"][ $timeslot["id"] ]["rep"]);
 				$objPHPExcel->getActiveSheet()->getStyleByColumnAndRow($col_count, $row_count)->applyFromArray($styleFromUser);
 			}
 			else{
-				$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, "Отправлена компаниии, ".$userTimes["company_name"].", ".$userTimes["rep"]);
+				$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, "Отправлена компаниии, ".$user["schedule"][ $timeslot["id"] ]["company_name"].", ".$user["schedule"][ $timeslot["id"] ]["rep"]);
 				$objPHPExcel->getActiveSheet()->getStyleByColumnAndRow($col_count, $row_count)->applyFromArray($styleToUser);
 			}
 		}
-
 		else{
 			$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, "  ");
 			$objPHPExcel->getActiveSheet()->getStyleByColumnAndRow($col_count, $row_count)->applyFromArray($baseFont);
