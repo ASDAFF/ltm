@@ -91,7 +91,19 @@ $arResult['CUT'] = $arParams['CUT'];
 $arResult['HALL'] = "";
 $arResult['TABLE'] = "";
 $arResult['CITY'] = "";
+
 $guestFields = CFormMatrix::$arExelGuestField;
+/* Определяем индекс поля для Города, Стола и Зала */
+$guestQuestCode = array_flip($guestFields["NAMES_AR"]);
+$guestFieldsIndex = array(
+	"CITY" => $guestQuestCode["CITY"],
+	"HALL" => $guestQuestCode["HALL"],
+	"TABLE" => $guestQuestCode["TABLE"],
+	"F_NAME" => $guestQuestCode["F_NAME"],
+	"L_NAME" => $guestQuestCode["L_NAME"],
+);
+unset($guestQuestCode);
+
 $fioParticip = "";
 $formId = $req_obj->getOption('FORM_ID');
 $propertyNameParticipant = $req_obj->getOption('FORM_RES_CODE');//свойство участника
@@ -121,12 +133,11 @@ if($arResult['USER_TYPE'] == "PARTICIP" && $arParams["IS_HB"] != 'Y'){
 elseif($arResult['USER_TYPE'] == "PARTICIP" && isset($arParams["IS_HB"]) && $arParams["IS_HB"] == 'Y'){
 	$formIdGuest = CFormMatrix::getGResultIDByExh($arResult["PARAM_EXHIBITION"]["ID"]);
 	$propertyNameParticipantGuest = "UF_ID_COMP";
-	$arCompField = CFormMatrix::$arExelGuestField;
 	$fio_datesGuest = array();
-	$fio_datesGuest[0][0] = $arCompField["QUEST_CODE"][2];
-	$fio_datesGuest[1][0] = $arCompField["QUEST_CODE"][3];
-	$fio_datesGuest[2][0] = $arCompField["QUEST_CODE"][26];
-	$fio_datesGuest[3][0] = $arCompField["QUEST_CODE"][25];
+	$fio_datesGuest[0][0] = $guestFields["QUEST_CODE"][ $guestFieldsIndex["F_NAME"] ];
+	$fio_datesGuest[1][0] = $guestFields["QUEST_CODE"][ $guestFieldsIndex["L_NAME"] ];
+	$fio_datesGuest[2][0] = $guestFields["QUEST_CODE"][ $guestFieldsIndex["TABLE"] ];
+	$fio_datesGuest[3][0] = $guestFields["QUEST_CODE"][ $guestFieldsIndex["HALL"] ];
 	$busy_timeslots = $req_obj->getAllTimesByCompNamed($arResult['CURRENT_USER_ID'], $formIdGuest, $propertyNameParticipantGuest, $fio_datesGuest);
 }
 else{
@@ -147,14 +158,14 @@ if(isset($_REQUEST['mode']) && $_REQUEST['mode'] == 'pdf'){
 		}
 	}
 	else{
-		foreach($arAnswer2[$guestFields["QUEST_CODE"][11]] as $value){
+		foreach($arAnswer2[$guestFields["QUEST_CODE"][ $guestFieldsIndex["CITY"] ]] as $value){
 			$arResult['CITY'] = $value["USER_TEXT"];
 		}
 		if(isset($arParams["IS_HB"]) && $arParams["IS_HB"] == 'Y'){
-			foreach($arAnswer2[$guestFields["QUEST_CODE"][25]] as $value){
+			foreach($arAnswer2[$guestFields["QUEST_CODE"][ $guestFieldsIndex["HALL"] ]] as $value){
 				$arResult['HALL'] = $value["MESSAGE"];
 			}
-			foreach($arAnswer2[$guestFields["QUEST_CODE"][26]] as $value){
+			foreach($arAnswer2[$guestFields["QUEST_CODE"][ $guestFieldsIndex["TABLE"] ]] as $value){
 				$arResult['TABLE'] = $value["USER_TEXT"];
 			}			
 		}
