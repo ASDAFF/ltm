@@ -373,16 +373,16 @@ foreach ($arResult["USERS"] as $user) {
 	$col_count++;
 	foreach($arResult['TIME'] as $timeslot){
 		if($user["schedule"][ $timeslot["id"] ]['status'] == 'confirmed'){
-			$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, "Подтверждена, ".$user["schedule"][ $timeslot["id"] ]["company_name"].", ".$user["schedule"][ $timeslot["id"] ]["rep"]);
+			$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, $user["schedule"][ $timeslot["id"] ]["company_name"].", ".$user["schedule"][ $timeslot["id"] ]["rep"]);
 			$objPHPExcel->getActiveSheet()->getStyleByColumnAndRow($col_count, $row_count)->applyFromArray($styleConfirmed);
 		}
 		elseif($user["schedule"][ $timeslot["id"] ]["is_busy"]){
 			if($user["schedule"][ $timeslot["id"] ]["user_is_sender"]){
-				$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, "Отправлена компанией, ".$user["schedule"][ $timeslot["id"] ]["company_name"].", ".$user["schedule"][ $timeslot["id"] ]["rep"]);
+				$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, $user["schedule"][ $timeslot["id"] ]["company_name"].", ".$user["schedule"][ $timeslot["id"] ]["rep"]);
 				$objPHPExcel->getActiveSheet()->getStyleByColumnAndRow($col_count, $row_count)->applyFromArray($styleFromUser);
 			}
 			else{
-				$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, "Отправлена компаниии, ".$user["schedule"][ $timeslot["id"] ]["company_name"].", ".$user["schedule"][ $timeslot["id"] ]["rep"]);
+				$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, $user["schedule"][ $timeslot["id"] ]["company_name"].", ".$user["schedule"][ $timeslot["id"] ]["rep"]);
 				$objPHPExcel->getActiveSheet()->getStyleByColumnAndRow($col_count, $row_count)->applyFromArray($styleToUser);
 			}
 		}
