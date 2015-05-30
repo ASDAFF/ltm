@@ -89,6 +89,15 @@ $exhibitionParam["CUT"] = $arParams['CUT'];
 
 /* Поля для участников */
 $guestFields = CFormMatrix::$arExelGuestField;
+/* Определяем индекс поля для Города, Стола и Зала */
+$guestQuestCode = array_flip($guestFields["NAMES_AR"]);
+$guestFieldsIndex = array(
+	"CITY" => $guestQuestCode["CITY"],
+	"HALL" => $guestQuestCode["HALL"],
+	"TABLE" => $guestQuestCode["TABLE"],
+);
+unset($guestQuestCode);
+
 $fioParticip = "";
 $formId = $req_obj->getOption('FORM_ID');
 $propertyNameParticipant = $req_obj->getOption('FORM_RES_CODE');//свойство участника
@@ -169,14 +178,14 @@ while ($arUser = $rsGUsers->Fetch()) {
 		'table' => "",
 		'city' => ""
 	);
-	foreach($arAnswer2[$guestFields["QUEST_CODE"][11]] as $value){
+	foreach($arAnswer2[$guestFields["QUEST_CODE"][ $guestFieldsIndex["CITY"] ]] as $value){
 		$users_list[$arUser['ID']]['city'] = $value["USER_TEXT"];
 	}
 	if(isset($arParams["IS_HB"]) && $arParams["IS_HB"] == 'Y'){
-		foreach($arAnswer2[$guestFields["QUEST_CODE"][25]] as $value){
+		foreach($arAnswer2[$guestFields["QUEST_CODE"][ $guestFieldsIndex["HALL"] ]] as $value){
 			$users_list[$arUser['ID']]['hall'] = $value["MESSAGE"];
 		}
-		foreach($arAnswer2[$guestFields["QUEST_CODE"][26]] as $value){
+		foreach($arAnswer2[$guestFields["QUEST_CODE"][ $guestFieldsIndex["TABLE"] ]] as $value){
 			$users_list[$arUser['ID']]['table'] = $value["USER_TEXT"];
 		}
 	}
@@ -239,6 +248,8 @@ while ($data = $rsCompanies->Fetch()) {
 				$schedule['company_name'] = $users_list[$user_id]['name'];
 				$schedule['company_rep'] = $users_list[$user_id]['repr_name'];
 				$schedule['user_is_sender'] = $user_is_sender;
+				$schedule['hall'] = $users_list[$user_id]['hall'];
+				$schedule['table'] = $users_list[$user_id]['table'];
 				$schedule['is_busy'] = true;
 				$curMeet["status"] = $schedule['status'];
 				$curMeet["modified_by"] = $user_id;
@@ -249,7 +260,6 @@ while ($data = $rsCompanies->Fetch()) {
 			$company['schedule'][ $timeslot_id ] = $schedule;
 		}
 	}
-
 	/* Формируем сам pdf */
 	$APPLICATION->RestartBuffer();
 	$company['exhibition'] = $req_obj->getOptions();
