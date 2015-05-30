@@ -187,8 +187,8 @@ $rsCompanies = $req_obj->getAllMeetTimesByGroup($group_search_id);
 $isHB = '';
 if(isset($arParams["IS_HB"]) && $arParams["IS_HB"] == 'Y')
 	$isHB = "_hb";
-$path = '/upload/pdf'.strtolower($arParams['USER_TYPE']).'/'.strtolower($arParams["EXIB_CODE"]).$isHB.'/';
-$shotPath = '/upload/pdf'.strtolower($arParams['USER_TYPE']).'/';
+$shotPath = '/upload/pdf/'.strtolower($arParams['USER_TYPE']).'/';
+$path = $shotPath.strtolower($arParams["EXIB_CODE"]).$isHB.'/';
 CheckDirPath($_SERVER['DOCUMENT_ROOT'].$path);
 $pdfFolder = $_SERVER['DOCUMENT_ROOT'].$path;
 
@@ -223,33 +223,30 @@ while ($data = $rsCompanies->Fetch()) {
 			);
 		}
 	} else {
-		foreach ($statuses as $timeslot_id => $status_id) {
-			if ( in_array($timeslot_id, $meet_timeslots)) {
-				$curMeet = array( "status" => "free", "modified_by" => "", "company_id" => "");
-				$schedule = array(
-					'timeslot_id' => $timeslot_id,
-					'timeslot_name' => $timeslots[$timeslot_id]['name'],
-					'status' => DokaRequest::getStatusCode($statuses[$timeslot_id]),
-					'is_busy' => false,
-					'notes' => ""
-				);
-				// если слот занят
-				if ( !in_array($statuses[$timeslot_id], $statuses_free) ) {
-					$user_is_sender = $data['MEET_'.$timeslot_id] % 10;
-					$user_id = substr($data['MEET_'.$timeslot_id], 0, -1);
-					$schedule['company_id'] = $users_list[$user_id]['id'];
-					$schedule['company_name'] = $users_list[$user_id]['name'];
-					$schedule['company_rep'] = $users_list[$user_id]['repr_name'];
-					$schedule['user_is_sender'] = $user_is_sender;
-					$schedule['is_busy'] = true;
-					$curMeet["status"] = $schedule['status'];
-					$curMeet["modified_by"] = $user_id;
-					$curMeet["company_id"] = $schedule['company_id'];
-				}
-				$schedule["notes"] = DokaGetNote( $curMeet, $arResult['USER_TYPE'], $data['ID']);
-
-				$company['schedule'][ $timeslot_id ] = $schedule;
+		foreach ($meet_timeslots as $timeslot_id) {
+			$curMeet = array( "status" => "free", "modified_by" => "", "company_id" => "");
+			$schedule = array(
+				'timeslot_id' => $timeslot_id,
+				'timeslot_name' => $timeslots[$timeslot_id]['name'],
+				'status' => DokaRequest::getStatusCode($statuses[$timeslot_id]),
+				'is_busy' => false,
+				'notes' => ""
+			);
+			if ( !in_array($statuses[$timeslot_id], $statuses_free) ) {
+				$user_is_sender = $data['MEET_'.$timeslot_id] % 10;
+				$user_id = substr($data['MEET_'.$timeslot_id], 0, -1);
+				$schedule['company_id'] = $users_list[$user_id]['id'];
+				$schedule['company_name'] = $users_list[$user_id]['name'];
+				$schedule['company_rep'] = $users_list[$user_id]['repr_name'];
+				$schedule['user_is_sender'] = $user_is_sender;
+				$schedule['is_busy'] = true;
+				$curMeet["status"] = $schedule['status'];
+				$curMeet["modified_by"] = $user_id;
+				$curMeet["company_id"] = $schedule['company_id'];
 			}
+			$schedule["notes"] = DokaGetNote( $curMeet, $arResult['USER_TYPE'], $data['ID']);
+
+			$company['schedule'][ $timeslot_id ] = $schedule;
 		}
 	}
 
