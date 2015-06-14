@@ -1,0 +1,46 @@
+<? if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+
+if (empty($arParams["APP_ID"]) || !CModule::IncludeModule("doka.meetings") ) {
+	ShowError("404 Not Found");
+	@define("ERROR_404", "Y");
+	CHTTP::SetStatus("404 Not Found");
+}
+
+if (!$USER->IsAuthorized()) {
+	ShowError(GetMessage("ERROR_EMPTY_USER_ID"));
+	return;
+}
+
+$timeslot_id = intval($_REQUEST['timeslot_id']);
+if ($timeslot_id <= 0) {
+	ShowError(GetMessage("ERROR_EMPTY_TIMESLOT_ID"));
+	return;
+}
+$receiver_id = intval($_REQUEST['receiver_id']);
+if ($receiver_id <= 0) {
+	ShowError(GetMessage("ERROR_WRONG_RECEIVER_ID"));
+	return;
+}
+
+use Doka\Meetings\Requests as DokaRequest;
+use Doka\Meetings\Timeslots as DokaTimeslot;
+use Doka\Meetings\Wishlists as DWL;
+
+$req_obj = new DokaRequest($arParams['APP_ID']);
+
+$arResult = array();
+$arResult['USER_TYPE'] = $req_obj->getUserType();
+$arResult['IS_ACTIVE'] = !$req_obj->getOption('IS_LOCKED');
+
+if (isset($_REQUEST['sender_id']) && $arResult['USER_TYPE'] == 'ADMIN' )
+	$sender_id = intval($_REQUEST['sender_id']);
+else
+	$sender_id = $USER->GetID();
+
+// Р”Р°РЅРЅС‹Рµ С‚Р°Р№РјСЃР»РѕС‚Р°
+$arResult['TIMESLOT'] = $req_obj->getMeetTimeslot($timeslot_id);
+if (!$arResult['TIMESLOT']) {
+	$arResult['ERROR_MESSAGE'][] = GetMessage($arResult['USER_TYPE'] . '_WRONG_TIMESLOT_ID');
+}
+
+// Р
