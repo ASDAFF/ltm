@@ -224,40 +224,60 @@ while ($data = $rsCompanies->Fetch()) {
 	//echo "<pre>"; var_dump($data); echo "</pre>";
 	// Если пользователя нет в таблице занятости, значит у него все слоты свободны
 	if ($data['USER_ID'] === null) {
-		foreach ($meet_timeslots as $timeslot_id) {
-			$company['schedule'][$timeslot_id][] = array(
-				'id' => $timeslot_id,
-				'name' => $timeslots[$timeslot_id]['name'],
-				'status' => DokaRequest::getStatusCode($statuses[$timeslot_id]),
-			);
+		foreach ($timeslots as $timeslot_id=>$timeslotValue) {
+			if(!in_array($timeslot_id, $meet_timeslots )){
+				$company['schedule'][$timeslot_id] = array(
+					'id' => $timeslot_id,
+					'name' => $timeslotValue['name'],
+					'status' => 'coffe',
+					'notes' => 'coffe',
+				);
+			}
+			else{
+				$company['schedule'][$timeslot_id] = array(
+					'id' => $timeslot_id,
+					'name' => $timeslotValue['name'],
+					'status' => DokaRequest::getStatusCode($statuses[$timeslot_id]),
+				);
+			}
 		}
 	} else {
-		foreach ($meet_timeslots as $timeslot_id) {
-			$curMeet = array( "status" => "free", "modified_by" => "", "company_id" => "");
-			$schedule = array(
-				'timeslot_id' => $timeslot_id,
-				'timeslot_name' => $timeslots[$timeslot_id]['name'],
-				'status' => DokaRequest::getStatusCode($statuses[$timeslot_id]),
-				'is_busy' => false,
-				'notes' => ""
-			);
-			if ( !in_array($statuses[$timeslot_id], $statuses_free) ) {
-				$user_is_sender = $data['MEET_'.$timeslot_id] % 10;
-				$user_id = substr($data['MEET_'.$timeslot_id], 0, -1);
-				$schedule['company_id'] = $users_list[$user_id]['id'];
-				$schedule['company_name'] = $users_list[$user_id]['name'];
-				$schedule['company_rep'] = $users_list[$user_id]['repr_name'];
-				$schedule['user_is_sender'] = $user_is_sender;
-				$schedule['hall'] = $users_list[$user_id]['hall'];
-				$schedule['table'] = $users_list[$user_id]['table'];
-				$schedule['is_busy'] = true;
-				$curMeet["status"] = $schedule['status'];
-				$curMeet["modified_by"] = $user_id;
-				$curMeet["company_id"] = $schedule['company_id'];
-			}
-			$schedule["notes"] = DokaGetNote( $curMeet, $arResult['USER_TYPE'], $data['ID']);
+		foreach ($timeslots as $timeslot_id => $timeslotValue) {
+			if(in_array($timeslot_id, $meet_timeslots )) {
+				$curMeet = array("status" => "free", "modified_by" => "", "company_id" => "");
+				$schedule = array(
+					'timeslot_id' => $timeslot_id,
+					'timeslot_name' => $timeslots[$timeslot_id]['name'],
+					'status' => DokaRequest::getStatusCode($statuses[$timeslot_id]),
+					'is_busy' => false,
+					'notes' => ""
+				);
+				if (!in_array($statuses[$timeslot_id], $statuses_free)) {
+					$user_is_sender = $data['MEET_' . $timeslot_id] % 10;
+					$user_id = substr($data['MEET_' . $timeslot_id], 0, -1);
+					$schedule['company_id'] = $users_list[$user_id]['id'];
+					$schedule['company_name'] = $users_list[$user_id]['name'];
+					$schedule['company_rep'] = $users_list[$user_id]['repr_name'];
+					$schedule['user_is_sender'] = $user_is_sender;
+					$schedule['hall'] = $users_list[$user_id]['hall'];
+					$schedule['table'] = $users_list[$user_id]['table'];
+					$schedule['is_busy'] = true;
+					$curMeet["status"] = $schedule['status'];
+					$curMeet["modified_by"] = $user_id;
+					$curMeet["company_id"] = $schedule['company_id'];
+				}
+				$schedule["notes"] = DokaGetNote($curMeet, $arResult['USER_TYPE'], $data['ID']);
 
-			$company['schedule'][ $timeslot_id ] = $schedule;
+				$company['schedule'][$timeslot_id] = $schedule;
+			}
+			else{
+				$company['schedule'][$timeslot_id] = array(
+					'id' => $timeslot_id,
+					'name' => $timeslotValue['name'],
+					'status' => 'coffe',
+					'notes' => 'coffe',
+				);
+			}
 		}
 	}
 	/* Формируем сам pdf */

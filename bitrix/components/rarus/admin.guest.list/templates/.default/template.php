@@ -161,7 +161,7 @@ function printVal($ar, $glue)
             <a class="custom-buttom" href="/exel/guest.php?type=guests&app=<?=$arResult["EXHIB"]["CODE"]?>">Генерировать Excel</a>
             <a class="custom-buttom" href="/exel/guest.php?type=guests_all&app=<?=$arResult["EXHIB"]["CODE"]?>">Excel (все люди)</a>
 			<a class="custom-buttom" href="/ajax/all_pdf_shedule.php?type=guest&app=<?=$arResult["EXHIB"]["CODE"]?>" id="go" data-hb="" data-to="shedule">PDF расписания</a>
-			<a class="custom-buttom" href="/ajax/all_pdf_shedule.php?type=guest&app=<?=$arResult["EXHIB"]["CODE"]?>" id="go" data-hb="" data-to="wishlist">PDF вишлисты</a>
+			<a class="custom-buttom" href="/ajax/all_pdf_wishlist.php?type=guest&app=<?=$arResult["EXHIB"]["CODE"]?>" id="go" data-hb="" data-to="wishlist">PDF вишлисты</a>
 			<? /*<input class="custom-buttom" type="button" name="edit" disabled value="Редактировать">$arParams["EXHIBIT_CODE"]
 			<input class="custom-buttom" type="button" name="generate-schedule" disabled value="Генерировать расписание">
 			<input class="custom-buttom" type="button" name="generate-wishlist" disabled value="Генерировать вишлист">
@@ -172,8 +172,8 @@ function printVal($ar, $glue)
 		<?case "hostbuy":?>
 		    <a class="custom-buttom" href="/exel/guest.php?type=guests_hb&app=<?=$arResult["EXHIB"]["CODE"]?>">Генерировать Excel</a>
             <a class="custom-buttom" href="/exel/guest.php?type=guests_hb_all&app=<?=$arResult["EXHIB"]["CODE"]?>">Excel (все люди)</a>
-			<a class="custom-buttom" href="/ajax/all_pdf_wishlist.php?type=particip&app=<?=$arResult["EXHIB"]["CODE"]?>&hb=y" id="go" data-hb="y" data-to="shedule">PDF HB расписания</a>
-			<a class="custom-buttom" href="/ajax/all_pdf_wishlist.php?type=guest&app=<?=$arResult["EXHIB"]["CODE"]?>" id="go" data-hb="y" data-to="wishlist">PDF HB вишлисты</a>
+			<a class="custom-buttom" href="/ajax/all_pdf_shedule.php?type=guest&app=<?=$arResult["EXHIB"]["CODE"]?>&hb=y" id="go" data-hb="y" data-to="shedule">PDF HB расписания</a>
+			<a class="custom-buttom" href="/ajax/all_pdf_wishlist.php?type=guest&app=<?=$arResult["EXHIB"]["CODE"]?>&hb=y" id="go" data-hb="y" data-to="wishlist">PDF HB вишлисты</a>
 			<? /*<input class="custom-buttom" type="button" name="edit" disabled value="Редактировать">$arParams["EXHIBIT_CODE"]
 			<input class="custom-buttom" type="button" name="generate-schedule" disabled value="Генерировать расписание">
 			<input class="custom-buttom" type="button" name="generate-wishlist" disabled value="Генерировать вишлист">
