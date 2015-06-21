@@ -17,7 +17,7 @@ $(document).ready(function() {
 
 	});
 
-	$('a#go').click( function(event){ // ловим клик по ссылки с id="go"
+	$('a.go').click( function(event){ // ловим клик по ссылки с id="go"
 		event.preventDefault(); // выключаем стандартную роль элемента
 		$("#pdf_hb").val($(this).data("hb"));
 		$("#pdf_to").val($(this).data("to"));
