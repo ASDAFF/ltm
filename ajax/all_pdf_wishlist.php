@@ -1,4 +1,8 @@
 <?
+set_time_limit(0);
+ignore_user_abort(true);
+session_write_close();
+
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Виш лист");
 ?>

@@ -2,7 +2,7 @@
  * Created by Диана on 09.05.2015.
  */
 $(document).ready(function() { // вся магия после загрузки страницы
-    $('a#go').click( function(event){ // ловим клик по ссылки с id="go"
+    $('a.go').click( function(event){ // ловим клик по ссылки с id="go"
         event.preventDefault(); // выключаем стандартную роль элемента
         $("#pdf_hb").val($(this).data("hb"));
         $("#pdf_to").val($(this).data("to"));
