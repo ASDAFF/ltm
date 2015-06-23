@@ -91,10 +91,9 @@ function DokaGeneratePdf($arResult) {
 	}
 
 	$pdf->setXY(20,$pdf->getY() + 10);
-	$y = $pdf->getY();
-	$html = 'Вы можете встретиться со всеми компаниями, указанными выше, в любое другое время Luxury Travel
-Mart, например, во время ланча, перерыва на кофе или на вечерней сессии.';
-	$pdf->writeHTMLCell('', '', 20, $y, $html, $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true);
+	$html = '<p>Вы можете встретиться со всеми компаниями, указанными выше, в любое другое время Luxury Travel
+Mart, например, во время ланча, перерыва на кофе или на вечерней сессии.<p>';
+	$pdf->writeHTML($html, true, false, false, false, '');
 
 	$pdf->Output($arResult['path'], F);
 	unset($pdf);
