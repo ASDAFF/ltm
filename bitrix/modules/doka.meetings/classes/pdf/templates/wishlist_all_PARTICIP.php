@@ -82,14 +82,12 @@ function DokaGeneratePdf($arResult) {
 	}
 
 	$pdf->setXY(20,$pdf->getY() + 10);
-	$y = $pdf->getY();
-	$html = 'These companies were not included in your schedule because either your or their schedule was already full.';
-	$pdf->writeHTMLCell('', '', 20, $y, $html, $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true);
+	$html = '<p>These companies were not included in your schedule because either your or their schedule was already full.</p>';
+	$pdf->writeHTML($html, true, false, false, false, '');
 	
 	$pdf->setXY(20,$pdf->getY() + 20);
-	$y = $pdf->getY();
 	$html = 'You can meet these companies at any time except for the morning session. Please message each guest individually, and make an appointment for any time that suits you – for example, at the evening session, or during lunch or coffee break, or you may even schedule an appointment at the guest’s office for any day after the Luxury Travel Mart.';
-	$pdf->writeHTMLCell('', '', 20, $y, $html, $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true);
+	$pdf->writeHTML($html, true, false, false, false, '');
 
 	$pdf->Output($arResult['path'], F);
 	unset($pdf);

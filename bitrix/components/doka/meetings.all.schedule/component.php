@@ -55,7 +55,6 @@ if (empty($arParams["APP_ID"])) {
 }
 
 use Doka\Meetings\Requests as DokaRequest;
-use Doka\Meetings\Timeslots as DokaTimeslot;
 
 $req_obj = new DokaRequest($arParams['APP_ID']);
 
