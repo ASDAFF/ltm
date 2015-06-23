@@ -21,7 +21,7 @@ Thumbs.db
 !/bitrix/templates/
 /bitrix/components/bitrix/
 /bitrix/modules/
-!/bitrix/modules/doka.meetings/
+!/bitrix/modules/doka.meetings/*
 # upload
 /upload/*
 /cgi-bin/
