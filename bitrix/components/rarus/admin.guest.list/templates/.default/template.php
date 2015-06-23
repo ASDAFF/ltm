@@ -122,6 +122,7 @@ function printVal($ar, $glue)
 		<form action="/ajax/all_pdf_shedule.php">
 			<input type="hidden" name="type" value="guest" id="pdf_type"/>
 			<input type="hidden" name="hb" value="" id="pdf_hb"/>
+			<input name="to" value="shedule" id="pdf_to" type="hidden">
 			<input type="hidden" name="app" value="<?=$arResult["EXHIB"]["CODE"]?>" id="pdf_app"/>
 			<p class="error" id="pdf_error"></p>
 			<p>Введи Email на который нужно отправить ссылку для скачивания</p>
