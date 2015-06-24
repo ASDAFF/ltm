@@ -235,7 +235,7 @@ while ($data = $rsCompanies->Fetch()) {
 				$company['schedule'][$timeslot_id] = array(
 					'timeslot_id' => $timeslot_id,
 					'timeslot_name' => $timeslotValue['name'],
-					'status' => DokaRequest::getStatusCode($statuses[$timeslot_id]),
+					'status' => 'free',
 				);
 			}
 		}
@@ -246,7 +246,7 @@ while ($data = $rsCompanies->Fetch()) {
 				$schedule = array(
 					'timeslot_id' => $timeslot_id,
 					'timeslot_name' => $timeslots[$timeslot_id]['name'],
-					'status' => DokaRequest::getStatusCode($statuses[$timeslot_id]),
+					'status' => 'free',
 					'is_busy' => false,
 					'notes' => ""
 				);
