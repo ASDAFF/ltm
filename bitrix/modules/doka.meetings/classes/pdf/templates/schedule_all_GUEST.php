@@ -67,7 +67,7 @@ function DokaGeneratePdf($arResult) {
 	$countBreaks = 0;
 	foreach ($arResult['schedule'] as $freeseriflot) {
 		$count++;
-		if ($freeseriflot['status'] == 'free') {
+		if ($freeseriflot['status'] == 'empty' || $freeseriflot['status'] == 'rejected') {
 			$tbl .= '<tr>
                         <td>'.$freeseriflot['timeslot_name'].'</td>
                         <td colspan="3" align="center">Свободно</td>
