@@ -113,7 +113,6 @@ $fio_dates[3][1] = CFormMatrix::getAnswerRelBase('SIMPLE_QUESTION_732' ,$formId)
 $timeslots = $req_obj->getTimeslots();
 $meet_timeslots = $req_obj->getMeetTimeslotsIds();
 $statuses_free = $req_obj->getStatusesFree();
-
 // Определяем для какой группы генерировать расписание
 if ($arResult['USER_TYPE'] != 'PARTICIP'){
 	$group_search_id = $req_obj->getOption('GUESTS_GROUP');
@@ -226,16 +225,16 @@ while ($data = $rsCompanies->Fetch()) {
 		foreach ($timeslots as $timeslot_id=>$timeslotValue) {
 			if(!in_array($timeslot_id, $meet_timeslots )){
 				$company['schedule'][$timeslot_id] = array(
-					'id' => $timeslot_id,
-					'name' => $timeslotValue['name'],
+					'timeslot_id' => $timeslot_id,
+					'timeslot_name' => $timeslotValue['name'],
 					'status' => 'coffe',
 					'notes' => 'coffe',
 				);
 			}
 			else{
 				$company['schedule'][$timeslot_id] = array(
-					'id' => $timeslot_id,
-					'name' => $timeslotValue['name'],
+					'timeslot_id' => $timeslot_id,
+					'timeslot_name' => $timeslotValue['name'],
 					'status' => DokaRequest::getStatusCode($statuses[$timeslot_id]),
 				);
 			}
@@ -271,8 +270,8 @@ while ($data = $rsCompanies->Fetch()) {
 			}
 			else{
 				$company['schedule'][$timeslot_id] = array(
-					'id' => $timeslot_id,
-					'name' => $timeslotValue['name'],
+					'timeslot_id' => $timeslot_id,
+					'timeslot_name' => $timeslotValue['name'],
 					'status' => 'coffe',
 					'notes' => 'coffe',
 				);
