@@ -260,7 +260,7 @@ while ($data = $rsCompanies->Fetch()) {
 					$schedule['hall'] = $users_list[$user_id]['hall'];
 					$schedule['table'] = $users_list[$user_id]['table'];
 					$schedule['is_busy'] = true;
-					$curMeet["status"] = $schedule['status'];
+					$curMeet["status"] = DokaRequest::getStatusCode($statuses[$timeslot_id]);
 					$curMeet["modified_by"] = $user_id;
 					$curMeet["company_id"] = $schedule['company_id'];
 				}
