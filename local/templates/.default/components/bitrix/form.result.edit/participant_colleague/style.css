@@ -1,0 +1,8 @@
+.photo-uploader {
+	color: #00AEEF;
+	font-size: 14px;
+}
+
+.photo-uploader input {
+	display: none;
+}
