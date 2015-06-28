@@ -67,7 +67,7 @@ function DokaGeneratePdf($arResult) {
 	$countBreaks = 0;
 	foreach ($arResult['schedule'] as $freeseriflot) {
 		$count++;
-		if ($freeseriflot['status'] == 'empty' || $freeseriflot['status'] == 'rejected') {
+		if ($freeseriflot['status'] == 'free') {
 			$tbl .= '<tr>
                         <td>'.$freeseriflot['timeslot_name'].'</td>
                         <td colspan="3" align="center">Свободно</td>
@@ -115,14 +115,11 @@ function DokaGeneratePdf($arResult) {
 	$pdf->writeHTML($tbl, true, false, false, false, '');
 
 	$pdf->setXY(20,$pdf->getY() + 10);
-	$y = $pdf->getY();
-	$html = '<b>Регистрация гостей и выдача бейджей</b> будет проходить в день мероприятия на стойке регистрации Luxury Travel Mart <b>с 09:30 до 11:30.</b>';
-	$pdf->writeHTMLCell('', '', 20, $y, $html, $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true);
+	$html = '<p><b>Регистрация гостей и выдача бейджей</b> будет проходить в день мероприятия на стойке регистрации Luxury Travel Mart
+ <b>с 09:30 до 11:30.</b></p>';
+	$html .= '<p>Пожалуйста, имейте при себе <b>достаточное количество визитных карточек на английском языке.</b><p>';
+	$pdf->writeHTML($html, true, false, false, false, '');
 
-	$pdf->setY($pdf->getY() + 10);
-	$y = $pdf->getY();
-	$html = 'Пожалуйста, имейте при себе <b>достаточное количество визитных карточек на английском языке.</b>';
-	$pdf->writeHTMLCell('', '', 20, $y, $html, $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true);
 
 	$pdf->Output($arResult['path'], F);
 	unset($pdf);
