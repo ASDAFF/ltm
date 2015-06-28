@@ -461,7 +461,7 @@ $data["BENEFICIARY_NAME"] = "Elena Vetrova /
     define("LINE_INDENT", 3.4);
 
     //подгружаем библиотеку с классами для работы pdf
-    require_once ($_SERVER["DOCUMENT_ROOT"] .  "/bitrix/php_interface/lib/tcpdf/tcpdf.php");
+    require_once ($_SERVER["DOCUMENT_ROOT"] .  "/local/php_interface/lib/tcpdf/tcpdf.php");
 
     $pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
     $pdf->SetMargins(15, 5, 10);

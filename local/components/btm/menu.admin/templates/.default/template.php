@@ -3,7 +3,7 @@ if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 
 if($arResult["ERROR_MESSAGE"] == ''){
 	?>
-    	<script type="text/javascript" src="/bitrix/templates/personal_admin/choose_tips.js"></script>
+    	<script type="text/javascript" src="/local/templates/personal_admin/choose_tips.js"></script>
         <div id="top_tips">
         	<div <? if($arResult["ISACTIVE"] == "N"):?>class="active_tip"<? else:?>class="tip"<? endif;?> id="parent0" onclick="chooseParmenu('top_tips','submenu_cont','0');"><p><a href="/admin/" onclick="chooseParmenu('top_tips','submenu_cont','0'); return false;">Главная</a></p></div>
         <?

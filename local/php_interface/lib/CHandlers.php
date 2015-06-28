@@ -5,7 +5,7 @@ class Chandlers
 	{
 	    if ($event == "TEST_NEW_SEND")
 	    {
-	        require_once($_SERVER["DOCUMENT_ROOT"] . "/bitrix/php_interface/lib/mail_attach.php");
+	        require_once($_SERVER["DOCUMENT_ROOT"] . "/local/php_interface/lib/mail_attach.php");
 	        SendAttache($event, $lid, $arFields, "/readme.html");
 	        $event = 'null'; $lid = 'null';
 	    }

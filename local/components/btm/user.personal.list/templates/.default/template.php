@@ -3,7 +3,7 @@ if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 
 if($arResult["ERROR_MESSAGE"] == ''){
 	?>
-    <script type="text/javascript" src="/bitrix/components/btm/user.personal.list/templates/.default/script.js"></script>
+    <script type="text/javascript" src="/local/components/btm/user.personal.list/templates/.default/script.js"></script>
         <table width="100%" border="0" cellspacing="5" cellpadding="0">
           <tr>
             <td><p class="reg_update" style="text-align:left;"><? if($arResult["FILTERS"]["MAIN"][0]["ACTIVE"] == Y){?><strong style="color:#FF7900;"><?=$arResult["FILTERS"]["MAIN"][0]["NAME"]?></strong><? } else{?><a href="<?=$arResult["FILTERS"]["MAIN"][0]["LINK"]?>" style=" color:#000;"><?=$arResult["FILTERS"]["MAIN"][0]["NAME"]?></a><? }?></p></td>

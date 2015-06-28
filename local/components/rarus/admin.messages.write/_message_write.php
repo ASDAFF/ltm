@@ -39,7 +39,7 @@ else
                     <p><strong>Добро пожаловать, <?=$welcome?></strong></p>
                     <p>У Вас <span><?=$meetNum?></span> неподтвержденных запросов на встречи и <span><?=$resNum?></span> новых сообщений</p>
                 </div>
-                <div class="logout"><a href="/personal/logout.php"><img src="/bitrix/templates/personal/images/logout.gif" width="63" height="21" alt="Log Out" border="0" /></a></div>
+                <div class="logout"><a href="/personal/logout.php"><img src="/local/templates/personal/images/logout.gif" width="63" height="21" alt="Log Out" border="0" /></a></div>
             </div>
         	<div class="menu_personal">
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -50,7 +50,7 @@ else
                 <td style="text-align:left; width:180px;"><a href="/personal/shedule/admin/archiv_partcip.php"><img src="/personal/shedule/images/archiv_particip.gif" width="142" height="31" border="0" /></a></td>
               </tr>
               <tr>
-                <td style="text-align:left; width:180px;"><a href="/personal/shedule/admin/message.php"><img src="/bitrix/templates/personal/images/ru_message_act.gif" width="142" height="31" border="0" /></a></td>
+                <td style="text-align:left; width:180px;"><a href="/personal/shedule/admin/message.php"><img src="/local/templates/personal/images/ru_message_act.gif" width="142" height="31" border="0" /></a></td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td style="text-align:right;">&nbsp;</td>

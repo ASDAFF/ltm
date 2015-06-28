@@ -8,7 +8,7 @@ function regForExhib(exhibID, userID)
 
 	$.ajax({
 		type: "POST",
-		url: '/bitrix/components/rarus/auth.form/ajax_reg.php',
+		url: '/local/components/rarus/auth.form/ajax_reg.php',
 		data: regData,
 		success: function(data){
 			if(data == "OK")

@@ -239,7 +239,7 @@ function printVal($ar, $glue)
 				<?endforeach?>
 				<td class="text-center">
 					<div class="action" id="action_<?=$arUser["ID"]?>">
-						<img src="/bitrix/templates/admin/images/edit.png">
+						<img src="/local/templates/admin/images/edit.png">
 						<ul class="ul-popup">
 						    <? $edithrefConf = "/admin/service/edit.php?id=" . $arUser["ID"]."&result=". $arUser["UF_ID_COMP"] . "&type=G";?>
 						    <? $edithrefUconf = "/admin/service/edit.php?id=" . $arUser["ID"]."&result=". $arUser["UF_ID_COMP"] . "&type=G";?>
