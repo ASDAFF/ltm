@@ -3,7 +3,7 @@ if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 
 if($arResult["ERROR_MESSAGE"] == ''){
 	?>
-    <script type="text/javascript" src="/bitrix/components/btm/user.list/templates/.default/script.js"></script>
+    <script type="text/javascript" src="/local/components/btm/user.list/templates/.default/script.js"></script>
     <p><?=$arResult["FILTER"]["ALP"]?></p>
     <p class="index">
     <?

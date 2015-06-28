@@ -9,7 +9,7 @@ if ($arResult["ERROR_MESSAGE"] == '')
             <p><strong><?=$arResult["WELCOME"]?></strong></p>
             <p><?=$arResult["WELCOME2"]?></p>
         </div>
-        <div class="logout"><a href="<?=$arResult["USER"]["LOGOUT"]?>"><img src="/bitrix/templates/personal/images/logout.gif" width="63" height="21" alt="Log Out" border="0" /></a></div>
+        <div class="logout"><a href="<?=$arResult["USER"]["LOGOUT"]?>"><img src="/local/templates/personal/images/logout.gif" width="63" height="21" alt="Log Out" border="0" /></a></div>
     </div>
 	<?
 }

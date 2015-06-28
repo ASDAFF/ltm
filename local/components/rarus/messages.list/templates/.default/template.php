@@ -46,7 +46,7 @@ else:
 	foreach ($arResult["ITEMS"] as $res):
 ?>
         <tr <?=($res['IS_READ'] == 0)?'class="new-message"':""?>>
-        	<!--<td align="center"><? if($res["IS_READ"] == 'N'){?><img src="/bitrix/templates/personal/images/envelope.gif" /><? }else{?>&nbsp;<? }?></td>-->
+        	<!--<td align="center"><? if($res["IS_READ"] == 'N'){?><img src="/local/templates/personal/images/envelope.gif" /><? }else{?>&nbsp;<? }?></td>-->
             <td>
 	            <a href="<?=$res["URL_HLM_READ"]?>" <?if($arParams["NEW_WINDOW"] == "Y"):?>target="_blank" onclick="newWind('<?=$res["URL_HLM_READ"]?>', 500, 400); return false;"<? endif;?>>
 	            <? $subject = trim($res["SUBJECT"]);?>

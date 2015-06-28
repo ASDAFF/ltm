@@ -71,7 +71,7 @@ else:
 	foreach ($arResult["MESSAGE"] as $res):
 ?>
         <tr <? if($iCount % 2){?>class="chet"<? }?>>
-        	<td align="center"><? if($res["IS_READ"] == 'N'){?><img src="/bitrix/templates/personal/images/envelope.gif" /><? }else{?>&nbsp;<? }?></td>
+        	<td align="center"><? if($res["IS_READ"] == 'N'){?><img src="/local/templates/personal/images/envelope.gif" /><? }else{?>&nbsp;<? }?></td>
             <td>
             <?=$res["POST_SUBJ"]?><br />
             <strong><a href="/personal/service/read.php?mes=<?=$res["ID"]?>" target="_blank" onclick="newWind('/personal/service/read.php?mes=<?=$res["ID"]?>'); return false;">Open</a></strong>, <strong><a href="/personal/service/write.php?id=<?=$res["AUTHOR_ID"]?>&mes=<?=$res["ID"]?>" target="_blank" onclick="newWind('/personal/service/write.php?id=<?=$res["AUTHOR_ID"]?>&mes=<?=$res["ID"]?>'); return false;">Reply</a></strong>
