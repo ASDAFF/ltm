@@ -98,7 +98,7 @@ while ($exhibition = $rsExhibitions->Fetch()) {
             );
             foreach ($userInfo["LIST"] as $key => $value) {
                 $arFieldsMes["COMPANY"] = $value["company_name"];
-                CEvent::Send("FREE_FROM_WISHLIST","s1",$arFieldsMes);
+                //CEvent::Send("FREE_FROM_WISHLIST","s1",$arFieldsMes);
             }        
         }
         foreach ($arResult["MAIL_LIST"][$exhibition['ID']]["GUEST_IN"] as $userId => $userInfo) {
@@ -109,7 +109,7 @@ while ($exhibition = $rsExhibitions->Fetch()) {
             );
             foreach ($userInfo["LIST"] as $key => $value) {
                 $arFieldsMes["COMPANY"] = $value["company_name"];
-                CEvent::Send("FREE_FROM_WISHLIST","s1",$arFieldsMes);
+                //CEvent::Send("FREE_FROM_WISHLIST","s1",$arFieldsMes);
             }        
         }
 }
