@@ -96,6 +96,11 @@ elseif($arParams["TYPE"] == 'guests_no_all'){
 	$isAll = true;
 	$isEvening = true;
 }
+elseif($arParams["TYPE"] == 'guests_spam'){
+	$filter["GROUPS_ID"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["GUEST_SPAM_GROUP"]["VALUE"];
+	$fileName = "Гости ".$fileName." спам.xls";
+	$isEvening = false;
+}
 else{
 	echo 'Oops, we are not found this type.';
 } 
