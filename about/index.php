@@ -40,13 +40,7 @@ if(LANGUAGE_ID == "ru")
 <p>Для регистрации по программе приглашенных региональных гостей, пожалуйста, свяжитесь с нами по <a href="/contacts" >электронной почте.</a></p>
  
 <p>В настоящее время выставки Luxury Travel Mart проводятся 4 разв в год в следующих городах:</p>
- 
-<p><b>Весенний Luxury Travel Mart Москва, Россия</b> 
-  <br />
- Даты проведения в 2015: 12-13 марта 
-  <br />
- Место проведения: The Ritz-Carlton, Moscow</p>
- 
+  
 <p><b>Luxury Travel Mart Киев, Украина</b> 
   <br />
  Дата проведения в 2015: 22 сентября 
@@ -62,6 +56,12 @@ if(LANGUAGE_ID == "ru")
 <p><b>Осенний Luxury Travel Mart Москва, Россия</b> 
   <br />
  Дата проведения в 2015: 1 октября 
+  <br />
+ Место проведения: The Ritz-Carlton, Moscow</p>
+
+<p><b>Весенний Luxury Travel Mart Москва, Россия</b> 
+  <br />
+ Даты проведения в 2016: 10-11 марта 
   <br />
  Место проведения: The Ritz-Carlton, Moscow</p>
  <?
@@ -86,15 +86,17 @@ elseif(LANGUAGE_ID == "en")
  
   <li>Number of repeat exhibitors – over 90%</li>
  
-  <li>221 exhibitors participated in LTM Moscow Spring 2014, 48 at LTM Kiev 2014 (146 in 2013) and 88 at LTM Almaty 2014 (maximum capacity at all events)</li>
+  <li>246 exhibitors participated in LTM Moscow Spring 2015, 48 at LTM Kiev 2014 (146 in 2013) and 88 at LTM Almaty 2014 (maximum capacity at all events)</li>
  
   <li>Over 3100 guests visited LTM events in Moscow, Kiev, Almaty in 2014</li>
+
+  <li>Over 1200 guests visited LTM Spring in Moscow in 2015</li>
  
-  <li>280 hosted buyers from the Russian regions and the CIS in 2014</li>
+  <li>450 hosted buyers from the Russian regions and the CIS in 2014 at LTM events and 320 hosted buyers at LTM Spring in Moscow 2015 only</li>
  
-  <li>98% of exhibitors considered LTM 2014 to be an extremely useful and successful event</li>
+  <li>98% of exhibitors considered LTM to be an extremely useful and successful events</li>
  
-  <li>LTM is the only event in the CIS with a Hosted buyers program, in 2014 the event hosted over 150 companies from the Russian regions and other CIS countries at LTM Moscow, in addition to 40 hosted buyers in Kiev and 50 in Almaty.</li>
+  <li>LTM is the only event in the CIS with an extensive Hosted buyers program</li>
  
   <li>All buyers are carefully pre-selected and visitors are by invitation only, which guarantees the highcaliber of the clientele and travel industry professionals</li>
  </ul>
@@ -104,14 +106,6 @@ elseif(LANGUAGE_ID == "en")
 </p>
 
 <p>Luxury Travel Mart currently organises 4 events a year:</p>
- 
-<p><b>Luxury Travel Mart Moscow, Russia, Spring Edition</b> 
-  <br />
- Dates for 2015: March 12-13 (two-days event)     
-  <br />
- Venue: The Ritz-Carlton, Moscow 
-  <br />
- Approximate number of guests: 300-350 at the morning session, 200 hosted buyers, 800-850 guests at the evening session.</p>
  
 <p><b>Luxury Travel Mart Kiev, Ukraine</b> 
   <br />
@@ -137,7 +131,15 @@ elseif(LANGUAGE_ID == "en")
   <br />
  Approximate number of guests: 300-350 at the morning session, 145 hosted buyers, 800-850 guests at the evening session.</p>
  
+<p><b>Luxury Travel Mart Moscow, Russia, Spring Edition</b> 
+  <br />
+ Dates for 2016: March 10-11 (two-days event)     
+  <br />
+ Venue: The Ritz-Carlton, Moscow 
+  <br />
+ Approximate number of guests: 320 hosted buyers at the first day, 300-350 at the morning session of the second day, over 1000 guests at the evening reception.</p>
 <p> 
+
   <br />
  </p>
  <?
