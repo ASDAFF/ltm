@@ -1,6 +1,6 @@
 .company-info div.dropdown-group
 {
-	background: url("/bitrix/templates/test/images/arrow_down.png") no-repeat scroll 191px 11px transparent;
+	background: url("/local/templates/test/images/arrow_down.png") no-repeat scroll 191px 11px transparent;
 	margin: 5px 0 5px 0px;
 	width: 220px;
 	font-size: 14px;
@@ -75,7 +75,7 @@
 
 .priority-wrap label.check-all
 {
-	background: url("/bitrix/templates/test/images/check.png") no-repeat scroll 7px 7px transparent;
+	background: url("/local/templates/test/images/check.png") no-repeat scroll 7px 7px transparent;
 	display: inline-block;
 	position: relative;
 	cursor: pointer;
@@ -86,7 +86,7 @@
 
 .priority-wrap label.active-all
 {
-	background: url("/bitrix/templates/test/images/check_act.png") no-repeat scroll 7px 0px transparent;
+	background: url("/local/templates/test/images/check_act.png") no-repeat scroll 7px 0px transparent;
 }
 .priority-wrap .priority-check-global
 {
@@ -101,7 +101,7 @@
 
 .priority-wrap label.check-global
 {
-	background: url("/bitrix/templates/test/images/check.png") no-repeat scroll 7px 7px transparent;
+	background: url("/local/templates/test/images/check.png") no-repeat scroll 7px 7px transparent;
 	display: block;
 	position: relative;
 	cursor: pointer;
@@ -111,7 +111,7 @@
 
 .priority-wrap label.active-global
 {
-	background: url("/bitrix/templates/test/images/check_act.png") no-repeat scroll 7px 0px transparent;
+	background: url("/local/templates/test/images/check_act.png") no-repeat scroll 7px 0px transparent;
 }
 
 .priority-wrap .priority-items
@@ -127,7 +127,7 @@
 
 .priority-wrap label.check-group
 {
-	background: url("/bitrix/templates/test/images/check.png") no-repeat scroll 7px 1px transparent;
+	background: url("/local/templates/test/images/check.png") no-repeat scroll 7px 1px transparent;
 	display: block;
 	position: relative;
 	cursor: pointer;
@@ -139,7 +139,7 @@
 }
 .priority-wrap label.active-group
 {
-	background: url("/bitrix/templates/test/images/check_act.png") no-repeat scroll 7px -6px transparent;
+	background: url("/local/templates/test/images/check_act.png") no-repeat scroll 7px -6px transparent;
 }
 
 a.priority-name,
