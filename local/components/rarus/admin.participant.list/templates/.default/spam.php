@@ -1,5 +1,7 @@
 <input class="custom-buttom" name="SPAM" type="submit" value="<?=GetMessage("ADM_PARC_NO_SPAM")?>">
 <input name="SPAM_TYPE" type="hidden" value="N">
+<a class="custom-buttom" href="/exel/particip.php?type=particip_spam&app=<?=$arParams["EXHIB_CODE"]?>">Генерировать Excel</a>
+
 	<div class="navigate"><?=$arResult["NAVIGATE"]?></div>
 <div class="table-responsive">
 <table class="table">

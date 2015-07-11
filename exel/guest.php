@@ -39,10 +39,12 @@ $isAll = false; //Коллеги отдельной строкой
 $isEvening = false; //Гости на вечер
 $isHB = false; //Гости HB
 
+
 $formId = CFormMatrix::getGResultIDByExh($arResult["PARAM_EXHIBITION"]["ID"]); //Id формы
 
 //Поля с id результатов
-$resultAllCode = "UF_ID_COMP";//Поле с ID формы О КОМПАНИИ
+$resultAllCode = CFormMatrix::getPropertyIDByExh($arResult["PARAM_EXHIBITION"]["ID"]);//Поле с ID формы О КОМПАНИИ
+$filter["!$resultAllCode"] = false;
 $resAllComp = array(); //Массив результатов О компании
 
 if($arParams["TYPE"] == 'guests'){
@@ -96,9 +98,15 @@ elseif($arParams["TYPE"] == 'guests_no_all'){
 	$isAll = true;
 	$isEvening = true;
 }
+elseif($arParams["TYPE"] == 'guests_spam'){
+	$filter["GROUPS_ID"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["GUEST_SPAM_GROUP"]["VALUE"];
+	$fileName = "Гости ".$fileName." спам.xls";
+	$isEvening = false;
+	$formId = 10;
+}
 else{
 	echo 'Oops, we are not found this type.';
-} 
+}
 
 $rsUsers = CUser::GetList(($by="id"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"), "FIELDS"=>array("ID","LOGIN")));
 $i = 0;
