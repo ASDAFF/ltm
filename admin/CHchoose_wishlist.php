@@ -65,9 +65,10 @@ while ($exhibition = $rsExhibitions->Fetch()) {
         $allParticip = array();
         foreach($freeParticip as $personID => $personInfo) {
             $curWish = $wishlist_obj->getWishListToMail($personID);
+            $meetCompany = $req_obj->getAllCompaniesMeet($personID);
             while($companyWish = $curWish->Fetch()){
                 /* У компании из подходящего вишлиста есть свободный слот */
-                if(isset($freeGuest[ $companyWish["USER"] ]) && !empty( array_intersect($personInfo["TIMES"], $freeGuest[ $companyWish["USER"] ]["TIMES"]) )){
+                if(isset($freeGuest[ $companyWish["USER"] ]) && !empty( array_intersect($personInfo["TIMES"], $freeGuest[ $companyWish["USER"] ]["TIMES"]) ) && !in_array($companyWish["USER"], $meetCompany)){
                     $arResult["MAIL_LIST"][$exhibition['ID']]["PARTICIP"][$personID][ $companyWish["USER"] ] = $companyWish["USER"];
                     $allGuest[ $companyWish["USER"] ] = $companyWish["USER"];
                     $allParticip[ $personID ] = $personID;
@@ -77,9 +78,10 @@ while ($exhibition = $rsExhibitions->Fetch()) {
         //Список свободных гостей
         foreach($freeGuest as $personID => $personInfo) {
             $curWish = $wishlist_obj->getWishListToMail($personID);
+            $meetCompany = $req_obj->getAllCompaniesMeet($personID);
             while($companyWish = $curWish->Fetch()){
                 /* У компании из подходящего вишлиста есть свободный слот */
-                if(isset($freeGuest[ $companyWish["USER"] ]) && !empty(array_intersect($personInfo["TIMES"], $freeParticip[ $companyWish["USER"] ]["TIMES"]))){
+                if(isset($freeGuest[ $companyWish["USER"] ]) && !empty(array_intersect($personInfo["TIMES"], $freeParticip[ $companyWish["USER"] ]["TIMES"])) && !in_array($companyWish["USER"], $meetCompany)){
                     $arResult["MAIL_LIST"][$exhibition['ID']]["GUEST"][$personID][ $companyWish["USER"] ] = $companyWish["USER"];
                     $allParticip[ $companyWish["USER"] ] = $companyWish["USER"];
                     $allGuest[ $personID ] = $personID;

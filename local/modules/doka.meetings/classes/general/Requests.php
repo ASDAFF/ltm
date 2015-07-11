@@ -45,6 +45,7 @@ IncludeModuleLangFile(__FILE__);
  * getActiveRequest($timeslot_id, $sender_id, $receiver_id)
  * getAllMeetTimesByGroup($group_id)
  * getRejectedRequests($group_id)
+ * getAllCompaniesMeet($user_id) Возвращает массив содержащий все id компаний с которыми у компании $user_id есть встречи
  *
  * getUserGroubSimple($user_id)
  */
@@ -755,6 +756,40 @@ class Requests extends DokaRequest
         }
 
         return $timeslots;
+    }
+
+    /**
+     * Возвращает массив содержащий все id компаний с которыми у компании $user_id есть встречи
+     * @param  int $user_id id представителя компании
+     * @return array массив id компаний
+     */
+    public function getAllCompaniesMeet($user_id)
+    {
+        $user_id = (!$user_id) ? $this->user_id : (int)$user_id;
+        if ($user_id <= 0)
+            return false;
+
+        global $DB;
+
+        $companies = array();
+
+        $statuses_rejected = array(self::STATUS_REJECTED, self::STATUS_TIMEOUT);
+
+        // сортировка по убыванию ID в каком-то смысле гарантирует, что будет актуальный статус
+        $sSQL = 'SELECT t1.*, t1.SENDER_ID as repr_id FROM ' . self::$sTableName . ' t1 WHERE RECEIVER_ID=' . $DB->ForSql($user_id)
+            . ' AND STATUS NOT IN (' . implode(',', $statuses_rejected) . ')
+AND EXHIBITION_ID=' . $this->app_id .
+            ' UNION ALL ' .
+            'SELECT t2.*, t2.RECEIVER_ID as repr_id FROM ' . self::$sTableName . ' t2 WHERE SENDER_ID=' . $DB->ForSql($user_id)
+            . ' AND STATUS NOT IN (' . implode(',', $statuses_rejected) . ') AND EXHIBITION_ID=' . $this->app_id . ' ORDER BY ID DESC';
+
+        $res = $DB->Query($sSQL, false, 'FILE: '.__FILE__.'<br />LINE: ' . __LINE__);
+
+        while ($data = $res->Fetch()) {
+            $companies[ $data["repr_id"] ] = $data["repr_id"];
+        }
+
+        return $companies;
     }
 
     /**
