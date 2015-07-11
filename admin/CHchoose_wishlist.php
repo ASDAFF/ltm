@@ -1,5 +1,5 @@
-<? 
-$_SERVER["DOCUMENT_ROOT"] = "/home/u24601/luxurytravelmart.ru/www";
+<?
+$_SERVER["DOCUMENT_ROOT"] = realpath(dirname(__FILE__)."/..");
 $DOCUMENT_ROOT = $_SERVER["DOCUMENT_ROOT"];
 
 define("NO_KEEP_STATISTIC", true);
@@ -34,17 +34,15 @@ while($ar = $rs->Fetch()) {
         $arResult["EXHIB"][$ar["PROPERTY_APP_HB_ID_VALUE"]] = $ar;
     }
 }
-
-
+$arResult["MAIL_LIST"] = array();
 // список выставок из модуля и составление вишлистов
 $rsExhibitions = DS::GetList(array(), array("ACTIVE" => 1)); //добавить "IS_LOCKED" => 0
-
 while ($exhibition = $rsExhibitions->Fetch()) {
         $req_obj = new DR($exhibition['ID']);
         $wishlist_obj = new DWL($exhibition['ID']);
         $arResult["MAIL_LIST"][$exhibition['ID']] = array();
-        $arResult["MAIL_LIST"][$exhibition['ID']]["PARTICIP_IN"] = array();//массив с участниками которым нужно послать сообщение о свободных гостях (участник его INFO и массивы с гостями вложенные)
-        $arResult["MAIL_LIST"][$exhibition['ID']]["GUEST_IN"] = array();
+        $arResult["MAIL_LIST"][$exhibition['ID']]["PARTICIP"] = array();
+        $arResult["MAIL_LIST"][$exhibition['ID']]["GUEST"] = array();
         $formId = $exhibition['FORM_ID'];
         $propertyNameParticipant = $exhibition['FORM_RES_CODE'];//свойство участника
         $fio_datesPart = array();
@@ -62,58 +60,124 @@ while ($exhibition = $rsExhibitions->Fetch()) {
         //Список свободных участников и гостей
         $freeParticip = $req_obj->getUsersFreeTimesByGroup($exhibition["MEMBERS_GROUP"]);
         $freeGuest = $req_obj->getUsersFreeTimesByGroup($exhibition["GUESTS_GROUP"]);
-        
+
+        $allGuest = array();
+        $allParticip = array();
         foreach($freeParticip as $personID => $personInfo) {
-            $wishListIn = $wishlist_obj->getWishlists($personID); //список людей у которых этот человек в вишлисте
-            foreach ($wishListIn["WISH_IN"] as $key => $personWish) {
-                if(isset($freeGuest[$key])){
-                    $result = array_diff ($personInfo["TIMES"], $freeGuest[$key]["TIMES"]);
-                    if ($result != $personInfo["TIMES"]) {
-                        $arResult["MAIL_LIST"][$exhibition['ID']]["PARTICIP_IN"][$personID]["LIST"][$key] = $personWish;
-                        $arResult["MAIL_LIST"][$exhibition['ID']]["PARTICIP_IN"][$personID]["INFO"] = $req_obj->getUserInfoFull($personID, $formId, $propertyNameParticipant, $fio_datesPart);
-                    }
+            $curWish = $wishlist_obj->getWishListToMail($personID);
+            while($companyWish = $curWish->Fetch()){
+                /* У компании из подходящего вишлиста есть свободный слот */
+                if(isset($freeGuest[ $companyWish["USER"] ]) && !empty( array_intersect($personInfo["TIMES"], $freeGuest[ $companyWish["USER"] ]["TIMES"]) )){
+                    $arResult["MAIL_LIST"][$exhibition['ID']]["PARTICIP"][$personID][ $companyWish["USER"] ] = $companyWish["USER"];
+                    $allGuest[ $companyWish["USER"] ] = $companyWish["USER"];
+                    $allParticip[ $personID ] = $personID;
                 }
             }
         }
-        
         //Список свободных гостей
         foreach($freeGuest as $personID => $personInfo) {
-            $wishListIn = $wishlist_obj->getWishlists($personID); //список людей у которых этот человек в вишлисте
-            foreach ($wishListIn["WISH_IN"] as $key => $personWish) {
-                if(isset($freeParticip[$key])){
-                    $result = array_diff ($personInfo["TIMES"], $freeParticip[$key]["TIMES"]);
-                    if ($result != $personInfo["TIMES"]) {
-                        $arResult["MAIL_LIST"][$exhibition['ID']]["GUEST_IN"][$personID]["LIST"][$key] = $personWish;
-                        $arResult["MAIL_LIST"][$exhibition['ID']]["GUEST_IN"][$personID]["INFO"] = $req_obj->getUserInfo($personID);
-                    }
+            $curWish = $wishlist_obj->getWishListToMail($personID);
+            while($companyWish = $curWish->Fetch()){
+                /* У компании из подходящего вишлиста есть свободный слот */
+                if(isset($freeGuest[ $companyWish["USER"] ]) && !empty(array_intersect($personInfo["TIMES"], $freeParticip[ $companyWish["USER"] ]["TIMES"]))){
+                    $arResult["MAIL_LIST"][$exhibition['ID']]["GUEST"][$personID][ $companyWish["USER"] ] = $companyWish["USER"];
+                    $allParticip[ $companyWish["USER"] ] = $companyWish["USER"];
+                    $allGuest[ $personID ] = $personID;
                 }
             }
         }
-        /* ОТСЫЛКА сообщений по выставке */
-        foreach ($arResult["MAIL_LIST"][$exhibition['ID']]["PARTICIP_IN"] as $userId => $userInfo) {
-            $arFieldsMes = array(
-                "EXIB" => $arResult["EXHIB"][$exhibition['ID']]["PROPERTY_V_EN_VALUE"].$HB_TEG,
-                "EMAIL" => $userInfo["INFO"]["email"],
-                "COMPANY" => "",
+    if(!empty($allParticip) && !empty($allGuest)){
+        /*Получаем информацию о гостях*/
+        $arFilter = array(
+            "GROUPS_ID" => $exhibition["GUESTS_GROUP"],
+            "ID" => implode(" | ", $allGuest),
+            "ACTIVE" => "Y"
+        );
+
+        $arParameters = array(
+            "FIELDS" => array("ID", "EMAIL", "WORK_COMPANY", "NAME", "LAST_NAME"),
+            "SELECT" => array($propertyNameParticipant, "UF_FIO")
+        );
+        $allGuest = array();
+        $rsUsers = CUser::GetList(($by="work_company"), ($order="asc"), $arFilter, $arParameters);
+        while($curUser = $rsUsers->Fetch()){
+            $allGuest[ $curUser["ID"] ] = array(
+                "EMAIL" => $curUser["EMAIL"],
+                "FIO" => $curUser["UF_FIO"],
+                "COMPANY" => $curUser["WORK_COMPANY"],
             );
-            foreach ($userInfo["LIST"] as $key => $value) {
-                $arFieldsMes["COMPANY"] = $value["company_name"];
-                //CEvent::Send("FREE_FROM_WISHLIST","s1",$arFieldsMes);
-            }        
         }
-        foreach ($arResult["MAIL_LIST"][$exhibition['ID']]["GUEST_IN"] as $userId => $userInfo) {
-            $arFieldsMes = array(
-                "EXIB" => $arResult["EXHIB"][$exhibition['ID']]["PROPERTY_V_EN_VALUE"].$HB_TEG,
-                "EMAIL" => $userInfo["INFO"]["email"],
-                "COMPANY" => "",
+        /* Получаем информацию об участниках */
+        $arFilter = array(
+            "GROUPS_ID" => $exhibition["MEMBERS_GROUP"],
+            "ID" => implode(" | ", $allParticip),
+            "ACTIVE" => "Y"
+        );
+        $arParameters = array(
+            "FIELDS" => array("ID", "EMAIL", "WORK_COMPANY", "NAME", "LAST_NAME"),
+            "SELECT" => array($propertyNameParticipant, "UF_FIO")
+        );
+        $allParticip = array();
+        $linksParticip = array();
+        $allResultsForm = array();
+        $rsUsers = CUser::GetList(($by="work_company"), ($order="asc"), $arFilter, $arParameters);
+        while($curUser = $rsUsers->Fetch()){
+            $allParticip[ $curUser["ID"] ] = array(
+                "EMAIL" => "",
+                "FIO" => "",
+                "COMPANY" => $curUser["WORK_COMPANY"],
             );
-            foreach ($userInfo["LIST"] as $key => $value) {
-                $arFieldsMes["COMPANY"] = $value["company_name"];
-                //CEvent::Send("FREE_FROM_WISHLIST","s1",$arFieldsMes);
-            }        
+            $allResultsForm[] = $curUser[ $propertyNameParticipant ];
+            $linksParticip[ $curUser[ $propertyNameParticipant ] ] = $curUser["ID"];
         }
+
+
+        /* Получаем данные из форм */
+        CForm::GetResultAnswerArray(
+            $formId,
+            $arResult["FORM_RESULT_COMMON"]["QUESTIONS"],
+            $arResult["FORM_RESULT_COMMON"]["ANSWERS"],
+            $arResult["FORM_RESULT_COMMON"]["ANSWERS2"],
+            array("RESULT_ID" => implode("|", $allResultsForm))
+        );
+        foreach($arResult["FORM_RESULT_COMMON"]["ANSWERS2"] as $resId => $reValue){
+            $allParticip[ $linksParticip[$resId]  ]["EMAIL"] = $reValue[$fio_datesPart[2][0]][0]["USER_TEXT"];
+            $allParticip[ $linksParticip[$resId]  ]["FIO"] = $reValue[$fio_datesPart[0][0]][0]["USER_TEXT"]." ".$reValue[$fio_datesPart[1][0]][0]["USER_TEXT"];
+        }
+    }
+    /* ОТСЫЛКА сообщений по выставке */
+    foreach ($arResult["MAIL_LIST"][$exhibition['ID']]["PARTICIP"] as $userId => $userInfo) {
+        $arFieldsMes = array(
+            "EXIB" => $arResult["EXHIB"][$exhibition['ID']]["PROPERTY_V_EN_VALUE"].$HB_TEG,
+            "EMAIL" => $allParticip[ $userId ]["EMAIL"],
+            "COMPANY" => array(),
+        );
+        foreach ($userInfo as $key => $value) {
+            $arFieldsMes["COMPANY"][] = $allGuest[ $key ]["COMPANY"];
+        }
+        $arFieldsMes["COMPANY"] = implode(", ", $arFieldsMes["COMPANY"]);
+        echo "<pre>";
+        print_r($arFieldsMes);
+        echo "</pre>";
+        //CEvent::Send("FREE_FROM_WISHLIST","s1",$arFieldsMes);
+    }
+    foreach ($arResult["MAIL_LIST"][$exhibition['ID']]["GUEST_IN"] as $userId => $userInfo) {
+        $arFieldsMes = array(
+            "EXIB" => $arResult["EXHIB"][$exhibition['ID']]["PROPERTY_V_EN_VALUE"].$HB_TEG,
+            "EMAIL" => $allGuest[ $userId ]["EMAIL"],
+            "COMPANY" => array(),
+        );
+        foreach ($userInfo as $key => $value) {
+            $arFieldsMes["COMPANY"][] = $allParticip[ $key ]["COMPANY"];
+        }
+        $arFieldsMes["COMPANY"] = implode(", ", $arFieldsMes["COMPANY"]);
+        echo "<pre>";
+        print_r($arFieldsMes);
+        echo "</pre>";
+        //CEvent::Send("FREE_FROM_WISHLIST","s1",$arFieldsMes);
+    }
 }
-echo "<pre>"; print_r($arResult["MAIL_LIST"]); echo "</pre>";
+
 
 ?>
 
