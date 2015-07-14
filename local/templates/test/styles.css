@@ -1243,7 +1243,7 @@ ul{margin: 0;padding: 0;list-style: none;}
 .edit-profil .profil:first-child{padding-top: 0;border: none;}
 .edit-profil .profil{padding: 25px 0 15px;border-top:1px solid #b2b2b2;}
 .edit-profil .headline{font-size: 14px;color: #00aeef;margin-bottom: 25px;}
-.edit-profil .profil-photo {width: 110px;text-align: center;}
+.edit-profil .profil-photo {width: 110px;text-align: center; cursor: pointer;}
 .edit-profil .profil-photo a{color: #00aeef;font-size: 14px;}
 .edit-profil .profil-field{width: 530px;}
 .edit-profil .member{-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;margin-bottom: 15px;}
@@ -1266,7 +1266,7 @@ ul{margin: 0;padding: 0;list-style: none;}
 .ltm-btn{display:inline-block;text-align: center;border: none;color: #fff;font-size: 18px;text-decoration: none;cursor: pointer;min-width:140px;padding: 5px 20px 6px;margin-bottom: 10px;}
 .button-dark{background-color: #77787b;padding:5px 50px 6px;}
 .button-orange{background: #ff9000;}
-.button-green{background: #5ca656;}
+.button-green{background: #5ca656; font-family: Proxima;}
 .creating-page .description .button-dark{margin-bottom: 30px;}
 .creating-page .company-info .button-dark{padding-right: 10px;padding-left: 10px;}
 .creating-page .city-link{margin-bottom: 30px;}

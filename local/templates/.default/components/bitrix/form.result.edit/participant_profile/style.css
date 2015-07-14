@@ -1,6 +1,7 @@
 .photo-uploader {
 	color: #00AEEF;
 	font-size: 14px;
+	cursor: pointer;
 }
 
 .photo-uploader input {
