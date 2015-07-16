@@ -38,11 +38,11 @@ $curDir = $APPLICATION->GetCurDir();
 		<? endif;?>
 
 		<?php // Выход?>
-		<div class="leave pull-overflow">
+		<div class="leave clearfix">
 		    <? if($USER->IsAdmin() || (PARTICIPANT_CABINET == "Y")):?>
-		        <a href="<?= $arResult["PROFILE"]["COMPANY_LINK"]?>" title="<?= $arResult["PROFILE"]["COMPANY_NAME"]?>" target="_blank"><?= $arResult["PROFILE"]["COMPANY_NAME"]?></a>
+		        <a href="<?= $arResult["PROFILE"]["COMPANY_LINK"]?>" title="<?= $arResult["PROFILE"]["COMPANY_NAME"]?>" target="_blank" class="aut-form-company-name"><?= $arResult["PROFILE"]["COMPANY_NAME"]?></a>
 			<? endif;?>
-			<a href="/?logout=yes" title="EXIT" class="exit type-helvetical"><?=GetMessage("AUTH_P_EXIT")?></a>
+			<a href="/?logout=yes" title="EXIT" class="exit"><?=GetMessage("AUTH_P_EXIT")?></a>
 		</div>
 	</div>
 <?php // Блок с данными пользователя ?>

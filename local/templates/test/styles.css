@@ -1043,7 +1043,7 @@ ul{margin: 0;padding: 0;list-style: none;}
 .private-office .leave a:first-child{font-size:14px;color: #00aeef;}
 .private-office .leave a:first-child:hover{text-decoration: none;}
 .private-office .leave a.pc{text-decoration: none;line-height: 16px; color: #000;}
-.private-office .leave a.exit{float: right;text-transform: uppercase;text-decoration: none;line-height: 16px;font-weight: bold;}
+.private-office .leave a.exit{float: right; width:35px; text-transform: uppercase;text-decoration: none;line-height: 16px;font-weight: bold;}
 .private-office .gray-grid{background:#fff url("images/bg/gray-grid.png") 0 0 repeat;border: 1px solid #f2f2f3;font-size: 16px;margin: 0 0 5px;}
 .private-office .gray-grid .content a{text-decoration: none;}
 .private-office .gray-grid.register .head{background:#dbf9ff url("images/bg/gray-grid.png") 0 0 repeat;padding: 10px 15px;}
