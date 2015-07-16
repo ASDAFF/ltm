@@ -28,9 +28,9 @@ html, body{
 	font-family: 'Proxima';
 	font-size: 15px;
 }
-.pull-left{float: left; width: 180px;}
-.pull-right{float: right; width: 35px;}
-.pull-overflow::after {content: "";	clear: both; display: table;}
+.pull-left{float: left;}
+.pull-right{float: right;}
+.pull-overflow{overflow: hidden;}
 
 table{width: 100%;border-collapse: collapse;}
 
