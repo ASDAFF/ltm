@@ -31,6 +31,9 @@ html, body{
 .pull-left{float: left;}
 .pull-right{float: right;}
 .pull-overflow{overflow: hidden;}
+.aut-form-company-name {float: left; width: 180px;}
+
+
 
 table{width: 100%;border-collapse: collapse;}
 
