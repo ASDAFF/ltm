@@ -689,22 +689,22 @@ a.chosen{
 /*-----------------------catalodue----------------------*/
 
 #center h2{
-    position: relative;
+    float: left;
+	width: 545px;
     margin-bottom: 5px;
     padding-top: 0;
-    width: 100%;
+
     font-size: 20px;
     color:#00aeef;
     text-transform: uppercase;
-    float: left;
 }
-#center h2 a{
+#center .member-title a{
     color: #808285;
     text-decoration: none;
     font-size: 14px;
-    position: absolute;
-    top:2px;
-    right: -3px;
+	float: right;
+	width: 40px;
+	text-transform: uppercase;
 }
 .catalogue{
     width: 100%;
