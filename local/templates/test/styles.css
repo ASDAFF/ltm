@@ -699,12 +699,13 @@ a.chosen{
     text-transform: uppercase;
 }
 #center .member-title a{
+	float: right;
+	width: 40px;
     color: #808285;
     text-decoration: none;
     font-size: 14px;
-	float: right;
-	width: 40px;
 	text-transform: uppercase;
+	text-align: right;
 }
 .catalogue{
     width: 100%;
