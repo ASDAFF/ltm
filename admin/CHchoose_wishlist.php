@@ -159,11 +159,11 @@ while ($exhibition = $rsExhibitions->Fetch()) {
         foreach ($userInfo as $key => $value) {
             $arFieldsMes["COMPANY"][] = $allGuest[ $key ]["COMPANY"];
         }
-        $arFieldsMes["COMPANY"] = implode(", ", $arFieldsMes["COMPANY"]);
+        $arFieldsMes["COMPANY"] = "<ol><li>".implode("</li><li>", $arFieldsMes["COMPANY"])."</li></ol>";
         echo "<pre>";
         print_r($arFieldsMes);
         echo "</pre>";
-        //CEvent::Send("FREE_FROM_WISHLIST","s1",$arFieldsMes);
+        CEvent::Send("FREE_FROM_WISHLIST","s1",$arFieldsMes);
     }
     foreach ($arResult["MAIL_LIST"][$exhibition['ID']]["GUEST_IN"] as $userId => $userInfo) {
         $arFieldsMes = array(
@@ -174,11 +174,11 @@ while ($exhibition = $rsExhibitions->Fetch()) {
         foreach ($userInfo as $key => $value) {
             $arFieldsMes["COMPANY"][] = $allParticip[ $key ]["COMPANY"];
         }
-        $arFieldsMes["COMPANY"] = implode(", ", $arFieldsMes["COMPANY"]);
+        $arFieldsMes["COMPANY"] = "<ol><li>".implode("</li><li>", $arFieldsMes["COMPANY"])."</li></ol>";
         echo "<pre>";
         print_r($arFieldsMes);
         echo "</pre>";
-        //CEvent::Send("FREE_FROM_WISHLIST","s1",$arFieldsMes);
+        CEvent::Send("FREE_FROM_WISHLIST","s1",$arFieldsMes);
     }
 }
 
