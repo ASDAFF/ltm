@@ -148,4 +148,22 @@ class Wishlists extends DokaWishlist
 
         return $results;
     }
+
+    /* Список пользователей из вишлиста для отправки сообщений */
+    public function getWishListToMail($user_id){
+        $user_id = (!$user_id) ? $this->user_id : (int)$user_id;
+        if ($user_id <= 0)
+            return false;
+
+        global $DB;
+
+        $sSQL = 'SELECT RECEIVER_ID as USER' .
+            ' FROM `' . self::$sTableName . '` wl' .
+            ' WHERE wl.EXHIBITION_ID=' . $DB->ForSql($this->app_id) . ' AND (SENDER_ID=' . $DB->ForSql($user_id) . ')'.
+            " AND REASON IN ('selected', 'timeout')";
+
+        $res = $DB->Query($sSQL, false, 'FILE: '.__FILE__.'<br />LINE: ' . __LINE__);
+
+        return $res;
+    }
 }
