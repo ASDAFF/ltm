@@ -1,14 +1,14 @@
 <?
+echo "<pre>";
+print_r($DOCUMENT_ROOT);
+echo "</pre>";
+die();
 $_SERVER["DOCUMENT_ROOT"] = realpath(dirname(__FILE__)."/..");
 $DOCUMENT_ROOT = $_SERVER["DOCUMENT_ROOT"];
 
 define("NO_KEEP_STATISTIC", true);
 define("NOT_CHECK_PERMISSIONS", true);
 
-echo "<pre>";
-print_r($DOCUMENT_ROOT);
-echo "</pre>";
-die();
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 set_time_limit(0);
 
