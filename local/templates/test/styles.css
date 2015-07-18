@@ -689,6 +689,14 @@ a.chosen{
 /*-----------------------catalodue----------------------*/
 
 #center h2{
+    margin-bottom: 5px;
+    padding-top: 0;
+    font-size: 20px;
+    color:#00aeef;
+    text-transform: uppercase;
+}
+
+#center .member-title h2{
     float: left;
 	width: 545px;
     margin-bottom: 5px;
@@ -698,6 +706,7 @@ a.chosen{
     color:#00aeef;
     text-transform: uppercase;
 }
+
 #center .member-title a{
 	float: right;
 	width: 40px;
