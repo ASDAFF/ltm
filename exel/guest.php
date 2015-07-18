@@ -40,7 +40,7 @@ $isEvening = false; //Гости на вечер
 $isHB = false; //Гости HB
 
 
-$formId = CFormMatrix::getGResultIDByExh($arResult["PARAM_EXHIBITION"]["ID"]); //Id формы
+$formId = 10; //Id формы
 
 //Поля с id результатов
 $resultAllCode = CFormMatrix::getPropertyIDByExh($arResult["PARAM_EXHIBITION"]["ID"]);//Поле с ID формы О КОМПАНИИ

@@ -94,6 +94,12 @@ $guestFieldsIndex = array(
 	"CITY" => $guestQuestCode["CITY"],
 	"HALL" => $guestQuestCode["HALL"],
 	"TABLE" => $guestQuestCode["TABLE"],
+	"F_NAME" => $guestQuestCode["F_NAME"],
+	"L_NAME" => $guestQuestCode["L_NAME"],
+	"F_NAME_COL" => $guestQuestCode["F_NAME_COL"],
+	"L_NAME_COL" => $guestQuestCode["L_NAME_COL"],
+	"MOB_PHONE" => $guestQuestCode["MOB_PHONE"],
+	"PHONE" => $guestQuestCode["PHONE"],
 );
 unset($guestQuestCode);
 
@@ -139,6 +145,9 @@ while ($arUser = $rsUsers->Fetch()) {
 		'id' => $arUser['ID'],
 		'name' => $arUser['WORK_COMPANY'],
 		'repr_name' => trim($arAnswer2[$fio_dates[0][0]][$fio_dates[0][1]]["USER_TEXT"])." ".trim($arAnswer2[$fio_dates[1][0]][$fio_dates[1][1]]["USER_TEXT"]),
+		'col_repr'=> "",
+		'mob'=> "",
+		'phone'=> "",
 		'hall' => "",
 		'table' => "",
 		'city' => ""
@@ -172,6 +181,9 @@ while ($arUser = $rsGUsers->Fetch()) {
 		'id' => $arUser['ID'],
 		'name' => $arUser['WORK_COMPANY'],
 		'repr_name' => $arUser["NAME"]." ".$arUser["LAST_NAME"],
+		'col_repr'=> "",
+		'mob'=> "",
+		'phone'=> "",
 		'hall' => "",
 		'table' => "",
 		'city' => ""
@@ -179,6 +191,19 @@ while ($arUser = $rsGUsers->Fetch()) {
 	foreach($arAnswer2[$guestFields["QUEST_CODE"][ $guestFieldsIndex["CITY"] ]] as $value){
 		$users_list[$arUser['ID']]['city'] = $value["USER_TEXT"];
 	}
+	foreach($arAnswer2[ $guestFields["QUEST_CODE"][ $guestFieldsIndex["F_NAME_COL"] ] ] as $value){
+		$users_list[$arUser['ID']]['col_repr'] = trim($value["USER_TEXT"]);
+	}
+	foreach($arAnswer2[ $guestFields["QUEST_CODE"][ $guestFieldsIndex["L_NAME_COL"] ] ] as $value){
+		$users_list[$arUser['ID']]['col_repr'] .= " ".trim($value["USER_TEXT"]);
+	}
+	foreach($arAnswer2[ $guestFields["QUEST_CODE"][ $guestFieldsIndex["MOB_PHONE"] ] ] as $value){
+		$users_list[$arUser['ID']]['mob'] = trim($value["USER_TEXT"]);
+	}
+	foreach($arAnswer2[ $guestFields["QUEST_CODE"][ $guestFieldsIndex["PHONE"] ] ] as $value){
+		$users_list[$arUser['ID']]['phone'] = trim($value["USER_TEXT"]);
+	}
+
 	if(isset($arParams["IS_HB"]) && $arParams["IS_HB"] == 'Y'){
 		foreach($arAnswer2[$guestFields["QUEST_CODE"][ $guestFieldsIndex["HALL"] ]] as $value){
 			$users_list[$arUser['ID']]['hall'] = $value["MESSAGE"];
@@ -210,6 +235,9 @@ while ($data = $rsCompanies->Fetch()) {
 		'id' => $data['ID'],
 		'name' => $data['WORK_COMPANY'],
 		'rep' => $users_list[$data['ID']]['repr_name'],
+		'col_rep' => $users_list[$data['ID']]['col_repr'],
+		'mob' => $users_list[$data['ID']]['mob'],
+		'phone' => $users_list[$data['ID']]['phone'],
 		'hall' => $users_list[$data['ID']]['hall'],
 		'table' => $users_list[$data['ID']]['table'],
 		'city' => $users_list[$data['ID']]['city'],
