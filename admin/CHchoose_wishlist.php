@@ -1,5 +1,4 @@
-<?php
-echo "TEST";
+<?
 $_SERVER["DOCUMENT_ROOT"] = realpath(dirname(__FILE__)."/..");
 $DOCUMENT_ROOT = $_SERVER["DOCUMENT_ROOT"];
 
@@ -10,10 +9,10 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.ph
 set_time_limit(0);
 
 if(!CModule::IncludeModule("iblock") || !CModule::IncludeModule("form") || !CModule::IncludeModule("doka.meetings"))
-    {
-        $this->AbortResultCache();
-        throw new Exception("Can't load modules iblock form");
-    }
+{
+    $this->AbortResultCache();
+    throw new Exception("Can't load modules iblock form");
+}
 
 use Doka\Meetings\Settings as DS;
 use Doka\Meetings\Requests as DR;
@@ -26,8 +25,8 @@ $arResult = array();
 $fio_dates = array();
 $arResult["EXHIB"] = array();
 $rs = CIBlockElement::GetList(array("SORT"=>"ASC"),
-        array("IBLOCK_ID"=>$arParams["IBLOCK_ID_EXHIB"], "ACTIVE"=>"Y"), false, false,
-        array("ID", "IBLOCK_ID", "NAME", "CODE", "PROPERTY_STATUS", "PROPERTY_STATUS_G_M", "PROPERTY_USER_GROUP_ID", "PROPERTY_C_GUESTS_GROUP", "PROPERTY_APP_ID", "PROPERTY_V_EN", "PROPERTY_APP_HB_ID"));
+    array("IBLOCK_ID"=>$arParams["IBLOCK_ID_EXHIB"], "ACTIVE"=>"Y"), false, false,
+    array("ID", "IBLOCK_ID", "NAME", "CODE", "PROPERTY_STATUS", "PROPERTY_STATUS_G_M", "PROPERTY_USER_GROUP_ID", "PROPERTY_C_GUESTS_GROUP", "PROPERTY_APP_ID", "PROPERTY_V_EN", "PROPERTY_APP_HB_ID"));
 while($ar = $rs->Fetch()) {
     $arResult["EXHIB"][$ar["PROPERTY_APP_ID_VALUE"]] = $ar;
     if($ar["PROPERTY_APP_HB_ID_VALUE"]){
@@ -38,59 +37,61 @@ $arResult["MAIL_LIST"] = array();
 // список выставок из модуля и составление вишлистов
 $rsExhibitions = DS::GetList(array(), array("ACTIVE" => 1)); //добавить "IS_LOCKED" => 0
 while ($exhibition = $rsExhibitions->Fetch()) {
-        $req_obj = new DR($exhibition['ID']);
-        $wishlist_obj = new DWL($exhibition['ID']);
-        $arResult["MAIL_LIST"][$exhibition['ID']] = array();
-        $arResult["MAIL_LIST"][$exhibition['ID']]["PARTICIP"] = array();
-        $arResult["MAIL_LIST"][$exhibition['ID']]["GUEST"] = array();
-        $formId = $exhibition['FORM_ID'];
-        $propertyNameParticipant = $exhibition['FORM_RES_CODE'];//свойство участника
-        $fio_datesPart = array();
-        $fio_datesPart[0][0] = CFormMatrix::getSIDRelBase('SIMPLE_QUESTION_446', $formId);//Имя участника
-        $fio_datesPart[0][1] = CFormMatrix::getAnswerRelBase(84 ,$formId);
-        $fio_datesPart[1][0] = CFormMatrix::getSIDRelBase('SIMPLE_QUESTION_551', $formId);//Фамилия участника
-        $fio_datesPart[1][1] = CFormMatrix::getAnswerRelBase(85 ,$formId);
-        $fio_datesPart[2][0] = CFormMatrix::getSIDRelBase('SIMPLE_QUESTION_859', $formId);//Email участника
-        $fio_datesPart[2][1] = CFormMatrix::getAnswerRelBase(89 ,$formId);
-        $HB_TEG = '';
-        if($exhibition['IS_HB']){
-            $HB_TEG = ' HB session';
-        }
-       
-        //Список свободных участников и гостей
-        $freeParticip = $req_obj->getUsersFreeTimesByGroup($exhibition["MEMBERS_GROUP"]);
-        $freeGuest = $req_obj->getUsersFreeTimesByGroup($exhibition["GUESTS_GROUP"]);
+    $req_obj = new DR($exhibition['ID']);
+    $wishlist_obj = new DWL($exhibition['ID']);
+    $arResult["MAIL_LIST"][$exhibition['ID']] = array();
+    $arResult["MAIL_LIST"][$exhibition['ID']]["PARTICIP"] = array();
+    $arResult["MAIL_LIST"][$exhibition['ID']]["GUEST"] = array();
+    $formId = $exhibition['FORM_ID'];
+    $propertyNameParticipant = $exhibition['FORM_RES_CODE'];//свойство участника
+    $fio_datesPart = array();
+    $fio_datesPart[0][0] = CFormMatrix::getSIDRelBase('SIMPLE_QUESTION_446', $formId);//Имя участника
+    $fio_datesPart[0][1] = CFormMatrix::getAnswerRelBase(84 ,$formId);
+    $fio_datesPart[1][0] = CFormMatrix::getSIDRelBase('SIMPLE_QUESTION_551', $formId);//Фамилия участника
+    $fio_datesPart[1][1] = CFormMatrix::getAnswerRelBase(85 ,$formId);
+    $fio_datesPart[2][0] = CFormMatrix::getSIDRelBase('SIMPLE_QUESTION_859', $formId);//Email участника
+    $fio_datesPart[2][1] = CFormMatrix::getAnswerRelBase(89 ,$formId);
+    $HB_TEG = '';
+    if($exhibition['IS_HB']){
+        $HB_TEG = ' HB session';
+    }
 
-        $allGuest = array();
-        $allParticip = array();
-        foreach($freeParticip as $personID => $personInfo) {
-            $curWish = $wishlist_obj->getWishListToMail($personID);
-            $meetCompany = $req_obj->getAllCompaniesMeet($personID);
-            while($companyWish = $curWish->Fetch()){
-                /* У компании из подходящего вишлиста есть свободный слот */
-                $resultArr = array_intersect($personInfo["TIMES"], $freeGuest[ $companyWish["USER"] ]["TIMES"]);
-                if(isset($freeGuest[ $companyWish["USER"] ]) && !empty($resultArr) && !in_array($companyWish["USER"], $meetCompany)){
-                    $arResult["MAIL_LIST"][$exhibition['ID']]["PARTICIP"][$personID][ $companyWish["USER"] ] = $companyWish["USER"];
-                    $allGuest[ $companyWish["USER"] ] = $companyWish["USER"];
-                    $allParticip[ $personID ] = $personID;
-                }
+    //Список свободных участников и гостей
+    $freeParticip = $req_obj->getUsersFreeTimesByGroup($exhibition["MEMBERS_GROUP"]);
+    $freeGuest = $req_obj->getUsersFreeTimesByGroup($exhibition["GUESTS_GROUP"]);
+
+    $allGuest = array();
+    $allParticip = array();
+    foreach($freeParticip as $personID => $personInfo) {
+        $curWish = $wishlist_obj->getWishListToMail($personID);
+        $meetCompany = $req_obj->getAllCompaniesMeet($personID);
+        while($companyWish = $curWish->Fetch()){
+            /* У компании из подходящего вишлиста есть свободный слот */
+            $resComparison = array_intersect($personInfo["TIMES"], $freeGuest[ $companyWish["USER"] ]["TIMES"]);
+            if(isset($freeGuest[ $companyWish["USER"] ]) && !empty( $resComparison ) && !in_array($companyWish["USER"], $meetCompany)){
+                $arResult["MAIL_LIST"][$exhibition['ID']]["PARTICIP"][$personID][ $companyWish["USER"] ] = $companyWish["USER"];
+                $allGuest[ $companyWish["USER"] ] = $companyWish["USER"];
+                $allParticip[ $personID ] = $personID;
             }
         }
-        //Список свободных гостей
-        /*foreach($freeGuest as $personID => $personInfo) {
-            $curWish = $wishlist_obj->getWishListToMail($personID);
-            $meetCompany = $req_obj->getAllCompaniesMeet($personID);
-            while($companyWish = $curWish->Fetch()){
-                /* У компании из подходящего вишлиста есть свободный слот *//*
-                if(isset($freeGuest[ $companyWish["USER"] ]) && !empty(array_intersect($personInfo["TIMES"], $freeParticip[ $companyWish["USER"] ]["TIMES"])) && !in_array($companyWish["USER"], $meetCompany)){
-                    $arResult["MAIL_LIST"][$exhibition['ID']]["GUEST"][$personID][ $companyWish["USER"] ] = $companyWish["USER"];
-                    $allParticip[ $companyWish["USER"] ] = $companyWish["USER"];
-                    $allGuest[ $personID ] = $personID;
-                }
+    }
+    //Список свободных гостей
+    foreach($freeGuest as $personID => $personInfo) {
+        $curWish = $wishlist_obj->getWishListToMail($personID);
+        $meetCompany = $req_obj->getAllCompaniesMeet($personID);
+        while($companyWish = $curWish->Fetch()){
+            /* У компании из подходящего вишлиста есть свободный слот */
+            $resComparison = array_intersect($personInfo["TIMES"], $freeParticip[ $companyWish["USER"] ]["TIMES"]);
+            if(isset($freeGuest[ $companyWish["USER"] ]) && !empty($resComparison) && !in_array($companyWish["USER"], $meetCompany)){
+                $arResult["MAIL_LIST"][$exhibition['ID']]["GUEST"][$personID][ $companyWish["USER"] ] = $companyWish["USER"];
+                $allParticip[ $companyWish["USER"] ] = $companyWish["USER"];
+                $allGuest[ $personID ] = $personID;
             }
         }
+    }
+
     if(!empty($allParticip) && !empty($allGuest)){
-        /*Получаем информацию о гостях*//*
+        /*Получаем информацию о гостях*/
         $arFilter = array(
             "GROUPS_ID" => $exhibition["GUESTS_GROUP"],
             "ID" => implode(" | ", $allGuest),
@@ -110,7 +111,7 @@ while ($exhibition = $rsExhibitions->Fetch()) {
                 "COMPANY" => $curUser["WORK_COMPANY"],
             );
         }
-        /* Получаем информацию об участниках *//*
+        /* Получаем информацию об участниках */
         $arFilter = array(
             "GROUPS_ID" => $exhibition["MEMBERS_GROUP"],
             "ID" => implode(" | ", $allParticip),
@@ -135,7 +136,7 @@ while ($exhibition = $rsExhibitions->Fetch()) {
         }
 
 
-        /* Получаем данные из форм *//*
+        /* Получаем данные из форм */
         CForm::GetResultAnswerArray(
             $formId,
             $arResult["FORM_RESULT_COMMON"]["QUESTIONS"],
@@ -148,7 +149,7 @@ while ($exhibition = $rsExhibitions->Fetch()) {
             $allParticip[ $linksParticip[$resId]  ]["FIO"] = $reValue[$fio_datesPart[0][0]][0]["USER_TEXT"]." ".$reValue[$fio_datesPart[1][0]][0]["USER_TEXT"];
         }
     }
-    /* ОТСЫЛКА сообщений по выставке *//*
+    /* ОТСЫЛКА сообщений по выставке */
     foreach ($arResult["MAIL_LIST"][$exhibition['ID']]["PARTICIP"] as $userId => $userInfo) {
         $arFieldsMes = array(
             "EXIB" => $arResult["EXHIB"][$exhibition['ID']]["PROPERTY_V_EN_VALUE"].$HB_TEG,
@@ -178,7 +179,7 @@ while ($exhibition = $rsExhibitions->Fetch()) {
         print_r($arFieldsMes);
         echo "</pre>";
         //CEvent::Send("FREE_FROM_WISHLIST","s1",$arFieldsMes);
-    }*/
+    }
 }
 
 
