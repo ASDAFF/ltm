@@ -101,6 +101,10 @@ $guestFieldsIndex = array(
 	"TABLE" => $guestQuestCode["TABLE"],
 	"F_NAME" => $guestQuestCode["F_NAME"],
 	"L_NAME" => $guestQuestCode["L_NAME"],
+	"F_NAME_COL" => $guestQuestCode["F_NAME_COL"],
+	"L_NAME_COL" => $guestQuestCode["L_NAME_COL"],
+	"MOB_PHONE" => $guestQuestCode["MOB_PHONE"],
+	"PHONE" => $guestQuestCode["PHONE"],
 );
 unset($guestQuestCode);
 
@@ -219,7 +223,7 @@ if (isset($_REQUEST['mode']) && $_REQUEST['mode'] == 'pdf') {
 	// Информация о пользователе, для которого генерируем pdf
     $filter = array( 'ID' => $arResult['CURRENT_USER_ID']);
     $select = array(
-        'SELECT' => array($req_obj->getOption('REPR_PROP_CODE')),
+        'SELECT' => array($req_obj->getOption('REPR_PROP_CODE'), $propertyNameParticipant),
         'FIELDS' => array('WORK_COMPANY', 'ID')
     );
     $rsUser = CUser::GetList(($by="id"), ($order="desc"), $filter, $select);
@@ -232,6 +236,31 @@ if (isset($_REQUEST['mode']) && $_REQUEST['mode'] == 'pdf') {
         	'COMPANY' => $arUser['WORK_COMPANY'],
         	'CITY' => $arResult['CITY'],
         );
+		if($arParams['USER_TYPE'] == "GUEST"){
+			$arAnswer = CFormResult::GetDataByID(
+				$arUser[$propertyNameParticipant],
+				array(),
+				$arResultTmp,
+				$arAnswer2);
+
+			$arResult['USER']['COL_REP'] = "";
+			foreach($arAnswer2[ $guestFields["QUEST_CODE"][ $guestFieldsIndex["F_NAME_COL"] ] ] as $value){
+				$arResult['USER']['COL_REP'] = trim($value["USER_TEXT"]);
+			}
+			foreach($arAnswer2[ $guestFields["QUEST_CODE"][ $guestFieldsIndex["L_NAME_COL"] ] ] as $value){
+				$arResult['USER']['COL_REP'] .= " ".trim($value["USER_TEXT"]);
+			}
+			$arResult['USER']['COL_REP'] = trim($arResult['USER']['COL_REP']);
+			$arResult['USER']['MOB'] = "";
+			foreach($arAnswer2[ $guestFields["QUEST_CODE"][ $guestFieldsIndex["MOB_PHONE"] ] ] as $value){
+				$arResult['USER']['MOB'] = trim($value["USER_TEXT"]);
+			}
+			$arResult['USER']['PHONE'] = "";
+			foreach($arAnswer2[ $guestFields["QUEST_CODE"][ $guestFieldsIndex["PHONE"] ] ] as $value){
+				$arResult['USER']['PHONE'] = trim($value["USER_TEXT"]);
+			}
+		}
+
 		DokaGeneratePdf($arResult);
     }
 }
