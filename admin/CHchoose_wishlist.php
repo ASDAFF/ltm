@@ -16,7 +16,6 @@ if(!CModule::IncludeModule("iblock") || !CModule::IncludeModule("form") || !CMod
 
 use Doka\Meetings\Settings as DS;
 use Doka\Meetings\Requests as DR;
-use Doka\Meetings\Timeslots as DT;
 use Doka\Meetings\Wishlists as DWL;
 
 $arParams["IBLOCK_ID_EXHIB"] = 15;
@@ -88,6 +87,7 @@ while ($exhibition = $rsExhibitions->Fetch()) {
                 }
             }
         }
+
     if(!empty($allParticip) && !empty($allGuest)){
         /*Получаем информацию о гостях*/
         $arFilter = array(
