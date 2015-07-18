@@ -16,29 +16,39 @@ function DokaGeneratePdf($arResult) {
 	$pdf->setXY(30,44);
 	$pdf->multiCell(210, 5, $arResult["name"].", ". $arResult['city'], 0, L);
 	$pdf->setXY(30,52);
-	$pdf->multiCell(210, 5, $arResult["rep"], 0, L);
+	if($arResult["USER"]['COL_REP'] == ""){
+		$pdf->multiCell(210, 5, $arResult["rep"], 0, L);
+	}
+	else{
+		$pdf->multiCell(210, 5, $arResult["rep"].", ".$arResult["col_rep"], 0, L);
+	}
 	$pdf->setXY(30,60);
+	$pdf->multiCell(210, 5, "Мобильный телефон: ".$arResult["mob"], 0, L);
+	$pdf->setXY(30,68);
+	$pdf->multiCell(210, 5, "Телефон: ".$arResult["phone"], 0, L);
+	$pdf->setXY(30,80);
+
 	if($arResult["exhib"]["IS_HB"] && $arResult["hall"] != "None"){
 		$pdf->multiCell(210, 5, "Hall, Table: ".$arResult["hall"].", ".$arResult["table"], 0, L);
 
-		$pdf->setXY(0,70);
+		$pdf->setXY(0,90);
 		$pdf->SetFont('freeserif','',13);
 		$pdf->multiCell(210, 5, "Ваше расписание", 0, C);
-		$pdf->setXY(20,80);
+		$pdf->setXY(20,100);
 	}
 	elseif($arResult["exhib"]["IS_HB"]){
 		$pdf->multiCell(210, 5, "Hall, Table: ", 0, L);
 		
-		$pdf->setXY(0,70);
+		$pdf->setXY(0,90);
 		$pdf->SetFont('freeserif','',13);
 		$pdf->multiCell(210, 5, "Ваше расписание", 0, C);
-		$pdf->setXY(20,80);
+		$pdf->setXY(20,100);
 	}
 	else{
 		$pdf->setX(0);
 		$pdf->SetFont('freeserif','',13);
 		$pdf->multiCell(210, 5, "Ваше расписание", 0, C);
-		$pdf->setXY(20,70);
+		$pdf->setXY(20,90);
 	}
 
 	$pdf->SetFont('freeserif','',10);

@@ -1,5 +1,5 @@
-<? 
-$_SERVER["DOCUMENT_ROOT"] = "/home/u24601/luxurytravelmart.ru/www";
+<?
+$_SERVER["DOCUMENT_ROOT"] = realpath(dirname(__FILE__)."/..");
 $DOCUMENT_ROOT = $_SERVER["DOCUMENT_ROOT"];
 
 define("NO_KEEP_STATISTIC", true);
