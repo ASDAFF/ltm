@@ -1,10 +1,7 @@
 <?php
-echo "<pre>";
-print_r("TEST");
-echo "</pre>";
-die();
-$_SERVER["DOCUMENT_ROOT"] = realpath(dirname(__FILE__)."/..");
-$DOCUMENT_ROOT = $_SERVER["DOCUMENT_ROOT"];
+
+/*$_SERVER["DOCUMENT_ROOT"] = realpath(dirname(__FILE__)."/..");
+$DOCUMENT_ROOT = $_SERVER["DOCUMENT_ROOT"];*/
 
 define("NO_KEEP_STATISTIC", true);
 define("NOT_CHECK_PERMISSIONS", true);
