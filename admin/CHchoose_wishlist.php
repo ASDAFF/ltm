@@ -1,6 +1,6 @@
-<?
+<?php
 echo "<pre>";
-print_r($DOCUMENT_ROOT);
+print_r("TEST");
 echo "</pre>";
 die();
 $_SERVER["DOCUMENT_ROOT"] = realpath(dirname(__FILE__)."/..");
