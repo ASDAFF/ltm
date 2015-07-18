@@ -8,6 +8,9 @@ define("NOT_CHECK_PERMISSIONS", true);
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 set_time_limit(0);
 
+echo "<pre>";
+print_r($DOCUMENT_ROOT);
+echo "</pre>";
 if(!CModule::IncludeModule("iblock") || !CModule::IncludeModule("form") || !CModule::IncludeModule("doka.meetings"))
     {
         $this->AbortResultCache();
