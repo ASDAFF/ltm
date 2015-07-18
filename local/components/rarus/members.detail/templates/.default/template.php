@@ -1,6 +1,10 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 <div class="catalogue">
-    <h2><?=$arResult["NAME"]?> <a href="/members/" title=""><?=GetMessage("BACK_LINK")?></a></h2>
+	<div class="member-title clearfix">
+		<h2><?=$arResult["NAME"]?></h2>
+		<a href="/members/"><?=GetMessage("BACK_LINK")?></a>
+	</div>
+    
     <div class="photo-preview">
     <?if(($count = count($arResult["PHOTOS"])) >= 6):?>
         <?$arSizes = array(array(221,250), array(130,110), array(130,110), array(130,110), array(231,133), array(171,133))?>

@@ -48,14 +48,14 @@ p{margin: 0 0 10px;}
     display:table;
     clear:both;
 	}
-.clear {/* Для совместимости, а вообще, надо бы на clearfix заменить везде*/
+.clear {/* пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ clearfix пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ*/
     clear: both !important;
 }
 .layoutCenterWrapper{
     margin: 0 auto;
     width: 940px;
 	}
-/* Скроллер */
+/* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */
 #scroller{
     position: fixed; 
     bottom: 220px;
@@ -120,7 +120,7 @@ header{
 #lang .act{
 	font-weight: bold;
 }
-/* Верхнее меню */
+/* пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ */
 nav.menu-top{
 	margin: 0 auto;
 	border-bottom: 1px solid #000000;
@@ -154,7 +154,7 @@ nav.menu-top:after {
 	height:0;
 	overflow:hidden;
 }
-/* Контент */
+/* пїЅпїЅпїЅпїЅпїЅпїЅпїЅ */
 #content{
 	margin-top: 33px;
 	position: relative;
@@ -165,7 +165,7 @@ h1{
 	font-family: 'Helios_N';
 	margin: 0 0 20px;
 	margin-right: -8px;
-	max-height: 40px; /* Это чтобы по ширине выравнивалось*/
+	max-height: 40px; /* пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/
 	text-align: justify;
 	text-align-last:justify;
 	letter-spacing: 5.98px;
@@ -185,7 +185,7 @@ a{
 	color:#66c4f3;
 }
 
-/* В шаблоне этого нет, возможно внутри где-то*/
+/* пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ*/
 h2{
 	color: #00AEEF;
 	font-size: 20px;
@@ -246,14 +246,14 @@ h3{
 font-weight: normal;
 }
 
-/* Правая колонка, везде кроме страниц с проверкой встреч */
+/* пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ */
 #right{
 	float: right;
 	margin-bottom: 65px;
 	margin-left: 20px;
 	width: 280px;
 }
-/* Форма авторизации */
+/* пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */
 #form{
 	background: url("images/form.gif") repeat;
 	border: 1px solid #E7F7FF;
@@ -378,7 +378,7 @@ figure#ltm a.ltm2{
 	width: 118px;
 	height: 40px;
 }
-/* Подвал */
+/* пїЅпїЅпїЅпїЅпїЅпїЅ */
 footer{
 	background: url("images/footer.gif") #9b9b9b repeat;
 	border-top: 1px solid #c7c7c7;
@@ -463,4 +463,9 @@ nav#bottom a:hover{
 }
 #design a:hover, #develop a:hover{
 	text-decoration: none;
+}
+.member-title{
+	display: block;
+	position: relative;
+	clear: both;
 }
