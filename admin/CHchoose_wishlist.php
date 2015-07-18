@@ -184,4 +184,3 @@ while ($exhibition = $rsExhibitions->Fetch()) {
 
 
 ?>
-
