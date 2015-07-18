@@ -8,7 +8,7 @@ define("NOT_CHECK_PERMISSIONS", true);
 echo "<pre>";
 print_r($DOCUMENT_ROOT);
 echo "</pre>";
-
+die();
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 set_time_limit(0);
 
