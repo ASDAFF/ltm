@@ -37,7 +37,7 @@ while($ar = $rs->Fetch()) {
 $arResult["MAIL_LIST"] = array();
 // список выставок из модуля и составление вишлистов
 $rsExhibitions = DS::GetList(array(), array("ACTIVE" => 1)); //добавить "IS_LOCKED" => 0
-/*while ($exhibition = $rsExhibitions->Fetch()) {
+while ($exhibition = $rsExhibitions->Fetch()) {
         $req_obj = new DR($exhibition['ID']);
         $wishlist_obj = new DWL($exhibition['ID']);
         $arResult["MAIL_LIST"][$exhibition['ID']] = array();
@@ -61,7 +61,7 @@ $rsExhibitions = DS::GetList(array(), array("ACTIVE" => 1)); //добавить 
         $freeParticip = $req_obj->getUsersFreeTimesByGroup($exhibition["MEMBERS_GROUP"]);
         $freeGuest = $req_obj->getUsersFreeTimesByGroup($exhibition["GUESTS_GROUP"]);
 
-        $allGuest = array();
+        /*$allGuest = array();
         $allParticip = array();
         foreach($freeParticip as $personID => $personInfo) {
             $curWish = $wishlist_obj->getWishListToMail($personID);
@@ -177,9 +177,9 @@ $rsExhibitions = DS::GetList(array(), array("ACTIVE" => 1)); //добавить 
         print_r($arFieldsMes);
         echo "</pre>";
         //CEvent::Send("FREE_FROM_WISHLIST","s1",$arFieldsMes);
-    }
+    }*/
 }
 
-*/
+
 ?>
 
