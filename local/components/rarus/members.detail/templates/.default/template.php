@@ -11,8 +11,8 @@
         <?for($i=0; $i < 6; $i++):?>
             <?$big = CFile::ResizeImageGet($arResult["PHOTOS"][$i]["DETAIL_PICTURE"], array('width'=>900, 'height'=>700), BX_RESIZE_IMAGE_PROPORTIONAL, true);?>
             <?$preview = CFile::ResizeImageGet($arResult["PHOTOS"][$i]["PREVIEW_PICTURE"], array('width'=>$arSizes[$i][0]*2, 'height'=>$arSizes[$i][1]*2), BX_RESIZE_IMAGE_EXACT, true);?>
-            <a href="<?=$big["src"]?>" title="<?=$arResult["PHOTOS"][$i]["NAME"]?>" rel="fancybox-thumb">
-            <img src="<?=$preview["src"]?>" width="<?=$arSizes[$i][0]?>" height="<?=$arSizes[$i][1]?>" alt="<?=$arResult["PHOTOS"][$i]["NAME"]?>"/>
+            <a href="<?=$big["src"]?>" rel="fancybox-thumb">
+            <img src="<?=$preview["src"]?>" width="<?=$arSizes[$i][0]?>" height="<?=$arSizes[$i][1]?>"/>
             </a>
         <?endfor?>
         <?for($i=6; $i < $count; $i++):?>
