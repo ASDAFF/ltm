@@ -17,7 +17,7 @@ jQuery(document).ready(function() {
 		"width": 480,
 		"padding": 0,
 		"margin": 0,
-		"scrolling": "no",
+		"scrolling": "auto",
 		"type": 'ajax'
 	});
 });
