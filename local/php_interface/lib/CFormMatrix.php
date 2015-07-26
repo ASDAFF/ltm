@@ -1058,8 +1058,8 @@ class CFormMatrix
 			"19" => "USER_TEXT",
 			"20" => "USER_TEXT",
 			"21" => "USER_TEXT",
-			"22" => "USER_TEXT",
-			"23" => "ANSWER_TEXT",
+			"22" => "ANSWER_TEXT",
+			"23" => "USER_TEXT",
 			"24" => "USER_TEXT",
 			"25" => "ANSWER_TEXT",
 			"26" => "USER_TEXT"
