@@ -298,7 +298,7 @@ if (CModule::IncludeModule("form"))
 					            $arTmpUsFields["ADMIN_NOTES"] = $_REQUEST["form_password_236"];
 					            $arTmpUsFields["PASSWORD"] = $_REQUEST["form_password_236"];
 					            $arTmpUsFields["CONFIRM_PASSWORD"] = $_REQUEST["form_password_237"];
-					            $arTmpUsFields["UF_PAS"] = base64_encode(str_code($_REQUEST["form_password_236"], "luxoran"));
+					            $arTmpUsFields["UF_PAS"] = makePassCode($_REQUEST["form_password_236"]);
 					        }
 					        else
 					        {

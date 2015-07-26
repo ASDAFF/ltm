@@ -75,35 +75,13 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 		$everAr = '';
 	}
 
-	if($pas != ''){
-		function strcode($str, $passw=""){
-			$salt = "Dn8*#2n!9j";
-			$len = strlen($str);
-			$gamma = '';
-			$n = $len>100 ? 16 : 4;
-			while( strlen($gamma)<$len ){
-				$gamma .= substr(pack('H*', sha1($passw.$gamma.$salt)), 0, $n);
-			}
-			return $str^$gamma;
-		}
-		$pass = base64_encode(strcode($pas, 'luxoran'));
-	}else{
+	if($pas == ''){
 		//Пароль рассчитан на 10! комбинаций / разных гостей
 		$pasAr = array('d', 'p', '!', 'l', '9', '#', 'm', 'A', 'r', '2');
 		shuffle($pasAr);
 		$pas = implode("", $pasAr);
-		function strcode($str, $passw=""){
-			$salt = "Dn8*#2n!9j";
-			$len = strlen($str);
-			$gamma = '';
-			$n = $len>100 ? 16 : 4;
-			while( strlen($gamma)<$len ){
-				$gamma .= substr(pack('H*', sha1($passw.$gamma.$salt)), 0, $n);
-			}
-			return $str^$gamma;
-		}
-		$pass = base64_encode(strcode($pas, 'luxoran'));
 	}
+	$pass = makePassCode($pas);
 
 	$arValues = array (
 		"form_text_204"                         => $name_c,

@@ -44,7 +44,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 	                "ADMIN_NOTES"      => $pass,
 	                "PASSWORD"       => $pass,
 	                "CONFIRM_PASSWORD" => $pass,
-	                "UF_PAS" => base64_encode(str_code($pass, "luxoran"))
+	                "UF_PAS" => makePassCode($pass),
 	            );
 	            $user->Update($arParams["USER"], $fields);
 	            $strError .= $user->LAST_ERROR;
@@ -76,7 +76,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 	    	$arResult["WORK_COMPANY"] = $arUser["WORK_COMPANY"];
 	    	if(strlen($arUser["UF_PAS"]) > 0)
 	    	{
-	    	    $arResult["PASSWORD"] = str_code(base64_decode($arUser["UF_PAS"]), "luxoran");
+	    	    $arResult["PASSWORD"] = makePassDeCode($arUser["UF_PAS"]);
 	    	}
 	    }
 	    else

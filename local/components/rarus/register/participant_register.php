@@ -40,7 +40,7 @@ if(strlen($password) <= 0) //если пароль не задан, генери
 }
 
 //шифруем
-$passwordCoded = base64_encode(strcode($password, 'luxoran'));
+$passwordCoded = makePassCode($password);
 $login = $data["LOGIN"];
 
 //получаем лототип
