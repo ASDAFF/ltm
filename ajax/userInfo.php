@@ -69,7 +69,7 @@ if(isset($_REQUEST["res"]) && $_REQUEST["res"] != "" && $formRes != $_REQUEST["r
 
     }
 }
-$arResult["DECS"] = str_replace("/n", "<br>", $arResult["DECS"]);
+$arResult["DECS"] = str_replace("\n", "<br>", $arResult["DECS"]);
 ?>
 <div class="shedule-info clearfix">
     <p class="shedule-info__title">
