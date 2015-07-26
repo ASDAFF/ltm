@@ -16,7 +16,8 @@
 		<tr <?if($item['status'] == 'process' && !$item['sent_by_you']):?>class="unconfirmed"<?endif;?>>
 			<td><?=$item['name']?></td>
 			<?if (isset($item['company_name'])):?>
-				<td><?=$item['company_name']?></td>
+				<td><a href="/ajax/userInfo.php?id=<?=$item['company_id']?>" class="user-info-wind fancybox.ajax"
+					   target="_blank"><?=$item['company_name']?></a></td>
 				<td><?=$item['company_rep']?></td>
 			<?else:?>
 				<td colspan="2">
