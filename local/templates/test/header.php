@@ -182,7 +182,7 @@
 			    	    //проверка на доступ пользователя к кабинету участника
 
 			    	    CModule::IncludeModule("iblock");
-			    	    $rsExhib = CIBlockElement::GetList(array(), array("IBLOCK_ID" => "15", "CODE" => $exhibCode, "ACTIVE" => "Y"), false, false, array("PROPERTY_C_GUESTS_GROUP"));
+			    	    $rsExhib = CIBlockElement::GetList(array(), array("IBLOCK_ID" => "15", "CODE" => $exhibCode, "ACTIVE" => "Y"), false, false, array("PROPERTY_C_GUESTS_GROUP", "PROPERTY_APP_HB_ID"));
 			    	    if($arExhib = $rsExhib->Fetch())
 			    	    {
 
@@ -191,7 +191,7 @@
 			    	        $rsUser = CUser::GetByID($userId);
 			    	        $arUser = $rsUser->Fetch();
 			    	        $classHB = '';
-			    	        if($arUser[UF_HB] && $exhibCode == 'moscow-russia-march-12-2015'){
+			    	        if($arUser[UF_HB] && $arExhib["PROPERTY_APP_HB_ID_VALUE"] != ""){
 			    	        	$menuType = 'hb.bottom';
 			    	        	$classHB = ' hb';
 			    	        }
