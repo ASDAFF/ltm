@@ -1,5 +1,5 @@
 <?php
-function str_code($str, $passw=""){
+function passCode($str, $passw=""){
     $salt = "Dn8*#2n!9j";
     $len = strlen($str);
     $gamma = '';
@@ -9,7 +9,12 @@ function str_code($str, $passw=""){
     }
     return $str^$gamma;
 }
-
+function makePassCode($passw=""){
+    return base64_encode(passCode($passw, 'luxoran'));
+}
+function makePassDeCode($passw=""){
+    return passCode(base64_decode($passw), "luxoran");
+}
 
 function pre($arr, $name)
 {

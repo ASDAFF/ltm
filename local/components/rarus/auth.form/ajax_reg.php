@@ -12,8 +12,8 @@ if(!check_bitrix_sessid("SID"))
 	die();
 }
 
-$exhibID = str_code(base64_decode($_REQUEST["exhibID"]), "luxoran");
-$userID = str_code(base64_decode($_REQUEST["userID"]), "luxoran");
+$exhibID = makePassDeCode($_REQUEST["exhibID"]);
+$userID = makePassDeCode($_REQUEST["userID"]);
 
 //получение id Группы неподтвержденных пользователей на данную выставку
 
