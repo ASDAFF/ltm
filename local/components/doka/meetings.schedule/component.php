@@ -191,6 +191,7 @@ foreach ($timeslots as $timeslot_id => $item) {
 			'company_name' => $meet['company_name'],
 			'company_rep' => $meet['company_rep'],
 			'company_id' => $meet['company_id'],
+			'form_res' => $meet['form_res'],
 			'hall' => $meet['hall'],
 			'table' => $meet['table'],
 		);

@@ -1,5 +1,7 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();?>
-<? //print_r($arResult);?>
+<div class="modal-window ">
+
+</div>
 <?
 switch ($arResult['USER_TYPE']) {
 	case 'ADMIN':
@@ -9,5 +11,4 @@ switch ($arResult['USER_TYPE']) {
 	case 'GUEST':
 		include_once(dirname(__FILE__) . '/guest.php');
 }
-//var_dump($arResult);
 ?>
