@@ -24,10 +24,10 @@ $arResult["COUNTRY"] = "";
 $arResult["CITY"] = "";
 foreach($arAnswer2 as $answer){
     $curArr = current($answer);
-    if($curArr["TITLE"] == "Company or hotel name"){
+    if($curArr["TITLE"] == "Company or hotel name" || $curArr["TITLE"] == "Название компании"){
         $arResult["NAME"] = $curArr["USER_TEXT"];
     }
-    if($curArr["TITLE"] == "City"){
+    if($curArr["TITLE"] == "City" || $curArr["TITLE"] == "Город"){
         $arResult["CITY"] = $curArr["USER_TEXT"];
     }
     if($curArr["TITLE"] == "Country"){
@@ -36,27 +36,38 @@ foreach($arAnswer2 as $answer){
     if($curArr["TITLE"] == "http://"){
         $arResult["SITE"] = "http://".$curArr["USER_TEXT"];
     }
-    if($curArr["TITLE"] == "Company description"){
+    if($curArr["TITLE"] == "Company description" || $curArr["TITLE"] == "Введите краткое описание"){
         $arResult["DECS"] = $curArr["USER_TEXT"];
     }
-}
-$arResultTmp = $arAnswer2 = array();
-$arAnswer = CFormResult::GetDataByID(
-    $_REQUEST["res"],
-    array(),  // вопрос "Какие области знаний вас интересуют?"
-    $arResultTmp,
-    $arAnswer2);
-
-$arResult["REP"] = "";
-foreach($arAnswer2 as $answer){
-    $curArr = current($answer);
-    if($curArr["TITLE"] == "Participant first name"){
+    if($curArr["TITLE"] == "Страна"){
+        $arResult["COUNTRY"] = $curArr["MESSAGE"];
+    }
+    if($curArr["TITLE"] == "Имя"){
         $arResult["REP"] = $curArr["USER_TEXT"];
     }
-    if($curArr["TITLE"] == "Participant last name"){
+    if($curArr["TITLE"] == "Фамилия"){
         $arResult["REP"] .= " ".$curArr["USER_TEXT"];
     }
+}
 
+if(isset($_REQUEST["res"]) && $_REQUEST["res"] != "" && $formRes != $_REQUEST["res"]){
+    $arResultTmp = $arAnswer2 = array();
+    $arAnswer = CFormResult::GetDataByID(
+        $_REQUEST["res"],
+        array(),  // вопрос "Какие области знаний вас интересуют?"
+        $arResultTmp,
+        $arAnswer2);
+    $arResult["REP"] = "";
+    foreach($arAnswer2 as $answer){
+        $curArr = current($answer);
+        if($curArr["TITLE"] == "Participant first name"){
+            $arResult["REP"] = $curArr["USER_TEXT"];
+        }
+        if($curArr["TITLE"] == "Participant last name"){
+            $arResult["REP"] .= " ".$curArr["USER_TEXT"];
+        }
+
+    }
 }
 ?>
 <div class="shedule-info clearfix">
