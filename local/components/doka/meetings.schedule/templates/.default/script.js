@@ -11,3 +11,16 @@ function newWind(recHref, widthW, heightW){
 	window.open(recHref,'particip_wind', 'scrollbars=yes,resizable=yes,width='+widthW+', height='+heightW+', left='+(screen.availWidth/2-250)+', top='+(screen.availHeight/2-200)+'');
 	return false;
 }
+jQuery(document).ready(function() {
+	jQuery("a.user-info-wind").fancybox({
+		"closeBtn" : false,
+		"width": 480,
+		"padding": 0,
+		"margin": 0,
+		"scrolling": "no",
+		"type": 'ajax'
+	});
+});
+$(document).on('click','.shedule-info__close', function(){
+	$.fancybox.close();
+});

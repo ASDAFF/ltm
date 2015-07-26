@@ -1281,3 +1281,25 @@ ul{margin: 0;padding: 0;list-style: none;}
 .creating-page .company-info .button-dark{padding-right: 10px;padding-left: 10px;}
 .creating-page .city-link{margin-bottom: 30px;}
 .ltm-btn input{display: none;}
+
+.user-info-wind{
+    text-decoration: none;
+}
+.user-info-wind:hover{
+    color: #00aeef;
+    text-decoration: underline;
+}
+.shedule-info{
+    margin: 15px;
+    width: 450px;
+}
+.shedule-info__title{
+    color: #000;
+    font-weight: bold;
+}
+.shedule-info__close{
+    text-align: center;
+    color: #00aeef;
+    text-decoration: underline;
+    cursor: pointer;
+}

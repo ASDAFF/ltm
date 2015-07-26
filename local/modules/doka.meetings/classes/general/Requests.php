@@ -660,6 +660,7 @@ class Requests extends DokaRequest
                         'status' => $data['STATUS'],
                         'company_id' => $data['repr_id'],
                         'company_rep' => $data['repr_fio'],
+                        'form_res' => $data['repr_fio'],
                         'company_name' => $data['WORK_COMPANY'],
                         'modified_by' => $data['MODIFIED_BY'],
                     )
@@ -728,6 +729,7 @@ class Requests extends DokaRequest
                             'request_id' => $data['ID'],
                             'status' => $data['STATUS'],
                             'company_id' => $data['repr_id'],
+                            'form_res' => $data['repr_fio'],
                             'company_rep' => trim($name)." ".trim($suname),
                             'hall' => trim($hall),
                             'table' => trim($table),
@@ -744,6 +746,7 @@ class Requests extends DokaRequest
                             'request_id' => $data['ID'],
                             'status' => $data['STATUS'],
                             'company_id' => $data['repr_id'],
+                            'form_res' => $data['repr_fio'],
                             'company_rep' => trim($arAnswer2[$fio[0][0]][$fio[0][1]]["USER_TEXT"])." ".trim($arAnswer2[$fio[1][0]][$fio[1][1]]["USER_TEXT"]),
                             'hall' => trim($hall),
                             'table' => trim($arAnswer2[$fio[2][0]][$fio[2][1]]["USER_TEXT"]),
