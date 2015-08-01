@@ -1,33 +1,34 @@
-Алгоритм работы с тестовым и рабочим сайтами и ветками:
+<h1>Алгоритм работы с тестовым и рабочим сайтами и ветками:</h1>
 
-На локальном сервере
-git checkout master
-git pull origin master
-git checkout -b {имя новой ветки} – все новые ветки создаем из master
-вносим изменения в ветке
-git add .
-git commit -m "коммент к изменению в ветке"
-git checkout dev
-git pull origin dev
-git merge {имя новой ветки}
-git push origin dev
+<p>На локальном сервере
+	git checkout master <br>
+	git pull origin master <br>
+	git checkout -b {имя новой ветки} – все новые ветки создаем из master <br>
+	вносим изменения в ветке <br>
+	git add . <br>
+	git commit -m "коммент к изменению в ветке" <br>
+	git checkout dev <br>
+	git pull origin dev <br>
+	git merge {имя новой ветки} <br>
+	git push origin dev
+</p>
 
-На удаленном сервере:
-cd /home/bitrix/ext_www/dev.luxurytravelmart.ru/ - переходим на тестовый сайт
-git checkout dev (по идее мы уже итак должны быть в ветке dev в данной папке, но на всякий случай)
-git pull origin dev
-После этого проводятся тесты на dev.luxurytravelmart.ru. Если все ок, тогда:
+<p>На удаленном сервере:
+	cd /home/bitrix/ext_www/dev.luxurytravelmart.ru/ - переходим на тестовый сайт <br>
+	git checkout dev (по идее мы уже итак должны быть в ветке dev в данной папке, но на всякий случай) <br>
+	git pull origin dev <br>
+	После этого проводятся тесты на dev.luxurytravelmart.ru. Если все ок, тогда:</p>
 
-На локальном сервере:
-git checkout master
-git pull origin master
-git merge {имя новой ветки}
-git push origin master
+<p>На локальном сервере: <br>
+	git checkout master <br>
+	git pull origin master <br>
+	git merge {имя новой ветки} <br>
+	git push origin master</p>
 
-На удаленном сервере:
-cd /home/bitrix/www/
-git checkout master - опять же, мы на рабочем сайте ВСЕГДА должны быть на ветке master
-git pull origin master
+<p>На удаленном сервере: <br>
+	cd /home/bitrix/www/ <br>
+	git checkout master - опять же, мы на рабочем сайте ВСЕГДА должны быть на ветке master <br>
+	git pull origin master</p>
 
-С уважением,
-Дмитрий Каплунов.
+<p>С уважением, <br>
+	Дмитрий Каплунов.</p>
