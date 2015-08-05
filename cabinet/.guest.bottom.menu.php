@@ -14,18 +14,18 @@ if($exhibCode)
             array(),
             array()
         ),
-        array(
+        /*array(
             "13 марта",
             "/cabinet/" . $exhibCode . "/morning/",
             array(),
             array()
-        ),
-        /*array(
+        ),*/
+        array(
             "Утренняя сессия",
             "/cabinet/" . $exhibCode . "/morning/",
             array(),
             array()
-        ),*/
+        ),
         array(
             "Мои сообщения",
             "/cabinet/" . $exhibCode . "/messages/",

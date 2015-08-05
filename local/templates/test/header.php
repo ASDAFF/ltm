@@ -124,9 +124,6 @@
 							else{
 								$menuType = 'participant.bottom';
 							}
-	echo "<pre>";
-	print_r($menuType);
-	echo "</pre>";
 			            	if(in_array($exhibGoup, $arUserGroups) || $USER->IsAdmin())//если в группе подтвержденных
 			            	{
 
@@ -200,13 +197,14 @@
 			    	        $rsUser = CUser::GetByID($userId);
 			    	        $arUser = $rsUser->Fetch();
 			    	        $classHB = '';
-			    	        if($arUser[UF_HB] && $exhibCode == 'moscow-russia-march-12-2015'){
+							$menuType = 'guest.bottom';
+			    	        /*if($arUser[UF_HB] && $exhibCode == 'moscow-russia-march-12-2015'){
 			    	        	$menuType = 'hb.bottom';
 			    	        	$classHB = ' hb';
 			    	        }
 			    	        else{
 			    	        	$menuType = 'guest.bottom';
-			    	        }
+			    	        }*/
 
 			    	        if(in_array($exhibGoup, $arUserGroups) || $USER->IsAdmin())//если в группе подтвержденных
 			    	        {
