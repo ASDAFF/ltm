@@ -112,12 +112,21 @@
 			            //проверка на доступ пользователя к кабинету участника
 
 			            CModule::IncludeModule("iblock");
-			            $rsExhib = CIBlockElement::GetList(array(), array("IBLOCK_ID" => "15", "CODE" => $exhibCode, "ACTIVE" => "Y"), false, false, array("PROPERTY_USER_GROUP_ID"));
+			            $rsExhib = CIBlockElement::GetList(array(), array("IBLOCK_ID" => "15", "CODE" => $exhibCode, "ACTIVE" => "Y"), false, false, array("PROPERTY_USER_GROUP_ID", "PROPERTY_APP_HB_ID"));
 			            if($arExhib = $rsExhib->Fetch())
 			            {
 
 			            	$exhibGoup = $arExhib["PROPERTY_USER_GROUP_ID_VALUE"];
 
+							if($arExhib["PROPERTY_APP_HB_ID_VALUE"] != ""){
+								$menuType = 'hb_participant.bottom';
+							}
+							else{
+								$menuType = 'participant.bottom';
+							}
+	echo "<pre>";
+	print_r($menuType);
+	echo "</pre>";
 			            	if(in_array($exhibGoup, $arUserGroups) || $USER->IsAdmin())//если в группе подтвержденных
 			            	{
 
@@ -153,7 +162,7 @@
 	                            <div  class="exhibition-session">
 	    			    		<?$APPLICATION->IncludeComponent("bitrix:menu", "participant_bottom",
 	    			    		    Array(
-	    			    		        "ROOT_MENU_TYPE" => "participant.bottom",	// Тип меню для первого уровня
+	    			    		        "ROOT_MENU_TYPE" => $menuType,	// Тип меню для первого уровня
 	    			    		        "MAX_LEVEL" => "2",	// Уровень вложенности меню
 	    			    		        "CHILD_MENU_TYPE" => "",	// Тип меню для остальных уровней
 	    			    		        "USE_EXT" => "Y",	// Подключать файлы с именами вида .тип_меню.menu_ext.php
@@ -182,7 +191,7 @@
 			    	    //проверка на доступ пользователя к кабинету участника
 
 			    	    CModule::IncludeModule("iblock");
-			    	    $rsExhib = CIBlockElement::GetList(array(), array("IBLOCK_ID" => "15", "CODE" => $exhibCode, "ACTIVE" => "Y"), false, false, array("PROPERTY_C_GUESTS_GROUP"));
+			    	    $rsExhib = CIBlockElement::GetList(array(), array("IBLOCK_ID" => "15", "CODE" => $exhibCode, "ACTIVE" => "Y"), false, false, array("PROPERTY_C_GUESTS_GROUP", "PROPERTY_APP_HB_ID"));
 			    	    if($arExhib = $rsExhib->Fetch())
 			    	    {
 
