@@ -2,17 +2,7 @@
 $pas = strip_tags($_REQUEST['pas']);
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include.php");
 
-function strcode($str, $passw=""){
-		$salt = "Dn8*#2n!9j";
-		$len = strlen($str);
-		$gamma = '';
-		$n = $len>100 ? 16 : 4;
-		while( strlen($gamma)<$len ){
-			$gamma .= substr(pack('H*', sha1($passw.$gamma.$salt)), 0, $n);
-		}
-		return $str^$gamma;
-	}
-$depas = strcode(base64_decode($pas), "luxoran");
+$depas = makePassDeCode($pas);
 
 //Проверяем, есть ли вообще введённый пароль в базе
 $filter = Array("!UF_PAS" => ""); 

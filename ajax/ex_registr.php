@@ -178,33 +178,12 @@ if(CModule::IncludeModule("iblock") && CModule::IncludeModule("form")){
 	$gr[] = 4;
 	$gr[] = 5;
 	$gr[] = 6;
-	
-	function strcode($str, $passw=""){
-		$salt = "Dn8*#2n!9j";
-		$len = strlen($str);
-		$gamma = '';
-		$n = $len>100 ? 16 : 4;
-		while( strlen($gamma)<$len ){
-			$gamma .= substr(pack('H*', sha1($passw.$gamma.$salt)), 0, $n);
-		}
-		return $str^$gamma;
-	}
-	/*
-	$txt = "Hello XOR encode!";
-	$txt = base64_encode(strcode($txt, 'mypassword'));
-	echo $txt;
-	// result - ZOHdWKf+cf7vAwpJNfSJ8s8= 
 
-	$txt = "ZOHdWKf+cf7vAwpJNfSJ8s8=";
-	$txt = strcode(base64_decode($txt), 'mypassword');
-	echo $txt;
-	// result - Hello XOR encode! 
-	*/
 	//Пароль рассчитан на 10! комбинаций / разных участников
 	$pasAr = array('S', '*', 't', 'f', '[', '$', '3', 'A', 'b', '7');
 	shuffle($pasAr);
 	$pasStr = implode('', $pasAr);
-	$pas = base64_encode(strcode($pasStr, 'luxoran'));
+	$pas = makePassCode($pasStr);
 	
 	$login = trim($login);
 	

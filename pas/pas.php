@@ -14,6 +14,6 @@ function strcode($str, $passw=""){
 		}
 		return $str^$gamma;
 	}
-$txt = strcode(base64_decode($PAROL_ZASHIFR), 'luxoran');
+$txt =  makePassDeCode($PAROL_ZASHIFR);
 echo $txt;
 ?>

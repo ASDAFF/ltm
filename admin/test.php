@@ -1,4 +1,8 @@
-<?
+<?php
+echo "<pre>";
+print_r("TEST");
+echo "</pre>";
+die();
 $_SERVER["DOCUMENT_ROOT"] = realpath(dirname(__FILE__)."/..");
 $DOCUMENT_ROOT = $_SERVER["DOCUMENT_ROOT"];
 
@@ -16,6 +20,7 @@ if(!CModule::IncludeModule("iblock") || !CModule::IncludeModule("form") || !CMod
 
 use Doka\Meetings\Settings as DS;
 use Doka\Meetings\Requests as DR;
+use Doka\Meetings\Timeslots as DT;
 use Doka\Meetings\Wishlists as DWL;
 
 $arParams["IBLOCK_ID_EXHIB"] = 15;
@@ -67,8 +72,7 @@ while ($exhibition = $rsExhibitions->Fetch()) {
         $meetCompany = $req_obj->getAllCompaniesMeet($personID);
         while($companyWish = $curWish->Fetch()){
             /* У компании из подходящего вишлиста есть свободный слот */
-            $resComparison = array_intersect($personInfo["TIMES"], $freeGuest[ $companyWish["USER"] ]["TIMES"]);
-            if(isset($freeGuest[ $companyWish["USER"] ]) && !empty( $resComparison ) && !in_array($companyWish["USER"], $meetCompany)){
+            if(isset($freeGuest[ $companyWish["USER"] ]) && !empty( array_intersect($personInfo["TIMES"], $freeGuest[ $companyWish["USER"] ]["TIMES"]) ) && !in_array($companyWish["USER"], $meetCompany)){
                 $arResult["MAIL_LIST"][$exhibition['ID']]["PARTICIP"][$personID][ $companyWish["USER"] ] = $companyWish["USER"];
                 $allGuest[ $companyWish["USER"] ] = $companyWish["USER"];
                 $allParticip[ $personID ] = $personID;
@@ -81,15 +85,13 @@ while ($exhibition = $rsExhibitions->Fetch()) {
         $meetCompany = $req_obj->getAllCompaniesMeet($personID);
         while($companyWish = $curWish->Fetch()){
             /* У компании из подходящего вишлиста есть свободный слот */
-            $resComparison = array_intersect($personInfo["TIMES"], $freeParticip[ $companyWish["USER"] ]["TIMES"]);
-            if(isset($freeGuest[ $companyWish["USER"] ]) && !empty($resComparison) && !in_array($companyWish["USER"], $meetCompany)){
+            if(isset($freeGuest[ $companyWish["USER"] ]) && !empty(array_intersect($personInfo["TIMES"], $freeParticip[ $companyWish["USER"] ]["TIMES"])) && !in_array($companyWish["USER"], $meetCompany)){
                 $arResult["MAIL_LIST"][$exhibition['ID']]["GUEST"][$personID][ $companyWish["USER"] ] = $companyWish["USER"];
                 $allParticip[ $companyWish["USER"] ] = $companyWish["USER"];
                 $allGuest[ $personID ] = $personID;
             }
         }
     }
-
     if(!empty($allParticip) && !empty($allGuest)){
         /*Получаем информацию о гостях*/
         $arFilter = array(
@@ -159,11 +161,11 @@ while ($exhibition = $rsExhibitions->Fetch()) {
         foreach ($userInfo as $key => $value) {
             $arFieldsMes["COMPANY"][] = $allGuest[ $key ]["COMPANY"];
         }
-        $arFieldsMes["COMPANY"] = "<ol><li>".implode("</li><li>", $arFieldsMes["COMPANY"])."</li></ol>";
+        $arFieldsMes["COMPANY"] = implode(", ", $arFieldsMes["COMPANY"]);
         echo "<pre>";
         print_r($arFieldsMes);
         echo "</pre>";
-        CEvent::Send("FREE_FROM_WISHLIST","s1",$arFieldsMes);
+        //CEvent::Send("FREE_FROM_WISHLIST","s1",$arFieldsMes);
     }
     foreach ($arResult["MAIL_LIST"][$exhibition['ID']]["GUEST_IN"] as $userId => $userInfo) {
         $arFieldsMes = array(
@@ -174,13 +176,14 @@ while ($exhibition = $rsExhibitions->Fetch()) {
         foreach ($userInfo as $key => $value) {
             $arFieldsMes["COMPANY"][] = $allParticip[ $key ]["COMPANY"];
         }
-        $arFieldsMes["COMPANY"] = "<ol><li>".implode("</li><li>", $arFieldsMes["COMPANY"])."</li></ol>";
+        $arFieldsMes["COMPANY"] = implode(", ", $arFieldsMes["COMPANY"]);
         echo "<pre>";
         print_r($arFieldsMes);
         echo "</pre>";
-        CEvent::Send("FREE_FROM_WISHLIST","s1",$arFieldsMes);
+        //CEvent::Send("FREE_FROM_WISHLIST","s1",$arFieldsMes);
     }
 }
 
 
 ?>
+

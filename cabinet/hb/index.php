@@ -5,7 +5,10 @@ global $APPLICATION;
 $exhibCode = trim($_REQUEST["EXHIBIT_CODE"]);
 $page = "/cabinet/" . $exhibCode . "/hb/";
 $userId = trim($_REQUEST["UID"]);
-if($exhibCode == 'moscow-russia-march-12-2015'){
+CModule::IncludeModule("iblock");
+$rsExhib = CIBlockElement::GetList(array(), array("IBLOCK_ID" => "15", "CODE" => $exhibCode, "ACTIVE" => "Y"), false, false, array("PROPERTY_APP_HB_ID"));
+$arExhib = $rsExhib->Fetch();
+if($arExhib["PROPERTY_APP_HB_ID_VALUE"] != ""){
 	$newURL = "/cabinet/" .$exhibCode . "/hb/schedule/". (($userId)?"?UID=" . $userId : "");
 	LocalRedirect($newURL);
 }

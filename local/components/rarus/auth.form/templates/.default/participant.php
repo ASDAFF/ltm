@@ -80,8 +80,8 @@ $curDir = $APPLICATION->GetCurDir();
     			<div class="place"><?= $arExhibition["NAME"]?></div>
     		</div>
     		<div class="content pull-overflow">
-    		<?  $exhId = base64_encode(str_code($arExhibition["ID"], "luxoran"));
-    		    $userId = base64_encode(str_code($arResult["USER"]["ID"], "luxoran")); ?>
+    		<?  $exhId = makePassCode($arExhibition["ID"]);
+    		    $userId = makePassCode($arResult["USER"]["ID"]); ?>
      			<a href="javascript:void(0)" title="<?= GetMessage("AUTH_P_REGISTER_FOR")?> <?= $arExhibition["EXH_NAME"]?>" onclick="regForExhib('<?= $exhId?>','<?= $userId?>')"><?= GetMessage("AUTH_P_REGISTER_FOR")?> <?= $arExhibition["EXH_NAME"]?></a>
     		</div>
     	</div>
