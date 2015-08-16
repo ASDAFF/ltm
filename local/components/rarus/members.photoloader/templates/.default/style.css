@@ -1,0 +1,101 @@
+.dropzone ul.photo-list
+{
+	width: 100%;
+	margin: 0;
+}
+.dropzone ul.photo-list::after
+{
+	content: none;
+}
+
+.dropzone ul.photo-list li{
+	width: 98px;
+	float: left;
+	margin: 4px 4px 4px;
+	position: relative;
+}
+
+.dropzone ul.photo-list li:hover
+{
+
+}
+
+.dropzone ul.photo-list .photo-delete
+{
+	width: 15px;
+	height: 15px;
+	transition-duration: 0.6s;
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	font-size: 28px;
+	font-weight: bold;
+	line-height: 16px;
+	cursor: pointer;
+	color: #f00;
+	background-color: #fff;
+	border: 1px solid #000;
+	border-radius: 5px;
+	display: none;
+}
+
+.dropzone ul.photo-list li:hover:not(.ui-sortable-helper) .photo-delete
+{
+	display: block;
+}
+
+.dropzone ul.photo-list .photo-delete:hover
+{
+	background-color: #f00;
+	color: #fff;
+
+}
+
+.dropzone ul.photo-list .img-wrapper
+{
+	position: relative;
+	height: 75px;
+
+}
+
+.dropzone ul.photo-list .img-wrapper progress {
+	position: absolute;
+	top: 40%;
+	width: 100%;
+}
+
+#dropzone.dropzone
+{
+	width: 100%;
+	border: 2px dashed #7A7A7A;
+	color: #DDD;
+	border-radius: 5px;
+	padding: 0px;
+	overflow: hidden;
+	min-height: 83px;
+	position: relative;
+	box-sizing: border-box;
+	margin-bottom: 10px;
+}
+
+#dropzone.dragover
+{
+	border: 2px solid #1772E9;
+	color: #1772E9;
+}
+
+.drag-drop input[type=file]
+{
+	/*display: none;*/
+}
+
+.dnd-title
+{
+	position: absolute;
+	top: 50%;
+	z-index: -5;
+	left: 50%;
+	font-size: 24px;
+	margin-left: -130px;
+	margin-top: -15px;
+}
