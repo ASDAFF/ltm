@@ -89,8 +89,10 @@ if($this->StartResultCache(false, $lang))
 else
 {
 	$this->AbortResultCache();
-	ShowError(GetMessage("T_NEWS_DETAIL_NF"));
+
+	//ShowError(GetMessage("T_NEWS_DETAIL_NF"));
 	@define("ERROR_404", "Y");
 	if($arParams["SET_STATUS_404"]==="Y")
 		CHTTP::SetStatus("404 Not Found");
+
 }

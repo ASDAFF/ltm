@@ -1,1 +1,0 @@
-<span id = "design">Design by <a href = "#">STARTBRAND®</a></span>
