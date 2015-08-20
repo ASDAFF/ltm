@@ -1098,7 +1098,7 @@ ul{margin: 0;padding: 0;list-style: none;}
 .exhibition-block a{color: #000;}
 .exhibition-block ul{margin: 0 0 10px;padding: 0;}
 .exhibition-block a:hover{text-decoration: none;}
-.exhibition-block .exhibition-list{margin: 0 0 20px;border-bottom: 1px solid #000;overflow: visible;height: 31px;}
+.exhibition-block .exhibition-list{margin: 0 0 20px;overflow: visible;height: 31px;}
 .exhibition-block .exhibition-list ul{
     margin: 0;
     position: relative;
@@ -1118,7 +1118,7 @@ ul{margin: 0;padding: 0;list-style: none;}
 	overflow: hidden;
 	padding: 5px 0;
 	font-size: 14px;
-	border-bottom: none;
+    border-bottom: 1px solid #000
 	height: 19px;
     max-width: 213px;
 }
