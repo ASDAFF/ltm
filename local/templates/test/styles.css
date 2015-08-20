@@ -1104,7 +1104,9 @@ ul{margin: 0;padding: 0;list-style: none;}
     position: relative;
     top: 1px;
     overflow: hidden;
-    text-align: left;}
+    text-align: left;
+    float: 0;
+}
 .exhibition-block .exhibition-list ul li{
     display: inline-block;
 	border: 1px solid #000;
