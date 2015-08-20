@@ -1,6 +1,6 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 <? $userId = intval($_REQUEST["UID"]);?>
-<div class="exhibition-list pull-overflow clearfix">
+<div class="exhibition-list pull-overflow">
 	<?if (!empty($arResult)):?>
 	<ul>
 	<?foreach($arResult as $arItem):?>
