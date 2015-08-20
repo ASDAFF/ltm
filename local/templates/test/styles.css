@@ -1123,7 +1123,7 @@ ul{margin: 0;padding: 0;list-style: none;}
     max-width: 215px;
 }
 .exhibition-block .exhibition-list ul li:first-child{border-left: 1px solid #000;}
-.exhibition-block .exhibition-list ul li.active{border-bottom-color:#fff; margin-bottom: -1px;}
+.exhibition-block .exhibition-list ul li.active{border-bottom-color:#fff;}
 .exhibition-block .exhibition-list ul li a{color: #636466;text-decoration: none;margin: 0 10px;}
 .exhibition-block .exhibition-list ul li.active a{color: #00aeef;}
 .exhibition-block h2{font-size: 22px !important;margin: 0 0 10px !important;padding: 0 !important;color: #00aeef !important;float: none !important;}
