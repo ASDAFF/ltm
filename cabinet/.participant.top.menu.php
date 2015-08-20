@@ -17,7 +17,7 @@ if(CModule::IncludeModule('iblock')) {
 
     $language = strtoupper(LANGUAGE_ID);
     $rs = CIblockElement::GetList(array("SORT"=>"ASC"),
-        array("IBLOCK_ID"=>$iblockId, "ACTIVE"=>"Y"), false, false,
+        array("IBLOCK_ID"=>$iblockId, "ACTIVE"=>"Y", "!PROPERTY_IN_MENU" => "Y"), false, false,
         array("ID", "NAME", "CODE", "PROPERTY_TAB_TITLE", "PROPERTY_USER_GROUP_ID"));
     while($arItem = $rs->Fetch()) {
 

@@ -1098,7 +1098,7 @@ ul{margin: 0;padding: 0;list-style: none;}
 .exhibition-block a{color: #000;}
 .exhibition-block ul{margin: 0 0 10px;padding: 0;}
 .exhibition-block a:hover{text-decoration: none;}
-.exhibition-block .exhibition-list{margin: 0 0 20px;overflow: visible;}
+.exhibition-block .exhibition-list{margin: 0 0 20px;border-bottom: 1px solid #000;overflow: visible;height: 31px;}
 .exhibition-block .exhibition-list ul{
     margin: 0;
     position: relative;
@@ -1118,15 +1118,14 @@ ul{margin: 0;padding: 0;list-style: none;}
 	overflow: hidden;
 	padding: 5px 0;
 	font-size: 14px;
-    border-bottom: 1px solid #000
-	line-height: 31px;
-    max-width: 213px;
-    margin-bottom: 5px;
+	border-bottom: none;
+	height: 19px;
+    max-width: 215px;
 }
 .exhibition-block .exhibition-list ul li:first-child{border-left: 1px solid #000;}
 .exhibition-block .exhibition-list ul li.active{border-bottom: 1px solid #fff;}
 .exhibition-block .exhibition-list ul li a{color: #636466;text-decoration: none;margin: 0 10px;}
-.exhibition-block .exhibition-list ul li.active a{color: #00aeef;font-size: 15px;}
+.exhibition-block .exhibition-list ul li.active a{color: #00aeef;}
 .exhibition-block h2{font-size: 22px !important;margin: 0 0 10px !important;padding: 0 !important;color: #00aeef !important;float: none !important;}
 .exhibition-block h3{color: #00aeef !important;border-bottom: 1px solid #b2e7fa;margin: 10px 0 20px !important;padding: 0 0 7px !important;font-size: 20px !important;font-weight: normal;}
 .exhibition-block h4{margin: 0 0 10px !important;padding: 0;font-size: 18px !important;font-weight: normal;color: #00aeef !important;padding: 0 0 10px !important;}
