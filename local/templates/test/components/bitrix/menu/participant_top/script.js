@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	var container = $("div.exhibition-list");
+	/*var container = $("div.exhibition-list");
 	var containerWidth = container.width();
 	
 	var activeElem = container.find("li.active");
@@ -45,5 +45,5 @@ $(document).ready(function(){
 			}
 		}
 	}
-
+*/
 });

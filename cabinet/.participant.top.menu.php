@@ -17,10 +17,9 @@ if(CModule::IncludeModule('iblock')) {
 
     $language = strtoupper(LANGUAGE_ID);
     $rs = CIblockElement::GetList(array("SORT"=>"ASC"),
-        array("IBLOCK_ID"=>$iblockId, "ACTIVE"=>"Y"), false, false,
-        array("ID", "NAME", "CODE", "PROPERTY_TAB_TITLE", "PROPERTY_USER_GROUP_ID"));
+        array("IBLOCK_ID"=>$iblockId, "ACTIVE"=>"Y", "!PROPERTY_IN_MENU_VALUE" => "Y"), false, false,
+        array("ID", "NAME", "CODE", "PROPERTY_TAB_TITLE", "PROPERTY_USER_GROUP_ID", "PROPERTY_IN_MENU"));
     while($arItem = $rs->Fetch()) {
-
     	//Проверка на доступ пользователя к этой выставке
     	$confirmedGroupID = $arItem["PROPERTY_USER_GROUP_ID_VALUE"];
 

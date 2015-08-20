@@ -3,7 +3,7 @@ $login = strip_tags($_REQUEST['login']);
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include.php");
 
 //Проверяем, есть ли вообще введённый пароль в базе
-$filter = Array("!UF_PAS" => "", 'LOGIN'=>$login); 
+$filter = Array("!UF_PAS" => "", 'LOGIN_EQUAL'=>$login);
 $rsUsers = CUser::GetList(($by="id"), ($order="desc"), $filter, array("SELECT"=>array("UF_PAS")));
 while ($arUser = $rsUsers->Fetch()){
 	$pas = $arUser['UF_PAS'];

@@ -13,4 +13,6 @@ CModule::AddAutoloadClasses('',array(
 'CHandlers' => "/local/php_interface/lib/CHandlers.php",
 'CHLMFunctions' => "/local/php_interface/lib/CHLMFunctions.php",
 ));
+
+
 ?>
