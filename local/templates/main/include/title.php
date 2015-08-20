@@ -1,1 +1,0 @@
-<span id = "title">LUXURY TRAVEL MART</span>

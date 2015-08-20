@@ -80,8 +80,8 @@ $APPLICATION->AddHeadScript("/cabinet/edit/script.js");
 						
 					<?endif?>
 				<?endforeach?>
-				
 
+				<?if(in_array($FIELD_SID, $arPriorArea)):?>
 					<div class="pull-left company-info priority-wrap" style="display: block; clear: both;">
 	
 						<div class="title">Выберите приоритетные направления</div>
@@ -114,6 +114,7 @@ $APPLICATION->AddHeadScript("/cabinet/edit/script.js");
 	    				</div>
 	    		<? endforeach;?>
 					</div>
+				<?endif;?>
 			</div>
 		</div>
 	<?endforeach?>

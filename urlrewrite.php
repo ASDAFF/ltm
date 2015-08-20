@@ -13,6 +13,12 @@ $arUrlRewrite = array(
 		"PATH" => "/cabinet/messages_old/contact/index.php",
 	),
 	array(
+		"CONDITION" => "#^/admin/([^/]+)/guest/matrix_hb/.*.*.*.*.*.*.*#",
+		"RULE" => "EXHIBIT_CODE=\$1",
+		"ID" => "",
+		"PATH" => "/admin/guest/matrix_hb/index.php",
+	),
+	array(
 		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/messages/contact/.*#",
 		"RULE" => "EXHIBIT_CODE=\$1",
 		"ID" => "",
@@ -23,12 +29,6 @@ $arUrlRewrite = array(
 		"RULE" => "EXHIBIT_CODE=\$1",
 		"ID" => "",
 		"PATH" => "/cabinet/morning/schedule/index.php",
-	),
-	array(
-		"CONDITION" => "#^/admin/([^/]+)/guest/matrix_hb/.*.*.*.*.*.*.*#",
-		"RULE" => "EXHIBIT_CODE=\$1",
-		"ID" => "",
-		"PATH" => "/admin/guest/matrix_hb/index.php",
 	),
 	array(
 		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/messages2/inbox/.*#",
@@ -151,22 +151,16 @@ $arUrlRewrite = array(
 		"PATH" => "/cabinet/deadline/index.php",
 	),
 	array(
-		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/hb/list/.*#",
-		"RULE" => "EXHIBIT_CODE=\$1",
-		"ID" => "",
-		"PATH" => "/cabinet/hb/list/index.php",
-	),
-	array(
-		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/catalog/.*#",
-		"RULE" => "EXHIBIT_CODE=\$1",
-		"ID" => "",
-		"PATH" => "/cabinet/catalog/index.php",
-	),
-	array(
 		"CONDITION" => "#^/admin/([^/]+)/participant/matrix/.*#",
 		"RULE" => "EXHIBIT_CODE=\$1",
 		"ID" => "",
 		"PATH" => "/admin/participant/matrix/index.php",
+	),
+	array(
+		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/evening/.*#",
+		"RULE" => "EXHIBIT_CODE=\$1",
+		"ID" => "",
+		"PATH" => "/cabinet/evening/index.php",
 	),
 	array(
 		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/morning/.*#",
@@ -175,10 +169,16 @@ $arUrlRewrite = array(
 		"PATH" => "/cabinet/morning/index.php",
 	),
 	array(
-		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/evening/.*#",
+		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/catalog/.*#",
 		"RULE" => "EXHIBIT_CODE=\$1",
 		"ID" => "",
-		"PATH" => "/cabinet/evening/index.php",
+		"PATH" => "/cabinet/catalog/index.php",
+	),
+	array(
+		"CONDITION" => "#^/cabinet/([0-9a-zA-Z-_]+)/hb/list/.*#",
+		"RULE" => "EXHIBIT_CODE=\$1",
+		"ID" => "",
+		"PATH" => "/cabinet/hb/list/index.php",
 	),
 	array(
 		"CONDITION" => "#^/admin/([0-9a-zA-Z-_]+)/messages/.*#",

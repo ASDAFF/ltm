@@ -117,7 +117,9 @@ SIMPLE_QUESTION_395 - Logo
 		CFormResult::SetField($resultId, $SID, $value);
 	}
 
+
 	//фото
+	/* старое
 	if(isset($_POST["PHOTO"]))
 	{
 		$el = new CIBlockElement;
@@ -141,6 +143,7 @@ SIMPLE_QUESTION_395 - Logo
 			$resiltId =  $el->Add($arFields);
 		}
 	}
+	*/
 
 	//отправка почтового сообщения администратору
 
@@ -178,7 +181,7 @@ if("Y" != $exhParticipantEdit)
     ?>
 <div class="create-page">
 	<div class="creating-page">
-	<form method="POST" action ="<?= $curPage?>" enctype="multipart/form-data">
+	<form method="POST" action ="<?= $curPage?>" enctype="multipart/form-data" name="company-update">
 	<?=bitrix_sessid_post()?>
 		<div class="pull-overflow create-company first-line">
 			<div class="pull-left company-info data-control">
@@ -223,9 +226,24 @@ if("Y" != $exhParticipantEdit)
 				$value = $arAnswer["USER_TEXT"];
 				?>
 			<textarea name="SIMPLE_QUESTION_163" id="" cols="30" rows="10"><?= $value?></textarea>
+			<?/*
 			<div class="title">	Please upload a minimum of 6 (maximum 12) photos of your company/hotel. The maximum size of each photo is 3mb. Don’t forget &mdash; the better the quality of your photos, the better the impression of your company/hotel.</div>
-			<label class="button-dark ltm-btn" id="upload_photo">upload photos<? /*<input type="file" name="" id="" value=""/>*/?></label>
+			<label class="button-dark ltm-btn" id="upload_photo">upload photos</label>
 			<span>You can upload <span id="photo_count"><?= MAX_PHOTO_COUNT - $photoCount?></span> photos</span>
+			*/?>
+			<?$APPLICATION->IncludeComponent(
+				"rarus:members.photoloader",
+				"",
+				Array(
+					"IBLOCK_ID" => "16",
+					"GALLERY_ID" => $galleryID,
+					"USER_ID" => $userId,
+					"MAX_PHOTO_COUNT" => MAX_PHOTO_COUNT,
+					"MAX_FILE_SIZE" => 0,
+					"CACHE_TIME" => "3600"
+				),
+				false
+			);?>
 		</div>
 		
 		<? if("Y" == $exhParticipantEdit):?>
@@ -338,7 +356,7 @@ $(function(){
 		}
 	});
 
-
+/*
 	new AjaxUpload(btnUploadPhoto, {
 		action: "/ajax/upload_photo.php",
 		name: 	"photo",
@@ -389,6 +407,7 @@ $(function(){
 
 		}
 	});
+	*/
 /*
 	$("input.check_all").change(function(){
 		var input = $(this);

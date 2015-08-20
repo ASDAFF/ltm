@@ -76,14 +76,14 @@ elseif($arParams["TYPE"] == 'guests_hb_all'){
 elseif($arParams["TYPE"] == 'guests_ev'){
 	$filter["GROUPS_ID"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["C_GUESTS_GROUP"]["VALUE"];
 	$filter["UF_EV"] = 1;
-	$fileName = "Гости ".$fileName." вечер";
+	$fileName = "Гости ".$fileName." вечер.xlsx";
 	$isEvening = true;
 
 }
 elseif($arParams["TYPE"] == 'guests_ev_all'){
 	$filter["GROUPS_ID"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["C_GUESTS_GROUP"]["VALUE"];
 	$filter["UF_EV"] = 1;
-	$fileName = "Гости ".$fileName." вечер (коллеги отдельно)";
+	$fileName = "Гости ".$fileName." вечер (коллеги отдельно).xlsx";
 	$isAll = true;
 	$isEvening = true;
 }
@@ -114,7 +114,7 @@ $arTmpUsers = array();
 while ($arUser = $rsUsers->Fetch()){
 	$arTmpUsers[$i]['ID']       = $arUser['ID'];
 	$arTmpUsers[$i]['LOGIN']    = $arUser['LOGIN'];
-	$arTmpUsers[$i]['PASSWORD'] = str_code(base64_decode($arUser["UF_PAS"]), "luxoran");
+	$arTmpUsers[$i]['PASSWORD'] = makePassDeCode($arUser["UF_PAS"]);
 	$arTmpUsers[$i]['FORM_COMP'] = $arUser[$resultAllCode];
 
 	//Данные по всей компании

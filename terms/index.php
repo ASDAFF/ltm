@@ -15,9 +15,6 @@ fee will be made if canceled up to four months prior to the event. If canceled t
 event - 50% of the participation fee will be charged for the cancelation. No refund of the participation fee will
 be made if canceled later than three months prior to the event.</p>
 
-<p>Included in the fee: participation in all events of the Luxury Travel Mart – the morning session for top
-managers and directors of travel trade with pre-scheduled appointments (maximum 17), midday networking
-lunch, session for hosted buyers (except for LTM Baku) and evening workshop-cocktail for travel agents,
-corporate clients and press.</p>
+<p>Included in the fee: participation in all events of the Luxury Travel Mart. No hidden charges.</p>
 
 <p>A block of rooms will be reserved at each of the venue hotels. Rates will be provided upon request.</p><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
