@@ -10,7 +10,7 @@ $arParams["GROUPS_ID"] = array(48);
 $arUserFilter = array("GROUPS_ID"=>$arParams["GROUPS_ID"], "ACTIVE"=>"Y");
 $rs = CUser::GetList(($by = "work_company"), ($order = "asc"), $arUserFilter, array("SELECT"=>array("UF_*"), "FIELDS"=>array("ID", "LOGIN")));
 while($arUser = $rs->Fetch()){
-    $pasAr = array('d', 'p', '!', 'l', '9', 'K', 'm', 'A', 'r', '0');
+    $pasAr = array('d', 'p', 'l', '9', 'K', 'm', 'A', 'r', '0');
     shuffle($pasAr);
     $password = trim(implode("", $pasAr));
     $fields = array(
