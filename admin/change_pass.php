@@ -10,7 +10,7 @@ $arParams["GROUPS_ID"] = array(48);
 $arUserFilter = array("GROUPS_ID"=>$arParams["GROUPS_ID"], "ACTIVE"=>"Y");
 $rs = CUser::GetList(($by = "work_company"), ($order = "asc"), $arUserFilter, array("SELECT"=>array("UF_*"), "FIELDS"=>array("ID", "LOGIN")));
 while($arUser = $rs->Fetch()){
-    $pasAr = array('d', 'p', '!', 'l', '9', '#', 'm', 'A', 'r', '2');
+    $pasAr = array('d', 'p', '!', 'l', '9', 'K', 'm', 'A', 'r', '2');
     shuffle($pasAr);
     $password = trim(implode("", $pasAr));
     $fields = array(
@@ -22,5 +22,8 @@ while($arUser = $rs->Fetch()){
     $user = new CUser;
     $user->Update($arUser["ID"], $fields);
     $strError = $user->LAST_ERROR;
+    echo "<pre>";
+    print_r($fields);
+    echo "</pre>";
 }
 ?>
