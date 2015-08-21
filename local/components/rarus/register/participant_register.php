@@ -36,7 +36,7 @@ if(strlen($password) <= 0) //если пароль не задан, генери
 	//Пароль рассчитан на 10! комбинаций / разных гостей
 	$pasAr = array('d', 'p', '!', 'l', '9', '#', 'm', 'A', 'r', '2');
 	shuffle($pasAr);
-	$password = implode("", $pasAr);
+	$password = trim(implode("", $pasAr));
 }
 
 //шифруем
