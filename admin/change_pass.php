@@ -1,6 +1,10 @@
 <?php require($_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/main/include/prolog_before.php');
 global $USER;
 
+set_time_limit(0);
+ignore_user_abort(true);
+session_write_close();
+
 $arParams["GROUPS_ID"] = array(48);
 
 $arUserFilter = array("GROUPS_ID"=>$arParams["GROUPS_ID"], "ACTIVE"=>"Y");
