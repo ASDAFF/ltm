@@ -34,9 +34,9 @@ $password = $data["PASSWORD"];
 if(strlen($password) <= 0) //если пароль не задан, генерируем его
 {
 	//Пароль рассчитан на 10! комбинаций / разных гостей
-	$pasAr = array('d', 'p', '!', 'l', '9', '#', 'm', 'A', 'r', '2');
+	$pasAr = array('d', 'p', 'l', '9', 'K', 'm', 'A', 'r', '2');
 	shuffle($pasAr);
-	$password = implode("", $pasAr);
+	$password = trim(implode("", $pasAr));
 }
 
 //шифруем
