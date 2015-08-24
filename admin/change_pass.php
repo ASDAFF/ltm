@@ -5,7 +5,7 @@ set_time_limit(0);
 ignore_user_abort(true);
 session_write_close();
 
-$arParams["GROUPS_ID"] = array(50,51);
+$arParams["GROUPS_ID"] = array(53);
 
 $arUserFilter = array("GROUPS_ID"=>$arParams["GROUPS_ID"], "ACTIVE"=>"Y");
 $rs = CUser::GetList(($by = "work_company"), ($order = "asc"), $arUserFilter, array("SELECT"=>array("UF_*"), "FIELDS"=>array("ID", "LOGIN")));
