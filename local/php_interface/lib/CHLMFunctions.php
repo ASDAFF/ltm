@@ -219,7 +219,7 @@ class CHLMFunctions
         }
         Cmodule::IncludeModule("iblock");
 
-        $rsElement = CIBlockElement::GetList(array(), array("CODE"=>$code), false, array("nTopCount"=>1), array("ID","IBLOCK_ID", "CODE", "NAME", "PROPERTY_USER_GROUP_ID", "PROPERTY_UC_PARTICIPANTS_GROUP", "PROPERTY_C_GUESTS_GROUP", "PROPERTY_UC_GUESTS_GROUP"));
+        $rsElement = CIBlockElement::GetList(array(), array("CODE"=>$code), false, array("nTopCount"=>1), array("ID","IBLOCK_ID", "CODE", "NAME", "PROPERTY_USER_GROUP_ID", "PROPERTY_UC_PARTICIPANTS_GROUP", "PROPERTY_C_GUESTS_GROUP", "PROPERTY_UC_GUESTS_GROUP", "PROPERTY_SHORT_NAME"));
         if($arElement = $rsElement->Fetch())
         {
             return $arElement;
