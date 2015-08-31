@@ -157,6 +157,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST" && !empty($action))
 					if($USER->IsAdmin()){
 						$arFields = Array(
 								"FROM_NAME" => "Administrator LTM",
+								"EXIB_SHORT" => $arResult["EXHIBIT"]["PROPERTY_NAME_EN_VALUE"],
 								"FROM_USER_ID" => 1,
 								"FROM_EMAIL" => $arSiteInfo["DEFAULT_EMAIL_FROM"],
 								"TO_NAME" => $toUserData["NAME"]. " " . $toUserData["LAST_NAME"],
@@ -174,6 +175,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST" && !empty($action))
 					    $thisUserdata = CHLMFunctions::GetUserInfoForm($USER->GetID(), $arResult["EXHIBIT"]);
 						$arFields = Array(
 								"FROM_NAME" => $thisUserdata["NAME"]. " " . $thisUserdata["LAST_NAME"],
+								"EXIB_SHORT" => $arResult["EXHIBIT"]["PROPERTY_NAME_EN_VALUE"],
 								"FROM_USER_ID" => $USER->GetID(),
 								"FROM_EMAIL" => $arSiteInfo["DEFAULT_EMAIL_FROM"],
 								"TO_NAME" => $toUserData["NAME"]. " " . $toUserData["LAST_NAME"],
