@@ -2,7 +2,6 @@
 define("PARTICIPANT_CABINET", "N");
 define("GUEST_CABINET", "N");
 
-
 define("IMG_TMP_PATH", "/upload/tmp/");
 define("PHOTO_GALLERY_ID", 16);
 
