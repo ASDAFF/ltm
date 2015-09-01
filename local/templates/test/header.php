@@ -192,10 +192,12 @@
 			    	    $rsExhib = CIBlockElement::GetList(array(), array("IBLOCK_ID" => "15", "CODE" => $exhibCode, "ACTIVE" => "Y"), false, false, array("PROPERTY_C_GUESTS_GROUP", "PROPERTY_APP_HB_ID"));
 			    	    if($arExhib = $rsExhib->Fetch())
 			    	    {
-
 			    	        $exhibGoup = $arExhib["PROPERTY_C_GUESTS_GROUP_VALUE"];
 
-			    	        $rsUser = CUser::GetByID($userId);
+							$filter = Array( "ID" => $userId);
+							$rsUser = CUser::GetList(($by="name"), ($order="asc"), $filter, array("SELECT"=>array("UF_MR"))); //
+							// выбираем
+							// пользователей
 			    	        $arUser = $rsUser->Fetch();
 			    	        $classHB = '';
 
@@ -208,7 +210,7 @@
 			    	        	$menuType = 'guest.bottom';
 			    	        }*/
 
-			    	        if(in_array($exhibGoup, $arUserGroups) || $USER->IsAdmin())//если в группе подтвержденных
+			    	        if((in_array($exhibGoup, $arUserGroups) && $arUser["UF_MR"]) || $USER->IsAdmin())//если в группе подтвержденных
 			    	        {
 			    	            //тут будет название и место проведения выставки
 			    	            $APPLICATION->IncludeComponent("rarus:exhibition.header", "",

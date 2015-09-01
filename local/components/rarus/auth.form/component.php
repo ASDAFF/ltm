@@ -225,15 +225,24 @@ else//если пользователь авторизован
     	//прверка на гостя
     	if(!$bUserTypeIsset)
     	{
-        	foreach ($arParams["GUESTS_GROUPS_ID"] as $userGroupID)
+        	$isGuest = false;
+			foreach ($arParams["GUESTS_GROUPS_ID"] as $userGroupID)
         	{
         		if(in_array($userGroupID, $arUserGroups))
         		{
-        			$_SESSION["USER_TYPE"] = "GUEST";
-        			$bUserTypeIsset = true;
+					$isGuest = true;
         			break;
         		}
         	}
+			if($isGuest){
+				$filterGuest = Array( "ID" => $userId);
+				$rsUserGuest = CUser::GetList(($by="name"), ($order="asc"), $filterGuest, array("SELECT"=>array("UF_MR"))); //
+				$arUserGuest = $rsUserGuest->Fetch();
+				if($arUserGuest["UF_MR"]){
+					$_SESSION["USER_TYPE"] = "GUEST";
+					$bUserTypeIsset = true;
+				}
+			}
     	}
 
     }
