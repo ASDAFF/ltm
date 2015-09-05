@@ -17,68 +17,6 @@ use Doka\Meetings\Requests as DR;
 use Doka\Meetings\Timeslots as DT;
 use Doka\Meetings\Wishlists as DWL;
 
-$userInfo = array();
-$userInfo[1] = array();//Москва Весна 2015
-$userInfo[1]["FORM"] = 4;
-$userInfo[1]["PROP_NAME"] = "UF_ID11";
-$userInfo[1]["FIO"][0][0] = "SIMPLE_QUESTION_446";
-$userInfo[1]["FIO"][0][1] = "84";
-$userInfo[1]["FIO"][1][0] = "SIMPLE_QUESTION_551";
-$userInfo[1]["FIO"][1][1] = "85";
-$userInfo[1]["FIO"][2][0] = "SIMPLE_QUESTION_859";
-$userInfo[1]["FIO"][2][1] = "89";
-
-
-$userInfo[2] = array();//Москва Баку 2014
-$userInfo[2]["FORM"] = 5;
-$userInfo[2]["PROP_NAME"] = "UF_ID2";
-$userInfo[2]["FIO"][0][0] = "SIMPLE_QUESTION_709";
-$userInfo[2]["FIO"][0][1] = "92";
-$userInfo[2]["FIO"][1][0] = "SIMPLE_QUESTION_599";
-$userInfo[2]["FIO"][1][1] = "93";
-$userInfo[2]["FIO"][2][0] = "SIMPLE_QUESTION_650";
-$userInfo[2]["FIO"][2][1] = "97";
-
-$userInfo[3] = array();//Москва Осень 2014
-$userInfo[3]["FORM"] = 8;
-$userInfo[3]["PROP_NAME"] = "UF_ID5";
-$userInfo[3]["FIO"][0][0] = "SIMPLE_QUESTION_119";
-$userInfo[3]["FIO"][0][1] = "116";
-$userInfo[3]["FIO"][1][0] = "SIMPLE_QUESTION_869";
-$userInfo[3]["FIO"][1][1] = "117";
-$userInfo[3]["FIO"][2][0] = "SIMPLE_QUESTION_786";
-$userInfo[3]["FIO"][2][1] = "121";
-
-$userInfo[4] = array();//Москва Алматы 2014
-$userInfo[4]["FORM"] = 7;
-$userInfo[4]["PROP_NAME"] = "UF_ID4";
-$userInfo[4]["FIO"][0][0] = "SIMPLE_QUESTION_948";
-$userInfo[4]["FIO"][0][1] = "108";
-$userInfo[4]["FIO"][1][0] = "SIMPLE_QUESTION_159";
-$userInfo[4]["FIO"][1][1] = "109";
-$userInfo[4]["FIO"][2][0] = "SIMPLE_QUESTION_742";
-$userInfo[4]["FIO"][2][1] = "113";
-
-$userInfo[5] = array();//Москва Киев 2014
-$userInfo[5]["FORM"] = 6;
-$userInfo[5]["PROP_NAME"] = "UF_ID3";
-$userInfo[5]["FIO"][0][0] = "SIMPLE_QUESTION_896";
-$userInfo[5]["FIO"][0][1] = "100";
-$userInfo[5]["FIO"][1][0] = "SIMPLE_QUESTION_409";
-$userInfo[5]["FIO"][1][1] = "101";
-$userInfo[5]["FIO"][2][0] = "SIMPLE_QUESTION_279";
-$userInfo[5]["FIO"][2][1] = "105";
-
-$userInfo[6] = array();//Москва Весна 2015
-$userInfo[6]["FORM"] = 4;
-$userInfo[6]["PROP_NAME"] = "UF_ID11";
-$userInfo[6]["FIO"][0][0] = "SIMPLE_QUESTION_446";
-$userInfo[6]["FIO"][0][1] = "84";
-$userInfo[6]["FIO"][1][0] = "SIMPLE_QUESTION_551";
-$userInfo[6]["FIO"][1][1] = "85";
-$userInfo[6]["FIO"][2][0] = "SIMPLE_QUESTION_859";
-$userInfo[6]["FIO"][2][1] = "89";
-
 // Получим список выставок
 $rsExhibitions = DS::GetList(array(), array());
 while ($exhibition = $rsExhibitions->Fetch()) {
@@ -131,12 +69,26 @@ while ($exhibition = $rsExhibitions->Fetch()) {
         $timeslot = $req_obj->getTimeslot($request['TIMESLOT_ID']);
         // Берем доп данные по пользователям для почтовых событий
         $senderType = $req_obj->getUserTypeById($request['SENDER_ID']);
+        $formId = $exhibition['FORM_ID'];
+        $propertyNameParticipant = $exhibition['FORM_RES_CODE'];//свойство участника
+        $fio_datesPart = array();
+        $fio_datesPart[0][0] = CFormMatrix::getSIDRelBase('SIMPLE_QUESTION_446', $formId);//Имя участника
+        $fio_datesPart[0][1] = CFormMatrix::getAnswerRelBase(84 ,$formId);
+        $fio_datesPart[1][0] = CFormMatrix::getSIDRelBase('SIMPLE_QUESTION_551', $formId);//Фамилия участника
+        $fio_datesPart[1][1] = CFormMatrix::getAnswerRelBase(85 ,$formId);
+        $fio_datesPart[2][0] = CFormMatrix::getSIDRelBase('SIMPLE_QUESTION_859', $formId);//Email участника
+        $fio_datesPart[2][1] = CFormMatrix::getAnswerRelBase(89 ,$formId);
+        $HB_TEG = '';
+        if($exhibition['IS_HB']){
+            $HB_TEG = ' HB session';
+        }
+
         if($senderType == 'GUEST'){
             $sender = $req_obj->getUserInfo($request['SENDER_ID']);
-            $receiver = $req_obj->getUserInfoFull($request['RECEIVER_ID'], $userInfo[$exhibition['ID']]["FORM"], $userInfo[$exhibition['ID']]["PROP_NAME"], $userInfo[$exhibition['ID']]["FIO"]);
+            $receiver = $req_obj->getUserInfoFull($request['RECEIVER_ID'], $formId, $propertyNameParticipant, $fio_datesPart);
         }
         else{
-            $sender = $req_obj->getUserInfoFull($request['SENDER_ID'], $userInfo[$exhibition['ID']]["FORM"], $userInfo[$exhibition['ID']]["PROP_NAME"], $userInfo[$exhibition['ID']]["FIO"]);
+            $sender = $req_obj->getUserInfoFull($request['SENDER_ID'], $formId, $propertyNameParticipant, $fio_datesPart);
             $receiver = $req_obj->getUserInfo($request['RECEIVER_ID']);
         }
         
@@ -156,7 +108,9 @@ while ($exhibition = $rsExhibitions->Fetch()) {
     }
 	
 }
-$mailto = "diana_box@list.ru";
+if($strReq != ''){
+    $mailto = "diana_box@list.ru";
     $mail = "Обработка встреч с сайта Luxury\n".$strReq;
     mail($mailto,"Cron с сайта Luxury",$mail,"Content-Type: text/plain; charset=windows-1251\r\n");
+}
 ?>
