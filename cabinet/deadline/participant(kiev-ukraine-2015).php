@@ -31,15 +31,15 @@ Place: Conference Hall I&II ( -2nd floor).</p>
 Place: Grand Ballroom Hall. </p>
 
 
-<!-- <h3>Files for Download</h3>
+<h3>Files for Download</h3>
 
 <ul>
-	<li><a href="/files/program_Kiev_upd_28Aug.pdf" title="" target="_blank">Download detailed program</a></li>
-	<li><a href="/files/kiev_morning_evening.pdf" target="_blank" title="">Download floor plan and table assignment for the morning session</a></li>
+	<li><a href="/files/Kiev_morning_evening_2015-pro.pdf" title="" target="_blank">Download floor plan for the morning and evening sessions</a></li>
+	<li><a href="/files/Kiev_hosted-buyer_2015-pro.pdf" target="_blank" title="">Download floor plan for the hosted buyers session</a></li>
 
-	<li><a href="/files/kiev_morning_evening.pdf" title="" target="_blank">Download floor plan and table assignment for the evening session</a></li>
-	<li><a href="/files/kiev_hb.pdf" title="" target="_blank">Download floor plan and table assignment for the hosted buyers session</a></li>
-</ul> -->
+	<li><a href="/files/program_Kiev_upd_23Aug.pdf" title="" target="_blank">Download program of the event</a></li>
+	
+</ul> 
 <div class="signature">
 	<p>All events are available only to pre-registered visitors.<br>
 		Non-participating hoteliers, DMC companies and other hospitality providers will not be permitted to attend the Luxury Travel Mart as visitors.</p>

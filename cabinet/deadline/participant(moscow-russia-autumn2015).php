@@ -36,15 +36,15 @@ Place: Ballroom Hall (2nd floor).</p>
 Place: Ballroom Hall.</p>
 
 
-<!-- <h3>Files for Download</h3>
+ <h3>Files for Download</h3>
 
 <ul>
-	<li><a href="/files/Program_Moscow_upd_28Aug2014.pdf" target="_blank">Download detailed program</a></li>
-	<li><a href="/files/moscow_morning.pdf" target="_blank">Download floor plan and table assignment for the morning session</a></li>
-	<li><a href="/files/moscow_evening.pdf" target="_blank">Download floor plan and table assignment for the evening session</a></li> 
-	<li><a href="/files/moscow_hb.pdf" target="_blank">Download floor plan and table assignment for the hosted buyers session</a></li> 
+	<li><a href="/files/Moscow_morning_2015.pdf" target="_blank">Download floor plan for the morning session</a></li>
+	<li><a href="/files/Moscow_evening_2015.pdf" target="_blank">Download floor plan for the evening session</a></li>
+	<li><a href="/files/Moscow_HB_2015.pdf" target="_blank">Download floor plan for the hosted buyers session</a></li> 
+	<li><a href="/files/Moscow2015Autumn.pdf" target="_blank">Download program of the event</a></li> 
 
-</ul> -->
+</ul> 
 <div class="signature">
 	<p>All events are available only to pre-registered visitors.<br>
 		Non-participating hoteliers, DMC companies and other hospitality providers will not be permitted to attend the Luxury Travel Mart as visitors.</p>
