@@ -34,14 +34,14 @@ Place: Grand Ballroom Hall.</p>
 Place: Grand Ballroom Hall. </p>
 
 
-<!-- <h3>Files for Download</h3>
+<h3>Files for Download</h3>
 
 <ul>
-	<li><a href="/files/Program_Almaty_upd_28Aug2014.pdf" target="_blank">Download detailed program</a></li>
-	<li><a href="/files/almaty_morning.pdf" target="_blank">Download floor plan and table assignment for the morning session</a></li>
-	<li><a href="/files/almaty_evening.pdf" target="_blank">Download floor plan and table assignment for the evening session</a></li>
-	<li><a href="/files/almaty_hb.pdf" target="_blank">Download floor plan and table assignment for the hosted buyers session</a></li>
-</ul> -->
+	<li><a href="/files/Almaty_morning_2015.pdf" target="_blank">Download floor plan for the morning session</a></li>
+	<li><a href="/files/Almaty_evening_2015.pdf" target="_blank">Download floor plan for the evening session</a></li>
+	<li><a href="/files/Almaty_HB_2015.pdf" target="_blank">Download floor plan for the hosted buyers session</a></li>
+	<li><a href="/files/Almaty2015.pdf" target="_blank">Download program of the event</a></li>
+</ul> 
 <div class="signature">
 	<p>All events are available only to pre-registered visitors.<br>
 		Non-participating hoteliers, DMC companies and other hospitality providers will not be permitted to attend the Luxury Travel Mart as visitors.</p>
