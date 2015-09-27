@@ -33,7 +33,7 @@ $MESS["R_E_CHECK_GLOBAL"] = "Global / Worldwide";
 $MESS["R_B_CHECK_GLOBAL"] = "Global / Worldwide";
 
 $MESS["R_B_SELECT_PRIORITY_AREAS"] = "Выберите приоритетные направления";
-$MESS["R_E_SELECT_PRIORITY_AREAS"] = "Select the priority destinations";
+$MESS["R_E_SELECT_PRIORITY_AREAS"] = "Location of your business";
 
 $MESS["R_B_AUTHORIZE_TITLE"] = "Создайте гостевое имя и пароль, которые вы будете использовать при заходе на &laquo;Персональную страницу гостя&raquo; для назначения встреч с участниками.";
 $MESS["R_B_AUTHORIZE_EPILOGUE"] = "Заполняйте на английском, без пробелов.<br />Подтверждение гостевого имени и пароля будет выслано вам электронным сообщением вместе с подтверждением регистрации.";
