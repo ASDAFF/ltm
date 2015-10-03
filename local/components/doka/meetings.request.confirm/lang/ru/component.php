@@ -25,8 +25,8 @@ $MESS['PARTICIP_REQUEST_NOT_FOUND'] = 'REQUEST NOT FOUND';
 $MESS['ADMIN_REQUEST_NOT_FOUND'] = 'REQUEST NOT FOUND';
 $MESS['GUEST_REQUEST_NOT_FOUND'] = 'Запрос не найден';
 
-$MESS['PARTICIP_COMPANY_MEET_EXIST'] = 'У вас уже есть встреча с данным гостем';
-$MESS['GUEST_COMPANY_MEET_EXIST'] = 'У вас уже есть встреча с данным участником';
-$MESS['ADMIN_COMPANY_MEET_EXIST'] = 'У пользователей уже есть общая встреча';
+$MESS['PARTICIP_COMPANY_MEET_EXIST'] = 'У вас уже есть встреча с данным гостем. Необходимо отменить одну из встреч';
+$MESS['GUEST_COMPANY_MEET_EXIST'] = 'У вас уже есть встреча с данным участником. Необходимо отменить одну из встреч';
+$MESS['ADMIN_COMPANY_MEET_EXIST'] = 'У пользователей уже есть общая встреча. Необходимо отменить одну из встреч';
 
 ?>
