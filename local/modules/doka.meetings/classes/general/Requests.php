@@ -46,7 +46,7 @@ IncludeModuleLangFile(__FILE__);
  * getAllMeetTimesByGroup($group_id)
  * getRejectedRequests($group_id)
  * getAllCompaniesMeet($user_id) Возвращает массив содержащий все id компаний с которыми у компании $user_id есть встречи
- *
+ * getAllSlotsBetween($user1, $user2)
  * getUserGroubSimple($user_id)
  */
 class Requests extends DokaRequest
@@ -432,8 +432,28 @@ class Requests extends DokaRequest
         return $allTimes;
     }
 
+    /*
+    * Возвразщает все встречи(id) между 2 пользователями для выставок $exib
+    */
+    public function getAllSlotsBetween($user1, $user2, $exib){
+        global $DB;
 
-    /**
+        $sWhere = ' WHERE EXHIBITION_ID IN (' . implode(',', $exib) . ')';
+        $sWhere .= ' AND STATUS IN ('.implode(',', $this->getStatusesBusy()).')';
+        $sql = "SELECT ID FROM ". self::$sTableName . $sWhere. " AND sender_id=$user1 AND receiver_id=$user2";
+        $sql .= " UNION ";
+        $sql .= "SELECT ID FROM ". self::$sTableName . $sWhere. " AND sender_id=$user2 AND receiver_id=$user1";
+        $res = $DB->Query($sql, false, 'FILE: '.__FILE__.'<br />LINE: ' . __LINE__);
+
+        // Сформируем удобочитаемый массив
+        $resTimes = array();
+        if ($data = $res->Fetch()) {
+            $resTimes = $data;
+        }
+        return $resTimes;
+    }
+
+    /*
      * Возвращает компании у которых заняты все слоты для выставки
      * @param  id $search_group id группы
      * @return array компании с полями (id, name)
