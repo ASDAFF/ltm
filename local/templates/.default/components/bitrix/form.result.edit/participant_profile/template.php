@@ -24,6 +24,18 @@
 
 				<?if(isset($arShowQuestion["IS_PIC"])):$bShowedLeftPart=true;?>
 					<div class="pull-left profil-photo">
+						<?$arPhoto = CFormResult::GetFileByAnswerID($arParams["RESULT_ID"], $arQuestion["STRUCTURE"][0]["ID"]); ?>
+						<?$APPLICATION->IncludeComponent("rarus:photo.input",
+							".default",
+							array(
+								"WIDTH" => 110,
+								"HEIGHT" => 110,
+								"INPUT_NAME" => "form_image_{$arQuestion["STRUCTURE"][0]["ID"]}",
+								"FILE_ID" => $arPhoto["USER_FILE_ID"] ? $arPhoto["USER_FILE_ID"] : false,
+							),
+							false
+						);?>
+						<?/*
 						<div class="member">
 							<?//if(preg_match('/src="([^"]+)"/', $arQuestion["HTML_CODE"], $matches)):?>
 							<?
@@ -42,6 +54,7 @@
 							<input class="inputfile" type="file" size="0" name="form_image_<?=$arQuestion["STRUCTURE"][0]["ID"]?>">
 							Upload photo
 						</label>
+*/?>
 					</div>
 				<?endif?>
 			<?endforeach;?>
