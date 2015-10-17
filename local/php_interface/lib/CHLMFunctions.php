@@ -269,7 +269,11 @@ class CHLMFunctions
         }
 
         $countQuery = new Entity\Query($entity);
-        $countQuery->setSelect(array('CNT'=>array('expression' => array('COUNT(1)'), 'data_type'=>'integer')));
+        $countQuery->registerRuntimeField('CNT', array(
+            'data_type'=>'integer',
+            'expression' => array('COUNT(1)')
+        ));
+        $countQuery->setSelect(array('CNT'));
         $countQuery->setFilter($filter);
         $totalCount = $countQuery->setLimit(null)->setOffset(null)->exec()->fetch();
         $totalCount = intval($totalCount['CNT']);
