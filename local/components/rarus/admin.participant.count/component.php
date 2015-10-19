@@ -425,8 +425,7 @@ SWIFT: CBGURUMM
 Beneficiary: Polanskiy Artem Valentinovich
 Account: 40802978700001002738";
 
-$data["BENEFICIARY_NAME"] = "Artem V. Polanskiy /
-Поланский Артём Валентинович";
+$data["BENEFICIARY_NAME"] = "Artem V. Polanskiy / Поланский Артём Валентинович";
     	}; break;
 
     	case "TM" : {
@@ -449,8 +448,7 @@ SWIFT: VTBRRUMM
 Beneficiary: Travel Media
 Account: 40702978900140010240";
 
-$data["BENEFICIARY_NAME"] = "Elena Vetrova /
-Ветрова Елена Васильевна";
+$data["BENEFICIARY_NAME"] = "Elena Vetrova / Ветрова Елена Васильевна";
     	}; break;
 
     }
