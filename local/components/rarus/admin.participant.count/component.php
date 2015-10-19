@@ -574,7 +574,7 @@ function BodyPDF($data, &$oPDF, $folder)
 
     $oPDF->SetFont('freeserif','B',FONT_SIZE);
     $oPDF->MultiCell(0, 5, "Details of payment / Предмет счёта:\n", 0, "C");
-    $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
+   // $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
 
     $oPDF->SetFont('freeserif','',FONT_SIZE);
 
