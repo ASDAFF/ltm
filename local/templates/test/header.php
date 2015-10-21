@@ -19,6 +19,7 @@
 	<?$APPLICATION->ShowHead();?>
 </head>
 <body>
+	<? CJSCore::Init("ajax"); ?>
 	<? if ($USER->isAdmin())$APPLICATION->ShowPanel();?>
 	<header>
 		<div class="layoutCenterWrapper">
