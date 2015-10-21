@@ -4,7 +4,6 @@
 <html class="<?= LANGUAGE_ID?>">
 <head>
 	<title><?$APPLICATION->ShowTitle()?></title>
-	<?$APPLICATION->ShowHead();?>
 	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/jquery-1.10.2.min.js')?>
 	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/jquery-ui-1.10.4.custom.min.js')?>
 	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/fancybox/jquery.fancybox.js')?>
@@ -17,7 +16,7 @@
 	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/script.js')?>
 	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/normalize.css')?>
 	<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-
+	<?$APPLICATION->ShowHead();?>
 </head>
 <body>
 	<? if ($USER->isAdmin())$APPLICATION->ShowPanel();?>
