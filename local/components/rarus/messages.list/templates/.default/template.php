@@ -11,6 +11,13 @@ if (!empty($arResult["OK_MESSAGE"])):
 <?
 endif;
 ?>
+<p class="inbox-list__check-info">
+	<?if($arParams["FID"] == 3):?>
+		<span data-action="read"><?=GetMessage("HLM_ACT_READ")?></span>
+		<span data-action="unread"><?=GetMessage("HLM_ACT_UNREAD")?></span>
+	<?endif;?>
+	<span data-action="delete"><?=GetMessage("HLM_ACT_DELETE")?></span>
+</p>
 <?
 if ($arResult["NAV_PARAMS"]["PAGEN"] > 0):
 ?>
@@ -20,7 +27,11 @@ endif;
 ?>
     <table class="morning-time inbox-list">
         <tr>
-            <th><?=GetMessage("HLM_HEAD_SUBJECT")?></th>
+			<th>
+				<input class="inbox-list__check-item" id="check_all" data-exib="<?=$arParams["EID"]?>" type="checkbox"/>
+				<label class="inbox-list__check-label" for="check_all"></label>
+			</th>
+			<th><?=GetMessage("HLM_HEAD_SUBJECT")?></th>
             <th><?=GetMessage("HLM_HEAD_COMPANY")?></th>
             <th>
 			<?if($arResult["StatusUser"] == "RECIPIENT"):?>
@@ -35,7 +46,7 @@ endif;
 if (empty($arResult["ITEMS"])):
 ?>
  				<tr>
-					<td colspan="4"><?=GetMessage("HLM_EMPTY_FOLDER")?></td>
+					<td colspan="5"><?=GetMessage("HLM_EMPTY_FOLDER")?></td>
 				</tr>
 <?
 else:
@@ -48,6 +59,10 @@ else:
         <tr <?=($res['IS_READ'] == 0)?'class="new-message"':""?>>
         	<!--<td align="center"><? if($res["IS_READ"] == 'N'){?><img src="/local/templates/personal/images/envelope.gif" /><? }else{?>&nbsp;<? }?></td>-->
             <td>
+				<input class="inbox-list__check-item" data-id="<?=$res["ID"]?>" type="checkbox" id="check_<?=$res["ID"]?>"/>
+				<label class="inbox-list__check-label" for="check_<?=$res["ID"]?>"></label>
+			</td>
+			<td>
 	            <a href="<?=$res["URL_HLM_READ"]?>" <?if($arParams["NEW_WINDOW"] == "Y"):?>target="_blank" onclick="newWind('<?=$res["URL_HLM_READ"]?>', 500, 400); return false;"<? endif;?>>
 	            <? $subject = trim($res["SUBJECT"]);?>
 	            <?=(strlen($subject) > 0)?$subject:GetMessage("HLM_NO_SUBJECT")?>
