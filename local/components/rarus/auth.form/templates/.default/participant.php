@@ -57,7 +57,7 @@ $curDir = $APPLICATION->GetCurDir();
     		</div>
     		<div class="content pull-overflow">
     			<div class="pull-left">
-    				<div class="pull-overflow mail-list"><a href="<?= $arExhibition["MESSAGES"]["LINK"]?>" title=""><span class="mess"><?= GetMessage("AUTH_P_MESSAGES")?></span> <? if($arExhibition["MESSAGES"]["COUNT"] > 0):?><span class="count pull-right"><?= $arExhibition["MESSAGES"]["COUNT"]?></span><? endif;?></a></div>
+    				<div class="pull-overflow mail-list"><a href="<?= $arExhibition["MESSAGES"]["LINK"]?>" title=""><span class="mess"><?= GetMessage("AUTH_P_MESSAGES")?></span> <span class="count pull-right <? if($arExhibition["MESSAGES"]["COUNT"] > 0):?>show<? endif;?>" id="mess-<?=$arExhibition["ID"]?>"><?= $arExhibition["MESSAGES"]["COUNT"]?></span></a></div>
     				<div class="pull-overflow mail-list"><a href="<?= $arExhibition["WISHLIST"]["LINK"]?>" title=""><?= GetMessage("AUTH_P_WISHLIST")?></a></div>
     				<div class="pull-overflow mail-list"><a href="<?= $arExhibition["SCHEDULE"]["LINK"]?>" title=""><?= GetMessage("AUTH_P_SHEDULE")?></a></div>
     			</div>

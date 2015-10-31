@@ -120,6 +120,7 @@ while($obElement = $rsElement->GetNextElement())
         //заполнение данных профиля
 
         $arProfile["TYPE"] = "GUEST";
+        $arProfile["EXIBITION"] = $arItem["ID"];
 
         $arProfile["NAME"] = $arUserAnswer[113][216]["USER_TEXT"];//FIELD_ID 113 , ANSWER_ID 216, TITLE => Имя
 

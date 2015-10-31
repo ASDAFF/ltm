@@ -1068,7 +1068,7 @@ ul{margin: 0;padding: 0;list-style: none;}
 	color: #fff;
 	font-size: 12px;
 	font-weight: bold;
-	display:inline-block;
+	display:none;
 	width: 25px;
 	height: 20px;
 	vertical-align: middle;
@@ -1077,6 +1077,9 @@ ul{margin: 0;padding: 0;list-style: none;}
 	margin-left: 5px;
 	margin-top: -3px;
 	line-height: 14px;
+}
+.private-office .mail-list .count.show{
+    display:inline-block;
 }
 .private-office .gray-grid .content .mail-list{padding: 4px 0;}
 .private-office .gray-grid .mail-list a{float: left;}
@@ -1235,10 +1238,52 @@ ul{margin: 0;padding: 0;list-style: none;}
 .evening-session .morning-session .sorting-company td.company{width:340px;padding-right: 10px;}
 .evening-session .sorting-company .collegues{font-size: 12px;width: 200px;}
 .evening-session .sorting-company td.representative{width: 120px;padding-right: 20px;}
-
+.message-box{
+    position: relative;
+}
 .message-box .message-list-tab li{float: left;margin-right: 30px;}
 .message-box .message-list-tab li a{color: #77787b;font-size: 14px;}
-.message-box .inbox-list td:first-child{width: 280px;padding-right:10px;}
+.message-box .inbox-list td:first-child{
+    width: 40px;
+    padding-right:0;
+    padding-left:0;
+    text-align: center;
+}
+.message-box .inbox-list th:first-child{
+    padding-left: 10px;
+    text-align: center;
+}
+.message-box .inbox-list tr.check td{
+    background-color: #dbf9ff;
+}
+.inbox-list__check-item{
+    display: none;
+}
+.inbox-list__check-label{
+    background: url("/images/check.png") no-repeat scroll 0 7px transparent;
+    display: block;
+    height: 25px;
+    position: relative;
+    width: 19px;
+    cursor: pointer;
+}
+.inbox-list__check-item:checked + label{
+    background: url("/images/check_act.png") no-repeat scroll 0 0 transparent;
+}
+.inbox-list__check-info{
+    position: absolute;
+    left: 0;
+    top: 30px;
+    color: #77787b;
+    display: none;
+}
+.inbox-list__check-info span{
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 20px;
+}
+.message-box .inbox-list td:nth-child(2){width: 280px;padding-right:10px;}
 .message-box .inbox-list td{padding-right: 10px;}
 .message-box .inbox-list td,.message-box .inbox .inbox-list td a{font-size: 12px;}
 .message-box .inbox-list td.unread{font-weight: bold;}
