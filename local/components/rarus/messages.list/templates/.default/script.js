@@ -44,7 +44,7 @@ $(function() {
 				if(res.error == ''){
 					var toAdd = 0,
 						toDel = 0;
-					$('.inbox-list__check-item:checked').each(function(index,value){
+					$('td .inbox-list__check-item:checked').each(function(index,value){
 						if(action == 'delete'){
 							if($(this).closest("tr").hasClass("new-message")){
 								toDel += 1;
