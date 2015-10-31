@@ -31,9 +31,17 @@ else:
     {
         case "PARTICIPANT" : require_once ("participant.php"); break;
         case "GUEST" : require_once ("guest.php"); break;
-        default:?>
+        default:
+            ?>
             <div id="form" class="form">
+            <?if($USER->IsAdmin()):?>
+                <p>Welcome, Administrator</p>
+                <div class="edit-profile">
+                    <div><a href="/admin/" title="Personal Cabinet" >Personal Cabinet</a></div>
+                </div>
+            <?else:?>
                 <p><?=GetMessage('AUTH_LOGIN_ERROR')?></p>
+            <?endif;?>
                 <div class="leave clearfix">
                     <a href="/?logout=yes" title="EXIT" class="exit"><?=GetMessage("AUTH_P_EXIT")?></a>
                 </div>
