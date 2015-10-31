@@ -3,9 +3,11 @@ $(function() {
 	$("#check_all").on("change", function(){
 		if($(this).prop("checked")){
 			$(".inbox-list__check-item").prop("checked", true);
+			$(".inbox-list__check-item").closest("tr").addClass("check");
 		}
 		else{
 			$(".inbox-list__check-item").prop("checked", false);
+			$(".inbox-list__check-item").closest("tr").removeClass("check");
 		}
 	});
 
@@ -16,6 +18,13 @@ $(function() {
 		else{
 			$(".inbox-list__check-info").hide();
 		}
+		if($(this).prop("checked")){
+			$(this).closest("tr").addClass("check");
+		}
+		else{
+			$(this).closest("tr").removeClass("check");
+		}
+
 	});
 
 	$(".inbox-list__check-info span").on("click", function(){

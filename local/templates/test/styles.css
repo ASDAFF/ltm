@@ -1253,6 +1253,9 @@ ul{margin: 0;padding: 0;list-style: none;}
     padding-left: 10px;
     text-align: center;
 }
+.message-box .inbox-list tr.check td{
+    background-color: #dbf9ff;
+}
 .inbox-list__check-item{
     display: none;
 }
