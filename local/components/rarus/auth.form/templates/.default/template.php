@@ -31,6 +31,14 @@ else:
     {
         case "PARTICIPANT" : require_once ("participant.php"); break;
         case "GUEST" : require_once ("guest.php"); break;
+        default:?>
+            <div id="form" class="form">
+                <p><?=GetMessage('AUTH_LOGIN_ERROR')?></p>
+                <div class="leave clearfix">
+                    <a href="/?logout=yes" title="EXIT" class="exit"><?=GetMessage("AUTH_P_EXIT")?></a>
+                </div>
+            </div><?
+        break;
     }
     ?>
 <? endif;?>
