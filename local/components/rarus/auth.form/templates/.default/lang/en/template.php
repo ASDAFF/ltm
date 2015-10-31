@@ -21,6 +21,7 @@ $MESS["AUTH_AUTH"]="AUTHORIZATION";
 $MESS["AUTH_FOR_EXHIBITIRS"]="for exhibitors and buyers";
 $MESS["AUTH_FORGOT_PASSWORD"] = "forgot your password?";
 $MESS["AUTH_LOGIN_BUTTON"] = "ENTER";
+$MESS["AUTH_LOGIN_ERROR"] = "Access is denied";
 
 
 //участник
