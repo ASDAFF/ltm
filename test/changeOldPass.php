@@ -18,9 +18,9 @@ while ($arUser = $rsUsers->Fetch()):
         print_r($arUser);
         echo "</pre>";
 
-        /*$user = new CUser;
+        $user = new CUser;
         $fields = array("UF_PAS"=>$arUser["PASSWORD_NEW"]);
-        $user->Update($arUser["ID"], $fields);*/
+        $user->Update($arUser["ID"], $fields);/**/
     }
 
 endwhile;
