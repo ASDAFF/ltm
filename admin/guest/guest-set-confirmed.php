@@ -119,7 +119,7 @@ function confirmUser($userId, $arUserChanges, $unconfirmmedGuestGroupId, $confir
 		CEvent::Send("GUEST_EVENING_CONFIRM", SITE_ID, $arFields, "Y", $templateId);
 	}
 	
-	if(isset($_REQUEST["CONFIRM_UF_HB_{$userId}"]) && isset($_REQUEST["CONFIRM_UF_MR_{$userId}"]) && "488" == $arExhib["ID"]) {
+	if(isset($_REQUEST["CONFIRM_UF_HB_{$userId}"]) && isset($_REQUEST["CONFIRM_UF_MR_{$userId}"]) && ("361" == $arExhib["ID"]) or ("488" == $arExhib["ID"])) {
 		CEvent::Send("GUEST_HB_CONFIRM", SITE_ID, $arFields);
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 function passCode($str, $passw=""){
-    $salt = "Dn8*#2n!9j";
+    $salt = "Dn82n9j";
     $len = strlen($str);
     $gamma = '';
     $n = $len>100 ? 16 : 4;
