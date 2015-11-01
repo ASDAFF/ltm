@@ -1197,6 +1197,7 @@ ul{margin: 0;padding: 0;list-style: none;}
 .morning-session table.morning-time tr td, .morning-session table.morning-time tr th{padding:5px;}
 .morning-session table.morning-time tr.new-message td{font-weight:bold;}
 .morning-session table.morning-time tr td:first-child{padding-left: 10px;}
+.morning-session table.inbox-list tr td:first-child{padding-left: 5px; padding-bottom: 11px;}
 .morning-session table.time-line tr td:first-child{width: 100px;}
 .morning-session table tr th.chose-company{width: 295px;}
 .morning-session table tr .chose-company{width: 280px;}
@@ -1244,15 +1245,23 @@ ul{margin: 0;padding: 0;list-style: none;}
 .message-box .message-list-tab li{float: left;margin-right: 30px;}
 .message-box .message-list-tab li a{color: #77787b;font-size: 14px;}
 .message-box .inbox-list td:first-child{
-    width: 40px;
+    width: 38px;
     padding-right:0;
     padding-left:0;
     text-align: center;
 }
 .message-box .inbox-list th:first-child{
-    padding-left: 10px;
+    padding: 0 0 5px 5px;
     text-align: center;
 }
+.inbox table.inbox-list tr th, .inbox table.inbox-list tr td {
+	padding-left: 0;
+	padding-right: 15px;
+}
+.inbox table.inbox-list tr th:last-child, .inbox table.inbox-list tr td:last-child {
+	padding-right: 5px;
+}
+.inbox table.inbox-list tr th.date{width: 70px}
 .message-box .inbox-list tr.check td{
     background-color: #dbf9ff;
 }
@@ -1283,12 +1292,12 @@ ul{margin: 0;padding: 0;list-style: none;}
     font-size: 14px;
     margin-right: 20px;
 }
-.message-box .inbox-list td:nth-child(2){width: 280px;padding-right:10px;}
-.message-box .inbox-list td{padding-right: 10px;}
+.message-box .inbox-list td:nth-child(2){width: 220px;padding-right:15px;}
+/* .inbox table.inbox-list tr td{padding-right: 15px;} */
 .message-box .inbox-list td,.message-box .inbox .inbox-list td a{font-size: 12px;}
 .message-box .inbox-list td.unread{font-weight: bold;}
-.message-box .inbox-list .company{width: 100px;}
-.message-box .inbox-list .date{width:75px;}
+.message-box .inbox-list .company{width: 180px;}
+.message-box .inbox-list .date{width: 70px;}
 
 .message-box .new-message input[type=text]{width:634px; border:1px solid #9B9C9E; margin:5px 0px; padding:4px 4px;}
 .message-box .new-message textarea{max-width: 634px;min-width: 634px;border: 1px solid #9B9C9E;margin: 5px 0px;min-height: 280px;padding: 4px;}
