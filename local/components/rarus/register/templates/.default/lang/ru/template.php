@@ -1,5 +1,5 @@
 <?
-$MESS["R_TITLE"] = "REGISTRATION FOR ALL EXHIBITONS";
+$MESS["R_TITLE"] = "REGISTRATION FOR ALL EXHIBITIONS";
 $MESS["R_ABOUT_YOU"] = "ABOUT YOU";
 $MESS["R_E_TITLE"] = "EXHIBITOR";
 $MESS["R_B_TITLE"] = "BUYER, HOSTED BUYER";
@@ -10,16 +10,16 @@ $MESS["R_B_DESCRIPTION"] = "Гостевая регистрация на утр�
 $MESS["R_BEFORE_TERMS"] = "Before registering please request <a href='#TERMS#' target='_blank'>terms &amp; conditions</a>";
 
 /*Выбор выставки*/
-$MESS["R_EXHIBITIONS_NONE"] = "Exhibitions a missing";
+$MESS["R_EXHIBITIONS_NONE"] = "Exhibition is missing";
 $MESS["R_E_EXTEND_TITLE"] = "EXHIBITOR";
 $MESS["R_B_EXTEND_TITLE"] = "ГОСТЬ (VIP BUYER, BUYER, HOSTED BUYER)";
 $MESS["R_E_EXHIBITION_TITLE"] = "PLEASE SELECT THE EVENT YOU WOULD LIKE TO REGISTER FOR";
 $MESS["R_B_EXHIBITION_TITLE"] = "<p>Пожалуйста, выберите интересующую вас выставку:</p>";
 
-$MESS["R_E_YOUR_CHOICE"] = "YOUR CHOICE";
-$MESS["R_B_YOUR_CHOICE"] = "ВЫ ВЫБРАЛИ";
-$MESS["R_MORNING"] = "Утро"; /*надпись над галочкой для выбора утра */
-$MESS["R_EVENING"] = "Вечер";  /*надпись над галочкой для выбора вечера */
+$MESS["R_E_YOUR_CHOICE"] = "Your choice";
+$MESS["R_B_YOUR_CHOICE"] = "Вы выбрали";
+$MESS["R_MORNING"] = "ЛТМ Весна 2016"; /*надпись над галочкой для выбора утра */
+$MESS["R_EVENING"] = "";  /*надпись над галочкой для выбора вечера */
 
 $MESS["R_E_SALUTATION"] = "Title";
 
@@ -35,10 +35,10 @@ $MESS["R_B_CHECK_GLOBAL"] = "Global / Worldwide";
 $MESS["R_B_SELECT_PRIORITY_AREAS"] = "Выберите приоритетные направления";
 $MESS["R_E_SELECT_PRIORITY_AREAS"] = "Location of your business";
 
-$MESS["R_B_AUTHORIZE_TITLE"] = "Создайте гостевое имя и пароль, которые вы будете использовать при заходе на &laquo;Персональную страницу гостя&raquo; для назначения встреч с участниками.";
+$MESS["R_B_AUTHORIZE_TITLE"] = "Создайте гостевое имя и пароль, которые вы будете использовать при входе в ваш личный кабинет для назначения встреч с участниками";
 $MESS["R_B_AUTHORIZE_EPILOGUE"] = "Заполняйте на английском, без пробелов.<br />Подтверждение гостевого имени и пароля будет выслано вам электронным сообщением вместе с подтверждением регистрации.";
 
-$MESS["R_B_COLLEAGUE_MORNING_TITLE"] = "Заполните регистрационные данные коллеги на утреннюю сессию";
+$MESS["R_B_COLLEAGUE_MORNING_TITLE"] = "Заполните регистрационные данные коллеги, который(-ая) будет присутствовать с вами на утренней сессии";
 $MESS["R_B_COLLEAGUE_EVENING_TITLE"] = "Зарегистрируйте коллегу на вечернюю сессию.";
 $MESS["R_B_EACH_COLLEAGUE_EVENING_TITLE"] = "Коллега №#NUM# на вечернюю сессию";
 
@@ -58,7 +58,7 @@ $MESS["R_E_CONF_TERMS"] = "I have read and agree to the <a href='#TERMS#' target
 $MESS["R_B_SEND"] = "Отправить";
 $MESS["R_E_SEND"] = "Send";
 
-$MESS["R_E_UPLOAD_COMPANY_PHOTO"] = "Upload up to photos (jpeg/png only. min 6, max. 12)";
+$MESS["R_E_UPLOAD_COMPANY_PHOTO"] = "Upload up to 12 photos (jpg/png only min.6, max.12)";
 $MESS["R_E_UPLOAD_COMPANY_LOGO"] = "Upload logo (jpeg/png format only. max. 2mb.)";
 $MESS["R_E_UPLOAD_PERSONAL_PHOTO"] = "Upload personal photo";
 
