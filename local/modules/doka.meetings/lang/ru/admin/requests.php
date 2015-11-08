@@ -8,10 +8,12 @@ $MESS["IBLIST_A_SENDER_ID"] = "Отправитель";
 $MESS["IBLIST_A_RECEIVER_ID"] = "Получатель";
 $MESS["IBLIST_A_EXHIBITION_ID"] = "Выставка";
 $MESS["IBLIST_A_STATUS"] = "Статус";
+$MESS["IBLIST_A_DATE"] = "Изменение статуса";
 
 $MESS["DOKA_FILTER_EXHIBITION_ID"] = "Выставка";
 $MESS["DOKA_FILTER_EXHIBITION_ID_ALL"] = "Любая";
 $MESS["DOKA_FILTER_SENDER_ID"] = "Отправитель запроса";
 $MESS["DOKA_FILTER_RECEIVER_ID"] = "Получатель запроса";
+$MESS["DOKA_FILTER_MODIFY"] = "Дата изменения запроса";
 $MESS["DOKA_FILTER_STATUS"] = "Статус запроса";
 ?>
