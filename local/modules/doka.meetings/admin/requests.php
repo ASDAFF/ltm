@@ -56,11 +56,11 @@ if($find_receiver_id != ''){
 }
 
 if($find_update_from != ''){
-	$arFilter["!UPDATED_AT"] = date("m.d.Y 23:59:59", strtotime($find_update_from));
+	$arFilter["!UPDATED_AT"] = date("d.m.Y", strtotime($find_update_from));
 }
 if($find_update_to != ''){
 	$timeUpdateTo = strtotime($find_update_to) + 86400;
-	$arFilter["UPDATED_AT"] = date("m.d.Y 00:00:00", $timeUpdateTo);
+	$arFilter["UPDATED_AT"] = date("d.m.Y", $timeUpdateTo);
 }
 
 // РЈРґР°Р»РµРЅРёРµ
