@@ -25,6 +25,7 @@ $arShowedTableCols = array(
 $arShowedTableColsBool = array();
 switch($arParams["ACT"]) {
 	case "off":
+		$arShowedTableCols["Дата регистрации"] = "date";
 		$arShowedTableCols["Описание деятельности"] = "31";
 		$arShowedTableCols["Форма посещения"] =  array(42, 43);
 		$arShowedTableColsBool = array("Подтв. утро"=>"UF_MR", "Подтв. вечер"=>"UF_EV", "Подтв. НВ"=>"UF_HB");
@@ -207,8 +208,11 @@ function printVal($ar, $glue)
 					<td class="text-center"><input type="checkbox" name="SELECTED_USERS[]" value="<?=$arUser["ID"]?>"></td>
 					<?foreach($arShowedTableCols as $key=>$val):?>
 						<td>
-							<? if($key != "Пароль"):?>
+							<?if($key != "Пароль" && $val !== "date"):?>
 								<?=printVal(returnVal($arUser, $val, $arParams["GUEST_FORM_ID"]), "<br>")?>
+							<?elseif($val === "date"):?>
+								<span class="date_diff"><?=$arUser["REG_DIFF"]?></span><br>
+								<?=$arUser["REG_DATE"]?>
 							<? else:?>
 								<?=$arUser["UF_PAS"]?>
 								<br /><? $href = "/admin/service/pass.php?uid=" . $arUser["ID"]?>
