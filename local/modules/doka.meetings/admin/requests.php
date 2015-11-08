@@ -54,13 +54,13 @@ if($find_receiver_id != ''){
 	else
 		$arFilter["RECEIVER_ID"] = 0;
 }
-unset($arFilter["!UPDATED_AT"]);
-unset($arFilter["UPDATED_AT"]);
+
 if($find_update_from != ''){
-	$arFilter["!UPDATED_AT"] = $find_update_from;
+	$arFilter["!UPDATED_AT"] = date("m.d.Y 23:59:59", strtotime($find_update_from));
 }
 if($find_update_to != ''){
-	$arFilter["UPDATED_AT"] = $find_update_to;
+	$timeUpdateTo = strtotime($find_update_to) + 86400;
+	$arFilter["UPDATED_AT"] = date("m.d.Y 00:00:00", $timeUpdateTo);
 }
 
 // РЈРґР°Р»РµРЅРёРµ
