@@ -68,12 +68,18 @@ $arResult = array();
 	$arResult["NAVIGATE"] = $rs->GetPageNavStringEx($navComponentObject, "Пользователи", "");
 
     while($ar = $rs->GetNext(true, false)) {
+        $rsResult = CFormResult::GetByID($ar[$userFieldFormAnswer]);
+        $tmpResFields = $rsResult->Fetch();
+        $ar["REG_DATE"]= $tmpResFields["DATE_CREATE"];
+        $tmpTime = strtotime($ar["REG_DATE"]);
+        $diff = (time() - $tmpTime)/60;//разница в минутах
+        $ar["REG_DIFF"] = floor($diff/60)."ч ".($diff% 60)."м";
+
     	$arUserListAll[ $ar["LOGIN"] ] = $ar;
     	$arUserFormAnswersId[ $ar["LOGIN"] ] = $ar[$userFieldFormAnswer];
     }
     $arResult["USERS_LIST"] = $arUserListAll;
     $arUserFormAnswersLoginById = array_flip($arUserFormAnswersId);
-
 
      if(empty($arUserListAll)) {
          echo ("There are 0 users.");
