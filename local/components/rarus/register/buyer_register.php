@@ -357,21 +357,17 @@ if (intval($USER_ID) > 0)
 		{
 			if($when == "E")
 			{
-				$arEveningColleagueEventFields = array();
-				foreach ($data["COLLEAGUE"] as $arColleague)
+				foreach ($data["COLLEAGUE"] as $type => $arColleague)
 				{
-					if(!empty($arColleague["EMAIL"]) && !empty($arColleague["NAME"]))
+					$arEveningColleagueEventFields = array();
+					if(!empty($arColleague["EMAIL"]) && !empty($arColleague["NAME"]) && "MORNING" !== $type)
 					{
-						$arEveningColleagueEventFields[] = $arColleague;
+						$arEveningColleagueEventFields = $arColleague;
 						$arEveningColleagueEventFields["MAIL"] = $arColleague["EMAIL"];
-					}
-				}
-				
-				if(!empty($arEveningColleagueEventFields))
-				{
-					foreach ($arEveningColleagueEventFields as $arMailFields)
-					{
-						$event->SendImmediate($eventNameElem, SITE_ID, $arMailFields);
+						$arEveningColleagueEventFields["EXHIB"] = $arResult["EXHIBITION"][$exhibitionID]["PROPERTIES"]["menu_en"]["VALUE"];
+						$arEveningColleagueEventFields["BUYER"] = "{$data["NAME"]} {$data["LAST_NAME"]}";
+
+						$event->Send("REG_GUEST_COLLEAGUE", SITE_ID, $arEveningColleagueEventFields);
 					}
 				}
 			}
@@ -382,15 +378,13 @@ if (intval($USER_ID) > 0)
 				{
 					$arMailFields = $data["COLLEAGUE"]["MORNING"];
 					$arMailFields["MAIL"] = $data["COLLEAGUE"]["MORNING"]["EMAIL"];
-				}
-				if(!empty($arMailFields))
-				{
-					$event->SendImmediate($eventNameElem, SITE_ID, $arMailFields);
+					$arMailFields["EXHIB"] = $arResult["EXHIBITION"][$exhibitionID]["PROPERTIES"]["menu_en"]["VALUE"];
+					$arMailFields["BUYER"] = "{$data["NAME"]} {$data["LAST_NAME"]}";
+
+					$event->Send("REG_GUEST_COLLEAGUE", SITE_ID, $arMailFields);
 				}
 			}
-			
-			
-		}  
+		}
 	}
 	
 	/*
