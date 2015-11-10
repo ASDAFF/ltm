@@ -158,7 +158,7 @@ function confirmUser($userId, $arUserChanges, $unconfirmmedGuestGroupId, $confir
 		if(!empty($arColleague["EMAIL"]))
 		{
 			$arColleagueEventFields = $arColleague;
-			$arColleagueEventFields["BUYER"] = "{$arUserFields["LAST_NAME"]} {$arUserFields["LAST_NAME"]}";
+			$arColleagueEventFields["BUYER"] = "{$arUserFields["NAME"]} {$arUserFields["LAST_NAME"]}";
 			$arColleagueEventFields["EXHIB"] = $arExhib["PROPERTY_MENU_EN_VALUE"];
 
 			CEvent::Send("GUEST_CONFIRM_COLLEAGUE", SITE_ID, $arColleagueEventFields);
