@@ -640,6 +640,15 @@ class CFormMatrix
 		$index = array_search($baseQ, self::$arAnswerIDByForm[4]);
 		return self::$arAnswerIDByForm[$needFormID][$index];
 	}
+	static function getAnswerRelForm($answerID, $fromFormID, $toFormID)
+	{
+		if(!$answerID || !$fromFormID || !$toFormID)
+		{
+			return false;
+		}
+		$index = array_search($answerID, self::$arAnswerIDByForm[$fromFormID]);
+		return self::$arAnswerIDByForm[$toFormID][$index];
+	}
 	static function getSIDRelBase($baseQ, $needFormID)
 	{
 		if(empty($baseQ) || !intval($needFormID))
@@ -658,7 +667,15 @@ class CFormMatrix
 		$index = array_search($baseQ, self::$arAnswerSalutationIDByForm[4]);
 		return self::$arAnswerSalutationIDByForm[$needFormID][$index];
 	}
-
+	static function getAnswerSalutationRelForm($answerID, $fromFormID, $toFormID)
+	{
+		if(!$answerID || !$fromFormID || !$toFormID)
+		{
+			return false;
+		}
+		$index = array_search($answerID, self::$arAnswerSalutationIDByForm[$fromFormID]);
+		return self::$arAnswerSalutationIDByForm[$toFormID][$index];
+	}
 	static function getAnswerSalutationBase($answID, $needFormID)
 	{
 		if(empty($answID) || !intval($needFormID))
