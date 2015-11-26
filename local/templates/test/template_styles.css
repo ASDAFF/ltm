@@ -112,13 +112,14 @@ header{
 
 .title-exhib {
 	margin: 0;
+	font-size: 16px;
 }
 
 
 #lang{
 	font-size: 16px;
 	float:right;
-	padding-top: 35px;
+	margin-top: 35px;
 	text-align: right;
 }
 #lang a{
