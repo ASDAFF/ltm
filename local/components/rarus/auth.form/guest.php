@@ -141,8 +141,11 @@ while($obElement = $rsElement->GetNextElement())
         if($arItem["PROPERTIES"]["APP_HB_ID"]["VALUE"] && $arUser["UF_HB"]==1){
             $appId = $arItem["PROPERTIES"]["APP_HB_ID"]["VALUE"];
         }
-        $req_obj = new DokaRequest($appId);
-        $meets = $req_obj->getUnconfirmedRequestsTotal($arUser["ID"]);
+        $meets = 0;
+        if($appId){
+            $req_obj = new DokaRequest($appId);
+            $meets = $req_obj->getUnconfirmedRequestsTotal($arUser["ID"]);
+        }
         $arProfile["SCHEDULE"] = array(
             "COUNT" => $meets["incoming"],
             "LINK" => $arParams["PROFILE_URL"] . $arItem["CODE"] ."/morning/schedule/" . (($USER->IsAdmin())?"?UID=". $arUser["ID"]:""),

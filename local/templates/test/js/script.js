@@ -181,6 +181,9 @@ $(function(){
 		var app = new Array();
 		$(".meetApp").each(function() {
 			app.push($(this).attr("data-id"));
+			if($(this).attr("data-hb-id") != ''){
+				app.push($(this).attr("data-hb-id"));
+			}
 		});
 		$.ajax({
 			type: "POST",
@@ -191,7 +194,11 @@ $(function(){
 				if(res.error == ''){
 					$(".meetApp").each(function() {
 						var appId = $(this).attr("data-id"),
+							appHbId = $(this).attr("data-hb-id"),
 							newCount = res[appId].incoming;
+						if(appHbId != ''){
+							newCount += res[appHbId].incoming;
+						}
 						$countMeet = $('#meet-'+appId).text();
 						if($countMeet != newCount){
 							$('#meet-'+appId).text(newCount);

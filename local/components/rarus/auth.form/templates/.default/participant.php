@@ -57,9 +57,21 @@ $curDir = $APPLICATION->GetCurDir();
     		</div>
     		<div class="content pull-overflow">
     			<div class="pull-left">
-    				<div class="pull-overflow mail-list"><a href="<?= $arExhibition["MESSAGES"]["LINK"]?>" title=""><span class="mess"><?= GetMessage("AUTH_P_MESSAGES")?></span> <span class="count pull-right <? if($arExhibition["MESSAGES"]["COUNT"] > 0):?>show<? endif;?>" id="mess-<?=$arExhibition["ID"]?>"><?= $arExhibition["MESSAGES"]["COUNT"]?></span></a></div>
-    				<div class="pull-overflow mail-list"><a href="<?= $arExhibition["WISHLIST"]["LINK"]?>" title=""><?= GetMessage("AUTH_P_WISHLIST")?></a></div>
-    				<div class="pull-overflow mail-list"><a href="<?= $arExhibition["SCHEDULE"]["LINK"]?>" title=""><?= GetMessage("AUTH_P_SHEDULE")?></a></div>
+    				<div class="pull-overflow mail-list">
+						<a href="<?= $arExhibition["MESSAGES"]["LINK"]?>" title="">
+							<span class="mess"><?= GetMessage("AUTH_P_MESSAGES")?></span>
+							<span class="count pull-right <? if($arExhibition["MESSAGES"]["COUNT"] > 0):?>show<? endif;?>" id="mess-<?=$arExhibition["ID"]?>"><?= $arExhibition["MESSAGES"]["COUNT"]?></span>
+						</a>
+					</div>
+					<div class="pull-overflow mail-list"><a href="<?= $arExhibition["WISHLIST"]["LINK"]?>" title=""><?= GetMessage("AUTH_P_WISHLIST")?></a></div>
+					<div class="pull-overflow mail-list">
+						<a href="<?= $arExhibition["SCHEDULE"]["LINK"]?>" title="">
+							<span class="mess meetApp" data-id="<?=$arExhibition["SCHEDULE"]["APP"]?>" data-hb-id="<?=$arExhibition["SCHEDULE"]["APP_HB"]?>">
+								<?= GetMessage("AUTH_P_SHEDULE")?>
+							</span>
+							<span class="count pull-right <? if($arExhibition["SCHEDULE"]["COUNT"] > 0):?>show<? endif;?>" id="meet-<?=$arExhibition["SCHEDULE"]["APP"]?>"><?= $arExhibition["SCHEDULE"]["COUNT"]?></span>
+						</a>
+					</div>
     			</div>
     			<div class="pull-right edit-registration"><a href="<?= $arExhibition["EDIT"]["LINK"]?>" title=""><?= GetMessage("AUTH_P_EDIT_COLLEAGUE")?></a></div>
     		</div>
