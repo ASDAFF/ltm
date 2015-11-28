@@ -47,7 +47,7 @@ $(function() {
 });
 
 
-//отправка запроса на встречу
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 function sendRequest(elem, app, from, to, type)
 {
 	var Data = {
@@ -66,15 +66,15 @@ function sendRequest(elem, app, from, to, type)
 		newWind("/cabinet/service/appointment.php?id=" + Data.FromId + "&to=" + Data.ToId + "&time=" + Data.TimeSlotId + "&app=" + Data.AppId + "&type=" + Data.UType, 500, 600);
 	}
 	/*
-	Изменяемые параметры
-	id - от кого
-	to - кому
-	time - id таймслота
-	type - тип p или g (участники или гость)
-	app - id выставки (сейчас для всех это 1)
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	id - пїЅпїЅ пїЅпїЅпїЅпїЅ
+	to - пїЅпїЅпїЅпїЅ
+	time - id пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	type - пїЅпїЅпїЅ p пїЅпїЅпїЅ g (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ)
+	app - id пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ 1)
 	*/
 }
-//отправка запроса на встречу HB
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ HB
 function sendRequestHB(elem, app, from, to, type)
 {
 	var Data = {
@@ -93,12 +93,12 @@ function sendRequestHB(elem, app, from, to, type)
 		newWind("/cabinet/service/appointment_hb.php?id=" + Data.FromId + "&to=" + Data.ToId + "&time=" + Data.TimeSlotId + "&app=" + Data.AppId + "&type=" + Data.UType, 500, 600);
 	}
 	/*
-	Изменяемые параметры
-	id - от кого
-	to - кому
-	time - id таймслота
-	type - тип p или g (участники или гость)
-	app - id выставки (сейчас для всех это 1)
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	id - пїЅпїЅ пїЅпїЅпїЅпїЅ
+	to - пїЅпїЅпїЅпїЅ
+	time - id пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	type - пїЅпїЅпїЅ p пїЅпїЅпїЅ g (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ)
+	app - id пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ 1)
 	*/
 }
 
@@ -139,27 +139,27 @@ $(function(){
 	});
 });
 
-//Подргузка новостей без перезагрузки
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 $(function(){
 	
-	//добавление полученных новостей на страницу
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	function add_news(data, selector, remove)
 	{
 		var container = $(selector);
 		
 		if(container.length > 0)
 		{
-			//удаляем прошлую кнопку
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			container.find(remove).remove();
 			
-			//записываем данные в конец элемента
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			container.append(data);
 		}
 	}
 	
-	//отправка запроса для получения новостей
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	$('div#news').on("click",".show-more-btn",function(){
-		//получаем данные с кнопки
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		var url = $(this).data("url");
 		var query = $(this).data("query");
 		
@@ -175,5 +175,38 @@ $(function(){
 				}
 			}
 		});
+	});
+
+	function checkMeets(){
+		var app = new Array();
+		$(".meetApp").each(function() {
+			app.push($(this).attr("data-id"));
+		});
+		$.ajax({
+			type: "POST",
+			url: "/ajax/meetings.php",
+			dataType: 'json',
+			data:({app:app}),
+			success: function(res){
+				if(res.error == ''){
+					$(".meetApp").each(function() {
+						var appId = $(this).attr("data-id"),
+							newCount = res[appId].incoming;
+						$countMeet = $('#meet-'+appId).text();
+						if($countMeet != newCount){
+							$('#meet-'+appId).text(newCount);
+							if(newCount < 1)
+								$('#meet-'+appId).hide();
+							else
+								$('#meet-'+appId).show();
+						}
+					});
+				}
+			}
+		});
+	}
+
+	$(document).ready(function(){
+		setInterval(checkMeets, 60000);
 	});
 });

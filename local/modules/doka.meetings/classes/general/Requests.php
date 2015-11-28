@@ -262,9 +262,8 @@ class Requests extends DokaRequest
         if ($user_id <= 0) 
             return false;
 
-        $sSQL = 'SELECT COUNT(*) AS TOTAL, SUM(SENDER_ID = 1) AS SENT FROM ' . self::$sTableName 
+        $sSQL = 'SELECT COUNT(*) AS TOTAL, SUM(SENDER_ID = '.$user_id.') AS SENT FROM ' . self::$sTableName
             . ' WHERE (RECEIVER_ID=' . $DB->ForSql($user_id) . ' OR SENDER_ID=' . $DB->ForSql($user_id) . ') AND STATUS = ' . self::STATUS_PROCESS . ' AND EXHIBITION_ID=' . $this->app_id;
-
         $res = $DB->Query($sSQL, false, 'FILE: '.__FILE__.'<br />LINE: ' . __LINE__);
         if ($data = $res->Fetch()) {
             return array(
