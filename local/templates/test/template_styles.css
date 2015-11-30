@@ -93,20 +93,33 @@ header{
 	width: 89px;
 	height: 78px;
 }
-#title{
-	font-size: 44px;
-	position: relative;
+
+header .title {
 	float:left;
-	font-family: 'Helios_L';
 	display: block;
-	margin-top: 30px;
+	margin-top: 12px;
 	margin-left: 20px;	
-	text-transform: uppercase;
+
 }
+
+.title-name {
+	font-size: 44px;
+	font-family: 'Helios_L';
+	text-transform: uppercase;
+	margin: 0;
+	margin-bottom: 5px;
+}
+
+.title-exhib {
+	margin: 0;
+	font-size: 16px;
+}
+
+
 #lang{
 	font-size: 16px;
 	float:right;
-	padding-top: 35px;
+	margin-top: 35px;
 	text-align: right;
 }
 #lang a{
