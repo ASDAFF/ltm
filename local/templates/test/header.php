@@ -24,10 +24,7 @@
 	<header>
 		<div class="layoutCenterWrapper">
 			<a href = "/" id = "logo" alt = "Luxury Travel Mart" /></a>
-			<div class="title">
-				<p class="title-name">Luxury Travel Mart</p>
-				<p class="title-exhib">Moscow, Spring / Kiev / Almaty / Moscow, Autumn</p>
-			</div>
+			<span id = "title">Luxury Travel Mart</span>
 			<div id = "lang">
 			    <a class = "en<?= (LANGUAGE_ID == "en")?" act":"";?>" href="<?= $APPLICATION->GetCurPageParam("lang_ui=en",array("lang_ui", "EXHIBIT_CODE", "CODE"));?>"><?= (LANGUAGE_ID == "en")?">":"";?>English</a>
                 <a class = "ru<?= (LANGUAGE_ID == "ru")?" act":"";?>" href="<?= $APPLICATION->GetCurPageParam("lang_ui=ru",array("lang_ui", "EXHIBIT_CODE", "CODE"));?>"><?= (LANGUAGE_ID == "ru")?">":"";?>Русский</a>
