@@ -26,8 +26,11 @@ $lAdmin = new CAdminList($sTableID, $oSort);
 
 
 $arFilterFields = Array(
-    // "find_STATUS",
+    "find_sender_id",
+	"find_receiver_id",
     "find_EXHIBITION_ID",
+	"find_update_from",
+	"find_update_to"
     // "find_TIMESLOT_ID",
 );
 $lAdmin->InitFilter($arFilterFields);
@@ -36,6 +39,29 @@ $arFilter = array(
 	"EXHIBITION_ID" => (int)$find_EXHIBITION_ID,
 	// "TIMESLOT_ID" => (int)$find_TIMESLOT_ID,
 );
+
+if($find_sender_id != ''){
+	$rsUser = CUser::GetByLogin($find_sender_id);
+	if($arUser = $rsUser->Fetch())
+		$arFilter["SENDER_ID"] = $arUser["ID"];
+	else
+		$arFilter["SENDER_ID"] = 0;
+}
+if($find_receiver_id != ''){
+	$rsUser = CUser::GetByLogin($find_receiver_id);
+	if($arUser = $rsUser->Fetch())
+		$arFilter["RECEIVER_ID"] = $arUser["ID"];
+	else
+		$arFilter["RECEIVER_ID"] = 0;
+}
+
+if($find_update_from != ''){
+	$arFilter["!UPDATED_AT"] = date("d.m.Y", strtotime($find_update_from));
+}
+if($find_update_to != ''){
+	$timeUpdateTo = strtotime($find_update_to) + 86400;
+	$arFilter["UPDATED_AT"] = date("d.m.Y", $timeUpdateTo);
+}
 
 // РЈРґР°Р»РµРЅРёРµ
 if(($arID = $lAdmin->GroupAction()) && check_bitrix_sessid()) {
@@ -88,6 +114,11 @@ $arHeaders = array(
         "content" => GetMessage("IBLIST_A_STATUS"),
         "sort" => "STATUS",
     ),
+	array(
+		"id" => "UPDATED_AT",
+		"content" => GetMessage("IBLIST_A_DATE"),
+		"sort" => "UPDATED_AT",
+	),
 );
 
 
@@ -180,8 +211,9 @@ $lAdmin->CheckListMode();
 // Р¤РёР»СЊС‚СЂ РїРѕ РІС‹СЃС‚Р°РІРєР°Рј
 // $arFindFields['STATUS'] = GetMessage('DOKA_FILTER_STATUS');
 $arFindFields['EXHIBITION_ID'] = GetMessage('DOKA_FILTER_EXHIBITION_ID');
-// $arFindFields['SENDER_ID'] = GetMessage('DOKA_FILTER_SENDER_ID');
-// $arFindFields['RECEIVER_ID'] = GetMessage('DOKA_FILTER_RECEIVER_ID');
+$arFindFields['SENDER_ID'] = GetMessage('DOKA_FILTER_SENDER_ID');
+$arFindFields['RECEIVER_ID'] = GetMessage('DOKA_FILTER_RECEIVER_ID');
+$arFindFields['UPDATE_AT'] = GetMessage('DOKA_FILTER_MODIFY');
 $filterUrl = $APPLICATION->GetCurPageParam();
 $oFilter = new CAdminFilter($sTableID."_filter", $arFindFields, array("table_id" => $sTableID, "url" => $filterUrl));
 ?>
@@ -228,6 +260,18 @@ $oFilter = new CAdminFilter($sTableID."_filter", $arFindFields, array("table_id"
         	<?echo SelectBoxFromArray("find_EXHIBITION_ID", $values, $find_EXHIBITION_ID, "", "");?>
         </td>
     </tr>
+	<tr>
+		<td><?echo GetMessage("DOKA_FILTER_SENDER_ID")?>:</td>
+		<td><input type="text" name="find_sender_id" size="47" value="<?echo htmlspecialchars($find_sender_id)?>"></td>
+	</tr>
+	<tr>
+		<td><?echo GetMessage("DOKA_FILTER_RECEIVER_ID")?>:</td>
+		<td><input type="text" name="find_receiver_id" size="47" value="<?echo htmlspecialchars($find_receiver_id)?>"></td>
+	</tr>
+	<tr>
+		<td><?echo GetMessage("DOKA_FILTER_MODIFY")?>:</td>
+		<td><?echo CalendarPeriod("find_update_from", htmlspecialcharsex($find_update_from), "find_update_to", htmlspecialcharsex($find_update_to), "find_form", "N")?></td>
+	</tr>
 <?
 
 $oFilter->Buttons();

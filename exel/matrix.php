@@ -271,7 +271,7 @@ if($arParams["USER_TYPE"] == 'PARTICIP'){
 		'fill' => array(
 			'type' => PHPExcel_Style_Fill::FILL_SOLID,
 			'color' => array (
-				'rgb' => 'FFFA7F'
+				'rgb' => 'FF7F7F'
 			)
 		),
 		'alignment' => array (
@@ -289,7 +289,7 @@ if($arParams["USER_TYPE"] == 'PARTICIP'){
 		'fill' => array(
 			'type' => PHPExcel_Style_Fill::FILL_SOLID,
 			'color' => array (
-				'rgb' => 'FF7F7F'
+				'rgb' => 'FFFA7F'
 			)
 		),
 		'alignment' => array (
@@ -314,7 +314,7 @@ else{
 		'fill' => array(
 			'type' => PHPExcel_Style_Fill::FILL_SOLID,
 			'color' => array (
-				'rgb' => 'FFFA7F'
+				'rgb' => 'FF7F7F'
 			)
 		),
 		'alignment' => array (
@@ -332,7 +332,7 @@ else{
 		'fill' => array(
 			'type' => PHPExcel_Style_Fill::FILL_SOLID,
 			'color' => array (
-				'rgb' => 'FF7F7F'
+				'rgb' => 'FFFA7F'
 			)
 		),
 		'alignment' => array (

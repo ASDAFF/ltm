@@ -269,8 +269,6 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 	"SHOW_FORUMS" => "Y",
 	"SHOW_FIRST_POST" => "N",
 	"SHOW_AUTHOR_COLUMN" => "N",
-	"PATH_TO_SMILE" => "/bitrix/images/forum/smile/",
-	"PATH_TO_ICON" => "/bitrix/images/forum/icon/",
 	"PAGE_NAVIGATION_TEMPLATE" => "forum",
 	"PAGE_NAVIGATION_WINDOW" => "5",
 	"WORD_WRAP_CUT" => "23",

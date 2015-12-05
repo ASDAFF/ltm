@@ -7,7 +7,7 @@ try {
 
 		$rs = CIBlockElement::GetList(array(),
 				array("ID"=>intval($_REQUEST["EXHIB_ID"])), false, array("nTopCount"=>1),
-				array("ID", "IBLOCK_ID", "PROPERTY_C_GUESTS_GROUP", "PROPERTY_UC_GUESTS_GROUP"));
+				array("ID", "IBLOCK_ID", "PROPERTY_C_GUESTS_GROUP", "PROPERTY_UC_GUESTS_GROUP", "PROPERTY_menu_en"));
 		if($arExhib = $rs->Fetch()) {
 			if(isset($arExhib["PROPERTY_UC_GUESTS_GROUP_VALUE"]) && $arExhib["PROPERTY_UC_GUESTS_GROUP_VALUE"]) {
 				$unconfirmmedGuestGroupId = $arExhib["PROPERTY_UC_GUESTS_GROUP_VALUE"];
@@ -119,7 +119,49 @@ function confirmUser($userId, $arUserChanges, $unconfirmmedGuestGroupId, $confir
 		CEvent::Send("GUEST_EVENING_CONFIRM", SITE_ID, $arFields, "Y", $templateId);
 	}
 	
-	if(isset($_REQUEST["CONFIRM_UF_HB_{$userId}"]) && isset($_REQUEST["CONFIRM_UF_MR_{$userId}"]) && "488" == $arExhib["ID"]) {
+	if(isset($_REQUEST["CONFIRM_UF_HB_{$userId}"]) && isset($_REQUEST["CONFIRM_UF_MR_{$userId}"]) && ("361" == $arExhib["ID"]) or ("488" == $arExhib["ID"])) {
 		CEvent::Send("GUEST_HB_CONFIRM", SITE_ID, $arFields);
+	}
+
+	//Проеряем наличие у него коллег и отправляем им письмо
+
+	$arCollFields = array(
+			"MORNING" => array(
+				"NAME" => &$ar["477"],
+				"LAST_NAME" => &$ar["478"],
+				"JOB_POST" => &$ar["479"],
+				"EMAIL" => &$ar["480"],
+			),
+			"COL1" => array(
+					"NAME" => &$ar["120"],
+					"LAST_NAME" => &$ar["121"],
+					"JOB_POST" => &$ar["122"],
+					"EMAIL" => &$ar["123"],
+			),
+			"COL2" => array(
+					"NAME" => &$ar["124"],
+					"LAST_NAME" => &$ar["125"],
+					"JOB_POST" => &$ar["127"],
+					"EMAIL" => &$ar["126"],
+			),
+			"COL3" => array(
+					"NAME" => &$ar["128"],
+					"LAST_NAME" => &$ar["129"],
+					"JOB_POST" => &$ar["130"],
+					"EMAIL" => &$ar["131"],
+			),
+	);
+
+
+	foreach($arCollFields as $type => $arColleague)
+	{
+		if(!empty($arColleague["EMAIL"]))
+		{
+			$arColleagueEventFields = $arColleague;
+			$arColleagueEventFields["BUYER"] = "{$arUserFields["NAME"]} {$arUserFields["LAST_NAME"]}";
+			$arColleagueEventFields["EXHIB"] = $arExhib["PROPERTY_MENU_EN_VALUE"];
+
+			CEvent::Send("GUEST_CONFIRM_COLLEAGUE", SITE_ID, $arColleagueEventFields);
+		}
 	}
 }

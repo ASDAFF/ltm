@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html class="<?= LANGUAGE_ID?>">
 <head>
-
 	<title><?$APPLICATION->ShowTitle()?></title>
 	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/jquery-1.10.2.min.js')?>
 	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/jquery-ui-1.10.4.custom.min.js')?>
@@ -17,14 +16,18 @@
 	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/script.js')?>
 	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/normalize.css')?>
 	<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<?$APPLICATION->ShowHead()?>
+	<?$APPLICATION->ShowHead();?>
 </head>
-<body>
+<body <? if(stristr($APPLICATION->GetCurPage(), "/cabinet/")):?>class="cabinet"<?endif;?>>
+	<? CJSCore::Init("ajax"); ?>
 	<? if ($USER->isAdmin())$APPLICATION->ShowPanel();?>
 	<header>
 		<div class="layoutCenterWrapper">
 			<a href = "/" id = "logo" alt = "Luxury Travel Mart" /></a>
-			<span id = "title">Luxury Travel Mart</span>
+			<div class="title">
+				<p class="title-name">Luxury Travel Mart</p>
+				<p class="title-exhib">Moscow, Spring / Kiev / Almaty / Moscow, Autumn</p>
+			</div>
 			<div id = "lang">
 			    <a class = "en<?= (LANGUAGE_ID == "en")?" act":"";?>" href="<?= $APPLICATION->GetCurPageParam("lang_ui=en",array("lang_ui", "EXHIBIT_CODE", "CODE"));?>"><?= (LANGUAGE_ID == "en")?">":"";?>English</a>
                 <a class = "ru<?= (LANGUAGE_ID == "ru")?" act":"";?>" href="<?= $APPLICATION->GetCurPageParam("lang_ui=ru",array("lang_ui", "EXHIBIT_CODE", "CODE"));?>"><?= (LANGUAGE_ID == "ru")?">":"";?>Русский</a>

@@ -1068,7 +1068,7 @@ ul{margin: 0;padding: 0;list-style: none;}
 	color: #fff;
 	font-size: 12px;
 	font-weight: bold;
-	display:inline-block;
+	display:none;
 	width: 25px;
 	height: 20px;
 	vertical-align: middle;
@@ -1077,6 +1077,9 @@ ul{margin: 0;padding: 0;list-style: none;}
 	margin-left: 5px;
 	margin-top: -3px;
 	line-height: 14px;
+}
+.private-office .mail-list .count.show{
+    display:inline-block;
 }
 .private-office .gray-grid .content .mail-list{padding: 4px 0;}
 .private-office .gray-grid .mail-list a{float: left;}
@@ -1194,6 +1197,7 @@ ul{margin: 0;padding: 0;list-style: none;}
 .morning-session table.morning-time tr td, .morning-session table.morning-time tr th{padding:5px;}
 .morning-session table.morning-time tr.new-message td{font-weight:bold;}
 .morning-session table.morning-time tr td:first-child{padding-left: 10px;}
+.morning-session table.inbox-list tr td:first-child{padding-left: 5px; padding-bottom: 11px;}
 .morning-session table.time-line tr td:first-child{width: 100px;}
 .morning-session table tr th.chose-company{width: 295px;}
 .morning-session table tr .chose-company{width: 280px;}
@@ -1235,15 +1239,65 @@ ul{margin: 0;padding: 0;list-style: none;}
 .evening-session .morning-session .sorting-company td.company{width:340px;padding-right: 10px;}
 .evening-session .sorting-company .collegues{font-size: 12px;width: 200px;}
 .evening-session .sorting-company td.representative{width: 120px;padding-right: 20px;}
-
+.message-box{
+    position: relative;
+}
 .message-box .message-list-tab li{float: left;margin-right: 30px;}
 .message-box .message-list-tab li a{color: #77787b;font-size: 14px;}
-.message-box .inbox-list td:first-child{width: 280px;padding-right:10px;}
-.message-box .inbox-list td{padding-right: 10px;}
+.message-box .inbox-list td:first-child{
+    width: 38px;
+    padding-right:0;
+    padding-left:0;
+    text-align: center;
+}
+.message-box .inbox-list th:first-child{
+    padding: 0 0 5px 5px;
+    text-align: center;
+}
+.inbox table.inbox-list tr th, .inbox table.inbox-list tr td {
+	padding-left: 0;
+	padding-right: 15px;
+}
+.inbox table.inbox-list tr th:last-child, .inbox table.inbox-list tr td:last-child {
+	padding-right: 5px;
+}
+.inbox table.inbox-list tr th.date{width: 70px}
+.message-box .inbox-list tr.check td{
+    background-color: #dbf9ff;
+}
+.inbox-list__check-item{
+    display: none;
+}
+.inbox-list__check-label{
+    background: url("/images/check.png") no-repeat scroll 0 7px transparent;
+    display: block;
+    height: 25px;
+    position: relative;
+    width: 19px;
+    cursor: pointer;
+}
+.inbox-list__check-item:checked + label{
+    background: url("/images/check_act.png") no-repeat scroll 0 0 transparent;
+}
+.inbox-list__check-info{
+    position: absolute;
+    left: 0;
+    top: 30px;
+    color: #77787b;
+    display: none;
+}
+.inbox-list__check-info span{
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 20px;
+}
+.message-box .inbox-list td:nth-child(2){width: 220px;padding-right:15px;}
+/* .inbox table.inbox-list tr td{padding-right: 15px;} */
 .message-box .inbox-list td,.message-box .inbox .inbox-list td a{font-size: 12px;}
 .message-box .inbox-list td.unread{font-weight: bold;}
-.message-box .inbox-list .company{width: 100px;}
-.message-box .inbox-list .date{width:75px;}
+.message-box .inbox-list .company{width: 180px;}
+.message-box .inbox-list .date{width: 70px;}
 
 .message-box .new-message input[type=text]{width:634px; border:1px solid #9B9C9E; margin:5px 0px; padding:4px 4px;}
 .message-box .new-message textarea{max-width: 634px;min-width: 634px;border: 1px solid #9B9C9E;margin: 5px 0px;min-height: 280px;padding: 4px;}
@@ -1266,8 +1320,8 @@ ul{margin: 0;padding: 0;list-style: none;}
 .edit-profil .profil-photo {width: 110px;text-align: center; cursor: pointer;}
 .edit-profil .profil-photo a{color: #00aeef;font-size: 14px;}
 .edit-profil .profil-field{width: 530px;}
-.edit-profil .member{-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;margin-bottom: 15px;}
-.edit-profil .member img{border-radius: 50%;max-height: 108px;max-width: 108px;border: none;}
+.edit-profil .member{-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;margin-bottom: 15px; overflow: hidden; position: relative;}
+/*.edit-profil .member img{border-radius: 50%;max-height: 108px;max-width: 108px;border: none;}*/
 .edit-profil .send-change{text-align: right;}
 .edit-profil .signature{color: #77787b;font-size: 14px;padding: 10px 0 0;border-top: 1px solid #b2b2b2;margin-top: 15px;}
 .edit-profil .signature span{font-size: 12px;color: #000;}

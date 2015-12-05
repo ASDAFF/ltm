@@ -21,6 +21,7 @@ $MESS["AUTH_AUTH"]="АВТОРИЗАЦИЯ";
 $MESS["AUTH_FOR_EXHIBITIRS"]="для участников и гостей";
 $MESS["AUTH_FORGOT_PASSWORD"] = "забыли пароль?";
 $MESS["AUTH_LOGIN_BUTTON"] = "Вход";
+$MESS["AUTH_LOGIN_ERROR"] = "Доступ запрещен";
 
 
 

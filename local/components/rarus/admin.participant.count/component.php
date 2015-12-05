@@ -425,8 +425,7 @@ SWIFT: CBGURUMM
 Beneficiary: Polanskiy Artem Valentinovich
 Account: 40802978700001002738";
 
-$data["BENEFICIARY_NAME"] = "Artem V. Polanskiy /
-Поланский Артём Валентинович";
+$data["BENEFICIARY_NAME"] = "Artem V. Polanskiy / Поланский Артём Валентинович";
     	}; break;
 
     	case "TM" : {
@@ -449,8 +448,7 @@ SWIFT: VTBRRUMM
 Beneficiary: Travel Media
 Account: 40702978900140010240";
 
-$data["BENEFICIARY_NAME"] = "Elena Vetrova /
-Ветрова Елена Васильевна";
+$data["BENEFICIARY_NAME"] = "Elena Vetrova / Ветрова Елена Васильевна";
     	}; break;
 
     }
@@ -574,7 +572,7 @@ function BodyPDF($data, &$oPDF, $folder)
 
     $oPDF->SetFont('freeserif','B',FONT_SIZE);
     $oPDF->MultiCell(0, 5, "Details of payment / Предмет счёта:\n", 0, "C");
-    $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
+   // $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
 
     $oPDF->SetFont('freeserif','',FONT_SIZE);
 

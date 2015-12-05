@@ -30,19 +30,21 @@ if($exhibCode)
                 <figure id = "banner">
 					<?$APPLICATION->IncludeComponent("bitrix:main.include", "", array("AREA_FILE_SHOW" => "file", "PATH" => SITE_TEMPLATE_PATH."/include/banner_".LANGUAGE_ID.".php"), false);?>
 				</figure>
-				<?$APPLICATION->IncludeComponent("rarus:members.last", ".default", array(
-	"USER_GROUP_ID" => array(
-		0 => "50",
-		1 => "46",
-		2 => "42",
-	),
-	"FORM_FIELD_COMPANY_NAME_ID" => "17",
-	"FORM_FIELD_LOGIN_ID" => "18",
-	"ELEMENT_COUNT" => "10",
-	"URL_TEMPLATE" => "/members/#ELEMENT_ID#/",
-	"CACHE_TYPE" => "A",
-	"CACHE_TIME" => "36000000",
-	"CACHE_GROUPS" => "Y"
+				<?$APPLICATION->IncludeComponent(
+	"rarus:members.last", 
+	".default", 
+	array(
+		"USER_GROUP_ID" => array(
+			0 => "10",
+		),
+		"FORM_FIELD_COMPANY_NAME_ID" => "17",
+		"FORM_FIELD_LOGIN_ID" => "18",
+		"ELEMENT_COUNT" => "10",
+		"URL_TEMPLATE" => "/members/#ELEMENT_ID#/",
+		"CACHE_TYPE" => "A",
+		"CACHE_TIME" => "36000000",
+		"CACHE_GROUPS" => "Y",
+		"COMPONENT_TEMPLATE" => ".default"
 	),
 	false
 );?>

@@ -1264,7 +1264,7 @@ $(function() {
 		var input = $(this);
 		var value = input.val();
 		
-		if(!value.match(/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*(\.[a-z]{2,6})+$/i) && value.length > 0)
+		if(!value.match(/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*(\.[a-z]{2,8})+$/i) && value.length > 0)
 		{
 			showErrorMessage(this,$errorText[errorLang]["email"]);
 		}
@@ -1298,7 +1298,7 @@ $(function() {
 		var input = $(this);
 		var value = input.val();
 		
-		if(!value.match(/^(https?:\/\/)?([\w\.-]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/i) && value.length > 0)
+		if(!value.match(/^(https?:\/\/)?([\w\.-]+)\.([a-z]{2,8}\.?)(\/[\w\.]*)*\/?$/i) && value.length > 0)
 		{
 			showErrorMessage(this,$errorText[errorLang]["web"]);
 		}

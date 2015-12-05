@@ -1,7 +1,7 @@
 <?php
 define("ADMIN_MODULE_NAME", "doka.meetings");
 require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_admin_before.php");
-require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/".ADMIN_MODULE_NAME."/classes/lib.php");
+require_once($_SERVER["DOCUMENT_ROOT"]."/local/modules/".ADMIN_MODULE_NAME."/classes/lib.php");
 require_once($_SERVER["DOCUMENT_ROOT"].BX_ROOT."/modules/main/tools/prop_userid.php");
 
 IncludeModuleLangFile(__FILE__);

@@ -640,6 +640,15 @@ class CFormMatrix
 		$index = array_search($baseQ, self::$arAnswerIDByForm[4]);
 		return self::$arAnswerIDByForm[$needFormID][$index];
 	}
+	static function getAnswerRelForm($answerID, $fromFormID, $toFormID)
+	{
+		if(!$answerID || !$fromFormID || !$toFormID)
+		{
+			return false;
+		}
+		$index = array_search($answerID, self::$arAnswerIDByForm[$fromFormID]);
+		return self::$arAnswerIDByForm[$toFormID][$index];
+	}
 	static function getSIDRelBase($baseQ, $needFormID)
 	{
 		if(empty($baseQ) || !intval($needFormID))
@@ -658,7 +667,15 @@ class CFormMatrix
 		$index = array_search($baseQ, self::$arAnswerSalutationIDByForm[4]);
 		return self::$arAnswerSalutationIDByForm[$needFormID][$index];
 	}
-
+	static function getAnswerSalutationRelForm($answerID, $fromFormID, $toFormID)
+	{
+		if(!$answerID || !$fromFormID || !$toFormID)
+		{
+			return false;
+		}
+		$index = array_search($answerID, self::$arAnswerSalutationIDByForm[$fromFormID]);
+		return self::$arAnswerSalutationIDByForm[$toFormID][$index];
+	}
 	static function getAnswerSalutationBase($answID, $needFormID)
 	{
 		if(empty($answID) || !intval($needFormID))
@@ -1514,7 +1531,7 @@ class CFormMatrix
 			"45"=>"SIMPLE_QUESTION_211"
 		)
 	);
-	private static $arExhForm = array(
+	public static $arExhForm = array(
 		358 => 8, //Москва, Россия. 2 октября 2014
 		357 => 5, //Баку, Айзербайджан. 10 апреля 2014
 		359 => 7, //Алматы, Казахстан. 26 сентября 2014
@@ -1526,7 +1543,7 @@ class CFormMatrix
 		3522 => 27, //Киев, Украина. сентябрь 2015
 		3523 => 28 //Москва, Россия. октябрь 2015
 	);
-	private static $arExhGuestForm = array(
+	public static $arExhGuestForm = array(
 		358 => 24, //Москва, Россия. 2 октября 2014
 		357 => 21, //Баку, Айзербайджан. 10 апреля 2014
 		359 => 23, //Алматы, Казахстан. 26 сентября 2014
