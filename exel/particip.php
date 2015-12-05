@@ -99,6 +99,11 @@ else{
 $rsUsers = CUser::GetList(($by="id"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"), "FIELDS"=>array("ID","LOGIN")));
 $i = 0;
 $arTmpUsers = array();
+$rsRequisite = CUserFieldEnum::GetList(array(), array("USER_FIELD_ID" => 39)); //39 код свойства UF_REQUISITE
+while($arRequisite = $rsRequisite->GetNext(true,false)){
+	$arResult["PAY_REQUISITE"][$arRequisite["ID"]] = $arRequisite["VALUE"];
+}
+
 while ($arUser = $rsUsers->Fetch()){
 	$arTmpUsers[$i]['ID']       = $arUser['ID'];
 	$arTmpUsers[$i]['LOGIN']    = $arUser['LOGIN'];
@@ -106,6 +111,8 @@ while ($arUser = $rsUsers->Fetch()){
 	$arTmpUsers[$i]['FORM_COMP'] = $arUser[$resultAllCode];
 	$arTmpUsers[$i]['FORM_REP'] = '';
 	$arTmpUsers[$i]['FORM_REP2'] = '';
+	$arTmpUsers[$i]['COUNT_PAY']    = $arUser['UF_PAY_COUNT'];
+	$arTmpUsers[$i]['REQUISITE'] = $arResult["PAY_REQUISITE"][  $arUser['UF_REQUISITE'] ];
 
 	//Данные по всей компании
 	$resAllComp[] = $arUser[$resultAllCode];
@@ -214,7 +221,10 @@ foreach ($arTmpUsers as $arUser) {
 				}		
 			}
 		}
-	}	
+	}
+
+	$arResult["ANSWERS"][$j]["COUNT_PAY"] = $arUser['COUNT_PAY'];
+	$arResult["ANSWERS"][$j]["REQUISITE"] = $arUser['REQUISITE'];
 	$j++;	
 }
 /*echo "<pre>";print_r($arTmpResult["FORM_RESULT_COMMON"]["ANSWERS2"]["3749"]);echo "</pre>";
@@ -238,6 +248,8 @@ foreach($arRepField["QUEST_CODE"] as $idQuest => $codeRes){
 		$arResult["TITLES"][] = $arRepField["NAMES"][$idQuest];
 	}	
 }
+$arResult["TITLES"][] = "COUNT_PAY";
+$arResult["TITLES"][] = "REQUISITE";
 
 ini_set('display_errors', TRUE);
 ini_set('display_startup_errors', TRUE);
