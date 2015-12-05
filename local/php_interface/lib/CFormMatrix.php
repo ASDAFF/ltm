@@ -817,7 +817,9 @@ class CFormMatrix
 			"11" => "Job Title College",
 			"12" => "Email College",
 			"13" => "Table",
-			"14" => "Hall"
+			"14" => "Hall",
+			"15" => "Pay Count",
+			"16" => "Requisite"
 		),
 		"QUEST_CODE" => array(
 			"0" => "SIMPLE_QUESTION_889",
@@ -834,7 +836,9 @@ class CFormMatrix
 			"11" => "SIMPLE_QUESTION_729",
 			"12" => "SIMPLE_QUESTION_859",
 			"13" => "SIMPLE_QUESTION_148",
-			"14" => "SIMPLE_QUESTION_732"
+			"14" => "SIMPLE_QUESTION_732",
+			"15" => "SIMPLE_QUESTION_680",
+			"16" => "SIMPLE_QUESTION_667"
 		),//Участники Представители Москва Весна
 		"ANS_TYPE" => array(
 			"0" => "ANSWER_TEXT",
@@ -851,7 +855,9 @@ class CFormMatrix
 			"11" => "USER_TEXT",
 			"12" => "USER_TEXT",
 			"13" => "USER_TEXT",
-			"14" => "ANSWER_TEXT"
+			"14" => "ANSWER_TEXT",
+			"15" => "USER_TEXT",
+			"16" => "ANSWER_TEXT"
 		),
 		"NAMES_AR" => array(
 			"0" => "TITLE",
@@ -868,7 +874,9 @@ class CFormMatrix
 			"11" => "JOB_COL",
 			"12" => "EMAIL_COL",
 			"13" => "TABLE",
-			"14" => "HALL"
+			"14" => "HALL",
+			"15" => "PAY_COUNT",
+			"16" => "REQUISITE"
 		),
 	);
 	static $arExelGuestField = array(

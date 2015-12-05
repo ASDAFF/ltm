@@ -111,8 +111,6 @@ while ($arUser = $rsUsers->Fetch()){
 	$arTmpUsers[$i]['FORM_COMP'] = $arUser[$resultAllCode];
 	$arTmpUsers[$i]['FORM_REP'] = '';
 	$arTmpUsers[$i]['FORM_REP2'] = '';
-	$arTmpUsers[$i]['COUNT_PAY']    = $arUser['UF_PAY_COUNT'];
-	$arTmpUsers[$i]['REQUISITE'] = $arResult["PAY_REQUISITE"][  $arUser['UF_REQUISITE'] ];
 
 	//Данные по всей компании
 	$resAllComp[] = $arUser[$resultAllCode];
@@ -222,10 +220,7 @@ foreach ($arTmpUsers as $arUser) {
 			}
 		}
 	}
-
-	$arResult["ANSWERS"][$j]["COUNT_PAY"] = $arUser['COUNT_PAY'];
-	$arResult["ANSWERS"][$j]["REQUISITE"] = $arUser['REQUISITE'];
-	$j++;	
+	$j++;
 }
 /*echo "<pre>";print_r($arTmpResult["FORM_RESULT_COMMON"]["ANSWERS2"]["3749"]);echo "</pre>";
 die();*/
