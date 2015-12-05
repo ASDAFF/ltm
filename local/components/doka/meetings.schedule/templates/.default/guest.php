@@ -10,6 +10,7 @@
       <th>Представитель</th>
       <th>Статус</th>
       <th>Заметки</th>
+	  <th>Времени осталось</th>
   </tr>
 	<? foreach ($arResult['SCHEDULE'] as $item):?>
 	<? if($item['status'] != 'coffe'):?>
@@ -71,6 +72,7 @@
             <?
             ?>
 			<td width="105"><?=$item['notes'];?></td>
+			<td width="50"><?=$item['time_left'];?></td>
 		</tr>
     <? endif;?>
 	<?endforeach;?>
