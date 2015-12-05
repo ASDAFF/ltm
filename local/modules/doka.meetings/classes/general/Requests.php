@@ -718,11 +718,8 @@ class Requests extends DokaRequest
                 foreach($arAnswer2[$fio[3][0]] as $value){
                     $hall = $value["MESSAGE"];
                 }
-                $time_left = $this->options["TIMEOUT_VALUE"]* 3600 - (time() - strtotime($data['UPDATED_AT']));
-                if($time_left > 0){
-                    $time_left = floor($time_left/3600);
-                }
-                else{
+                $time_left = $this->options["TIMEOUT_VALUE"] - floor((time() - strtotime($data['UPDATED_AT']))/3600);
+                if($time_left < 0){
                     $time_left = 0;
                 }
                 if(!isset($fio[0][1])){
