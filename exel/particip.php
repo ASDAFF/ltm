@@ -243,8 +243,6 @@ foreach($arRepField["QUEST_CODE"] as $idQuest => $codeRes){
 		$arResult["TITLES"][] = $arRepField["NAMES"][$idQuest];
 	}	
 }
-$arResult["TITLES"][] = "COUNT_PAY";
-$arResult["TITLES"][] = "REQUISITE";
 
 ini_set('display_errors', TRUE);
 ini_set('display_startup_errors', TRUE);
