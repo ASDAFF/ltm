@@ -653,7 +653,7 @@ class Requests extends DokaRequest
 
         while ($data = $res->Fetch()) {
             if (!array_key_exists($data['TIMESLOT_ID'], $timeslots)) {
-                $time_left = (int)$this->options["TIMEOUT_VALUE"] - floor((time() - strtotime($data['UPDATED_AT']))/3600);
+                $time_left = $this->options["TIMEOUT_VALUE"] - floor((time() - strtotime($data['UPDATED_AT']))/3600);
                 if($time_left < 0){
                     $time_left = 0;
                 }

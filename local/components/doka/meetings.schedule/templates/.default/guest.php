@@ -72,7 +72,7 @@
             <?
             ?>
 			<td width="105"><?=$item['notes'];?></td>
-			<td width="50"><?=$item['time_left'];?></td>
+			<td width="50"><?=$item['time_left'];?><?if($item['time_left']):?>ч<?endif;?></td>
 		</tr>
     <? endif;?>
 	<?endforeach;?>
