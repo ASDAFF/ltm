@@ -85,6 +85,7 @@ class Requests extends DokaRequest
                     'REPR_PROP_CODE' => $item['REPR_PROP_CODE'],
                     'FORM_ID' => $item['FORM_ID'],
                     'FORM_RES_CODE' => $item['FORM_RES_CODE'],
+                    'TIMEOUT_VALUE' => $item['TIMEOUT_VALUE'],
                 );
             $this->timeslots[$item['ID']] = array(
                 'name' => $item['NAME'],
@@ -652,6 +653,10 @@ class Requests extends DokaRequest
 
         while ($data = $res->Fetch()) {
             if (!array_key_exists($data['TIMESLOT_ID'], $timeslots)) {
+                $time_left = $this->options["TIMEOUT_VALUE"] - floor((time() - strtotime($data['UPDATED_AT']))/3600);
+                if($time_left < 0){
+                    $time_left = 0;
+                }
                 $timeslots[$data['TIMESLOT_ID']] = array(
                     'id' => $data['TIMESLOT_ID'],
                     'name' => $this->timeslots[$data['TIMESLOT_ID']]['name'],
@@ -663,6 +668,7 @@ class Requests extends DokaRequest
                         'form_res' => $data['repr_fio'],
                         'company_name' => $data['WORK_COMPANY'],
                         'modified_by' => $data['MODIFIED_BY'],
+                        'date' => $time_left
                     )
                 );
             }
@@ -692,7 +698,7 @@ class Requests extends DokaRequest
         $statuses_rejected = array(self::STATUS_REJECTED, self::STATUS_TIMEOUT);
 
         // сортировка по убыванию ID в каком-то смысле гарантирует, что будет актуальный статус
-        $sSQL = 'SELECT t1.*, b_uts_user.'.$result_id.' as repr_fio, b_user.WORK_COMPANY, t1.SENDER_ID as repr_id FROM ' . self::$sTableName . ' t1 LEFT JOIN b_user ON b_user.ID=SENDER_ID LEFT JOIN b_uts_user ON b_uts_user.VALUE_ID=SENDER_ID WHERE RECEIVER_ID=' . $DB->ForSql($user_id) 
+        $sSQL = 'SELECT t1.*, b_uts_user.'.$result_id.' as repr_fio, b_user.WORK_COMPANY, t1.SENDER_ID as repr_id FROM ' . self::$sTableName . ' t1 LEFT JOIN b_user ON b_user.ID=SENDER_ID LEFT JOIN b_uts_user ON b_uts_user.VALUE_ID=SENDER_ID WHERE RECEIVER_ID=' . $DB->ForSql($user_id)
                 . ' AND STATUS NOT IN (' . implode(',', $statuses_rejected) . ') AND EXHIBITION_ID=' . $this->app_id .
                 ' UNION ALL ' . 
                 'SELECT t2.*, b_uts_user.'.$result_id.' as repr_fio, b_user.WORK_COMPANY, t2.RECEIVER_ID as repr_id FROM ' . self::$sTableName . ' t2 LEFT JOIN b_user ON b_user.ID=RECEIVER_ID LEFT JOIN b_uts_user ON b_uts_user.VALUE_ID=RECEIVER_ID WHERE SENDER_ID=' . $DB->ForSql($user_id) 
@@ -711,6 +717,10 @@ class Requests extends DokaRequest
                 }
                 foreach($arAnswer2[$fio[3][0]] as $value){
                     $hall = $value["MESSAGE"];
+                }
+                $time_left = $this->options["TIMEOUT_VALUE"] - floor((time() - strtotime($data['UPDATED_AT']))/3600);
+                if($time_left < 0){
+                    $time_left = 0;
                 }
                 if(!isset($fio[0][1])){
                     foreach($arAnswer2[$fio[0][0]] as $value){
@@ -735,6 +745,7 @@ class Requests extends DokaRequest
                             'table' => trim($table),
                             'company_name' => $data['WORK_COMPANY'],
                             'modified_by' => $data['MODIFIED_BY'],
+                            'date' => $time_left
                         )
                     );
                 }
@@ -752,6 +763,7 @@ class Requests extends DokaRequest
                             'table' => trim($arAnswer2[$fio[2][0]][$fio[2][1]]["USER_TEXT"]),
                             'company_name' => $data['WORK_COMPANY'],
                             'modified_by' => $data['MODIFIED_BY'],
+                            'date' => $time_left
                         )
                     );                    
                 }

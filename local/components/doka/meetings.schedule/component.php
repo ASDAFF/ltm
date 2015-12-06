@@ -147,7 +147,6 @@ elseif($arResult['USER_TYPE'] == "PARTICIP" && isset($arParams["IS_HB"]) && $arP
 else{
 	$busy_timeslots = $req_obj->getAllTimesByCompNamed($arResult['CURRENT_USER_ID'], $formId, $propertyNameParticipant, $fio_dates);
 }
-
 if(isset($_REQUEST['mode']) && $_REQUEST['mode'] == 'pdf'){
 	$rsUser = CUser::GetByID($arResult['CURRENT_USER_ID']);
 	$thisUser = $rsUser->Fetch();
@@ -194,6 +193,7 @@ foreach ($timeslots as $timeslot_id => $item) {
 			'form_res' => $meet['form_res'],
 			'hall' => $meet['hall'],
 			'table' => $meet['table'],
+			'time_left' => $meet['date'],
 		);
 	} else if (in_array($item['type'], DokaTimeslot::getMeetTypeCodes())) {
 		$arResult['SCHEDULE'][] = array(
@@ -201,7 +201,8 @@ foreach ($timeslots as $timeslot_id => $item) {
 			'name' => $item['name'],
 			'status' => 'free',
 			'notes' => DokaGetNote(array(), $arResult['USER_TYPE'], $arResult['CURRENT_USER_ID']),
-			'list' => array_key_exists($timeslot_id, $companies_schedule) ? $companies_schedule[$timeslot_id] : array()
+			'list' => array_key_exists($timeslot_id, $companies_schedule) ? $companies_schedule[$timeslot_id] : array(),
+			'time_left' => ''
 		);
 	}
 	else{
@@ -210,7 +211,8 @@ foreach ($timeslots as $timeslot_id => $item) {
 			'name' => $item['name'],
 			'status' => 'coffe',
 			'notes' => 'coffe',
-			'list' => array()
+			'list' => array(),
+			'time_left' => ''
 		);
 	}
 }

@@ -204,6 +204,7 @@ class Timeslot
             $arSelect[] = '`S`.`REPR_PROP_CODE`';
             $arSelect[] = '`S`.`FORM_ID`';
             $arSelect[] = '`S`.`FORM_RES_CODE`';
+            $arSelect[] = '`S`.`TIMEOUT_VALUE`';
             $sJoin = ' LEFT JOIN meetings_settings AS `S` ON `S`.`ID` = `B`.`EXHIBITION_ID` ';
         }
 

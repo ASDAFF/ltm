@@ -10,6 +10,7 @@
       <th>Representative</th>
       <th>Status</th>
       <th>Notes</th>
+	  <th>Time left</th>
   </tr>
 	<? foreach ($arResult['SCHEDULE'] as $item):?>
 	<? if($item['status'] != 'coffe'):?>
@@ -69,6 +70,7 @@
 				?>
 			</td>
 			<td width="110"><?=$item['notes'];?></td>
+			<td width="50"><?=$item['time_left'];?><?if($item['time_left']):?>h<?endif;?></td>
 		</tr>
     <? endif;?>
 	<?endforeach;?>
