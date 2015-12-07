@@ -9,6 +9,7 @@ Thumbs.db
 /*.dt
 *.tar.gz
 /LTMFINAL
+/cache
 /pma
 /dev
 .htaccess
