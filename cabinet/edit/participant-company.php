@@ -183,7 +183,7 @@ if("Y" != $exhParticipantEdit)
 	<div class="creating-page">
 	<form method="POST" action ="<?= $curPage?>" enctype="multipart/form-data" name="company-update">
 	<?=bitrix_sessid_post()?>
-		<div class="pull-overflow create-company first-line">
+		<div class="pull-overflow create-company first-line clearfix">
 			<div class="pull-left company-info data-control">
 				<div class="title">Name of your company</div>
 				<?
