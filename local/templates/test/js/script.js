@@ -176,4 +176,44 @@ $(function(){
 			}
 		});
 	});
+
+	function checkMeets(){
+		var app = new Array();
+		$(".meetApp").each(function() {
+			app.push($(this).attr("data-id"));
+			if($(this).attr("data-hb-id") != ''){
+				app.push($(this).attr("data-hb-id"));
+			}
+		});
+		$.ajax({
+			type: "POST",
+			url: "/ajax/meetings.php",
+			dataType: 'json',
+			data:({app:app}),
+			success: function(res){
+				if(res.error == ''){
+					$(".meetApp").each(function() {
+						var appId = $(this).attr("data-id"),
+							appHbId = $(this).attr("data-hb-id"),
+							newCount = res[appId].incoming;
+						if(appHbId != ''){
+							newCount += res[appHbId].incoming;
+						}
+						$countMeet = $('#meet-'+appId).text();
+						if($countMeet != newCount){
+							$('#meet-'+appId).text(newCount);
+							if(newCount < 1)
+								$('#meet-'+appId).hide();
+							else
+								$('#meet-'+appId).show();
+						}
+					});
+				}
+			}
+		});
+	}
+
+	$(document).ready(function(){
+		setInterval(checkMeets, 60000);
+	});
 });

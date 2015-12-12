@@ -248,7 +248,6 @@ else//если пользователь авторизован
     }
 
     $userType = $_SESSION["USER_TYPE"];
-
     switch ($userType)
     {
     	case "PARTICIPANT" : require_once ("participant.php"); break;

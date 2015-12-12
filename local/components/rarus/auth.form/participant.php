@@ -4,6 +4,9 @@ CModule::IncludeModule("iblock");
 CModule::IncludeModule("forum");
 define('FID', 1);
 
+CModule::IncludeModule("doka.meetings");
+use Doka\Meetings\Requests as DokaRequest;
+
 if($USER->IsAdmin() && isset($_REQUEST["UID"]) && intval($_REQUEST["UID"]))
 {
 	$rsUser = CUser::GetByID($_REQUEST["UID"]);
@@ -174,8 +177,24 @@ while($obElement = $rsElement->GetNextElement())
             "LINK" => $arParams["PROFILE_URL"] . "" . $arItem["CODE"] . "/morning/shedule/" . (($USER->IsAdmin())?"?UID=". $arUser["ID"]:"")
         );
 
+        $appId = $arItem["PROPERTIES"]["APP_ID"]["VALUE"];
+        $meets = $meetsHB = 0;
+        if($appId){
+            $req_obj = new DokaRequest($appId);
+            $meetsArr = $req_obj->getUnconfirmedRequestsTotal($arUser["ID"]);
+            $meets = $meetsArr["incoming"];
+        }
+        $appHBId = $arItem["PROPERTIES"]["APP_HB_ID"]["VALUE"];
+        if($appHBId){
+            $req_obj = new DokaRequest($appHBId);
+            $meetsArr = $req_obj->getUnconfirmedRequestsTotal($arUser["ID"]);
+            $meets += $meetsArr["incoming"];
+        }
         $arExhib["SCHEDULE"] = array(
-            "LINK" => $arParams["PROFILE_URL"] . "" . $arItem["CODE"] . "/morning/shedule/" . (($USER->IsAdmin())?"?UID=". $arUser["ID"]:"")
+            "LINK" => $arParams["PROFILE_URL"] . "" . $arItem["CODE"] . "/morning/shedule/" . (($USER->IsAdmin())?"?UID=". $arUser["ID"]:""),
+            "COUNT" => $meets,
+            "APP" => $appId,
+            "APP_HB" => $appHBId,
         );
 
         $arExhib["EDIT"] = array(

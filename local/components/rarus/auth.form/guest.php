@@ -4,6 +4,9 @@ CModule::IncludeModule("iblock");
 CModule::IncludeModule("forum");
 define('FID', 1);
 
+CModule::IncludeModule("doka.meetings");
+use Doka\Meetings\Requests as DokaRequest;
+
 if($USER->IsAdmin() && isset($_REQUEST["UID"]) && intval($_REQUEST["UID"]))
 {
     $rsUser = CUser::GetByID($_REQUEST["UID"]);
@@ -16,7 +19,6 @@ else //если не админ получаем данные для текущ�
     $rsUser = CUser::GetByID($userId);
     $arUser = $rsUser->Fetch();
 }
-
 
 $arResult["USER"] = $arUser;
 $userResultID;
@@ -134,7 +136,21 @@ while($obElement = $rsElement->GetNextElement())
         }
 
         $arProfile["EDIT_LINK"] = $arParams["PROFILE_URL"] . $arItem["CODE"] ."/edit/profile/" . (($USER->IsAdmin())?"?UID=". $arUser["ID"]:"");
-        $arProfile["SCHEDULE"]["LINK"] = $arParams["PROFILE_URL"] . $arItem["CODE"] ."/morning/schedule/" . (($USER->IsAdmin())?"?UID=". $arUser["ID"]:"");
+
+        $appId = $arItem["PROPERTIES"]["APP_ID"]["VALUE"];
+        if($arItem["PROPERTIES"]["APP_HB_ID"]["VALUE"] && $arUser["UF_HB"]==1){
+            $appId = $arItem["PROPERTIES"]["APP_HB_ID"]["VALUE"];
+        }
+        $meets = 0;
+        if($appId){
+            $req_obj = new DokaRequest($appId);
+            $meets = $req_obj->getUnconfirmedRequestsTotal($arUser["ID"]);
+        }
+        $arProfile["SCHEDULE"] = array(
+            "COUNT" => $meets["incoming"],
+            "LINK" => $arParams["PROFILE_URL"] . $arItem["CODE"] ."/morning/schedule/" . (($USER->IsAdmin())?"?UID=". $arUser["ID"]:""),
+            "APP" => $appId
+        );
         $arProfile["MESSAGES"] = array(
             "COUNT" => CHLMFunctions::GetMessagesCount(2, $arItem["ID"], $UID, 3),
             "LINK" => $arParams["PROFILE_URL"] . $arItem["CODE"] . "/messages/" . (($USER->IsAdmin())?"?UID=". $arUser["ID"]:""),
