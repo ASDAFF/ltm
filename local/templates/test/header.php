@@ -122,12 +122,12 @@
 			            	$exhibGoup = $arExhib["PROPERTY_USER_GROUP_ID_VALUE"];
 
 							$menuType = 'participant.bottom';
-							/*if($arExhib["PROPERTY_APP_HB_ID_VALUE"] != ""){
+							if($arExhib["PROPERTY_APP_HB_ID_VALUE"] != ""){
 								$menuType = 'hb_participant.bottom';
 							}
 							else{
 								$menuType = 'participant.bottom';
-							}*/
+							}
 			            	if(in_array($exhibGoup, $arUserGroups) || $USER->IsAdmin())//если в группе подтвержденных
 			            	{
 
@@ -198,20 +198,20 @@
 			    	        $exhibGoup = $arExhib["PROPERTY_C_GUESTS_GROUP_VALUE"];
 
 							$filter = Array( "ID" => $userId);
-							$rsUser = CUser::GetList(($by="name"), ($order="asc"), $filter, array("SELECT"=>array("UF_MR"))); //
+							$rsUser = CUser::GetList(($by="name"), ($order="asc"), $filter, array("SELECT"=>array("UF_MR", "UF_HB"))); //
 							// выбираем
 							// пользователей
 			    	        $arUser = $rsUser->Fetch();
 			    	        $classHB = '';
 
 							$menuType = 'guest.bottom';
-			    	        /*if($arUser[UF_HB] && $arExhib["PROPERTY_APP_HB_ID_VALUE"] != ""){
+			    	        if($arUser["UF_HB"] && $arExhib["PROPERTY_APP_HB_ID_VALUE"] != ""){
 			    	        	$menuType = 'hb.bottom';
 			    	        	$classHB = ' hb';
 			    	        }
 			    	        else{
 			    	        	$menuType = 'guest.bottom';
-			    	        }*/
+			    	        }/**/
 
 			    	        if((in_array($exhibGoup, $arUserGroups) && $arUser["UF_MR"]) || $USER->IsAdmin())//если в группе подтвержденных
 			    	        {
