@@ -6,7 +6,8 @@ $APPLICATION->SetTitle("Назначение встреч");
 	"doka:meetings.request.send",
 	"",
 	Array(
-		"APP_ID" => $_REQUEST["app"]
+		"APP_ID" => $_REQUEST["app"],
+		"RELOAD" => 'N'
 	),
 false
 );?>

@@ -10,6 +10,9 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 	switch ($arResult['USER_TYPE']) {
 		case 'ADMIN':
 			include_once(dirname(__FILE__) . '/particip.php');
+			if(!empty($arParams["RELOAD"]) && $arParams["RELOAD"] == 'N'){
+				echo "<p>You have to reload the parent page yourself</p>";
+			}
 			break;
 		case 'PARTICIP':
 			include_once(dirname(__FILE__) . '/particip.php');
@@ -21,7 +24,9 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 	<script type="text/javascript">
 		setTimeout( function() { window.close(); }, 5000);
 	</script>
-	<script type='text/javascript'>top.opener.document.location.reload();</script>
+	<?if(empty($arParams["RELOAD"]) || $arParams["RELOAD"] != 'N'):?>
+		<script type='text/javascript'>top.opener.document.location.reload();</script>
+	<?endif;?>
 <?endif;?>
 <?
 //var_dump($arResult);
