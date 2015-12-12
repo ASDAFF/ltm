@@ -106,7 +106,7 @@
                                 <? endforeach;?>
                             </select>
 						</td>
-						<td class="request"><a href="javascript:void(0)" title="" onclick="sendRequest(this,<?= $arResult["APP_ID"]?>,<?= $arResult["USER_ID"]?>,<?= $arUser["ID"]?>,'p')">Send <br>a request</a></td>
+						<td class="request"><a href="javascript:void(0)" title="" onclick="sendRequest<?if($arResult["EX_TYPE"] == 'HB'):?>HB<?endif;?>(this,<?= $arResult["APP_ID"]?>,<?= $arResult["USER_ID"]?>,<?= $arUser["ID"]?>,'p')">Send <br>a request</a></td>
                             <?
                         }
                         elseif(!$arResult['IS_ACTIVE']){
@@ -157,7 +157,7 @@
                                 <? endforeach;?>
                             </select>
 						</td>
-						<td class="request"><a href="javascript:void(0)" title="" onclick="sendRequest(this,<?= $arResult["APP_ID"]?>,<?= $arResult["USER_ID"]?>,<?= $arUser["ID"]?>,'p')">Send <br>a request</a></td>
+						<td class="request"><a href="javascript:void(0)" title="" onclick="sendRequest<?if($arResult["EX_TYPE"] == 'HB'):?>HB<?endif;?>(this,<?= $arResult["APP_ID"]?>,<?= $arResult["USER_ID"]?>,<?= $arUser["ID"]?>,'p')">Send <br>a request</a></td>
                             <?
                         }
                         elseif(!$arResult['IS_ACTIVE']){

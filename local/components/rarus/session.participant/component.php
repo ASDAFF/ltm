@@ -21,6 +21,8 @@ if($USER->IsAdmin() && isset($_REQUEST["UID"])) {
 	$arResult["USER_ID"] = $USER->GetID();
 }
 
+$arResult["EX_TYPE"] = $arParams["TYPE"];
+
 //подключение модуля встреч
 use Doka\Meetings\Requests as DokaRequest;
 use Doka\Meetings\Timeslots as DokaTimeslot;

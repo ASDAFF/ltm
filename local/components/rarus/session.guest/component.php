@@ -29,7 +29,7 @@ if($USER->IsAdmin() && isset($_REQUEST["UID"])) {
 	$arResult["USER_ID"] = $USER->GetID();
 }
 
-
+$arResult["EX_TYPE"] = $arParams["TYPE"];
 if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 {
 	if(!CModule::IncludeModule("iblock") || !CModule::IncludeModule("form") || !CModule::IncludeModule("doka.meetings"))
@@ -65,6 +65,7 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 		}		
 
 		$arResult["APP_ID"] = $appId;
+		$arResult["APP_CODE"] = $arParams["EXHIB_CODE"];
 		$req_obj = new DokaRequest($appId);
 		$arResult['IS_ACTIVE'] = !$req_obj->getOption('IS_LOCKED');
 
