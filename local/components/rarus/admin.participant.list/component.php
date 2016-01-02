@@ -3,6 +3,8 @@ if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 global $DB;
 global $USER;
 global $APPLICATION;
+global $sortField;
+global $sortOrder;
 
 //параметры
 $arParams["EXHIB_IBLOCK_ID"] = intval($arParams["EXHIB_IBLOCK_ID"]);
@@ -18,11 +20,7 @@ if(!$arParams["FORM_COMMON_ID"])
 $arParams["CONFIRMED"] = trim($arParams["CONFIRMED"]);
 if($arParams["CONFIRMED"] != "Y" && $arParams["CONFIRMED"] != "N")
     $arParams["CONFIRMED"] = "N";
-/*
-$arParams["ACTIVE"] = trim($arParams["ACTIVE"]);
-if($arParams["ACTIVE"] != "Y" && $arParams["ACTIVE"] != "N")
-    $arParams["ACTIVE"] = "Y";
-*/
+
 $arParams["SPAM"] = trim($arParams["SPAM"]);
 if($arParams["SPAM"] != "Y" && $arParams["SPAM"] != "N")
     $arParams["SPAM"] = "N";
@@ -33,10 +31,11 @@ if(empty($arParams["PATH_TO_KAB"]))
 
 $arParams["USER_TYPE"] = "participant";
 
-
-
 //выполнение
 $arResult = array();
+
+$sortField = $arResult["SORT"] = ($_REQUEST["sort"])?$_REQUEST["sort"]:"COMPANY_NAME";
+$sortOrder = $arResult["ORDER"]  = ($_REQUEST["order"])?$_REQUEST["order"]:"asc";
 
 if(!CModule::IncludeModule("iblock") || !CModule::IncludeModule("form"))
 {
@@ -123,8 +122,9 @@ while($obElement = $rsElement->GetNextElement())
             //UF_ID - москва осень, UF_ID2 - баку, UF_ID3 - киев, UF_ID4 - алмата, UF_ID5 - москва осень, UF_ID_COMP - Участники данные компании ВСЕ ВЫСТАВКИ
         );
 
+        if(!$arResult["SORT"]) $arResult["SORT"] = "work_company";
 
-        $rsUsers = CUser::GetList(($by="work_company"), ($order="asc"), $arFilter, $arParameters);
+        $rsUsers = CUser::GetList(($by=$arResult["SORT"]), ($order=$arResult["ORDER"]), $arFilter, $arParameters);
 		$rsUsers->NavStart(30); // разбиваем постранично по 30 записей
 		$arResult["NAVIGATE"] = $rsUsers->GetPageNavStringEx($navComponentObject, "Пользователи", "");
 
@@ -269,9 +269,9 @@ while($obElement = $rsElement->GetNextElement())
             }
             $arItem["PARTICIPANT"][$arUser["ID"]] = $arUser;
         }
-
         uasort($arItem["PARTICIPANT"], "cmp"); //сортировка, в основном, для неподтвержденных, остальные при выборке сортитуются
     }
+
     $arResult["EXHIBITION"] = $arItem;
 }
 
@@ -292,14 +292,36 @@ if($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "GET")/
 	}
 }
 
-function cmp($a, $b)
-{
-    $first = strtolower($a["WORK_COMPANY"]);
-    $second = strtolower($b["WORK_COMPANY"]);
+function cmp($a, $b){
+    global $sortField;
+    global $sortOrder;
+
+    $sortFileldTmp = "ID";
+    switch ($sortField){
+        case "BUSINESS":
+        case "CITY":
+        case "COUNTRY":
+        case "REP":
+        case "SKYPE":
+        case "TABLE":
+        case "HALL":
+        case "COUNT":
+            break;
+        default:
+            $sortFileldTmp = $sortField;
+            break;
+    };
+
+    $first = strtolower($a[$sortFileldTmp]);
+    $second = strtolower($b[$sortFileldTmp]);
     if ($first == $second) {
         return 0;
     }
-    return ($first < $second) ? -1 : 1;
+    $res = 1;
+    if($sortOrder != "asc") $res = -1;
+    return ($first < $second) ? -1*$res : 1*$res;
+
+
 }
 
 $this->IncludeComponentTemplate();

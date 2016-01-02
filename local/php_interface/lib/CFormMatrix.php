@@ -706,6 +706,25 @@ class CFormMatrix
 		"Сумма счета",
 		"Действия"
 	);
+	static $arCParticipantFieldSort = array(
+		"",
+		"ID",
+		"LOGIN",
+		"",
+		"WORK_COMPANY",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		""
+	);
 	static $arUCParticipantField = array(
 		"Групповые действия",
 		"Company or hotel name",
