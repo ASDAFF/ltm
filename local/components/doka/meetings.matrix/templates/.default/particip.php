@@ -31,7 +31,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 								<?=$user['schedule'][$timeslot['id']]['rep']?><br />
                                 <a href="<?=$arResult['REJECT_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>"
                                     target="_blank"
-                                    onclick="newWind('<?=$arResult['REJECT_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>', 500, 400); return false;">Отменить</a>
+                                    onclick="newWindConfirm('<?=$arResult['REJECT_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>', 500, 400, 'Вы хотите отменить запрос?'); return false;">Отменить</a>
                                 <? //var_dump($user['schedule'][$timeslot['id']]);?>
 						<?elseif($user['schedule'][$timeslot['id']]['is_busy']):?>
 							<?
@@ -53,7 +53,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
                                     onclick="newWind('<?=$arResult['CONFIRM_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>', 500, 400); return false;">Подтвердить</a><br />
                                 <a href="<?=$arResult['REJECT_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>"
                                     target="_blank"
-                                    onclick="newWind('<?=$arResult['REJECT_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>', 500, 400); return false;">Отменить</a>
+                                    onclick="newWindConfirm('<?=$arResult['REJECT_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>', 500, 400, 'Вы хотите отменить запрос?'); return false;">Отменить</a>
                                 <? //var_dump($user['schedule'][$timeslot['id']]);?>
 						<?else:?>
 							<td class="times-list">

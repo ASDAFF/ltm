@@ -47,7 +47,7 @@ $(function() {
 });
 
 
-//отправка запроса на встречу
+//РѕС‚РїСЂР°РІРєР° Р·Р°РїСЂРѕСЃР° РЅР° РІСЃС‚СЂРµС‡Сѓ
 function sendRequest(elem, app, from, to, type)
 {
 	var Data = {
@@ -66,18 +66,27 @@ function sendRequest(elem, app, from, to, type)
 		newWind("/cabinet/service/appointment.php?id=" + Data.FromId + "&to=" + Data.ToId + "&time=" + Data.TimeSlotId + "&app=" + Data.AppId + "&type=" + Data.UType, 500, 600);
 	}
 	/*
-	Изменяемые параметры
-	id - от кого
-	to - кому
-	time - id таймслота
-	type - тип p или g (участники или гость)
-	app - id выставки (сейчас для всех это 1)
+	РР·РјРµРЅСЏРµРјС‹Рµ РїР°СЂР°РјРµС‚СЂС‹
+	id - РѕС‚ РєРѕРіРѕ
+	to - РєРѕРјСѓ
+	time - id С‚Р°Р№РјСЃР»РѕС‚Р°
+	type - С‚РёРї p РёР»Рё g (СѓС‡Р°СЃС‚РЅРёРєРё РёР»Рё РіРѕСЃС‚СЊ)
+	app - id РІС‹СЃС‚Р°РІРєРё (СЃРµР№С‡Р°СЃ РґР»СЏ РІСЃРµС… СЌС‚Рѕ 1)
 	*/
 }
 
 function newWind(url, width, height){
 	var recHref = url;
 	window.open(recHref,'particip_write', 'scrollbars=yes,resizable=yes,width='+width+', height='+height+', left='+(screen.availWidth/2-width/2)+', top='+(screen.availHeight/2-height/2)+'');
+	return false;
+}
+
+function newWindConfirm(url, width, height, guest){
+	var result = confirm(guest);
+	if(result){
+		var recHref = url;
+		window.open(recHref,'particip_write', 'scrollbars=yes,resizable=yes,width='+width+', height='+height+', left='+(screen.availWidth/2-width/2)+', top='+(screen.availHeight/2-height/2)+'');
+	}
 	return false;
 }
 
@@ -112,27 +121,27 @@ $(function(){
 	});
 });
 
-//Подргузка новостей без перезагрузки
+//РџРѕРґСЂРіСѓР·РєР° РЅРѕРІРѕСЃС‚РµР№ Р±РµР· РїРµСЂРµР·Р°РіСЂСѓР·РєРё
 $(function(){
 	
-	//добавление полученных новостей на страницу
+	//РґРѕР±Р°РІР»РµРЅРёРµ РїРѕР»СѓС‡РµРЅРЅС‹С… РЅРѕРІРѕСЃС‚РµР№ РЅР° СЃС‚СЂР°РЅРёС†Сѓ
 	function add_news(data, selector, remove)
 	{
 		var container = $(selector);
 		
 		if(container.length > 0)
 		{
-			//удаляем прошлую кнопку
+			//СѓРґР°Р»СЏРµРј РїСЂРѕС€Р»СѓСЋ РєРЅРѕРїРєСѓ
 			container.find(remove).remove();
 			
-			//записываем данные в конец элемента
+			//Р·Р°РїРёСЃС‹РІР°РµРј РґР°РЅРЅС‹Рµ РІ РєРѕРЅРµС† СЌР»РµРјРµРЅС‚Р°
 			container.append(data);
 		}
 	}
 	
-	//отправка запроса для получения новостей
+	//РѕС‚РїСЂР°РІРєР° Р·Р°РїСЂРѕСЃР° РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РЅРѕРІРѕСЃС‚РµР№
 	$('div#news').on("click",".show-more-btn",function(){
-		//получаем данные с кнопки
+		//РїРѕР»СѓС‡Р°РµРј РґР°РЅРЅС‹Рµ СЃ РєРЅРѕРїРєРё
 		var url = $(this).data("url");
 		var query = $(this).data("query");
 		

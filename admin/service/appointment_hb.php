@@ -8,6 +8,7 @@ $APPLICATION->SetTitle("Назначение встреч");
 	Array(
 		"APP_ID" => $_REQUEST["app"],
 		"IS_HB" => "Y",
+		"RELOAD" => 'N'
 	),
 false
 );?>
