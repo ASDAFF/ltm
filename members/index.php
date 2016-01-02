@@ -38,7 +38,7 @@ if($APPLICATION->GetCurDir() == "/members/" && CModule::IncludeModule("iblock"))
 	"rarus:members.list",
 	"",
 	Array(
-        "CACHE_TYPE" => "A",
+        "CACHE_TYPE" => "Y",
         "CACHE_TIME" => "36000000",
         "CACHE_FILTER" => "Y",
         "CACHE_GROUPS" => "N",

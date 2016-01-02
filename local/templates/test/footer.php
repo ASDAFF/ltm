@@ -41,7 +41,7 @@ if($exhibCode)
 		"FORM_FIELD_LOGIN_ID" => "18",
 		"ELEMENT_COUNT" => "10",
 		"URL_TEMPLATE" => "/members/#ELEMENT_ID#/",
-		"CACHE_TYPE" => "A",
+		"CACHE_TYPE" => "Y",
 		"CACHE_TIME" => "36000000",
 		"CACHE_GROUPS" => "Y",
 		"COMPONENT_TEMPLATE" => ".default"
