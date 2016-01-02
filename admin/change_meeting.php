@@ -97,9 +97,7 @@ while ($exhibition = $rsExhibitions->Fetch()) {
             'BCC' => $receiver['email'],
             'TIMESLOT_NAME' => $timeslot['name'],
             'SENDER_COMPANY' => $sender['company_name'],
-            // 'SENDER_REP' => $sender['repr_name'],
             'RECEIVER_COMPANY' => $receiver['company_name'],
-            // 'RECEIVER_REP' => $receiver['repr_name'],
             "EXIB_NAME" => $arResult["PARAM_EXHIBITION"]["NAME"],
             "EXIB_SHORT" => $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]["VALUE"]
         );
@@ -110,7 +108,7 @@ while ($exhibition = $rsExhibitions->Fetch()) {
 }
 if($strReq != ''){
     $mailto = "diana_box@list.ru";
-    $mail = "Обработка встреч с сайта Luxury\n".$strReq;
+    $mail = "Обработка встреч с сайта Luxury New\n".$strReq;
     mail($mailto,"Cron с сайта Luxury",$mail,"Content-Type: text/plain; charset=windows-1251\r\n");
 }
 ?>
