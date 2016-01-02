@@ -113,6 +113,7 @@ if (!$arResult['TIMESLOT']) {
 $exibArr = array($arParams["APP_ID"]);
 if($arParams["APP_ID_OTHER"])
 	$exibArr[] = $arParams["APP_ID_OTHER"];
+
 $allSlotsBetween = $req_obj->getAllSlotsBetween($sender_id, $receiver_id, $exibArr);
 if(!empty($allSlotsBetween)){
 	$arResult['ERROR_MESSAGE'][] = GetMessage($arResult['USER_TYPE'] . '_COMPANY_MEET_EXIST');
