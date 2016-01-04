@@ -17,27 +17,27 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 if(LANGUAGE_ID == "ru")
 {
 ?>
-<h2>Заголовок видеоролика 1</h2>
-<video controls="controls" poster="/video_files/day.jpg" width="640">
+<h2>Общая информация о выставке LTM</h2>
+<video controls="controls" poster="/video_files/poster.jpg" width="640">
 	<source src="/video_files/day.m4v" type="video/mp4" />
 	<source src="/video_files/day.ogv" type="video/ogg" />
 	<source src="/video_files/day.webm" type="video/webm" />
 	
 </video>
 
-<h2>Заголовок видеоролика 2</h2>
-<video controls="controls" poster="/video_files/day.jpg" width="640">
-	<source src="/video_files/day.m4v" type="video/mp4" />
-	<source src="/video_files/day.ogv" type="video/ogg" />
-	<source src="/video_files/day.webm" type="video/webm" />
+<h2>Приём в честь 10-летия выставки LTM</h2>
+<video controls="controls" poster="/video_files/poster.jpg" width="640">
+	<source src="/video_files/night.m4v" type="video/mp4" />
+	<source src="/video_files/night.ogv" type="video/ogg" />
+	<source src="/video_files/night.webm" type="video/webm" />
 	
 </video>
 
-<h2>Заголовок видеоролика 3</h2>
-<video controls="controls" poster="/video_files/day.jpg" width="640">
-	<source src="/video_files/day.m4v" type="video/mp4" />
-	<source src="/video_files/day.ogv" type="video/ogg" />
-	<source src="/video_files/day.webm" type="video/webm" />
+<h2>Участники о выставке LTM</h2>
+<video controls="controls" poster="/video_files/poster.jpg" width="640">
+	<source src="/video_files/interviews.m4v" type="video/mp4" />
+	<source src="/video_files/interviews.ogv" type="video/ogg" />
+	<source src="/video_files/interviews.webm" type="video/webm" />
 	
 </video>
 
@@ -46,27 +46,27 @@ if(LANGUAGE_ID == "ru")
 elseif(LANGUAGE_ID == "en")
 {
 ?>
-<h2>Title for video 1</h2>
-<video controls="controls" poster="/video_files/day.jpg" width="640">
+<h2>LTM in general</h2>
+<video controls="controls" poster="/video_files/poster.jpg" width="640">
 	<source src="/video_files/day.m4v" type="video/mp4" />
 	<source src="/video_files/day.ogv" type="video/ogg" />
 	<source src="/video_files/day.webm" type="video/webm" />
 	
 </video>
 
-<h2>Title for video 2</h2>
-<video controls="controls" poster="/video_files/day.jpg" width="640">
-	<source src="/video_files/day.m4v" type="video/mp4" />
-	<source src="/video_files/day.ogv" type="video/ogg" />
-	<source src="/video_files/day.webm" type="video/webm" />
+<h2>LTM 10th Anniversary Party</h2>
+<video controls="controls" poster="/video_files/poster.jpg" width="640">
+	<source src="/video_files/night.m4v" type="video/mp4" />
+	<source src="/video_files/night.ogv" type="video/ogg" />
+	<source src="/video_files/night.webm" type="video/webm" />
 	
 </video>
 
-<h2>Title for video 3</h2>
-<video controls="controls" poster="/video_files/day.jpg" width="640">
-	<source src="/video_files/day.m4v" type="video/mp4" />
-	<source src="/video_files/day.ogv" type="video/ogg" />
-	<source src="/video_files/day.webm" type="video/webm" />
+<h2>Our exhibitors about us</h2>
+<video controls="controls" poster="/video_files/poster.jpg" width="640">
+	<source src="/video_files/interviews.m4v" type="video/mp4" />
+	<source src="/video_files/interviews.ogv" type="video/ogg" />
+	<source src="/video_files/interviews.webm" type="video/webm" />
 	
 </video>
 
