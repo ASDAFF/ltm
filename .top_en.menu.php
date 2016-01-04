@@ -29,6 +29,13 @@ $aMenuLinks = Array(
 		"" 
 	),
 	Array(
+		"Video", 
+		"/video/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
 		"DETAILED SCHEDULE", 
 		"/schedule/", 
 		Array(), 
