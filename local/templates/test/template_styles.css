@@ -490,3 +490,7 @@ nav#bottom a:hover{
 	position: relative;
 	clear: both;
 }
+
+video {
+	margin-bottom: 30px;
+}
