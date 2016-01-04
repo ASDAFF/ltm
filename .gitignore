@@ -12,6 +12,7 @@ Thumbs.db
 /cache
 /pma
 /dev
+/video_files/
 .htaccess
 
 # core
