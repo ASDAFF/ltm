@@ -27,7 +27,7 @@ elseif($_SESSION["USER_TYPE"] == "GUEST")
 		
 	<?//--> Список табов 2 уровня ?>
 	<ul class="pull-overflow sub-tab-session">
-		<li><a href="<?= $page . "schedule/" . (($userId)?"?UID=".$userId:"")?>" title="" >Расписание на сессию 12 марта</a></li>
+		<li><a href="<?= $page . "schedule/" . (($userId)?"?UID=".$userId:"")?>" title="" >Расписание на сессию 10 марта</a></li>
 		<li class="ui-tabs-active"><a href="<?= $page . "list/" . (($userId)?"?UID=".$userId:"")?>" title="" >Список участников</a></li>
 	</ul>
 		<div id="session-tab-1">
