@@ -39,7 +39,7 @@ if($APPLICATION->GetCurDir() == "/members/" && CModule::IncludeModule("iblock"))
 	"",
 	Array(
         "CACHE_TYPE" => "Y",
-        "CACHE_TIME" => "36000000",
+        "CACHE_TIME" => "86400",
         "CACHE_FILTER" => "Y",
         "CACHE_GROUPS" => "N",
         "IBLOCK_ID_EXHIB" => "15",
