@@ -257,7 +257,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 	     {
 	     	case 0 : $arData["PAY_REQUISITE_XML"] = "IP"; break;
 	     	case 1 : $arData["PAY_REQUISITE_XML"] = "TM"; break;
-			 case 1 : $arData["PAY_REQUISITE_XML"] = "EV"; break;
+			case 2 : $arData["PAY_REQUISITE_XML"] = "EV"; break;
 	     	default: $arData["PAY_REQUISITE_XML"] = "IP";
 	     }
 
