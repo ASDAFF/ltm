@@ -57,19 +57,6 @@ else
 	$UID = $arResult["USER"]['ID'];
 }
 
-/*
-$arFilterMessages = array("USER_ID"=> $UID, "FOLDER_ID"=>FID);
-
-$dbrMessages = CForumPrivateMessage::GetListEx(array(), $arFilterMessages);
-$arResult['NEW_MESSAGES_COUNT'] = 0;
-while($arMsg = $dbrMessages->GetNext())
-{
-	if ($arMsg['IS_READ'] == 'N')
-	{
-		$arResult['NEW_MESSAGES_COUNT']++;
-	}
-}
-*/
 $rsElement = CIBlockElement::GetList(array("sort" => "asc"),$arFilter, false, false, $arSelect);
 
 while($obElement = $rsElement->GetNextElement())
@@ -138,19 +125,29 @@ while($obElement = $rsElement->GetNextElement())
         $arProfile["EDIT_LINK"] = $arParams["PROFILE_URL"] . $arItem["CODE"] ."/edit/profile/" . (($USER->IsAdmin())?"?UID=". $arUser["ID"]:"");
 
         $appId = $arItem["PROPERTIES"]["APP_ID"]["VALUE"];
-        if($arItem["PROPERTIES"]["APP_HB_ID"]["VALUE"] && $arUser["UF_HB"]==1){
-            $appId = $arItem["PROPERTIES"]["APP_HB_ID"]["VALUE"];
+        $appHbId = '';
+        if($arUser["UF_HB"] == 1){
+            $appHbId = $arItem["PROPERTIES"]["APP_HB_ID"]["VALUE"];
         }
-        $meets = 0;
+        $meets = array();
         if($appId){
             $req_obj = new DokaRequest($appId);
             $meets = $req_obj->getUnconfirmedRequestsTotal($arUser["ID"]);
         }
+
+        $meetsHb = array("incoming" => 0);
+        if($appHbId){
+            $req_objN = new DokaRequest($appHbId);
+            $meetsHb = $req_objN->getUnconfirmedRequestsTotal($arUser["ID"]);
+        }
+
         $arProfile["SCHEDULE"] = array(
-            "COUNT" => $meets["incoming"],
+            "COUNT" => $meets["incoming"] + $meetsHb["incoming"],
             "LINK" => $arParams["PROFILE_URL"] . $arItem["CODE"] ."/morning/schedule/" . (($USER->IsAdmin())?"?UID=". $arUser["ID"]:""),
-            "APP" => $appId
+            "APP" => $appId,
+            "APP_HB" => $appHbId
         );
+
         $arProfile["MESSAGES"] = array(
             "COUNT" => CHLMFunctions::GetMessagesCount(2, $arItem["ID"], $UID, 3),
             "LINK" => $arParams["PROFILE_URL"] . $arItem["CODE"] . "/messages/" . (($USER->IsAdmin())?"?UID=". $arUser["ID"]:""),
