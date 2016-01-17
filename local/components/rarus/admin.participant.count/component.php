@@ -85,26 +85,6 @@ if($arResult["ERROR_MESSAGE"] == '')
 
 	    $arData["DATE"] = date("d.m.Y");
 	    $arData["EMAIL"] = $arUser["EMAIL"];
-	    /*
-	    $arData["PAY_NAME"] = $arUser["UF_PAY_NAME"];
-	    $arData["PAY_COUNT"] = intval($arUser["UF_PAY_COUNT"]);
-	    $arData["PAY_REQUISITE"] = $arUser["UF_REQUISITE"];
-	    $rsRequisite = CUserFieldEnum::GetList(array(), array("USER_FIELD_ID" => 39)); //39 код свойства UF_REQUISITE
-	    while($arRequisite = $rsRequisite->GetNext(true,false))
-	    {
-	    	$arResult["PAY_REQUISITE"][$arRequisite["ID"]] = $arRequisite;
-	    	if("Y" == $arRequisite["DEF"])//запоминаем значение по умолчанию
-	    	{
-	    	    $arData["PAY_REQUISITE_XML"] = $arRequisite["XML_ID"];
-	    	}
-	    }
-
-	    //если задано в пользователе заменяем
-	    if($xml = $arResult["PAY_REQUISITE"][$arUser["UF_REQUISITE"]]["XML_ID"])
-	    {
-	        $arData["PAY_REQUISITE_XML"] = $xml;
-	    }
-	    */
 
 	    $formID = CFormMatrix::getPFormIDByExh($arExhib["ID"]);
 	    $formPropName = CFormMatrix::getPropertyIDByExh($arExhib["ID"]);//получение имени свойства пользователя для текущей выставки
@@ -277,6 +257,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 	     {
 	     	case 0 : $arData["PAY_REQUISITE_XML"] = "IP"; break;
 	     	case 1 : $arData["PAY_REQUISITE_XML"] = "TM"; break;
+			 case 1 : $arData["PAY_REQUISITE_XML"] = "EV"; break;
 	     	default: $arData["PAY_REQUISITE_XML"] = "IP";
 	     }
 
@@ -451,6 +432,32 @@ Account: 40702978900140010240";
 $data["BENEFICIARY_NAME"] = "Elena Vetrova / Ветрова Елена Васильевна";
     	}; break;
 
+		case "EV" : {
+			$data["BENEFICIARY"] = "IP Vetrova E.V.,
+registered as independent entrepreneur
+with State Registration Number 309503525800010
+at Federal Tax Service Inspectorate in
+Pavlosvkiy Posad, Moscow Region
+
+Индивидуальный предприниматель
+Поланский Артём Валентинович,
+зарегистрированный Инспекцией Федеральной
+Налоговой Службы
+по г. Павловский Посад Московской области,
+государственный регистрационный номер 309503525800010
+ИНН 503507510512
+
+Moscow, Russia";
+
+			$data["BANK_DETAILS"] = "Beneficiary's Bank:
+VTB 24 (PJSC), Moscow, Russia
+SWIFT: CBGURUMM
+Beneficiary: Polanskiy Artem Valentinovich
+Account: 40802978700001002738";
+
+			$data["BENEFICIARY_NAME"] = "Artem V. Polanskiy / Поланский Артём Валентинович";
+		}; break;
+
     }
 
     global $APPLICATION;
@@ -516,6 +523,15 @@ function ContractPDF($data, &$oPDF, $folder)
         $height = 40;
         $width = 52.88;
     }
+	elseif($data["PAY_REQUISITE_XML"] == "EV")
+	{
+		$stampY = $oPDF->getY() - 30;
+		$stampX = 100;
+		$img = __DIR__ . '/images/stamp_polansky.png';
+		$height = 40;
+		$width = 100.94;
+
+	}
 
     $oPDF->Image($img,$stampX,$stampY,$width,$height ,'','','',false,72,'',false,false,1);
 
@@ -670,30 +686,6 @@ function dataSave($userID, $data)
     {
         CFormResult::SetField($resultId, $SID, $value);
     }
-
-
-    /*
-    $user = new CUser();
-    if(!$userID || empty($data))
-    {
-    	return false;
-    }
-
-
-	$arFields = array(
-		"UF_PAY_COUNT" => intval($data["PAY_COUNT"]),
-	    "UF_REQUISITE" => intval($data["PAY_REQUISITE"]),
-	);
-
-
-	if(isset($data["PAY_NAME"]) && intval($data["PAY_NAME"]) > 0)
-	{
-	    $arFields["UF_PAY_NAME"] = intval($data["PAY_NAME"]);
-	}
-
-	$user->Update($userID, $arFields);
-
-	*/
 }
 
 ?>
