@@ -11,13 +11,20 @@ if(!isset($arParams["EXHIB_IBLOCK_ID"]) || $arParams["EXHIB_IBLOCK_ID"] == ''){
 }
 $arResult = array();
 
-if(isset($_REQUEST["exib_code"]) && $_REQUEST["exib_code"]!=''){
+
+if((isset($_REQUEST["exib_code"]) && $_REQUEST["exib_code"]!='') || !empty($arParams["APP_ID"])){
+	$filterEx = array("IBLOCK_ID" => $arParams["EXHIB_IBLOCK_ID"]);
+	if(!empty($_REQUEST["exib_code"]))
+		$filterEx["CODE"] = $_REQUEST["exib_code"];
+	elseif(isset($arParams["IS_HB"]) && $arParams["IS_HB"] == 'Y')
+		$filterEx["PROPERTY_APP_HB_ID"] = $arParams["APP_ID"];
+	else{
+		$filterEx["PROPERTY_APP_ID"] = $arParams["APP_ID"];
+	}
+
 	$rsExhib = CIBlockElement::GetList(
 			array(),
-			array(
-					"IBLOCK_ID" => $arParams["EXHIB_IBLOCK_ID"],
-					"CODE" => $_REQUEST["exib_code"]
-				),
+			$filterEx,
 			false,
 			false,
 			array("ID", "CODE", "NAME", "IBLOCK_ID","PROPERTY_*")
@@ -27,13 +34,17 @@ if(isset($_REQUEST["exib_code"]) && $_REQUEST["exib_code"]!=''){
 		$arResult["PARAM_EXHIBITION"] = $oExhib->GetFields();
 		$arResult["PARAM_EXHIBITION"]["PROPERTIES"] = $oExhib->GetProperties();
 		unset($arResult["PARAM_EXHIBITION"]["PROPERTIES"]["MORE_PHOTO"]);
+		$exibOther = '';
 		if(isset($arParams["IS_HB"]) && $arParams["IS_HB"] == 'Y'){
 			$appId = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["APP_HB_ID"]["VALUE"];
+			$exibOther = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["APP_ID"]["VALUE"];
 		}
 		else{
 			$appId = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["APP_ID"]["VALUE"];
+			$exibOther = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["APP_HB_ID"]["VALUE"];
 		}
 		$arParams["APP_ID"] = $appId;
+		$arParams["APP_ID_OTHER"] = $exibOther;
 	}
 }
 
@@ -93,10 +104,19 @@ if ($sender_id == $receiver_id) {
 	$arResult['ERROR_MESSAGE'][] = GetMessage($arResult['USER_TYPE'] . '_WRONG_RECEIVER_ID');
 }
 
-
 $arResult['TIMESLOT'] = $req_obj->getMeetTimeslot($timeslot_id);
 if (!$arResult['TIMESLOT']) {
 	$arResult['ERROR_MESSAGE'][] = GetMessage($arResult['USER_TYPE'] . '_WRONG_TIMESLOT_ID');
+}
+
+//Проверяем нет ли уже встреч с этим же пользователем
+$exibArr = array($arParams["APP_ID"]);
+if($arParams["APP_ID_OTHER"])
+	$exibArr[] = $arParams["APP_ID_OTHER"];
+
+$allSlotsBetween = $req_obj->getAllSlotsBetween($sender_id, $receiver_id, $exibArr);
+if(!empty($allSlotsBetween)){
+	$arResult['ERROR_MESSAGE'][] = GetMessage($arResult['USER_TYPE'] . '_COMPANY_MEET_EXIST');
 }
 
 $formId = CFormMatrix::getPFormIDByExh($arResult["PARAM_EXHIBITION"]["ID"]);

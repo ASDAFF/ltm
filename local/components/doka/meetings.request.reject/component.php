@@ -11,17 +11,23 @@ if(!isset($arParams["EXHIB_IBLOCK_ID"]) || $arParams["EXHIB_IBLOCK_ID"] == ''){
 }
 $arResult = array();
 
-if(isset($_REQUEST["exib_code"]) && $_REQUEST["exib_code"]!=''){
+if((isset($_REQUEST["exib_code"]) && $_REQUEST["exib_code"]!='') || !empty($arParams["APP_ID"])){
+	$filterEx = array("IBLOCK_ID" => $arParams["EXHIB_IBLOCK_ID"]);
+	if(!empty($_REQUEST["exib_code"]))
+		$filterEx["CODE"] = $_REQUEST["exib_code"];
+	elseif(isset($arParams["IS_HB"]) && $arParams["IS_HB"] == 'Y')
+		$filterEx["PROPERTY_APP_HB_ID"] = $arParams["APP_ID"];
+	else{
+		$filterEx["PROPERTY_APP_ID"] = $arParams["APP_ID"];
+	}
+
 	$rsExhib = CIBlockElement::GetList(
-			array(),
-			array(
-					"IBLOCK_ID" => $arParams["EXHIB_IBLOCK_ID"],
-					"CODE" => $_REQUEST["exib_code"]
-				),
-			false,
-			false,
-			array("ID", "CODE", "NAME", "IBLOCK_ID","PROPERTY_*")
-			);
+		array(),
+		$filterEx,
+		false,
+		false,
+		array("ID", "CODE", "NAME", "IBLOCK_ID","PROPERTY_*")
+	);
 	while($oExhib = $rsExhib->GetNextElement(true, false))
 	{
 		$arResult["PARAM_EXHIBITION"] = $oExhib->GetFields();
