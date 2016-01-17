@@ -19,6 +19,7 @@
 	<?$APPLICATION->ShowHead();?>
 </head>
 <body <? if(stristr($APPLICATION->GetCurPage(), "/cabinet/")):?>class="cabinet"<?endif;?>>
+	<div class="main_container">
 	<? CJSCore::Init("ajax"); ?>
 	<? if ($USER->isAdmin())$APPLICATION->ShowPanel();?>
 	<header>

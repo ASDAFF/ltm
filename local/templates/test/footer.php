@@ -55,6 +55,7 @@ if($exhibCode)
 			</div>
 		<? } ?>
 	</div>
+	<div class="footer_space"></div>
 	<footer>
 		<div class="layoutCenterWrapper">
 			<div class="org">
@@ -142,5 +143,6 @@ if($exhibCode)
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/34646180" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
+</div>
 </body>
 </html>
