@@ -50,7 +50,7 @@ if($arResult["ERROR_MESSAGE"] == '' && $_SERVER["REQUEST_METHOD"] == "POST" && $
 
 if($arResult["ERROR_MESSAGE"] == '')
 {
-    //получение даных пользователя
+    //получение данных пользователя
     $rsUser = CUser::GetList(($by = false), ($order = false), array("ID"=>$arParams["USER_ID"]), array("SELECT"=>array("UF_*"), "FIELDS" => array("ID", "NAME", "LAST_NAME", "LOGIN", "EMAIL", "WORK_COMPANY")));
     $arUser = $rsUser->Fetch();
 
@@ -130,7 +130,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 	        $arResultFormUser,
 	        $arAnswerUserSID);
 
-	    //составляем массив в пользователе из резальтатов заполнения формы
+	    //составляем массив в пользователе из результатов заполнения формы
 	     $arUser["FORM_DATA"] = array();
 	     foreach ($FieldUserSID as $name => $sid)
 	     {
@@ -184,7 +184,7 @@ if($arResult["ERROR_MESSAGE"] == '')
 	         $arResultFormCompany,
 	         $arAnswerCompanySID);
 
-	     //составляем массив в пользователе из резальтатов заполнения формы
+	     //составляем массив в пользователе из результатов заполнения формы
 	     foreach ($FieldCompanySID as $name => $sid)
 	     {
 	         if(isset($arAnswerCompanySID[$sid]))
@@ -433,29 +433,29 @@ $data["BENEFICIARY_NAME"] = "Elena Vetrova / Ветрова Елена Васи�
     	}; break;
 
 		case "EV" : {
-			$data["BENEFICIARY"] = "IP Vetrova E.V.,
-registered as independent entrepreneur
-with State Registration Number 309503525800010
-at Federal Tax Service Inspectorate in
-Pavlosvkiy Posad, Moscow Region
+			$data["BENEFICIARY"] = "Vetrova Elena Vasilievna,
+Registered as independent entrepreneur
+with State Registration Number 315774600341092
+at Federal Tax Service Inspectorate in Moscow
+Individual tax-payer number: 773319465722
 
 Индивидуальный предприниматель
-Поланский Артём Валентинович,
+Ветрова Елена Васильевна,
 зарегистрированный Инспекцией Федеральной
 Налоговой Службы
-по г. Павловский Посад Московской области,
-государственный регистрационный номер 309503525800010
-ИНН 503507510512
+по г. Москва, 
+государственный регистрационный номер 315774600341092
+ИНН 773319465722
 
 Moscow, Russia";
 
 			$data["BANK_DETAILS"] = "Beneficiary's Bank:
-VTB 24 (PJSC), Moscow, Russia
-SWIFT: CBGURUMM
-Beneficiary: Polanskiy Artem Valentinovich
-Account: 40802978700001002738";
+ALFA-BANK Moscow, Russia
+SWIFT: ALFARUMM
+Beneficiary: Vetrova Elena Vasilievna
+Account: 40802978702410000010";
 
-			$data["BENEFICIARY_NAME"] = "Artem V. Polanskiy / Поланский Артём Валентинович";
+			$data["BENEFICIARY_NAME"] = "Elena V. Vetrova / Ветрова Елена Васильевна";
 		}; break;
 
     }
@@ -572,7 +572,7 @@ function HeaderPDF($data, &$oPDF, $folder)
 
 function BodyPDF($data, &$oPDF, $folder)
 {
-    //вывод оссновной информации
+    //вывод основной информации
 
     $path = $folder . "{$data["CODE"]}/{$data["PAY_REQUISITE_XML"]}_invoice.txt";
     $data["DETAILS_OF_PAYMENT"] = file_get_contents($path);
