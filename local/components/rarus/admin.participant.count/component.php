@@ -527,7 +527,7 @@ function ContractPDF($data, &$oPDF, $folder)
 	{
 		$stampY = $oPDF->getY() - 30;
 		$stampX = 100;
-		$img = __DIR__ . '/images/stamp_polansky.png';
+		$img = __DIR__ . '/images/stamp_ev.png';
 		$height = 40;
 		$width = 100.94;
 
