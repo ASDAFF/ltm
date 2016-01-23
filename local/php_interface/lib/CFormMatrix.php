@@ -743,6 +743,24 @@ class CFormMatrix
 		"Company or hotel name",
 		"Действия"
 	);
+	static $arUCParticipantFieldSort = array(
+		"",
+		"WORK_COMPANY",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"WORK_COMPANY",
+		""
+	);
 	static $arExelCompParticipantField = array(
 		"NAMES" => array(
 			"0" => "Company or hotel name",

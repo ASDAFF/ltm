@@ -3,6 +3,8 @@ if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 global $DB;
 global $USER;
 global $APPLICATION;
+global $sortField;
+global $sortOrder;
 
 isset($arParams["CACHE_TIME"]) or $arParams["CACHE_TIME"] = 3600;
 isset($arParams["IBLOCK_ID_EXHIB"]) or $arParams["IBLOCK_ID_EXHIB"] = 15;
@@ -16,8 +18,10 @@ switch($arParams["ACT"]) {
 }
 
 $arResult = array();
-// if($this->StartResultCache(false, array_merge($arParams, $arResult)))
-// {
+
+$sortField = $arResult["SORT"] = ($_REQUEST["sort"])?$_REQUEST["sort"]:"COMPANY_NAME";
+$sortOrder = $arResult["ORDER"]  = ($_REQUEST["order"])?$_REQUEST["order"]:"asc";
+
 	if(!CModule::IncludeModule("iblock") || !CModule::IncludeModule("form"))
 	{
 		$this->AbortResultCache();
@@ -63,14 +67,16 @@ $arResult = array();
 
     $arUserListAll = array();
     $arUserFormAnswersId = array();
-    $rs = CUser::GetList(($by = "work_company"), ($order = "asc"), $arUserFilter, array("SELECT"=>array("UF_*"), "FIELDS"=>array("ID", "LOGIN")));
+    if(!$arResult["SORT"]) $arResult["SORT"] = "work_company";
+
+    $rs = CUser::GetList(($by=$arResult["SORT"]), ($order=$arResult["ORDER"]), $arUserFilter, array("SELECT"=>array("UF_*"), "FIELDS"=>array("ID", "LOGIN", "DATE_REGISTER")));
 	$rs->NavStart(30); // разбиваем постранично по 30 записей
 	$arResult["NAVIGATE"] = $rs->GetPageNavStringEx($navComponentObject, "Пользователи", "");
 
     while($ar = $rs->GetNext(true, false)) {
         $rsResult = CFormResult::GetByID($ar[$userFieldFormAnswer]);
         $tmpResFields = $rsResult->Fetch();
-        $ar["REG_DATE"]= $tmpResFields["DATE_CREATE"];
+        $ar["REG_DATE"]= $ar["DATE_REGISTER"];
         $tmpTime = strtotime($ar["REG_DATE"]);
         $diff = (time() - $tmpTime)/60;//разница в минутах
         $ar["REG_DIFF"] = floor($diff/60)."ч ".($diff% 60)."м";
@@ -85,74 +91,7 @@ $arResult = array();
          echo ("There are 0 users.");
      }
 
-    //получаем код поля, где хранится айди формы гостя
-//     $guestFormIdFieldCode = CFormMatrix::getPropertyIDByExh($arResult["EXHIB"]["ID"]);
-
-    //гости этой выставки
-//     $arResult["USERS_LIST"] = array();
-//     $arFormAnswersId = array();
-//     foreach($arUserListAll as $key=>$arUser) {
-//     	if(isset($arUserListAll[$key][$guestFormIdFieldCode])
-//     	        && !empty($arUserListAll[$key][$guestFormIdFieldCode])) {
-//     	    $arResult["USERS_LIST"][$key] = $arUserListAll[$key];
-//     	    $arFormAnswersId[] = $arResult["USERS_LIST_ALL"][$key][$guestFormIdFieldCode];
-//     	}
-//     }
-
-    if(empty($arResult["USERS_LIST"]))
-    {
-//         echo ("There are 0 users on exhibbit.");
-    }
-    else
-    {
-        //айди формы
-        //$arParams["GUEST_FORM_ID"] = CFormMatrix::getGResultIDByExh($arResult["EXHIB"]["ID"]);
-        /*
-        //список результатов ответов в форме
-        $arAnswersFilter = array("RESULT_ID"=>implode("|", $arFormAnswersId));
-
-        $arAnswers = array();
-        CForm::GetResultAnswerArray(
-            $arParams["GUEST_FORM_ID"],
-            $arResult["GUEST_FORM_QUESTIONS"],
-            $arAnswers,
-            ($b = false),
-            $arAnswersFilter);
-
-        $loginFieldId = CFormMatrix::getFormQuestionIdByFormIDAndQuestionName($arParams["GUEST_FORM_ID"], "LOGIN");
-        if(!$loginFieldId) throw new Exception("Incorrect login field id");
-
-        foreach($arAnswers as $key=>$arAnswer) {
-            $ar = array();
-            foreach($arAnswer as $keyQuestionAnswer=>$arQuestionAnswer) {
-                $arCountElems = count($arQuestionAnswer);
-
-        		if($arCountElems > 1) {
-        		    $ar[$keyQuestionAnswer] = array();
-        		}
-        		foreach($arQuestionAnswer as $arEntityAnswer) {
-        		    switch($arEntityAnswer["FIELD_TYPE"]) {
-        		        case "checkbox": $v = isset($arEntityAnswer["ANSWER_TEXT"]) && $arEntityAnswer["ANSWER_TEXT"] ? $arEntityAnswer["ANSWER_TEXT"] : $arEntityAnswer["TITLE"]; break;
-        		        case "dropdown": case "textarea": $v = $arEntityAnswer["ANSWER_TEXT"]; break;
-        		    	default: $v = $arEntityAnswer["USER_TEXT"];
-        		    }
-        		    if($arCountElems > 1) {
-        		        $ar[$keyQuestionAnswer][] = $v;
-        		    } else {
-        		        $ar[$keyQuestionAnswer] = $v;
-        		    }
-        		}
-            }
-
-            //добавляем к инфо пользователя
-            $userLogin = $ar[ $loginFieldId ];
-            if(isset($arResult["USERS_LIST"][$userLogin])) {
-                foreach($ar as $key=>$val) {
-                    $arResult["USERS_LIST"][$userLogin][$key] = $val;
-                }
-            }
-        } */
-
+    if(!empty($arResult["USERS_LIST"])) {
         //список результатов ответов в форме
         $arAnswersFilter = array("RESULT_ID"=>implode("|", $arUserFormAnswersId));
 
@@ -211,18 +150,36 @@ $arResult = array();
 
 	$this->IncludeComponentTemplate();
 
-function cmp($a, $b)
-{
-    $first = strtolower($a[107]);
-    $second = strtolower($b[107]);
+function cmp($a, $b){
+    global $sortField;
+    global $sortOrder;
+
+    $sortFileldTmp = "ID";
+    switch ($sortField){
+        case "BUSINESS":
+        case "CITY":
+        case "COUNTRY":
+        case "REP":
+        case "SKYPE":
+        case "TABLE":
+        case "HALL":
+        case "COUNT":
+            break;
+        default:
+            $sortFileldTmp = $sortField;
+            break;
+    };
+
+    $first = strtolower($a[$sortFileldTmp]);
+    $second = strtolower($b[$sortFileldTmp]);
     if ($first == $second) {
         return 0;
     }
-    return ($first < $second) ? -1 : 1;
-}
-// }
+    $res = 1;
+    if($sortOrder != "asc") $res = -1;
+    return ($first < $second) ? -1*$res : 1*$res;
 
-// if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST["confirm"])) {
-//     include_once 'confirm_participation.php';
-// }
+
+}
+
 ?>

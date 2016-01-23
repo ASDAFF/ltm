@@ -10,23 +10,18 @@
 
 <table class="table">
             <tr>
-            <? $arFields = CFormMatrix::$arCParticipantField;
-            $arFieldsSort = CFormMatrix::$arCParticipantFieldSort;
-
+            <?
+                $arFields = CFormMatrix::$arCParticipantField;
+                $arFieldsSort = CFormMatrix::$arCParticipantFieldSort;
             ?>
             <? $formID = CFormMatrix::getPFormIDByExh($arResult["EXHIBITION"]["ID"]);?>
                 <? foreach ($arFields as $ind => $fieldName):?>
                 <th>
                     <?if($arFieldsSort[$ind]):?>
                         <?
+                        $orderSort = 'asc';
                         if($arFieldsSort[$ind] == $arResult["SORT"] && $arResult["ORDER"] == 'asc'){
                             $orderSort = 'desc';
-                        }
-                        elseif($arFieldsSort[$ind] == $arResult["SORT"]){
-                            $orderSort = 'asc';
-                        }
-                        else{
-                            $orderSort = 'asc';
                         }
                         ?>
                         <a href="?sort=<?=$arFieldsSort[$ind]?>&order=<?=$orderSort?>" class="sort-title"><?= $fieldName?></a>

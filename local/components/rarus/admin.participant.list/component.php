@@ -320,8 +320,6 @@ function cmp($a, $b){
     $res = 1;
     if($sortOrder != "asc") $res = -1;
     return ($first < $second) ? -1*$res : 1*$res;
-
-
 }
 
 $this->IncludeComponentTemplate();

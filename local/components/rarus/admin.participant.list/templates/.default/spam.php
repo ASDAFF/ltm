@@ -6,12 +6,26 @@
 <div class="table-responsive">
 <table class="table">
 	<tr>
-		<? $arFields = CFormMatrix::$arUCParticipantField;?>
+		<?
+            $arFields = CFormMatrix::$arUCParticipantField;
+            $arFieldsSort = CFormMatrix::$arUCParticipantFieldSort;
+        ?>
 		<? foreach ($arFields as $ind => $fieldName):?>
-			<th <?= $class?>><?= $fieldName?></th>
+			<th <?= $class?>>
+                <?if($arFieldsSort[$ind]):?>
+                    <?
+                    $orderSort = 'asc';
+                    if($arFieldsSort[$ind] == $arResult["SORT"] && $arResult["ORDER"] == 'asc'){
+                        $orderSort = 'desc';
+                    }
+                    ?>
+                    <a href="?sort=<?=$arFieldsSort[$ind]?>&order=<?=$orderSort?>" class="sort-title"><?= $fieldName?></a>
+                <?else:?>
+                    <?= $fieldName?>
+                <?endif;?>
+            </th>
 		<? endforeach;?>
 	</tr>
-
 	<? //вывод полей?>
 	<? $index = 1;?>
 	<?foreach ($arResult["EXHIBITION"]["PARTICIPANT"] as $arUser):?>
@@ -38,11 +52,11 @@
 				<td><?= $arUser["FORM_USER"][32]["VALUE"]?> <?= $arUser["FORM_USER"][33]["VALUE"]?></td>
 				<td><?= $arUser["FORM_USER"][106]["VALUE"]?></td>
 				<td><?= $arUser["FORM_USER"][35]["VALUE"]?></td>
-				<td><?= $arUser["FORM_USER"][36]["VALUE"]?></td>
+                <td><?= $arUser["FORM_USER"][36]["VALUE"]?></td>
+				<td><?= $arUser["FORM_USER"][586]["VALUE"]?></td>
 				<td><?= $arUser["FORM_USER"][37]["VALUE"]?></td>
 				<td><?= $arUser["FORM_DATA"][17]["VALUE"]?></td>
 				<td class="text-center">
-
 					<div class="action">
 					<img src="<?= SITE_TEMPLATE_PATH?>/images/edit.png">
                         <ul>
