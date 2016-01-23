@@ -27,6 +27,11 @@ html, body{
 	padding: 0;
 	font-family: 'Proxima';
 	font-size: 15px;
+	height: 100%;
+}
+.main_container{
+	position: relative;
+	min-height: 100%;
 }
 .pull-left{float: left;}
 .pull-right{float: right;}
@@ -400,11 +405,18 @@ figure#ltm a.ltm2{
 	height: 40px;
 }
 /* Подвал */
+.footer_space{
+	height: 217px;
+	position: relative;
+	clear: both;
+}
 footer{
 	background: url("images/footer.gif") #9b9b9b repeat;
 	border-top: 1px solid #c7c7c7;
 	height: 217px;
-	position: relative;
+	position: absolute;
+	width: 100%;
+	bottom: 0;
 }
 .org{
 	float:left;
