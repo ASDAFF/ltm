@@ -1,7 +1,7 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die(); ?>
 <?
-$MESS['ERROR_EMPTY_USER_TYPE'] = 'Тип юзера не указан';
-$MESS['ERROR_EMPTY_USER_ID'] = 'Юзер не авторизован';
+$MESS['ERROR_EMPTY_USER_TYPE'] = 'Тип пользователя не указан';
+$MESS['ERROR_EMPTY_USER_ID'] = 'Пользователь не авторизован';
 $MESS['ERROR_EMPTY_TIMESLOT_ID'] = 'Таймслот не задан';
 $MESS['ERROR_WRONG_RECEIVER_ID'] = 'Получатель не указан';
 
