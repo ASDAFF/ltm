@@ -18,7 +18,7 @@ $MESS['PARTICIP_WRONG_RECEIVER_ID'] = 'Recipient does not exist';
 $MESS['GUEST_WRONG_RECEIVER_ID'] = 'Получатель не существует';
 $MESS['ADMIN_WRONG_RECEIVER_ID'] = 'Получатель не существует';
 
-$MESS['PARTICIP_COMPANY_MEET_EXIST'] = 'You have already request/appointment with this guest. If you want to send new request for an appointment you need to cancel the existing one';
+$MESS['PARTICIP_COMPANY_MEET_EXIST'] = 'You have already request or an appointment with that guest. If you want to send a new request for an appointment, you need to cancel the existing one';
 $MESS['GUEST_COMPANY_MEET_EXIST'] = 'У вас уже есть встреча с данным участником';
 $MESS['ADMIN_COMPANY_MEET_EXIST'] = 'У пользователей уже есть общая встреча';
 
