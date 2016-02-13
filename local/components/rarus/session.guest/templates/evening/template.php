@@ -139,4 +139,5 @@
 		}
 		?>
 	</table>
+	<div class="navigate"><?=$arResult["NAVIGATE"]?></div>
 </div>
