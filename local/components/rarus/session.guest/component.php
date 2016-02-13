@@ -150,24 +150,26 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 			foreach ($arResult["SESSION"][$type]["USERS"] as &$arUser)
 			{
 				//слоты пользователей
+				if($sort = "BY_SLOTS"){
+					$times =  $req_obj->getSortedFreeTimesAppoint($arUser["ID"]);//свободные таймслоты пользователя
+					$userTimeSlot = array();
 
-				$times =  $req_obj->getSortedFreeTimesAppoint($arUser["ID"]);//свободные таймслоты пользователя
+					foreach ($times as $time)
+					{
+						$userTimeSlot[$time["id"]] = $time["name"];
+						$arResult["SESSION"][$type]["BY_SLOTS"][$time["id"]]["ID"][] = $arUser["ID"];
 
-				$userTimeSlot = array();
+					}
+				}
 
-				foreach ($times as $time)
-				{
-				    $userTimeSlot[$time["id"]] = $time["name"];
-				    $arResult["SESSION"][$type]["BY_SLOTS"][$time["id"]]["ID"][] = $arUser["ID"];
-
+				if($sort = "BY_ALPHABET"){
+					if(!isset($arResult["SESSION"][$type]["BY_ALPHABET"][0]))
+					{
+						$arResult["SESSION"][$type]["BY_ALPHABET"][0] = array("NAME" => "NUM", "ID" => array());
+					}
 				}
 
 				$resultId = $arUser[$propertyName];
-
-				if(!isset($arResult["SESSION"][$type]["BY_ALPHABET"][0]))
-				{
-					$arResult["SESSION"][$type]["BY_ALPHABET"][0] = array("NAME" => "NUM", "ID" => array());
-				}
 
 				//гость
 				$gName = trim($arAnswers[$resultId][113][216]["USER_TEXT"]);
@@ -271,112 +273,93 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 					$arTown[$Town["ANSWER_ID"]] = trim($Town["USER_TEXT"]);
 				}
 
-
-				/*
-				//рарзделение по приоритетным направлениям и по городам в них
-				foreach ($arPriorArea as $id=>$area)
-				{
-					$arResult["SESSION"][$type]["BY_PRIORITY_AREAS"][$id]["NAME"] = $area["NAME"];
-
-					foreach ($area["ITEMS"] as $answerID => $name)
-					{
-						//поиск в уже существующих
-						$found = false;
-						foreach ($arResult["SESSION"][$type]["BY_PRIORITY_AREAS"][$id]['ITEMS'] as &$areaData)
-						{
-							if($areaData["NAME"] == $name)
-							{
-								$found = true;
-								$areaData["ID"][] = $arUser["ID"];
-								break;
-							}
-						}
-						unset($areaData);
-
-						if(!$found)
-						{
-							$arResult["SESSION"][$type]["BY_PRIORITY_AREAS"][$id]['ITEMS'][] = array("NAME" => $name, "ID" => array($arUser["ID"]));
-						}
-					}
-				}
-				*/
-
-
 				//рарзделение по городам в приоритетных направлениях
-				foreach ($arPriorArea as $id=>$area)
-				{
-					foreach ($area["ITEMS"] as $answerID => $name)
+				if($sort = "BY_PRIORITY_AREAS"){
+					foreach ($arPriorArea as $id=>$area)
 					{
-						//поиск в уже существующих
-						$found = false;
-						foreach ($arResult["SESSION"][$type]["BY_PRIORITY_AREAS"] as $index => &$areaData)
+						foreach ($area["ITEMS"] as $answerID => $name)
 						{
-							if($areaData["NAME"] == $name)
+							//поиск в уже существующих
+							$found = false;
+							foreach ($arResult["SESSION"][$type]["BY_PRIORITY_AREAS"] as $index => &$areaData)
 							{
-								$found = true;
-								$areaData["ID"][] = $arUser["ID"];
-								break;
+								if($areaData["NAME"] == $name)
+								{
+									$found = true;
+									$areaData["ID"][] = $arUser["ID"];
+									break;
+								}
 							}
-						}
-						unset($areaData);
+							unset($areaData);
 
-						if(!$found)
-						{
-							$arResult["SESSION"][$type]["BY_PRIORITY_AREAS"][] = array("NAME" => $name, "ID" => array($arUser["ID"]));
+							if(!$found)
+							{
+								$arResult["SESSION"][$type]["BY_PRIORITY_AREAS"][] = array("NAME" => $name, "ID" => array($arUser["ID"]));
+							}
 						}
 					}
 				}
+
 
 				//разделение по городам
 				$found = false;
-				foreach ($arResult["SESSION"][$type]["BY_CITY"] as &$cityData)
-				{
-					if($gCity == $cityData["NAME"])
+				if($sort = "BY_CITY"){
+					foreach ($arResult["SESSION"][$type]["BY_CITY"] as &$cityData)
 					{
-						$found = true;
-						$cityData["ID"][] = $arUser["ID"];
-						break;
-					}
-				}
-				unset($cityData);
-				if(!$found)
-				{
-					$arResult["SESSION"][$type]["BY_CITY"][] = array("NAME" => $gCity, "ID" => array($arUser["ID"]));
-				}
-
-				//без разделения
-				$arResult["SESSION"][$type]["BY_ALL"][] = $arUser["ID"];
-
-				//По алфавиту
-				$firstLetter = strtoupper($gCompanyName{0});
-				$found = false;
-
-
-				if(is_numeric($firstLetter))
-				{
-					$arResult["SESSION"][$type]["BY_ALPHABET"][0]["ID"][] = $arUser["ID"];
-					$found = true;
-				}
-				else
-				{
-					foreach($arResult["SESSION"][$type]["BY_ALPHABET"] as &$data)
-					{
-
-						if($data["NAME"] == $firstLetter)
+						if($gCity == $cityData["NAME"])
 						{
 							$found = true;
-							$data["ID"][] = $arUser["ID"];
+							$cityData["ID"][] = $arUser["ID"];
 							break;
 						}
 					}
-					unset($data);
+					unset($cityData);
+					if(!$found)
+					{
+						$arResult["SESSION"][$type]["BY_CITY"][] = array("NAME" => $gCity, "ID" => array($arUser["ID"]));
+					}
 				}
 
 
-				if(!$found)
-				{
-					$arResult["SESSION"][$type]["BY_ALPHABET"][] = array("NAME" => $firstLetter, "ID" => array($arUser["ID"]));
+				//без разделения
+				if($sort = "BY_ALL"){
+					$arResult["SESSION"][$type]["BY_ALL"][] = $arUser["ID"];
 				}
+
+
+				//По алфавиту
+				if($sort = "BY_ALL"){
+					$firstLetter = strtoupper($gCompanyName{0});
+					$found = false;
+
+
+					if(is_numeric($firstLetter))
+					{
+						$arResult["SESSION"][$type]["BY_ALPHABET"][0]["ID"][] = $arUser["ID"];
+						$found = true;
+					}
+					else
+					{
+						foreach($arResult["SESSION"][$type]["BY_ALPHABET"] as &$data)
+						{
+
+							if($data["NAME"] == $firstLetter)
+							{
+								$found = true;
+								$data["ID"][] = $arUser["ID"];
+								break;
+							}
+						}
+						unset($data);
+					}
+
+
+					if(!$found)
+					{
+						$arResult["SESSION"][$type]["BY_ALPHABET"][] = array("NAME" => $firstLetter, "ID" => array($arUser["ID"]));
+					}
+				}
+
 
 				$arFormData = array(
 					"NAME" =>$gName,
@@ -419,8 +402,9 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 
 	}
 
-	usort($arResult["SESSION"][$arParams["TYPE"]]["BY_CITY"], "cmp");
-	usort($arResult["SESSION"][$arParams["TYPE"]]["BY_PRIORITY_AREAS"], "cmp");
+	if(in_array($sort, array("BY_CITY", "BY_PRIORITY_AREAS"))){
+		usort($arResult["SESSION"][$arParams["TYPE"]][$sort], "cmp");
+	}
 
 	$rsItems = new CDBResult;
 
