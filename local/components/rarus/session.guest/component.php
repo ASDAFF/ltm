@@ -29,6 +29,19 @@ if($USER->IsAdmin() && isset($_REQUEST["UID"])) {
 	$arResult["USER_ID"] = $USER->GetID();
 }
 
+$by = htmlspecialcharsEx(trim($_REQUEST["by"]));
+
+//определение из какой группы брать данные
+switch ($by)
+{
+	case "alphabet" : $sort = "BY_ALPHABET"; break;
+	case "priority_areas" : $sort = "BY_PRIORITY_AREAS"; break;
+	case "city" : $sort = "BY_CITY"; break;
+	case "slots" : $sort = "BY_SLOTS"; break;
+	case "all" : $sort = "BY_ALL"; break;
+	default:  $sort = "BY_ALL";
+}
+
 $arResult["EX_TYPE"] = $arParams["TYPE"];
 if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 {
@@ -408,6 +421,19 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
 
 	usort($arResult["SESSION"][$arParams["TYPE"]]["BY_CITY"], "cmp");
 	usort($arResult["SESSION"][$arParams["TYPE"]]["BY_PRIORITY_AREAS"], "cmp");
+
+	$rsItems = new CDBResult;
+
+	$rsItems->InitFromArray($arResult["SESSION"][$arParams["TYPE"]][$sort]);
+	$rsItems->NavStart(50);
+
+	$arResult["NAVIGATE"] = $rsItems->GetPageNavStringEx($navComponentObject, "", "");
+	$arResult["SESSION"][$arParams["TYPE"]][$sort] = array();
+
+	while($arItems = $rsItems->Fetch())
+	{
+		$arResult["SESSION"][$arParams["TYPE"]][$sort][] = $arItems;
+	}
 
 	$this->SetResultCacheKeys(array(
 			"USER_ID",

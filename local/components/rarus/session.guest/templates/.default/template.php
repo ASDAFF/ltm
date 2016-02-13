@@ -65,7 +65,6 @@
 		</tr>
 
 		<?
-
 		if($sort != "BY_ALL")
 		{
 			foreach ($arResult["SESSION"][$arParams["TYPE"]][$sort] as $code => $data)
@@ -174,4 +173,5 @@
 		}
 		?>
 	</table>
+	<div class="navigate"><?=$arResult["NAVIGATE"]?></div>
 </div>
