@@ -14,7 +14,7 @@ $MESS["R_EXHIBITIONS_NONE"] = "Exhibition is missing";
 $MESS["R_E_EXTEND_TITLE"] = "EXHIBITOR";
 $MESS["R_B_EXTEND_TITLE"] = "ГОСТЬ (VIP BUYER, BUYER, HOSTED BUYER)";
 $MESS["R_E_EXHIBITION_TITLE"] = "PLEASE SELECT THE EVENT YOU WOULD LIKE TO REGISTER FOR";
-$MESS["R_B_EXHIBITION_TITLE"] = "<p>Уважаемые коллеги, благодарим за интерес к Luxury Travel Mart.<br />
+$MESS["R_B_EXHIBITION_TITLE"] = "<p>Уважаемые коллеги, благодарим за интерес к <b>Luxury Travel Mart.</b><br />
 Регистрация гостей на выставку LTM Moscow 2016 закончена.<br />
 По всем вопросам просьба обращаться по е-мейл guests@luxurytravelmart.ru</p>";
 
