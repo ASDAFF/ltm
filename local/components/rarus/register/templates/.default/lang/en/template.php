@@ -14,12 +14,15 @@ $MESS["R_EXHIBITIONS_NONE"] = "Exhibition is missing";
 $MESS["R_E_EXTEND_TITLE"] = "EXHIBITOR";
 $MESS["R_B_EXTEND_TITLE"] = "ГОСТЬ (VIP BUYER, BUYER, HOSTED BUYER)";
 $MESS["R_E_EXHIBITION_TITLE"] = "PLEASE SELECT THE EVENT YOU WOULD LIKE TO REGISTER FOR";
-$MESS["R_B_EXHIBITION_TITLE"] = "<p>Пожалуйста, выберите интересующую вас выставку:</p>";
+$MESS["R_B_EXHIBITION_TITLE"] = "<p>Уважаемые коллеги, благодарим за интерес к Luxury Travel Mart.<br />
+Регистрация гостей на выставку LTM Moscow 2016 закончена.<br />
+По всем вопросам просьба обращаться по е-мейл <a href="mailto:guests@luxurytravelmart.ru">guests@luxurytravelmart.ru</a>
+</p>";
 
 $MESS["R_E_YOUR_CHOICE"] = "Your choice";
 $MESS["R_B_YOUR_CHOICE"] = "Вы выбрали";
-$MESS["R_MORNING"] = "ЛТМ Весна 2016";
-$MESS["R_EVENING"] = "";
+$MESS["R_MORNING"] = ""; /*надпись над галочкой для выбора утра */
+$MESS["R_EVENING"] = ""; /*надпись над галочкой для выбора вечера */
 
 $MESS["R_E_SALUTATION"] = "Title";
 
