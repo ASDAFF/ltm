@@ -66,7 +66,6 @@ $arResult["APP_CODE"] = $arParams["EXHIB_CODE"];
 
 //подключение модуля встреч
 use Doka\Meetings\Requests as DokaRequest;
-use Doka\Meetings\Timeslots as DokaTimeslot;
 
 $req_obj = new DokaRequest($appId);
 $arResult['IS_ACTIVE'] = !$req_obj->getOption('IS_LOCKED');
@@ -93,33 +92,50 @@ switch (htmlspecialcharsEx(trim($_REQUEST["by"])))
 	default:  $arParams["SORT"] = "BY_ALL";
 }
 
-//получение списка подтвержденных гостей на данную выставку
-$arFilter = array(
-	"GROUPS_ID" => $cGuestGroup,
-	"ACTIVE" => "Y",
-);
-if($arParams["TYPE"] == "MORNING"){
-	$arFilter["UF_MR"] = 1;
-}
-elseif($arParams["TYPE"] == "EVENING"){
-	$arFilter["UF_EV"] = 1;
-}
-elseif($arParams["TYPE"] == "HB"){
-	$arFilter["UF_HB"] = 1;
-}
-
-$arParamsUser= array(
-	"FIELDS" => array("ID", "NAME", "LAST_NAME", "WORK_COMPANY", "LOGIN", "EMAIL"),
-	"SELECT" => array("UF_*")
-);
-
 $arResultId = array();//тут список результатов пользователей
 $propertyName = CFormMatrix::getPropertyIDByExh($arParams["EXIB_ID"]);
 
-$rsUsers = $USER->GetList(($by="work_company"), ($order="asc"), $arFilter, $arParamsUser);
-while($arUser = $rsUsers->Fetch()){
-	$arResultId[] = $arUser[$propertyName];//дописываем id результата заполнения формы
-	$arResult["USERS"][$arUser["ID"]] = $arUser;
+//получение списка подтвержденных гостей на данную выставку
+$cache_time = $arParams["CACHE_TIME"];
+$cache_id = 'userList'.$arParams["TYPE"].'gr'.$cGuestGroup;
+$cache_path = 'userList';
+if ($cache_time > 0 && $cache->InitCache($cache_time, $cache_id, $cache_path))
+{
+	$res = $cache->GetVars();
+	if (is_array($res["userList"]) && (count($res["userList"]) > 0))
+		$arResult["USERS"] = $res["userList"];
+		$arResultId = $res["userIds"];
+}
+if (!is_array($arIBlockListID))
+{
+	$arFilter = array(
+		"GROUPS_ID" => $cGuestGroup,
+		"ACTIVE" => "Y",
+	);
+	if($arParams["TYPE"] == "MORNING"){
+		$arFilter["UF_MR"] = 1;
+	}
+	elseif($arParams["TYPE"] == "EVENING"){
+		$arFilter["UF_EV"] = 1;
+	}
+	elseif($arParams["TYPE"] == "HB"){
+		$arFilter["UF_HB"] = 1;
+	}
+
+	$arParamsUser= array(
+		"FIELDS" => array("ID", "NAME", "LAST_NAME", "WORK_COMPANY", "LOGIN", "EMAIL"),
+		"SELECT" => array("UF_*")
+	);
+	$rsUsers = $USER->GetList(($by="work_company"), ($order="asc"), $arFilter, $arParamsUser);
+	while($arUser = $rsUsers->Fetch()){
+		$arResultId[] = $arUser[$propertyName];//дописываем id результата заполнения формы
+		$arResult["USERS"][$arUser["ID"]] = $arUser;
+	}
+	//////////// end cache /////////
+	if ($cache_time > 0){
+		$cache->StartDataCache($cache_time, $cache_id, $cache_path);
+		$cache->EndDataCache(array("userList"=>$arResult["USERS"], "userIds"=>$arResultId));
+	}
 }
 
 //получение результатов заполнения формы регистрациия для пользователей
