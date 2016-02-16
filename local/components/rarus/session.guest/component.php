@@ -31,7 +31,6 @@ if(!CModule::IncludeModule("iblock") || !CModule::IncludeModule("form") || !CMod
 
 $arResult = array();
 //Определяем текущую выставку
-
 if(isset($arParams["EXHIB_CODE"]) && $arParams["EXHIB_CODE"]!=''){
 	$filterEx = array(
 		"IBLOCK_ID" => $arParams["EXHIB_IBLOCK_ID"],
@@ -45,7 +44,7 @@ if(isset($arParams["EXHIB_CODE"]) && $arParams["EXHIB_CODE"]!=''){
 		array("ID", "CODE","IBLOCK_ID","PROPERTY_APP_HB_ID","PROPERTY_APP_ID","PROPERTY_C_GUESTS_GROUP")
 	);
 	while($oExhib = $rsExhib->Fetch()){
-		if(isset($arParams["IS_HB"]) && $arParams["IS_HB"] == 'Y'){
+		if(isset($arParams["TYPE"]) && $arParams["TYPE"] == 'HB'){
 			$appId = $oExhib["PROPERTY_APP_HB_ID_VALUE"];
 		}
 		else{
@@ -306,7 +305,6 @@ foreach($arResult["USERS"] as &$arUser){
 			$userTimeSlot[$time["id"]] = $time["name"];
 		}
 	}
-
 	$arFormData = array(
 		"NAME" =>$gName,
 		"LAST_NAME" =>$gLastName,
