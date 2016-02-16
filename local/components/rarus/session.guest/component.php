@@ -121,15 +121,6 @@ $rsUsers = $USER->GetList(($by="work_company"), ($order="asc"), $arFilter, $arPa
 while($arUser = $rsUsers->Fetch()){
 	$arResultId[] = $arUser[$propertyName];//дописываем id результата заполнения формы
 	$arResult["USERS"][$arUser["ID"]] = $arUser;
-	if($arParams["SORT"] == "BY_SLOTS"){
-		$times =  $req_obj->getSortedFreeTimesAppoint($arUser["ID"]);//свободные таймслоты пользователя
-		$userTimeSlot = array();
-		foreach ($times as $time){
-			$userTimeSlot[$time["id"]] = $time["name"];
-			if($time["id"] == $arParams["SORT_TYPE"])
-				$arResult["RESULTS"][$arUser["ID"]] = $arUser["ID"];
-		}
-	}
 }
 
 //получение результатов заполнения формы регистрациия для пользователей
@@ -299,6 +290,21 @@ foreach($arResult["USERS"] as &$arUser){
 
 	if($arParams["SORT"] == "BY_ALL"){
 		$arResult["RESULTS"][$arUser["ID"]] = $arUser["ID"];
+	}
+
+	$times =  $req_obj->getSortedFreeTimesAppoint($arUser["ID"]);//свободные таймслоты пользователя
+	$userTimeSlot = array();
+	if($arParams["SORT"] == "BY_SLOTS"){
+		foreach ($times as $time){
+			$userTimeSlot[$time["id"]] = $time["name"];
+			if($time["id"] == $arParams["SORT_TYPE"])
+				$arResult["RESULTS"][$arUser["ID"]] = $arUser["ID"];
+		}
+	}
+	else{
+		foreach ($times as $time){
+			$userTimeSlot[$time["id"]] = $time["name"];
+		}
 	}
 
 	$arFormData = array(
