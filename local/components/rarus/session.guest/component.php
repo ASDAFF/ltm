@@ -66,7 +66,6 @@ $arResult["APP_CODE"] = $arParams["EXHIB_CODE"];
 
 //подключение модуля встреч
 use Doka\Meetings\Requests as DokaRequest;
-use Doka\Meetings\Timeslots as DokaTimeslot;
 
 $req_obj = new DokaRequest($appId);
 $arResult['IS_ACTIVE'] = !$req_obj->getOption('IS_LOCKED');
@@ -93,44 +92,96 @@ switch (htmlspecialcharsEx(trim($_REQUEST["by"])))
 	default:  $arParams["SORT"] = "BY_ALL";
 }
 
-//получение списка подтвержденных гостей на данную выставку
-$arFilter = array(
-	"GROUPS_ID" => $cGuestGroup,
-	"ACTIVE" => "Y",
-);
-if($arParams["TYPE"] == "MORNING"){
-	$arFilter["UF_MR"] = 1;
-}
-elseif($arParams["TYPE"] == "EVENING"){
-	$arFilter["UF_EV"] = 1;
-}
-elseif($arParams["TYPE"] == "HB"){
-	$arFilter["UF_HB"] = 1;
-}
-
-$arParamsUser= array(
-	"FIELDS" => array("ID", "NAME", "LAST_NAME", "WORK_COMPANY", "LOGIN", "EMAIL"),
-	"SELECT" => array("UF_*")
-);
-
 $arResultId = array();//тут список результатов пользователей
 $propertyName = CFormMatrix::getPropertyIDByExh($arParams["EXIB_ID"]);
 
-$rsUsers = $USER->GetList(($by="work_company"), ($order="asc"), $arFilter, $arParamsUser);
-while($arUser = $rsUsers->Fetch()){
-	$arResultId[] = $arUser[$propertyName];//дописываем id результата заполнения формы
-	$arResult["USERS"][$arUser["ID"]] = $arUser;
+$needSort = true;
+$chooseRes = true;
+switch ($arParams["SORT"])
+{
+	case "BY_ALPHABET":
+		$arResult["FILTER"]["CHILD"] = array(
+			"NUM" =>"#", "A" =>"A", "B" =>"B", "C" =>"C", "D" =>"D", "E" =>"E", "F" =>"F", "G" =>"G", "H" =>"H", "I" =>"I", "J" =>"J",
+			"K" =>"K", "L" =>"L", "M" =>"M", "N" =>"N", "O" =>"O", "P" =>"P", "Q" =>"Q", "R" =>"R", "S" =>"S", "T" =>"T", "U" =>"U", "V" =>"V",
+			"W" =>"W", "X" =>"X", "Y" =>"Y", "Z" =>"Z");
+		$needSort = false;
+		$chooseRes = false;
+		break;
+	case "BY_PRIORITY_AREAS" :
+
+		break;
+	case "BY_CITY" :
+
+		break;
+	case "BY_SLOTS" :
+		$needSort = false;
+		$chooseRes = false;
+		break;
+	default:
+		$needSort = false;
+		$chooseRes = false;
 }
 
-//получение результатов заполнения формы регистрациия для пользователей
-CForm::GetResultAnswerArray(
-	GUEST_FORM_ID,
-	$arQuestions,
-	$arAnswers,
-	$arAnswersVarname,
-	array("RESULT_ID" => implode("|",$arResultId)
-	)
-);
+//получение списка подтвержденных гостей на данную выставку
+$cache = new CPHPCache();
+$cache_time = $arParams["CACHE_TIME"];
+$cache_id = 'userList'.$arParams["TYPE"].'gr'.$cGuestGroup;
+$cache_path = 'userList';
+if ($cache_time > 0 && $cache->InitCache($cache_time, $cache_id, $cache_path))
+{
+	$res = $cache->GetVars();
+	if (is_array($res["userList"]) && (count($res["userList"]) > 0)){
+		$arResult["USERS"] = $res["userList"];
+		$arAnswers = $res["userAns"];
+		$arQuestions = $res["userQuest"];
+	}
+}
+if (!is_array($arResult["USERS"]) || empty($arResult["USERS"])){
+	$arFilter = array(
+		"GROUPS_ID" => $cGuestGroup,
+		"ACTIVE" => "Y",
+	);
+	if($arParams["TYPE"] == "MORNING"){
+		$arFilter["UF_MR"] = 1;
+	}
+	elseif($arParams["TYPE"] == "EVENING"){
+		$arFilter["UF_EV"] = 1;
+	}
+	elseif($arParams["TYPE"] == "HB"){
+		$arFilter["UF_HB"] = 1;
+	}
+
+	$arParamsUser= array(
+		"FIELDS" => array("ID", "NAME", "LAST_NAME", "WORK_COMPANY", "LOGIN", "EMAIL"),
+		"SELECT" => array("UF_*")
+	);
+	$rsUsers = $USER->GetList(($by="work_company"), ($order="asc"), $arFilter, $arParamsUser);
+	while($arUser = $rsUsers->Fetch()){
+		$arResultId[] = $arUser[$propertyName];//дописываем id результата заполнения формы
+		$arResult["USERS"][$arUser["ID"]] = $arUser;
+	}
+
+	//получение результатов заполнения формы регистрациия для пользователей
+	CForm::GetResultAnswerArray(
+		GUEST_FORM_ID,
+		$arQuestions,
+		$arAnswers,
+		$arAnswersVarname,
+		array("RESULT_ID" => implode("|",$arResultId)
+		)
+	);
+
+	//////////// end cache /////////
+	if ($cache_time > 0){
+		$cache->StartDataCache($cache_time, $cache_id, $cache_path);
+		$cache->EndDataCache(array(
+			"userList"=>$arResult["USERS"],
+			"userAns"=>$arAnswers,
+			"userQuest"=>$arQuestions,
+		));
+	}
+}
+
 $needSort = true;
 $chooseRes = true;
 switch ($arParams["SORT"])
@@ -360,7 +411,7 @@ $arResult["SORT"] = $arParams["SORT"];
 $arResult["SORT_TYPE"] = $arParams["SORT_TYPE"];
 $rsItems = new CDBResult;
 $rsItems->InitFromArray($arResult["RESULTS"]);
-$rsItems->NavStart(5);
+$rsItems->NavStart(50);
 
 $arResult["NAVIGATE"] = $rsItems->GetPageNavStringEx($navComponentObject, "", "");
 $arResult["RESULTS"] = array();
