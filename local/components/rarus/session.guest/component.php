@@ -96,6 +96,7 @@ $arResultId = array();//тут список результатов пользо�
 $propertyName = CFormMatrix::getPropertyIDByExh($arParams["EXIB_ID"]);
 
 //получение списка подтвержденных гостей на данную выставку
+$cache = new CPHPCache();
 $cache_time = $arParams["CACHE_TIME"];
 $cache_id = 'userList'.$arParams["TYPE"].'gr'.$cGuestGroup;
 $cache_path = 'userList';
