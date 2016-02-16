@@ -40,7 +40,7 @@
 					<? endif;?>
 
 					<div class = "rarus_d"><?= implode("", $data["FORM_DATA"]["DESCRIPTION"])?></div>
-					<div class = "rarus_geo"><?= implode("", $data["FORM_DATA"]["TOWN"])?>, <?=$userFormData["COUNTRY"]?></div>
+					<div class = "rarus_geo"><?= implode("", $data["FORM_DATA"]["TOWN"])?>, <?=$data["FORM_DATA"]["COUNTRY"]?></div>
 				</td>
 				<td class="representative"><?= $data["FORM_DATA"]["FIO"]?></td>
 				<td class="contact"><a href="/cabinet/service/write.php?id=<?= $data["ID"]?>&EXHIBIT_CODE=<?=$arResult["APP_CODE"] ?>" target="_blank" onclick="newWind('/cabinet/service/write.php?id=<?= $data["ID"]?>&EXHIBIT_CODE=<?=$arResult["APP_CODE"] ?>'); return false;">Send<br> a message</a></td>
