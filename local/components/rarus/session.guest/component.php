@@ -95,6 +95,33 @@ switch (htmlspecialcharsEx(trim($_REQUEST["by"])))
 $arResultId = array();//тут список результатов пользователей
 $propertyName = CFormMatrix::getPropertyIDByExh($arParams["EXIB_ID"]);
 
+$needSort = true;
+$chooseRes = true;
+switch ($arParams["SORT"])
+{
+	case "BY_ALPHABET":
+		$arResult["FILTER"]["CHILD"] = array(
+			"NUM" =>"#", "A" =>"A", "B" =>"B", "C" =>"C", "D" =>"D", "E" =>"E", "F" =>"F", "G" =>"G", "H" =>"H", "I" =>"I", "J" =>"J",
+			"K" =>"K", "L" =>"L", "M" =>"M", "N" =>"N", "O" =>"O", "P" =>"P", "Q" =>"Q", "R" =>"R", "S" =>"S", "T" =>"T", "U" =>"U", "V" =>"V",
+			"W" =>"W", "X" =>"X", "Y" =>"Y", "Z" =>"Z");
+		$needSort = false;
+		$chooseRes = false;
+		break;
+	case "BY_PRIORITY_AREAS" :
+
+		break;
+	case "BY_CITY" :
+
+		break;
+	case "BY_SLOTS" :
+		$needSort = false;
+		$chooseRes = false;
+		break;
+	default:
+		$needSort = false;
+		$chooseRes = false;
+}
+
 //получение списка подтвержденных гостей на данную выставку
 $cache = new CPHPCache();
 $cache_time = $arParams["CACHE_TIME"];
@@ -103,12 +130,13 @@ $cache_path = 'userList';
 if ($cache_time > 0 && $cache->InitCache($cache_time, $cache_id, $cache_path))
 {
 	$res = $cache->GetVars();
-	if (is_array($res["userList"]) && (count($res["userList"]) > 0))
+	if (is_array($res["userList"]) && (count($res["userList"]) > 0)){
 		$arResult["USERS"] = $res["userList"];
-		$arResultId = $res["userIds"];
+		$arAnswers = $res["userAns"];
+		$arQuestions = $res["userQuest"];
+	}
 }
-if (!is_array($arIBlockListID))
-{
+if (!is_array($arResult["USERS"]) || empty($arResult["USERS"])){
 	$arFilter = array(
 		"GROUPS_ID" => $cGuestGroup,
 		"ACTIVE" => "Y",
@@ -132,22 +160,28 @@ if (!is_array($arIBlockListID))
 		$arResultId[] = $arUser[$propertyName];//дописываем id результата заполнения формы
 		$arResult["USERS"][$arUser["ID"]] = $arUser;
 	}
+
+	//получение результатов заполнения формы регистрациия для пользователей
+	CForm::GetResultAnswerArray(
+		GUEST_FORM_ID,
+		$arQuestions,
+		$arAnswers,
+		$arAnswersVarname,
+		array("RESULT_ID" => implode("|",$arResultId)
+		)
+	);
+
 	//////////// end cache /////////
 	if ($cache_time > 0){
 		$cache->StartDataCache($cache_time, $cache_id, $cache_path);
-		$cache->EndDataCache(array("userList"=>$arResult["USERS"], "userIds"=>$arResultId));
+		$cache->EndDataCache(array(
+			"userList"=>$arResult["USERS"],
+			"userAns"=>$arAnswers,
+			"userQuest"=>$arQuestions,
+		));
 	}
 }
 
-//получение результатов заполнения формы регистрациия для пользователей
-CForm::GetResultAnswerArray(
-	GUEST_FORM_ID,
-	$arQuestions,
-	$arAnswers,
-	$arAnswersVarname,
-	array("RESULT_ID" => implode("|",$arResultId)
-	)
-);
 $needSort = true;
 $chooseRes = true;
 switch ($arParams["SORT"])
