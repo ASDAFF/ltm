@@ -411,7 +411,7 @@ $arResult["SORT"] = $arParams["SORT"];
 $arResult["SORT_TYPE"] = $arParams["SORT_TYPE"];
 $rsItems = new CDBResult;
 $rsItems->InitFromArray($arResult["RESULTS"]);
-$rsItems->NavStart(5);
+$rsItems->NavStart(50);
 
 $arResult["NAVIGATE"] = $rsItems->GetPageNavStringEx($navComponentObject, "", "");
 $arResult["RESULTS"] = array();
