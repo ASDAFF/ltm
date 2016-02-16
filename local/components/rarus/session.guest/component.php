@@ -422,26 +422,6 @@ while($arItems = $rsItems->Fetch())
 }
 unset($arResult["USERS"]);
 
-/*if($this->StartResultCache(false, $sort))
-{
-
-	$this->SetResultCacheKeys(array(
-			"USER_ID",
-			"EXHIBITION",
-			"SESSION"
-	));
-
-*/
-	$this->IncludeComponentTemplate();
-
-/*}
-else
-{
-	$this->AbortResultCache();
-	ShowError("NotFound");
-	@define("ERROR_404", "Y");
-	if($arParams["SET_STATUS_404"]==="Y")
-		CHTTP::SetStatus("404 Not Found");
-}*/
+$this->IncludeComponentTemplate();
 
 ?>
