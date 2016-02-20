@@ -3,16 +3,16 @@
 <?}?>
 
 <? 	if ($arParams['IS_HB']){?>
-  <a href="/files/day1_alphabetical.pdf">Скачать план залов (hosted buyers в алфавитном порядке)</a><br />
-  <a href="/files/day1_by_table.pdf">Скачать план залов (hosted buyers по номеру стола)</a><br />
-  <a href="/files/day2_alphabetical.pdf">Скачать план залов (участники в алфавитном порядке)</a><br />
-  <a href="/files/day2_by_table.pdf">Скачать план залов (участники по номеру стола)</a><br />
-  <a href="/files/HB_LTM2016_info.pdf">Скачать программу выставки</a>
+  <a href="/files/day1_alphabetical.pdf" target="_blank">Скачать план залов (hosted buyers в алфавитном порядке)</a><br />
+  <a href="/files/day1_by_table.pdf" target="_blank">Скачать план залов (hosted buyers по номеру стола)</a><br />
+  <a href="/files/day2_alphabetical.pdf" target="_blank">Скачать план залов (участники в алфавитном порядке)</a><br />
+  <a href="/files/day2_by_table.pdf" target="_blank">Скачать план залов (участники по номеру стола)</a><br />
+  <a href="/files/HB_LTM2016_info.pdf" target="_blank">Скачать программу выставки</a>
 <?}
 	else{?>
-  <a href="/files/day2_alphabetical.pdf">Скачать план залов (участники в алфавитном порядке)</a><br />
-  <a href="/files/day2_by_table.pdf">Скачать план залов (участники по номеру стола)</a><br />
-  <a href="/files/program_buyers_2016.pdf">Скачать программу выставки</a><br />	
+  <a href="/files/day2_alphabetical.pdf" target="_blank">Скачать план залов (участники в алфавитном порядке)</a><br />
+  <a href="/files/day2_by_table.pdf" target="_blank">Скачать план залов (участники по номеру стола)</a><br />
+  <a href="/files/program_buyers_2016.pdf" target="_blank">Скачать программу выставки</a><br />	
 <?}
 ?>
 
