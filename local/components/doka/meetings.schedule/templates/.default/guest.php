@@ -3,6 +3,12 @@
 <p class="error">Назначение встреч заблокировано администрацией</p>
 <?
 }?>
+
+<? if($arParams["IS_HB"]){
+?>
+<a href="#">Ссылка на файл</a>
+<?
+}?>
 <table class="morning-time time-line">
     <tr>
       <th>Время</th>
