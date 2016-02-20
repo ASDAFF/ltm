@@ -4,12 +4,9 @@
 
 
 
-<? if ($arResult['IS_HB']) ?>
+<? if ($arResult['IS_HB']){?>
   <a href="#">Ссылка в разделе НВ</a>
-<!-- <? else ?>
-	  <a href="#">Ссылка для всех</a>
-	<? endif; ?> -->
-
+<?}?>
 
 
 <table class="morning-time time-line">
