@@ -11,9 +11,13 @@ function DokaGeneratePdf($arResult) {
 	$pdf->setXY(0,25);
 	$pdf->SetFont('freeserif', 'B',17);
 	if($arResult["EXHIBITION"]["IS_HB"]){
-		$arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'] .= " Hosted Buyers сессия";
+		$arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'] .= " Hosted Buyers сессия\n";
+		$dayline = "День 1, 10 марта 2016";
 	}
-	$pdf->multiCell(210, 5, "Расписание встреч на утренней сессии\n" . $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'], 0, C);
+	else {
+		$dayline = "День 2, 11 марта 2016";
+	}
+	$pdf->multiCell(210, 5, "Расписание встреч на утренней сессии\n" . $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'] . $dayline, 0, C);
 /*$pdf->multiCell(210, 5, "Список неподтвержденных запросов на\nLuxury Travel Mart Баку", 0, C);*/
 	$pdf->SetFont('freeserif','',15);
 	$pdf->setXY(30,44);
