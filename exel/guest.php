@@ -108,7 +108,7 @@ else{
 	echo 'Oops, we are not found this type.';
 }
 
-$rsUsers = CUser::GetList(($by="id"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"), "FIELDS"=>array("ID","LOGIN")));
+$rsUsers = CUser::GetList(($by="work_company"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"), "FIELDS"=>array("ID","LOGIN")));
 $rsUsers->NavStart(250); // разбиваем постранично по 30 записей
 $arResult["NAVIGATE"] = $rsUsers->GetPageNavStringEx($navComponentObject, "Пользователи", "");
 $i = 0;
