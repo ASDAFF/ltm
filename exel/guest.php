@@ -109,6 +109,8 @@ else{
 }
 
 $rsUsers = CUser::GetList(($by="id"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"), "FIELDS"=>array("ID","LOGIN")));
+$rsUsers->NavStart(250); // разбиваем постранично по 30 записей
+$arResult["NAVIGATE"] = $rsUsers->GetPageNavStringEx($navComponentObject, "Пользователи", "");
 $i = 0;
 $arTmpUsers = array();
 while ($arUser = $rsUsers->Fetch()){
