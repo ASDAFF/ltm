@@ -18,10 +18,10 @@ function DokaGeneratePdf($arResult) {
 	$pdf->SetFont('freeserif','',15);
 	$pdf->setXY(30,$pdf->getY() + 2);
 	$pdf->multiCell(210, 5, $arResult["USER"]['COMPANY'], 0, L);
-	$pdf->setXY(30,$pdf->getY() + 2);
+	$pdf->setXY(30,$pdf->getY() + 1);
 	$pdf->multiCell(210, 5, $arResult["USER"]['REP'], 0, L);
-	$pdf->SetFont('freeserif','B',13);
-	$pdf->multiCell(210, 5, $dayline, 0, C);
+	$pdf->SetFont('freeserif','B',17);
+	$pdf->multiCell(180, 5, $dayline, 0, C);
 	$pdf->SetX(50);
 
 	/* Формируем таблицу */
