@@ -32,9 +32,9 @@ function DokaGeneratePdf($arResult) {
 	}
 	$pdf->setXY(30,$pdf->getY() + 1);
 	$pdf->multiCell(210, 5, "Мобильный телефон: ".$arResult["USER"]['MOB'], 0, L);
-	$pdf->setXY(30,68);
+	$pdf->setXY(30,$pdf->getY() + 1);
 	$pdf->multiCell(210, 5, "Телефон: ".$arResult["USER"]['PHONE'], 0, L);
-	$pdf->setXY(30,80);
+	$pdf->setXY(30,$pdf->getY() + 1);
 
 	if($arResult["EXHIBITION"]["IS_HB"] && $arResult["HALL"] != "None"){
 		$pdf->multiCell(210, 5, "Hall, Table: ".$arResult["HALL"].", ".$arResult["TABLE"], 0, L);
