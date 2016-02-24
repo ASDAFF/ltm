@@ -13,13 +13,14 @@ function DokaGeneratePdf($arResult) {
 	$pdf->multiCell(220, 6, 'Personal diary during the morning session', 0, C);
 	$pdf->SetFont('freeserif','B',18);
 	if($arResult["EXHIBITION"]["IS_HB"]){
-		$arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'] .= " Hosted Buyers session";
+		$arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'] .= " Hosted Buyers session\n";
+		$dayline = "Day 1 - March 10, 2016";
 	}
-	$pdf->multiCell(200, 6, "at " . $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'], 0, C);
+	$pdf->multiCell(200, 6, "at " . $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'] . $dayline, 0, C);
 	$pdf->SetFont('freeserif','',15);
-	$pdf->setXY(30,45);
+	$pdf->setXY(30,$pdf->getY() + 2);
 	$pdf->multiCell(210, 5, $arResult["USER"]['COMPANY'], 0, L);
-	$pdf->setXY(30,52);
+	$pdf->setXY(30,$pdf->getY() + 1);
 	$pdf->multiCell(210, 5, $arResult["USER"]['REP'], 0, L);
 	$pdf->SetFont('freeserif','',13);
 	$pdf->setXY(30,60);
