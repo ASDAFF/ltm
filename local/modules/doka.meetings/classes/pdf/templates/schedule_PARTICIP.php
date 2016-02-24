@@ -35,7 +35,7 @@ function DokaGeneratePdf($arResult) {
 		else{
 			$pdf->multiCell(210, 5, "Hall, Table: ", 0, L);
 		}
-		$pdf->setXY(30,$pdf->getY() + 1);
+		$pdf->setXY(30,$pdf->getY() + 2);
 	}
 	$pdf->SetFont('freeserif','',11);
 	$pdf->SetX(20);
