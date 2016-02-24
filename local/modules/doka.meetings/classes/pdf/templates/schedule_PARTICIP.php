@@ -23,7 +23,7 @@ function DokaGeneratePdf($arResult) {
 	$pdf->setXY(30,$pdf->getY() + 1);
 	$pdf->multiCell(210, 5, $arResult["USER"]['REP'], 0, L);
 	$pdf->SetFont('freeserif','',13);
-	$pdf->setXY(30,60);
+	$pdf->setXY(30,$pdf->getY() + 1);
 	if($arResult["EXHIBITION"]["IS_HB"] != '1'){
 		if($arResult["HALL"] != "None"){
 			$pdf->multiCell(210, 5, "Hall, Table: ".$arResult["HALL"].", ".$arResult["TABLE"], 0, L);
@@ -31,7 +31,7 @@ function DokaGeneratePdf($arResult) {
 		else{
 			$pdf->multiCell(210, 5, "Hall, Table: ", 0, L);
 		}
-		$pdf->setXY(0,70);
+		$pdf->setXY(30,$pdf->getY() + 1);
 	}
 	$pdf->SetFont('freeserif','',11);
 	$pdf->SetX(20);
