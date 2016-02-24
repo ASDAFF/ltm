@@ -20,7 +20,7 @@ function DokaGeneratePdf($arResult) {
 	$pdf->multiCell(210, 5, $arResult["USER"]['COMPANY'], 0, L);
 	$pdf->setXY(30,$pdf->getY() + 1);
 	$pdf->multiCell(210, 5, $arResult["USER"]['REP'], 0, L);
-	$pdf->setXY(30,$pdf->getY() + 4);
+	$pdf->setXY(0,$pdf->getY() + 4);
 	$pdf->SetFont('freeserif','B',17);
 	$pdf->multiCell(180, 5, $dayline, 0, C);
 	$pdf->SetX(50);
