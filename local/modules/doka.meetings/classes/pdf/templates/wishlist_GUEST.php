@@ -9,22 +9,27 @@ function DokaGeneratePdf($arResult) {
 	$pdf->setXY(0,23);
 	$pdf->SetFont('freeserif','B',17);
 	if($arResult["EXHIBITION"]["IS_HB"]){
-		$arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'] .= " Hosted Buyers сессия";
+		$arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'] .= " Hosted Buyers сессия\n";
+		$dayline = "День 1, 10 марта 2016";
 	}
-	$pdf->multiCell(210, 5, "Список неподтвержденных запросов на\n" . $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'], 0, C);
+	else {
+		$dayline = "День 2, 11 марта 2016";
+		$arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'] .= "\n";
+	}
+	$pdf->multiCell(210, 5, "Список неподтвержденных запросов на\n" . $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'] . $dayline, 0, C);
 	$pdf->SetFont('freeserif','',15);
-	$pdf->setXY(30,40);
+	$pdf->setXY(30,$pdf->getY() + 2);
 	$pdf->multiCell(210, 5, $arResult["USER"]['COMPANY'].", ". $arResult["USER"]['CITY'], 0, L);
-	$pdf->setXY(30,48);
+	$pdf->setXY(30,$pdf->getY() + 1);
 	$pdf->multiCell(210, 5, $arResult["USER"]['REP'], 0, L);
 
 
 	$pdf->SetFont('freeserif','B',13);
-	$pdf->setXY(0,60);
+	$pdf->setXY(0,$pdf->getY() + 5);
 	$pdf->multiCell(210, 5, "Вы также хотели бы встретиться со следующими компаниями", 0, C);
 
 	$pdf->SetFont('freeserif','',10);
-	$pdf->setXY(0,65);
+	$pdf->setXY(0,$pdf->getY() + 1);
 	$pdf->multiCell(210, 5, "(возможно, данные участники отклонили ваши запросы или их расписание уже полное):", 0, C);
 
 
