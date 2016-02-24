@@ -23,14 +23,14 @@ function DokaGeneratePdf($arResult) {
 	$pdf->SetFont('freeserif','',15);
 	$pdf->setXY(30,$pdf->getY() + 2);
 	$pdf->multiCell(210, 5, $arResult["USER"]['COMPANY'].", ". $arResult["USER"]['CITY'], 0, L);
-	$pdf->setXY(30,$pdf->getY() + 2);
+	$pdf->setXY(30,$pdf->getY() + 1);
 	if($arResult["USER"]['COL_REP'] == ""){
 		$pdf->multiCell(210, 5, $arResult["USER"]['REP'], 0, L);
 	}
 	else{
 		$pdf->multiCell(210, 5, $arResult["USER"]['REP'].", ".$arResult["USER"]['COL_REP'], 0, L);
 	}
-	$pdf->setXY(30,60);
+	$pdf->setXY(30,$pdf->getY() + 1);
 	$pdf->multiCell(210, 5, "Мобильный телефон: ".$arResult["USER"]['MOB'], 0, L);
 	$pdf->setXY(30,68);
 	$pdf->multiCell(210, 5, "Телефон: ".$arResult["USER"]['PHONE'], 0, L);
