@@ -5,7 +5,7 @@ function DokaGeneratePdf($arResult) {
 	$pdf->setPrintFooter(false);
 	$pdf->AddPage();
 	$pdf->ImageSVG($file=DOKA_MEETINGS_MODULE_DIR . '/images/logo.svg', $x=30, $y=5, $w='150', $h='', $link='', $align='', $palign='', $border=0, $fitonpage=false);
-	$pdf->setXY(15,30);
+	$pdf->setXY(15,25);
 	$pdf->SetFont('freeserif','B',17);
 	if($arResult["EXHIBITION"]["IS_HB"]){
 		$arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'] .= " Hosted Buyers session";
@@ -23,6 +23,7 @@ function DokaGeneratePdf($arResult) {
 	$pdf->SetFont('freeserif','B',17);
 	$pdf->multiCell(180, 5, $dayline, 0, C);
 	$pdf->SetX(50);
+	$pdf->SetFont('freeserif','B',13);
 
 	/* Формируем таблицу */
 	$pdf->setXY(0,$pdf->getY() + 5);
