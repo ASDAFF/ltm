@@ -8,20 +8,25 @@ function DokaGeneratePdf($arResult) {
 	$pdf->setXY(15,30);
 	$pdf->SetFont('freeserif','B',17);
 	if($arResult["EXHIBITION"]["IS_HB"]){
-		$arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'] .= " Hosted Buyers session";
+		$arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'] .= " Hosted Buyers session\n";
+		$dayline = "Day 1 - March 10, 2016";
+	}
+	else {
+		$dayline = "Day 2 - March 11, 2016";
+		$arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'] .= "\n";
 	}
 	$pdf->multiCell(180, 5, "Wish-list " . $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'] . " for ", 0, C);
 	$pdf->SetFont('freeserif','',15);
-	$pdf->setXY(30,50);
+	$pdf->setXY(30,$pdf->getY() + 2);
 	$pdf->multiCell(210, 5, $arResult["USER"]['COMPANY'], 0, L);
-	$pdf->setXY(30,60);
+	$pdf->setXY(30,$pdf->getY() + 2);
 	$pdf->multiCell(210, 5, $arResult["USER"]['REP'], 0, L);
 
 	$pdf->SetFont('freeserif','B',13);
 	$pdf->SetX(50);
 
 	/* Формируем таблицу */
-	$pdf->setXY(0,80);
+	$pdf->setXY(0,$pdf->getY() + 5);
 	$pdf->multiCell(210, 5, "You requested an appointment with these companies,\n but they declined your requests or their schedules were full:", 0, C);
 
 	if (!$arResult['WISH_IN']) {
