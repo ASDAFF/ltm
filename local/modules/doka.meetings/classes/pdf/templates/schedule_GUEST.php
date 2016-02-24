@@ -21,9 +21,9 @@ function DokaGeneratePdf($arResult) {
 	$pdf->multiCell(210, 5, "Расписание встреч на утренней сессии\n" . $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'] . $dayline, 0, C);
 /*$pdf->multiCell(210, 5, "Список неподтвержденных запросов на\nLuxury Travel Mart Баку", 0, C);*/
 	$pdf->SetFont('freeserif','',15);
-	$pdf->setXY(30,44);
+	$pdf->setXY(30,$pdf->getY() + 2);
 	$pdf->multiCell(210, 5, $arResult["USER"]['COMPANY'].", ". $arResult["USER"]['CITY'], 0, L);
-	$pdf->setXY(30,52);
+	$pdf->setXY(30,$pdf->getY() + 2);
 	if($arResult["USER"]['COL_REP'] == ""){
 		$pdf->multiCell(210, 5, $arResult["USER"]['REP'], 0, L);
 	}
