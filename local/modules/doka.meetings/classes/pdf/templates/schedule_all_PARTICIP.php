@@ -12,6 +12,7 @@ function DokaGeneratePdf($arResult) {
 	}
 	else {
 		$dayline = "Day 2 - March 11, 2016";
+		$arResult["exhib"]["TITLE"] .= "\n";
 	}
 
 	$pdf->setXY(0,25);
