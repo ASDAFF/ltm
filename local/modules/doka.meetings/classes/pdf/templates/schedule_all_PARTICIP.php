@@ -7,19 +7,25 @@ function DokaGeneratePdf($arResult) {
 	// $pdf->AddFont('freeserif','I','freeserifi.php');
 	$pdf->AddPage();
 	$pdf->ImageSVG($file=DOKA_MEETINGS_MODULE_DIR . '/images/logo.svg', $x=30, $y=5, $w='150', $h='', $link='', $align='', $palign='', $border=0, $fitonpage=false);
+	if($arResult["EXHIBITION"]["IS_HB"]){
+		$dayline = "Day 1 - March 10, 2016";
+	}
+	else {
+		$dayline = "Day 2 - March 11, 2016";
+	}
 
 	$pdf->setXY(0,25);
 	$pdf->SetFont('freeserif','B',18);
 	$pdf->multiCell(220, 6, 'Personal diary during the morning session', 0, C);
 	$pdf->SetFont('freeserif','B',18);
-	$pdf->multiCell(200, 6, "at " . $arResult["exhib"]["TITLE"], 0, C);
+	$pdf->multiCell(200, 6, "at " . $arResult["exhib"]["TITLE"] . $dayline, 0, C);
 	$pdf->SetFont('freeserif','',15);
-	$pdf->setXY(30,45);
+	$pdf->setXY(30,$pdf->getY() + 2);
 	$pdf->multiCell(210, 5, $arResult['name'], 0, L);
-	$pdf->setXY(30,52);
+	$pdf->setXY(30,$pdf->getY() + 1);
 	$pdf->multiCell(210, 5, $arResult['rep'], 0, L);
 	$pdf->SetFont('freeserif','',13);
-	$pdf->setXY(30,60);
+	$pdf->setXY(30,$pdf->getY() + 1);
 	if($arResult["exhib"]["IS_HB"] !=  'Y'){
 		if($arResult["hall"] != "None"){
 			$pdf->multiCell(210, 5, "Hall, Table: ".$arResult["hall"].", ".$arResult["table"], 0, L);
@@ -27,7 +33,7 @@ function DokaGeneratePdf($arResult) {
 		else{
 			$pdf->multiCell(210, 5, "Hall, Table: ", 0, L);
 		}
-		$pdf->setXY(0,70);
+		$pdf->setXY(30,$pdf->getY() + 2);
 	}
 	$pdf->SetFont('freeserif','',11);
 	$pdf->SetX(20);
