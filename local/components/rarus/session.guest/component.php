@@ -72,8 +72,10 @@ $req_obj = new DokaRequest($arParams["APP_ID"]);
 $arResult['IS_ACTIVE'] = !$req_obj->getOption('IS_LOCKED');
 
 $arParams["SORT_TYPE"] = htmlspecialcharsEx(trim($_REQUEST["type"]));
+$arParams["SORT"] = htmlspecialcharsEx(trim($_REQUEST["by"]));
+
 //определение из какой группы брать данные
-switch (htmlspecialcharsEx(trim($_REQUEST["by"])))
+switch ($arParams["SORT"])
 {
 	case "alphabet":
 		$arParams["SORT"] = "BY_ALPHABET";

@@ -341,7 +341,7 @@ foreach($arResult["USERS"] as &$arUser) {
 				$arTmpRes[$country["ANSWER_ID"]][$arUser["ID"]] = $arUser["ID"];
 			}
 		}
-	}
+	                                                                }
 
 	$arFormData = array(
 		"PARTICIPANT" => array(
