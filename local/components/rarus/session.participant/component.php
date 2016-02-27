@@ -380,6 +380,13 @@ if($chooseRes){
 
 $arResult["SORT"] = $arParams["SORT"];
 $arResult["SORT_TYPE"] = $arParams["SORT_TYPE"];
-
+$artTmpRes = array();
+foreach($arResult["RESULTS"] as $userId => $userArr){
+	$artTmpRes[$arItems] = $arResult["USERS"][$arItems];
+}
+unset($arResult["USERS"]);
+unset($arResult["RESULTS"]);
+$arResult["RESULTS"] = $artTmpRes;
+unset($artTmpRes);
 $this->IncludeComponentTemplate();
 ?>
