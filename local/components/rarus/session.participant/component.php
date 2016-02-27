@@ -64,6 +64,7 @@ if (empty($arParams["APP_ID"])) {
 	CHTTP::SetStatus("404 Not Found");
 }
 $arResult["APP_CODE"] = $arParams["EXHIB_CODE"];
+$arResult["APP_ID"] = $arParams["APP_ID"];
 
 //подключение модуля встреч
 use Doka\Meetings\Requests as DokaRequest;
