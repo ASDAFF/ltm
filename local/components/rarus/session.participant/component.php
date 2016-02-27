@@ -97,9 +97,11 @@ switch ($arParams["SORT"]){
 $arResultId = array();//тут список результатов пользователей
 $propertyNameParticipant = CFormMatrix::getPropertyIDByExh($arParams["EXIB_ID"], 0);//свойство участника
 $propertyNameColleague = CFormMatrix::getPropertyIDByExh($arParams["EXIB_ID"], 1);//свойство коллеги
+$formId = CFormMatrix::getPFormIDByExh($arResult["EXHIBITION"]["ID"]);
 
 $arResultId = array();//тут список результатов пользователей
 $arResultAllFormId = array();//тут список результатов заполнения формы участники все выставки
+
 //получение списка подтвержденных гостей на данную выставку
 $cache = new CPHPCache();
 $cache_time = $arParams["CACHE_TIME"];
@@ -137,9 +139,6 @@ if (!is_array($arResult["USERS"]) || empty($arResult["USERS"])){
 		$arResultAllFormId[] = $arUser["UF_ID_COMP"];
 		$arResult["USERS"][$arUser["ID"]] = $arUser;
 	}
-
-	//получение результатов заполнения формы регистрациия для пользователей
-	$formId = CFormMatrix::getPFormIDByExh($arResult["EXHIBITION"]["ID"]);
 
 	CForm::GetResultAnswerArray(
 		$formId,
@@ -204,6 +203,8 @@ if(!$arParams["SORT_TYPE"] && !empty($arResult["FILTER"]["CHILD"])){
 		break;
 	}
 }
+$fieldId = CFormMatrix::getQIDByBase(33 , $formId);
+$answerID = CFormMatrix::getAnswerRelBase(85 ,$formId);//Participant last name
 
 foreach($arResult["USERS"] as &$arUser) {
 	$resultIdUser = $arUser[$propertyNameParticipant];
@@ -219,8 +220,7 @@ foreach($arResult["USERS"] as &$arUser) {
 	$cName = trim($arAnswersUser[$resultIdColleague][$fieldId][$answerID]["USER_TEXT"]);
 
 
-	$fieldId = CFormMatrix::getQIDByBase(33 , $formId);
-	$answerID = CFormMatrix::getAnswerRelBase(85 ,$formId);//Participant last name
+
 
 	//участник
 	$pLastName = trim($arAnswersUser[$resultIdUser][$fieldId][$answerID]["USER_TEXT"]);
