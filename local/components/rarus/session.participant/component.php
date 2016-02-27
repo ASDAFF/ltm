@@ -97,7 +97,7 @@ switch ($arParams["SORT"]){
 $arResultId = array();//тут список результатов пользователей
 $propertyNameParticipant = CFormMatrix::getPropertyIDByExh($arParams["EXIB_ID"], 0);//свойство участника
 $propertyNameColleague = CFormMatrix::getPropertyIDByExh($arParams["EXIB_ID"], 1);//свойство коллеги
-$formId = CFormMatrix::getPFormIDByExh($arResult["EXHIBITION"]["ID"]);
+$formId = CFormMatrix::getPFormIDByExh($arParams["EXIB_ID"]);
 
 $arResultId = array();//тут список результатов пользователей
 $arResultAllFormId = array();//тут список результатов заполнения формы участники все выставки
@@ -380,17 +380,9 @@ if($chooseRes){
 
 $arResult["SORT"] = $arParams["SORT"];
 $arResult["SORT_TYPE"] = $arParams["SORT_TYPE"];
-$rsItems = new CDBResult;
-$rsItems->InitFromArray($arResult["RESULTS"]);
-$rsItems->NavStart(50);
 
-$arResult["NAVIGATE"] = $rsItems->GetPageNavStringEx($navComponentObject, "", "");
-$arResult["RESULTS"] = array();
+$arResult["RESULTS"] = $arResult["USERS"];
 
-while($arItems = $rsItems->Fetch())
-{
-	$arResult["RESULTS"][$arItems] = $arResult["USERS"][$arItems];
-}
 unset($arResult["USERS"]);
 
 $this->IncludeComponentTemplate();
