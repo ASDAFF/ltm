@@ -381,9 +381,5 @@ if($chooseRes){
 $arResult["SORT"] = $arParams["SORT"];
 $arResult["SORT_TYPE"] = $arParams["SORT_TYPE"];
 
-$arResult["RESULTS"] = $arResult["USERS"];
-
-unset($arResult["USERS"]);
-
 $this->IncludeComponentTemplate();
 ?>
