@@ -203,8 +203,6 @@ if(!$arParams["SORT_TYPE"] && !empty($arResult["FILTER"]["CHILD"])){
 		break;
 	}
 }
-$fieldId = CFormMatrix::getQIDByBase(33 , $formId);
-$answerID = CFormMatrix::getAnswerRelBase(85 ,$formId);//Participant last name
 
 foreach($arResult["USERS"] as &$arUser) {
 	$resultIdUser = $arUser[$propertyNameParticipant];
@@ -219,8 +217,8 @@ foreach($arResult["USERS"] as &$arUser) {
 	//коллега
 	$cName = trim($arAnswersUser[$resultIdColleague][$fieldId][$answerID]["USER_TEXT"]);
 
-
-
+	$fieldId = CFormMatrix::getQIDByBase(33 , $formId);
+	$answerID = CFormMatrix::getAnswerRelBase(85 ,$formId);//Participant last name
 
 	//участник
 	$pLastName = trim($arAnswersUser[$resultIdUser][$fieldId][$answerID]["USER_TEXT"]);
