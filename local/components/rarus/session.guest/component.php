@@ -16,6 +16,7 @@ if(!isset($arParams["EXHIB_CODE"]))
 if(!isset($arParams["TYPE"]))
 	$arParams["TYPE"] = "MORNING";
 
+$arResult = array();
 if($USER->IsAdmin() && isset($_REQUEST["UID"])) {
 	$arResult["USER_ID"] = intval($_REQUEST["UID"]);
 } else {
@@ -29,7 +30,6 @@ if(!CModule::IncludeModule("iblock") || !CModule::IncludeModule("form") || !CMod
 	throw new Exception("Can't load modules iblock, form or doka");
 }
 
-$arResult = array();
 //Определяем текущую выставку
 if(isset($arParams["EXHIB_CODE"]) && $arParams["EXHIB_CODE"]!=''){
 	$filterEx = array(
@@ -63,6 +63,7 @@ if (empty($arParams["APP_ID"])) {
 }
 
 $arResult["APP_CODE"] = $arParams["EXHIB_CODE"];
+$arResult["APP_ID"] = $arParams["APP_ID"];
 
 //подключение модуля встреч
 use Doka\Meetings\Requests as DokaRequest;

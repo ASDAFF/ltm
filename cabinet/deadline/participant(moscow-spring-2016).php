@@ -1,9 +1,13 @@
-<!-- <h3>DEADLINES</h3>
-<p><a href="http://luxurytravelmart.ru/files/DAY1-HB.pdf" target="_blank">Download floor plan for the first day</a><br />
-	<a href="http://luxurytravelmart.ru/files/DAY2-EXHIBITORS.pdf" target="_blank">Download floor plan for the second day</a><br />
-	<a href="http://luxurytravelmart.ru/files/LTM2015_exhibitors_program.pdf" target="_blank">Download program for the event</a>
+<h3>DEADLINES</h3>
+<p>
+<a href="http://luxurytravelmart.ru/files/day1_alphabetical.pdf" target="_blank">Download floor plan for the first day in alphabetical order</a><br />
+<a href="http://luxurytravelmart.ru/files/day1_by_table.pdf" target="_blank">Download floor plan for the first day by table number</a><br />
+
+<a href="http://luxurytravelmart.ru/files/day2_alphabetical.pdf" target="_blank">Download floor plan for the second day in alphabetical order</a><br />
+<a href="http://luxurytravelmart.ru/files/day2_by_table.pdf" target="_blank">Download floor plan for the second day by table number</a><br />
+<a href="http://luxurytravelmart.ru/files/LTM2016_exhibitors_program.pdf" target="_blank">Download program for the event</a>
 </p> 
--->
+
 
 <p><b>November, 16, 2015:</b> Opening of registration for the hosted buyers.</p>
 <p><b>January, 15, 2016:</b> Opening of registration for the buyers from Moscow.<br />
@@ -15,7 +19,7 @@ Please note that this year registration for the evening reception won't be open 
 
 <h3>PROGRAMM OF THE EVENT</h3>
 <h4>Day 1, March 10, 2016 (Thursday)</h4>
-<p>Registration desk will be located in the Foyer of the Ballroom Hall (2nd floor). Organizers-office - Almaty Hall (2nd floor).</p>
+<p>Registration desk will be located in the Foyer of the Ballroom Hall (2nd floor).</p>
 
 <p><b><i>09:30 - 10:00 &mdash; Registration of exhibitors.</i></b></p>
 <p>Please contact the registration desk, which will be located in the foyer of the Ballroom (2nd floor);<br />
@@ -39,7 +43,7 @@ you will be provided with a badge and information pack.</p>
 17:50 - 18:00</p>
 
 <p>A bell will ring at the end/start of each appointment.<br />
-Place: Ballroom, Moscow Hall, Washington Hall, Istanbul I & II (2nd floor) and Cafe Russe (1st floor).<br />
+Place: Ballroom, Moscow Hall, Washington Hall, Istanbul I & II, Almaty Hall (2nd floor) and Cafe Russe (1st floor).<br />
 Buyers will be seated, and exhibitors will move around.</p>
 
 
@@ -48,7 +52,7 @@ Buyers will be seated, and exhibitors will move around.</p>
 
 <h4>Day 2, March 11, 2016 (Friday)</h4>
 
-<p>Registration desk will be located in the Foyer of the Ballroom Hall (2nd floor). Organizers-office - Almaty Hall (2nd floor).</p>
+<p>Registration desk will be located in the Foyer of the Ballroom Hall (2nd floor).</p>
 
 <p><b><i>09:30 - 10:00 &mdash; Set-up for the 2nd day of LTM.</i></b></p>
 
@@ -76,7 +80,7 @@ buyers from Moscow and Hosted Buyers.</i></b></p>
 <p><b><i>15:50 - 16:30 &mdash; light lunch</i></b></p>
 
 <p>A bell will ring at the end/start of each appointment.<br />
-Place: Ballroom, Moscow Hall, Washington Hall, Istanbul I & II (2nd floor) and Cafe Russe (1st floor).<br />
+Place: Ballroom, Moscow Hall, Washington Hall, Istanbul I & II, Almaty Hall (2nd floor) and Cafe Russe (1st floor).<br />
 Exhibitors will be seated, and buyers will move around.</p>
 
 <p>Complementary soft beverages, coffee and tea will be available during the day on request; please ask the waiters or our staff if you need anything.</p>

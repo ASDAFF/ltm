@@ -1,8 +1,22 @@
-<? if(!$arResult['IS_ACTIVE']){
+<? if(!$arResult['IS_ACTIVE']){?>
+	<p class="error">Назначение встреч заблокировано администрацией</p>
+<?}?>
+
+<? 	if ($arParams['IS_HB']){?>
+  <a href="/files/day1_alphabetical.pdf" target="_blank">Скачать план залов (hosted buyers в алфавитном порядке)</a><br />
+  <a href="/files/day1_by_table.pdf" target="_blank">Скачать план залов (hosted buyers по номеру стола)</a><br />
+  <a href="/files/day2_alphabetical.pdf" target="_blank">Скачать план залов (участники в алфавитном порядке)</a><br />
+  <a href="/files/day2_by_table.pdf" target="_blank">Скачать план залов (участники по номеру стола)</a><br />
+  <a href="/files/HB_LTM2016_info.pdf" target="_blank">Скачать программу выставки</a>
+<?}
+	else{?>
+  <a href="/files/day2_alphabetical.pdf" target="_blank">Скачать план залов (участники в алфавитном порядке)</a><br />
+  <a href="/files/day2_by_table.pdf" target="_blank">Скачать план залов (участники по номеру стола)</a><br />
+  <a href="/files/program_buyers_2016.pdf" target="_blank">Скачать программу выставки</a><br />	
+<?}
 ?>
-<p class="error">Назначение встреч заблокировано администрацией</p>
-<?
-}?>
+
+
 <table class="morning-time time-line">
     <tr>
       <th>Время</th>
@@ -72,7 +86,11 @@
             <?
             ?>
 			<td width="105"><?=$item['notes'];?></td>
-			<td width="50"><?=$item['time_left'];?><?if($item['time_left']):?>ч<?endif;?></td>
+			<td width="50">
+				<?if($item['status'] != 'confirmed'):?>
+					<?=$item['time_left'];?><?if($item['time_left']):?>ч<?endif;?>
+				<?endif;?>
+			</td>
 		</tr>
     <? endif;?>
 	<?endforeach;?>

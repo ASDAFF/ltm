@@ -141,18 +141,22 @@ function printVal($ar, $glue)
 			*/?>
 				<input class="custom-buttom spam-guest-button-mass" type="button" name="spam"  value="В спам">
 				<input type="hidden" name="SPAM_TYPE"  value="Y">
-				<a class="custom-buttom" href="/exel/guest.php?type=guests_no&app=<?=$arResult["EXHIB"]["CODE"]?>">Генерировать Excel</a>
+				<a class="custom-buttom" href="/exel/guest.php?type=guests_no&app=<?=$arResult["EXHIB"]["CODE"]?>&PAGEN_1=1">Генерировать Excel 1</a>
+				<a class="custom-buttom" href="/exel/guest.php?type=guests_no&app=<?=$arResult["EXHIB"]["CODE"]?>&PAGEN_1=2">Генерировать Excel 2</a>
 
 				<?break?>
 			<?case "spam":?>
 				<input class="custom-buttom spam-guest-button-mass" type="button" name="spam"  value="Восстановить">
-				<a class="custom-buttom" href="/exel/guest.php?type=guests_spam&app=<?=$arResult["EXHIB"]["CODE"]?>">Генерировать Excel</a>
+				<a class="custom-buttom" href="/exel/guest.php?type=guests_spam&app=<?=$arResult["EXHIB"]["CODE"]?>&PAGEN_1=1">Генерировать Excel 1</a>
+				<a class="custom-buttom" href="/exel/guest.php?type=guests_spam&app=<?=$arResult["EXHIB"]["CODE"]?>&PAGEN_1=2">Генерировать Excel 2</a>
 				<input type="hidden" name="SPAM_TYPE"  value="N">
 
 				<?break?>
 			<?case "evening":?>
-				<a class="custom-buttom" href="/exel/guest.php?type=guests_ev&app=<?=$arResult["EXHIB"]["CODE"]?>">Генерировать Excel</a>
-				<a class="custom-buttom" href="/exel/guest.php?type=guests_ev_all&app=<?=$arResult["EXHIB"]["CODE"]?>">Excel (все люди)</a>
+				<a class="custom-buttom" href="/exel/guest.php?type=guests_ev&app=<?=$arResult["EXHIB"]["CODE"]?>&PAGEN_1=1">Генерировать Excel 1</a>
+				<a class="custom-buttom" href="/exel/guest.php?type=guests_ev&app=<?=$arResult["EXHIB"]["CODE"]?>&PAGEN_1=2">Генерировать Excel 2</a>
+				<a class="custom-buttom" href="/exel/guest.php?type=guests_ev_all&app=<?=$arResult["EXHIB"]["CODE"]?>&PAGEN_1=1">Excel (все люди) 1</a>
+				<a class="custom-buttom" href="/exel/guest.php?type=guests_ev_all&app=<?=$arResult["EXHIB"]["CODE"]?>&PAGEN_1=2">Excel (все люди) 2</a>
 				<? /*
 			<input class="custom-buttom" type="button" name="edit" disabled value="Редактировать">
 			<input class="custom-buttom" type="button" name="spam" disabled value="В СПАМ">
@@ -160,8 +164,10 @@ function printVal($ar, $glue)
 			*/?>
 				<?break?>
 			<?case "morning":?>
-				<a class="custom-buttom" href="/exel/guest.php?type=guests&app=<?=$arResult["EXHIB"]["CODE"]?>">Генерировать Excel</a>
-				<a class="custom-buttom" href="/exel/guest.php?type=guests_all&app=<?=$arResult["EXHIB"]["CODE"]?>">Excel (все люди)</a>
+				<a class="custom-buttom" href="/exel/guest.php?type=guests&app=<?=$arResult["EXHIB"]["CODE"]?>&PAGEN_1=1">Генерировать Excel 1</a>
+				<a class="custom-buttom" href="/exel/guest.php?type=guests&app=<?=$arResult["EXHIB"]["CODE"]?>&PAGEN_1=2">Генерировать Excel 2</a>
+				<a class="custom-buttom" href="/exel/guest.php?type=guests_all&app=<?=$arResult["EXHIB"]["CODE"]?>&PAGEN_1=1">Excel (все люди) 1</a>
+				<a class="custom-buttom" href="/exel/guest.php?type=guests_all&app=<?=$arResult["EXHIB"]["CODE"]?>&PAGEN_1=2">Excel (все люди) 2</a>
 				<a class="custom-buttom go" href="/ajax/all_pdf_shedule.php?type=guest&app=<?=$arResult["EXHIB"]["CODE"]?>" data-hb="" data-to="shedule">PDF расписания</a>
 				<a class="custom-buttom go" href="/ajax/all_pdf_wishlist.php?type=guest&app=<?=$arResult["EXHIB"]["CODE"]?>" data-hb="" data-to="wishlist">PDF вишлисты</a>
 				<? /*<input class="custom-buttom" type="button" name="edit" disabled value="Редактировать">$arParams["EXHIBIT_CODE"]
@@ -172,8 +178,10 @@ function printVal($ar, $glue)
 			*/?>
 				<?break?>
 			<?case "hostbuy":?>
-				<a class="custom-buttom" href="/exel/guest.php?type=guests_hb&app=<?=$arResult["EXHIB"]["CODE"]?>">Генерировать Excel</a>
-				<a class="custom-buttom" href="/exel/guest.php?type=guests_hb_all&app=<?=$arResult["EXHIB"]["CODE"]?>">Excel (все люди)</a>
+				<a class="custom-buttom" href="/exel/guest.php?type=guests_hb&app=<?=$arResult["EXHIB"]["CODE"]?>&PAGEN_1=1">Генерировать Excel 1</a>
+				<a class="custom-buttom" href="/exel/guest.php?type=guests_hb&app=<?=$arResult["EXHIB"]["CODE"]?>&PAGEN_1=2">Генерировать Excel 2</a>
+				<a class="custom-buttom" href="/exel/guest.php?type=guests_hb_all&app=<?=$arResult["EXHIB"]["CODE"]?>&PAGEN_1=1">Excel (все люди) 1</a>
+				<a class="custom-buttom" href="/exel/guest.php?type=guests_hb_all&app=<?=$arResult["EXHIB"]["CODE"]?>&PAGEN_1=2">Excel (все люди) 2</a>
 				<a class="custom-buttom go" href="/ajax/all_pdf_shedule.php?type=guest&app=<?=$arResult["EXHIB"]["CODE"]?>&hb=y" data-hb="y" data-to="shedule">PDF HB расписания</a>
 				<a class="custom-buttom go" href="/ajax/all_pdf_wishlist.php?type=guest&app=<?=$arResult["EXHIB"]["CODE"]?>&hb=y" data-hb="y" data-to="wishlist">PDF HB вишлисты</a>
 				<? /*<input class="custom-buttom" type="button" name="edit" disabled value="Редактировать">$arParams["EXHIBIT_CODE"]

@@ -70,7 +70,11 @@
 				?>
 			</td>
 			<td width="110"><?=$item['notes'];?></td>
-			<td width="50"><?=$item['time_left'];?><?if($item['time_left']):?>h<?endif;?></td>
+			<td width="50">
+				<?if($item['status'] != 'confirmed'):?>
+					<?=$item['time_left'];?><?if($item['time_left']):?>h<?endif;?>
+				<?endif;?>
+			</td>
 		</tr>
     <? endif;?>
 	<?endforeach;?>
