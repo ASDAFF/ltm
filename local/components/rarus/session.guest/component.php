@@ -68,12 +68,14 @@ $arResult["APP_ID"] = $arParams["APP_ID"];
 //подключение модуля встреч
 use Doka\Meetings\Requests as DokaRequest;
 
-$req_obj = new DokaRequest($appId);
+$req_obj = new DokaRequest($arParams["APP_ID"]);
 $arResult['IS_ACTIVE'] = !$req_obj->getOption('IS_LOCKED');
 
 $arParams["SORT_TYPE"] = htmlspecialcharsEx(trim($_REQUEST["type"]));
+$arParams["SORT"] = htmlspecialcharsEx(trim($_REQUEST["by"]));
+
 //определение из какой группы брать данные
-switch (htmlspecialcharsEx(trim($_REQUEST["by"])))
+switch ($arParams["SORT"])
 {
 	case "alphabet":
 		$arParams["SORT"] = "BY_ALPHABET";
@@ -93,35 +95,7 @@ switch (htmlspecialcharsEx(trim($_REQUEST["by"])))
 	default:  $arParams["SORT"] = "BY_ALL";
 }
 
-$arResultId = array();//тут список результатов пользователей
 $propertyName = CFormMatrix::getPropertyIDByExh($arParams["EXIB_ID"]);
-
-$needSort = true;
-$chooseRes = true;
-switch ($arParams["SORT"])
-{
-	case "BY_ALPHABET":
-		$arResult["FILTER"]["CHILD"] = array(
-			"NUM" =>"#", "A" =>"A", "B" =>"B", "C" =>"C", "D" =>"D", "E" =>"E", "F" =>"F", "G" =>"G", "H" =>"H", "I" =>"I", "J" =>"J",
-			"K" =>"K", "L" =>"L", "M" =>"M", "N" =>"N", "O" =>"O", "P" =>"P", "Q" =>"Q", "R" =>"R", "S" =>"S", "T" =>"T", "U" =>"U", "V" =>"V",
-			"W" =>"W", "X" =>"X", "Y" =>"Y", "Z" =>"Z");
-		$needSort = false;
-		$chooseRes = false;
-		break;
-	case "BY_PRIORITY_AREAS" :
-
-		break;
-	case "BY_CITY" :
-
-		break;
-	case "BY_SLOTS" :
-		$needSort = false;
-		$chooseRes = false;
-		break;
-	default:
-		$needSort = false;
-		$chooseRes = false;
-}
 
 //получение списка подтвержденных гостей на данную выставку
 $cache = new CPHPCache();
@@ -157,6 +131,8 @@ if (!is_array($arResult["USERS"]) || empty($arResult["USERS"])){
 		"SELECT" => array("UF_*")
 	);
 	$rsUsers = $USER->GetList(($by="work_company"), ($order="asc"), $arFilter, $arParamsUser);
+
+	$arResultId = array();//тут список результатов пользователей
 	while($arUser = $rsUsers->Fetch()){
 		$arResultId[] = $arUser[$propertyName];//дописываем id результата заполнения формы
 		$arResult["USERS"][$arUser["ID"]] = $arUser;
@@ -423,26 +399,6 @@ while($arItems = $rsItems->Fetch())
 }
 unset($arResult["USERS"]);
 
-/*if($this->StartResultCache(false, $sort))
-{
-
-	$this->SetResultCacheKeys(array(
-			"USER_ID",
-			"EXHIBITION",
-			"SESSION"
-	));
-
-*/
-	$this->IncludeComponentTemplate();
-
-/*}
-else
-{
-	$this->AbortResultCache();
-	ShowError("NotFound");
-	@define("ERROR_404", "Y");
-	if($arParams["SET_STATUS_404"]==="Y")
-		CHTTP::SetStatus("404 Not Found");
-}*/
+$this->IncludeComponentTemplate();
 
 ?>
