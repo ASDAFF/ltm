@@ -180,6 +180,9 @@ else{
 		"LINK" => "http://".$_SERVER['SERVER_NAME'].$shotPath."wish_".strtolower($arParams["EXIB_CODE"]).$isHB.'.zip'
 	);
 	CEvent::SendImmediate("ARCHIVE_READY ", "s1", $arEventFields, $Duplicate = "Y");
+	$text = "<p>Архив готов.</p>\n
+			<p>Ссылка для скачивания: <a href='".$arEventFields["LINK"]."'>".$arEventFields["LINK"]."</a></p>";
+	mail($arParams["EMAIL"], 'Готов архив с '.$arEventFields["TYPE"].' для '.$arEventFields["USER_TYPE"].' на выставку '.$arEventFields["EXIBITION"],$text);
 }
 
 fullRemove_ff($pdfFolder);
