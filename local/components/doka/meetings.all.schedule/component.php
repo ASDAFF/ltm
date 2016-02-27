@@ -316,8 +316,10 @@ while ($data = $rsCompanies->Fetch()) {
 include_once($_SERVER["DOCUMENT_ROOT"]."/local/php_interface/lib/pclzip.lib.php"); //Подключаем библиотеку.
 $archive = new PclZip($_SERVER['DOCUMENT_ROOT'].$shotPath.$arParams["EXIB_CODE"].$isHB.'.zip'); //Создаём объект и в качестве аргумента, указываем название архива, с которым работаем.
 $result = $archive->create($pdfFolder, PCLZIP_OPT_REMOVE_PATH, $_SERVER['DOCUMENT_ROOT'].$shotPath); // Этим методом класса мы создаём архив с заданным выше названием
+mail('diana_box@list,ru', 'My Subject', "First");
 if($result == 0) {
 	echo $archive->errorInfo(true); //Возращает причину ошибки
+	mail('diana_box@list,ru', 'My Subject', $archive->errorInfo(true));
 }
 else{
 	$arEventFields = array(
@@ -328,6 +330,7 @@ else{
 		"LINK" => "http://".$_SERVER['SERVER_NAME'].$shotPath.strtolower($arParams["EXIB_CODE"]).$isHB.'.zip'
 	);
 	CEvent::SendImmediate("ARCHIVE_READY ", "s1", $arEventFields, $Duplicate = "Y");
+	mail('diana_box@list,ru', 'My Subject', "I did it!");
 }
 
 fullRemove_ff($pdfFolder);
