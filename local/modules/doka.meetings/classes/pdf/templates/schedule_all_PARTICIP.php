@@ -7,12 +7,14 @@ function DokaGeneratePdf($arResult) {
 	// $pdf->AddFont('freeserif','I','freeserifi.php');
 	$pdf->AddPage();
 	$pdf->ImageSVG($file=DOKA_MEETINGS_MODULE_DIR . '/images/logo.svg', $x=30, $y=5, $w='150', $h='', $link='', $align='', $palign='', $border=0, $fitonpage=false);
+	$arResult["exhib"]["TITLE"] .= "\n";
 	if($arResult["exhib"]["IS_HB"]){
 		$dayline = "Day 1 - March 10, 2016";
+		
 	}
 	else {
 		$dayline = "Day 2 - March 11, 2016";
-		$arResult["exhib"]["TITLE"] .= "\n";
+		
 	}
 
 	$pdf->setXY(0,25);
