@@ -8,20 +8,27 @@ function DokaGeneratePdf($arResult) {
 	$pdf->ImageSVG($file=DOKA_MEETINGS_MODULE_DIR . '/images/logo.svg', $x=30, $y=5, $w='150', $h='', $link='', $align='', $palign='', $border=0, $fitonpage=false);
 	$pdf->setXY(0,23);
 	$pdf->SetFont('freeserif','B',17);
-	$pdf->multiCell(210, 5, "Список неподтвержденных запросов на\n" . $arResult["exhib"]["TITLE_RU"], 0, C);
+	if($arResult["EXHIBITION"]["IS_HB"]){
+		$dayline = "День 1, 10 марта 2016";
+	}
+	else {
+		$dayline = "День 2, 11 марта 2016";
+	}
+	$arResult["exhib"]["TITLE_RU"] .= "\n";
+	$pdf->multiCell(210, 5, "Список неподтвержденных запросов на\n" . $arResult["exhib"]["TITLE_RU"] . $dayline, 0, C);
 	$pdf->SetFont('freeserif','',15);
-	$pdf->setXY(30,40);
+	$pdf->setXY(30,$pdf->getY() + 2);
 	$pdf->multiCell(210, 5, $arResult['name'].", ". $arResult['city'], 0, L);
-	$pdf->setXY(30,48);
+	$pdf->setXY(30,$pdf->getY() + 1);
 	$pdf->multiCell(210, 5, $arResult['rep'], 0, L);
 
 
 	$pdf->SetFont('freeserif','B',13);
-	$pdf->setXY(0,60);
+	$pdf->setXY(0,$pdf->getY() + 5);
 	$pdf->multiCell(210, 5, "Вы также хотели бы встретиться со следующими компаниями", 0, C);
 
 	$pdf->SetFont('freeserif','',10);
-	$pdf->setXY(0,65);
+	$pdf->setXY(0,$pdf->getY() + 1);
 	$pdf->multiCell(210, 5, "(возможно, данные участники отклонили ваши запросы или их расписание уже полное):", 0, C);
 
 
