@@ -8,7 +8,7 @@ function DokaGeneratePdf($arResult) {
 	$pdf->ImageSVG($file=DOKA_MEETINGS_MODULE_DIR . '/images/logo.svg', $x=30, $y=5, $w='150', $h='', $link='', $align='', $palign='', $border=0, $fitonpage=false);
 	$pdf->setXY(0,23);
 	$pdf->SetFont('freeserif','B',17);
-	if($arResult["EXHIBITION"]["IS_HB"]){
+	if($arResult["exhib"]["IS_HB"]){
 		$dayline = "День 1, 10 марта 2016";
 	}
 	else {
