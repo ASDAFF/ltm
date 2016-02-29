@@ -26,7 +26,7 @@ function DokaGeneratePdf($arResult) {
 	$pdf->SetFont('freeserif','B',13);
 
 	/* Формируем таблицу */
-	$pdf->setXY(0,80);
+	$pdf->setXY(0,$pdf->getY() + 5);
 	$pdf->multiCell(210, 5, "You requested an appointment with these companies,\n but they declined your requests or their schedules were full:", 0, C);
 
 	if (!$arResult['wish_in']) {

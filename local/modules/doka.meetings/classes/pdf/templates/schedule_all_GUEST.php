@@ -10,23 +10,30 @@ function DokaGeneratePdf($arResult) {
 
 	$pdf->setXY(0,25);
 	$pdf->SetFont('freeserif', 'B',17);
-	$pdf->multiCell(210, 5, "Расписание встреч на утренней сессии\n" . $arResult["exhib"]["TITLE_RU"], 0, C);
+	$arResult["exhib"]["TITLE_RU"] .= "\n";
+	if($arResult["exhib"]["IS_HB"]){
+		$dayline = "День 1, 10 марта 2016";
+	}
+	else {
+		$dayline = "День 2, 11 марта 2016";
+	}
+	$pdf->multiCell(210, 5, "Расписание встреч на утренней сессии\n" . $arResult["exhib"]["TITLE_RU"] . $dayline, 0, C);
 /*$pdf->multiCell(210, 5, "Список неподтвержденных запросов на\nLuxury Travel Mart Баку", 0, C);*/
 	$pdf->SetFont('freeserif','',15);
-	$pdf->setXY(30,44);
+	$pdf->setXY(30,$pdf->getY() + 2);
 	$pdf->multiCell(210, 5, $arResult["name"].", ". $arResult['city'], 0, L);
-	$pdf->setXY(30,52);
+	$pdf->setXY(30,$pdf->getY() + 1);
 	if($arResult["USER"]['COL_REP'] == ""){
 		$pdf->multiCell(210, 5, $arResult["rep"], 0, L);
 	}
 	else{
 		$pdf->multiCell(210, 5, $arResult["rep"].", ".$arResult["col_rep"], 0, L);
 	}
-	$pdf->setXY(30,60);
+	$pdf->setXY(30,$pdf->getY() + 1);
 	$pdf->multiCell(210, 5, "Мобильный телефон: ".$arResult["mob"], 0, L);
-	$pdf->setXY(30,68);
+	$pdf->setXY(30,$pdf->getY() + 1);
 	$pdf->multiCell(210, 5, "Телефон: ".$arResult["phone"], 0, L);
-	$pdf->setXY(30,80);
+	$pdf->setXY(30,$pdf->getY() + 1);
 
 	if($arResult["exhib"]["IS_HB"] && $arResult["hall"] != "None"){
 		$pdf->multiCell(210, 5, "Hall, Table: ".$arResult["hall"].", ".$arResult["table"], 0, L);
