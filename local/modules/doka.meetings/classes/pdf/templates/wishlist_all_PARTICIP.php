@@ -6,16 +6,24 @@ function DokaGeneratePdf($arResult) {
 	$pdf->AddPage();
 	$pdf->ImageSVG($file=DOKA_MEETINGS_MODULE_DIR . '/images/logo.svg', $x=30, $y=5, $w='150', $h='', $link='', $align='', $palign='', $border=0, $fitonpage=false);
 	$pdf->setXY(15,30);
+	if($arResult["exhib"]["IS_HB"]){
+		$dayline = "Day 1 - March 10, 2016";
+	}
+	else {
+		$dayline = "Day 2 - March 11, 2016";
+	}
 	$pdf->SetFont('freeserif','B',17);
 	$pdf->multiCell(180, 5, "Wish-list " . $arResult["exhib"]["TITLE"] . " for ", 0, C);
 	$pdf->SetFont('freeserif','',15);
-	$pdf->setXY(30,50);
+	$pdf->setXY(30,$pdf->getY() + 2);
 	$pdf->multiCell(210, 5, $arResult['name'], 0, L);
-	$pdf->setXY(30,60);
+	$pdf->setXY(30,$pdf->getY() + 1);
 	$pdf->multiCell(210, 5, $arResult['rep'], 0, L);
-
-	$pdf->SetFont('freeserif','B',13);
+	$pdf->setXY(0,$pdf->getY() + 4);
+	$pdf->SetFont('freeserif','B',17);
+	$pdf->multiCell(210, 5, $dayline, 0, C);
 	$pdf->SetX(50);
+	$pdf->SetFont('freeserif','B',13);
 
 	/* Формируем таблицу */
 	$pdf->setXY(0,80);
