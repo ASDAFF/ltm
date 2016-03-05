@@ -327,7 +327,7 @@ else{
 		"USER_TYPE" => strtolower($arParams["USER_TYPE"]),
 		"LINK" => "http://".$_SERVER['SERVER_NAME'].$shotPath.strtolower($arParams["EXIB_CODE"]).$isHB.'.zip'
 	);
-	CEvent::SendImmediate("ARCHIVE_READY ", "s1", $arEventFields, $Duplicate = "Y");
+	CEvent::SendImmediate("ARCHIVE_READY", "s1", $arEventFields, $Duplicate = "Y");
 	$text = "
 	<html>
 	<body>
