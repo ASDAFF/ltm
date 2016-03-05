@@ -339,7 +339,7 @@ else{
 	";
 	$headers  = 'MIME-Version: 1.0' . "\r\n";
 	$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
-	mail($arParams["EMAIL"], 'Готов архив с '.$arEventFields["TYPE"].' для '.$arEventFields["USER_TYPE"].' на выставку '.$arEventFields["EXIBITION"],$text, $headers);
+	custom_mail($arParams["EMAIL"], 'Готов архив с '.$arEventFields["TYPE"].' для '.$arEventFields["USER_TYPE"].' на выставку '.$arEventFields["EXIBITION"],$text, $headers);
 }
 
 fullRemove_ff($pdfFolder);
