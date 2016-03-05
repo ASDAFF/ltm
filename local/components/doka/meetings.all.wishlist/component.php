@@ -179,8 +179,8 @@ else{
 		"USER_TYPE" => strtolower($arParams["USER_TYPE"]),
 		"LINK" => "http://".$_SERVER['SERVER_NAME'].$shotPath."wish_".strtolower($arParams["EXIB_CODE"]).$isHB.'.zip'
 	);
-	CEvent::SendImmediate("ARCHIVE_READY ", "s1", $arEventFields, $Duplicate = "Y");
-	$text = "
+	CEvent::SendImmediate("ARCHIVE_READY", "s1", $arEventFields, $Duplicate = "Y");
+/*	$text = "
 	<html>
 	<body>
 		<p>Архив готов.</p><br />
@@ -191,6 +191,7 @@ else{
 	$headers  = 'MIME-Version: 1.0' . "\r\n";
 	$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
 	mail($arParams["EMAIL"], 'Готов архив с '.$arEventFields["TYPE"].' для '.$arEventFields["USER_TYPE"].' на выставку '.$arEventFields["EXIBITION"],$text, $headers);
+*/
 }
 
 fullRemove_ff($pdfFolder);
