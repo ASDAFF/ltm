@@ -3,6 +3,9 @@
 <? 
 CModule::IncludeModule('iblock');
 global $USER;
+
+if (!$USER->isAdmin() AND substr_count($_SERVER["REQUEST_URI"],"/")>2) LocalRedirect("/administrator/");
+define('EXHIBITION_ID',1);
 ?>
 <!DOCTYPE html>
 <html class="<?= LANGUAGE_ID?>">
@@ -23,10 +26,10 @@ global $USER;
 	<?$APPLICATION->ShowHead()?>
 </head>
 <body>
-	<? if ($USER->isAdmin())$APPLICATION->ShowPanel();?>
+	<? //if ($USER->isAdmin())$APPLICATION->ShowPanel();?>
 	<header>
 		<div class="layoutCenterWrapper">
-			<a href = "/" id = "logo" alt = "Luxury Travel Mart" /></a>
+			<a href = "/administrator/" id = "logo" alt = "Luxury Travel Mart" /></a>
 			<span id = "title">APP.</span>
 			<div id = "lang"><a class = "en" href="/?logout=yes">Exit</a></div>
 		</div>
@@ -62,6 +65,16 @@ while($ob = $res->GetNextElement()) {
        	),
       	false
     );?>
-    
+	<?
+	$arSelect = Array("ID", "NAME", "PROPERTY_APP_OFF");
+	$arFilter = Array("IBLOCK_ID"=>24, "ACTIVE_DATE"=>"Y", "ACTIVE"=>"Y", "ID"=>13909);
+	$res = CIBlockElement::GetList(Array(), $arFilter, false, Array("nPageSize"=>1), $arSelect);
+	while($ob = $res->GetNextElement()) {
+		$arFields = $ob->GetFields();
+		$APP_OFF = $arFields["PROPERTY_APP_OFF_VALUE"];
+	}
+	?>
+
+    <div class="switch-off"><a href="/administrator/?exhb=<?=$_REQUEST["exhb"]?>&off=<? if ($APP_OFF) echo "N"; else echo "Y";?>">APPLICATIONS <? if (!$APP_OFF OR $APP_OFF==0) {?><strong>ON</strong><?}else{echo "ON";}?>/<? if ($APP_OFF) {?><strong>OFF</strong><?}else{echo "OFF";}?></a></div>
 	<div id = "content" class="layoutCenterWrapper clearfix">
 		<div id = "center">

@@ -47,7 +47,7 @@ p{margin: 0 0 10px;}
     display:table;
     clear:both;
 	}
-.clear {/* Для совместимости, а вообще, надо бы на clearfix заменить везде*/
+.clear {/* пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ clearfix пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ*/
     clear: both !important;
 }
 .layoutCenterWrapper{
@@ -55,7 +55,7 @@ p{margin: 0 0 10px;}
     width: 1230px;
     
 	}
-/* Скроллер */
+/* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */
 #scroller{
     position: fixed; 
     bottom: 220px;
@@ -120,7 +120,7 @@ header{
 #lang .act{
 	font-weight: bold;
 }
-/* Верхнее меню */
+/* пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ */
 nav.menu-top{
 	margin: 0 auto;
 	border-bottom: 1px solid #000000;
@@ -132,11 +132,13 @@ nav.menu-top{
 nav.menu-top a{
 	color: #000000;
 	display: inline-block;
-	padding: 8px 5px 5px 5px;
+	padding: 8px 24px 5px 24px;
 	text-decoration: none;
 	font-size: 15px;
 	text-transform: uppercase;
 	text-align: left;
+	position: relative;
+	z-index: 1000;
 }
 nav.menu-top a:first-child{
 	padding-left: 0;
@@ -154,10 +156,31 @@ nav.menu-top:after {
 	height:0;
 	overflow:hidden;
 }
-/* Контент */
+
+.switch-off {
+	position: relative;
+	height: 18px;
+	margin: -18px auto 0 auto;
+	width: 1230px;
+	text-align: right;
+	top: -15px;
+}
+.switch-off a {
+	color: #000000;
+	display: inline-block;
+	padding: 8px 5px 5px 5px;
+	text-decoration: none;
+	font-size: 15px;
+	text-transform: uppercase;
+	text-align: left;
+
+}
+
+/* пїЅпїЅпїЅпїЅпїЅпїЅпїЅ */
 #content{
 	margin-top: 33px;
 	position: relative;
+	min-height: 400px;
 }
 h1{
 	font-size: 37px;
@@ -165,7 +188,7 @@ h1{
 	font-family: 'Helios_N';
 	margin: 0 0 20px;
 	margin-right: -8px;
-	max-height: 40px; /* Это чтобы по ширине выравнивалось*/
+	max-height: 40px; /* пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/
 	text-align: justify;
 	text-align-last:justify;
 	letter-spacing: 5.98px;
@@ -185,7 +208,7 @@ a{
 	color:#66c4f3;
 }
 
-/* В шаблоне этого нет, возможно внутри где-то*/
+/* пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ*/
 h2{
 	color: #00AEEF;
 	font-size: 20px;
@@ -246,14 +269,14 @@ h3{
 font-weight: normal;
 }
 
-/* Правая колонка, везде кроме страниц с проверкой встреч */
+/* пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ */
 #right{
 	float: right;
 	margin-bottom: 65px;
 	margin-left: 20px;
 	width: 280px;
 }
-/* Форма авторизации */
+/* пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */
 #form{
 	background: url("images/form.gif") repeat;
 	border: 1px solid #E7F7FF;
@@ -378,11 +401,11 @@ figure#ltm a.ltm2{
 	width: 118px;
 	height: 40px;
 }
-/* Подвал */
+/* пїЅпїЅпїЅпїЅпїЅпїЅ */
 footer{
 	background: #fff;
 	
-	height: 217px;
+	height: 148px;
 	position: relative;
 }
 .org{
@@ -458,6 +481,8 @@ nav#bottom a:hover{
 	color: #414042;
 	font-size: 12px;
 	padding-left: 12px;
+	position: relative;
+	top: -34px;
 }
 #design a, #develop a{
 	color: #414042;
@@ -480,9 +505,9 @@ nav#bottom a:hover{
 .alphabet { text-align: right; font-size: 14px; color: #000; text-transform: uppercase; margin: 0 48px 0 0; }
 .alphabet a { color: #000; text-decoration: none; }
 .alphabet a.selected { color: #00aeef; }
-.checkin_all { border: 1px solid #77787b; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; padding: 6px; width: 88px; position: relative; height: 16px; left: 1130px; margin: 10px 0; text-align: center; }
-.checkin_all a { text-decoration: none; color: #77787b; }
-
+.checkin_all { text-align: right;  }
+.checkin_all a { text-decoration: none; color: #77787b; border: 1px solid #77787b; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; padding: 6px; width: 88px; height: 16px; margin: 10px 0; text-align: center; display: inline-block; }
+.checkin_all a.checkout_all { width: 110px; }
 
 .admin_block { margin: 0 0 40px 0; }
 
@@ -495,10 +520,10 @@ nav#bottom a:hover{
 .info_table .admin_table tr th.thcol2 { text-align: left; }
 .info_table .admin_table tr th.thcol3 { text-align: left; }
 .info_table .admin_table tr th.thcol4 { text-align: center; }
-.info_table .admin_table tr th.thcol5 { text-align: left; }
+.info_table .admin_table tr th.thcol5 { text-align: center; }
 
-.info_table .admin_table tr td { color: #000; font-size: 14px; padding: 10px; }
-.info_table .admin_table tr td a { color: #000; }
+.info_table .admin_table tr td { color: #000; font-size: 14px; padding: 5px 10px; }
+.info_table .admin_table tr td a { color: #000; text-decoration: none; }
 .info_table .admin_table tr td a:hover { color: #00aeef; }
 .info_table .admin_table tr:nth-child(even) td { background: #ededee; }
 .info_table .admin_table tr td.tdcol1 { text-align: left; }
@@ -507,9 +532,13 @@ nav#bottom a:hover{
 .info_table .admin_table tr td.tdcol4 { text-align: center; }
 .info_table .admin_table tr td.tdcol5 { text-align: center; }
 
+.messages_table tr td.tdcol2 { width: 250px; }
+.messages_table tr td.tdcol4 { width: 125px; }
+
 .green { color: #09b900; }
 .red { color: #f00; }
-
+.green a { color: #09b900 !important; }
+.red a { color: #f00 !important; }
 
 .helper_nav { padding: 0px 0 12px 0; font-size: 14px; }
 .helper_nav a { color: #77787b; padding: 0 26px 0 0; }
@@ -525,13 +554,15 @@ nav#bottom a:hover{
 .form_holder .sent_mess_table .sent_mess_table_col2 { width: 340px;  }
 
 .form_holder .message { margin: 12px 0 0 0; }
-.form_holder .message textarea { border: 1px solid #ababab; width: 940px; height: 180px; }
+.form_holder .message textarea { border: 1px solid #ababab; width: 940px; height: 180px; font-size: 15px; }
 
 .form_holder .submit { width: 940px; text-align: center; margin: 12px 0 0 0; }
 .form_holder .submit input { border: none; background: none; color: #00aeef; text-decoration: underline; cursor: pointer; } 
 
-.search_form { position: relative; width: 342px; left: 838px; margin: 6px 0 16px 0; }
+.search_form { position: relative; width: 390px; left: 806px; margin: 6px 0 16px 0; }
 .search_form .search_field { text-align: center; border: 1px solid #898a8d; color: #77787b; font-size: 14px; width: 342px; }
+.search_form .go_find { display: inline-block; border: none; background: none; cursor: pointer; }
+
 
 .company_select { width: 270px; margin: 0 10px 0 0;  }
 .company_generate { border: none; background: none; color: #00aeff; font-size: 14px; text-decoration: underline; }

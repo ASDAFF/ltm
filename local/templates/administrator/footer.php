@@ -3,7 +3,6 @@ if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 IncludeTemplateLangFile(__FILE__);
 ?>
 
-
 		</div>
 	</div>
 	<footer>
@@ -29,7 +28,6 @@ IncludeTemplateLangFile(__FILE__);
 			);?>
 			</div>
 			<div style="clear:both"></div>
-			<br><br>
 			<span id="design">Design and developed by <a target="_blank" href="http://startbrand.ru">STARTBRAND&reg;</a></span>
 			
 		</div>
