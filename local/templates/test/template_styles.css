@@ -371,7 +371,6 @@ figure#merop a:hover{
 	text-decoration: underline;
 }
 figure#ltm{
-	display: none;
 	margin-top: 20px;
 	position: relative;
 }
@@ -382,6 +381,9 @@ figure#ltm span{
 figure#ltm p{
 	margin: 5px 0 9px;
 }
+figure#ltm p.remark {
+	font-size: 12px;
+}
 figure#ltm a{
 	margin-left: 3px;
 	color: #00AEEF;
@@ -390,14 +392,14 @@ figure#ltm a{
 figure#ltm a:hover{
 	text-decoration: none;
 }
-figure#ltm a.ltm1{
+figure#ltm a.app-store{
 	background: url("images/ltm1.jpg") no-repeat;
 	display: block;
 	float: left;
 	width: 135px;
 	height: 40px;
 }
-figure#ltm a.ltm2{
+figure#ltm a.google-play{
 	background: url("images/ltm2.jpg") no-repeat;
 	display: block;
 	float: right;

@@ -1,3 +1,4 @@
 <span>LTM GUEST SYSTEM™</span> 
-<p>To participate in Luxury Travel Mart events, download the LTM GUEST SYSTEM™ app for iOS or Android devices. Downloads will be available from September 15, 2014. </p>
- <a href="#" class="ltm1" alt="ltm1" ></a> <a href="#" class="ltm2" alt="ltm2" ></a>
+<p>In order to maximise your experience at Luxury Travel Mart, you may download the LTM app for iOS or Android.</p>
+<a href="https://appsto.re/ru/wNO-5.i" target="_blank" class="app-store" alt="AppStore" ></a> <a href="https://play.google.com/store/apps/details?id=volpis.com.ltm" target="_blank" class="google-play" alt="Google Play"></a>
+<p class="remark">This app is operational only during LTM events.</p>
