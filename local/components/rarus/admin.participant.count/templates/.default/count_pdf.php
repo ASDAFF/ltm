@@ -1,7 +1,7 @@
 <? require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 $arParams["FORM_ID"] = "1";
 		require("pdf/tcpdf.php");
-		$rsUser = CUser::GetByID($_GET[["id"]);
+		$rsUser = CUser::GetByID($_GET["id"]);
 		$thisUser = $rsUser->Fetch();
 		CForm::GetResultAnswerArray($arParams["FORM_ID"], $arrColumns, $arrAnswers, $arrAnswersVarname, array("RESULT_ID" => $thisUser["UF_ANKETA"]));
 		$realUser = array();

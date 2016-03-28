@@ -62,6 +62,12 @@ class CFormMatrix
 			1458,//Ms.
 			1459//Dr.
 		),
+		30 => array(
+			1508,//Mr.
+			1509,//Mrs.
+			1510,//Ms.
+			1511//Dr.
+		),
 	);
 	private static $arAnswerRequisiteIDByForm = array(
 		4 => array(
@@ -113,6 +119,11 @@ class CFormMatrix
 			1472,//ИП Поланский Артем Валентинович
 			1473,//Трэвэл Медиа
 			1488,//ИП Ветрова Елена Васильевна
+		),
+		30 => array(
+			1525,//ИП Поланский Артем Валентинович
+			1526,//Трэвэл Медиа
+			1527,//ИП Ветрова Елена Васильевна
 		),
 	);
 	static function getIndexRequisiteIDByForm($id, $formID)
@@ -295,6 +306,23 @@ class CFormMatrix
 			583,//Номер счета
 			584, //Сумма счета
 			585, //Реквизиты
+		),
+		30 => array(
+			597,//Participant first name
+			598,//Participant last name
+			599,//Job title
+			600,//Telephone
+			601,//Skype
+			602,//E-mail
+			603,//Please confirm your e-mail
+			604,//Alternative e-mail
+			605,//Персональное фото
+			606, //Salutation
+			607, //Зал
+			608,//Стол
+			609,//Номер счета
+			610, //Сумма счета
+			611, //Реквизиты
 		)
 	);
 	private static $arAnswerIDByForm = array(
@@ -468,6 +496,23 @@ class CFormMatrix
 			1471,//Сумма счета
 			"SIMPLE_QUESTION_667",//Реквизиты
 		),//Участники Представители Москва Весна 2016
+		29 => array(
+			1499,//Participant first name
+			1500,//Participant last name
+			1501,//Job title
+			1502,//Telephone
+			1503,//Skype
+			1504,//E-mail
+			1505,//Please confirm your e-mail
+			1506,//Alternative e-mail
+			1507,//Персональное фото
+			"SIMPLE_QUESTION_889", //Salutation
+			"SIMPLE_QUESTION_732",//Зал
+			1522, //Стол
+			1523,//Номер счета
+			1524,//Сумма счета
+			"SIMPLE_QUESTION_667",//Реквизиты
+		),//Участники Представители Алматы Весна 2017
 	);
 	private static $arSIDByForm = array(
 		4 => array(
@@ -624,6 +669,23 @@ class CFormMatrix
 			"SIMPLE_QUESTION_824",//Зал
 		),//Участники Представители Москва Осень 2015
 		29 => array(
+			"SIMPLE_QUESTION_446",//Participant first name
+			"SIMPLE_QUESTION_551",//Participant last name
+			"SIMPLE_QUESTION_729",//Job title
+			"SIMPLE_QUESTION_394",//Telephone
+			"SIMPLE_QUESTION_400",//Skype
+			"SIMPLE_QUESTION_859",//E-mail
+			"SIMPLE_QUESTION_585",//Please confirm your e-mail
+			"SIMPLE_QUESTION_749",//Alternative e-mail
+			"SIMPLE_QUESTION_575",//Персональное фото
+			"SIMPLE_QUESTION_889",//Salutation
+			"SIMPLE_QUESTION_539",//Номер счета
+			"SIMPLE_QUESTION_680",//Сумма счета
+			"SIMPLE_QUESTION_667",//Реквизиты
+			"SIMPLE_QUESTION_148",//Стол
+			"SIMPLE_QUESTION_732",//Зал
+		),//Участники Представители Москва Весна 2016
+		30 => array(
 			"SIMPLE_QUESTION_446",//Participant first name
 			"SIMPLE_QUESTION_551",//Participant last name
 			"SIMPLE_QUESTION_729",//Job title
@@ -1559,7 +1621,8 @@ class CFormMatrix
 		488 => 25, //Москва, Россия. 12 марта 2015
 		3521 => 26, //Алматы, Казахстан. сентябрь 2015
 		3522 => 27, //Киев, Украина. сентябрь 2015
-		3523 => 28 //Москва, Россия. октябрь 2015
+		3523 => 28, //Москва, Россия. октябрь 2015
+		14025 => 30, //Алматы, Казахстан. весна 2017
 	);
 	public static $arExhGuestForm = array(
 		358 => 24, //Москва, Россия. 2 октября 2014
@@ -1571,6 +1634,7 @@ class CFormMatrix
 		3523 => 24, //Москва, Россия. 2 октября 2014
 		3521 => 23, //Алматы, Казахстан. 26 сентября 2014
 		3522 => 22, //Киев, Украина. 23 сентября 2014
+		14025 => 23, //Алматы, Казахстан. весна 2017
 	);
 	//id почтовых событий для гостей
 	private static $arPostTemplateByExhibID = array(
@@ -1583,6 +1647,7 @@ class CFormMatrix
 		3523 => array("GUEST_EVENING"=>82, "GUEST_MORNING"=>72), //Москва, Россия. октябрь 2015
 		3521 => array("GUEST_EVENING"=>81, "GUEST_MORNING"=>73), //Алматы, Казахстан. сентябрь 2015
 		3522 => array("GUEST_EVENING"=>80, "GUEST_MORNING"=>74), //Киев, Украина. сентябрь 2015
+		14025 => array("GUEST_EVENING"=>81, "GUEST_MORNING"=>73), //Алматы, Казахстан. весна 2017
 	);
 	private static $arExhProp = array(
 		358 => array("UF_ID5", "UF_ID10"),//Москва, Россия. 2 октября 2014
@@ -1594,9 +1659,10 @@ class CFormMatrix
 		488 => array("UF_ID11", "UF_ID12"),//Москва, Россия. 12 марта 2015
 		3521 => array("UF_ALM2015", "UF_ALM2015COL"), //Алматы, Казахстан. сентябрь 2015
 		3522 => array("UF_KIEV2015", "UF_KIEV2015COL"), //Киев, Украина. сентябрь 2015
-		3523 => array("UF_MSCAUT2015", "UF_MSCAUT2015COL") //Москва, Россия. октябрь 2015
+		3523 => array("UF_MSCAUT2015", "UF_MSCAUT2015COL"), //Москва, Россия. октябрь 2015
+		14025 => array("UF_ALMSP2017", "UF_ALMSP2017COL") //Алматы, Казахстан. весна 2017
 	);
-	static $userFields = array("UF_MSCSPRING2016", "UF_ID2", "UF_ID3", "UF_ID4", "UF_ID5","UF_ID11", "UF_ALM2015", "UF_KIEV2015", "UF_MSCAUT2015");
+	static $userFields = array("UF_MSCSPRING2016", "UF_ID2", "UF_ID3", "UF_ID4", "UF_ID5","UF_ID11", "UF_ALM2015", "UF_KIEV2015", "UF_MSCAUT2015", "UF_ALMSP2017");
 	static function getPostTemplateByExhibID($exhibId, $name) {
 		return isset(self::$arPostTemplateByExhibID[$exhibId][$name]) ? self::$arPostTemplateByExhibID[$exhibId][$name] : false;
 	}
