@@ -496,7 +496,7 @@ class CFormMatrix
 			1471,//Сумма счета
 			"SIMPLE_QUESTION_667",//Реквизиты
 		),//Участники Представители Москва Весна 2016
-		29 => array(
+		30 => array(
 			1499,//Participant first name
 			1500,//Participant last name
 			1501,//Job title
