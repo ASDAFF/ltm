@@ -348,6 +348,18 @@ if (intval($USER_ID) > 0)
 			}
 		}
 			break;
+		case "14025" ://Алматы, Казахстан. весна 2017
+		{
+			if(!empty($morning))
+			{
+				$eventName["M"] = "REG_NEW_B_ALMSP17_M";
+			}
+			if(!empty($evening))
+			{
+				$eventName["E"] = "REG_NEW_B_ALMSP17_E";
+			}
+		}
+			break;
 	}
 
 	foreach ($eventName as $when => $eventNameElem)

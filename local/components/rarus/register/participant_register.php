@@ -229,6 +229,7 @@ foreach ($data["EXHIBITION"] as $exhId)
 		case "3521":{$eventName[] = "REG_NEW_E_ALM15";} break; //Алматы, Казахстан. 2015
 		case "3522":{$eventName[] = "REG_NEW_E_KIEV15";} break; //Киев, Украина 2015
 		case "3523":{$eventName[] = "REG_NEW_E_MOSOT15";} break; //Москва, Россия 2015
+		case "14025":{$eventName[] = "REG_NEW_E_ALMSP17";} break; //Алматы, Казахстан. весна 2017
 	}
 }
 
