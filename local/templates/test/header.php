@@ -83,7 +83,7 @@
                     	//прверка на участника
                     	if(!$bUserTypeIsset)
                     	{
-                    	    $arPartGroupID = array("10","9", "12", "11", "14","13", "16", "15", "18", "17", "21", "20");
+                    	    $arPartGroupID = array("10","9", "12", "11", "14","13", "16", "15", "18", "17", "21", "20", "43", "42", "46","47","50","51","55","56");
                         	foreach ($arCPartGroupID as $userGroupID)
                         	{
                         		if(in_array($userGroupID, $arUserGroups))
@@ -98,7 +98,7 @@
                     	//прверка на гостя
                     	if(!$bUserTypeIsset)
                     	{
-                    	    $arGuestGroupID = array("22", "25", "23", "26", "24", "27", "19");
+                    	    $arGuestGroupID = array("22", "25", "23", "26", "24", "27", "19", "44","48","52","57");
                         	foreach ($arGuestGroupID as $userGroupID)
                         	{
                         		if(in_array($userGroupID, $arUserGroups))
