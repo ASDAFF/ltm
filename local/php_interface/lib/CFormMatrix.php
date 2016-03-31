@@ -701,7 +701,7 @@ class CFormMatrix
 			"SIMPLE_QUESTION_667",//Реквизиты
 			"SIMPLE_QUESTION_148",//Стол
 			"SIMPLE_QUESTION_732",//Зал
-		),//Участники Представители Москва Весна 2016
+		),//Участники Представители Алматы Весна 2017
 	);
 	static function getAnswerRelBase($baseQ, $needFormID)
 	{
