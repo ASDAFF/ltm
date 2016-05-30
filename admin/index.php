@@ -36,4 +36,7 @@ false
 	<div class="panel-heading">
 		<a href="/admin/photo/" class="collapsed">Загрузка фотографий</a>
 	</div>
+	<div class="panel-heading">
+		<a href="/admin/storage/">Хранилище гостей</a>
+	</div>
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

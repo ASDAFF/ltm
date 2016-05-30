@@ -192,6 +192,7 @@ function printVal($ar, $glue)
 			*/?>
 				<?break?>
 			<?endswitch?>
+		<input class="custom-buttom in-storage-button-mass" type="button" name="in-storage" value="В хранилище">
 		<?foreach($arResult["USERS_LIST"] as $arUser):?>
 			<input type="hidden" name="USERS_LIST[]" value="<?=$arUser["ID"]?>">
 		<?endforeach?>
@@ -333,6 +334,7 @@ function printVal($ar, $glue)
 									<input class="custom-buttom" type="submit" name="cancell-participation" disabled value="Отменить участие">*/?>
 										<?break?>
 									<?endswitch?>
+								<li><a href="javascript:(void);" data-user-id="<?=$arUser["ID"]?>" class="in-storage-button">Поместить&nbsp;в&nbsp;хранилище</a></li>
 							</ul>
 						</div>
 					</td>
@@ -373,6 +375,15 @@ function printVal($ar, $glue)
 			$(this).closest("form").serialize())
 	});
 
+	//в хранилище
+	$(document).on("click", ".in-storage-button", function() {
+		return sendAjaxUpdate("/admin/guest/guest-set-in-storage.php",
+			"USER_ID="+$(this).data("user-id")+"&"+$(this).closest("form").serialize())
+	});
+	$(document).on("click", ".in-storage-button-mass", function() {
+		return sendAjaxUpdate("/admin/guest/guest-set-in-storage.php",
+			$(this).closest("form").serialize())
+	});
 
 	function sendAjaxUpdate(url, data) {
 		$.ajax({

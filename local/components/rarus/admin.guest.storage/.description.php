@@ -2,8 +2,8 @@
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 
 $arComponentDescription = array(
-	"NAME" => GetMessage("COMP_MAIN_USER_REGISTER_TITLE"),
-	"DESCRIPTION" => GetMessage("COMP_MAIN_USER_REGISTER_DESCR"),
+	"NAME" => GetMessage("RARUS_STORAGE_TITLE"),
+	"DESCRIPTION" => GetMessage("RARUS_STORAGE_DESCR"),
 	"ICON" => "/images/storage.gif",
 	"PATH" => array(
 			"ID" => "utility",
