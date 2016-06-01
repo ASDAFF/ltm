@@ -15,7 +15,7 @@ $request = \Bitrix\Main\HttpContext::getCurrent()->getRequest();
 ?>
 
 <div class="storage-popup">
-	<form method="post" action="<?=$arResult["ACTION_URL"]?>">
+	<form method="post" action="<?=$arResult["ACTION_URL"]?>" name="inworking">
 		<input type="hidden" name="ID" value="<?=$arResult["USER_ID"]?>">
 		<input type="hidden" name="TYPE" value="inworking">
 		<h2><?=Loc::getMessage('STORAGE_P_TITLE')?></h2>

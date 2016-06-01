@@ -382,7 +382,7 @@ function printVal($ar, $glue)
 	});
 	$(document).on("click", ".in-storage-button-mass", function() {
 		return sendAjaxUpdate("/admin/guest/guest-set-in-storage.php",
-			$(this).closest("form").serialize())
+			"ALL_USERS=Y&ACT=<?=$arParams['ACT']?>&"+$(this).closest("form").serialize())
 	});
 
 	function sendAjaxUpdate(url, data) {
@@ -391,7 +391,9 @@ function printVal($ar, $glue)
 			method: "POST",
 			data: data,
 			success: function(){document.location.reload(true)},
-			error: function(d){alert("error: "+d.responseText)}
+			error: function(d){alert("error: "+d.responseText)},
+			beforeSend: function () {BX.showWait();},
+			complete: function () {BX.closeWait();}
 		});
 		return false;
 	}

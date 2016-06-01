@@ -6,7 +6,6 @@ $(document).ready(function () {
 	//сворачивание разворачивание строк таблицы
 	$('.table tbody').on('dblclick', 'tr', function () {
 		$(this).toggleClass('full');
-		console.log($(this));
 	});
 
 	$(document).on('change', '.storage-popup .checkbox li input[type=checkbox], .storage-popup .radio li input[type=radio]', function () {
@@ -45,4 +44,6 @@ $(document).ready(function () {
 			'href': window.location.pathname + '?popup=Y&ID=' + userID
 		});
 	});
+
+	$(document).on('submit', 'form[name=inworking]', function(){BX.showWait();});
 });
