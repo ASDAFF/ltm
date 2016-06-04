@@ -29,6 +29,8 @@ $request = \Bitrix\Main\HttpContext::getCurrent()->getRequest();
 							<? if($request->get('FILTER_TYPE') == 'PERSONAL_PHONE'): ?>selected="selected"<? endif ?>><?=Loc::getMessage('STORAGE_PERSONAL_PHONE')?></option>
 					<option value="LOGIN"
 							<? if($request->get('FILTER_TYPE') == 'LOGIN'): ?>selected="selected"<? endif ?>><?=Loc::getMessage('STORAGE_LOGIN')?></option>
+					<option value="NAME"
+							<? if($request->get('FILTER_TYPE') == 'NAME'): ?>selected="selected"<? endif ?>><?=Loc::getMessage('STORAGE_NAME')?></option>
 				</select>
 				<input type="submit" value="<?=Loc::getMessage('STORAGE_SEARCH')?>" name="filter">
 				<input type="submit" value="<?=Loc::getMessage('STORAGE_RESET')?>" name="reset_filter">

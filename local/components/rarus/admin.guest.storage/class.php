@@ -122,10 +122,10 @@ class CAdminGuestStorage extends CBitrixComponent
 			array(
 				'FIELDS' => array("ID", "LOGIN", "EMAIL"),
 				'SELECT' => array("UF_*"),
-				"NAV_PARAMS" => array("nPageSize" => $this->arParams['COUNT'])
+				//"NAV_PARAMS" => array("nPageSize" => $this->arParams['COUNT'])
 			)
 		);
-		$rsUsers->NavStart();
+		$rsUsers->NavStart($this->arParams['COUNT'], false);
 		$this->arResult["NAVIGATE"] = $rsUsers->GetNavPrint(GetMessage("STORAGE_PAGES"));
 		while($arUser = $rsUsers->Fetch()){
 			$this->arResult['USERS'][$arUser['ID']] = $arUser;

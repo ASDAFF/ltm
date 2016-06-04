@@ -5,6 +5,7 @@ $MESS["STORAGE_EMAIL"] = "E-mail";
 $MESS["STORAGE_WORK_COMPANY"] = "Компания";
 $MESS["STORAGE_PERSONAL_PHONE"] = "Телефон";
 $MESS["STORAGE_LOGIN"] = "Логин";
+$MESS["STORAGE_NAME"] = "ФИО";
 $MESS["STORAGE_SEARCH"] = "Поиск";
 $MESS["STORAGE_RESET"] = "Сбосить";
 $MESS["STORAGE_ID"] = "ID";
