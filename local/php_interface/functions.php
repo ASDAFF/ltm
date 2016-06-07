@@ -16,7 +16,7 @@ function makePassDeCode($passw=""){
     return passCode(base64_decode($passw), "luxoran");
 }
 
-function pre($arr, $name)
+function pre($arr, $name = NULL)
 {
     global $USER;
     $login = $USER->GetLogin();

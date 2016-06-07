@@ -1,0 +1,87 @@
+.table tr .data-wrap{
+	max-height: 100px;
+	overflow-y: hidden;
+}
+.table tr.full .data-wrap{
+	max-height: none;
+}
+.table tr a.in-working{
+	cursor: pointer;
+}
+
+.filter {
+	margin-bottom: 20px;
+}
+
+.storage-popup{
+	width: 450px;
+	padding: 25px 15px;
+	background: #ffffff;
+	font-family: 'Proxima', serif;
+	font-size: 15px;
+	color: #000000;
+}
+
+.storage-popup h2{
+	margin: 0 0 25px;
+	color: #00aeef;
+	font-size: 20px;
+	font-weight: normal;
+}
+
+.storage-popup .select-exh{
+	margin-bottom: 15px;
+}
+.storage-popup .format{
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+.storage-popup ul{
+	list-style: none;
+}
+.storage-popup .radio li{
+	margin-bottom: 10px;
+}
+.storage-popup .checkbox li{
+	float: left;
+	width: 85px;
+}
+.storage-popup input[type=submit]{
+	background: none;
+	border: none;
+	color: #00aeef;
+	display: block;
+	margin: 65px auto 0;
+	outline: none;
+}
+
+.storage-popup input[type=submit]:hover{
+	text-decoration: underline;
+}
+
+.storage-popup .checkbox li input[type=checkbox]{display: none;}
+.storage-popup .checkbox li label{
+	background: url('images/check.png') no-repeat scroll 0 7px transparent;
+	padding-left: 23px;
+	display: inline-block;
+	line-height: 33px;
+}
+
+.storage-popup .checkbox li label.active{
+	background: url('images/check_act.png') no-repeat scroll 0 0 transparent;
+
+}
+
+.storage-popup .radio li input[type=radio]{display: none;}
+.storage-popup .radio li label{
+	background: url('images/radio.png') no-repeat scroll 0 0 transparent;
+	padding-left: 23px;
+	display: inline-block;
+	line-height: 17px;
+	color: #787878;
+}
+
+.storage-popup .radio li label.active{
+	background: url('images/radio_act.png') no-repeat scroll 0 0 transparent;
+	color: #000000;
+}

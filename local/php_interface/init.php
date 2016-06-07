@@ -13,6 +13,6 @@ CModule::AddAutoloadClasses('',array(
 'CHandlers' => "/local/php_interface/lib/CHandlers.php",
 'CHLMFunctions' => "/local/php_interface/lib/CHLMFunctions.php",
 'CLTMFunctions' => "/local/php_interface/lib/CLTMFunctions.php",
-'CLTMTransfer' => "/local/php_interface/lib/CLTMTransfer.php",		//Перенос пользователей между выставками
+'CLTMGuestStorage' => "/local/php_interface/lib/CLTMGuestStorage.php",
 ));
 ?>

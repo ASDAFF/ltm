@@ -1,4 +1,5 @@
 <?
+
 class CFormMatrix
 {
 	private static $arAnswerSalutationIDByForm = array(
@@ -126,16 +127,19 @@ class CFormMatrix
 			1527,//ИП Ветрова Елена Васильевна
 		),
 	);
+
 	static function getIndexRequisiteIDByForm($id, $formID)
 	{
 		$index = array_search($id, self::$arAnswerRequisiteIDByForm[$formID]);
 		return $index;
 	}
+
 	static function getIndexRequisiteRelBase($id, $formID)
 	{
 		$index = array_search($id, self::$arAnswerRequisiteIDByForm[4]);
 		return self::$arAnswerRequisiteIDByForm[$formID][$index];
 	}
+
 	private static $arFormQuestions = array(
 		4 => array(
 			32,//Participant first name
@@ -703,55 +707,55 @@ class CFormMatrix
 			"SIMPLE_QUESTION_732",//Зал
 		),//Участники Представители Алматы Весна 2017
 	);
+
 	static function getAnswerRelBase($baseQ, $needFormID)
 	{
-		if(empty($baseQ) || !intval($needFormID))
-		{
+		if(empty($baseQ) || !intval($needFormID)){
 			return false;
 		}
 		$index = array_search($baseQ, self::$arAnswerIDByForm[4]);
 		return self::$arAnswerIDByForm[$needFormID][$index];
 	}
+
 	static function getAnswerRelForm($answerID, $fromFormID, $toFormID)
 	{
-		if(!$answerID || !$fromFormID || !$toFormID)
-		{
+		if(!$answerID || !$fromFormID || !$toFormID){
 			return false;
 		}
 		$index = array_search($answerID, self::$arAnswerIDByForm[$fromFormID]);
 		return self::$arAnswerIDByForm[$toFormID][$index];
 	}
+
 	static function getSIDRelBase($baseQ, $needFormID)
 	{
-		if(empty($baseQ) || !intval($needFormID))
-		{
+		if(empty($baseQ) || !intval($needFormID)){
 			return false;
 		}
 		$index = array_search($baseQ, self::$arSIDByForm[4]);
 		return self::$arSIDByForm[$needFormID][$index];
 	}
+
 	static function getAnswerSalutationRelBase($baseQ, $needFormID)
 	{
-		if(empty($baseQ) || !intval($needFormID))
-		{
+		if(empty($baseQ) || !intval($needFormID)){
 			return false;
 		}
 		$index = array_search($baseQ, self::$arAnswerSalutationIDByForm[4]);
 		return self::$arAnswerSalutationIDByForm[$needFormID][$index];
 	}
+
 	static function getAnswerSalutationRelForm($answerID, $fromFormID, $toFormID)
 	{
-		if(!$answerID || !$fromFormID || !$toFormID)
-		{
+		if(!$answerID || !$fromFormID || !$toFormID){
 			return false;
 		}
 		$index = array_search($answerID, self::$arAnswerSalutationIDByForm[$fromFormID]);
 		return self::$arAnswerSalutationIDByForm[$toFormID][$index];
 	}
+
 	static function getAnswerSalutationBase($answID, $needFormID)
 	{
-		if(empty($answID) || !intval($needFormID))
-		{
+		if(empty($answID) || !intval($needFormID)){
 			return false;
 		}
 		$index = array_search($answID, self::$arAnswerSalutationIDByForm[$needFormID]);
@@ -1193,422 +1197,422 @@ class CFormMatrix
 	);
 	private static $arFormGuestQuestions = array(
 		"NAMES" => array(
-			"0"=>"Название компании",
-			"1"=>"Вид деятельности",
-			"2"=>"Фактический адрес компании",
-			"3"=>"Индекс",
-			"4"=>"Город",
-			"5"=>"Страна",
-			"6"=>"Страна (other)",
-			"7"=>"Имя",
-			"8"=>"Фамилия",
-			"9"=>"Должность",
-			"10"=>"Телефон",
-			"11"=>"Мобильный телефон",
-			"12"=>"Скайп",
-			"13"=>"E-mail",
-			"14"=>"Введите E-mail ещё раз",
-			"15"=>"http://",
-			"16"=>"Имя коллеги 1",
-			"17"=>"Фамилия коллеги 1",
-			"18"=>"Должность коллеги 1",
-			"19"=>"E-mail коллеги 1",
-			"20"=>"Имя коллеги 2",
-			"21"=>"Фамилия коллеги 2",
-			"22"=>"E-mail коллеги 2",
-			"23"=>"Должность коллеги 2",
-			"24"=>"Имя коллеги 3",
-			"25"=>"Фамилия коллеги 3",
-			"26"=>"Должность коллеги 3",
-			"27"=>"E-mail коллеги 3",
-			"LOGIN"=>"Введите логин/гостевое имя",
-			"29"=>"Введите пароль",
-			"30"=>"Повторите пароль",
-			"31"=>"Введите краткое описание",
-			"32"=>"North America",
-			"33"=>"Europe",
-			"34"=>"South America",
-			"35"=>"Africa",
-			"36"=>"Asia",
-			"37"=>"Oceania",
-			"38"=>"Имя коллеги (на утро)",
-			"39"=>"Фамилия коллеги (на утро)",
-			"40"=>"Должность коллеги (на утро)",
-			"41"=>"E-mail коллеги (на утро)",
-			"42"=>"Утро",
-			"43"=>"Вечер",
-			"44"=>"Зал",
-			"45"=>"Стол"
+			"0" => "Название компании",
+			"1" => "Вид деятельности",
+			"2" => "Фактический адрес компании",
+			"3" => "Индекс",
+			"4" => "Город",
+			"5" => "Страна",
+			"6" => "Страна (other)",
+			"7" => "Имя",
+			"8" => "Фамилия",
+			"9" => "Должность",
+			"10" => "Телефон",
+			"11" => "Мобильный телефон",
+			"12" => "Скайп",
+			"13" => "E-mail",
+			"14" => "Введите E-mail ещё раз",
+			"15" => "http://",
+			"16" => "Имя коллеги 1",
+			"17" => "Фамилия коллеги 1",
+			"18" => "Должность коллеги 1",
+			"19" => "E-mail коллеги 1",
+			"20" => "Имя коллеги 2",
+			"21" => "Фамилия коллеги 2",
+			"22" => "E-mail коллеги 2",
+			"23" => "Должность коллеги 2",
+			"24" => "Имя коллеги 3",
+			"25" => "Фамилия коллеги 3",
+			"26" => "Должность коллеги 3",
+			"27" => "E-mail коллеги 3",
+			"LOGIN" => "Введите логин/гостевое имя",
+			"29" => "Введите пароль",
+			"30" => "Повторите пароль",
+			"31" => "Введите краткое описание",
+			"32" => "North America",
+			"33" => "Europe",
+			"34" => "South America",
+			"35" => "Africa",
+			"36" => "Asia",
+			"37" => "Oceania",
+			"38" => "Имя коллеги (на утро)",
+			"39" => "Фамилия коллеги (на утро)",
+			"40" => "Должность коллеги (на утро)",
+			"41" => "E-mail коллеги (на утро)",
+			"42" => "Утро",
+			"43" => "Вечер",
+			"44" => "Зал",
+			"45" => "Стол"
 		),
 		10 => array(
-			"0"=>"107",
-			"1"=>"108",
-			"2"=>"109",
-			"3"=>"110",
-			"4"=>"111",
-			"5"=>"112",
-			"6"=>"305",
-			"7"=>"113",
-			"8"=>"114",
-			"9"=>"115",
-			"10"=>"116",
-			"11"=>"569", //моб телефон
-			"12"=>"596", //скайп
-			"13"=>"117",
-			"14"=>"118",
-			"15"=>"119",
-			"16"=>"120",
-			"17"=>"121",
-			"18"=>"122",
-			"19"=>"123",
-			"20"=>"124",
-			"21"=>"125",
-			"22"=>"126",
-			"23"=>"127",
-			"24"=>"128",
-			"25"=>"129",
-			"26"=>"130",
-			"27"=>"131",
-			"LOGIN"=>"132",
-			"29"=>"133",
-			"30"=>"134",
-			"31"=>"135",
-			"32"=>"136",
-			"33"=>"137",
-			"34"=>"138",
-			"35"=>"139",
-			"36"=>"475",
-			"37"=>"476",
-			"38"=>"477",
-			"39"=>"478",
-			"40"=>"479",
-			"41"=>"480",
-			"42"=>"481",
-			"43"=>"482",
-			"44"=>"570",
-			"45"=>"571"
+			"0" => "107",
+			"1" => "108",
+			"2" => "109",
+			"3" => "110",
+			"4" => "111",
+			"5" => "112",
+			"6" => "305",
+			"7" => "113",
+			"8" => "114",
+			"9" => "115",
+			"10" => "116",
+			"11" => "569", //моб телефон
+			"12" => "596", //скайп
+			"13" => "117",
+			"14" => "118",
+			"15" => "119",
+			"16" => "120",
+			"17" => "121",
+			"18" => "122",
+			"19" => "123",
+			"20" => "124",
+			"21" => "125",
+			"22" => "126",
+			"23" => "127",
+			"24" => "128",
+			"25" => "129",
+			"26" => "130",
+			"27" => "131",
+			"LOGIN" => "132",
+			"29" => "133",
+			"30" => "134",
+			"31" => "135",
+			"32" => "136",
+			"33" => "137",
+			"34" => "138",
+			"35" => "139",
+			"36" => "475",
+			"37" => "476",
+			"38" => "477",
+			"39" => "478",
+			"40" => "479",
+			"41" => "480",
+			"42" => "481",
+			"43" => "482",
+			"44" => "570",
+			"45" => "571"
 		),
 		21 => array(
-			"0"=>"339",
-			"1"=>"340",
-			"2"=>"341",
-			"3"=>"342",
-			"4"=>"343",
-			"5"=>"344",
-			"6"=>"345",
-			"7"=>"346",
-			"8"=>"347",
-			"9"=>"348",
-			"10"=>"349",
-			"11"=>"350",
-			"12"=>"351",
-			"13"=>"352",
-			"14"=>"353",
-			"15"=>"354",
-			"16"=>"355",
-			"17"=>"356",
-			"18"=>"357",
-			"19"=>"358",
-			"20"=>"359",
-			"21"=>"360",
-			"22"=>"361",
-			"23"=>"362",
-			"24"=>"363",
-			"25"=>"364",
-			"LOGIN"=>"365",
-			"27"=>"366",
-			"28"=>"367",
-			"29"=>"368",
-			"30"=>"369",
-			"31"=>"370",
-			"32"=>"",
-			"33"=>"371",
-			"34"=>"372",
-			"35"=>"",
-			"36"=>"",
-			"37"=>"",
-			"38"=>"",
-			"39"=>"",
-			"40"=>"",
-			"41"=>"",
+			"0" => "339",
+			"1" => "340",
+			"2" => "341",
+			"3" => "342",
+			"4" => "343",
+			"5" => "344",
+			"6" => "345",
+			"7" => "346",
+			"8" => "347",
+			"9" => "348",
+			"10" => "349",
+			"11" => "350",
+			"12" => "351",
+			"13" => "352",
+			"14" => "353",
+			"15" => "354",
+			"16" => "355",
+			"17" => "356",
+			"18" => "357",
+			"19" => "358",
+			"20" => "359",
+			"21" => "360",
+			"22" => "361",
+			"23" => "362",
+			"24" => "363",
+			"25" => "364",
+			"LOGIN" => "365",
+			"27" => "366",
+			"28" => "367",
+			"29" => "368",
+			"30" => "369",
+			"31" => "370",
+			"32" => "",
+			"33" => "371",
+			"34" => "372",
+			"35" => "",
+			"36" => "",
+			"37" => "",
+			"38" => "",
+			"39" => "",
+			"40" => "",
+			"41" => "",
 		),
 		22 => array(
-			"0"=>"373",
-			"1"=>"374",
-			"2"=>"375",
-			"3"=>"376",
-			"4"=>"377",
-			"5"=>"378",
-			"6"=>"379",
-			"7"=>"380",
-			"8"=>"381",
-			"9"=>"382",
-			"10"=>"383",
-			"11"=>"384",
-			"12"=>"385",
-			"13"=>"386",
-			"14"=>"387",
-			"15"=>"388",
-			"16"=>"389",
-			"17"=>"390",
-			"18"=>"391",
-			"19"=>"392",
-			"20"=>"393",
-			"21"=>"394",
-			"22"=>"395",
-			"23"=>"396",
-			"24"=>"397",
-			"25"=>"398",
-			"LOGIN"=>"399",
-			"27"=>"400",
-			"28"=>"401",
-			"29"=>"402",
-			"30"=>"403",
-			"31"=>"404",
-			"32"=>"",
-			"33"=>"405",
-			"34"=>"406",
-			"35"=>"",
-			"36"=>"",
-			"37"=>"",
-			"38"=>"",
-			"39"=>"",
-			"40"=>"",
-			"41"=>"",
+			"0" => "373",
+			"1" => "374",
+			"2" => "375",
+			"3" => "376",
+			"4" => "377",
+			"5" => "378",
+			"6" => "379",
+			"7" => "380",
+			"8" => "381",
+			"9" => "382",
+			"10" => "383",
+			"11" => "384",
+			"12" => "385",
+			"13" => "386",
+			"14" => "387",
+			"15" => "388",
+			"16" => "389",
+			"17" => "390",
+			"18" => "391",
+			"19" => "392",
+			"20" => "393",
+			"21" => "394",
+			"22" => "395",
+			"23" => "396",
+			"24" => "397",
+			"25" => "398",
+			"LOGIN" => "399",
+			"27" => "400",
+			"28" => "401",
+			"29" => "402",
+			"30" => "403",
+			"31" => "404",
+			"32" => "",
+			"33" => "405",
+			"34" => "406",
+			"35" => "",
+			"36" => "",
+			"37" => "",
+			"38" => "",
+			"39" => "",
+			"40" => "",
+			"41" => "",
 		),
 		23 => array(
-			"0"=>"407",
-			"1"=>"408",
-			"2"=>"409",
-			"3"=>"410",
-			"4"=>"411",
-			"5"=>"412",
-			"6"=>"413",
-			"7"=>"414",
-			"8"=>"415",
-			"9"=>"416",
-			"10"=>"417",
-			"11"=>"418",
-			"12"=>"419",
-			"13"=>"420",
-			"14"=>"421",
-			"15"=>"422",
-			"16"=>"423",
-			"17"=>"424",
-			"18"=>"425",
-			"19"=>"426",
-			"20"=>"427",
-			"21"=>"428",
-			"22"=>"429",
-			"23"=>"430",
-			"24"=>"431",
-			"25"=>"432",
-			"LOGIN"=>"433",
-			"27"=>"434",
-			"28"=>"435",
-			"29"=>"436",
-			"30"=>"437",
-			"31"=>"438",
-			"32"=>"",
-			"33"=>"439",
-			"34"=>"440",
-			"35"=>"",
-			"36"=>"",
-			"37"=>"",
-			"38"=>"",
-			"39"=>"",
-			"40"=>"",
-			"41"=>"",
+			"0" => "407",
+			"1" => "408",
+			"2" => "409",
+			"3" => "410",
+			"4" => "411",
+			"5" => "412",
+			"6" => "413",
+			"7" => "414",
+			"8" => "415",
+			"9" => "416",
+			"10" => "417",
+			"11" => "418",
+			"12" => "419",
+			"13" => "420",
+			"14" => "421",
+			"15" => "422",
+			"16" => "423",
+			"17" => "424",
+			"18" => "425",
+			"19" => "426",
+			"20" => "427",
+			"21" => "428",
+			"22" => "429",
+			"23" => "430",
+			"24" => "431",
+			"25" => "432",
+			"LOGIN" => "433",
+			"27" => "434",
+			"28" => "435",
+			"29" => "436",
+			"30" => "437",
+			"31" => "438",
+			"32" => "",
+			"33" => "439",
+			"34" => "440",
+			"35" => "",
+			"36" => "",
+			"37" => "",
+			"38" => "",
+			"39" => "",
+			"40" => "",
+			"41" => "",
 		),
 		24 => array(
-			"0"=>"441",
-			"1"=>"442",
-			"2"=>"443",
-			"3"=>"444",
-			"4"=>"445",
-			"5"=>"446",
-			"6"=>"447",
-			"7"=>"448",
-			"8"=>"449",
-			"9"=>"450",
-			"10"=>"451",
-			"11"=>"452",
-			"12"=>"453",
-			"13"=>"454",
-			"14"=>"455",
-			"15"=>"456",
-			"16"=>"457",
-			"17"=>"458",
-			"18"=>"459",
-			"19"=>"460",
-			"20"=>"461",
-			"21"=>"462",
-			"22"=>"463",
-			"23"=>"464",
-			"24"=>"465",
-			"25"=>"466",
-			"26"=>"467",
-			"27"=>"468",
-			"28"=>"469",
-			"29"=>"470",
-			"30"=>"471",
-			"31"=>"472",
-			"32"=>"",
-			"33"=>"473",
-			"34"=>"474",
-			"35"=>"",
-			"36"=>"",
-			"37"=>"",
-			"38"=>"",
-			"39"=>"",
-			"40"=>"",
-			"41"=>"",
+			"0" => "441",
+			"1" => "442",
+			"2" => "443",
+			"3" => "444",
+			"4" => "445",
+			"5" => "446",
+			"6" => "447",
+			"7" => "448",
+			"8" => "449",
+			"9" => "450",
+			"10" => "451",
+			"11" => "452",
+			"12" => "453",
+			"13" => "454",
+			"14" => "455",
+			"15" => "456",
+			"16" => "457",
+			"17" => "458",
+			"18" => "459",
+			"19" => "460",
+			"20" => "461",
+			"21" => "462",
+			"22" => "463",
+			"23" => "464",
+			"24" => "465",
+			"25" => "466",
+			"26" => "467",
+			"27" => "468",
+			"28" => "469",
+			"29" => "470",
+			"30" => "471",
+			"31" => "472",
+			"32" => "",
+			"33" => "473",
+			"34" => "474",
+			"35" => "",
+			"36" => "",
+			"37" => "",
+			"38" => "",
+			"39" => "",
+			"40" => "",
+			"41" => "",
 		)
 	);
 	private static $arFormGuestQuestionsSID = array(
 		"NAMES" => array(
-			"0"=>"Название компании",
-			"1"=>"Вид деятельности",
-			"2"=>"Фактический адрес компании",
-			"3"=>"Индекс",
-			"4"=>"Город",
-			"5"=>"Страна",
-			"6"=>"Страна (other)",
-			"7"=>"Имя",
-			"8"=>"Фамилия",
-			"9"=>"Должность",
-			"10"=>"Телефон",
-			"11"=>"Мобильный телефон",
-			"12"=>"Скайп",
-			"13"=>"E-mail",
-			"14"=>"Введите E-mail ещё раз",
-			"15"=>"http://",
-			"16"=>"Имя коллеги 1",
-			"17"=>"Фамилия коллеги 1",
-			"18"=>"Должность коллеги 1",
-			"19"=>"E-mail коллеги 1",
-			"20"=>"Имя коллеги 2",
-			"21"=>"Фамилия коллеги 2",
-			"22"=>"Должность коллеги 2",
-			"23"=>"E-mail коллеги 2",
-			"24"=>"Имя коллеги 3",
-			"25"=>"Фамилия коллеги 3",
-			"26"=>"Должность коллеги 3",
-			"27"=>"E-mail коллеги 3",
-			"28"=>"Введите логин/гостевое имя",
-			"29"=>"Введите пароль",
-			"30"=>"Повторите пароль",
-			"31"=>"Введите краткое описание",
-			"32"=>"North America",
-			"33"=>"Europe",
-			"34"=>"South America",
-			"35"=>"Africa",
-			"36"=>"Asia",
-			"37"=>"Oceania",
-			"38"=>"Имя коллеги (на утро)",
-			"39"=>"Фамилия коллеги (на утро)",
-			"40"=>"Должность коллеги (на утро)",
-			"41"=>"E-mail коллеги (на утро)",
-			"42"=>"Утро",
-			"43"=>"Вечер",
-			"44"=>"Зал",
-			"45"=>"Стол"
+			"0" => "Название компании",
+			"1" => "Вид деятельности",
+			"2" => "Фактический адрес компании",
+			"3" => "Индекс",
+			"4" => "Город",
+			"5" => "Страна",
+			"6" => "Страна (other)",
+			"7" => "Имя",
+			"8" => "Фамилия",
+			"9" => "Должность",
+			"10" => "Телефон",
+			"11" => "Мобильный телефон",
+			"12" => "Скайп",
+			"13" => "E-mail",
+			"14" => "Введите E-mail ещё раз",
+			"15" => "http://",
+			"16" => "Имя коллеги 1",
+			"17" => "Фамилия коллеги 1",
+			"18" => "Должность коллеги 1",
+			"19" => "E-mail коллеги 1",
+			"20" => "Имя коллеги 2",
+			"21" => "Фамилия коллеги 2",
+			"22" => "Должность коллеги 2",
+			"23" => "E-mail коллеги 2",
+			"24" => "Имя коллеги 3",
+			"25" => "Фамилия коллеги 3",
+			"26" => "Должность коллеги 3",
+			"27" => "E-mail коллеги 3",
+			"28" => "Введите логин/гостевое имя",
+			"29" => "Введите пароль",
+			"30" => "Повторите пароль",
+			"31" => "Введите краткое описание",
+			"32" => "North America",
+			"33" => "Europe",
+			"34" => "South America",
+			"35" => "Africa",
+			"36" => "Asia",
+			"37" => "Oceania",
+			"38" => "Имя коллеги (на утро)",
+			"39" => "Фамилия коллеги (на утро)",
+			"40" => "Должность коллеги (на утро)",
+			"41" => "E-mail коллеги (на утро)",
+			"42" => "Утро",
+			"43" => "Вечер",
+			"44" => "Зал",
+			"45" => "Стол"
 		),
 		"NAMES_AR" => array(
-			"0"=>"COMPANY",
-			"1"=>"AREA",
-			"2"=>"ADRESS",
-			"3"=>"INDEX",
-			"4"=>"CITY",
-			"5"=>"COUNTRY",
-			"6"=>"COUNTRY_OTHER",
-			"7"=>"F_NAME",
-			"8"=>"L_NAME",
-			"9"=>"JOB",
-			"10"=>"PHONE",
-			"11"=>"MOBILE_PHONE",
-			"12"=>"SKYPE",
-			"13"=>"EMAIL",
-			"14"=>"EMAIL_REP",
-			"15"=>"SITE",
-			"16"=>"F_NAME_COL1",
-			"17"=>"L_NAME_COL1",
-			"18"=>"JOB_COL1",
-			"19"=>"EMAIL_COL1",
-			"20"=>"F_NAME_COL2",
-			"21"=>"L_NAME_COL2",
-			"22"=>"JOB_COL2",
-			"23"=>"EMAIL_COL2",
-			"24"=>"F_NAME_COL3",
-			"25"=>"L_NAME_COL3",
-			"26"=>"JOB_COL3",
-			"27"=>"EMAIL_COL3",
-			"28"=>"LOGIN",
-			"29"=>"PASSWORD",
-			"30"=>"PASSWORD_REP",
-			"31"=>"DESC",
-			"32"=>"DESTINITIONS",
-			"33"=>"DESTINITIONS",
-			"34"=>"DESTINITIONS",
-			"35"=>"DESTINITIONS",
-			"36"=>"DESTINITIONS",
-			"37"=>"DESTINITIONS",
-			"38"=>"F_NAME_COL",
-			"39"=>"L_NAME_COL",
-			"40"=>"JOB_COL",
-			"41"=>"EMAIL_COL",
-			"42"=>"MORNING",
-			"43"=>"EVENING",
-			"44"=>"HALL",
-			"45"=>"TABLE"
+			"0" => "COMPANY",
+			"1" => "AREA",
+			"2" => "ADRESS",
+			"3" => "INDEX",
+			"4" => "CITY",
+			"5" => "COUNTRY",
+			"6" => "COUNTRY_OTHER",
+			"7" => "F_NAME",
+			"8" => "L_NAME",
+			"9" => "JOB",
+			"10" => "PHONE",
+			"11" => "MOBILE_PHONE",
+			"12" => "SKYPE",
+			"13" => "EMAIL",
+			"14" => "EMAIL_REP",
+			"15" => "SITE",
+			"16" => "F_NAME_COL1",
+			"17" => "L_NAME_COL1",
+			"18" => "JOB_COL1",
+			"19" => "EMAIL_COL1",
+			"20" => "F_NAME_COL2",
+			"21" => "L_NAME_COL2",
+			"22" => "JOB_COL2",
+			"23" => "EMAIL_COL2",
+			"24" => "F_NAME_COL3",
+			"25" => "L_NAME_COL3",
+			"26" => "JOB_COL3",
+			"27" => "EMAIL_COL3",
+			"28" => "LOGIN",
+			"29" => "PASSWORD",
+			"30" => "PASSWORD_REP",
+			"31" => "DESC",
+			"32" => "DESTINITIONS",
+			"33" => "DESTINITIONS",
+			"34" => "DESTINITIONS",
+			"35" => "DESTINITIONS",
+			"36" => "DESTINITIONS",
+			"37" => "DESTINITIONS",
+			"38" => "F_NAME_COL",
+			"39" => "L_NAME_COL",
+			"40" => "JOB_COL",
+			"41" => "EMAIL_COL",
+			"42" => "MORNING",
+			"43" => "EVENING",
+			"44" => "HALL",
+			"45" => "TABLE"
 		),
 		"QUEST_CODE" => array(
-			"0"=>"SIMPLE_QUESTION_115",
-			"1"=>"SIMPLE_QUESTION_677",
-			"2"=>"SIMPLE_QUESTION_773",
-			"3"=>"SIMPLE_QUESTION_756",
-			"4"=>"SIMPLE_QUESTION_672",
-			"5"=>"SIMPLE_QUESTION_678",
-			"6"=>"SIMPLE_QUESTION_243",
-			"7"=>"SIMPLE_QUESTION_750",
-			"8"=>"SIMPLE_QUESTION_823",
-			"9"=>"SIMPLE_QUESTION_391",
-			"10"=>"SIMPLE_QUESTION_636",
-			"11"=>"SIMPLE_QUESTION_844",
-			"12"=>"SIMPLE_QUESTION_111",
-			"13"=>"SIMPLE_QUESTION_373",
-			"14"=>"SIMPLE_QUESTION_279",
-			"15"=>"SIMPLE_QUESTION_552",
-			"16"=>"SIMPLE_QUESTION_367",
-			"17"=>"SIMPLE_QUESTION_482",
-			"18"=>"SIMPLE_QUESTION_187",
-			"19"=>"SIMPLE_QUESTION_421",
-			"20"=>"SIMPLE_QUESTION_225",
-			"21"=>"SIMPLE_QUESTION_770",
-			"22"=>"SIMPLE_QUESTION_280",
-			"23"=>"SIMPLE_QUESTION_384",
-			"24"=>"SIMPLE_QUESTION_765",
-			"25"=>"SIMPLE_QUESTION_627",
-			"26"=>"SIMPLE_QUESTION_788",
-			"27"=>"SIMPLE_QUESTION_230",
-			"28"=>"SIMPLE_QUESTION_474",
-			"29"=>"SIMPLE_QUESTION_435",
-			"30"=>"SIMPLE_QUESTION_300",
-			"31"=>"SIMPLE_QUESTION_166",
-			"32"=>"SIMPLE_QUESTION_383",
-			"33"=>"SIMPLE_QUESTION_244",
-			"34"=>"SIMPLE_QUESTION_212",
-			"35"=>"SIMPLE_QUESTION_497",
-			"36"=>"SIMPLE_QUESTION_526",
-			"37"=>"SIMPLE_QUESTION_878",
-			"38"=>"SIMPLE_QUESTION_816",
-			"39"=>"SIMPLE_QUESTION_596",
-			"40"=>"SIMPLE_QUESTION_304",
-			"41"=>"SIMPLE_QUESTION_278",
-			"42"=>"SIMPLE_QUESTION_836",
-			"43"=>"SIMPLE_QUESTION_156",
-			"44"=>"SIMPLE_QUESTION_762",
-			"45"=>"SIMPLE_QUESTION_211"
+			"0" => "SIMPLE_QUESTION_115",
+			"1" => "SIMPLE_QUESTION_677",
+			"2" => "SIMPLE_QUESTION_773",
+			"3" => "SIMPLE_QUESTION_756",
+			"4" => "SIMPLE_QUESTION_672",
+			"5" => "SIMPLE_QUESTION_678",
+			"6" => "SIMPLE_QUESTION_243",
+			"7" => "SIMPLE_QUESTION_750",
+			"8" => "SIMPLE_QUESTION_823",
+			"9" => "SIMPLE_QUESTION_391",
+			"10" => "SIMPLE_QUESTION_636",
+			"11" => "SIMPLE_QUESTION_844",
+			"12" => "SIMPLE_QUESTION_111",
+			"13" => "SIMPLE_QUESTION_373",
+			"14" => "SIMPLE_QUESTION_279",
+			"15" => "SIMPLE_QUESTION_552",
+			"16" => "SIMPLE_QUESTION_367",
+			"17" => "SIMPLE_QUESTION_482",
+			"18" => "SIMPLE_QUESTION_187",
+			"19" => "SIMPLE_QUESTION_421",
+			"20" => "SIMPLE_QUESTION_225",
+			"21" => "SIMPLE_QUESTION_770",
+			"22" => "SIMPLE_QUESTION_280",
+			"23" => "SIMPLE_QUESTION_384",
+			"24" => "SIMPLE_QUESTION_765",
+			"25" => "SIMPLE_QUESTION_627",
+			"26" => "SIMPLE_QUESTION_788",
+			"27" => "SIMPLE_QUESTION_230",
+			"28" => "SIMPLE_QUESTION_474",
+			"29" => "SIMPLE_QUESTION_435",
+			"30" => "SIMPLE_QUESTION_300",
+			"31" => "SIMPLE_QUESTION_166",
+			"32" => "SIMPLE_QUESTION_383",
+			"33" => "SIMPLE_QUESTION_244",
+			"34" => "SIMPLE_QUESTION_212",
+			"35" => "SIMPLE_QUESTION_497",
+			"36" => "SIMPLE_QUESTION_526",
+			"37" => "SIMPLE_QUESTION_878",
+			"38" => "SIMPLE_QUESTION_816",
+			"39" => "SIMPLE_QUESTION_596",
+			"40" => "SIMPLE_QUESTION_304",
+			"41" => "SIMPLE_QUESTION_278",
+			"42" => "SIMPLE_QUESTION_836",
+			"43" => "SIMPLE_QUESTION_156",
+			"44" => "SIMPLE_QUESTION_762",
+			"45" => "SIMPLE_QUESTION_211"
 		)
 	);
 	public static $arExhForm = array(
@@ -1638,16 +1642,16 @@ class CFormMatrix
 	);
 	//id почтовых событий для гостей
 	private static $arPostTemplateByExhibID = array(
-		358 => array("GUEST_EVENING"=>82, "GUEST_MORNING"=>72), //Москва, Россия. 2 октября 2014
-		357 => array("GUEST_EVENING"=>79, "GUEST_MORNING"=>75), //Баку, Айзербайджан. 10 апреля 2014
-		359 => array("GUEST_EVENING"=>81, "GUEST_MORNING"=>73), //Алматы, Казахстан. 26 сентября 2014
-		360 => array("GUEST_EVENING"=>80, "GUEST_MORNING"=>74), //Киев, Украина. 23 сентября 2014
-		361 => array("GUEST_EVENING"=>71, "GUEST_MORNING"=>70), //Москва, Россия. 13 марта 2014
-		488 => array("GUEST_EVENING"=>78, "GUEST_MORNING"=>76), //Москва, Россия. 12 марта 2015
-		3523 => array("GUEST_EVENING"=>82, "GUEST_MORNING"=>72), //Москва, Россия. октябрь 2015
-		3521 => array("GUEST_EVENING"=>81, "GUEST_MORNING"=>73), //Алматы, Казахстан. сентябрь 2015
-		3522 => array("GUEST_EVENING"=>80, "GUEST_MORNING"=>74), //Киев, Украина. сентябрь 2015
-		14025 => array("GUEST_EVENING"=>81, "GUEST_MORNING"=>73), //Алматы, Казахстан. весна 2017
+		358 => array("GUEST_EVENING" => 82, "GUEST_MORNING" => 72), //Москва, Россия. 2 октября 2014
+		357 => array("GUEST_EVENING" => 79, "GUEST_MORNING" => 75), //Баку, Айзербайджан. 10 апреля 2014
+		359 => array("GUEST_EVENING" => 81, "GUEST_MORNING" => 73), //Алматы, Казахстан. 26 сентября 2014
+		360 => array("GUEST_EVENING" => 80, "GUEST_MORNING" => 74), //Киев, Украина. 23 сентября 2014
+		361 => array("GUEST_EVENING" => 71, "GUEST_MORNING" => 70), //Москва, Россия. 13 марта 2014
+		488 => array("GUEST_EVENING" => 78, "GUEST_MORNING" => 76), //Москва, Россия. 12 марта 2015
+		3523 => array("GUEST_EVENING" => 82, "GUEST_MORNING" => 72), //Москва, Россия. октябрь 2015
+		3521 => array("GUEST_EVENING" => 81, "GUEST_MORNING" => 73), //Алматы, Казахстан. сентябрь 2015
+		3522 => array("GUEST_EVENING" => 80, "GUEST_MORNING" => 74), //Киев, Украина. сентябрь 2015
+		14025 => array("GUEST_EVENING" => 81, "GUEST_MORNING" => 73), //Алматы, Казахстан. весна 2017
 	);
 	private static $arExhProp = array(
 		358 => array("UF_ID5", "UF_ID10"),//Москва, Россия. 2 октября 2014
@@ -1662,112 +1666,1073 @@ class CFormMatrix
 		3523 => array("UF_MSCAUT2015", "UF_MSCAUT2015COL"), //Москва, Россия. октябрь 2015
 		14025 => array("UF_ALMSP2017", "UF_ALMSP2017COL") //Алматы, Казахстан. весна 2017
 	);
-	static $userFields = array("UF_MSCSPRING2016", "UF_ID2", "UF_ID3", "UF_ID4", "UF_ID5","UF_ID11", "UF_ALM2015", "UF_KIEV2015", "UF_MSCAUT2015", "UF_ALMSP2017");
-	static function getPostTemplateByExhibID($exhibId, $name) {
+	static $userFields = array("UF_MSCSPRING2016", "UF_ID2", "UF_ID3", "UF_ID4", "UF_ID5", "UF_ID11", "UF_ALM2015", "UF_KIEV2015", "UF_MSCAUT2015", "UF_ALMSP2017");
+
+	static function getPostTemplateByExhibID($exhibId, $name)
+	{
 		return isset(self::$arPostTemplateByExhibID[$exhibId][$name]) ? self::$arPostTemplateByExhibID[$exhibId][$name] : false;
 	}
-	static function getFormQuestionIdByFormIDAndQuestionName($formId, $questionName) {
+
+	static function getFormQuestionIdByFormIDAndQuestionName($formId, $questionName)
+	{
 		return isset(self::$arFormGuestQuestions[$formId][$questionName]) ? self::$arFormGuestQuestions[$formId][$questionName] : false;
 	}
+
 	static function getPFormIDByExh($id)
 	{
-		if(intval($id) == 0)
-		{
+		if(intval($id) == 0){
 			return false;
 		}
 		return self::$arExhForm[$id];
 	}
+
 	static function getGResultIDByExh($id)
 	{
-		if(intval($id) == 0)
-		{
+		if(intval($id) == 0){
 			return false;
 		}
 		return self::$arExhGuestForm[$id];
 	}
+
 	static function getPropertyIDByExh($id, $member = 0)
 	{
-		if(intval($id) == 0)
-		{
+		if(intval($id) == 0){
 			return false;
 		}
-		if(1 == $member)
-		{
+		if(1 == $member){
 			return self::$arExhProp[$id][1];
-		}
-		else
-		{
+		}else{
 			return self::$arExhProp[$id][0];
 		}
 	}
+
 	static function getFormIDByQID($id)
 	{
-		if(intval($id) == 0)
-		{
+		if(intval($id) == 0){
 			return false;
 		}
-		foreach (self::$arFormQuestions as $formID => $questions)
-		{
-			if(in_array($id, $questions))
-			{
+		foreach(self::$arFormQuestions as $formID => $questions){
+			if(in_array($id, $questions)){
 				return $formID;
 			}
 		}
 		return false;
 	}
+
 	static function getIndexQ($id, $form)
 	{
-		if(!intval($id))
-		{
+		if(!intval($id)){
 			return false;
 		}
-		if(intval($form))
-		{
+		if(intval($form)){
 			return array_search($id, self::$arFormQuestions[$form]);
-		}
-		else
-		{
-			foreach (self::$arFormQuestions as $formID => $questions)
-			{
+		}else{
+			foreach(self::$arFormQuestions as $formID => $questions){
 				$ind = array_search($id, $questions);
-				if($ind)
-				{
+				if($ind){
 					return $ind;
 				}
 			}
 		}
 		return false;
 	}
+
 	static function getQByIndex($index, $form)
 	{
-		if(intval($form))
-		{
+		if(intval($form)){
 			return self::$arFormQuestions[$form][$index];
-		}
-		else
-		{
-			foreach (self::$arFormQuestions as $formID => $questions)
-			{
+		}else{
+			foreach(self::$arFormQuestions as $formID => $questions){
 				$exist = array_key_exists($index, $questions);
-				if($exist)
-				{
+				if($exist){
 					return $questions[$index];
 				}
 			}
 		}
 		return false;
 	}
+
 	static function getQIDByBase($id, $form)
 	{
-		if(!intval($id))
-		{
+		if(!intval($id)){
 			return false;
 		}
-		if(intval($form))
-		{
+		if(intval($form)){
 			$id = array_search($id, self::$arFormQuestions[4]);
 			return self::$arFormQuestions[$form][$id];
 		}
 		return false;
+	}
+
+
+	#часть связанная с хранилищем гостей
+	private static $arGuestFormQuestions = array(
+		10 => array(
+			107,//Название компании
+			108,//Вид деятельности
+			109,//Фактический адрес компании
+			110,//Индекс
+			111,//Город
+			112,//Страна
+			305,//Страна (other)
+			113,//Имя
+			114,//Фамилия
+			115,//Должность
+			116,//Телефон
+			569,//Мобильный телефон
+			596,//Skype
+			117,//E-mail
+			118,//Введите E-mail ещё раз
+			119,//http://
+			120,//Имя коллеги 1
+			121,//Фамилия коллеги 1
+			122,//Должность коллеги 1
+			123,//E-mail коллеги 1
+			124,//Имя коллеги 2
+			125,//Фамилия коллеги 2
+			126,//E-mail коллеги 2
+			127,//Должность коллеги 2
+			128,//Имя коллеги 3
+			129,//Фамилия коллеги 3
+			130,//Должность коллеги 3
+			131,//E-mail коллеги 3
+			132,//Введите логин/гостевое имя
+			133,//Введите пароль
+			134,//Повторите пароль
+			135,//Введите краткое описание
+			136,//North America
+			137,//Europe
+			138,//South America
+			139,//Africa
+			475,//Asia
+			476,//Oceania
+			477,//Имя коллеги (на утро)
+			478,//Фамилия коллеги (на утро)
+			479,//Должность коллеги (на утро)
+			480,//E-mail коллеги (на утро)
+			481,//Утро
+			482,//Вечер
+			494,//Фото
+			495,//Фото коллеги на утро
+			570,//Зал
+			571,//Стол
+		),        //Гости Москва Весна
+		31 => array(
+			612,//Название компании
+			613,//Вид деятельности
+			614,//Фактический адрес компании
+			615,//Индекс
+			616,//Город
+			617,//Страна
+			618,//Страна (other)
+			619,//Имя
+			620,//Фамилия
+			621,//Должность
+			622,//Телефон
+			623,//Мобильный телефон
+			624,//Skype
+			625,//E-mail
+			626,//Введите E-mail ещё раз
+			627,//http://
+			628,//Имя коллеги 1
+			629,//Фамилия коллеги 1
+			630,//Должность коллеги 1
+			631,//E-mail коллеги 1
+			632,//Имя коллеги 2
+			633,//Фамилия коллеги 2
+			634,//E-mail коллеги 2
+			635,//Должность коллеги 2
+			636,//Имя коллеги 3
+			637,//Фамилия коллеги 3
+			638,//Должность коллеги 3
+			639,//E-mail коллеги 3
+			640,//Введите логин/гостевое имя
+			641,//Введите пароль
+			642,//Повторите пароль
+			643,//Введите краткое описание
+			644,//North America
+			645,//Europe
+			646,//South America
+			647,//Africa
+			648,//Asia
+			649,//Oceania
+			650,//Имя коллеги (на утро)
+			651,//Фамилия коллеги (на утро)
+			652,//Должность коллеги (на утро)
+			653,//E-mail коллеги (на утро)
+			654,//Утро
+			655,//Вечер
+			656,//Фото
+			657,//Фото коллеги на утро
+			658,//Зал
+			659,//Стол
+		),        //Общая база гостей - результаты
+	);
+
+	private static $arAnswerIDGuestForm = array(
+		10 => array(
+			204,//Название компании
+			'SIMPLE_QUESTION_677',//Вид деятельности
+			208,//Фактический адрес компании
+			209,//Индекс
+			210,//Город
+			'SIMPLE_QUESTION_678',//Страна
+			510,//Страна (other)
+			216,//Имя
+			217,//Фамилия
+			218,//Должность
+			219,//Телефон
+			1425,//Мобильный телефон
+			1484,//Skype
+			220,//E-mail
+			221,//Введите E-mail ещё раз
+			222,//http://
+			223,//Имя коллеги 1
+			224,//Фамилия коллеги 1
+			225,//Должность коллеги 1
+			226,//E-mail коллеги 1
+			227,//Имя коллеги 2
+			228,//Фамилия коллеги 2
+			229,//E-mail коллеги 2
+			230,//Должность коллеги 2
+			231,//Имя коллеги 3
+			232,//Фамилия коллеги 3
+			233,//Должность коллеги 3
+			234,//E-mail коллеги 3
+			235,//Введите логин/гостевое имя
+			236,//Введите пароль
+			237,//Повторите пароль
+			238,//Введите краткое описание
+			'SIMPLE_QUESTION_383',//North America
+			'SIMPLE_QUESTION_244',//Europe
+			'SIMPLE_QUESTION_212',//South America
+			'SIMPLE_QUESTION_497',//Africa
+			'SIMPLE_QUESTION_526',//Asia
+			'SIMPLE_QUESTION_878',//Oceania
+			839,//Имя коллеги (на утро)
+			840,//Фамилия коллеги (на утро)
+			841,//Должность коллеги (на утро)
+			842,//E-mail коллеги (на утро)
+			'SIMPLE_QUESTION_836',//Утро
+			'SIMPLE_QUESTION_156',//Вечер
+			1312,//Фото
+			1313,//Фото коллеги на утро
+			'SIMPLE_QUESTION_762',//Зал
+			1432,//Стол
+		),        //Гости Москва Весна
+		31 => array(
+			1528,//Название компании
+			'SIMPLE_QUESTION_677',//Вид деятельности
+			1534,//Фактический адрес компании
+			1535,//Индекс
+			1536,//Город
+			'SIMPLE_QUESTION_678',//Страна
+			1553,//Страна (other)
+			1554,//Имя
+			1555,//Фамилия
+			1556,//Должность
+			1557,//Телефон
+			1558,//Мобильный телефон
+			1559,//Skype
+			1560,//E-mail
+			1561,//Введите E-mail ещё раз
+			1562,//http://
+			1563,//Имя коллеги 1
+			1564,//Фамилия коллеги 1
+			1565,//Должность коллеги 1
+			1566,//E-mail коллеги 1
+			1567,//Имя коллеги 2
+			1568,//Фамилия коллеги 2
+			1569,//E-mail коллеги 2
+			1570,//Должность коллеги 2
+			1571,//Имя коллеги 3
+			1572,//Фамилия коллеги 3
+			1573,//Должность коллеги 3
+			1574,//E-mail коллеги 3
+			1575,//Введите логин/гостевое имя
+			1576,//Введите пароль
+			1577,//Повторите пароль
+			1578,//Введите краткое описание
+			'SIMPLE_QUESTION_383',//North America
+			'SIMPLE_QUESTION_244',//Europe
+			'SIMPLE_QUESTION_212',//South America
+			'SIMPLE_QUESTION_497',//Africa
+			'SIMPLE_QUESTION_526',//Asia
+			'SIMPLE_QUESTION_878',//Oceania
+			1827,//Имя коллеги (на утро)
+			1828,//Фамилия коллеги (на утро)
+			1829,//Должность коллеги (на утро)
+			1830,//E-mail коллеги (на утро)
+			'SIMPLE_QUESTION_836',//Утро
+			'SIMPLE_QUESTION_156',//Вечер
+			1833,//Фото
+			1834,//Фото коллеги на утро
+			'SIMPLE_QUESTION_762',//Зал
+			1844,//Стол
+		),        //Общая база гостей - результаты
+	);
+
+	private static $arSIDGuestForm = array(
+		10 => array(
+			'SIMPLE_QUESTION_115', //Название компании
+			'SIMPLE_QUESTION_677', //Вид деятельности
+			'SIMPLE_QUESTION_773', //Фактический адрес компании
+			'SIMPLE_QUESTION_756', //Индекс
+			'SIMPLE_QUESTION_672', //Город
+			'SIMPLE_QUESTION_678', //Страна
+			'SIMPLE_QUESTION_243', //Страна (other)
+			'SIMPLE_QUESTION_750', //Имя
+			'SIMPLE_QUESTION_823', //Фамилия
+			'SIMPLE_QUESTION_391', //Должность
+			'SIMPLE_QUESTION_636', //Телефон
+			'SIMPLE_QUESTION_844', //Мобильный телефон
+			'SIMPLE_QUESTION_111', //Skype
+			'SIMPLE_QUESTION_373', //E-mail
+			'SIMPLE_QUESTION_279', //Введите E-mail ещё раз
+			'SIMPLE_QUESTION_552', //http://
+			'SIMPLE_QUESTION_367', //Имя коллеги 1
+			'SIMPLE_QUESTION_482', //Фамилия коллеги 1
+			'SIMPLE_QUESTION_187', //Должность коллеги 1
+			'SIMPLE_QUESTION_421', //	E-mail коллеги 1
+			'SIMPLE_QUESTION_225', //Имя коллеги 2
+			'SIMPLE_QUESTION_770', //Фамилия коллеги 2
+			'SIMPLE_QUESTION_384', //E-mail коллеги 2
+			'SIMPLE_QUESTION_280', //Должность коллеги 2
+			'SIMPLE_QUESTION_765', //Имя коллеги 3
+			'SIMPLE_QUESTION_627', //Фамилия коллеги 3
+			'SIMPLE_QUESTION_788', //Должность коллеги 3
+			'SIMPLE_QUESTION_230', //E-mail коллеги 3
+			'SIMPLE_QUESTION_474', //Введите логин/гостевое имя
+			'SIMPLE_QUESTION_435', //Введите пароль
+			'SIMPLE_QUESTION_300', //Повторите пароль
+			'SIMPLE_QUESTION_166', //Введите краткое описание
+			'SIMPLE_QUESTION_383', //North America
+			'SIMPLE_QUESTION_244', //Europe
+			'SIMPLE_QUESTION_212', //South America
+			'SIMPLE_QUESTION_497', //Africa
+			'SIMPLE_QUESTION_526', //Asia
+			'SIMPLE_QUESTION_878', //Oceania
+			'SIMPLE_QUESTION_816', //Имя коллеги (на утро)
+			'SIMPLE_QUESTION_596', //Фамилия коллеги (на утро)
+			'SIMPLE_QUESTION_304', //Должность коллеги (на утро)
+			'SIMPLE_QUESTION_278', //E-mail коллеги (на утро)
+			'SIMPLE_QUESTION_836', //Утро
+			'SIMPLE_QUESTION_156', //Вечер
+			'SIMPLE_QUESTION_269', //Фото
+			'SIMPLE_QUESTION_873', //Фото коллеги на утро
+			'SIMPLE_QUESTION_762', //	Зал
+			'SIMPLE_QUESTION_211', //Стол
+		),
+		31 => array(
+			'SIMPLE_QUESTION_115', //Название компании
+			'SIMPLE_QUESTION_677', //Вид деятельности
+			'SIMPLE_QUESTION_773', //Фактический адрес компании
+			'SIMPLE_QUESTION_756', //Индекс
+			'SIMPLE_QUESTION_672', //Город
+			'SIMPLE_QUESTION_678', //Страна
+			'SIMPLE_QUESTION_243', //Страна (other)
+			'SIMPLE_QUESTION_750', //Имя
+			'SIMPLE_QUESTION_823', //Фамилия
+			'SIMPLE_QUESTION_391', //Должность
+			'SIMPLE_QUESTION_636', //Телефон
+			'SIMPLE_QUESTION_844', //Мобильный телефон
+			'SIMPLE_QUESTION_111', //Skype
+			'SIMPLE_QUESTION_373', //E-mail
+			'SIMPLE_QUESTION_279', //Введите E-mail ещё раз
+			'SIMPLE_QUESTION_552', //http://
+			'SIMPLE_QUESTION_367', //Имя коллеги 1
+			'SIMPLE_QUESTION_482', //Фамилия коллеги 1
+			'SIMPLE_QUESTION_187', //Должность коллеги 1
+			'SIMPLE_QUESTION_421', //	E-mail коллеги 1
+			'SIMPLE_QUESTION_225', //Имя коллеги 2
+			'SIMPLE_QUESTION_770', //Фамилия коллеги 2
+			'SIMPLE_QUESTION_384', //E-mail коллеги 2
+			'SIMPLE_QUESTION_280', //Должность коллеги 2
+			'SIMPLE_QUESTION_765', //Имя коллеги 3
+			'SIMPLE_QUESTION_627', //Фамилия коллеги 3
+			'SIMPLE_QUESTION_788', //Должность коллеги 3
+			'SIMPLE_QUESTION_230', //E-mail коллеги 3
+			'SIMPLE_QUESTION_474', //Введите логин/гостевое имя
+			'SIMPLE_QUESTION_435', //Введите пароль
+			'SIMPLE_QUESTION_300', //Повторите пароль
+			'SIMPLE_QUESTION_166', //Введите краткое описание
+			'SIMPLE_QUESTION_383', //North America
+			'SIMPLE_QUESTION_244', //Europe
+			'SIMPLE_QUESTION_212', //South America
+			'SIMPLE_QUESTION_497', //Africa
+			'SIMPLE_QUESTION_526', //Asia
+			'SIMPLE_QUESTION_878', //Oceania
+			'SIMPLE_QUESTION_816', //Имя коллеги (на утро)
+			'SIMPLE_QUESTION_596', //Фамилия коллеги (на утро)
+			'SIMPLE_QUESTION_304', //Должность коллеги (на утро)
+			'SIMPLE_QUESTION_278', //E-mail коллеги (на утро)
+			'SIMPLE_QUESTION_836', //Утро
+			'SIMPLE_QUESTION_156', //Вечер
+			'SIMPLE_QUESTION_269', //Фото
+			'SIMPLE_QUESTION_873', //Фото коллеги на утро
+			'SIMPLE_QUESTION_762', //	Зал
+			'SIMPLE_QUESTION_211', //Стол
+		),
+	);
+
+	private static $arListAnswerGuestForm = array(
+		10 => array(
+			'SIMPLE_QUESTION_677' => array(        //Вид деятельности
+				205,//Tour Operator
+				206,//Travel Agency
+				207,//Corporate Client
+				498,//Press
+				1367,//Concierge Services
+			),
+			'SIMPLE_QUESTION_678' => array(        //Страна
+				211,//Armenia
+				212,//Azerbaijan
+				213,//Belarus
+				214,//Estonia
+				215,//Georgia
+				499,//Kazakhstan
+				500,//Kyrgyzstan
+				501,//Latvia
+				502,//Lithuania
+				503,//Moldova
+				504,//Russia
+				505,//Tajikistan
+				506,//Turkmenistan
+				507,//Ukraine
+				508,//Uzbekistan
+				509,//other
+			),
+			'SIMPLE_QUESTION_383' => array(        //North America
+				239,//Anguilla
+				240,//Antigua and Barbuda
+				241,//Aruba
+				806,//Bahamas
+				807,//Barbados
+				808,//Belize
+				809,//Bermuda
+				810,//Bonaire
+				1225,//British Virgin Islands
+				1226,//Canada
+				1227,//Cayman Islands
+				1228,//Clipperton Island
+				1229,//Costa Rica
+				1230,//Cuba
+				1231,//Curaçao
+				1232,//Dominica
+				1233,//Dominican Republic
+				1234,//El Salvador
+				1235,//Greenland
+				1236,//Grenada
+				1237,//Guadeloupe
+				1238,//Guatemala
+				1239,//Haiti
+				1240,//Honduras
+				1241,//Jamaica
+				1242,//Martinique
+				1243,//Mexico
+				1244,//Montserrat
+				1245,//Navassa Island
+				1246,//Nicaragua
+				1247,//Panama
+				1248,//Puerto Rico
+				1249,//Saba
+				1250,//Saint Barthélemy
+				1251,//Saint Kitts and Nevis
+				1252,//Saint Lucia
+				1253,//Saint Martin
+				1254,//Saint Pierre and Miquelon
+				1255,//Saint Vincent and the Grenadines
+				1256,//Sint Eustatius
+				1257,//Sint Maarten
+				1258,//Trinidad and Tobago
+				1259,//Turks and Caicos Islands
+				1260,//United States of America
+				1261,//United States Virgin Islands
+			),
+			'SIMPLE_QUESTION_244' => array(        //Europe
+				242,//Albania
+				243,//Andorra
+				811,//Austria
+				812,//Azerbaijan
+				813,//Belarus
+				814,//Belgium
+				1170,//Bosnia and Herzegovina
+				1171,//Bulgaria
+				1172,//Croatia
+				1173,//Cyprus
+				1174,//Czech Republic
+				1175,//Denmark
+				1176,//Estonia
+				1177,//Faroe Islands
+				1178,//Finland
+				1179,//France
+				1180,//Germany
+				1181,//Georgia
+				1182,//Greece
+				1183,//Hungary
+				1184,//Iceland
+				1185,//Ireland
+				1186,//Italy
+				1187,//Latvia
+				1188,//Liechtenstein
+				1189,//Lithuania
+				1190,//Luxembourg
+				1191,//Macedonia
+				1192,//Malta
+				1193,//Moldova
+				1194,//Monaco
+				1195,//Montenegro
+				1196,//Netherlands
+				1197,//Norway
+				1198,//Poland
+				1199,//Portugal
+				1200,//Romania
+				1201,//Russia
+				1202,//San Marino
+				1203,//Serbia
+				1204,//Slovakia
+				1205,//Slovenia
+				1206,//Spain
+				1207,//Sweden
+				1208,//Switzerland
+				1209,//Turkey
+				1210,//Ukraine
+				1211,//United Kingdom
+				1212,//Vatican City/Holy See
+			),
+			'SIMPLE_QUESTION_212' => array(        //South America
+				244,//Argentina
+				245,//Bolivia
+				246,//Brazil
+				815,//Chile
+				816,//Colombia
+				817,//Ecuador
+				1262,//Falkland Islands
+				1263,//French Guiana
+				1264,//Guyana
+				1265,//Paraguay
+				1266,//Peru
+				1267,//Suriname
+				1268,//Uruguay
+				1269,//Venezuela
+			),
+			'SIMPLE_QUESTION_497' => array(        //Africa
+				247,//Algeria
+				248,//Angola
+				249,//Benin
+				250,//Botswana
+				251,//Burkina Faso
+				818,//Burundi
+				1077,//Cameroon
+				1078,//Cape Verde
+				1079,//Central African Republic
+				1080,//Chad
+				1081,//Comoros
+				1082,//Congo (Congo-Brazzaville)
+				1083,//Côte d'Ivoire (Ivory Coast)
+				1084,//Democratic Republic of the Congo (Congo-Kinshasa)
+				1085,//Djibouti
+				1086,//Egypt
+				1087,//Equatorial Guinea
+				1088,//Eritrea
+				1089,//Ethiopia
+				1090,//Gabon
+				1091,//Gambia
+				1092,//Ghana
+				1093,//Guinea
+				1094,//Guinea-Bissau
+				1095,//Kenya
+				1096,//Lesotho
+				1097,//Liberia
+				1098,//Libya
+				1099,//Madagascar
+				1100,//Malawi
+				1101,//Mali
+				1102,//Mauritania
+				1103,//Mauritius
+				1104,//Mayotte
+				1105,//Morocco
+				1106,//Mozambique
+				1107,//Namibia
+				1108,//Niger
+				1109,//Nigeria
+				1110,//Réunion
+				1111,//Rwanda
+				1112,//São Tomé and Príncipe
+				1113,//Senegal
+				1114,//Seychelles
+				1115,//Sierra Leone
+				1116,//Somalia
+				1117,//Somaliland
+				1118,//South Africa
+				1119,//South Sudan
+				1120,//Sudan
+				1121,//Swaziland
+				1122,//Tanzania
+				1123,//Togo
+				1124,//Tunisia
+				1125,//Uganda
+				1126,//Zambia
+				1127,//Zimbabwe
+			),
+			'SIMPLE_QUESTION_526' => array(        //Asia
+				819,//Afghanistan
+				820,//Armenia
+				822,//Bangladesh
+				824,//Brunei
+				1128,//Cambodia
+				1129,//China
+				1130,//Christmas Island
+				1131,//East Timor (Timor-Leste)
+				1132,//Hong Kong
+				1133,//India
+				1134,//Indonesia
+				1135,//Iran
+				1136,//Iraq
+				1137,//Israel
+				1138,//Japan
+				1139,//Jordan
+				1140,//Kazakhstan
+				1141,//Kuwait
+				1142,//Kyrgyzstan
+				1143,//Laos
+				1144,//Lebanon
+				1145,//Macau
+				1146,//Malaysia
+				1147,//Maldives
+				1148,//Mongolia
+				1149,//Myanmar (Burma)
+				1150,//Nepal
+				1151,//North Korea
+				1152,//Oman
+				1153,//Pakistan
+				1154,//Palestine
+				1155,//Philippines
+				1156,//Qatar
+				1157,//Saudi Arabia
+				1158,//Singapore
+				1159,//South Korea
+				1160,//Sri Lanka
+				1161,//Syria
+				1162,//Taiwan
+				1163,//Tajikistan
+				1164,//Thailand
+				1165,//Turkmenistan
+				1166,//United Arab Emirates
+				1167,//Uzbekistan
+				1168,//Vietnam
+				1169,//Yemen
+			),
+			'SIMPLE_QUESTION_878' => array(        //Oceania
+				825,//Arctic
+				826,//Antarctica
+				827,//American Samoa
+				828,//Ashmore and Cartier Islands
+				829,//Australia
+				830,//Baker Island
+				831,//Cook Islands
+				832,//Coral Sea Islands
+				833,//Fiji
+				1270,//French Polynesia
+				1271,//Guam
+				1272,//Howland Island
+				1273,//Johnston Atoll
+				1274,//Kingman Reef
+				1275,//Kiribati
+				1276,//Marshall
+				1277,//Islands
+				1278,//Micronesia
+				1279,//Midway Atoll
+				1280,//Nauru
+				1281,//New Caledonia
+				1282,//New Zealand
+				1283,//Niue
+				1284,//Norfolk Island
+				1285,//Northern Mariana Islands
+				1286,//Palau
+				1287,//Palmyra Atoll
+				1288,//Papua New Guinea
+				1289,//Pitcairn Islands
+				1290,//Samoa
+				1291,//Solomon Islands
+				1292,//Tokelau
+				1293,//Tonga
+				1294,//Tuvalu
+				1295,//Vanuatu
+				1296,//Wake Island
+				1297,//Wallis and Futuna
+			),
+			'SIMPLE_QUESTION_836' => array(        //Утро
+				843,//Выбран
+			),
+			'SIMPLE_QUESTION_156' => array(        //Вечер
+				844,//Выбран
+			),
+		),
+		31 => array(
+			'SIMPLE_QUESTION_677' => array(        //Вид деятельности
+				1529,//Tour Operator
+				1530,//Travel Agency
+				1531,//Corporate Client
+				1532,//Press
+				1533,//Concierge Services
+			),
+			'SIMPLE_QUESTION_678' => array(        //Страна
+				1537,//Armenia
+				1538,//Azerbaijan
+				1539,//Belarus
+				1540,//Estonia
+				1541,//Georgia
+				1542,//Kazakhstan
+				1543,//Kyrgyzstan
+				1544,//Latvia
+				1545,//Lithuania
+				1546,//Moldova
+				1547,//Russia
+				1548,//Tajikistan
+				1549,//Turkmenistan
+				1550,//Ukraine
+				1551,//Uzbekistan
+				1552,//other
+			),
+			'SIMPLE_QUESTION_383' => array(        //North America
+				1579,//Anguilla
+				1580,//Antigua and Barbuda
+				1581,//Aruba
+				1582,//Bahamas
+				1583,//Barbados
+				1584,//Belize
+				1585,//Bermuda
+				1586,//Bonaire
+				1587,//British Virgin Islands
+				1588,//Canada
+				1589,//Cayman Islands
+				1590,//Clipperton Island
+				1591,//Costa Rica
+				1592,//Cuba
+				1593,//Curaçao
+				1594,//Dominica
+				1595,//Dominican Republic
+				1596,//El Salvador
+				1597,//Greenland
+				1598,//Grenada
+				1599,//Guadeloupe
+				1600,//Guatemala
+				1601,//Haiti
+				1602,//Honduras
+				1603,//Jamaica
+				1604,//Martinique
+				1605,//Mexico
+				1606,//Montserrat
+				1607,//Navassa Island
+				1608,//Nicaragua
+				1609,//Panama
+				1610,//Puerto Rico
+				1611,//Saba
+				1612,//Saint Barthélemy
+				1613,//Saint Kitts and Nevis
+				1614,//Saint Lucia
+				1615,//Saint Martin
+				1616,//Saint Pierre and Miquelon
+				1617,//Saint Vincent and the Grenadines
+				1618,//Sint Eustatius
+				1619,//Sint Maarten
+				1620,//Trinidad and Tobago
+				1621,//Turks and Caicos Islands
+				1622,//United States of America
+				1623,//United States Virgin Islands
+			),
+			'SIMPLE_QUESTION_244' => array(        //Europe
+				1624,//Albania
+				1625,//Andorra
+				1626,//Austria
+				1627,//Azerbaijan
+				1628,//Belarus
+				1629,//Belgium
+				1630,//Bosnia and Herzegovina
+				1631,//Bulgaria
+				1632,//Croatia
+				1633,//Cyprus
+				1634,//Czech Republic
+				1635,//Denmark
+				1636,//Estonia
+				1637,//Faroe Islands
+				1638,//Finland
+				1639,//France
+				1640,//Germany
+				1641,//Georgia
+				1642,//Greece
+				1643,//Hungary
+				1644,//Iceland
+				1645,//Ireland
+				1646,//Italy
+				1647,//Latvia
+				1648,//Liechtenstein
+				1649,//Lithuania
+				1650,//Luxembourg
+				1651,//Macedonia
+				1652,//Malta
+				1653,//Moldova
+				1654,//Monaco
+				1655,//Montenegro
+				1656,//Netherlands
+				1657,//Norway
+				1658,//Poland
+				1659,//Portugal
+				1660,//Romania
+				1661,//Russia
+				1662,//San Marino
+				1663,//Serbia
+				1664,//Slovakia
+				1665,//Slovenia
+				1666,//Spain
+				1667,//Sweden
+				1668,//Switzerland
+				1669,//Turkey
+				1670,//Ukraine
+				1671,//United Kingdom
+				1672,//Vatican City/Holy See
+			),
+			'SIMPLE_QUESTION_212' => array(        //South America
+				1673,//Argentina
+				1674,//Bolivia
+				1675,//Brazil
+				1676,//Chile
+				1677,//Colombia
+				1678,//Ecuador
+				1679,//Falkland Islands
+				1680,//French Guiana
+				1681,//Guyana
+				1682,//Paraguay
+				1683,//Peru
+				1684,//Suriname
+				1685,//Uruguay
+				1686,//Venezuela
+			),
+			'SIMPLE_QUESTION_497' => array(        //Africa
+				1687,//Algeria
+				1688,//Angola
+				1689,//Benin
+				1690,//Botswana
+				1691,//Burkina Faso
+				1692,//Burundi
+				1693,//Cameroon
+				1694,//Cape Verde
+				1695,//Central African Republic
+				1696,//Chad
+				1697,//Comoros
+				1698,//Congo (Congo-Brazzaville)
+				1699,//Côte d'Ivoire (Ivory Coast)
+				1700,//Democratic Republic of the Congo (Congo-Kinshasa)
+				1701,//Djibouti
+				1702,//Egypt
+				1703,//Equatorial Guinea
+				1704,//Eritrea
+				1705,//Ethiopia
+				1706,//Gabon
+				1707,//Gambia
+				1708,//Ghana
+				1709,//Guinea
+				1710,//Guinea-Bissau
+				1711,//Kenya
+				1712,//Lesotho
+				1713,//Liberia
+				1714,//Libya
+				1715,//Madagascar
+				1716,//Malawi
+				1717,//Mali
+				1718,//Mauritania
+				1719,//Mauritius
+				1720,//Mayotte
+				1721,//Morocco
+				1722,//Mozambique
+				1723,//Namibia
+				1724,//Niger
+				1725,//Nigeria
+				1726,//Réunion
+				1727,//Rwanda
+				1728,//São Tomé and Príncipe
+				1729,//Senegal
+				1730,//Seychelles
+				1731,//Sierra Leone
+				1732,//Somalia
+				1733,//Somaliland
+				1734,//South Africa
+				1735,//South Sudan
+				1736,//Sudan
+				1737,//Swaziland
+				1738,//Tanzania
+				1739,//Togo
+				1740,//Tunisia
+				1741,//Uganda
+				1742,//Zambia
+				1743,//Zimbabwe
+			),
+			'SIMPLE_QUESTION_526' => array(        //Asia
+				1744,//Afghanistan
+				1745,//Armenia
+				1746,//Bangladesh
+				1747,//Brunei
+				1748,//Cambodia
+				1749,//China
+				1750,//Christmas Island
+				1751,//East Timor (Timor-Leste)
+				1752,//Hong Kong
+				1753,//India
+				1754,//Indonesia
+				1755,//Iran
+				1756,//Iraq
+				1757,//Israel
+				1758,//Japan
+				1759,//Jordan
+				1760,//Kazakhstan
+				1761,//Kuwait
+				1762,//Kyrgyzstan
+				1763,//Laos
+				1764,//Lebanon
+				1765,//Macau
+				1766,//Malaysia
+				1767,//Maldives
+				1768,//Mongolia
+				1769,//Myanmar (Burma)
+				1770,//Nepal
+				1771,//North Korea
+				1772,//Oman
+				1773,//Pakistan
+				1774,//Palestine
+				1775,//Philippines
+				1776,//Qatar
+				1777,//Saudi Arabia
+				1778,//Singapore
+				1779,//South Korea
+				1780,//Sri Lanka
+				1781,//Syria
+				1782,//Taiwan
+				1783,//Tajikistan
+				1784,//Thailand
+				1785,//Turkmenistan
+				1786,//United Arab Emirates
+				1787,//Uzbekistan
+				1788,//Vietnam
+				1789,//Yemen
+			),
+			'SIMPLE_QUESTION_878' => array(        //Oceania
+				1790,//Arctic
+				1791,//Antarctica
+				1792,//American Samoa
+				1793,//Ashmore and Cartier Islands
+				1794,//Australia
+				1795,//Baker Island
+				1796,//Cook Islands
+				1797,//Coral Sea Islands
+				1798,//Fiji
+				1799,//French Polynesia
+				1800,//Guam
+				1801,//Howland Island
+				1802,//Johnston Atoll
+				1803,//Kingman Reef
+				1804,//Kiribati
+				1805,//Marshall
+				1806,//Islands
+				1807,//Micronesia
+				1808,//Midway Atoll
+				1809,//Nauru
+				1810,//New Caledonia
+				1811,//New Zealand
+				1812,//Niue
+				1813,//Norfolk Island
+				1814,//Northern Mariana Islands
+				1815,//Palau
+				1816,//Palmyra Atoll
+				1817,//Papua New Guinea
+				1818,//Pitcairn Islands
+				1819,//Samoa
+				1820,//Solomon Islands
+				1821,//Tokelau
+				1822,//Tonga
+				1823,//Tuvalu
+				1824,//Vanuatu
+				1825,//Wake Island
+				1826,//Wallis and Futuna
+			),
+			'SIMPLE_QUESTION_836' => array(        //Утро
+				1831,//Выбран
+			),
+			'SIMPLE_QUESTION_156' => array(        //Вечер
+				1832,//Выбран
+			),
+		),
+	);
+
+
+	#функции работы с вопросами формы гостей
+
+	/** Возвращает ид вопроса для формы гостя
+	 * @param $baseQ - SID вопроса
+	 * @param $fromFormID - исходная форма
+	 * @param $needFormID - целевая форма
+	 * @return bool|string
+	 */
+	static function getAnswerGuestForm($baseQ, $fromFormID, $needFormID)
+	{
+		if(empty($baseQ) || !intval($fromFormID) || !intval($needFormID)){
+			return false;
+		}
+		$index = array_search($baseQ, self::$arAnswerIDGuestForm[$fromFormID]);
+		return self::$arAnswerIDGuestForm[$needFormID][$index];
+	}
+
+	static function getSIDGuestFormBase($baseQ, $needFormID)
+	{
+		if(empty($baseQ) || !intval($needFormID)){
+			return false;
+		}
+		$index = array_search($baseQ, self::$arSIDGuestForm[10]);
+		return self::$arSIDGuestForm[$needFormID][$index];
+	}
+
+	static function getSIDListGuestForm($needFormID)
+	{
+		if(!intval($needFormID)){
+			return false;
+		}
+		return self::$arSIDGuestForm[$needFormID];
+	}
+
+	static function getQIDGuestFormBase($id, $form)
+	{
+		if(!intval($id)){
+			return false;
+		}
+		if(intval($form)){
+			$id = array_search($id, self::$arGuestFormQuestions[10]);
+			return self::$arGuestFormQuestions[$form][$id];
+		}
+		return false;
+	}
+
+	
+
+	/**
+	 * Возвращает ид ответа для списковых вопросов
+	 * @param $fromFormID - ИД исходной формы гостей
+	 * @param $needFormID - ИД целевой формы гостей
+	 * @param $SID - идентификатр вопроса
+	 * @param $id - ИД ответа
+	 * @return bool|string
+	 */
+	static  function getListAnswersIDGuestForm($fromFormID, $needFormID, $SID, $id)
+	{
+		if(!intval($fromFormID) || !intval($needFormID) || !$SID || !isset(self::$arListAnswerGuestForm[$fromFormID][$SID]) || !isset(self::$arListAnswerGuestForm[$needFormID][$SID])){
+			return false;
+		}
+
+		$index = array_search($id, self::$arListAnswerGuestForm[$fromFormID][$SID]);
+		return self::$arListAnswerGuestForm[$needFormID][$SID][$index];
+	}
+	
+	static function getExhProp()
+	{
+		return self::$arExhProp;
 	}
 }
