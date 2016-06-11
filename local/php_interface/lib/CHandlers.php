@@ -131,6 +131,35 @@ class Chandlers
 			}
 		}
 	}
+
+	function OnBuildGlobalMenuHandler(&$adminMenu, &$moduleMenu) {
+			global $USER;
+			if($USER->IsAdmin()) {
+				$adminMenu['global_admin_cab'] = array(
+					"menu_id" => "admin_cab",
+					"sort"        => 1000,
+					"text"        => 'Кабинет админов',       // текст пункта меню
+					"title"       => 'Меню кабинета администраторов', // текст всплывающей подсказки
+					"icon"        => "form_menu_icon", // малая иконка
+					"index_icon"   => "form_page_icon", // большая иконка
+					"items_id"    => "global_admin_cab",  // идентификатор ветви
+					"items"       => array()          // остальные уровни меню сформируем ниже.
+				);
+
+				$moduleMenu[] = array(
+					"parent_menu" => "global_admin_cab",
+					"section" => "Главная страница",
+					"sort"        => 1000,
+					"url"         => "/admin/",
+					"text"        => 'Главная страница',
+					"title"       => 'Главная страница',
+					"icon"        => "sys_menu_icon",
+					"page_icon"   => "form_page_icon",
+					"items_id"    => "admin_cab_main",
+					"items"       => array()
+				);
+		}
+	}
 }
 
 ?>

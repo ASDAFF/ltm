@@ -24,9 +24,20 @@ $arShowedTableCols = array(
 );
 $arShowedTableColsSort = array(
 	"ID"=>"ID",
-	"Компания"=>"work_company",
+	"Компания"=>"COMPANY",
+	"Представитель" => "REP",
+	"Телефон" => "PHONE",
 	"Логин" => "LOGIN",
+	"Емейл" => "EMAIL",
 	"Дата регистрации" => "DATE_REGISTER",
+);
+$arShowedTableColsFilter = array(
+	"ID"=>"ID",
+	"COMPANY"=>"Компания",
+	"REP" => "Представитель",
+	"PHONE" => "Телефон",
+	"EMAIL" => "Емейл",
+	"DATE_REGISTER" => "Дата регистрации",
 );
 $arShowedTableColsBool = array();
 switch($arParams["ACT"]) {
@@ -63,6 +74,7 @@ switch($arParams["ACT"]) {
 	$arShowedTableCols["Описание деятельности"] = "31";
 	$arShowedTableCols["Приоритет. направл."] = array(32, 33, 34, 35, 36, 37);
 	$arShowedTableCols["Форма посещения"] =  array(42, 43);
+	$arShowedTableColsFilter["LOGIN"] = "Логин";
 	break;
 }
 
@@ -121,9 +133,6 @@ function printVal($ar, $glue)
 	return $result;
 }
 ?>
-<?if(empty($arResult["USERS_LIST"])):?>
-	В данной категории нет гостей
-<?else:?>
 	<div id="modal_form"><!-- Само окно -->
 		<span id="modal_close">X</span> <!-- Кнопка закрыть -->
 		<form action="/ajax/all_pdf_shedule.php">
@@ -202,6 +211,21 @@ function printVal($ar, $glue)
 			<input type="hidden" name="USERS_LIST[]" value="<?=$arUser["ID"]?>">
 		<?endforeach?>
 		<input type="hidden" name="EXHIB_ID" value="<?=$arResult["EXHIB"]["ID"]?>">
+
+		<?//ФИЛЬТРЫ?>
+		<div class="filters">
+			<?foreach($arShowedTableColsFilter as $filterCode => $filterName):?>
+				<div class="filters__item">
+					<label for="<?=$filterCode?>"><?=$filterName?></label>
+					<input type="text" name="<?=$filterCode?>" id="<?=$filterCode?>" value="<?=$arResult["FILTER"][$filterCode]?>">
+				</div>
+			<?endforeach;?>
+			<input class="custom-buttom" name="filter" value="Применить" type="submit">
+			<input class="custom-buttom" name="reset" value="Отменить" type="submit">
+		</div>
+		<?if(empty($arResult["USERS_LIST"])):?>
+			В данной категории нет гостей
+		<?else:?>
 		<div class="navigate"><?=$arResult["NAVIGATE"]?></div>
 		<table class="list" style="min-width: 100%;">
 			<tr class="odd">
@@ -214,16 +238,17 @@ function printVal($ar, $glue)
 							if($arShowedTableColsSort[$key] == $arResult["SORT"] && $arResult["ORDER"] == 'asc'){
 								$orderSort = 'desc';
 							}
+							$class="";
+							if($arShowedTableColsSort[$key] == $arResult["SORT"]){
+								$class = 'active';
+							}
 							?>
-							<a href="?sort=<?=$arShowedTableColsSort[$key]?>&order=<?=$orderSort?>" class="sort-title"><?= $key?></a>
+							<a href="?sort=<?=$arShowedTableColsSort[$key]?>&order=<?=$orderSort?>" class="sort-title <?=$class?>"><?= $key?></a>
 						<?else:?>
 							<?= $key?>
 						<?endif;?>
 					</th>
 				<?endforeach?>
-				<?/*foreach($arFormPos as $key=>$val):?>
-				<th><?=$key?></th>
-			<?endforeach*/?>
 				<?foreach($arShowedTableColsBool as $key=>$val):?>
 					<th><?=$key?></th>
 				<?endforeach?>
@@ -235,7 +260,9 @@ function printVal($ar, $glue)
 					<?foreach($arShowedTableCols as $key=>$val):?>
 						<td>
 							<?if($key != "Пароль" && $val !== "date"):?>
-								<?=printVal(returnVal($arUser, $val, $arParams["GUEST_FORM_ID"]), "<br>")?>
+								<div class="data-wrap">
+									<?=printVal(returnVal($arUser, $val, $arParams["GUEST_FORM_ID"]), "<br>")?>
+								</div>
 							<?elseif($val === "date"):?>
 								<span class="date_diff"><?=$arUser["REG_DIFF"]?></span><br>
 								<?=$arUser["REG_DATE"]?>
@@ -357,9 +384,8 @@ function printVal($ar, $glue)
 				</tr>
 			<?endforeach?>
 		</table>
+		<?endif?>
 	</form>
-<?endif?>
-
 <script>
 	//в подтвержденные
 	$(document).on("click", ".confirm-participate-button", function() {

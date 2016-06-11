@@ -1,10 +1,7 @@
 <?
 if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
-global $DB;
-global $USER;
-global $APPLICATION;
-global $sortField;
-global $sortOrder;
+global $DB, $USER, $APPLICATION;
+global $sortField, $sortOrder;
 
 isset($arParams["CACHE_TIME"]) or $arParams["CACHE_TIME"] = 3600;
 isset($arParams["IBLOCK_ID_EXHIB"]) or $arParams["IBLOCK_ID_EXHIB"] = 15;
@@ -19,7 +16,7 @@ switch($arParams["ACT"]) {
 
 $arResult = array();
 
-$sortField = $arResult["SORT"] = ($_REQUEST["sort"])?$_REQUEST["sort"]:"COMPANY_NAME";
+$sortField = $arResult["SORT"] = ($_REQUEST["sort"])?$_REQUEST["sort"]:"COMPANY";
 $sortOrder = $arResult["ORDER"]  = ($_REQUEST["order"])?$_REQUEST["order"]:"asc";
 
 	if(!CModule::IncludeModule("iblock") || !CModule::IncludeModule("form"))
@@ -32,13 +29,8 @@ $sortOrder = $arResult["ORDER"]  = ($_REQUEST["order"])?$_REQUEST["order"]:"asc"
 	$rs = CIBlockElement::GetList(array("SORT"=>"ASC"),
 	        array("IBLOCK_ID"=>intval($arParams["IBLOCK_ID_EXHIB"]), "CODE"=>$arParams["EXHIBIT_CODE"]/*, "ACTIVE"=>"Y"*/),
 	        false, array("nTopCount"=>1),
-	        array());
+	        array("ID", "NAME", "CODE", "PROPERTY_UC_GUESTS_GROUP", "PROPERTY_GUEST_SPAM_GROUP", "PROPERTY_C_GUESTS_GROUP"));
 	if($ar = $rs->GetNext(true, false)) {
-	    if($rsProp = CIBlockElement::GetProperty($ar["IBLOCK_ID"], $ar["ID"], array(), array())) {
-	        while($arProp = $rsProp->Fetch()) {
-	            $ar["PROPERTIES"][$arProp["CODE"]] = $arProp;
-	        }
-	    }
 	    $arResult["EXHIB"] = $ar;
 	}
 
@@ -47,14 +39,17 @@ $sortOrder = $arResult["ORDER"]  = ($_REQUEST["order"])?$_REQUEST["order"]:"asc"
 	}
 
 	switch($arParams["ACT"]) {
-		case "off": $groupId = $arResult["EXHIB"]["PROPERTIES"]["UC_GUESTS_GROUP"]["VALUE"]; break;
-		case "spam": $groupId = $arResult["EXHIB"]["PROPERTIES"]["GUEST_SPAM_GROUP"]["VALUE"]; break;
-		case "morning":case "evening":case "hostbuy": $groupId = $arResult["EXHIB"]["PROPERTIES"]["C_GUESTS_GROUP"]["VALUE"]; break;
+		case "off": $groupId = $arResult["EXHIB"]["PROPERTY_UC_GUESTS_GROUP_VALUE"]; break;
+		case "spam": $groupId = $arResult["EXHIB"]["PROPERTY_GUEST_SPAM_GROUP_VALUE"]; break;
+		case "morning":case "evening":case "hostbuy": $groupId = $arResult["EXHIB"]["PROPERTY_C_GUESTS_GROUP_VALUE"]; break;
 		default: $groupId = false;
 	}
 
     //список пользователей
-    $arUserFilter = array("GROUPS_ID"=>$groupId, "ACTIVE"=>"Y");
+    $arUserFilter = [
+      "GROUPS_ID" => $groupId,
+      "ACTIVE" => "Y"
+    ];
     switch($arParams["ACT"]) {
     	case "morning": $arUserFilter["UF_MR"] = true; break;
     	case "evening": $arUserFilter["UF_EV"] = true; break;
@@ -64,18 +59,41 @@ $sortOrder = $arResult["ORDER"]  = ($_REQUEST["order"])?$_REQUEST["order"]:"asc"
     $userFieldFormAnswer = CFormMatrix::getPropertyIDByExh($arResult["EXHIB"]["ID"]);
     $arUserFilter["!$userFieldFormAnswer"] = false;
 
-
     $arUserListAll = array();
     $arUserFormAnswersId = array();
-    if(!$arResult["SORT"]) $arResult["SORT"] = "work_company";
 
-    $rs = CUser::GetList(($by=$arResult["SORT"]), ($order=$arResult["ORDER"]), $arUserFilter, array("SELECT"=>array("UF_*"), "FIELDS"=>array("ID", "LOGIN", "DATE_REGISTER")));
-	$rs->NavStart(30); // разбиваем постранично по 30 записей
-	$arResult["NAVIGATE"] = $rs->GetPageNavStringEx($navComponentObject, "Пользователи", "");
+    $isFiltered = false;
+    if(isset($_REQUEST["filter"])) {
+        $arResult["FILTER"]["ID"] = $_REQUEST["ID"];
+        $arResult["FILTER"]["COMPANY"] = $_REQUEST["COMPANY"];
+        $arResult["FILTER"]["REP"] = $_REQUEST["REP"];
+        $arResult["FILTER"]["PHONE"] = $_REQUEST["PHONE"];
+        $arResult["FILTER"]["EMAIL"] = $_REQUEST["EMAIL"];
+        $arResult["FILTER"]["DATE_REGISTER"] = $_REQUEST["DATE_REGISTER"];
+        $arResult["FILTER"]["LOGIN"] = $_REQUEST["LOGIN"];
 
-    while($ar = $rs->GetNext(true, false)) {
-        $rsResult = CFormResult::GetByID($ar[$userFieldFormAnswer]);
-        $tmpResFields = $rsResult->Fetch();
+        if(!empty($arResult["FILTER"]["ID"])) {
+            $arUserFilter["ID"] = $arResult["FILTER"]["ID"];
+        }
+        if(!empty($arResult["FILTER"]["LOGIN"])) {
+            $arUserFilter["LOGIN"] = $arResult["FILTER"]["LOGIN"];
+        }
+        if(!empty($arResult["FILTER"]["EMAIL"]) || !empty($arResult["FILTER"]["COMPANY"]) || !empty($arResult["FILTER"]["REP"])
+          || !empty($arResult["FILTER"]["PHONE"]) || !empty($arResult["FILTER"]["DATE_REGISTER"])) {
+            $isFiltered = true;
+        }
+    }
+
+    $rs = CUser::GetList(
+      ($by="ID"),
+      ($order="ASC"),
+      $arUserFilter,
+      array(
+        "SELECT"=>array("UF_*"),
+        "FIELDS"=>array("ID", "LOGIN", "DATE_REGISTER")
+      )
+    );
+    while($ar = $rs->Fetch()) {
         $ar["REG_DATE"]= $ar["DATE_REGISTER"];
         $tmpTime = strtotime($ar["REG_DATE"]);
         $diff = (time() - $tmpTime)/60;//разница в минутах
@@ -104,11 +122,15 @@ $sortOrder = $arResult["ORDER"]  = ($_REQUEST["order"])?$_REQUEST["order"]:"asc"
             $arAnswersFilter);
 
         $loginFieldId = CFormMatrix::getFormQuestionIdByFormIDAndQuestionName($arParams["GUEST_FORM_ID"], "LOGIN");
-
-
+        $cmpField = CFormMatrix::getFormQuestionIdByFormIDAndQuestionName($arParams["GUEST_FORM_ID"], 0);
+        $phoneField = CFormMatrix::getFormQuestionIdByFormIDAndQuestionName($arParams["GUEST_FORM_ID"], 10);
+        $repNameField = CFormMatrix::getFormQuestionIdByFormIDAndQuestionName($arParams["GUEST_FORM_ID"], 7);
+        $repLNameField = CFormMatrix::getFormQuestionIdByFormIDAndQuestionName($arParams["GUEST_FORM_ID"], 8);
+        $emailField = CFormMatrix::getFormQuestionIdByFormIDAndQuestionName($arParams["GUEST_FORM_ID"], 13);
 
         if(!$loginFieldId) throw new Exception("Incorrect login field id");
 
+        $arFilterRes = [];
 
         foreach($arAnswers as $key=>$arAnswer) {
             $ar = array();
@@ -143,10 +165,52 @@ $sortOrder = $arResult["ORDER"]  = ($_REQUEST["order"])?$_REQUEST["order"]:"asc"
                     $arResult["USERS_LIST"][$userLogin][$key] = $val;
                 }
             }
+
+            $arResult["USERS_LIST"][$userLogin]["COMPANY"] = $arResult["USERS_LIST"][$userLogin][ $cmpField ];
+            $arResult["USERS_LIST"][$userLogin]["REP"] = $arResult["USERS_LIST"][$userLogin][ $repNameField ]. " ".
+                                                         $arResult["USERS_LIST"][$userLogin][ $repLNameField ];
+            $arResult["USERS_LIST"][$userLogin]["PHONE"] = $arResult["USERS_LIST"][$userLogin][ $phoneField ];
+            $arResult["USERS_LIST"][$userLogin]["EMAIL"] = $arResult["USERS_LIST"][$userLogin][ $emailField ];
+            if($isFiltered) {
+                $addToFilter = true;
+                if(!empty($arResult["FILTER"]["COMPANY"]) &&
+                  strpos($arResult["USERS_LIST"][$userLogin]["COMPANY"], $arResult["FILTER"]["COMPANY"]) === false) {
+                    $addToFilter = false;
+                }
+                if(!empty($arResult["FILTER"]["REP"]) &&
+                  strpos($arResult["USERS_LIST"][$userLogin]["REP"], $arResult["FILTER"]["REP"]) === false) {
+                    $addToFilter = false;
+                }
+                if(!empty($arResult["FILTER"]["PHONE"]) &&
+                  strpos($arResult["USERS_LIST"][$userLogin]["PHONE"], $arResult["FILTER"]["PHONE"]) === false) {
+                    $addToFilter = false;
+                }
+                if(!empty($arResult["FILTER"]["EMAIL"]) &&
+                  strpos($arResult["USERS_LIST"][$userLogin]["EMAIL"], $arResult["FILTER"]["EMAIL"]) === false) {
+                    $addToFilter = false;
+                }
+                if($addToFilter) {
+                    $arFilterRes[$userLogin] = $arResult["USERS_LIST"][$userLogin];
+                }
+            }
         }
     }
 
+    if($isFiltered) {
+        $arResult["USERS_LIST"] = $arFilterRes;
+        unset($arFilterRes);
+    }
+
     uasort($arResult["USERS_LIST"], "cmp");
+
+    $res = new CDBResult;
+    $res->InitFromArray($arResult["USERS_LIST"]);
+    $res->NavStart(30); // разбиваем постранично по 30 записей
+    $arResult["NAVIGATE"] = $res->GetPageNavStringEx($navComponentObject, "Пользователи", "");
+    unset($arResult["USERS_LIST"]);
+    while($ar = $res->Fetch()) {
+        $arResult["USERS_LIST"][] = $ar;
+    }
 
 	$this->IncludeComponentTemplate();
 
@@ -154,32 +218,14 @@ function cmp($a, $b){
     global $sortField;
     global $sortOrder;
 
-    $sortFileldTmp = "ID";
-    switch ($sortField){
-        case "BUSINESS":
-        case "CITY":
-        case "COUNTRY":
-        case "REP":
-        case "SKYPE":
-        case "TABLE":
-        case "HALL":
-        case "COUNT":
-            break;
-        default:
-            $sortFileldTmp = $sortField;
-            break;
-    };
-
-    $first = strtolower($a[$sortFileldTmp]);
-    $second = strtolower($b[$sortFileldTmp]);
+    $first = strtolower($a[$sortField]);
+    $second = strtolower($b[$sortField]);
     if ($first == $second) {
         return 0;
     }
     $res = 1;
     if($sortOrder != "asc") $res = -1;
     return ($first < $second) ? -1*$res : 1*$res;
-
-
 }
 
 ?>
