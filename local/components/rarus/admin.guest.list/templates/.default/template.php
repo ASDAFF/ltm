@@ -22,6 +22,12 @@ $arShowedTableCols = array(
 	"Емейл"=>13,
 	"Веб-сайт"=>15
 );
+$arShowedTableColsSort = array(
+	"ID"=>"ID",
+	"Компания"=>"work_company",
+	"Логин" => "LOGIN",
+	"Дата регистрации" => "DATE_REGISTER",
+);
 $arShowedTableColsBool = array();
 switch($arParams["ACT"]) {
 	case "off":
@@ -201,7 +207,19 @@ function printVal($ar, $glue)
 			<tr class="odd">
 				<th width="75px">Групповые действия</th>
 				<?foreach($arShowedTableCols as $key=>$val):?>
-					<th><?=$key?></th>
+					<th>
+						<?if(isset($arShowedTableColsSort[$key])):?>
+							<?
+							$orderSort = 'asc';
+							if($arShowedTableColsSort[$key] == $arResult["SORT"] && $arResult["ORDER"] == 'asc'){
+								$orderSort = 'desc';
+							}
+							?>
+							<a href="?sort=<?=$arShowedTableColsSort[$key]?>&order=<?=$orderSort?>" class="sort-title"><?= $key?></a>
+						<?else:?>
+							<?= $key?>
+						<?endif;?>
+					</th>
 				<?endforeach?>
 				<?/*foreach($arFormPos as $key=>$val):?>
 				<th><?=$key?></th>

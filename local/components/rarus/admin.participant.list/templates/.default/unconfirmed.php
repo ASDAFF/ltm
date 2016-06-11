@@ -10,9 +10,24 @@
 <div class="table-responsive">
 <table class="table">
 	<tr>
-		<? $arFields = CFormMatrix::$arUCParticipantField;?>
+		<?
+            $arFields = CFormMatrix::$arUCParticipantField;
+            $arFieldsSort = CFormMatrix::$arUCParticipantFieldSort;
+        ?>
 		<? foreach ($arFields as $ind => $fieldName):?>
-			<th <?= $class?>><?= $fieldName?></th>
+			<th <?= $class?>>
+                <?if($arFieldsSort[$ind]):?>
+                    <?
+                    $orderSort = 'asc';
+                    if($arFieldsSort[$ind] == $arResult["SORT"] && $arResult["ORDER"] == 'asc'){
+                        $orderSort = 'desc';
+                    }
+                    ?>
+                    <a href="?sort=<?=$arFieldsSort[$ind]?>&order=<?=$orderSort?>" class="sort-title"><?= $fieldName?></a>
+                <?else:?>
+                    <?= $fieldName?>
+                <?endif;?>
+            </th>
 		<? endforeach;?>
 	</tr>
 

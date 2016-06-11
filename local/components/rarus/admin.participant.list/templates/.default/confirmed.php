@@ -7,12 +7,28 @@
 <a class="custom-buttom go" href="/ajax/all_pdf_wishlist.php?type=particip&app=<?=$arParams["EXHIB_CODE"]?>&hb=y" data-hb="y" data-to="wishlist">PDF HB вишлисты</a>
 	<div class="navigate"><?=$arResult["NAVIGATE"]?></div>
 <div class="table-responsive">
+
 <table class="table">
             <tr>
-            <? $arFields = CFormMatrix::$arCParticipantField;?>
+            <?
+                $arFields = CFormMatrix::$arCParticipantField;
+                $arFieldsSort = CFormMatrix::$arCParticipantFieldSort;
+            ?>
             <? $formID = CFormMatrix::getPFormIDByExh($arResult["EXHIBITION"]["ID"]);?>
-            <? foreach ($arFields as $ind => $fieldName):?>
-                <th><?= $fieldName?></th>
+                <? foreach ($arFields as $ind => $fieldName):?>
+                <th>
+                    <?if($arFieldsSort[$ind]):?>
+                        <?
+                        $orderSort = 'asc';
+                        if($arFieldsSort[$ind] == $arResult["SORT"] && $arResult["ORDER"] == 'asc'){
+                            $orderSort = 'desc';
+                        }
+                        ?>
+                        <a href="?sort=<?=$arFieldsSort[$ind]?>&order=<?=$orderSort?>" class="sort-title"><?= $fieldName?></a>
+                    <?else:?>
+                        <?= $fieldName?>
+                    <?endif;?>
+                </th>
             <? endforeach;?>
             </tr>
 
