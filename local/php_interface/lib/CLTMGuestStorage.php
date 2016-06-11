@@ -136,6 +136,7 @@ class CLTMGuestStorage
 					'UF_ID_COMP' => $newResultID,
 					'UF_MR' => "",	//$morning
 					'UF_EV' => "",	//$evening
+					'UF_HB' => "",
 					CFormMatrix::getPropertyIDByExh($exhID) => $newResultID,
 					'GROUP_ID' => $arNewGroups
 				);
@@ -237,8 +238,9 @@ class CLTMGuestStorage
 
 				$arNewUserFields = array(
 					'UF_ID_COMP' => $newResultID,
-					'UF_MR' => 0,
-					'UF_EV' => 0,
+					'UF_MR' => "",
+					'UF_EV' => "",
+					'UF_HB' => "",
 					CFormMatrix::getPropertyIDByExh($exhID) => "",
 					'GROUP_ID' => $arNewGroups
 				);
