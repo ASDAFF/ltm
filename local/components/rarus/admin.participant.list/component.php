@@ -1,10 +1,7 @@
 <?
 if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
-global $DB;
-global $USER;
-global $APPLICATION;
-global $sortField;
-global $sortOrder;
+global $DB, $USER, $APPLICATION;
+global $sortField, $sortOrder;
 
 //параметры
 $arParams["EXHIB_IBLOCK_ID"] = intval($arParams["EXHIB_IBLOCK_ID"]);
@@ -34,15 +31,13 @@ $arParams["USER_TYPE"] = "participant";
 //выполнение
 $arResult = array();
 
-$sortField = $arResult["SORT"] = ($_REQUEST["sort"])?$_REQUEST["sort"]:"COMPANY_NAME";
+$sortField = $arResult["SORT"] = ($_REQUEST["sort"])?$_REQUEST["sort"]:"COMPANY";
 $sortOrder = $arResult["ORDER"]  = ($_REQUEST["order"])?$_REQUEST["order"]:"asc";
 
 if(!CModule::IncludeModule("iblock") || !CModule::IncludeModule("form"))
 {
     throw new Exception("Can't load modules iblock form");
 }
-
-
 
 //получение выставок
 $arFilter = array(
@@ -122,11 +117,29 @@ while($obElement = $rsElement->GetNextElement())
             //UF_ID - москва осень, UF_ID2 - баку, UF_ID3 - киев, UF_ID4 - алмата, UF_ID5 - москва осень, UF_ID_COMP - Участники данные компании ВСЕ ВЫСТАВКИ
         );
 
-        if(!$arResult["SORT"]) $arResult["SORT"] = "work_company";
+        $isFiltered = false;
+        if(isset($_REQUEST["filter"])) {
+            $arResult["FILTER"]["ID"] = $_REQUEST["ID"];
+            $arResult["FILTER"]["COMPANY"] = $_REQUEST["COMPANY"];
+            $arResult["FILTER"]["REP"] = $_REQUEST["REP"];
+            $arResult["FILTER"]["PHONE"] = $_REQUEST["PHONE"];
+            $arResult["FILTER"]["EMAIL"] = $_REQUEST["EMAIL"];
+            $arResult["FILTER"]["BUSINESS"] = $_REQUEST["BUSINESS"];
+            $arResult["FILTER"]["LOGIN"] = $_REQUEST["LOGIN"];
+
+            if(!empty($arResult["FILTER"]["ID"])) {
+                $arFilter["ID"] = $arResult["FILTER"]["ID"];
+            }
+            if(!empty($arResult["FILTER"]["LOGIN"])) {
+                $arFilter["LOGIN"] = $arResult["FILTER"]["LOGIN"];
+            }
+            if(!empty($arResult["FILTER"]["EMAIL"]) || !empty($arResult["FILTER"]["COMPANY"]) || !empty($arResult["FILTER"]["REP"])
+              || !empty($arResult["FILTER"]["PHONE"]) || !empty($arResult["FILTER"]["BUSINESS"])) {
+                $isFiltered = true;
+            }
+        }
 
         $rsUsers = CUser::GetList(($by=$arResult["SORT"]), ($order=$arResult["ORDER"]), $arFilter, $arParameters);
-		$rsUsers->NavStart(30); // разбиваем постранично по 30 записей
-		$arResult["NAVIGATE"] = $rsUsers->GetPageNavStringEx($navComponentObject, "Пользователи", "");
 
         while($arUser = $rsUsers->Fetch())
         {
@@ -167,7 +180,14 @@ while($obElement = $rsElement->GetNextElement())
         array("RESULT_ID" => implode("|", $arUserResultID))
         );
 
+        $cmpField = CFormMatrix::$arExelCompParticipantField["QUEST_ID"][0];
+        $businessField = CFormMatrix::$arExelCompParticipantField["QUEST_ID"][1];
+        $phoneField = CFormMatrix::getQIDByBase(36, $formID);
+        $repNameField = CFormMatrix::getQIDByBase(32, $formID);
+        $repLNameField = CFormMatrix::getQIDByBase(33, $formID);
+        $emailField = CFormMatrix::getQIDByBase(37, $formID);
 
+        $arFilterRes = [];
         foreach ($arUsers as $arUser)
         {
             $formResultCommon = $arUser["UF_ID_COMP"];
@@ -267,9 +287,56 @@ while($obElement = $rsElement->GetNextElement())
                     }
                 }
             }
+            $arUser["COMPANY"] = $arUser["FORM_DATA"][ $cmpField ]["VALUE"];
+            $arUser["BUSINESS"] = $arUser["FORM_DATA"][ $businessField ]["VALUE"];
+            $arUser["REP"] = $arUser["FORM_USER"][ $repNameField ]["VALUE"]. " ".
+                            $arUser["FORM_USER"][ $repLNameField ]["VALUE"];
+            $arUser["PHONE"] = $arUser["FORM_USER"][ $phoneField ]["VALUE"];
+            $arUser["EMAIL"] = $arUser["FORM_USER"][ $emailField ]["VALUE"];
+
             $arItem["PARTICIPANT"][$arUser["ID"]] = $arUser;
+
+            if($isFiltered) {
+                $addToFilter = true;
+                if(!empty($arResult["FILTER"]["COMPANY"]) &&
+                  strpos(strtolower($arUser["COMPANY"]), strtolower($arResult["FILTER"]["COMPANY"])) === false) {
+                    $addToFilter = false;
+                }
+                if(!empty($arResult["FILTER"]["BUSINESS"]) &&
+                  strpos(strtolower($arUser["BUSINESS"]), strtolower($arResult["FILTER"]["BUSINESS"])) === false) {
+                    $addToFilter = false;
+                }
+                if(!empty($arResult["FILTER"]["REP"]) &&
+                  strpos(strtolower($arUser["REP"]), strtolower($arResult["FILTER"]["REP"])) === false) {
+                    $addToFilter = false;
+                }
+                if(!empty($arResult["FILTER"]["PHONE"]) &&
+                  strpos(strtolower($arUser["PHONE"]), strtolower($arResult["FILTER"]["PHONE"])) === false) {
+                    $addToFilter = false;
+                }
+                if(!empty($arResult["FILTER"]["EMAIL"]) &&
+                  strpos(strtolower($arUser["EMAIL"]), strtolower($arResult["FILTER"]["EMAIL"])) === false) {
+                    $addToFilter = false;
+                }
+                if($addToFilter) {
+                    $arFilterRes[ $arUser["ID"] ] = $arUser;
+                }
+            }
         }
+        if($isFiltered) {
+            $arItem["PARTICIPANT"] = $arFilterRes;
+            unset($arFilterRes);
+        }
+
         uasort($arItem["PARTICIPANT"], "cmp"); //сортировка, в основном, для неподтвержденных, остальные при выборке сортитуются
+        $res = new CDBResult;
+        $res->InitFromArray($arItem["PARTICIPANT"]);
+        $rsUsers->NavStart(30); // разбиваем постранично по 30 записей
+        $arResult["NAVIGATE"] = $rsUsers->GetPageNavStringEx($navComponentObject, "Пользователи", "");
+        unset($arItem["PARTICIPANT"]);
+        while($ar = $res->Fetch()) {
+            $arItem["PARTICIPANT"][] = $ar;
+        }
     }
 
     $arResult["EXHIBITION"] = $arItem;
@@ -296,24 +363,9 @@ function cmp($a, $b){
     global $sortField;
     global $sortOrder;
 
-    $sortFileldTmp = "ID";
-    switch ($sortField){
-        case "BUSINESS":
-        case "CITY":
-        case "COUNTRY":
-        case "REP":
-        case "SKYPE":
-        case "TABLE":
-        case "HALL":
-        case "COUNT":
-            break;
-        default:
-            $sortFileldTmp = $sortField;
-            break;
-    };
+    $first = strtolower($a[$sortField]);
+    $second = strtolower($b[$sortField]);
 
-    $first = strtolower($a[$sortFileldTmp]);
-    $second = strtolower($b[$sortFileldTmp]);
     if ($first == $second) {
         return 0;
     }

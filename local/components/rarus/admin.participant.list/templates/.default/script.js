@@ -65,4 +65,9 @@ $(document).ready(function() { // вся магия после загрузки 
         }
 
     );
+
+  //сворачивание разворачивание строк таблицы
+  $('.table tbody').on('dblclick', 'tr', function () {
+    $(this).toggleClass('full');
+  });
 });
