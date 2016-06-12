@@ -174,19 +174,19 @@ $sortOrder = $arResult["ORDER"]  = ($_REQUEST["order"])?$_REQUEST["order"]:"asc"
             if($isFiltered) {
                 $addToFilter = true;
                 if(!empty($arResult["FILTER"]["COMPANY"]) &&
-                  strpos($arResult["USERS_LIST"][$userLogin]["COMPANY"], $arResult["FILTER"]["COMPANY"]) === false) {
+                  strpos(strtolower($arResult["USERS_LIST"][$userLogin]["COMPANY"]), strtolower($arResult["FILTER"]["COMPANY"])) === false) {
                     $addToFilter = false;
                 }
                 if(!empty($arResult["FILTER"]["REP"]) &&
-                  strpos($arResult["USERS_LIST"][$userLogin]["REP"], $arResult["FILTER"]["REP"]) === false) {
+                  strpos(strtolower($arResult["USERS_LIST"][$userLogin]["REP"]), strtolower($arResult["FILTER"]["REP"])) === false) {
                     $addToFilter = false;
                 }
                 if(!empty($arResult["FILTER"]["PHONE"]) &&
-                  strpos($arResult["USERS_LIST"][$userLogin]["PHONE"], $arResult["FILTER"]["PHONE"]) === false) {
+                  strpos(strtolower($arResult["USERS_LIST"][$userLogin]["PHONE"]), strtolower($arResult["FILTER"]["PHONE"])) === false) {
                     $addToFilter = false;
                 }
                 if(!empty($arResult["FILTER"]["EMAIL"]) &&
-                  strpos($arResult["USERS_LIST"][$userLogin]["EMAIL"], $arResult["FILTER"]["EMAIL"]) === false) {
+                  strpos(strtolower($arResult["USERS_LIST"][$userLogin]["EMAIL"]), strtolower($arResult["FILTER"]["EMAIL"])) === false) {
                     $addToFilter = false;
                 }
                 if($addToFilter) {
