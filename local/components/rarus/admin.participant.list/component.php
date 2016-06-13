@@ -331,8 +331,8 @@ while($obElement = $rsElement->GetNextElement())
         uasort($arItem["PARTICIPANT"], "cmp"); //сортировка, в основном, для неподтвержденных, остальные при выборке сортитуются
         $res = new CDBResult;
         $res->InitFromArray($arItem["PARTICIPANT"]);
-        $rsUsers->NavStart(30); // разбиваем постранично по 30 записей
-        $arResult["NAVIGATE"] = $rsUsers->GetPageNavStringEx($navComponentObject, "Пользователи", "");
+        $res->NavStart(30); // разбиваем постранично по 30 записей
+        $arResult["NAVIGATE"] = $res->GetPageNavStringEx($navComponentObject, "Пользователи", "");
         unset($arItem["PARTICIPANT"]);
         while($ar = $res->Fetch()) {
             $arItem["PARTICIPANT"][] = $ar;
