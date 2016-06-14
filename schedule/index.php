@@ -18,17 +18,28 @@ if(LANGUAGE_ID == "ru")
 {
 ?>
 <p>
-	 Программа Luxury Travel Mart идентична во всех городах проведения выставки (за исключением весеннего LTM Москва):
+ <b>Программа LTM Киев и Алматы:</b><br>
 </p>
 <p>
-	 10:00 – 14:20 — Утренняя сессия. Индивидуальные встречи с участниками выставки по заранее составленному расписанию. Каждая встреча протяженностью 10 минут, по следующей схеме:
+	 10:00 – 16:55&nbsp;— Индивидуальные встречи с участниками выставки по заранее составленному расписанию. Каждая встреча протяженностью 10 минут.
 </p>
 <p>
-	 10:00 - 10:10 / 10:15 - 10:25 / 10:30 - 10:40 / 10:45 - 10:55<br>
-	 11:00 - 11:10 / 11:15 - 11:25 / 11:30 - 11:40 / 11:45 - 11:55 <br>
-	 11:55 - 12:10 — Перерыв на кофе <br>
-	 12:10 - 12:20 / 12:25 - 12:35 / 12:40 - 12:50 / 12:55 - 13:05<br>
-	 13:10 - 13:20 / 13:25 - 13:35 / 13:40 - 13:50 / 13:55 - 14:05 / 14:10 - 14:20
+	 Все встречи назначаются через сайт либо мобильное приложение LTM.
+</p>
+<p>
+	 12:55&nbsp;– 14:00&nbsp;— Свободное общение с участниками мероприятия и ланч для гостей и участников.
+</p>
+<p>
+	 19:00 – 21:30 — Вечерний&nbsp;коктейль в непринуждённой атмосфере, без заранее назначенных встреч.<br>
+</p>
+<p>
+	 ___________
+</p>
+<p>
+ <b>Программа осеннего LTM Москва:</b><br>
+</p>
+<p>
+	 10:00 – 14:20 — Утренняя сессия. Индивидуальные встречи с участниками выставки по заранее составленному расписанию. Каждая встреча протяженностью 10 минут, один перерыв на кофе.
 </p>
 <p>
 	 Все встречи назначаются через сайт либо мобильное приложение LTM.
@@ -37,19 +48,22 @@ if(LANGUAGE_ID == "ru")
 	 14:30 – 15:30 — Свободное общение с участниками мероприятия и ланч для гостей и участников.
 </p>
 <p>
-	 15:30 – 18:00 — Встречи с региональными агентствами по программе Hosted Buyer. Доступ строго по приглашению организаторов.&nbsp;
+	 15:30 – 17:30 — Встречи с региональными агентствами по программе Hosted Buyer. Доступ строго по приглашению организаторов.&nbsp;
 </p>
 <p>
-	 18:30 – 21:00 — Вечерняя сессия и коктейль в непринуждённой атмосфере традиционного семинара, без заранее назначенных встреч.
+	 19:00 – 21:30 — Вечерняя сессия и коктейль в непринуждённой атмосфере, без заранее назначенных встреч.
 </p>
 <p>
-	 Программа весеннего LTM Москва:
+	 ___________<br>
 </p>
 <p>
-	 1 день&nbsp;—&nbsp;встречи с региональными компаниями с 10:00 до 18:00, с одним перерывом на обед и двумя кофе-паузами. Доступ строго по приглашению организаторов.
+ <b>Программа весеннего LTM Москва:</b>
 </p>
 <p>
-	 2 день:
+ <b>1 день</b>&nbsp;—&nbsp;встречи с региональными компаниями с 10:00 до 18:00, с одним перерывом на обед и двумя кофе-паузами. Доступ строго по приглашению организаторов.
+</p>
+<p>
+ <b>2 день:</b>
 </p>
 <p>
 	 10:00 – 15:50 — Индивидуальные встречи с участниками выставки по заранее составленному расписанию. Каждая встреча протяженностью 10 минут.
@@ -72,29 +86,43 @@ elseif(LANGUAGE_ID == "en")
 {
 ?>
 <p>
-	 The Luxury Travel Mart schedule is similar for all events (except for LTM Moscow Spring):
+ <b>Program of LTM Kiev and Almaty:</b><br>
 </p>
 <p>
-	 10:00 – 14:20 — Morning session. Individual pre-scheduled appointments with top-buyers. Each appointment will last 10 minutes, scheduled as follows:
+	 10:00 – 16:55&nbsp;— Individual pre-scheduled appointments with top-buyers. Each appointment will last 10 minutes.
 </p>
 <p>
-	 10:00 - 10:10 / 10:15 - 10:25 / 10:30 - 10:40 / 10:45 - 10:55 <br>
-	 11:00 - 11:10 / 11:15 - 11:25 / 11:30 - 11:40 / 11:45 - 11:55 <br>
-	 11:55 - 12:10 — Coffee break <br>
-	 12:10 - 12:20 / 12:25 - 12:35 / 12:40 - 12:50 / 12:55 - 13:05 <br>
-	 13:10 - 13:20 / 13:25 - 13:35 / 13:40 - 13:50 / 13:55 - 14:05 / 14:10 - 14:20
+	 All appointments are scheduled through LTM web-site and/or LTM mobile apps.<br>
 </p>
 <p>
-	 All appointments are scheduled through LTM web-site and/or LTM mobile apps.
+	 12:55&nbsp;– 14:00 — Mid-session networking and lunch for guests and exhibitors.
+</p>
+<p>
+	 19:00 – 21:30 — Cocktail reception for travel agents, corporate clients and journalists in relaxed atmosphere.
+</p>
+<p>
+	 ___________<br>
+</p>
+<p>
+ <b>Program of LTM Moscow Autumn:</b><br>
+</p>
+<p>
+	 10:00 – 14:20 — Morning session. Individual pre-scheduled appointments with top-buyers. Each appointment will last 10 minutes, one coffee-break.
+</p>
+<p>
+	 All appointments are scheduled through LTM web-site and/or LTM mobile apps.<br>
 </p>
 <p>
 	 14:30 – 15:30 — After-session networking and lunch with guests of the morning session.
 </p>
 <p>
-	 15:30 – 18:00 — Appointments with the hosted buyers.&nbsp;
+	 15:30 – 17:30 — Appointments with the hosted buyers.&nbsp;
 </p>
 <p>
-	 18:30 – 21:00 — Evening session. Workshop and cocktail reception for travel agents, corporate clients and journalists in relaxed atmosphere.
+	 19:00 – 21:30 — Evening session. Workshop and cocktail reception for travel agents, corporate clients and journalists in relaxed atmosphere.
+</p>
+<p>
+	 ___________<br>
 </p>
 <p>
  <b>Program of LTM Moscow Spring:</b>
@@ -115,12 +143,21 @@ elseif(LANGUAGE_ID == "en")
 	 15:50 – 16:30 — After-session networking and lunch with guests of the morning session.
 </p>
 <p>
-	 19:00 – 23:30 — Evening reception with entertainment.
+	 19:00 – 01:00 — Evening reception with entertainment.
 </p>
 <p>
-	 Access to all events will only be available to pre-registered visitors. <br>
-	 Non-participating hoteliers, DMC companies and other hospitality providers will not be permitted to attend the Luxury Travel Mart Moscow as visitors. <br>
-	 This schedule is for review only, changes in the program are possible.
+	 ___________<br>
+</p>
+<p>
+ <b>Access to all events will only be available to pre-registered visitors.&nbsp;</b>
+</p>
+<p>
+ <b>
+	Non-participating hoteliers, DMC companies and other hospitality providers will not be permitted to attend the Luxury Travel Mart Moscow as visitors.&nbsp;</b>
+</p>
+<p>
+ <b>
+	This schedule is for review only, changes in the program are possible.</b>
 </p>
  <?
 }?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
