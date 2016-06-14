@@ -5,14 +5,50 @@
 <a class="custom-buttom go" href="/ajax/all_pdf_shedule.php?type=particip&app=<?=$arParams["EXHIB_CODE"]?>&hb=y" data-hb="y" data-to="shedule">PDF HB расписания</a>
 <a class="custom-buttom go" href="/ajax/all_pdf_wishlist.php?type=particip&app=<?=$arParams["EXHIB_CODE"]?>" data-hb="" data-to="wishlist">PDF вишлисты</a>
 <a class="custom-buttom go" href="/ajax/all_pdf_wishlist.php?type=particip&app=<?=$arParams["EXHIB_CODE"]?>&hb=y" data-hb="y" data-to="wishlist">PDF HB вишлисты</a>
+<?
+$arFields = CFormMatrix::$arCParticipantField;
+$arFieldsSort = CFormMatrix::$arCParticipantFieldSort;
+$arFieldsFilter = CFormMatrix::$arCParticipantFieldFilter;
+?>
+<?//ФИЛЬТРЫ?>
+<div class="filters">
+  <?foreach($arFields as $filterCode => $filterName):?>
+    <?if($arFieldsFilter[$filterCode]):?>
+      <?$filtCode = $arFieldsFilter[$filterCode];?>
+      <div class="filters__item">
+        <label for="<?=$filtCode?>"><?=$filterName?></label>
+        <input type="text" name="<?=$filtCode?>" id="<?=$filtCode?>" value="<?=$arResult["FILTER"][$filtCode]?>">
+      </div>
+    <?endif;?>
+  <?endforeach;?>
+  <input class="custom-buttom" name="filter" value="Применить" type="submit">
+  <input class="custom-buttom" name="reset" value="Отменить" type="submit">
+</div>
+<? if(!empty($arResult["EXHIBITION"]["PARTICIPANT"])):?>
 	<div class="navigate"><?=$arResult["NAVIGATE"]?></div>
 <div class="table-responsive">
+
 <table class="table">
             <tr>
-            <? $arFields = CFormMatrix::$arCParticipantField;?>
             <? $formID = CFormMatrix::getPFormIDByExh($arResult["EXHIBITION"]["ID"]);?>
-            <? foreach ($arFields as $ind => $fieldName):?>
-                <th><?= $fieldName?></th>
+                <? foreach ($arFields as $ind => $fieldName):?>
+                <th>
+                    <?if($arFieldsSort[$ind]):?>
+                        <?
+                        $orderSort = 'asc';
+                        $class = '';
+                        if($arFieldsSort[$ind] == $arResult["SORT"] && $arResult["ORDER"] == 'asc'){
+                            $orderSort = 'desc';
+                        }
+                        if($arFieldsSort[$ind] == $arResult["SORT"]){
+                          $class = 'active';
+                        }
+                        ?>
+                        <a href="?sort=<?=$arFieldsSort[$ind]?>&order=<?=$orderSort?>" class="sort-title <?=$class?>"><?= $fieldName?></a>
+                    <?else:?>
+                        <?= $fieldName?>
+                    <?endif;?>
+                </th>
             <? endforeach;?>
             </tr>
 
@@ -134,3 +170,6 @@
             </table>
             </div>
 	<div class="navigate"><?=$arResult["NAVIGATE"]?></div>
+<? else:?>
+    <?= GetMessage("ADM_PARC_NO_PARTICIPANTS")?>
+<? endif;?>

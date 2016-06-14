@@ -52,3 +52,16 @@
     cursor: pointer;
     display: none; /* в обычном состоянии её нет) */
 }
+.sort-title.active{
+    color: #66CCFD;
+}
+tr .data-wrap {
+    max-height: 100px;
+    overflow-y: hidden;
+}
+tr.full .data-wrap {
+    max-height: none;
+}
+.filters__item label{
+    width: 100px;
+}
