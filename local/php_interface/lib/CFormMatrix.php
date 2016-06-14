@@ -782,6 +782,44 @@ class CFormMatrix
 		"Сумма счета",
 		"Действия"
 	);
+	static $arCParticipantFieldSort = array(
+		"",
+		"ID",
+		"LOGIN",
+		"",
+		"COMPANY",
+		"BUSINESS",
+		"",
+		"",
+		"REP",
+		"PHONE",
+		"",
+		"EMAIL",
+		"",
+		"",
+		"",
+		"",
+		""
+	);
+	static $arCParticipantFieldFilter = array(
+		"",
+		"ID",
+		"LOGIN",
+		"",
+		"COMPANY",
+		"BUSINESS",
+		"",
+		"",
+		"REP",
+		"PHONE",
+		"",
+		"EMAIL",
+		"",
+		"",
+		"",
+		"",
+		""
+	);
 	static $arUCParticipantField = array(
 		"Групповые действия",
 		"Company or hotel name",
@@ -799,6 +837,42 @@ class CFormMatrix
 		"Email",
 		"Company or hotel name",
 		"Действия"
+	);
+	static $arUCParticipantFieldSort = array(
+		"",
+		"COMPANY",
+		"BUSINESS",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"REP",
+		"",
+		"",
+		"PHONE",
+		"",
+		"EMAIL",
+		"COMPANY",
+		""
+	);
+	static $arUCParticipantFieldFilter = array(
+		"",
+		"COMPANY",
+		"BUSINESS",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"REP",
+		"",
+		"",
+		"PHONE",
+		"",
+		"EMAIL",
+		"",
+		""
 	);
 	static $arExelCompParticipantField = array(
 		"NAMES" => array(
@@ -2711,8 +2785,6 @@ class CFormMatrix
 		return false;
 	}
 
-	
-
 	/**
 	 * Возвращает ид ответа для списковых вопросов
 	 * @param $fromFormID - ИД исходной формы гостей
@@ -2730,7 +2802,8 @@ class CFormMatrix
 		$index = array_search($id, self::$arListAnswerGuestForm[$fromFormID][$SID]);
 		return self::$arListAnswerGuestForm[$needFormID][$SID][$index];
 	}
-	
+
+
 	static function getExhProp()
 	{
 		return self::$arExhProp;

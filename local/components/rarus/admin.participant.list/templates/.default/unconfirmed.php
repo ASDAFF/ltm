@@ -5,14 +5,49 @@
 <input class="custom-buttom" name="SPAM" type="submit" value="<?=GetMessage("ADM_PARC_SPAM")?>">
 <input name="SPAM_TYPE" type="hidden" value="Y">
 
-
+<?
+    $arFields = CFormMatrix::$arUCParticipantField;
+    $arFieldsSort = CFormMatrix::$arUCParticipantFieldSort;
+    $arFieldsFilter = CFormMatrix::$arUCParticipantFieldFilter;
+?>
+<?//ФИЛЬТРЫ?>
+<div class="filters">
+    <?foreach($arFields as $filterCode => $filterName):?>
+        <?if($arFieldsFilter[$filterCode]):?>
+          <?$filtCode = $arFieldsFilter[$filterCode];?>
+            <div class="filters__item">
+                <label for="<?=$filtCode?>"><?=$filterName?></label>
+                <input type="text" name="<?=$filtCode?>" id="<?=$filtCode?>" value="<?=$arResult["FILTER"][$filtCode]?>">
+            </div>
+        <?endif;?>
+    <?endforeach;?>
+    <input class="custom-buttom" name="filter" value="Применить" type="submit">
+    <input class="custom-buttom" name="reset" value="Отменить" type="submit">
+</div>
+<? if(!empty($arResult["EXHIBITION"]["PARTICIPANT"])):?>
 	<div class="navigate"><?=$arResult["NAVIGATE"]?></div>
 <div class="table-responsive">
 <table class="table">
 	<tr>
-		<? $arFields = CFormMatrix::$arUCParticipantField;?>
+
 		<? foreach ($arFields as $ind => $fieldName):?>
-			<th <?= $class?>><?= $fieldName?></th>
+			<th <?= $class?>>
+                <?if($arFieldsSort[$ind]):?>
+                    <?
+                    $orderSort = 'asc';
+                    $class = '';
+                    if($arFieldsSort[$ind] == $arResult["SORT"] && $arResult["ORDER"] == 'asc'){
+                        $orderSort = 'desc';
+                    }
+                    if($arFieldsSort[$ind] == $arResult["SORT"]){
+                        $class = 'active';
+                    }
+                    ?>
+                    <a href="?sort=<?=$arFieldsSort[$ind]?>&order=<?=$orderSort?>" class="sort-title <?=$class?>"><?= $fieldName?></a>
+                <?else:?>
+                    <?= $fieldName?>
+                <?endif;?>
+            </th>
 		<? endforeach;?>
 	</tr>
 
@@ -37,7 +72,7 @@
 				<td><?= $arUser["FORM_DATA"][22]["VALUE"]?></td>
 				<td><?= $arUser["FORM_DATA"][20]["VALUE"]?></td>
 				<td><?= $arUser["FORM_DATA"][23]["VALUE"]?></td>
-				<td class="description"><div><?= $arUser["FORM_DATA"][24]["VALUE"]?></div></td>
+				<td class="description"><div class="data-wrap"><?= $arUser["FORM_DATA"][24]["VALUE"]?></div></td>
 				<? // данные из формы представителя?>
 				<td><?= $arUser["FORM_USER"][32]["VALUE"]?> <?= $arUser["FORM_USER"][33]["VALUE"]?></td>
 				<td><?= $arUser["FORM_USER"][106]["VALUE"]?></td>
@@ -107,3 +142,6 @@
 	</table>
 </div>
 	<div class="navigate"><?=$arResult["NAVIGATE"]?></div>
+<? else:?>
+    <?= GetMessage("ADM_PARC_NO_PARTICIPANTS")?>
+<? endif;?>

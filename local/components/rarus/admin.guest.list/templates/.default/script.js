@@ -1,4 +1,9 @@
 $(document).ready(function() {
+	//сворачивание разворачивание строк таблицы
+	$('.list tbody').on('dblclick', 'tr', function () {
+		$(this).toggleClass('full');
+	});
+
 	$('table.list tr').on("click", "input[name^=CONFIRM]", function(){
 
 		var $checkbox = $(this);
