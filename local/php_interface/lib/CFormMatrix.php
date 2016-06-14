@@ -2803,7 +2803,6 @@ class CFormMatrix
 		return self::$arListAnswerGuestForm[$needFormID][$SID][$index];
 	}
 
-
 	static function getExhProp()
 	{
 		return self::$arExhProp;

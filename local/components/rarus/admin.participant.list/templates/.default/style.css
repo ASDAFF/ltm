@@ -62,6 +62,27 @@ tr .data-wrap {
 tr.full .data-wrap {
     max-height: none;
 }
-.filters__item label{
-    width: 100px;
+.filters {
+    margin: 10px 0;
+}
+.filters__item {
+    display: inline-block;
+    margin: 0 20px 10px 0;  
+}
+
+.filters__item label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.filters .filters__item input {
+    font-size: 18px;
+}
+
+.filters__item input:focus {
+    
+    -webkit-box-shadow:  0 0 5px 2px #66ccfd;
+    -moz-box-shadow: 0 0 5px 2px #66ccfd;
+    box-shadow: 0 0 5px 2px #66ccfd;
 }
