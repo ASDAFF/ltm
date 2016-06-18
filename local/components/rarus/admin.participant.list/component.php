@@ -335,7 +335,7 @@ while($obElement = $rsElement->GetNextElement())
         $arResult["NAVIGATE"] = $res->GetPageNavStringEx($navComponentObject, "Пользователи", "");
         unset($arItem["PARTICIPANT"]);
         while($ar = $res->Fetch()) {
-            $arItem["PARTICIPANT"][] = $ar;
+            $arItem["PARTICIPANT"][ $ar["ID"] ] = $ar;
         }
     }
 
