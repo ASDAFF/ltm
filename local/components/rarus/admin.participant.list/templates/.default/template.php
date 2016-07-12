@@ -19,7 +19,7 @@
     </form>
 </div>
 <div id="overlay"></div><!-- Подложка -->
-<form method="post" action="" name="accept">
+<form method="post" action="<?=POST_FORM_ACTION_URI?>" name="accept">
     <?
     if(("Y" == $arParams["SPAM"]))
     {
