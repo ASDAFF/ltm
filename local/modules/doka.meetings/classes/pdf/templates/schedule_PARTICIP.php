@@ -75,7 +75,7 @@ function DokaGeneratePdf($arResult) {
 				  <td colspan="'.$colspanGuest.'" align="center">Free time</td>
 			  </tr>';
 		}
-		else if($freeseriflot['status'] == 'coffe'){
+		else if($freeseriflot['status'] == 'coffee'){
 			$tbl .= '<tr>
 				  <td>' . $freeseriflot['name'] . '</td>
 				  <td colspan="'.$colspanGuest.'" align="center">Coffee-break</td>
