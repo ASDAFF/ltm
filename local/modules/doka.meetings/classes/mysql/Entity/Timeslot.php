@@ -10,6 +10,8 @@ class Timeslot
 
     const TYPE_MEET = 1;
     const TYPE_COFFEE = 2;
+    const TYPE_LUNCH = 4;
+    const TYPE_FREE = 8;
 
     var $LAST_ERROR = '';
 
@@ -19,7 +21,9 @@ class Timeslot
 
     static protected $types = array(
         self::TYPE_MEET => 'meet',
-        self::TYPE_COFFEE => 'coffee'
+        self::TYPE_COFFEE => 'coffee',
+        self::TYPE_LUNCH => 'lunch',
+        self::TYPE_FREE => 'free'
     );
 
     static protected $arFields = array(
@@ -55,7 +59,7 @@ class Timeslot
 
         $types = self::$types;
         foreach ($types as $id => $type) {
-            if ($id != self::TYPE_COFFEE)
+            if (!in_array($id, [self::TYPE_COFFEE, self::TYPE_LUNCH]))
                 $ids[] = $id;
         }
 
@@ -72,7 +76,7 @@ class Timeslot
 
         $types = self::$types;
         foreach ($types as $id => $type) {
-            if ($id != self::TYPE_COFFEE)
+            if (!in_array($id, [self::TYPE_COFFEE, self::TYPE_LUNCH]))
                 $codes[] = $type;
         }
 
