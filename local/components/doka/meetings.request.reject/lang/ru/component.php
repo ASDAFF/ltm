@@ -27,4 +27,6 @@ $MESS['PARTICIP_REQUEST_NOT_FOUND'] = 'REQUEST NOT FOUND';
 $MESS['ADMIN_REQUEST_NOT_FOUND'] = 'REQUEST NOT FOUND';
 $MESS['GUEST_REQUEST_NOT_FOUND'] = 'Запрос не найден';
 
+$MESS['ERROR_WRONG_RIGHTS'] = "You can't work with meeting requests";
+
 ?>

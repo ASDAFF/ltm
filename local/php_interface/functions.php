@@ -1,4 +1,5 @@
 <?php
+
 function passCode($str, $passw=""){
     $salt = "Dn82n9j";
     $len = strlen($str);
@@ -61,5 +62,4 @@ function translit_file_name($path)
 
     return $name.$ext;
 }
-
 ?>
