@@ -88,14 +88,20 @@ elseif($arResult['USER_TYPE'] == 'PARTICIP'){
 else{
 	$senderType = $req_obj->getUserTypeById($arParams['USER_ID']);
 	if($senderType == 'GUEST' && isset($_REQUEST['mode']) && $_REQUEST['mode'] == 'pdf'){
-		$arResult['USER_TYPE'] = 'GUEST';
 		$wishlists = $wishlist_obj->getWishlistsFull($arParams['USER_ID'], $formId, $propertyNameParticipant, $fio_dates);
 	}
 	else{
-		$arResult['USER_TYPE'] = 'PARTICIP';
 		$wishlists = $wishlist_obj->getWishlists($arParams['USER_ID']);
 	}
+	if(empty($arResult['USER_TYPE'])) {
+		if($senderType == 'GUEST') {
+			$arResult['USER_TYPE'] = 'GUEST';
+		} else {
+			$arResult['USER_TYPE'] = 'PARTICIP';
+		}
+	}
 }
+
 $arResult['WISH_IN'] = $wishlists['WISH_IN']; // с кем хочет встретиться
 $arResult['WISH_OUT'] = $wishlists['WISH_OUT'];
 $arResult['CITY'] = "";
