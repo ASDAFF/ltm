@@ -6,6 +6,8 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/local/modules/doka.meetings/classes/mys
 
 use Doka\Meetings\Entity\Request as DokaRequest;
 use Doka\Meetings\Entity\Timeslot as DokaTimeslot;
+use Bitrix\Main;
+use Bitrix\Main\Entity;
 
 IncludeModuleLangFile(__FILE__);
 
@@ -1104,6 +1106,53 @@ AND EXHIBITION_ID=' . $this->app_id .
         $res = $DB->Query($sSQL, false, 'FILE: '.__FILE__.'<br />LINE: ' . __LINE__);
 
         return $res;
+    }
+
+    public function checkMeetingRights()
+    {
+        global $USER;
+
+        $arSelect = ["ID", "UF_HB", "UF_MR", "GROUPS"];
+        $arFilter = [
+          "=ID" => $USER->GetID()
+        ];
+
+        $res = Main\UserTable::getList(Array(
+          "select"=>$arSelect,
+          "filter"=>$arFilter,
+          'runtime' => [
+            new Entity\ReferenceField(
+              'GROUP',
+              '\Bitrix\Main\UserGroupTable',
+              ['=this.ID' => 'ref.USER_ID']
+            ),
+            new Entity\ExpressionField(
+              'GROUPS',
+              'GROUP_CONCAT(%s SEPARATOR \'##\')',
+              ['GROUP.GROUP_ID'],
+              [ 'fetch_data_modification' => function () {
+                  return [function ($value) {
+                      $elements = explode("##", $value);
+                      return $elements;
+                  }];
+              }]
+            ),
+          ],
+        ));
+
+        $curUser = [];
+        while ($arRes = $res->fetch()) {
+            $curUser = $arRes;
+        }
+
+        if(in_array($this->getOption('ADMINS_GROUP'), $curUser["GROUPS"]) || $USER->IsAdmin()) {
+            return true;
+        } elseif(in_array($this->getOption('GUESTS_GROUP'), $curUser["GROUPS"]) && $curUser["UF_MR"]) {
+            return true;
+        } elseif(in_array($this->getOption('MEMBERS_GROUP'), $curUser["GROUPS"])) {
+            return true;
+        }
+        return false;
     }
 
 	/*=== дописываю методы под ТЗ ===*/

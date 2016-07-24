@@ -73,6 +73,11 @@ use Doka\Meetings\Timeslots as DokaTimeslot;
 
 $req_obj = new DokaRequest($arParams['APP_ID']);
 
+if(!$req_obj->checkMeetingRights()) {
+	ShowError(GetMessage("ERROR_WRONG_RIGHTS"));
+	return;
+}
+
 $arResult["APP"] = $arParams['APP_ID'];
 $arResult['USER_TYPE'] = $req_obj->getUserType();
 if ($receiver_id <= 0) {
