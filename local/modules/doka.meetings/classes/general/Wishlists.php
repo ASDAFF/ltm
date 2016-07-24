@@ -44,9 +44,15 @@ class Wishlists extends DokaWishlist
             'WISH_OUT' => array(),
         );
 
-        $sSQL = 'SELECT bu1.WORK_COMPANY as sender_name, bu1.ID as sender_id, bu1.NAME as sender_rep_name, bu1.LAST_NAME as sender_rep_lname, bu2.WORK_COMPANY as receiver_name, bu2.ID as receiver_id, bu2.NAME as receiver_rep_name, bu2.LAST_NAME as receiver_rep_lname' .
-            ' FROM `' . self::$sTableName . '` wl INNER JOIN `b_user` bu1 ON bu1.ID=wl.SENDER_ID INNER JOIN `b_user` bu2 ON bu2.ID=wl.RECEIVER_ID' . 
-            ' WHERE wl.EXHIBITION_ID=' . $DB->ForSql($this->app_id) . ' AND (RECEIVER_ID=' . $DB->ForSql($user_id) . ' OR SENDER_ID=' . $DB->ForSql($user_id) . ')';
+        $sSQL = 'SELECT wl.REASON as cmp_reason, bu1.WORK_COMPANY as sender_name, bu1.ID as sender_id, '.
+                'bu1.NAME as sender_rep_name, bu1.LAST_NAME as sender_rep_lname, '.
+                'bu2.WORK_COMPANY as receiver_name, bu2.ID as receiver_id, '.
+                'bu2.NAME as receiver_rep_name, bu2.LAST_NAME as receiver_rep_lname' .
+            ' FROM `' . self::$sTableName . '` wl '.
+                'INNER JOIN `b_user` bu1 ON bu1.ID=wl.SENDER_ID '.
+                'INNER JOIN `b_user` bu2 ON bu2.ID=wl.RECEIVER_ID' .
+            ' WHERE wl.EXHIBITION_ID=' . $DB->ForSql($this->app_id) .
+                ' AND (RECEIVER_ID=' . $DB->ForSql($user_id) . ' OR SENDER_ID=' . $DB->ForSql($user_id) . ')';
 
         $res = $DB->Query($sSQL, false, 'FILE: '.__FILE__.'<br />LINE: ' . __LINE__);
 
@@ -56,12 +62,14 @@ class Wishlists extends DokaWishlist
                     'company_id' => $data['receiver_id'],
                     'company_name' => $data['receiver_name'],
                     'company_rep' => $data['receiver_rep_name']." ".$data['receiver_rep_lname'],
+                    'company_reason' => $data['cmp_reason'],
                 );
             } else {
                 $results['WISH_OUT'][$data['sender_id']] = array(
                     'company_id' => $data['sender_id'],
                     'company_name' => $data['sender_name'],
                     'company_rep' => $data['sender_rep_name']." ".$data['sender_rep_lname'],
+                    'company_reason' => $data['cmp_reason'],
                 );
             }
         }
@@ -83,9 +91,18 @@ class Wishlists extends DokaWishlist
             'WISH_OUT' => array(),
         );
 
-        $sSQL = 'SELECT bu1.WORK_COMPANY as sender_name, bu1.ID as sender_id, bu1.NAME as sender_rep_name, bu1.LAST_NAME as sender_rep_lname, buts1.'.$result_id.' as sender_repr_fio, bu2.WORK_COMPANY as receiver_name, bu2.ID as receiver_id, bu2.NAME as receiver_rep_name, bu2.LAST_NAME as receiver_rep_lname, buts2.'.$result_id.' as receiver_repr_fio' .
-            ' FROM `' . self::$sTableName . '` wl INNER JOIN `b_user` bu1 ON bu1.ID=wl.SENDER_ID INNER JOIN `b_user` bu2 ON bu2.ID=wl.RECEIVER_ID LEFT JOIN b_uts_user buts1 ON buts1.VALUE_ID=bu1.ID  LEFT JOIN b_uts_user buts2 ON buts2.VALUE_ID=bu2.ID' . 
-            ' WHERE wl.EXHIBITION_ID=' . $DB->ForSql($this->app_id) . ' AND (RECEIVER_ID=' . $DB->ForSql($user_id) . ' OR SENDER_ID=' . $DB->ForSql($user_id) . ')';
+        $sSQL = 'SELECT wl.REASON as cmp_reason, bu1.WORK_COMPANY as sender_name, bu1.ID as sender_id, '.
+              'bu1.NAME as sender_rep_name, bu1.LAST_NAME as sender_rep_lname, buts1.'.$result_id.' as sender_repr_fio, '.
+              'bu2.WORK_COMPANY as receiver_name, bu2.ID as receiver_id, '.
+              'bu2.NAME as receiver_rep_name, bu2.LAST_NAME as receiver_rep_lname, buts2.'.$result_id.' as receiver_repr_fio' .
+          ' FROM `' . self::$sTableName . '` wl '.
+              'INNER JOIN `b_user` bu1 ON bu1.ID=wl.SENDER_ID '.
+              'INNER JOIN `b_user` bu2 ON bu2.ID=wl.RECEIVER_ID '.
+              'LEFT JOIN b_uts_user buts1 ON buts1.VALUE_ID=bu1.ID '.
+              'LEFT JOIN b_uts_user buts2 ON buts2.VALUE_ID=bu2.ID' .
+          ' WHERE wl.EXHIBITION_ID=' . $DB->ForSql($this->app_id) .
+              ' AND (RECEIVER_ID=' . $DB->ForSql($user_id) . '
+              OR SENDER_ID=' . $DB->ForSql($user_id) . ')';
 
         $res = $DB->Query($sSQL, false, 'FILE: '.__FILE__.'<br />LINE: ' . __LINE__);
 
@@ -100,6 +117,7 @@ class Wishlists extends DokaWishlist
                         'company_id' => $data['receiver_id'],
                         'company_name' => $data['receiver_name'],
                         'company_rep' => trim($arAnswer2[$fio[0][0]][$fio[0][1]]["USER_TEXT"])." ".trim($arAnswer2[$fio[1][0]][$fio[1][1]]["USER_TEXT"]),
+                        'company_reason' => $data['cmp_reason'],
                     );
             }
             else {
@@ -112,6 +130,7 @@ class Wishlists extends DokaWishlist
                         'company_id' => $data['sender_id'],
                         'company_name' => $data['sender_name'],
                         'company_rep' => trim($arAnswer2[$fio[0][0]][$fio[0][1]]["USER_TEXT"])." ".trim($arAnswer2[$fio[1][0]][$fio[1][1]]["USER_TEXT"]),
+                        'company_reason' => $data['cmp_reason'],
                     );
             }
         }

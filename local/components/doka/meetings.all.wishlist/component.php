@@ -162,6 +162,12 @@ while ($arUser = $rsUsers->Fetch()) {
 		}
 	}
 	$APPLICATION->RestartBuffer();
+	$arResult['STATUS_REQUEST'] = [
+		'empty' => "",
+		'rejected' => GetMessage($arResult['USER_TYPE']."_REJECTED"),
+		'timeout' => GetMessage($arResult['USER_TYPE']."_TIMEOUT"),
+		'selected' => GetMessage($arResult['USER_TYPE']."_SELECTED"),
+	];
 	DokaGeneratePdf($company);
 }
 /* Создание архива и удаление папки */
@@ -180,18 +186,6 @@ else{
 		"LINK" => "http://".$_SERVER['SERVER_NAME'].$shotPath."wish_".strtolower($arParams["EXIB_CODE"]).$isHB.'.zip'
 	);
 	CEvent::SendImmediate("ARCHIVE_READY", "s1", $arEventFields, $Duplicate = "Y");
-/*	$text = "
-	<html>
-	<body>
-		<p>Архив готов.</p><br />
-		<p>Ссылка для скачивания: <a href='".$arEventFields["LINK"]."'>".$arEventFields["LINK"]."</a></p>
-	</body>
-	</html>
-";
-	$headers  = 'MIME-Version: 1.0' . "\r\n";
-	$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
-	mail($arParams["EMAIL"], 'Готов архив с '.$arEventFields["TYPE"].' для '.$arEventFields["USER_TYPE"].' на выставку '.$arEventFields["EXIBITION"],$text, $headers);
-*/
 }
 
 fullRemove_ff($pdfFolder);
