@@ -162,7 +162,7 @@ while ($arUser = $rsUsers->Fetch()) {
 		}
 	}
 	$APPLICATION->RestartBuffer();
-	$arResult['STATUS_REQUEST'] = [
+	$company['STATUS_REQUEST'] = [
 		'empty' => "",
 		'rejected' => GetMessage($arResult['USER_TYPE']."_REJECTED"),
 		'timeout' => GetMessage($arResult['USER_TYPE']."_TIMEOUT"),
