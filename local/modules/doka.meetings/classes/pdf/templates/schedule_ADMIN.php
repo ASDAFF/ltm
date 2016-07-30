@@ -52,7 +52,7 @@ function DokaGeneratePdf($arResult) {
 				  <td colspan="2" align="center">Free time</td>
 			  </tr>';
 		}
-		else if($timeslot['status'] == 'coffe'){
+		else if($timeslot['status'] == 'coffee'){
 			$tbl .= '<tr>
 				  <td>' . $timeslot['name'] . '</td>
 				  <td colspan="2" align="center">Coffe-break</td>

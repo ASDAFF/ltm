@@ -67,7 +67,6 @@ function DokaGeneratePdf($arResult) {
 
 	$tbl = $header;
 	$count = 0;
-	$countBreaks = 0;
 	foreach ($arResult['SCHEDULE'] as $freeseriflot) {
 		$count++;
 		if ($freeseriflot['status'] == 'free') {
@@ -76,14 +75,13 @@ function DokaGeneratePdf($arResult) {
 				  <td colspan="'.$colspanGuest.'" align="center">Free time</td>
 			  </tr>';
 		}
-		else if($freeseriflot['status'] == 'coffe' && !$countBreaks){
+		else if($freeseriflot['status'] == 'coffee'){
 			$tbl .= '<tr>
 				  <td>' . $freeseriflot['name'] . '</td>
 				  <td colspan="'.$colspanGuest.'" align="center">Coffee-break</td>
 			  </tr>';
-			  $countBreaks++;
 			}
-		else if($freeseriflot['status'] == 'coffe' && $countBreaks){
+		else if($freeseriflot['status'] == 'lunch'){
 			$tbl .= '<tr>
 				  <td>' . $freeseriflot['name'] . '</td>
 				  <td colspan="'.$colspanGuest.'" align="center">Lunch</td>

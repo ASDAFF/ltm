@@ -361,19 +361,19 @@ class Requests extends DokaRequest
     public function getSortedFreeTimesAppoint($user_id = false)
     {
         $free_timeslots = $this->getFreeTimeSlots($user_id);
-		$allTimes = $this->getTimeslots();
+		    $allTimes = $this->getTimeslots();
         $slot_type_meet_code = DokaTimeslot::getTypeCode(DokaTimeslot::TYPE_MEET);
-		if(empty($free_timeslots)){
-			$counter = 0;
-		  foreach ($allTimes as $key => $timeslot) {
-			  if($timeslot['type'] == $slot_type_meet_code){
-				$free_timeslots[$counter]["id"] = $key;
-				$free_timeslots[$counter]["name"] = $timeslot['name'];
-				$counter++;
-			  }
-		  }
-		  return $free_timeslots;
-		}
+        if(empty($free_timeslots)){
+          $counter = 0;
+          foreach ($allTimes as $key => $timeslot) {
+            if($timeslot['type'] == $slot_type_meet_code){
+            $free_timeslots[$counter]["id"] = $key;
+            $free_timeslots[$counter]["name"] = $timeslot['name'];
+            $counter++;
+            }
+          }
+          return $free_timeslots;
+        }
         foreach ($free_timeslots as $key => $timeslot) {
             if ($timeslot['type'] == $slot_type_meet_code){
 				$allTimes[$timeslot['id']]['free'] = 1;

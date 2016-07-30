@@ -18,5 +18,7 @@ $MESS['DOKA_MEET_TIME_TO'] = "До (мин)";
 $MESS['DOKA_MEET_SLOT_TYPE'] = "Тип таймслота";
 $MESS['DOKA_MEET_MEET'] = "Встреча";
 $MESS['DOKA_MEET_COFFEE'] = "Кофебрейк";
+$MESS['DOKA_MEET_LUNCH'] = "Ланч";
+$MESS['DOKA_MEET_FREE'] = "Свободное время";
 $MESS['DOME_MEET_CHOOSE_EXHIBITION'] = "Выберите выставку";
 ?>

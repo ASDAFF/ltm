@@ -255,8 +255,8 @@ while ($data = $rsCompanies->Fetch()) {
 				$company['schedule'][$timeslot_id] = array(
 					'timeslot_id' => $timeslot_id,
 					'timeslot_name' => $timeslotValue['name'],
-					'status' => 'coffe',
-					'notes' => 'coffe',
+					'status' => $timeslotValue['type'],
+					'notes' => $timeslotValue['type'],
 				);
 			}
 			else{
@@ -301,8 +301,8 @@ while ($data = $rsCompanies->Fetch()) {
 				$company['schedule'][$timeslot_id] = array(
 					'timeslot_id' => $timeslot_id,
 					'timeslot_name' => $timeslotValue['name'],
-					'status' => 'coffe',
-					'notes' => 'coffe',
+					'status' => $timeslotValue['type'],
+					'notes' => $timeslotValue['type'],
 				);
 			}
 		}
