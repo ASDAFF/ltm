@@ -44,7 +44,7 @@ if(isset($arParams["EXHIB_CODE"]) && $arParams["EXHIB_CODE"]!=''){
 		array("ID", "CODE","IBLOCK_ID","PROPERTY_APP_HB_ID","PROPERTY_APP_ID","PROPERTY_C_GUESTS_GROUP")
 	);
 	while($oExhib = $rsExhib->Fetch()){
-		if(isset($arParams["TYPE"]) && $arParams["TYPE"] == 'HB'){
+		if(isset($arParams["TYPE"]) && $arParams["TYPE"] == 'HB' && !empty($oExhib["PROPERTY_APP_HB_ID_VALUE"])){
 			$appId = $oExhib["PROPERTY_APP_HB_ID_VALUE"];
 		}
 		else{
@@ -321,6 +321,7 @@ foreach($arResult["USERS"] as &$arUser){
 
 	$times =  $req_obj->getSortedFreeTimesAppoint($arUser["ID"]);//свободные таймслоты пользователя
 	$userTimeSlot = array();
+
 	if($arParams["SORT"] == "BY_SLOTS"){
 		foreach ($times as $time){
 			$userTimeSlot[$time["id"]] = $time["name"];
