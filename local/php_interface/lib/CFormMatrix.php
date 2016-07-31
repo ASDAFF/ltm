@@ -1151,6 +1151,14 @@ class CFormMatrix
 			"27" => "TABLE"
 		),
 	);
+static $arExelGuestFieldAllToReplace = [
+	[
+		"F_NAME_COL" => "F_NAME",
+		"L_NAME_COL" => "L_NAME",
+		"JOB_COL" => "JOB",
+		"EMAIL_COL" => "EMAIL",
+	]
+];
 	static $arExelEvGuestField = array(
 		"NAMES" => array(
 			"0" => "Компания",
@@ -1269,6 +1277,26 @@ class CFormMatrix
 			"26" => "SITE",
 		),
 	);
+	static $arExelEvGuestFieldAllToReplace = [
+		[
+			"F_NAME_COL1" => "F_NAME",
+			"L_NAME_COL1" => "L_NAME",
+			"JOB_COL1" => "JOB",
+			"EMAIL_COL1" => "EMAIL",
+		],
+		[
+			"F_NAME_COL2" => "F_NAME",
+			"L_NAME_COL2" => "L_NAME",
+			"JOB_COL2" => "JOB",
+			"EMAIL_COL2" => "EMAIL",
+		],
+		[
+			"F_NAME_COL3" => "F_NAME",
+			"L_NAME_COL3" => "L_NAME",
+			"JOB_COL3" => "JOB",
+			"EMAIL_COL3" => "EMAIL",
+		]
+	];
 	private static $arFormGuestQuestions = array(
 		"NAMES" => array(
 			"0" => "Название компании",
