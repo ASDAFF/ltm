@@ -55,6 +55,7 @@ if (empty($arParams["APP_ID"])) {
 }
 
 use Doka\Meetings\Requests as DokaRequest;
+use Doka\Meetings\Timeslots as DokaTimeslot;
 
 $req_obj = new DokaRequest($arParams['APP_ID']);
 
@@ -268,41 +269,46 @@ while ($data = $rsCompanies->Fetch()) {
 			}
 		}
 	} else {
+		//Получаем расписание для текущей компании
+		$busy_timeslots = $req_obj->getAllTimesByComp($data(ID));
+		$shedule = [];
 		foreach ($timeslots as $timeslot_id => $timeslotValue) {
-			if(in_array($timeslot_id, $meet_timeslots )) {
-				$curMeet = array("status" => "free", "modified_by" => "", "company_id" => "");
-				$schedule = array(
-					'timeslot_id' => $timeslot_id,
-					'timeslot_name' => $timeslots[$timeslot_id]['name'],
-					'status' => 'free',
-					'is_busy' => false,
-					'notes' => ""
-				);
-				if (!in_array($statuses[$timeslot_id], $statuses_free)) {
-					$user_is_sender = $data['MEET_' . $timeslot_id] % 10;
-					$user_id = substr($data['MEET_' . $timeslot_id], 0, -1);
-					$schedule['company_id'] = $users_list[$user_id]['id'];
-					$schedule['company_name'] = $users_list[$user_id]['name'];
-					$schedule['company_rep'] = $users_list[$user_id]['repr_name'];
-					$schedule['user_is_sender'] = $user_is_sender;
-					$schedule['hall'] = $users_list[$user_id]['hall'];
-					$schedule['table'] = $users_list[$user_id]['table'];
-					$schedule['is_busy'] = true;
-					$schedule['status'] = DokaRequest::getStatusCode($statuses[$timeslot_id]);
-					$curMeet["status"] = DokaRequest::getStatusCode($statuses[$timeslot_id]);
-					$curMeet["modified_by"] = $user_id;
-					$curMeet["company_id"] = $schedule['company_id'];
-				}
-				$schedule["notes"] = DokaGetNote($curMeet, $arResult['USER_TYPE'], $data['ID']);
 
-				$company['schedule'][$timeslot_id] = $schedule;
+
+			if (array_key_exists($timeslot_id, $busy_timeslots)) {
+				$meet = $busy_timeslots[$timeslot_id]['meet'];
+				$shedule = array(
+					'timeslot_id' => $timeslot_id,
+					'name' => $item['name'],
+					'status' => $meet['status'],
+					'notes' => DokaGetNote($meet, $arResult['USER_TYPE'], $arResult['CURRENT_USER_ID']),
+					'sent_by_you' => ($meet['modified_by'] == $arResult['CURRENT_USER_ID']),
+					'company_name' => $meet['company_name'],
+					'company_rep' => $meet['company_rep'],
+					'company_id' => $meet['company_id'],
+					'form_res' => $meet['form_res'],
+					'hall' => $meet['hall'],
+					'table' => $meet['table'],
+					'time_left' => $meet['date'],
+				);
+			} else if (in_array($item['type'], DokaTimeslot::getMeetTypeCodes())) {
+				$arResult['SCHEDULE'][] = array(
+					'timeslot_id' => $timeslot_id,
+					'name' => $item['name'],
+					'status' => 'free',
+					'notes' => DokaGetNote(array(), $arResult['USER_TYPE'], $arResult['CURRENT_USER_ID']),
+					'list' => array_key_exists($timeslot_id, $companies_schedule) ? $companies_schedule[$timeslot_id] : array(),
+					'time_left' => ''
+				);
 			}
 			else{
-				$company['schedule'][$timeslot_id] = array(
+				$arResult['SCHEDULE'][] = array(
 					'timeslot_id' => $timeslot_id,
-					'timeslot_name' => $timeslotValue['name'],
+					'name' => $item['name'],
 					'status' => 'coffe',
 					'notes' => 'coffe',
+					'list' => array(),
+					'time_left' => ''
 				);
 			}
 		}
@@ -310,6 +316,7 @@ while ($data = $rsCompanies->Fetch()) {
 	/* Формируем сам pdf */
 	$APPLICATION->RestartBuffer();
 	$company['exhibition'] = $req_obj->getOptions();
+	die();
 	DokaGeneratePdf($company);
 }
 /* Создание архива и удаление папки */
@@ -328,19 +335,6 @@ else{
 		"LINK" => "http://".$_SERVER['SERVER_NAME'].$shotPath.strtolower($arParams["EXIB_CODE"]).$isHB.'.zip'
 	);
 	CEvent::SendImmediate("ARCHIVE_READY", "s1", $arEventFields, $Duplicate = "Y");
-/*	$text = "
-	<html>
-	<body>
-		<p>Архив готов.</p><br />
-		<p>Ссылка для скачивания: <a href='".$arEventFields["LINK"]."'>".$arEventFields["LINK"]."</a></p>
-		
-	</body>
-	</html>
-	";
-	$headers  = 'MIME-Version: 1.0' . "\r\n";
-	$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
-	custom_mail($arParams["EMAIL"], 'Готов архив с '.$arEventFields["TYPE"].' для '.$arEventFields["USER_TYPE"].' на выставку '.$arEventFields["EXIBITION"],$text, $headers);
-*/
 }
 
 fullRemove_ff($pdfFolder);
