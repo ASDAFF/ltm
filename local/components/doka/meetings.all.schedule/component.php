@@ -55,6 +55,7 @@ if (empty($arParams["APP_ID"])) {
 }
 
 use Doka\Meetings\Requests as DokaRequest;
+use Doka\Meetings\Timeslots as DokaTimeslot;
 
 $req_obj = new DokaRequest($arParams['APP_ID']);
 
@@ -247,6 +248,7 @@ while ($data = $rsCompanies->Fetch()) {
 	);
 
 	$statuses = $req_obj->getTimslotsStatuses($data);
+	$meetTypes = DokaTimeslot::getMeetTypeCodes();
 	//echo "<pre>"; var_dump($data); echo "</pre>";
 	// Если пользователя нет в таблице занятости, значит у него все слоты свободны
 	if ($data['USER_ID'] === null) {
@@ -268,43 +270,43 @@ while ($data = $rsCompanies->Fetch()) {
 			}
 		}
 	} else {
+		//Получаем расписание для текущей компании
+		$busy_timeslots = $req_obj->getAllTimesByComp($data['USER_ID']);
+		$shedule = [];
 		foreach ($timeslots as $timeslot_id => $timeslotValue) {
-			if(in_array($timeslot_id, $meet_timeslots )) {
-				$curMeet = array("status" => "free", "modified_by" => "", "company_id" => "");
-				$schedule = array(
+			if (array_key_exists($timeslot_id, $busy_timeslots)) {
+				$meet = $busy_timeslots[$timeslot_id]['meet'];
+				$user_id = substr($data['MEET_' . $timeslot_id], 0, -1);
+				$shedule = array(
 					'timeslot_id' => $timeslot_id,
-					'timeslot_name' => $timeslots[$timeslot_id]['name'],
+					'timeslot_name' => $timeslotValue['name'],
+					'status' => $meet['status'],
+					'notes' => DokaGetNote($meet, $arResult['USER_TYPE'], $data["ID"]),
+					'user_is_sender' => ($meet['modified_by'] == $data["ID"]),
+					'company_name' => $users_list[$user_id]['name'],
+					'company_rep' => $users_list[$user_id]['repr_name'],
+					'company_id' => $users_list[$user_id]['id'],
+					'is_busy' => true,
+					'hall' => $users_list[$user_id]['hall'],
+					'table' => $users_list[$user_id]['table'],
+				);
+			} else if (in_array($timeslotValue['type'], $meetTypes)) {
+				$shedule = array(
+					'timeslot_id' => $timeslot_id,
+					'timeslot_name' => $timeslotValue['name'],
 					'status' => 'free',
 					'is_busy' => false,
 					'notes' => ""
 				);
-				if (!in_array($statuses[$timeslot_id], $statuses_free)) {
-					$user_is_sender = $data['MEET_' . $timeslot_id] % 10;
-					$user_id = substr($data['MEET_' . $timeslot_id], 0, -1);
-					$schedule['company_id'] = $users_list[$user_id]['id'];
-					$schedule['company_name'] = $users_list[$user_id]['name'];
-					$schedule['company_rep'] = $users_list[$user_id]['repr_name'];
-					$schedule['user_is_sender'] = $user_is_sender;
-					$schedule['hall'] = $users_list[$user_id]['hall'];
-					$schedule['table'] = $users_list[$user_id]['table'];
-					$schedule['is_busy'] = true;
-					$schedule['status'] = DokaRequest::getStatusCode($statuses[$timeslot_id]);
-					$curMeet["status"] = DokaRequest::getStatusCode($statuses[$timeslot_id]);
-					$curMeet["modified_by"] = $user_id;
-					$curMeet["company_id"] = $schedule['company_id'];
-				}
-				$schedule["notes"] = DokaGetNote($curMeet, $arResult['USER_TYPE'], $data['ID']);
-
-				$company['schedule'][$timeslot_id] = $schedule;
-			}
-			else{
-				$company['schedule'][$timeslot_id] = array(
+			} else{
+				$shedule = array(
 					'timeslot_id' => $timeslot_id,
 					'timeslot_name' => $timeslotValue['name'],
 					'status' => $timeslotValue['type'],
 					'notes' => $timeslotValue['type'],
 				);
 			}
+			$company['schedule'][$timeslot_id] = $shedule;
 		}
 	}
 	/* Формируем сам pdf */
@@ -328,19 +330,6 @@ else{
 		"LINK" => "http://".$_SERVER['SERVER_NAME'].$shotPath.strtolower($arParams["EXIB_CODE"]).$isHB.'.zip'
 	);
 	CEvent::SendImmediate("ARCHIVE_READY", "s1", $arEventFields, $Duplicate = "Y");
-/*	$text = "
-	<html>
-	<body>
-		<p>Архив готов.</p><br />
-		<p>Ссылка для скачивания: <a href='".$arEventFields["LINK"]."'>".$arEventFields["LINK"]."</a></p>
-		
-	</body>
-	</html>
-	";
-	$headers  = 'MIME-Version: 1.0' . "\r\n";
-	$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
-	custom_mail($arParams["EMAIL"], 'Готов архив с '.$arEventFields["TYPE"].' для '.$arEventFields["USER_TYPE"].' на выставку '.$arEventFields["EXIBITION"],$text, $headers);
-*/
 }
 
 fullRemove_ff($pdfFolder);

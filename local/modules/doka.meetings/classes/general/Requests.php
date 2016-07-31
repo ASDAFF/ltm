@@ -1025,10 +1025,6 @@ AND EXHIBITION_ID=' . $this->app_id .
     {
         global $DB;
 
-        $timeslots = array();
-
-        $meet_timeslots = $this->getMeetTimeslotsIds();
-
  		if($this->getOption('GUESTS_GROUP') == $group_id){
             $guestField = "UF_MR";
             if($this->getOption('IS_HB')){
