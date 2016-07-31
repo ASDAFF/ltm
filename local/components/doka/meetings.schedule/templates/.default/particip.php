@@ -13,7 +13,7 @@
 	  <th>Time left</th>
   </tr>
 	<? foreach ($arResult['SCHEDULE'] as $item):?>
-	<? if($item['status'] != 'coffe'):?>
+	<? if(!in_array($item['status'], ['coffee', 'lunch'])):?>
 		<tr <?if($item['status'] == 'process' && !$item['sent_by_you']):?>class="unconfirmed"<?endif;?>>
 			<td><?=$item['name']?></td>
 			<?if (isset($item['company_name'])):?>

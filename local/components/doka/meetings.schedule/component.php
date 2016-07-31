@@ -209,14 +209,13 @@ foreach ($timeslots as $timeslot_id => $item) {
 		$arResult['SCHEDULE'][] = array(
 			'timeslot_id' => $timeslot_id,
 			'name' => $item['name'],
-			'status' => 'coffe',
-			'notes' => 'coffe',
+			'status' => $item['type'],
+			'notes' => $item['type'],
 			'list' => array(),
 			'time_left' => ''
 		);
 	}
 }
-
 if (isset($_REQUEST['mode']) && $_REQUEST['mode'] == 'pdf') {
 	require(DOKA_MEETINGS_MODULE_DIR . '/classes/pdf/tcpdf.php');
 	require_once(DOKA_MEETINGS_MODULE_DIR . '/classes/pdf/templates/schedule_' . $arParams['USER_TYPE'] . '.php');

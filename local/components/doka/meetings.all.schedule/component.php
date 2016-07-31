@@ -248,6 +248,7 @@ while ($data = $rsCompanies->Fetch()) {
 	);
 
 	$statuses = $req_obj->getTimslotsStatuses($data);
+	$meetTypes = DokaTimeslot::getMeetTypeCodes();
 	//echo "<pre>"; var_dump($data); echo "</pre>";
 	// Если пользователя нет в таблице занятости, значит у него все слоты свободны
 	if ($data['USER_ID'] === null) {
@@ -256,8 +257,8 @@ while ($data = $rsCompanies->Fetch()) {
 				$company['schedule'][$timeslot_id] = array(
 					'timeslot_id' => $timeslot_id,
 					'timeslot_name' => $timeslotValue['name'],
-					'status' => 'coffe',
-					'notes' => 'coffe',
+					'status' => $timeslotValue['type'],
+					'notes' => $timeslotValue['type'],
 				);
 			}
 			else{
@@ -270,53 +271,47 @@ while ($data = $rsCompanies->Fetch()) {
 		}
 	} else {
 		//Получаем расписание для текущей компании
-		$busy_timeslots = $req_obj->getAllTimesByComp($data(ID));
+		$busy_timeslots = $req_obj->getAllTimesByComp($data['USER_ID']);
 		$shedule = [];
 		foreach ($timeslots as $timeslot_id => $timeslotValue) {
-
-
 			if (array_key_exists($timeslot_id, $busy_timeslots)) {
 				$meet = $busy_timeslots[$timeslot_id]['meet'];
+				$user_id = substr($data['MEET_' . $timeslot_id], 0, -1);
 				$shedule = array(
 					'timeslot_id' => $timeslot_id,
-					'name' => $item['name'],
+					'timeslot_name' => $timeslotValue['name'],
 					'status' => $meet['status'],
-					'notes' => DokaGetNote($meet, $arResult['USER_TYPE'], $arResult['CURRENT_USER_ID']),
-					'sent_by_you' => ($meet['modified_by'] == $arResult['CURRENT_USER_ID']),
-					'company_name' => $meet['company_name'],
-					'company_rep' => $meet['company_rep'],
-					'company_id' => $meet['company_id'],
-					'form_res' => $meet['form_res'],
-					'hall' => $meet['hall'],
-					'table' => $meet['table'],
-					'time_left' => $meet['date'],
+					'notes' => DokaGetNote($meet, $arResult['USER_TYPE'], $data["ID"]),
+					'user_is_sender' => ($meet['modified_by'] == $data["ID"]),
+					'company_name' => $users_list[$user_id]['name'],
+					'company_rep' => $users_list[$user_id]['repr_name'],
+					'company_id' => $users_list[$user_id]['id'],
+					'is_busy' => true,
+					'hall' => $users_list[$user_id]['hall'],
+					'table' => $users_list[$user_id]['table'],
 				);
-			} else if (in_array($item['type'], DokaTimeslot::getMeetTypeCodes())) {
-				$arResult['SCHEDULE'][] = array(
+			} else if (in_array($timeslotValue['type'], $meetTypes)) {
+				$shedule = array(
 					'timeslot_id' => $timeslot_id,
-					'name' => $item['name'],
+					'timeslot_name' => $timeslotValue['name'],
 					'status' => 'free',
-					'notes' => DokaGetNote(array(), $arResult['USER_TYPE'], $arResult['CURRENT_USER_ID']),
-					'list' => array_key_exists($timeslot_id, $companies_schedule) ? $companies_schedule[$timeslot_id] : array(),
-					'time_left' => ''
+					'is_busy' => false,
+					'notes' => ""
 				);
-			}
-			else{
-				$arResult['SCHEDULE'][] = array(
+			} else{
+				$shedule = array(
 					'timeslot_id' => $timeslot_id,
-					'name' => $item['name'],
-					'status' => 'coffe',
-					'notes' => 'coffe',
-					'list' => array(),
-					'time_left' => ''
+					'timeslot_name' => $timeslotValue['name'],
+					'status' => $timeslotValue['type'],
+					'notes' => $timeslotValue['type'],
 				);
 			}
+			$company['schedule'][$timeslot_id] = $shedule;
 		}
 	}
 	/* Формируем сам pdf */
 	$APPLICATION->RestartBuffer();
 	$company['exhibition'] = $req_obj->getOptions();
-	die();
 	DokaGeneratePdf($company);
 }
 /* Создание архива и удаление папки */
