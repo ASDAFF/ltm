@@ -73,11 +73,6 @@ use Doka\Meetings\Timeslots as DokaTimeslot;
 
 $req_obj = new DokaRequest($arParams['APP_ID']);
 
-if(!$req_obj->checkMeetingRights()) {
-	ShowError(GetMessage("ERROR_WRONG_RIGHTS"));
-	return;
-}
-
 $arResult["APP"] = $arParams['APP_ID'];
 $arResult['USER_TYPE'] = $req_obj->getUserType();
 if ($receiver_id <= 0) {
@@ -102,6 +97,16 @@ if(isset($_REQUEST["type"]) && $_REQUEST["type"] == "p" && $USER->GetID() == 1){
 }
 elseif(isset($_REQUEST["type"]) && $USER->GetID() == 1){
 	$arResult['USER_TYPE'] = "GUEST";
+}
+
+$resCheckingRights = $req_obj->checkMeetingRights($receiver_id, $sender_id);
+if(!$resCheckingRights["SENDER"]) {
+	ShowError(GetMessage("ERROR_WRONG_SENDER_RIGHTS"));
+	return;
+}
+if(!$resCheckingRights["RECEIVER"]) {
+	ShowError(GetMessage("ERROR_WRONG_RECEIVER_RIGHTS"));
+	return;
 }
 
 // Отправка приглашения самому себе
