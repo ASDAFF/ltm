@@ -79,11 +79,6 @@ if (isset($_REQUEST['id']))
 else
 	$sender_id = $arResult['CUR_USER'];
 
-$resCheckingRights = $req_obj->checkMeetingRights($receiver_id, $sender_id);
-if(!$resCheckingRights["SENDER"]) {
-	ShowError(GetMessage("ERROR_WRONG_SENDER_RIGHTS"));
-	return;
-}
 // Данные таймслота
 $arResult['TIMESLOT'] = $req_obj->getMeetTimeslot($timeslot_id);
 if (!$arResult['TIMESLOT']) {

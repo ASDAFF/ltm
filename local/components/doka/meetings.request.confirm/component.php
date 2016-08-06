@@ -88,15 +88,6 @@ if ($arResult['USER_TYPE'] != 'ADMIN' ){
 	$receiver_id = $USER->GetID();
 }
 
-$resCheckingRights = $req_obj->checkMeetingRights($receiver_id, $sender_id);
-if(!$resCheckingRights["SENDER"]) {
-	ShowError(GetMessage("ERROR_WRONG_SENDER_RIGHTS"));
-	return;
-}
-if(!$resCheckingRights["RECEIVER"]) {
-	ShowError(GetMessage("ERROR_WRONG_RECEIVER_RIGHTS"));
-	return;
-}
 // Данные таймслота
 $arResult['TIMESLOT'] = $req_obj->getMeetTimeslot($timeslot_id);
 if (!$arResult['TIMESLOT']) {
