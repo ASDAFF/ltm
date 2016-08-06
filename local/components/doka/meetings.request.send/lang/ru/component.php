@@ -22,6 +22,7 @@ $MESS['PARTICIP_COMPANY_MEET_EXIST'] = 'You have already request or an appointme
 $MESS['GUEST_COMPANY_MEET_EXIST'] = 'У вас уже есть встреча с данным участником';
 $MESS['ADMIN_COMPANY_MEET_EXIST'] = 'У пользователей уже есть общая встреча';
 
-$MESS['ERROR_WRONG_RIGHTS'] = "You can't work with meeting requests";
+$MESS['ERROR_WRONG_SENDER_RIGHTS'] = "You can't work with meeting requests";
+$MESS['ERROR_WRONG_RECEIVER_RIGHTS'] = "You can't work with meeting requests";
 
 ?>

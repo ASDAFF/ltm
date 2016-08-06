@@ -74,10 +74,6 @@ use Doka\Meetings\Timeslots as DokaTimeslot;
 
 $req_obj = new DokaRequest($arParams['APP_ID']);
 
-if(!$req_obj->checkMeetingRights()) {
-	ShowError(GetMessage("ERROR_WRONG_RIGHTS"));
-	return;
-}
 
 $arResult['USER_TYPE'] = $req_obj->getUserType();
 $arResult['IS_ACTIVE'] = !$req_obj->getOption('IS_LOCKED');
@@ -90,8 +86,17 @@ else
 if ($arResult['USER_TYPE'] != 'ADMIN' ){
 	$sender_id = $receiver_id;
 	$receiver_id = $USER->GetID();
-	}
+}
 
+$resCheckingRights = $req_obj->checkMeetingRights($receiver_id, $sender_id);
+if(!$resCheckingRights["SENDER"]) {
+	ShowError(GetMessage("ERROR_WRONG_SENDER_RIGHTS"));
+	return;
+}
+if(!$resCheckingRights["RECEIVER"]) {
+	ShowError(GetMessage("ERROR_WRONG_RECEIVER_RIGHTS"));
+	return;
+}
 // Данные таймслота
 $arResult['TIMESLOT'] = $req_obj->getMeetTimeslot($timeslot_id);
 if (!$arResult['TIMESLOT']) {

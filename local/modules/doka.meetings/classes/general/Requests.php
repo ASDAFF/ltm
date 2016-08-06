@@ -1099,13 +1099,17 @@ AND EXHIBITION_ID=' . $this->app_id .
         return $res;
     }
 
-    public function checkMeetingRights()
+    public function checkMeetingRights($receiverId, $senderId = 0)
     {
         global $USER;
 
+        if(!$senderId) {
+            $senderId = $USER->GetID();
+        }
+
         $arSelect = ["ID", "UF_HB", "UF_MR", "GROUPS"];
         $arFilter = [
-          "=ID" => $USER->GetID()
+          "@ID" => array($senderId, $receiverId)
         ];
 
         $res = Main\UserTable::getList(Array(
@@ -1133,17 +1137,33 @@ AND EXHIBITION_ID=' . $this->app_id .
 
         $curUser = [];
         while ($arRes = $res->fetch()) {
-            $curUser = $arRes;
+            $curUser[$arRes["ID"]] = $arRes;
         }
 
-        if(in_array($this->getOption('ADMINS_GROUP'), $curUser["GROUPS"]) || $USER->IsAdmin()) {
-            return true;
-        } elseif(in_array($this->getOption('GUESTS_GROUP'), $curUser["GROUPS"]) && $curUser["UF_MR"]) {
-            return true;
-        } elseif(in_array($this->getOption('MEMBERS_GROUP'), $curUser["GROUPS"])) {
-            return true;
+        if(!isset($curUser[$senderId]) || !isset($curUser[$receiverId])) {
+            return false;
         }
-        return false;
+
+        $res = array(
+            "SENDER" => false,
+            "RECEIVER" => false
+        );
+        if(in_array($this->getOption('ADMINS_GROUP'), $curUser[$senderId]["GROUPS"]) || $USER->IsAdmin()) {
+            $res["SENDER"] = true;
+        } elseif(in_array($this->getOption('GUESTS_GROUP'), $curUser[$senderId]["GROUPS"]) && $curUser[$senderId]["UF_MR"]) {
+            $res["SENDER"] = true;
+        } elseif(in_array($this->getOption('MEMBERS_GROUP'), $curUser[$senderId]["GROUPS"])) {
+            $res["SENDER"] = true;
+        }
+
+        if(in_array($this->getOption('ADMINS_GROUP'), $curUser[$receiverId]["GROUPS"]) || $USER->IsAdmin()) {
+            $res["RECEIVER"] = true;
+        } elseif(in_array($this->getOption('GUESTS_GROUP'), $curUser[$receiverId]["GROUPS"]) && $curUser[$receiverId]["UF_MR"]) {
+            $res["RECEIVER"] = true;
+        } elseif(in_array($this->getOption('MEMBERS_GROUP'), $curUser[$receiverId]["GROUPS"])) {
+            $res["RECEIVER"] = true;
+        }
+        return $res;
     }
 
 	/*=== дописываю методы под ТЗ ===*/

@@ -70,10 +70,6 @@ use Doka\Meetings\Wishlists as DWL;
 
 $req_obj = new DokaRequest($arParams['APP_ID']);
 
-if(!$req_obj->checkMeetingRights()) {
-	ShowError(GetMessage("ERROR_WRONG_RIGHTS"));
-	return;
-}
 
 $arResult['USER_TYPE'] = $req_obj->getUserType();
 $arResult['IS_ACTIVE'] = !$req_obj->getOption('IS_LOCKED');
@@ -83,6 +79,11 @@ if (isset($_REQUEST['id']))
 else
 	$sender_id = $arResult['CUR_USER'];
 
+$resCheckingRights = $req_obj->checkMeetingRights($receiver_id, $sender_id);
+if(!$resCheckingRights["SENDER"]) {
+	ShowError(GetMessage("ERROR_WRONG_SENDER_RIGHTS"));
+	return;
+}
 // Данные таймслота
 $arResult['TIMESLOT'] = $req_obj->getMeetTimeslot($timeslot_id);
 if (!$arResult['TIMESLOT']) {
