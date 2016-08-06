@@ -40,9 +40,10 @@ function DokaGeneratePdf($arResult) {
 
 		$tbl = '<table cellspacing="0" cellpadding="5" border="1">
 			<tr>
-				<td align="center" width="60">Number</td>
-				<td align="center" width="250">Companies</td>
-				<td align="center" width="200">Representative</td>
+				<td align="center" width="40">Num.</td>
+				<td align="center" width="220">Companies</td>
+				<td align="center" width="160">Representative</td>
+				<td align="center" width="90">Reason</td>
 			</tr>';
 		$i = 1;
 		foreach ($arResult['WISH_IN'] as $item) {
@@ -50,6 +51,7 @@ function DokaGeneratePdf($arResult) {
 				<td align="center">' . $i . '</td>
 				<td>' . $item["company_name"] . '</td>
 				<td>' . $item["company_rep"] . '</td>
+				<td>' . $arResult['STATUS_REQUEST'][ $item["company_reason"] ] . '</td>
 			</tr>';
 			$i++;
 		}
@@ -72,9 +74,10 @@ function DokaGeneratePdf($arResult) {
 
 		$tbl = '<table cellspacing="0" cellpadding="5" border="1">
 			<tr>
-				<td align="center" width="60">Number</td>
-				<td align="center" width="250">Companies</td>
-				<td align="center" width="200">Representative</td>
+				<td align="center" width="40">Num.</td>
+				<td align="center" width="220">Companies</td>
+				<td align="center" width="160">Representative</td>
+				<td align="center" width="90">Reason</td>
 			</tr>';
 		$i = 1;
 		foreach ($arResult['WISH_OUT'] as $item) {
@@ -82,6 +85,7 @@ function DokaGeneratePdf($arResult) {
 				<td align="center">' . $i . '</td>
 				<td>' . $item["company_name"] . '</td>
 				<td>' . $item["company_rep"] . '</td>
+				<td>' . $arResult['STATUS_REQUEST'][ $item["company_reason"] ] . '</td>
 			</tr>';
 			$i++;
 		}

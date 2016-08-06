@@ -1,9 +1,7 @@
 <?
-
 $aMenuLinks = array();
-
-
 $exhibCode = trim($_REQUEST["EXHIBIT_CODE"]);
+$iblockId = 15;
 
 if($exhibCode)
 {

@@ -46,7 +46,6 @@ if (empty($arParams["APP_ID"])) {
 	CHTTP::SetStatus("404 Not Found");
 }
 
-
 if (empty($arParams["USER_ID"]))
 	$arParams['USER_ID'] = $USER->GetID();
 
@@ -94,7 +93,15 @@ else{
 	else{
 		$wishlists = $wishlist_obj->getWishlists($arParams['USER_ID']);
 	}
+	if(empty($arResult['USER_TYPE'])) {
+		if($senderType == 'GUEST') {
+			$arResult['USER_TYPE'] = 'GUEST';
+		} else {
+			$arResult['USER_TYPE'] = 'PARTICIP';
+		}
+	}
 }
+
 $arResult['WISH_IN'] = $wishlists['WISH_IN']; // с кем хочет встретиться
 $arResult['WISH_OUT'] = $wishlists['WISH_OUT'];
 $arResult['CITY'] = "";
@@ -111,8 +118,6 @@ if(isset($_REQUEST['mode']) && $_REQUEST['mode'] == 'pdf'){
 			$arResult['CITY'] = $value["USER_TEXT"];
 		}
 	}
-}
-if ( isset($_REQUEST['mode']) && $_REQUEST['mode'] == 'pdf' ) {
 	require(DOKA_MEETINGS_MODULE_DIR . '/classes/pdf/tcpdf.php');
 	require_once(DOKA_MEETINGS_MODULE_DIR . '/classes/pdf/templates/wishlist_' . $arParams['USER_TYPE'] . '.php');
 
@@ -134,6 +139,12 @@ if ( isset($_REQUEST['mode']) && $_REQUEST['mode'] == 'pdf' ) {
         	'COMPANY' => $arUser['WORK_COMPANY'],
         	'CITY' => $arResult['CITY'],
         );
+			$arResult['STATUS_REQUEST'] = [
+				'empty' => "",
+				'rejected' => GetMessage($arResult['USER_TYPE']."_REJECTED"),
+				'timeout' => GetMessage($arResult['USER_TYPE']."_TIMEOUT"),
+				'selected' => GetMessage($arResult['USER_TYPE']."_SELECTED"),
+			];
 		DokaGeneratePdf($arResult);
     }
 }

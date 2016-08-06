@@ -209,14 +209,13 @@ foreach ($timeslots as $timeslot_id => $item) {
 		$arResult['SCHEDULE'][] = array(
 			'timeslot_id' => $timeslot_id,
 			'name' => $item['name'],
-			'status' => 'coffe',
-			'notes' => 'coffe',
+			'status' => $item['type'],
+			'notes' => $item['type'],
 			'list' => array(),
 			'time_left' => ''
 		);
 	}
 }
-
 if (isset($_REQUEST['mode']) && $_REQUEST['mode'] == 'pdf') {
 	require(DOKA_MEETINGS_MODULE_DIR . '/classes/pdf/tcpdf.php');
 	require_once(DOKA_MEETINGS_MODULE_DIR . '/classes/pdf/templates/schedule_' . $arParams['USER_TYPE'] . '.php');
@@ -271,7 +270,6 @@ if (isset($_REQUEST['mode']) && $_REQUEST['mode'] == 'pdf') {
 $this->IncludeComponentTemplate();
 
 function DokaGetNote($meet, $user_type, $curUser) {
-	global $USER, $arParams;
 	switch ($meet['status']) {
 		case 'process':
 			if ($meet['modified_by'] == $curUser)
@@ -280,10 +278,13 @@ function DokaGetNote($meet, $user_type, $curUser) {
 				$msg = GetMessage($user_type.'_SENT_TO_YOU');
 			break;
 		case 'confirmed':
-			if ($meet['modified_by'] == $curUser || $meet['modified_by'] == $meet['company_id'])
+			if($meet['modified_by'] == $curUser) {
+				$msg = GetMessage($user_type.'_CONFIRMED_SELF');
+			} elseif($meet['modified_by'] == $meet['company_id']) {
 				$msg = GetMessage($user_type.'_CONFIRMED');
-			else
+			} else {
 				$msg = GetMessage($user_type.'_CONFIRMED_BY_ADMIN');
+			}
 			break;
 		
 		default:

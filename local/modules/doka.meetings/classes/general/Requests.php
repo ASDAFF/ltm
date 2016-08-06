@@ -363,19 +363,19 @@ class Requests extends DokaRequest
     public function getSortedFreeTimesAppoint($user_id = false)
     {
         $free_timeslots = $this->getFreeTimeSlots($user_id);
-		$allTimes = $this->getTimeslots();
+		    $allTimes = $this->getTimeslots();
         $slot_type_meet_code = DokaTimeslot::getTypeCode(DokaTimeslot::TYPE_MEET);
-		if(empty($free_timeslots)){
-			$counter = 0;
-		  foreach ($allTimes as $key => $timeslot) {
-			  if($timeslot['type'] == $slot_type_meet_code){
-				$free_timeslots[$counter]["id"] = $key;
-				$free_timeslots[$counter]["name"] = $timeslot['name'];
-				$counter++;
-			  }
-		  }
-		  return $free_timeslots;
-		}
+        if(empty($free_timeslots)){
+          $counter = 0;
+          foreach ($allTimes as $key => $timeslot) {
+            if($timeslot['type'] == $slot_type_meet_code){
+            $free_timeslots[$counter]["id"] = $key;
+            $free_timeslots[$counter]["name"] = $timeslot['name'];
+            $counter++;
+            }
+          }
+          return $free_timeslots;
+        }
         foreach ($free_timeslots as $key => $timeslot) {
             if ($timeslot['type'] == $slot_type_meet_code){
 				$allTimes[$timeslot['id']]['free'] = 1;
@@ -463,12 +463,10 @@ class Requests extends DokaRequest
     public function getBusyCompanies($search_group = '')
     {
         global $DB;
-
         $companies = array();
 
         // Соберем в кучу все таймслоты с типом встреча
         $meet_timeslots_ids = $this->getMeetTimeslotsIds();
-
         // Статусы, которые означают, что слот свободен
         $statuses_free = $this->getStatusesFree();
         $sWhere = ' WHERE ';
@@ -481,11 +479,8 @@ class Requests extends DokaRequest
         foreach ($meet_timeslots_ids as $timeslot_id) {
             $arStatusWhere[] = 'STATUS_' . $timeslot_id . ' NOT IN (' . implode(',', $statuses_free) . ')';
         }
-
         $sSQL = 'SELECT ms.USER_ID as company_id, b_user.WORK_COMPANY as company_name FROM ' . self::$sTableNameShedule.$this->app_id . ' ms ' . $leftJoin . $sWhere . implode(' AND ', $arStatusWhere). ' ORDER BY company_name';
-
         $res = $DB->Query($sSQL, false, 'FILE: '.__FILE__.'<br />LINE: ' . __LINE__);
-
         return $res;
     }
 
@@ -1029,10 +1024,6 @@ AND EXHIBITION_ID=' . $this->app_id .
     public function getAllMeetTimesByGroup($group_id)
     {
         global $DB;
-
-        $timeslots = array();
-
-        $meet_timeslots = $this->getMeetTimeslotsIds();
 
  		if($this->getOption('GUESTS_GROUP') == $group_id){
             $guestField = "UF_MR";

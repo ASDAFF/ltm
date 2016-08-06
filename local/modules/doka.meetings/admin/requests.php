@@ -40,19 +40,30 @@ $arFilter = array(
 	// "TIMESLOT_ID" => (int)$find_TIMESLOT_ID,
 );
 
-if($find_sender_id != ''){
-	$rsUser = CUser::GetByLogin($find_sender_id);
-	if($arUser = $rsUser->Fetch())
-		$arFilter["SENDER_ID"] = $arUser["ID"];
-	else
-		$arFilter["SENDER_ID"] = 0;
+if(!empty($find_sender_id)){
+	$find_sender_id = trim($find_sender_id);
+	if((int)$find_sender_id == $find_sender_id) {
+		$arFilter["SENDER_ID"] = $find_sender_id;
+	} else {
+		$rsUser = CUser::GetByLogin($find_sender_id);
+		if($arUser = $rsUser->Fetch())
+			$arFilter["SENDER_ID"] = $arUser["ID"];
+		else
+			$arFilter["SENDER_ID"] = 0;
+	}
 }
+
 if($find_receiver_id != ''){
-	$rsUser = CUser::GetByLogin($find_receiver_id);
-	if($arUser = $rsUser->Fetch())
-		$arFilter["RECEIVER_ID"] = $arUser["ID"];
-	else
-		$arFilter["RECEIVER_ID"] = 0;
+	$find_receiver_id = trim($find_receiver_id);
+	if((int)$find_receiver_id == $find_receiver_id) {
+		$arFilter["RECEIVER_ID"] = $find_receiver_id;
+	} else {
+		$rsUser = CUser::GetByLogin($find_receiver_id);
+		if($arUser = $rsUser->Fetch())
+			$arFilter["RECEIVER_ID"] = $arUser["ID"];
+		else
+			$arFilter["RECEIVER_ID"] = 0;
+	}
 }
 
 if($find_update_from != ''){
