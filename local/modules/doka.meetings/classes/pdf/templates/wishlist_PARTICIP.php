@@ -9,10 +9,10 @@ function DokaGeneratePdf($arResult) {
 	$pdf->SetFont('freeserif','B',17);
 	if($arResult["EXHIBITION"]["IS_HB"]){
 		$arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'] .= " Hosted Buyers session";
-		$dayline = "Day 1 - March 10, 2016";
+		//$dayline = "Day 1 - March 10, 2016";
 	}
 	else {
-		$dayline = "Day 2 - March 11, 2016";
+		//$dayline = "Day 2 - March 11, 2016";
 	}
 	$pdf->multiCell(180, 5, "Wish-list " . $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'] . " for ", 0, C);
 	$pdf->SetFont('freeserif','',15);
