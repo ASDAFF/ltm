@@ -2,7 +2,7 @@
 	<p class="error">Назначение встреч заблокировано администрацией</p>
 <?}?>
 
-<? 	if ($arParams['IS_HB']){?>
+<?/* 	if ($arParams['IS_HB']){?>
   <a href="/files/day1_alphabetical.pdf" target="_blank">Скачать план залов (hosted buyers в алфавитном порядке)</a><br />
   <a href="/files/day1_by_table.pdf" target="_blank">Скачать план залов (hosted buyers по номеру стола)</a><br />
   <a href="/files/day2_alphabetical.pdf" target="_blank">Скачать план залов (участники в алфавитном порядке)</a><br />
@@ -14,7 +14,7 @@
   <a href="/files/day2_by_table.pdf" target="_blank">Скачать план залов (участники по номеру стола)</a><br />
   <a href="/files/program_buyers_2016.pdf" target="_blank">Скачать программу выставки</a><br />	
 <?}
-?>
+*/?>
 
 
 <table class="morning-time time-line">
