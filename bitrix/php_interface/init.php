@@ -1,8 +1,8 @@
 <?
 require $_SERVER["DOCUMENT_ROOT"]."/bitrix/php_interface/include/tools/LuxorConfig.php";
 
-define("PARTICIPANT_CABINET", "Y");
-define("GUEST_CABINET", "Y");
+define("PARTICIPANT_CABINET", "N");
+define("GUEST_CABINET", "N");
 
 
 define("IMG_TMP_PATH", "/upload/tmp/");
