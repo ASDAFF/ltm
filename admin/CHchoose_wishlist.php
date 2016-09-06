@@ -35,7 +35,7 @@ while($ar = $rs->Fetch()) {
 }
 $arResult["MAIL_LIST"] = array();
 // список выставок из модуля и составление вишлистов
-$rsExhibitions = DS::GetList(array(), array("ACTIVE" => 1,'ID'=>3 )); //добавить "IS_LOCKED" => 0
+$rsExhibitions = DS::GetList(array(), array("ACTIVE" => 1)); //добавить "IS_LOCKED" => 0
 while ($exhibition = $rsExhibitions->Fetch()) {
     $req_obj = new DR($exhibition['ID']);
     $wishlist_obj = new DWL($exhibition['ID']);
