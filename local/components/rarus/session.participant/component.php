@@ -106,7 +106,7 @@ $arResultAllFormId = array();//тут список результатов зап
 //получение списка подтвержденных гостей на данную выставку
 $cache = new CPHPCache();
 $cache_time = $arParams["CACHE_TIME"];
-$cache_id = 'userList'.$arParams["TYPE"].'gr'.$cGuestGroup;
+$cache_id = 'userList'.$arParams["TYPE"].'gr'.$cGuestGroup.'ex'.$arParams["EXIB_ID"];
 $cache_path = 'userList';
 if ($cache_time > 0 && $cache->InitCache($cache_time, $cache_id, $cache_path))
 {
