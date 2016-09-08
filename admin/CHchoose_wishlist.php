@@ -82,7 +82,7 @@ while ($exhibition = $rsExhibitions->Fetch()) {
         while($companyWish = $curWish->Fetch()){
             /* У компании из подходящего вишлиста есть свободный слот */
             $resComparison = array_intersect($personInfo["TIMES"], $freeParticip[ $companyWish["USER"] ]["TIMES"]);
-            if(isset($freeGuest[ $companyWish["USER"] ]) && !empty($resComparison) && !in_array($companyWish["USER"], $meetCompany)){
+            if(isset($freeParticip[ $companyWish["USER"] ]) && !empty($resComparison) && !in_array($companyWish["USER"], $meetCompany)){
                 $arResult["MAIL_LIST"][$exhibition['ID']]["GUEST"][$personID][ $companyWish["USER"] ] = $companyWish["USER"];
                 $allParticip[ $companyWish["USER"] ] = $companyWish["USER"];
                 $allGuest[ $personID ] = $personID;
@@ -165,7 +165,7 @@ while ($exhibition = $rsExhibitions->Fetch()) {
         echo "</pre>";
         CEvent::Send("FREE_FROM_WISHLIST","s1",$arFieldsMes);
     }
-    foreach ($arResult["MAIL_LIST"][$exhibition['ID']]["GUEST_IN"] as $userId => $userInfo) {
+    foreach ($arResult["MAIL_LIST"][ $exhibition['ID'] ]["GUEST"] as $userId => $userInfo) {
         $arFieldsMes = array(
             "EXIB" => $arResult["EXHIB"][$exhibition['ID']]["PROPERTY_V_EN_VALUE"].$HB_TEG,
             "EMAIL" => $allGuest[ $userId ]["EMAIL"],
