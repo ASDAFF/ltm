@@ -40,7 +40,7 @@ function DokaGeneratePdf($arResult) {
 		$pdf->multiCell(210, 5, "Этот список запросов пуст.", 0, C);
 	} else {
 		$pdf->setXY(20,$pdf->getY() + 5);
-		$pdf->SetFont('freeserif','',13);
+		$pdf->SetFont('freeserif','',12);
 
 		$tbl = '<table cellspacing="0" cellpadding="5" border="1">
 			<tr>
@@ -78,7 +78,7 @@ function DokaGeneratePdf($arResult) {
 		$pdf->multiCell(210, 5, "Этот список запросов пуст.", 0, C);
 	} else {
 		$pdf->setXY(20,$pdf->getY() + 5);
-		$pdf->SetFont('freeserif','',13);
+		$pdf->SetFont('freeserif','',12);
 
 		$tbl = '<table cellspacing="0" cellpadding="5" border="1">
 			<tr>
