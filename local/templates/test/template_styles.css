@@ -602,6 +602,7 @@ video {
 .mdl-content ul {
 	list-style: none;
 	margin-bottom: 40px;
+	margin-left: 40px;
 }
 
 .mdl-content ul li {

@@ -22,15 +22,17 @@ function showModal() {
 	overlay.classList.add("modal-show");
 	modal.classList.add("modal-show");
 }
-
+/*
 window.onload = function() {
 	var timer = 1000;
 	setTimeout(showModal, timer);
 	
 };
+*/
 
-
-$(document).ready(function(){   
+$(document).ready(function(){
+	var timer = 1000;
+	setTimeout(showModal, timer);
     $(window).scroll(function () {
         if ($(this).scrollTop() > 0) {
             $('#scroller').fadeIn();
