@@ -12,16 +12,14 @@ function closeModal(event) {
 	event.preventDefault;
 	modal.classList.remove("modal-show");
 	overlay.classList.remove("modal-show");
-
-
-}
+};
 
 function showModal() {
 	var modal = document.querySelector(".main-modal"),
 		overlay = document.querySelector(".mdl-overlay");
 	overlay.classList.add("modal-show");
 	modal.classList.add("modal-show");
-}
+};
 /*
 window.onload = function() {
 	var timer = 1000;
