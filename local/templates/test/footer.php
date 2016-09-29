@@ -117,6 +117,9 @@ if($exhibCode)
 		</div>
 	</footer>
 	<?$APPLICATION->IncludeComponent("bitrix:main.include", "", array("AREA_FILE_SHOW" => "file", "PATH" => SITE_TEMPLATE_PATH."/include/scroller_".LANGUAGE_ID.".php"), false);?>
+    
+    <?$APPLICATION->IncludeComponent("bitrix:main.include", "", array("AREA_FILE_SHOW" => "file", "PATH" => SITE_TEMPLATE_PATH."/include/popup_".LANGUAGE_ID.".php"), false);?>
+    
 	<!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function (d, w, c) {

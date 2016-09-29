@@ -508,3 +508,139 @@ nav#bottom a:hover{
 video {
 	margin-bottom: 30px;
 }
+
+/*Модальное окно на главной*/
+
+.mdl-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    overflow: auto;
+    -webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+	opacity: 0;
+	visibility: hidden;
+}
+
+.main-modal {
+	visibility: hidden;
+	opacity: 0;
+	transition: all 1s;
+	width: 620px;
+	height: 520px;
+	background-color: white;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 16px;
+	padding-right: 20px;
+	border: 5px solid #33bcff; 
+	-webkit-border-image: -webkit-linear-gradient(left, transparent 0%, #ADF2F7 100%);
+	-o-border-image: -o-linear-gradient(left, transparent 0%, #ADF2F7 100%);
+	 -moz-border-image: -moz-linear-gradient(top, #3acfd5 0%, #3a4ed5 100%);
+	border-image: linear-gradient(45deg, #007FD5 0%, #0057A6 30%, #0BA8FF 60%, #6CDAFF 80%,  #18AFFF 100%);
+	border-image-slice: 1;
+	z-index: 5;
+	font-family: "Proxima", Tahoma, sans-serif;
+	font-size: 16px;
+}
+
+.modal-show {
+	/*display: block;*/
+	opacity: 1;
+	visibility: visible;
+}
+
+.main-modal::before {
+	content: "";
+	display: block;
+	position: absolute;
+	bottom: -5px;
+	left: -5px;
+	background-image: url(images/hand.png);
+	width: 276px;
+	height: 416px;
+
+}
+
+.mdl-cross-close {
+	width: 18px;
+	height: 18px;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: url(images/cross.svg) no-repeat;
+	cursor: pointer;
+}
+
+.main-modal h1 {
+	text-align: center;
+	font-size: 44px;
+	margin: 20px 0 12px;
+	font-family: "Helios_N", Tahoma, sans-serif;
+}
+
+.mdl-content {
+	float: right;
+	width: 55.5%;
+	position: relative;
+}
+
+.mdl-content h2 {
+	color: #0084ff;
+	font-size: 25px;
+	margin-left: 25px;
+	margin-top: 0;
+	font-family: "Helios_L", Tahoma, sans-serif;
+}
+
+.mdl-content ul {
+	list-style: none;
+	margin-bottom: 40px;
+}
+
+.mdl-content ul li {
+	position: relative;
+}
+.mdl-content ul li::before {
+	content: "–";
+	display: block;
+	position: absolute;
+	left: -15px;
+
+}
+.clearfix::after {
+	content: "";
+	display: table;
+	clear: both;
+}
+.mdl-content p {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.appstores {
+	font-size: 0;
+
+}
+.storelogo {
+	margin-right: 20px;
+}
+.storelogo:nth-child(2) {
+	margin-right: 0;
+}
+
+.mdl-close {
+	margin: 20px auto 0;
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	color: #000;
+	width: 40%;
+
+}

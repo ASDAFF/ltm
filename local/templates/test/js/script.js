@@ -1,3 +1,35 @@
+/* Модальное окно на главной */
+
+var cross = document.querySelector(".mdl-cross-close");
+var linkClose = document.querySelector(".mdl-close");
+
+cross.addEventListener("click", closeModal);
+linkClose.addEventListener("click", closeModal);
+
+function closeModal(event) {
+	var modal = document.querySelector(".main-modal"),
+		overlay = document.querySelector(".mdl-overlay");
+	event.preventDefault;
+	modal.classList.remove("modal-show");
+	overlay.classList.remove("modal-show");
+
+
+}
+
+function showModal() {
+	var modal = document.querySelector(".main-modal"),
+		overlay = document.querySelector(".mdl-overlay");
+	overlay.classList.add("modal-show");
+	modal.classList.add("modal-show");
+}
+
+window.onload = function() {
+	var timer = 1000;
+	setTimeout(showModal, timer);
+	
+};
+
+
 $(document).ready(function(){   
     $(window).scroll(function () {
         if ($(this).scrollTop() > 0) {
