@@ -524,6 +524,7 @@ video {
 	transition: all 0.3s;
 	opacity: 0;
 	visibility: hidden;
+	z-index: 2;
 }
 
 .main-modal {

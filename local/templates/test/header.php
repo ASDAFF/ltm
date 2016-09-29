@@ -19,7 +19,10 @@
 	<?$APPLICATION->ShowHead();?>
 </head>
 <body <? if(stristr($APPLICATION->GetCurPage(), "/cabinet/")):?>class="cabinet"<?endif;?>>
+    <? if(stristr($APPLICATION->GetCurPage(), "/")):?>    
     <?$APPLICATION->IncludeComponent("bitrix:main.include", "", array("AREA_FILE_SHOW" => "file", "PATH" => SITE_TEMPLATE_PATH."/include/popup_".LANGUAGE_ID.".php"), false);?>
+    <?endif;?>
+    
 	<div class="main_container">
 	<? CJSCore::Init("ajax"); ?>
 	<? if ($USER->isAdmin())$APPLICATION->ShowPanel();?>
