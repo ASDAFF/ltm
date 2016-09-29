@@ -19,9 +19,14 @@
 	<?$APPLICATION->ShowHead();?>
 </head>
 <body <? if(stristr($APPLICATION->GetCurPage(), "/cabinet/")):?>class="cabinet"<?endif;?>>
-    <? if(stristr($APPLICATION->GetCurPage(), "/index.php")):?>    
-    <?$APPLICATION->IncludeComponent("bitrix:main.include", "", array("AREA_FILE_SHOW" => "file", "PATH" => SITE_TEMPLATE_PATH."/include/popup_".LANGUAGE_ID.".php"), false);?>
-    <?endif;?>
+    <?$APPLICATION->IncludeComponent("bitrix:main.include", "", 
+        Array(
+            "AREA_FILE_SHOW" => "page", 
+            "AREA_FILE_SUFFIX" => "popup", 
+            "EDIT_TEMPLATE" => ""
+        )
+    );?>
+
     
 	<div class="main_container">
 	<? CJSCore::Init("ajax"); ?>
