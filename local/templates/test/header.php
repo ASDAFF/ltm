@@ -19,6 +19,15 @@
 	<?$APPLICATION->ShowHead();?>
 </head>
 <body <? if(stristr($APPLICATION->GetCurPage(), "/cabinet/")):?>class="cabinet"<?endif;?>>
+    <?$APPLICATION->IncludeComponent("bitrix:main.include", "", 
+        Array(
+            "AREA_FILE_SHOW" => "page", 
+            "AREA_FILE_SUFFIX" => "popup", 
+            "EDIT_TEMPLATE" => ""
+        )
+    );?>
+
+    
 	<div class="main_container">
 	<? CJSCore::Init("ajax"); ?>
 	<? if ($USER->isAdmin())$APPLICATION->ShowPanel();?>

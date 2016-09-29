@@ -1,4 +1,29 @@
-$(document).ready(function(){   
+function closeModal(event) {
+	var modal = document.querySelector(".main-modal"),
+		overlay = document.querySelector(".mdl-overlay");
+	event.preventDefault;
+	modal.classList.remove("modal-show");
+	overlay.classList.remove("modal-show");
+};
+
+function showModal() {
+	var modal = document.querySelector(".main-modal"),
+		overlay = document.querySelector(".mdl-overlay");
+	overlay.classList.add("modal-show");
+	modal.classList.add("modal-show");
+};
+
+
+$(document).ready(function(){
+	var cross = document.querySelector(".mdl-cross-close"),
+		linkClose = document.querySelector(".mdl-close");
+	cross.addEventListener("click", closeModal);
+	linkClose.addEventListener("click", closeModal);
+	
+	var timer = 1000;
+	setTimeout(showModal, timer);
+
+
     $(window).scroll(function () {
         if ($(this).scrollTop() > 0) {
             $('#scroller').fadeIn();
