@@ -21,7 +21,7 @@ $(document).ready(function(){
 	linkClose.addEventListener("click", closeModal);
 	
 	var timer = 1000;
-	setTimeout(showModal, timer);
+	/*setTimeout(showModal, timer);*/
 
 
     $(window).scroll(function () {
