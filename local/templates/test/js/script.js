@@ -15,6 +15,16 @@ function showModal() {
 
 
 $(document).ready(function(){
+	var cross = document.querySelector(".mdl-cross-close"),
+		linkClose = document.querySelector(".mdl-close");
+	if ( cross ) {
+		cross.addEventListener("click", closeModal);
+		linkClose.addEventListener("click", closeModal);
+		
+		var timer = 1000;
+		setTimeout(showModal, timer);
+	}
+
 
     $(window).scroll(function () {
         if ($(this).scrollTop() > 0) {
