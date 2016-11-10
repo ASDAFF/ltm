@@ -18,7 +18,8 @@ $(function() {
 			"space":"Space is not valid.",
 			"conf_pass":"Passwords do not match.",
 			"en_num":"Only English characters and numbers.",
-			"login_busy": "Login has already been taken."
+			"login_busy": "Login has already been taken.",
+			"capslock": "Caps lock should be off"
 	};
 	
 	var ru = {
@@ -38,8 +39,8 @@ $(function() {
 			"space":"Пробел недопустим.",
 			"conf_pass":"Пароли не совпадают.",
 			"en_num":"Только латинские символы и цифры.",
-			"login_busy": "Логин уже занят."
-				
+			"login_busy": "Логин уже занят.",
+			"capslock": "Внимание: нажат CapsLock!"
 	};
 	
 
@@ -80,26 +81,58 @@ $(function() {
 		}
 	});
 
-	/*
-	//копирования из названия компании
-	$("#REGISTER_FORM").on("change", ".registr_exh input[name=COMPANY_NAME]", function(){
-		
-		var inpCompanyName = $(this);
-		var inpCompanyNameForInvoice = $(".registr_exh input[name=COMPANY_NAME_FOR_INVOICE]");
-		
-		if(inpCompanyNameForInvoice.length > 0)
-		{
-			var CompanyName = inpCompanyName.val();
-			var CompanyNameForInvoice = inpCompanyNameForInvoice.val();
-			
-			if(CompanyName == CompanyNameForInvoice || CompanyNameForInvoice.length == 0)
-			{
-				inpCompanyNameForInvoice.val(CompanyName);
+	/**
+	 * Текущее состояние CapsLock
+	 *  - null : неизвестно
+	 *  - true/false : CapsLock включен/выключен
+	 */
+	var capsLockEnabled = null;
+	function getChar(event) {
+		if (event.which == null) {
+			if (event.keyCode < 32) return null;
+			return String.fromCharCode(event.keyCode) // IE
+		}
+
+		if (event.which != 0 && event.charCode != 0) {
+			if (event.which < 32) return null;
+			return String.fromCharCode(event.which) // остальные
+		}
+
+		return null; // специальная клавиша
+	}
+
+	if (navigator.platform.substr(0, 3) != 'Mac') { // событие для CapsLock глючит под Mac
+		document.onkeydown = function(e) {
+			if (e.keyCode == 20 && capsLockEnabled !== null) {
+				capsLockEnabled = !capsLockEnabled;
 			}
 		}
+	}
+
+	document.onkeypress = function(e) {
+		e = e || event;
+
+		var chr = getChar(e);
+		if (!chr) return // special key
+
+		if (chr.toLowerCase() == chr.toUpperCase()) {
+			// символ, не зависящий от регистра, например пробел
+			// не может быть использован для определения CapsLock
+			return;
+		}
+
+		capsLockEnabled = (chr.toLowerCase() == chr && e.shiftKey) || (chr.toUpperCase() == chr && !e.shiftKey);
+	}
+
+	/**
+	 * Проверить CapsLock
+	 */
+	$("#REGISTER_FORM").on("focusout", ".registr_buy input, .registr_buy textarea", function(){
+		if(capsLockEnabled) {
+			alert($errorText[errorLang]["capslock"]);
+		}
 	});
-	*/
-	
+
 	//ajax проверка логина
 	$("#REGISTER_FORM").on("focusout", "input[name=LOGIN]", function(){
 		
@@ -212,7 +245,8 @@ $(function() {
 		}
 		$(this).prop('disabled',false);
 	});
-	
+
+
 	/*Выбор выставок участниками*/
 	$("#register_form_content").on("click", ".registr_exh table.exh-select input:checkbox", function(){
 		
@@ -1430,6 +1464,9 @@ $(function() {
 
 $(function() {
 	$("#REGISTER_FORM").on("change", "select", function(){
+		if($(this).attr('name').indexOf('SALUTATION') >= 0) {
+			return;
+		}
 	 	var value = $(this).val();
 	 	var select = $(this).closest(".dropdown-group");
 

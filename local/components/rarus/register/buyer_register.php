@@ -82,6 +82,7 @@ $arUserFormFields = array(
 		"form_dropdown_SIMPLE_QUESTION_678" => $data["COUNTRY"],		//страна
 		"form_text_216" => $data["NAME"],								//имя
 		"form_text_217" => $data["LAST_NAME"],							//фамилия
+		"form_dropdown_SALUTATION" => $data["SALUTATION"],		//обращение
 		"form_text_218" => $data["JOB_POST"],							//должность
 		"form_text_219" => cutPhone($data["PHONE"]),					//телефон
 		"form_text_1484" => $data["SKYPE"],								//скайп 
@@ -109,24 +110,28 @@ $arUserFormFields = array(
 		/*на утро*/
 		"form_text_839" => $data["COLLEAGUE"]["MORNING"]["NAME"],		//Имя коллеги (на утро)
 		"form_text_840" => $data["COLLEAGUE"]["MORNING"]["LAST_NAME"],	//Фамилия коллеги (на утро)
+		"form_dropdown_SALUTATION_COL" => $data["COLLEAGUE"]["MORNING"]["SALUTATION"],		//обращение коллеги (на утро)
 		"form_text_841" => $data["COLLEAGUE"]["MORNING"]["JOB_POST"],	//Должность коллеги (на утро)
 		"form_text_842" => $data["COLLEAGUE"]["MORNING"]["EMAIL"],		//E-mail коллеги (на утро)
 		
 		/*на вечер 1*/
 		"form_text_223" => $data["COLLEAGUE"][0]["NAME"],				//Имя коллеги 1
 		"form_text_224" => $data["COLLEAGUE"][0]["LAST_NAME"],			//Фамилия коллеги 1
+		"form_dropdown_SALUTATION_1" => $data["COLLEAGUE"][0]["SALUTATION"],		//обращение коллеги 1
 		"form_text_225" => $data["COLLEAGUE"][0]["JOB_POST"],			//Должность коллеги 1
 		"form_text_226" => $data["COLLEAGUE"][0]["EMAIL"],				//E-mail коллеги 1
 		
 		/*на вечер 2*/
 		"form_text_227" => $data["COLLEAGUE"][1]["NAME"],				//Имя коллеги 2
 		"form_text_228" => $data["COLLEAGUE"][1]["LAST_NAME"],			//Фамилия коллеги 2
+		"form_dropdown_SALUTATION_2" => $data["COLLEAGUE"][1]["SALUTATION"],		//обращение коллеги 2
 		"form_text_230" => $data["COLLEAGUE"][1]["JOB_POST"],			//Должность коллеги 2
 		"form_text_229" => $data["COLLEAGUE"][1]["EMAIL"],				//E-mail коллеги 2
 		
 		/*на вечер 3*/
 		"form_text_231" => $data["COLLEAGUE"][2]["NAME"],				//Имя коллеги 3
 		"form_text_232" => $data["COLLEAGUE"][2]["LAST_NAME"],			//Фамилия коллеги 3
+		"form_dropdown_SALUTATION_3" => $data["COLLEAGUE"][2]["SALUTATION"],		//обращение коллеги 3
 		"form_text_233" => $data["COLLEAGUE"][2]["JOB_POST"],			//Должность коллеги 3
 		"form_text_234" => $data["COLLEAGUE"][2]["EMAIL"],				//E-mail коллеги 3
 		

@@ -50,6 +50,7 @@ $MESS["R_B_COLLEAGUE_EVENING_FOR_ME_2"] = "В случае, если ваш ко
 
 $MESS["R_B_NAME"] = "Имя";
 $MESS["R_B_LAST_NAME"] = "Фамилия";
+$MESS["R_B_SALUTATION"] = "Обращение";
 $MESS["R_B_JOB_POST"] = "Должность";
 $MESS["R_B_EMAIL"] = "e-mail";
 
