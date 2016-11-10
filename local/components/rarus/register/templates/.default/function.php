@@ -24,7 +24,7 @@ function ShowGroupCheckBox($SID, $NAME, &$arForm)
 	return $result;
 }
 
-function ShowText($SID,$NAME , &$arForm, $CSSClass="", $placeholder="")
+function ShowText($SID, $NAME , &$arForm, $CSSClass="", $placeholder="")
 {
 	$Questions = $arForm["QUESTIONS"];
 	$Answers = $arForm["ANSWERS"];

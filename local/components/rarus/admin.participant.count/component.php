@@ -629,8 +629,8 @@ function FooterPDF($data, &$oPDF, $folder)
     $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
 
     $oPDF->SetFont('freeserif','',FONT_SIZE);
-    $sData  = "This invoice is valid for payments within 30 days. Bank charges at payer's expense\n";
-    $sData .= "Инвойс действителен в течение 30 дней с момента выставления.\n";
+    $sData  = "This invoice is valid for payments within specified time. Bank charges at payer's expense\n";
+    $sData .= "Инвойс действителен в течение оговорённого времени.\n";
     $sData .= "Банковские сборы и комиссии за счет плательщика\n";
 
     $oPDF->MultiCell(0, 5, $sData, 0, "C");

@@ -14,12 +14,15 @@ $MESS["R_EXHIBITIONS_NONE"] = "Exhibition is missing";
 $MESS["R_E_EXTEND_TITLE"] = "EXHIBITOR";
 $MESS["R_B_EXTEND_TITLE"] = "ГОСТЬ (VIP BUYER, BUYER, HOSTED BUYER)";
 $MESS["R_E_EXHIBITION_TITLE"] = "PLEASE SELECT THE EVENT YOU WOULD LIKE TO REGISTER FOR";
-$MESS["R_B_EXHIBITION_TITLE"] = "ПОЖАЛУЙСТА, ВЫБЕРИТЕ МЕРОПРИЯТИЕ, НА КОТОРОЕ ВЫ БЫ ХОТЕЛИ ЗАРЕГИСТРИРОВАТЬСЯ. ВОЗМОЖНО ВЫБРАТЬ ТОЛЬКО ОДНО МЕРОПРИЯТИЕ.<br />ПОЖАЛУЙСТА, ЗАПОЛНЯЙТЕ ФОРМУ НА АНГЛИЙСКОМ ЯЗЫКЕ";
+$MESS["R_B_EXHIBITION_TITLE"] = "<p>Гостевая регистрация на осенние выставки <b>Luxury Travel Mart</b> закончена.</p>
+<p>Свой запрос на участие вы можете направить на электронный адрес <b>guests@luxurytravelmart.ru</b></p>
+<p>Все заявки будут рассмотрены в индивидуальном порядке. Организаторы оставляют за собой право отказать в участии без объяснения причины.</p>
+<p>Представители гостиничных групп, индивидуальные отели, зарубежные туроператоры, не участвующие в Luxury Travel Mart, а также PR агентства и маркетинговые компании по оказанию представительских услуг в туриндустрии, рекламные отделы масс-медиа, на выставку не допускаются.</p>";
 
 $MESS["R_E_YOUR_CHOICE"] = "Your choice";
 $MESS["R_B_YOUR_CHOICE"] = "Вы выбрали";
-$MESS["R_MORNING"] = "Утро"; /*надпись над галочкой для выбора утра */
-$MESS["R_EVENING"] = "Вечер"; /*надпись над галочкой для выбора вечера */
+$MESS["R_MORNING"] = ""; /*надпись над галочкой для выбора утра */
+$MESS["R_EVENING"] = ""; /*надпись над галочкой для выбора вечера */
 
 $MESS["R_E_SALUTATION"] = "Title";
 
@@ -47,6 +50,7 @@ $MESS["R_B_COLLEAGUE_EVENING_FOR_ME_2"] = "В случае, если ваш ко
 
 $MESS["R_B_NAME"] = "Имя";
 $MESS["R_B_LAST_NAME"] = "Фамилия";
+$MESS["R_B_SALUTATION"] = "Обращение";
 $MESS["R_B_JOB_POST"] = "Должность";
 $MESS["R_B_EMAIL"] = "e-mail";
 

@@ -89,6 +89,8 @@ AjaxPatch = <?=CUtil::PhpToJSObject($arResult["AJAX_PATCH"])?>
 			<?= ShowText("SIMPLE_QUESTION_823","LAST_NAME", $arResult["GUEST_FORM"], "require en");?>
 			<?/*Должность*/?>
 			<?= ShowText("SIMPLE_QUESTION_391","JOB_POST", $arResult["GUEST_FORM"], "require en");?>
+			<?/*Обращение*/?>
+			<?= ShowDropDown("SALUTATION", "SALUTATION", $arResult["GUEST_FORM"]);?>
 			<?/*Телефон*/?>
 			<?= ShowText("SIMPLE_QUESTION_636","PHONE", $arResult["GUEST_FORM"], "require phone");?>
 			<?/*мобильный телефон*/?>
@@ -150,6 +152,8 @@ AjaxPatch = <?=CUtil::PhpToJSObject($arResult["AJAX_PATCH"])?>
 			<?= ShowText("SIMPLE_QUESTION_816","COLLEAGUE[MORNING][NAME]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_NAME"));?>
 			<?/*Фамилия коллеги на утро*/?>
 			<?= ShowText("SIMPLE_QUESTION_596","COLLEAGUE[MORNING][LAST_NAME]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_LAST_NAME"));?>
+			<?/*Обращение*/?>
+			<?= ShowDropDown("SALUTATION_COL","COLLEAGUE[MORNING][SALUTATION]", $arResult["GUEST_FORM"], GetMessage("R_B_SALUTATION"));?>
 			<?/*Должность коллеги на утро*/?>
 			<?= ShowText("SIMPLE_QUESTION_304","COLLEAGUE[MORNING][JOB_POST]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_JOB_POST"));?>
 			<?/*EAMIL коллеги на утро*/?>
@@ -176,6 +180,8 @@ AjaxPatch = <?=CUtil::PhpToJSObject($arResult["AJAX_PATCH"])?>
 			<?= ShowText("SIMPLE_QUESTION_367","COLLEAGUE[0][NAME]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_NAME"));?>
 			<?/*Фамилия коллеги 1*/?>
 			<?= ShowText("SIMPLE_QUESTION_482","COLLEAGUE[0][LAST_NAME]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_LAST_NAME"));?>
+			<?/*Обращение*/?>
+			<?= ShowDropDown("SALUTATION_1","COLLEAGUE[0][SALUTATION]", $arResult["GUEST_FORM"], GetMessage("R_B_SALUTATION"));?>
 			<?/*Должность коллеги 1*/?>
 			<?= ShowText("SIMPLE_QUESTION_187","COLLEAGUE[0][JOB_POST]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_JOB_POST"));?>
 			<?/*E-mail коллеги 1*/?>
@@ -188,6 +194,8 @@ AjaxPatch = <?=CUtil::PhpToJSObject($arResult["AJAX_PATCH"])?>
 			<?= ShowText("SIMPLE_QUESTION_225","COLLEAGUE[1][NAME]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_NAME"));?>
 			<?/*Фамилия коллеги 2*/?>
 			<?= ShowText("SIMPLE_QUESTION_770","COLLEAGUE[1][LAST_NAME]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_LAST_NAME"));?>
+			<?/*Обращение*/?>
+			<?= ShowDropDown("SALUTATION_2","COLLEAGUE[1][SALUTATION]", $arResult["GUEST_FORM"], GetMessage("R_B_SALUTATION"));?>
 			<?/*Должность коллеги 2*/?>
 			<?= ShowText("SIMPLE_QUESTION_280","COLLEAGUE[1][JOB_POST]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_JOB_POST"));?>
 			<?/*E-mail коллеги 2*/?>
@@ -199,6 +207,8 @@ AjaxPatch = <?=CUtil::PhpToJSObject($arResult["AJAX_PATCH"])?>
 			<?= ShowText("SIMPLE_QUESTION_765","COLLEAGUE[2][NAME]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_NAME"));?>
 			<?/*Фамилия коллеги 3*/?>
 			<?= ShowText("SIMPLE_QUESTION_627","COLLEAGUE[2][LAST_NAME]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_LAST_NAME"));?>
+			<?/*Обращение*/?>
+			<?= ShowDropDown("SALUTATION_3","COLLEAGUE[2][SALUTATION]", $arResult["GUEST_FORM"], GetMessage("R_B_SALUTATION"));?>
 			<?/*Должность коллеги 3*/?>
 			<?= ShowText("SIMPLE_QUESTION_788","COLLEAGUE[2][JOB_POST]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_JOB_POST"));?>
 			<?/*E-mail коллеги 3*/?>
