@@ -127,9 +127,11 @@ $(function() {
 	/**
 	 * Проверить CapsLock
 	 */
-	$("#REGISTER_FORM").on("focusout", ".registr_buy input, .registr_buy textarea", function(){
+	$("#REGISTER_FORM").on("keyup", ".registr_buy input, .registr_buy textarea", function(){
 		if(capsLockEnabled) {
-			alert($errorText[errorLang]["capslock"]);
+			showErrorMessage(this,$errorText[errorLang]["capslock"]);
+		} else {
+			hideErrorMessage(this,$errorText[errorLang]["capslock"], true);
 		}
 	});
 
@@ -235,7 +237,8 @@ $(function() {
 	//Клик по регистрации гостя
 	$("#REGISTER_FORM").on("click", ".registr_buy input[name=register_button]", function(){
 		$(this).prop('disabled',true);
-		if($("input#ckeck_register").prop("checked") && validateRegFormB())
+		var errorStatus = $(".input-error").length;
+		if($("input#ckeck_register").prop("checked") && validateRegFormB() && errorStatus == 0)
 		{
 			submitForm("Y");
 		}
