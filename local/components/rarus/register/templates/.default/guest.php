@@ -87,10 +87,10 @@ AjaxPatch = <?=CUtil::PhpToJSObject($arResult["AJAX_PATCH"])?>
 			<?= ShowText("SIMPLE_QUESTION_750","NAME", $arResult["GUEST_FORM"], "require en");?>
 			<?/*Фамилия*/?>
 			<?= ShowText("SIMPLE_QUESTION_823","LAST_NAME", $arResult["GUEST_FORM"], "require en");?>
-			<?/*Должность*/?>
-			<?= ShowText("SIMPLE_QUESTION_391","JOB_POST", $arResult["GUEST_FORM"], "require en");?>
 			<?/*Обращение*/?>
 			<?= ShowDropDown("SALUTATION", "SALUTATION", $arResult["GUEST_FORM"]);?>
+			<?/*Должность*/?>
+			<?= ShowText("SIMPLE_QUESTION_391","JOB_POST", $arResult["GUEST_FORM"], "require en");?>
 			<?/*Телефон*/?>
 			<?= ShowText("SIMPLE_QUESTION_636","PHONE", $arResult["GUEST_FORM"], "require phone");?>
 			<?/*мобильный телефон*/?>
