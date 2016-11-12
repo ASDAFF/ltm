@@ -1464,7 +1464,7 @@ $(function() {
 
 $(function() {
 	$("#REGISTER_FORM").on("change", "select", function(){
-		if($(this).attr('name').indexOf('SALUTATION') >= 0) {
+		if($(this).attr('name').indexOf('SALUTATION') >= 0 && $(this).attr('name') != 'SALUTATION') {
 			return;
 		}
 	 	var value = $(this).val();
