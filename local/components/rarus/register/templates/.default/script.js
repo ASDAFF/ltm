@@ -438,6 +438,7 @@ $(function() {
 		
 		
 		var newText = "";
+		var newFormat = "";
 		/*отмечаем все выбранные выставки в спец поле*/
 		table.find("input:checkbox:checked").each(function(ind, check){
 			var row = $(check).closest("tr");
@@ -446,8 +447,16 @@ $(function() {
 			{
 				var name = row.find("span.name_exhibition").text();
 				newText = name;
+				if(newFormat != "") {
+					newFormat = newFormat + ', ' ;
+				}
+				newFormat = newFormat + $(check).data("text");
 			}
 		});
+
+		if(newText != '') {
+			newText = newText + ": " + newFormat;
+		}
 
 		$("#selected-exhibition").text(newText);
 		

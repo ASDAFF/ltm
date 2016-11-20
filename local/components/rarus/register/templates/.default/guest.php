@@ -31,13 +31,13 @@ AjaxPatch = <?=CUtil::PhpToJSObject($arResult["AJAX_PATCH"])?>
 						<td class = "morning_b">
 							<? if($arItem["STATUS"]["GUEST"]["MORNING"]=="Y"){ ?>
 							<label class = "check-exh" for = "ckeck_m_<?=$arItem['ID']?>"></label>
-							<input id="ckeck_m_<?=$arItem['ID']?>" type="checkbox" name="EXHIBITION[<?=$arItem['ID']?>][MORNING]" value="843" class = "hide" />
+							<input id="ckeck_m_<?=$arItem['ID']?>" type="checkbox" name="EXHIBITION[<?=$arItem['ID']?>][MORNING]" value="843" class = "hide" data-text="регистрация на утреннюю сессию" />
 							<? } ?>
 						</td>
 						<td class = "evening_b">
 							<? if($arItem["STATUS"]["GUEST"]["EVENING"]=="Y"){ ?>
 							<label class = "check-exh" for = "ckeck_e_<?=$arItem['ID']?>"></label>
-							<input id="ckeck_e_<?=$arItem['ID']?>" type="checkbox" name="EXHIBITION[<?=$arItem['ID']?>][EVENING]" value="844" class = "hide" />
+							<input id="ckeck_e_<?=$arItem['ID']?>" type="checkbox" name="EXHIBITION[<?=$arItem['ID']?>][EVENING]" value="844" class = "hide" data-text="регистрация на вечерний приём" />
 							<? } ?>
 						</td>
 						<td class = "name_b">
