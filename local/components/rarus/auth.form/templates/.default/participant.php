@@ -97,7 +97,12 @@ $curDir = $APPLICATION->GetCurDir();
     		<div class="content pull-overflow">
     		<?  $exhId = makePassCode($arExhibition["ID"]);
     		    $userId = makePassCode($arResult["USER"]["ID"]); ?>
-     			<a href="javascript:void(0)" title="<?= GetMessage("AUTH_P_REGISTER_FOR")?> <?= $arExhibition["EXH_NAME"]?>" onclick="regForExhib('<?= $exhId?>','<?= $userId?>')"><?= GetMessage("AUTH_P_REGISTER_FOR")?> <?= $arExhibition["EXH_NAME"]?></a>
+					<?if($arExhibition["SELECTED"] == "Y"):?>
+						<p class="exh-choose">You have already registered for this event. Status: not confirmed yet</p>
+					<?else:?>
+						<a href="javascript:void(0)" title="<?= GetMessage("AUTH_P_REGISTER_FOR")?> <?= $arExhibition["EXH_NAME"]?>" onclick="regForExhib('<?= $exhId?>','<?= $userId?>')"><?= GetMessage("AUTH_P_REGISTER_FOR")?> <?= $arExhibition["EXH_NAME"]?></a>
+					<?endif;?>
+
     		</div>
     	</div>
     <? endforeach;?>
