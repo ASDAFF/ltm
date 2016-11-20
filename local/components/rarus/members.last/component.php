@@ -23,7 +23,7 @@ foreach ($arParams["USER_GROUP_ID"] as &$groupID)
     $groupID = intval($groupID);
 }
 if(empty($arParams["USER_GROUP_ID"]))
-    $arParams["USER_GROUP_ID"] = array(18,12,16,10,14);
+    $arParams["USER_GROUP_ID"] = array(21);
 
 $arParams["FORM_FIELD_LOGIN_ID"] = trim($arParams["FORM_FIELD_LOGIN_ID"]);
 if(strlen($arParams["FORM_FIELD_LOGIN_ID"]) <= 0)
