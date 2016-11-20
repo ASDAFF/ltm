@@ -21,25 +21,11 @@ else //если не админ получаем данные для текущ�
 }
 $UID = '';
 $arResult["USER"] = $arUser;
-if ($USER->isAdmin())
-{
+if ($USER->isAdmin()) {
 	$UID = 1;
-}
-else
-{
+} else {
 	$UID = $arResult["USER"]['ID'];
 }
-
-/*$arFilterMessages = array("USER_ID"=> $UID, "FOLDER_ID"=>FID);
-$dbrMessages = CForumPrivateMessage::GetListEx(array(), $arFilterMessages);
-$arResult['NEW_MESSAGES_COUNT'] = 0;
-while($arMsg = $dbrMessages->GetNext())
-{
-	if ($arMsg['IS_READ'] == 'N')
-	{
-		$arResult['NEW_MESSAGES_COUNT']++;
-	}
-}*/
 
 // id результата заполнения формы компании
 $companyResultID = $arUser["UF_ID_COMP"];
@@ -73,13 +59,12 @@ $arSelect = array(
 
 $rsElement = CIBlockElement::GetList(array("sort" => "asc"),$arFilter, false, false, $arSelect);
 $first = true;
-while($obElement = $rsElement->GetNextElement())
-{
-
+while($obElement = $rsElement->GetNextElement()) {
     $arItem = $obElement->GetFields();
     $arItem["PROPERTIES"] = $obElement->GetProperties();
 
     $confirmedGroup = $arItem["PROPERTIES"]["USER_GROUP_ID"]["VALUE"];
+    $unconfirmedGroup = $arItem["PROPERTIES"]["UC_PARTICIPANTS_GROUP"]["VALUE"];
 
     //получение ид свойства пользователя в котором хранится результат заполнения формы участника
     $userExhibPropertyID = CFormMatrix::getPropertyIDByExh($arItem["ID"]);
@@ -160,7 +145,6 @@ while($obElement = $rsElement->GetNextElement())
     //если пользователь зарегистрирован на эту выставку
     if(in_array($confirmedGroup, $arUserGroups))
     {
-
         if($arItem["CODE"] == $arParams["EXHIB_CODE"])
         {
             $arExhib["SELECTED"] = "Y";
@@ -208,6 +192,9 @@ while($obElement = $rsElement->GetNextElement())
     }
     else//если не зарегистрирован
     {
+        if(in_array($unconfirmedGroup, $arUserGroups)) {
+            $arExhib["SELECTED"] = "Y";
+        }
         $arExhib["ID"] = $arItem["ID"];
         //$arExhib["PROPERTIES"] = $arItem["PROPERTIES"];
 
