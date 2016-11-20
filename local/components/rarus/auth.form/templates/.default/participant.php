@@ -94,13 +94,13 @@ $curDir = $APPLICATION->GetCurDir();
     			<div class="title"><b><?= GetMessage("AUTH_P_CAN_REGISTER")?> <?= $arExhibition["EXH_NAME"]?></b></div>
     			<div class="place"><?= $arExhibition["NAME"]?></div>
     		</div>
-    		<div class="content pull-overflow">
+    		<div class="content pull-overflow" id="exh-<?=$arExhibition["ID"]?>">
     		<?  $exhId = makePassCode($arExhibition["ID"]);
     		    $userId = makePassCode($arResult["USER"]["ID"]); ?>
 					<?if($arExhibition["SELECTED"] == "Y"):?>
 						<p class="exh-choose">You have already registered for this event. Status: not confirmed yet</p>
 					<?else:?>
-						<a href="javascript:void(0)" title="<?= GetMessage("AUTH_P_REGISTER_FOR")?> <?= $arExhibition["EXH_NAME"]?>" onclick="regForExhib('<?= $exhId?>','<?= $userId?>')"><?= GetMessage("AUTH_P_REGISTER_FOR")?> <?= $arExhibition["EXH_NAME"]?></a>
+						<a href="javascript:void(0)" title="<?= GetMessage("AUTH_P_REGISTER_FOR")?> <?= $arExhibition["EXH_NAME"]?>" onclick="regForExhib('<?= $exhId?>','<?= $userId?>', '<?=$arExhibition["ID"]?>')"><?= GetMessage("AUTH_P_REGISTER_FOR")?> <?= $arExhibition["EXH_NAME"]?></a>
 					<?endif;?>
 
     		</div>
