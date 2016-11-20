@@ -644,5 +644,8 @@ video {
 	text-decoration: none;
 	color: #000;
 	width: 40%;
+}
 
+.fees-list p{
+	font-size: 14px;
 }
