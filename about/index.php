@@ -24,7 +24,7 @@ if(LANGUAGE_ID == "ru")
 	 Luxury Travel Mart – мероприятие категории «бизнес для бизнеса» ориентировано на компании, предлагающие услуги элитного туризма и ставящие своей целью установить новые контакты и укрепить связи с партнерами из стран СНГ – туристическими компаниями, работающими с VIP-клиентами.
 </p>
 <p>
-	 Формат выставки позволяет за один день познакомиться с многочисленными представителями индустрии роскошных путешествий, узнать о громких премьерах в сфере гостиничного бизнеса, новых принимающих компаниях и предоставляемых услугах, наладить успешные партнерские отношения и укрепить уже существующие в рамках заранее назначенных встреч по расписанию на утренней сессии, либо без расписания во время вечерней сессии.
+	 Формат выставки позволяет познакомиться с многочисленными представителями индустрии роскошных путешествий, узнать о громких премьерах в сфере гостиничного бизнеса, новых принимающих компаниях и предоставляемых услугах, наладить успешные партнерские отношения и укрепить уже существующие в рамках заранее назначенных встреч по расписанию на утренней сессии, либо без расписания во время вечерней сессии.
 </p>
 <p>
 	 Среди компаний, участвующих в LTM, крупнейшие мировые группы отелей, частные отели, компании по аренде элитных автомобилей и ведущие мировые специалисты, организующие круизы и путешествия на мега-яхтах, туристические операторы и компании, предоставляющие услуги проката самолетов.
@@ -42,27 +42,32 @@ if(LANGUAGE_ID == "ru")
 	 Для регистрации по программе приглашенных региональных гостей, пожалуйста, свяжитесь с нами по <a href="/contacts">электронной почте.</a>
 </p>
 <p>
-	 В настоящее время выставки Luxury Travel Mart проводятся 4 раза&nbsp;в год в следующих городах:
+	 В настоящее время выставки Luxury Travel Mart проводятся 5 раз&nbsp;в год в следующих городах:
 </p>
 <p>
  <b>Весенний Luxury Travel Mart Москва, Россия <br>
- </b>Даты проведения в 2016: 10-11 марта&nbsp;<br>
+ </b>Даты проведения в 2017: 2-3 марта&nbsp;<br>
 	 Место проведения: The Ritz-Carlton, Moscow<b><br>
  </b>
 </p>
 <p>
+ <b>Весенний Luxury Travel Mart Алматы, Казахстан&nbsp;<br>
+ </b>Дата&nbsp;проведения в 2017: 6 апреля&nbsp;<br>
+	 Место проведения: The Ritz-Carlton, Almaty<br>
+</p>
+<p>
  <b>Luxury Travel Mart Киев, Украина</b> <br>
-	 Дата проведения в 2016: 27&nbsp;сентября <br>
+	 Дата проведения в 2017: 26&nbsp;сентября <br>
 	 Место проведения: InterContinental Kiev
 </p>
 <p>
  <b>Luxury Travel Mart Алматы, Казахстан</b> <br>
-	 Дата проведения в 2016: 30&nbsp;сентября <br>
+	 Дата проведения в 2017: 29 сентября <br>
 	 Место проведения: The Ritz-Carlton, Almaty
 </p>
 <p>
  <b>Осенний Luxury Travel Mart Москва, Россия</b> <br>
-	 Дата проведения в 2016: 4&nbsp;октября <br>
+	 Дата проведения в 2017: 3&nbsp;октября <br>
 	 Место проведения: The Ritz-Carlton, Moscow
 </p>
  <?
@@ -88,39 +93,47 @@ elseif(LANGUAGE_ID == "en")
 <ul class="static_ul">
 	<li>The most successful event in this niche in the CIS</li>
 	<li>Number of repeat exhibitors – over 90%</li>
-	<li>246 exhibitors participated in LTM Moscow Spring 2015 and 154 in Moscow Autumn 2015, 48 at LTM Kiev 2015&nbsp;(146 in 2013) and 104&nbsp;at LTM Almaty 2015&nbsp;(maximum capacity at all events)</li>
-	<li>Over 3800 guests visited LTM events in Moscow, Kiev, Almaty in 2015</li>
-	<li>Over 1200 guests visited LTM Spring in Moscow in 2015</li>
-	<li>520 hosted buyers from the Russian regions and the CIS in 2015&nbsp;at LTM events and 320 hosted buyers at LTM Spring in Moscow 2015 only</li>
+	<li>246 exhibitors participated in LTM Moscow Spring 2016 and 146 in Moscow Autumn 2016, 84 at LTM Kiev 2016&nbsp;and 100&nbsp;at LTM Almaty 2016&nbsp;(maximum capacity at all events)</li>
+	<li>Over 3800 guests visited LTM events in Moscow, Kiev, Almaty in 2016</li>
+	<li>Over 1200 guests visited LTM Spring in Moscow in 2016</li>
+	<li>520 hosted buyers from the Russian regions and the CIS in 2016&nbsp;at LTM events and 320 hosted buyers at LTM Spring in Moscow 2016&nbsp;only</li>
 	<li>98% of exhibitors considered LTM to be an extremely useful and successful events</li>
 	<li>LTM is the only event in the CIS with an extensive Hosted buyers program</li>
 	<li>All buyers are carefully pre-selected and visitors are by invitation only, which guarantees the highcaliber of the clientele and travel industry professionals</li>
 </ul>
 <p>
-	 Luxury Travel Mart currently organises 4 events a year:
+	 Luxury Travel Mart currently organises 5 events a year:
 </p>
 <p>
  <b>Luxury Travel Mart Moscow, Russia, Spring Edition <br>
- </b>Dates for 2016: March 10-11 (two-days event) &nbsp; &nbsp;&nbsp;<br>
+ </b>Dates for 2017: March 2-3&nbsp;(two-days event) &nbsp; &nbsp;&nbsp;<br>
 	 Venue: The Ritz-Carlton, Moscow&nbsp;<br>
 	 Approximate number of guests: 320 hosted buyers at the first day, 300-350 at the morning session of the second day, over 1000 guests at the evening reception.<b><br>
  </b>
 </p>
 <p>
+ <b>Luxury Travel Mart Almaty, Kazakhstan</b><b>, Spring Edition&nbsp;</b><b>&nbsp;</b>
+</p>
+<p>
+	 Date for 2017: April 6&nbsp;&nbsp;<br>
+	 Venue: The Ritz-Carlton, Almaty&nbsp;<br>
+	 Approximate number of guests: 110-125 at the morning session, 50 hosted buyers, 200-230 guests at the evening session.<br>
+</p>
+<p>
  <b>Luxury Travel Mart Kiev, Ukraine</b> <br>
-	 Date for 2016: September 27&nbsp;&nbsp;<br>
+	 Date for 2017: September 26&nbsp;&nbsp;<br>
 	 Venue: InterContinental Kiev <br>
 	 Approximate number of guests: 200-220 at the morning session, 50 hosted buyers, 300-350 guests at the evening session.
 </p>
 <p>
- <b>Luxury Travel Mart Almaty, Kazakhstan</b> <br>
-	 Date for 2016: September 30&nbsp;&nbsp;<br>
+ <b>Luxury Travel Mart Almaty, Kazakhstan, Autumn Edition</b> <br>
+	 Date for 2017: September 29&nbsp;&nbsp;<br>
 	 Venue: The Ritz-Carlton, Almaty <br>
 	 Approximate number of guests: 110-125 at the morning session, 50 hosted buyers, 200-230 guests at the evening session.
 </p>
 <p>
  <b>Luxury Travel Mart Moscow, Russia, Autumn Edition</b> <br>
-	 Date for 2016: October 4&nbsp;&nbsp;<br>
+	 Date for 2017: October 3&nbsp;&nbsp;<br>
 	 Venue: The Ritz-Carlton, Moscow <br>
 	 Approximate number of guests: 300-350 at the morning session, 145 hosted buyers, 800-850 guests at the evening session.
 </p>
