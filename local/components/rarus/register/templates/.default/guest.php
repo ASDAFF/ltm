@@ -148,16 +148,18 @@ AjaxPatch = <?=CUtil::PhpToJSObject($arResult["AJAX_PATCH"])?>
 			<div class="line-sep-small"></div>
 			
 			<div class="authorize-title"><?=GetMessage("R_B_COLLEAGUE_MORNING_TITLE")?></div>
-			<?/*Имя коллеги на утро*/?>
-			<?= ShowText("SIMPLE_QUESTION_816","COLLEAGUE[MORNING][NAME]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_NAME"));?>
-			<?/*Фамилия коллеги на утро*/?>
-			<?= ShowText("SIMPLE_QUESTION_596","COLLEAGUE[MORNING][LAST_NAME]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_LAST_NAME"));?>
-			<?/*Обращение*/?>
-			<?= ShowDropDown("SALUTATION_COL","COLLEAGUE[MORNING][SALUTATION]", $arResult["GUEST_FORM"], GetMessage("R_B_SALUTATION"));?>
-			<?/*Должность коллеги на утро*/?>
-			<?= ShowText("SIMPLE_QUESTION_304","COLLEAGUE[MORNING][JOB_POST]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_JOB_POST"));?>
-			<?/*EAMIL коллеги на утро*/?>
-			<?= ShowText("SIMPLE_QUESTION_278","COLLEAGUE[MORNING][EMAIL]", $arResult["GUEST_FORM"], "email", GetMessage("R_B_EMAIL"));?>
+			<div class="collegue-block">
+				<?/*Имя коллеги на утро*/?>
+				<?= ShowText("SIMPLE_QUESTION_816","COLLEAGUE[MORNING][NAME]", $arResult["GUEST_FORM"], "en collegue", GetMessage("R_B_NAME"));?>
+				<?/*Фамилия коллеги на утро*/?>
+				<?= ShowText("SIMPLE_QUESTION_596","COLLEAGUE[MORNING][LAST_NAME]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_LAST_NAME"));?>
+				<?/*Обращение*/?>
+				<?= ShowDropDown("SALUTATION_COL","COLLEAGUE[MORNING][SALUTATION]", $arResult["GUEST_FORM"], GetMessage("R_B_SALUTATION"));?>
+				<?/*Должность коллеги на утро*/?>
+				<?= ShowText("SIMPLE_QUESTION_304","COLLEAGUE[MORNING][JOB_POST]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_JOB_POST"));?>
+				<?/*EAMIL коллеги на утро*/?>
+				<?= ShowText("SIMPLE_QUESTION_278","COLLEAGUE[MORNING][EMAIL]", $arResult["GUEST_FORM"], "email", GetMessage("R_B_EMAIL"));?>
+			</div>
 			<div class="line-sep-small"></div>
 		</div>
 		
@@ -176,20 +178,24 @@ AjaxPatch = <?=CUtil::PhpToJSObject($arResult["AJAX_PATCH"])?>
 			<div class="line-sep-small"></div>
 			
 <!--			<div class="collegue-title"><?= GetMessage("R_B_EACH_COLLEAGUE_EVENING_TITLE", array("#NUM#" => "1"))?></div> -->
-			<?/*Имя коллеги 1*/?>
-			<?= ShowText("SIMPLE_QUESTION_367","COLLEAGUE[0][NAME]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_NAME"));?>
-			<?/*Фамилия коллеги 1*/?>
-			<?= ShowText("SIMPLE_QUESTION_482","COLLEAGUE[0][LAST_NAME]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_LAST_NAME"));?>
-			<?/*Обращение*/?>
-			<?= ShowDropDown("SALUTATION_1","COLLEAGUE[0][SALUTATION]", $arResult["GUEST_FORM"], GetMessage("R_B_SALUTATION"));?>
-			<?/*Должность коллеги 1*/?>
-			<?= ShowText("SIMPLE_QUESTION_187","COLLEAGUE[0][JOB_POST]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_JOB_POST"));?>
-			<?/*E-mail коллеги 1*/?>
-			<?= ShowText("SIMPLE_QUESTION_421","COLLEAGUE[0][EMAIL]", $arResult["GUEST_FORM"], "email", GetMessage("R_B_EMAIL"));?>
+			<div class="collegue-block">
+				<?/*Имя коллеги 1*/?>
+				<?= ShowText("SIMPLE_QUESTION_367","COLLEAGUE[0][NAME]", $arResult["GUEST_FORM"], "en collegue", GetMessage("R_B_NAME"));?>
+				<?/*Фамилия коллеги 1*/?>
+				<?= ShowText("SIMPLE_QUESTION_482","COLLEAGUE[0][LAST_NAME]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_LAST_NAME"));?>
+				<?/*Обращение*/?>
+				<?= ShowDropDown("SALUTATION_1","COLLEAGUE[0][SALUTATION]", $arResult["GUEST_FORM"], GetMessage("R_B_SALUTATION"));?>
+				<?/*Должность коллеги 1*/?>
+				<?= ShowText("SIMPLE_QUESTION_187","COLLEAGUE[0][JOB_POST]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_JOB_POST"));?>
+				<?/*E-mail коллеги 1*/?>
+				<?= ShowText("SIMPLE_QUESTION_421","COLLEAGUE[0][EMAIL]", $arResult["GUEST_FORM"], "email", GetMessage("R_B_EMAIL"));?>
+			</div>
+
 			<div class="line-sep-small"></div>
 
 <!--
 			<div class="collegue-title"><?= GetMessage("R_B_EACH_COLLEAGUE_EVENING_TITLE", array("#NUM#" => "2"))?></div>
+			<div class="collegue-block">
 			<?/*Имя коллеги 2*/?>
 			<?= ShowText("SIMPLE_QUESTION_225","COLLEAGUE[1][NAME]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_NAME"));?>
 			<?/*Фамилия коллеги 2*/?>
@@ -200,9 +206,12 @@ AjaxPatch = <?=CUtil::PhpToJSObject($arResult["AJAX_PATCH"])?>
 			<?= ShowText("SIMPLE_QUESTION_280","COLLEAGUE[1][JOB_POST]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_JOB_POST"));?>
 			<?/*E-mail коллеги 2*/?>
 			<?= ShowText("SIMPLE_QUESTION_384","COLLEAGUE[1][EMAIL]", $arResult["GUEST_FORM"], "email", GetMessage("R_B_EMAIL"));?>
+			</div>
+
 			<div class="line-sep-small"></div>
 			
 			<div class="collegue-title"><?= GetMessage("R_B_EACH_COLLEAGUE_EVENING_TITLE", array("#NUM#" => "3"))?></div>
+			<div class="collegue-block">
 			<?/*Имя коллеги 3*/?>
 			<?= ShowText("SIMPLE_QUESTION_765","COLLEAGUE[2][NAME]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_NAME"));?>
 			<?/*Фамилия коллеги 3*/?>
@@ -213,6 +222,8 @@ AjaxPatch = <?=CUtil::PhpToJSObject($arResult["AJAX_PATCH"])?>
 			<?= ShowText("SIMPLE_QUESTION_788","COLLEAGUE[2][JOB_POST]", $arResult["GUEST_FORM"], "en", GetMessage("R_B_JOB_POST"));?>
 			<?/*E-mail коллеги 3*/?>
 			<?= ShowText("SIMPLE_QUESTION_230","COLLEAGUE[2][EMAIL]", $arResult["GUEST_FORM"], "email", GetMessage("R_B_EMAIL"));?>
+			</div>
+
 			<div class="line-sep-small"></div>
 -->
 		</div>
