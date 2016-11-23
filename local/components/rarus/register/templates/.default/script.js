@@ -215,6 +215,26 @@ $(function() {
 			  }
 		});
 	});
+
+	$("#REGISTER_FORM").on("focusout", ".collegue", function(event){
+		var that = this;
+		var parentBlock = $(this).closest(".collegue-block");
+		if($(this).val() != '') {
+			parentBlock.find("input").each(function(ind, elem) {
+				if(elem != that) {
+					$(elem).addClass("require");
+				}
+			});
+			parentBlock.find("select").addClass("select-requer");
+		} else {
+			parentBlock.find("input").each(function(ind, elem) {
+				$(elem).removeClass("require");
+				hideErrorMessage(elem,$errorText[errorLang]["require"], true);
+			});
+			parentBlock.find("select").removeClass("select-requer");
+			parentBlock.find("select").trigger("change");
+		}
+	});
 	
 	
 	//$.validity.setup({ scrollTo: true });
@@ -1476,12 +1496,14 @@ $(function() {
 
 $(function() {
 	$("#REGISTER_FORM").on("change", "select", function(){
-		if($(this).attr('name').indexOf('SALUTATION') >= 0 && $(this).attr('name') != 'SALUTATION') {
+		var value = $(this).val();
+		var select = $(this).closest(".dropdown-group");
+
+		if($(this).attr('name').indexOf('SALUTATION') >= 0 && $(this).attr('name') != 'SALUTATION'
+			&& !$(this).hasClass('select-requer')) {
+			hideErrorMessage(select,$errorText[errorLang]["require"], true);
 			return;
 		}
-	 	var value = $(this).val();
-	 	var select = $(this).closest(".dropdown-group");
-
 		if(!value)
 		{
 			showErrorMessage(select,$errorText[errorLang]["require"]);
