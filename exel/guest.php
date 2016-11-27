@@ -370,7 +370,7 @@ foreach ($arResult["ANSWERS"] as $numb => $ans) {
 		if(is_array($userAns)){
 			$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, implode(', ', $userAns));		
 		}
-		elseif($userAns == ''){
+		elseif($userAns == '' || $userAns == 'None'){
 			$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, '  ');
 		}
 		else{

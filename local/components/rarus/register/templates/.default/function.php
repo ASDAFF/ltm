@@ -77,13 +77,17 @@ function ShowDropDown($SID, $NAME, &$arForm, $placeholder="")
 			<div class="dropdown-name"><?=(strlen($placeholder) > 0)?$placeholder:$Questions[$SID]["TITLE"]?></div>
 			<ul class="dropdown-items" id="dropdown-items-<?= randString(5)?>">
 				<?foreach ($Dropdown[$SID]["reference"] as $index => $name): ?>
-					<li data-id="<?=$Dropdown[$SID]["reference_id"][$index]?>"><?= $name?></li>
+					<?if($name != 'None'):?>
+						<li data-id="<?=$Dropdown[$SID]["reference_id"][$index]?>"><?= $name?></li>
+					<?endif;?>
 				<?endforeach; ?>
 			</ul>
 			<select name="<?=$NAME?>" class="none">
 				<option disabled selected><?=(strlen($placeholder) > 0)?$placeholder:$Questions[$SID]["TITLE"]?></option>
 				<?foreach ($Dropdown[$SID]["reference"] as $index => $name): ?>
-				<option value="<?=$Dropdown[$SID]["reference_id"][$index]?>"><?= $name?></option>
+					<?if($name != 'None'):?>
+						<option value="<?=$Dropdown[$SID]["reference_id"][$index]?>"><?= $name?></option>
+					<?endif;?>
 				<?endforeach; ?>
 			</select>
 		</div>
