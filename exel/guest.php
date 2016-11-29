@@ -152,21 +152,18 @@ foreach ($arTmpUsers as $arUser) {
 	/* Данные о компании */
 	if(!$isAll){
 		foreach ($arCompField["QUEST_CODE"] as $idQuest => $codeRes){
-			//Вот это не очень хорошо, но либо SQL либо еще что-то придумать
-			/*if($arCompField["NAMES_AR"][$idQuest] == "HALL" && $arTmpResult["ANSWERS2"][$arUser['FORM_COMP']][$codeRes]["0"][$arCompField["ANS_TYPE"][$idQuest]] == 'Mr.'){
-				$arResult["ANSWERS"][$j][$arCompField["NAMES_AR"][$idQuest]] = '';
-			}*/
+			$fieldValue = $arTmpResult["ANSWERS2"][$arUser['FORM_COMP']][$codeRes]["0"][$arCompField["ANS_TYPE"][$idQuest]];
 			
 			if(strpos($arCompField["NAMES"][$idQuest], '(other)') !== false){
-				if($arTmpResult["ANSWERS2"][$arUser['FORM_COMP']][$codeRes]["0"][$arCompField["ANS_TYPE"][$idQuest]] != ''){
-					$arResult["ANSWERS"][$j][$arCompField["NAMES_AR"][$idQuest]] = $arTmpResult["ANSWERS2"][$arUser['FORM_COMP']][$codeRes]["0"][$arCompField["ANS_TYPE"][$idQuest]];
+				if($fieldValue != '' && $fieldValue != "None"){
+					$arResult["ANSWERS"][$j][$arCompField["NAMES_AR"][$idQuest]] = $fieldValue;
 				}
 			}
 			elseif(!$isHB && ($arCompField["NAMES_AR"][$idQuest] == 'HALL' || $arCompField["NAMES_AR"][$idQuest] == 'TABLE')){
 				continue;
 			}
 			elseif($arCompField["NAMES_AR"][$idQuest] != "DESTINITIONS" && $arCompField["NAMES_AR"][$idQuest] != "AREA"){
-				$arResult["ANSWERS"][$j][$arCompField["NAMES_AR"][$idQuest]] = $arTmpResult["ANSWERS2"][$arUser['FORM_COMP']][$codeRes]["0"][$arCompField["ANS_TYPE"][$idQuest]];
+				$arResult["ANSWERS"][$j][$arCompField["NAMES_AR"][$idQuest]] = $fieldValue;
 			}
 			else{
 				if(!isset($arResult["ANSWERS"][$j][$arCompField["NAMES_AR"][$idQuest]])){
@@ -185,21 +182,22 @@ foreach ($arTmpUsers as $arUser) {
 	else{//Если все представители, то + коллега отдельной строкой
 		$isCollege = false;
 		foreach ($arCompField["QUEST_CODE"] as $idQuest => $codeRes){
+			$fieldValue = $arTmpResult["ANSWERS2"][$arUser['FORM_COMP']][$codeRes]["0"][$arCompField["ANS_TYPE"][$idQuest]];
 			if(strpos($arCompField["NAMES"][$idQuest], '(на утро)') !== false || strpos($arCompField["NAMES"][$idQuest], ' коллеги ') !== false){
-				if($arTmpResult["ANSWERS2"][$arUser['FORM_COMP']][$codeRes]["0"][$arCompField["ANS_TYPE"][$idQuest]] != ''){
+				if($fieldValue != '' && $fieldValue != "None"){
 					$isCollege = $isCollege || true;
 				}
 			}
 			elseif(strpos($arCompField["NAMES"][$idQuest], '(other)') !== false){
-				if($arTmpResult["ANSWERS2"][$arUser['FORM_COMP']][$codeRes]["0"][$arCompField["ANS_TYPE"][$idQuest]] != ''){
-					$arResult["ANSWERS"][$j][$arCompField["NAMES_AR"][$idQuest]] = $arTmpResult["ANSWERS2"][$arUser['FORM_COMP']][$codeRes]["0"][$arCompField["ANS_TYPE"][$idQuest]];
+				if($fieldValue != '' && $fieldValue != "None"){
+					$arResult["ANSWERS"][$j][$arCompField["NAMES_AR"][$idQuest]] = $fieldValue;
 				}
 			}
 			elseif(!$isHB && ($arCompField["NAMES_AR"][$idQuest] == 'HALL' || $arCompField["NAMES_AR"][$idQuest] == 'TABLE')){
 				continue;
 			}
 			elseif($arCompField["NAMES_AR"][$idQuest] != "DESTINITIONS" && $arCompField["NAMES_AR"][$idQuest] != "AREA"){
-				$arResult["ANSWERS"][$j][$arCompField["NAMES_AR"][$idQuest]] = $arTmpResult["ANSWERS2"][$arUser['FORM_COMP']][$codeRes]["0"][$arCompField["ANS_TYPE"][$idQuest]];
+				$arResult["ANSWERS"][$j][$arCompField["NAMES_AR"][$idQuest]] = $fieldValue;
 			}
 
 			else{
@@ -223,7 +221,8 @@ foreach ($arTmpUsers as $arUser) {
 				foreach ($arCompField["QUEST_CODE"] as $idQuest => $codeRes){
 					if(strpos($arCompField["NAMES"][$idQuest], ' коллеги ') !== false){//заменяем то, что отличается
 						$numderColTmp = substr($arCompField["NAMES_AR"][$idQuest], -1);
-						if($numberCol != $numderColTmp && $arTmpResult["ANSWERS2"][$arUser['FORM_COMP']][$codeRes]["0"][$arCompField["ANS_TYPE"][$idQuest]] != ""){
+						$fieldValue = $arTmpResult["ANSWERS2"][$arUser['FORM_COMP']][$codeRes]["0"][$arCompField["ANS_TYPE"][$idQuest]];
+						if($numberCol != $numderColTmp && $fieldValue != "" && $fieldValue != "None"){
 							$numberCol = $numderColTmp;
 							$firstFieldRes = $codeRes;
 							$firstFieldId = $idQuest;
@@ -234,7 +233,7 @@ foreach ($arTmpUsers as $arUser) {
 							$firstFieldRes = 0;
 						}
 						if($firstFieldRes){
-							$arResult["ANSWERS"][$j+$numberCol][str_replace ("_COL".$numberCol, "", $arCompField["NAMES_AR"][$idQuest])] = $arTmpResult["ANSWERS2"][$arUser['FORM_COMP']][$codeRes]["0"][$arCompField["ANS_TYPE"][$idQuest]];					
+							$arResult["ANSWERS"][$j+$numberCol][str_replace ("_COL".$numberCol, "", $arCompField["NAMES_AR"][$idQuest])] = $fieldValue;
 						}
 					}		
 				}			
@@ -244,8 +243,9 @@ foreach ($arTmpUsers as $arUser) {
 				$arResult["ANSWERS"][$j+1]=$arResult["ANSWERS"][$j];//скопировать всю общую информацию
 				$j++;
 				foreach ($arCompField["QUEST_CODE"] as $idQuest => $codeRes){
+					$fieldValue = $arTmpResult["ANSWERS2"][$arUser['FORM_COMP']][$codeRes]["0"][$arCompField["ANS_TYPE"][$idQuest]];
 					if(strpos($arCompField["NAMES"][$idQuest], '(на утро)') !== false){//заменяем то, что отличается
-						$arResult["ANSWERS"][$j][str_replace ("_COL", "", $arCompField["NAMES_AR"][$idQuest])] = $arTmpResult["ANSWERS2"][$arUser['FORM_COMP']][$codeRes]["0"][$arCompField["ANS_TYPE"][$idQuest]];
+						$arResult["ANSWERS"][$j][str_replace ("_COL", "", $arCompField["NAMES_AR"][$idQuest])] = $fieldValue;
 					}		
 				}				
 			}
@@ -370,7 +370,7 @@ foreach ($arResult["ANSWERS"] as $numb => $ans) {
 		if(is_array($userAns)){
 			$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, implode(', ', $userAns));		
 		}
-		elseif($userAns == '' || $userAns == 'None'){
+		elseif($userAns == ''){
 			$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, '  ');
 		}
 		else{
