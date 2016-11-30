@@ -29,6 +29,9 @@ if($exhibID && $userID)
 
 	$ucExhibGroupID = $arProps["VALUE"];
 
+	$arProps = $obExhib->GetProperty("EVENT_PREREG_LK");
+	$sendType = $arProps["VALUE"];
+
 	$arUserGroups = $user->GetUserGroup($userID);
 
 	//почтовые события
@@ -46,19 +49,6 @@ if($exhibID && $userID)
 		"PASSWORD"         => $aruser["UF_PAS"]
 	);
 
-	$sendType;
-	switch ($exhibID)
-	{
-		case "361" : $sendType = "REG_NEW_E_MOSSP"; break; //Москва, Россия. 13 марта 2014
-		case "360" : $sendType = "REG_NEW_E_KIEV"; break; //Киев, Украина. 23 сентября 2014
-		case "357" : $sendType = "REG_NEW_E_BAK"; break; //Баку, Азербайджан. 10 апреля 2014
-		case "359" : $sendType = "REG_NEW_E_ALM"; break; //Алматы, Казахстан. 26 сентября 2014
-		case "358" : $sendType = "REG_NEW_E_MOSOT"; break; //Москва, Россия. 2 октября 2014
-		case "488" : $sendType = "REG_NEW_E_MOSSP15"; break; //Москва, Россия. 12 марта 2015
-		case "3521" : $sendType = "REG_NEW_E_ALM15"; break; //Алматы, Казахстан. 2015
-		case "3522" : $sendType = "REG_NEW_E_KIEV15"; break; //Киев, Украина. 22 сентября 2015
-		case "3523" : $sendType = "REG_NEW_E_MOSOT15"; break; //Москва, Россия 2015
-	}
 
 	if($ucExhibGroupID && !array_search($ucExhibGroupID, $arUserGroups))
 	{
