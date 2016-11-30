@@ -11,16 +11,17 @@ $arShowedTableCols = array(
 	"ID"=>"ID",
 	"Компания"=>0,
 	"Представитель"=>array(7, 8),
-	"Должность"=>9,
+	"Обращение"=>9,
+	"Должность"=>10,
 	"Адрес"=>2,
 	"Город"=>4,
 	"Страна"=>array(5, 6),
 	"Индекс"=>3,
-	"Телефон"=>10,
-	"Мобильный телефон"=>11,
-	"Скайп"=>12,
-	"Емейл"=>13,
-	"Веб-сайт"=>15
+	"Телефон"=>11,
+	"Мобильный телефон"=>12,
+	"Скайп"=>13,
+	"Емейл"=>14,
+	"Веб-сайт"=>16
 );
 $arShowedTableColsSort = array(
 	"ID"=>"ID",
@@ -92,15 +93,22 @@ if($arParams["ACT"] == "hostbuy")
 function getValById($ar, $id, $formId)
 {
 	if(isset($ar[$id])) {
-		return $ar[$id];
+		return makeRealValue($ar[$id]);
 	}
 
 	$v = CFormMatrix::getFormQuestionIdByFormIDAndQuestionName($formId, $id);
 	if($v && isset($ar[$v])) {
-		return $ar[$v];
+		return makeRealValue($ar[$v]);
 	}
 
 	return "";
+}
+
+function makeRealValue($value) {
+	if($value == 'None') {
+		$value = '';
+	}
+	return $value;
 }
 
 function returnVal($ar, $val, $formId)
