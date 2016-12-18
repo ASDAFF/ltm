@@ -97,21 +97,21 @@ if($this->StartResultCache(false, array_merge($arParams, $arResult)))
     while($ar = $rs->GetNext(true, false)) {
     	$arResult["USERS_LIST"][ $ar["ID"] ] = $ar;
     	$arResult["USERS_ID_BY_LOGIN"][ $ar["LOGIN"] ] = $ar["ID"];
+        $arCompanyResultID[] = $ar["UF_ID_COMP"];
     }
 
     //список ответов формы "Участники данные компании ВСЕ ВЫСТАВКИ"
     $arResult["FORM_RESULT_COMMON"] = array("RESULTS"=>array(), "QUESTIONS"=>array(), "ANSWERS"=>array());
-//     $rs = CFormResult::GetList($arParams["FORM_COMMON_ID"], ($by = "ID"), ($order = "ASC"), array(), ($isFilteres = false), "N", false);
-//     while($ar = $rs->GetNext(true, false)) {
-//         $arResult["FORM_RESULT_COMMON"]["RESULTS"][$ar["ID"]] = $ar;
-//     }
 
     //список результатов ответов формы "Участники данные компании ВСЕ ВЫСТАВКИ"
     CForm::GetResultAnswerArray(
         $arParams["FORM_COMMON_ID"],
         $arResult["FORM_RESULT_COMMON"]["QUESTIONS"],
-        $arResult["FORM_RESULT_COMMON"]["ANSWERS"]);
-
+        $arResult["FORM_RESULT_COMMON"]["ANSWERS"],
+        $arResult["FORM_RESULT_COMMON"]["ANSWERS2"],
+        array("RESULT_ID" => implode("|", $arCompanyResultID))
+    );
+    
     //список мероприятий
     $arResult["ITEMS"] = array();
     foreach($arResult["FORM_RESULT_COMMON"]["ANSWERS"] as $key=>$arAnswer) {
