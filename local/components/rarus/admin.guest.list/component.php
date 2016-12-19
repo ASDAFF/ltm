@@ -96,6 +96,7 @@ $sortOrder = $arResult["ORDER"]  = ($_REQUEST["order"])?$_REQUEST["order"]:"asc"
     while($ar = $rs->Fetch()) {
         $ar["REG_DATE"]= $ar["DATE_REGISTER"];
         $tmpTime = strtotime($ar["REG_DATE"]);
+        $ar["REG_DATE_DATE"] = date("d.m.Y", $tmpTime);
         $diff = (time() - $tmpTime)/60;//разница в минутах
         $ar["REG_DIFF"] = floor($diff/60)."ч ".($diff% 60)."м";
 
@@ -123,10 +124,10 @@ $sortOrder = $arResult["ORDER"]  = ($_REQUEST["order"])?$_REQUEST["order"]:"asc"
 
         $loginFieldId = CFormMatrix::getFormQuestionIdByFormIDAndQuestionName($arParams["GUEST_FORM_ID"], "LOGIN");
         $cmpField = CFormMatrix::getFormQuestionIdByFormIDAndQuestionName($arParams["GUEST_FORM_ID"], 0);
-        $phoneField = CFormMatrix::getFormQuestionIdByFormIDAndQuestionName($arParams["GUEST_FORM_ID"], 10);
+        $phoneField = CFormMatrix::getFormQuestionIdByFormIDAndQuestionName($arParams["GUEST_FORM_ID"], 11);
         $repNameField = CFormMatrix::getFormQuestionIdByFormIDAndQuestionName($arParams["GUEST_FORM_ID"], 7);
         $repLNameField = CFormMatrix::getFormQuestionIdByFormIDAndQuestionName($arParams["GUEST_FORM_ID"], 8);
-        $emailField = CFormMatrix::getFormQuestionIdByFormIDAndQuestionName($arParams["GUEST_FORM_ID"], 13);
+        $emailField = CFormMatrix::getFormQuestionIdByFormIDAndQuestionName($arParams["GUEST_FORM_ID"], 14);
 
         if(!$loginFieldId) throw new Exception("Incorrect login field id");
 
@@ -177,6 +178,12 @@ $sortOrder = $arResult["ORDER"]  = ($_REQUEST["order"])?$_REQUEST["order"]:"asc"
                   strpos(strtolower($arResult["USERS_LIST"][$userLogin]["COMPANY"]), strtolower($arResult["FILTER"]["COMPANY"])) === false) {
                     $addToFilter = false;
                 }
+                if(!empty($arResult["FILTER"]["DATE_REGISTER"]) &&
+                 strtolower($arResult["USERS_LIST"][$userLogin]["REG_DATE_DATE"]) !==
+                 strtolower($arResult["FILTER"]["DATE_REGISTER"])) {
+                    $addToFilter = false;
+                }
+                //$ar["REG_DATE_DATE"]
                 if(!empty($arResult["FILTER"]["REP"]) &&
                   strpos(strtolower($arResult["USERS_LIST"][$userLogin]["REP"]), strtolower($arResult["FILTER"]["REP"])) === false) {
                     $addToFilter = false;
