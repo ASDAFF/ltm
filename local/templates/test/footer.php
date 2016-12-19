@@ -35,16 +35,14 @@ if($exhibCode)
 	".default", 
 	array(
 		"USER_GROUP_ID" => array(
-			0 => "14",
-			1 => "16",
-			2 => "18",
+			0 => "21",
 		),
 		"FORM_FIELD_COMPANY_NAME_ID" => "17",
 		"FORM_FIELD_LOGIN_ID" => "18",
 		"ELEMENT_COUNT" => "10",
 		"URL_TEMPLATE" => "/members/#ELEMENT_ID#/",
 		"CACHE_TYPE" => "Y",
-		"CACHE_TIME" => "36000000",
+		"CACHE_TIME" => "36000",
 		"CACHE_GROUPS" => "Y",
 		"COMPONENT_TEMPLATE" => ".default"
 	),
