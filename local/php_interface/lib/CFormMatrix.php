@@ -1787,7 +1787,7 @@ class CFormMatrix
 		3523 => array("GUEST_EVENING" => 82, "GUEST_MORNING" => 72), //Москва, Россия. октябрь 2015
 		3521 => array("GUEST_EVENING" => 81, "GUEST_MORNING" => 73), //Алматы, Казахстан. сентябрь 2015
 		3522 => array("GUEST_EVENING" => 80, "GUEST_MORNING" => 74), //Киев, Украина. сентябрь 2015
-		14025 => array("GUEST_EVENING" => 81, "GUEST_MORNING" => 73), //Алматы, Казахстан. весна 2017
+		14025 => array("GUEST_EVENING" => 136, "GUEST_MORNING" => 135), //Алматы, Казахстан. весна 2017
 	);
 	private static $arExhProp = array(
 		358 => array("UF_ID5", "UF_ID10"),//Москва, Россия. 2 октября 2014
