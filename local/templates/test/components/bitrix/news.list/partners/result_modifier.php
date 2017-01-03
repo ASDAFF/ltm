@@ -14,11 +14,15 @@ if($bIblock)
 	    //переписываем поля по выбранному языку
 	    if(LANGUAGE_ID != "ru")
 	    {
-	        $value_name = ($arItem["PROPERTIES"]["DETAIL_TEXT_" . $lang]["VALUE"]["TYPE"] == "html")?"~VALUE":"VALUE";
+	        $value_name = (strtolower($arItem["PROPERTIES"]["DETAIL_TEXT_" . $lang]["VALUE"]["TYPE"]) == "html")?"~VALUE":"VALUE";
 	        $arItem["DETAIL_TEXT"] = $arItem["PROPERTIES"]["DETAIL_TEXT_" . $lang][$value_name]["TEXT"];
 
-	        $value_name = ($arItem["PROPERTIES"]["PREVIEW_TEXT_" . $lang]["VALUE"]["TYPE"] == "html")?"~VALUE":"VALUE";
+	        $value_name = (strtolower($arItem["PROPERTIES"]["PREVIEW_TEXT_" . $lang]["VALUE"]["TYPE"]) == "html")?"~VALUE":"VALUE";
 	        $arItem["PREVIEW_TEXT"] = $arItem["PROPERTIES"]["PREVIEW_TEXT_" . $lang][$value_name]["TEXT"];
+            if(strtolower($arItem["PROPERTIES"]["PREVIEW_TEXT_" . $lang]["VALUE"]["TYPE"]) != "html") {
+                $arItem["PREVIEW_TEXT"] =  preg_replace('|\r\n|', '<br>', $arItem["PREVIEW_TEXT"]);
+                $arItem["PREVIEW_TEXT"] =  preg_replace('|\n|', '<br>', $arItem["PREVIEW_TEXT"]);
+            }
 	    }
 
 
