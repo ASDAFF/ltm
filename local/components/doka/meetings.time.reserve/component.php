@@ -81,8 +81,7 @@ if($arResult['TO_RESERVE'] == 'N') {
 	$request = $req_obj->getActiveRequest($timeslot_id, $userId, $userId);
 	$req_obj->rejectRequest($request);
 } else {
-	$companyFreeTimes = $req_obj->getFreeTimesIdsByComp($userId);
-	if(!in_array($timeslot_id, $companyFreeTimes)) {
+	if(isset($companyTimeslot[$timeslot_id])) {
 		ShowError(GetMessage("ERROR_TIMESLOT_BUSY"));
 		return;
 	}
