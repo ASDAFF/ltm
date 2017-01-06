@@ -43,7 +43,7 @@
 	overflow: inherit !important;
 }
 
-/*оборачиваем приоритетные направления*/
+/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/
 
 .company-info.priority-wrap
 {
@@ -165,3 +165,14 @@ a.priority-switch ins:hover
 }
 
 .priority-switch{display: none;}
+
+.input-error-border {
+	border: 1px solid #F00;
+}
+
+.input-error-text {
+	color: #ff1111;
+	font-size: 14px;
+	text-align: center;
+	padding: 3px 0 0;
+}

@@ -7,7 +7,7 @@ $APPLICATION->AddHeadScript("/cabinet/edit/script.js");
 <?=bitrix_sessid_post()?>
 <?$arNonShowedQuestion = array_flip(array_keys($arResult["QUESTIONS"]))?>
 <?$arPriorArea = array("SIMPLE_QUESTION_383", "SIMPLE_QUESTION_244", "SIMPLE_QUESTION_212", "SIMPLE_QUESTION_497", "SIMPLE_QUESTION_526", "SIMPLE_QUESTION_878");?>
-<div class="edit-profil pull-overflow">
+<div class="edit-profil pull-overflow guest-form">
 	<?if(isset($arResult["FORM_ERRORS"])):?>
 		<p><?=$arResult["FORM_ERRORS"]?></p>
 	<?endif?>
@@ -40,26 +40,6 @@ $APPLICATION->AddHeadScript("/cabinet/edit/script.js");
 							),
 							false
 						);?>
-						<?/*
-						<div class="member">
-							<?//if(preg_match('/src="([^"]+)"/', $arQuestion["HTML_CODE"], $matches)):?>
-							<?
-							$arPhoto = CFormResult::GetFileByAnswerID($arParams["RESULT_ID"], $arQuestion["STRUCTURE"][0]["ID"]);
-							if($arPhoto)
-							{
-							    $arResizePhoto = CFile::ResizeImageGet($arPhoto["USER_FILE_ID"], Array("width"=>108, "height"=>108), BX_RESIZE_IMAGE_EXACT);
-							    ?>
-							    <img src="<?=$arResizePhoto["src"]?>" alt="userpic">
-							    <?
-							}
-							?>
-							<?//endif?>
-						</div>
-						<label class="photo-uploader">
-							<input class="inputfile" type="file" size="0" name="form_image_<?=$arQuestion["STRUCTURE"][0]["ID"]?>">
-							Upload photo
-						</label>
-*/?>
 					</div>
 				<?endif?>
 			<?endforeach;?>

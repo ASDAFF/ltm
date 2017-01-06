@@ -52,6 +52,7 @@ try{
 				array("ID"=>"SIMPLE_QUESTION_873", "IS_PIC"=>true),
 				array("ID"=>"SIMPLE_QUESTION_816", "TITLE"=>"Имя"),
 				array("ID"=>"SIMPLE_QUESTION_596", "TITLE"=>"Фамилия"),
+				array("ID"=>"SALUTATION_COL", "TITLE"=>"Обращение"),
 				array("ID"=>"SIMPLE_QUESTION_304", "TITLE"=>"Должность"),
 				array("ID"=>"SIMPLE_QUESTION_278", "TITLE"=>"E-mail")));
 	}
@@ -60,16 +61,19 @@ try{
 		$arQuestionToShow[] = array("NAME"=>"Коллега на вечернюю сессию", "ITEMS"=>array(
 				array("ID"=>"SIMPLE_QUESTION_367", "TITLE"=>"Имя"),
 				array("ID"=>"SIMPLE_QUESTION_482", "TITLE"=>"Фамилия"),
+				array("ID"=>"SALUTATION_1", "TITLE"=>"Обращение"),
 				array("ID"=>"SIMPLE_QUESTION_187", "TITLE"=>"Должность"),
 				array("ID"=>"SIMPLE_QUESTION_421", "TITLE"=>"E-mail")));
 		$arQuestionToShow[] = array("NAME"=>"Коллега на вечернюю сессию", "ITEMS"=>array(
 				array("ID"=>"SIMPLE_QUESTION_225", "TITLE"=>"Имя"),
 				array("ID"=>"SIMPLE_QUESTION_770", "TITLE"=>"Фамилия"),
+				array("ID"=>"SALUTATION_2", "TITLE"=>"Обращение"),
 				array("ID"=>"SIMPLE_QUESTION_280", "TITLE"=>"Должность"),
 				array("ID"=>"SIMPLE_QUESTION_384", "TITLE"=>"E-mail")));
 		$arQuestionToShow[] = array("NAME"=>"Коллега на вечернюю сессию", "ITEMS"=>array(
 				array("ID"=>"SIMPLE_QUESTION_765", "TITLE"=>"Имя"),
 				array("ID"=>"SIMPLE_QUESTION_627", "TITLE"=>"Фамилия"),
+				array("ID"=>"SALUTATION_3", "TITLE"=>"Обращение"),
 				array("ID"=>"SIMPLE_QUESTION_788", "TITLE"=>"Должность"),
 				array("ID"=>"SIMPLE_QUESTION_230", "TITLE"=>"E-mail")));
 	}
