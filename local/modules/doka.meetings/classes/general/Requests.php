@@ -118,7 +118,7 @@ class Requests extends DokaRequest
      */
     public function getStatusesBusy()
     {
-        return array(self::STATUS_PROCESS, self::STATUS_CONFIRMED);
+        return array(self::STATUS_PROCESS, self::STATUS_CONFIRMED, self::STATUS_RESERVE);
     }
 
     public function getOption($name)
@@ -983,6 +983,15 @@ AND EXHIBITION_ID=' . $this->app_id .
     }
 
     /**
+     * Резервируем запрос
+     */
+    public function reserveRequest($request)
+    {
+        $request['STATUS'] = self::$arStatuses[self::STATUS_RESERVE];
+        return self::Add($request);
+    }
+
+    /**
      * Отменяет запрос по таймауту
      */
     public function timeoutRequest($request)
@@ -1264,14 +1273,7 @@ AND EXHIBITION_ID=' . $this->app_id .
 			if($v['RECEIVER_ID'] == $meetTake[0]['RECEIVER_ID'] && $v['TIMESLOT_ID'] == $meetTake[0]['TIMESLOT_ID'] && $v['STATUS'] != 'rejected' && $meetTake[0]['STATUS'] != 'rejected' && $v['STATUS'] != 'timeout' && $meetTake[0]['STATUS'] != 'timeout'){
 				$erPol++;
 			}
-			/*echo '<pre>'; print_r($meetTake[0]); echo '</pre>';
-			echo '<pre>'; print_r($v); echo '</pre>';
-			echo '<pre>'; print_r($erOtp); echo '</pre>';
-			echo '<hr>';*/
 		}
-		/*echo '<pre>'; print_r($erOtp); echo '</pre>';
-		echo '<pre>'; print_r($erPol); echo '</pre>';
-		*/
 		if($erOtp > 1){
 			return self::ERROR_OTP_SEND_MES;
 		}elseif($erPol > 1){

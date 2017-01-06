@@ -15,6 +15,7 @@ class Request
     const STATUS_CONFIRMED = 2;
     const STATUS_REJECTED  = 3;
     const STATUS_TIMEOUT   = 4;
+    const STATUS_RESERVE   = 5;
 	
 	/*=== типы ошибок в встречах ===*/
 	
@@ -46,6 +47,7 @@ class Request
         self::STATUS_CONFIRMED => 'confirmed',
         self::STATUS_REJECTED  => 'rejected',
         self::STATUS_TIMEOUT   => 'timeout',
+        self::STATUS_RESERVE   => 'reserve',
     );
 
     static protected $arFields = array(
