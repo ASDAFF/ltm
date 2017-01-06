@@ -41,6 +41,11 @@ $arResult["APP"] = $arParams['APP_ID'];
 $arResult['USER_TYPE'] = $req_obj->getUserType();
 $arResult['IS_ACTIVE'] = !$req_obj->getOption('IS_LOCKED');
 
+if(!$arResult['IS_ACTIVE']) {
+	ShowError(GetMessage("ERROR_WRONG_SENDER_RIGHTS"));
+	return;
+}
+
 if (isset($_REQUEST['id']) && $arResult['USER_TYPE'] == 'ADMIN' )
 	$userId = intval($_REQUEST['id']);
 else
