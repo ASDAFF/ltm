@@ -39,6 +39,7 @@ if($appId != ""){
 			"SEND_REQUEST_LINK" => "/service/appointment.php",
 			"CONFIRM_REQUEST_LINK" => "/service/appointment_confirm.php",
 			"REJECT_REQUEST_LINK" => "/service/appointment_del.php",
+			"RESERVE_REQUEST_LINK" => "/service/appointment_reserve.php",
 			"CUT" => "9",
 			"HALL" => "10",
 			"TABLE" => "10"
