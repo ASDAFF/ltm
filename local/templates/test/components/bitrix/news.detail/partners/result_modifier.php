@@ -12,11 +12,23 @@ if($bIblock)
 	   //переписываем поля по выбранному языку
 	    if(LANGUAGE_ID != "ru")
 	    {
-	        $value_name = ($arResult["PROPERTIES"]["DETAIL_TEXT_" . $lang]["VALUE"]["TYPE"] == "html")?"~VALUE":"VALUE";
-	        $arResult["DETAIL_TEXT"] = $arResult["PROPERTIES"]["DETAIL_TEXT_" . $lang][$value_name]["TEXT"];
+				$detailText = $arResult["PROPERTIES"]["DETAIL_TEXT_" . $lang];
+				$detailTextType =strtolower($detailText["VALUE"]["TYPE"]);
+				$value_name = ($detailTextType == "html")?"~VALUE":"VALUE";
+				$arResult["DETAIL_TEXT"] = $detailText[$value_name]["TEXT"];
+				if($detailTextType != "html") {
+					$arResult["DETAIL_TEXT"] =  preg_replace('|\r\n|', '<br>', $arResult["DETAIL_TEXT"]);
+					$arResult["DETAIL_TEXT"] =  preg_replace('|\n|', '<br>', $arResult["DETAIL_TEXT"]);
+				}
 
-	        $value_name = ($arResult["PROPERTIES"]["PREVIEW_TEXT_" . $lang]["VALUE"]["TYPE"] == "html")?"~VALUE":"VALUE";
-	        $arResult["PREVIEW_TEXT"] = $arResult["PROPERTIES"]["PREVIEW_TEXT_" . $lang][$value_name]["TEXT"];
+				$previewText = $arResult["PROPERTIES"]["PREVIEW_TEXT_" . $lang];
+				$previewTextType =strtolower($previewText["VALUE"]["TYPE"]);
+				$value_name = ($previewTextType == "html")?"~VALUE":"VALUE";
+				$arResult["PREVIEW_TEXT"] = $previewText[$value_name]["TEXT"];
+				if($previewTextType != "html") {
+					$arResult["PREVIEW_TEXT"] =  preg_replace('|\r\n|', '<br>', $arResult["PREVIEW_TEXT"]);
+					$arResult["PREVIEW_TEXT"] =  preg_replace('|\n|', '<br>', $arResult["PREVIEW_TEXT"]);
+				}
 
 	        if (in_array('PREVIEW_TEXT',$arParams['DETAIL_FIELD_CODE']))
 	        {
