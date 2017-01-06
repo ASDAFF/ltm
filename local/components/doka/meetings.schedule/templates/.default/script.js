@@ -11,6 +11,12 @@ function newWind(recHref, widthW, heightW){
 	window.open(recHref,'particip_wind', 'scrollbars=yes,resizable=yes,width='+widthW+', height='+heightW+', left='+(screen.availWidth/2-250)+', top='+(screen.availHeight/2-200)+'');
 	return false;
 }
+function newWindConfirmed(recHref, widthW, heightW){
+	if(confirm("Selected timeslot will be reserved for your purpose and won't be available to make appointment request until you release it")) {
+		window.open(recHref,'particip_wind', 'scrollbars=yes,resizable=yes,width='+widthW+', height='+heightW+', left='+(screen.availWidth/2-250)+', top='+(screen.availHeight/2-200)+'');
+	}
+	return false;
+}
 jQuery(document).ready(function() {
 	jQuery("a.user-info-wind").fancybox({
 		"closeBtn" : false,
