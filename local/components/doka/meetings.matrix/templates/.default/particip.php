@@ -17,44 +17,55 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 					<?=$user['name']?><br />
 					<?=$user['rep']?>
 				</td>
-				<?foreach($arResult['TIME'] as $timeslot):?>
-						<?if($user['schedule'][$timeslot['id']]['is_busy'] && $user['schedule'][$timeslot['id']]['status'] == 'confirmed'):?>
-							<? if($user['schedule'][$timeslot['id']]['user_is_sender']) {
+				<?foreach($arResult['TIME'] as $timeslot):
+					$timeSlotInfo = $user['schedule'][$timeslot['id']];
+					$scheduleStatus = $timeSlotInfo['status'];
+					?>
+						<?if($timeSlotInfo['is_busy'] && $scheduleStatus == 'confirmed'):?>
+							<? if($timeSlotInfo['user_is_sender']) {
 								$fromId = $user['id'];
-								$toId = $user['schedule'][$timeslot['id']]['company_id'];
+								$toId = $timeSlotInfo['company_id'];
 							} else {
-								$fromId = $user['schedule'][$timeslot['id']]['company_id'];
+								$fromId = $timeSlotInfo['company_id'];
 								$toId = $user['id'];
 							}?>
 							<td class="confirmed">
-								<?=$user['schedule'][$timeslot['id']]['company_name']?><br />
-								<?=$user['schedule'][$timeslot['id']]['rep']?><br />
+								<?=$timeSlotInfo['company_name']?><br />
+								<?=$timeSlotInfo['rep']?><br />
                                 <a href="<?=$arResult['REJECT_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>"
                                     target="_blank"
                                     onclick="newWindConfirm('<?=$arResult['REJECT_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>', 500, 400, 'Вы хотите отменить запрос?'); return false;">Отменить</a>
-                                <? //var_dump($user['schedule'][$timeslot['id']]);?>
-						<?elseif($user['schedule'][$timeslot['id']]['is_busy']):?>
+                                <? //var_dump($timeSlotInfo);?>
+						<?elseif($scheduleStatus == 'reserve'):
+						$fromId = $user['id'];
+						$reserveLink = $arResult['RESERVE_REQUEST_LINK']."?id=".$fromId."&time=".$timeslot['id']."&app=".$arResult['APP']."&type=p&exib_code=".$arResult['PARAM_EXHIBITION']['CODE'];?>
+							<td class="reserved">
+								Забронирована<br />
+								<a href="<?=$reserveLink?>" onclick="newWind('<?=$reserveLink?>', 500, 200); return false;"
+									 target="_blank">Освободить</a>
+							</td>
+						<?elseif($timeSlotInfo['is_busy']):?>
 							<?
-							if($user['schedule'][$timeslot['id']]['user_is_sender']) {
+							if($timeSlotInfo['user_is_sender']) {
 								$class = "yellow";
 								$fromId = $user['id'];
-								$toId = $user['schedule'][$timeslot['id']]['company_id'];
+								$toId = $timeSlotInfo['company_id'];
 							} else {
 								$class = "red";
-								$fromId = $user['schedule'][$timeslot['id']]['company_id'];
+								$fromId = $timeSlotInfo['company_id'];
 								$toId = $user['id'];
 							}
 							?>
 							<td class="<?=$class?>">
-								<?=$user['schedule'][$timeslot['id']]['company_name']?><br />
-								<?=$user['schedule'][$timeslot['id']]['rep']?><br />
+								<?=$timeSlotInfo['company_name']?><br />
+								<?=$timeSlotInfo['rep']?><br />
 								<a href="<?=$arResult['CONFIRM_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>"
                                     target="_blank"
                                     onclick="newWind('<?=$arResult['CONFIRM_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>', 500, 400); return false;">Подтвердить</a><br />
                                 <a href="<?=$arResult['REJECT_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>"
                                     target="_blank"
                                     onclick="newWindConfirm('<?=$arResult['REJECT_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>', 500, 400, 'Вы хотите отменить запрос?'); return false;">Отменить</a>
-                                <? //var_dump($user['schedule'][$timeslot['id']]);?>
+                                <? //var_dump($timeSlotInfo);?>
 						<?else:?>
 							<td class="times-list">
 								<a href="<?=$arResult['SEND_REQUEST_LINK']?>?id=<?=$user['id']?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>"

@@ -74,7 +74,7 @@ else{
 	$arResult['CONFIRM_REQUEST_LINK'] = "/admin/service/appointment_confirm.php";
 	$arResult['REJECT_REQUEST_LINK'] = "/admin/service/appointment_del.php";
 }
-
+$arResult['RESERVE_REQUEST_LINK'] = "/admin/service/appointment_reserve.php";
 
 use Doka\Meetings\Requests as DokaRequest;
 use Doka\Meetings\Timeslots as DokaTimeslot;

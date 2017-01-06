@@ -27,4 +27,6 @@ $MESS['ADMIN_COMPANY_MEET_EXIST'] = 'У пользователей уже ест
 $MESS['ERROR_WRONG_SENDER_RIGHTS'] = "You can't work with meeting requests";
 $MESS['ERROR_WRONG_RECEIVER_RIGHTS'] = "You can't work with meeting requests";
 
+$MESS['EXHIBITION_BLOCKED'] = 'Appointments schedule blocked by the organizers';
+
 ?>
