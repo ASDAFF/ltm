@@ -6,9 +6,6 @@ if (!CModule::IncludeModule("iblock") || !CModule::IncludeModule("form")) {
 	CHTTP::SetStatus("404 Not Found");
 }
 
-if(!isset($arParams["EXHIB_IBLOCK_ID"]) || $arParams["EXHIB_IBLOCK_ID"] == ''){
-	$arParams["EXHIB_IBLOCK_ID"] = 15;
-}
 $arResult = array();
 
 if (empty($arParams["APP_ID"]) || !CModule::IncludeModule("doka.meetings") ) {
@@ -41,8 +38,8 @@ $arResult["APP"] = $arParams['APP_ID'];
 $arResult['USER_TYPE'] = $req_obj->getUserType();
 $arResult['IS_ACTIVE'] = !$req_obj->getOption('IS_LOCKED');
 
-if(!$arResult['IS_ACTIVE']) {
-	ShowError(GetMessage("ERROR_WRONG_SENDER_RIGHTS"));
+if(!$arResult['IS_ACTIVE'] && $arResult['USER_TYPE'] != 'ADMIN') {
+	ShowError(GetMessage("EXHIBITION_BLOCKED"));
 	return;
 }
 
