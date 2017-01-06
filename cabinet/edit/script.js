@@ -1,24 +1,78 @@
 $(document).ready(function(){
+
+	var correctly = true;
 	
 	var MESS = {
 			en : 
 			{
 				show_contries: "Show all countries",
 				hide_contries: "Hide list of countries",
+				capslock: "Caps lock should be off"
 			},
 			ru :
 			{
-				show_contries: "Показать все страны",
-				hide_contries: "Скрыть список",
+				show_contries: "РџРѕРєР°Р·Р°С‚СЊ РІСЃРµ СЃС‚СЂР°РЅС‹",
+				hide_contries: "РЎРєСЂС‹С‚СЊ СЃРїРёСЃРѕРє",
+				capslock: "Р’РЅРёРјР°РЅРёРµ: РЅР°Р¶Р°С‚ CapsLock!"
 			}
 	};
+
+	/**
+	 * РўРµРєСѓС‰РµРµ СЃРѕСЃС‚РѕСЏРЅРёРµ CapsLock
+	 *  - null : РЅРµРёР·РІРµСЃС‚РЅРѕ
+	 *  - true/false : CapsLock РІРєР»СЋС‡РµРЅ/РІС‹РєР»СЋС‡РµРЅ
+	 */
+	var capsLockEnabled = null;
+	function getChar(event) {
+		if (event.which == null) {
+			if (event.keyCode < 32) return null;
+			return String.fromCharCode(event.keyCode) // IE
+		}
+
+		if (event.which != 0 && event.charCode != 0) {
+			if (event.which < 32) return null;
+			return String.fromCharCode(event.which) // РѕСЃС‚Р°Р»СЊРЅС‹Рµ
+		}
+
+		return null; // СЃРїРµС†РёР°Р»СЊРЅР°СЏ РєР»Р°РІРёС€Р°
+	}
+
+	if (navigator.platform.substr(0, 3) != 'Mac') { // СЃРѕР±С‹С‚РёРµ РґР»СЏ CapsLock РіР»СЋС‡РёС‚ РїРѕРґ Mac
+		document.onkeydown = function(e) {
+			if (e.keyCode == 20 && capsLockEnabled !== null) {
+				capsLockEnabled = !capsLockEnabled;
+			}
+		}
+	}
+
+	document.onkeypress = function(e) {
+		e = e || event;
+
+		var chr = getChar(e);
+		if (!chr) return // special key
+
+		if (chr.toLowerCase() == chr.toUpperCase()) {
+			// СЃРёРјРІРѕР», РЅРµ Р·Р°РІРёСЃСЏС‰РёР№ РѕС‚ СЂРµРіРёСЃС‚СЂР°, РЅР°РїСЂРёРјРµСЂ РїСЂРѕР±РµР»
+			// РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РёСЃРїРѕР»СЊР·РѕРІР°РЅ РґР»СЏ РѕРїСЂРµРґРµР»РµРЅРёСЏ CapsLock
+			return;
+		}
+
+		capsLockEnabled = (chr.toLowerCase() == chr && e.shiftKey) || (chr.toUpperCase() == chr && !e.shiftKey);
+	}
+
+	$(".guest-form").on("keyup", ".data-control input, .data-control textarea", function(){
+		if(capsLockEnabled) {
+			showErrorMessage(this,MESS[LANGUAGE_ID]["capslock"]);
+		} else {
+			hideErrorMessage(this,MESS[LANGUAGE_ID]["capslock"]);
+		}
+	});
 	
-	
-	/*DropDown разворачивание*/
+	/*DropDown СЂР°Р·РІРѕСЂР°С‡РёРІР°РЅРёРµ*/
 	$("div.create-company").on("click", ".dropdown-name", function(event){
 		//$(this).siblings("ul.dropdown-items").toggle(300);
 		
-		//сворачивание селектов и приоритетных направлений при клике мимо
+		//СЃРІРѕСЂР°С‡РёРІР°РЅРёРµ СЃРµР»РµРєС‚РѕРІ Рё РїСЂРёРѕСЂРёС‚РµС‚РЅС‹С… РЅР°РїСЂР°РІР»РµРЅРёР№ РїСЂРё РєР»РёРєРµ РјРёРјРѕ
 		var selectDiv = $(this).siblings("ul.dropdown-items");
 		var selectDivId = selectDiv.attr("id");
 		
@@ -39,7 +93,7 @@ $(document).ready(function(){
 	});
 	
 	
-	/*DropDown выбор*/
+	/*DropDown РІС‹Р±РѕСЂ*/
 	$("div.create-company").on("click", "ul.dropdown-items li", function(){
 		var selectedLi = $(this);
 		var selectedId = selectedLi.data("id");
@@ -56,7 +110,7 @@ $(document).ready(function(){
 	
 	
 	
-	/*Групповые чекбоксы приоритетные направления разворачивание*/
+	/*Р“СЂСѓРїРїРѕРІС‹Рµ С‡РµРєР±РѕРєСЃС‹ РїСЂРёРѕСЂРёС‚РµС‚РЅС‹Рµ РЅР°РїСЂР°РІР»РµРЅРёСЏ СЂР°Р·РІРѕСЂР°С‡РёРІР°РЅРёРµ*/
 	$("div.priority-wrap").on("click", ".priority-toggle", function(){ 
 		//$(this).siblings("div.priority-items").toggle(100); 
 		$this = $(this);
@@ -95,18 +149,18 @@ $(document).ready(function(){
 	    event.preventDefault();
 	});
 	
-	/*Групповые чекбоксы приоритетные направления выбор поодиночно*/
+	/*Р“СЂСѓРїРїРѕРІС‹Рµ С‡РµРєР±РѕРєСЃС‹ РїСЂРёРѕСЂРёС‚РµС‚РЅС‹Рµ РЅР°РїСЂР°РІР»РµРЅРёСЏ РІС‹Р±РѕСЂ РїРѕРѕРґРёРЅРѕС‡РЅРѕ*/
 	$("div.priority-wrap").on("click", ".priority-items input:checkbox", function(){
 		var checkbox = $(this);
 		var checkboxId = checkbox.attr("id");
 		var label = checkbox.siblings("label[for="+checkboxId+"]");
 	
-		/*Если выставку выбрали меняем стиль лейбла*/
+		/*Р•СЃР»Рё РІС‹СЃС‚Р°РІРєСѓ РІС‹Р±СЂР°Р»Рё РјРµРЅСЏРµРј СЃС‚РёР»СЊ Р»РµР№Р±Р»Р°*/
 		if(label.hasClass("active-group"))
 		{
 			label.removeClass("active-group");
 			
-			/*удаляем чекбокс выбраны все, если щелкнут*/
+			/*СѓРґР°Р»СЏРµРј С‡РµРєР±РѕРєСЃ РІС‹Р±СЂР°РЅС‹ РІСЃРµ, РµСЃР»Рё С‰РµР»РєРЅСѓС‚*/
 			var checkboxAll = checkbox.closest(".priority-items").siblings(".priority-check-all").find("input:checkbox");
 		
 			if(checkboxAll.prop("checked"))
@@ -121,12 +175,12 @@ $(document).ready(function(){
 		}
 	});
 	
-	/*Отключаем клик по лейблу*/
+	/*РћС‚РєР»СЋС‡Р°РµРј РєР»РёРє РїРѕ Р»РµР№Р±Р»Сѓ*/
 	$("div.priority-wrap").on("click", ".priority-check-all label", function(event){
 		event.stopPropagation();
 	});
 	
-	/*Групповые чекбоксы приоритетные направления выбор всех*/
+	/*Р“СЂСѓРїРїРѕРІС‹Рµ С‡РµРєР±РѕРєСЃС‹ РїСЂРёРѕСЂРёС‚РµС‚РЅС‹Рµ РЅР°РїСЂР°РІР»РµРЅРёСЏ РІС‹Р±РѕСЂ РІСЃРµС…*/
 	$("div.priority-wrap").on("click", ".priority-check-all input:checkbox", function(event){
 		event.stopPropagation();
 		
@@ -134,7 +188,7 @@ $(document).ready(function(){
 		var checkboxId = checkbox.attr("id");
 		var label = checkbox.siblings("label[for="+checkboxId+"]");
 	
-		/*Если выбрали чекбокс меняем лейбл*/
+		/*Р•СЃР»Рё РІС‹Р±СЂР°Р»Рё С‡РµРєР±РѕРєСЃ РјРµРЅСЏРµРј Р»РµР№Р±Р»*/
 		if(label.hasClass("active-all"))
 		{
 			label.removeClass("active-all");
@@ -144,7 +198,7 @@ $(document).ready(function(){
 			label.addClass("active-all");
 		}
 
-		/*чекаем все чекбоксы*/
+		/*С‡РµРєР°РµРј РІСЃРµ С‡РµРєР±РѕРєСЃС‹*/
 		var items = checkbox.closest(".priority-check-all").siblings(".priority-items");
 		
 		var delay = 0;
@@ -164,7 +218,7 @@ $(document).ready(function(){
 		});
 	});
 	
-	//все приоритетные направления
+	//РІСЃРµ РїСЂРёРѕСЂРёС‚РµС‚РЅС‹Рµ РЅР°РїСЂР°РІР»РµРЅРёСЏ
 	$("div.priority-wrap").on("click", ".priority-check-global input:checkbox", function(event){
 		event.stopPropagation();
 		
@@ -173,7 +227,7 @@ $(document).ready(function(){
 		var label = checkbox.siblings("label[for="+checkboxId+"]");
 		var priorityBlock = checkbox.closest(".priority-wrap");
 		
-		/*Если выбрали чекбокс меняем лейбл*/
+		/*Р•СЃР»Рё РІС‹Р±СЂР°Р»Рё С‡РµРєР±РѕРєСЃ РјРµРЅСЏРµРј Р»РµР№Р±Р»*/
 		if(label.hasClass("active-global"))
 		{
 			label.removeClass("active-global");
@@ -202,5 +256,73 @@ $(document).ready(function(){
 		},150);
 		
 	});
-	
+
+	$(".guest-form").on("click", ".send input[type=submit]", function(e){
+		e.preventDefault();
+		var errorStatus = $(".input-error-border").length;
+		if(errorStatus == 0) {
+			$(this).closest('form').submit();
+		} else {
+			$('body,html').animate({scrollTop:300},300);
+		}
+	});
+
+	function showErrorMessage(element, erText)
+	{
+		var input = $(element);
+
+		if(input.length > 0) {
+			var errorTextDiv = input.siblings(".input-error-text");
+
+			if(errorTextDiv.length == 0) {
+				$("<div></div>").addClass("input-error-text").html(erText+"<br>").insertAfter(input);
+			}
+			else if(errorTextDiv.length > 0) {
+				//РµСЃР»Рё РµСЃС‚СЊ, С‚Рѕ РЅРµ РґРѕР±Р°РІР»СЏРµРј
+				var oldText = errorTextDiv.html();
+
+				if(oldText.length > 0) {
+					if(oldText.indexOf(erText) == -1) {
+						errorTextDiv.html(oldText + erText+"<br>");
+					}
+				}
+				else {
+					errorTextDiv.html(erText+"<br>");
+				}
+			}
+
+			input.addClass("input-error-border");
+			correctly = false;
+		}
+	}
+
+	function hideErrorMessage(element, erText)
+	{
+		var input = $(element);
+
+		if(input.length > 0) {
+
+			var errorTextDiv = input.siblings(".input-error-text");
+
+			//РµСЃР»Рё РѕС€РёР±РѕРє РЅРµС‚ СЃС‚Р°РІРё РіР°Р»РѕС‡РєСѓ, С‡С‚Рѕ РІСЃРµ РѕРє
+			if(errorTextDiv.length > 0) {
+				//РµСЃР»Рё РµСЃС‚СЊ, С‚Рѕ РЅРµ РґРѕР±Р°РІР»СЏРµРј
+				var oldText = errorTextDiv.html();
+
+				if(oldText.length > 0) {
+					if(oldText.indexOf(erText) >= 0) {
+						errorTextDiv.html(oldText.replace(erText+"<br>", ""));
+					}
+				}
+				else {
+					errorTextDiv.remove();
+				}
+			}
+
+			if(errorTextDiv.length > 0 && errorTextDiv.html().length == 0) {
+				errorTextDiv.remove();
+				input.removeClass('input-error-border');
+			}
+		}
+	}
 });
