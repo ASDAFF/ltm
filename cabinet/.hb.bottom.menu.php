@@ -15,13 +15,13 @@ if($exhibCode)
             array()
         ),
         array(
-            "10 марта",
+            "2 марта",
             "/cabinet/" . $exhibCode . "/hb/",
             array(),
             array()
         ),
         array(
-            "11 марта",
+            "3 марта",
             "/cabinet/" . $exhibCode . "/morning/",
             array(),
             array()
