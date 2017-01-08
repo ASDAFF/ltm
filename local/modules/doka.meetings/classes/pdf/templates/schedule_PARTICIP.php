@@ -82,9 +82,10 @@ function DokaGeneratePdf($arResult) {
 			  </tr>';
 			}
 		else if($freeseriflot['status'] == 'lunch'){
+			$lunchText = ($arResult['APP_ID'] == 1)? 'Light lunch': 'Lunch';
 			$tbl .= '<tr>
 				  <td>' . $freeseriflot['name'] . '</td>
-				  <td colspan="'.$colspanGuest.'" align="center">Lunch</td>
+				  <td colspan="'.$colspanGuest.'" align="center">'.$lunchText.'</td>
 			  </tr>';
 			}
 		else {
