@@ -90,10 +90,11 @@ function DokaGeneratePdf($arResult) {
                     </tr>';
 		}
 		else if($freeseriflot['status'] == 'coffee'){
+			$lunchText = ($arResult['APP_ID'] == 1)? 'Легкий обед': 'Перерыв на обед';
 			$tbl .= '<tr>
-                        <td>'.$freeseriflot['timeslot_name'].'</td>
-                        <td colspan="3" align="center">Перерыв на кофе</td>
-                    </tr>';
+									<td>'.$freeseriflot['name'].'</td>
+									<td colspan="3" align="center">'.$lunchText.'</td>
+							</tr>';
 			}
 		else if($freeseriflot['status'] == 'lunch'){
 			$tbl .= '<tr>
