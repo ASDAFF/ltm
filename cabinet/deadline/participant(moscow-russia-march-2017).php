@@ -68,14 +68,14 @@ buyers from Moscow and Hosted Buyers.</i></b></p>
 10:00 - 10:10 / 10:15 - 10:25 / 10:30 - 10:40 / 10:45 - 10:55 / 11:00 - 11:10<br />
 11:15 - 11:25 / 11:30 - 11:40 / 11:45 - 11:55</p>
 
-<p>11:55 - 12:10 - coffee break</p>
+<p>11:55 - 12:25 - light lunch</p>
 
 <p>
-12:10 - 12:20 / 12:25 - 12:35 / 12:40 - 12:50 / 12:55 - 13:05 / 13:10 - 13:20<br />
-13:25 - 13:35 / 13:40 - 13:50 / 13:55 - 14:05 / 14:10 - 14:20 / 14:25 - 14:35<br />
-14:40 - 14:50 / 14:55 - 15:05 / 15:10 - 15:20 / 15:25 - 15:35 / 15:40 - 15:50</p>
+12:25 - 12:35 / 12:40 - 12:50 / 12:55 - 13:05 / 13:10 - 13:20 / 13:25 - 13:35<br />
+13:40 - 13:50 / 13:55 - 14:05 / 14:10 - 14:20 / 14:25 - 14:35 / 14:40 - 14:50<br />
+14:55 - 15:05 / 15:10 - 15:20 / 15:25 - 15:35 / 15:40 - 15:50</p>
 
-<p><b><i>15:50 - 16:30 &mdash; light lunch</i></b></p>
+<p><b><i>15:50 - 16:30 &mdash; After-session networking and lunch with guests of the morning session</i></b></p>
 
 <p>A bell will ring at the end/start of each appointment.<br />
 Place: Ballroom, Moscow Hall, Washington Hall, Istanbul I & II (2nd floor) and Cafe Russe and LTM Hall (1st floor).<br />
