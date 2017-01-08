@@ -14,9 +14,7 @@ class Settings extends DokaSetting
 {
     public function __construct()
     {
-        // \CModule::IncludeModule("iblock");
         $this->options = array(
-            // 'iblock_comments_id' => COption::GetOptionInt(self::$module, 'cto_comments_iblock_id'),
         );
     }
 
