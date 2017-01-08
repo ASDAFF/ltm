@@ -31,7 +31,7 @@ $APPLICATION->IncludeComponent(
 		"SEND_REQUEST_LINK" => "/service/appointment_hb.php",
 		"CONFIRM_REQUEST_LINK" => "/service/appointment_hb_confirm.php",
 		"REJECT_REQUEST_LINK" => "/service/appointment_hb_del.php",
-		"RESERVE_REQUEST_LINK" => "/service/appointment_reserve.php",
+		"RESERVE_REQUEST_LINK" => "/ajax/time_reserve.php",
 		"CUT" => "9",
 		"HALL" => "10",
 		"TABLE" => "10",

@@ -19,16 +19,15 @@ if (!$USER->IsAuthorized()) {
 	return;
 }
 
-$timeslot_id = intval($arParams["TIME"]);
+$arResult["TIME"] = intval($arParams["TIME"]);
+$arResult["USER_ID"] = intval($_REQUEST['id']);
 
-if ($timeslot_id <= 0) {
+if ($arResult["TIME"] <= 0) {
 	ShowError(GetMessage("ERROR_EMPTY_TIMESLOT_ID"));
 	return;
 }
 
-
 use Doka\Meetings\Requests as DokaRequest;
-use Doka\Meetings\Timeslots as DokaTimeslot;
 
 $req_obj = new DokaRequest($arParams['APP_ID']);
 $statusReserve = $req_obj->getStatusCode($req_obj::STATUS_RESERVE);
@@ -39,14 +38,13 @@ $arResult['USER_TYPE'] = $req_obj->getUserType();
 $arResult['IS_ACTIVE'] = !$req_obj->getOption('IS_LOCKED');
 
 if(!$arResult['IS_ACTIVE'] && $arResult['USER_TYPE'] != 'ADMIN') {
-	ShowError(GetMessage("EXHIBITION_BLOCKED"));
+	$arResult['ERROR_MESSAGE'][] = GetMessage("EXHIBITION_BLOCKED");
+	$this->IncludeComponentTemplate();
 	return;
 }
 
-if (isset($_REQUEST['id']) && $arResult['USER_TYPE'] == 'ADMIN' )
-	$userId = intval($_REQUEST['id']);
-else
-	$userId = $USER->GetID();
+if (empty($arResult["USER_ID"]) || $arResult['USER_TYPE'] != 'ADMIN' )
+	$arResult["USER_ID"] = $USER->GetID();
 
 if(isset($_REQUEST["type"]) && $_REQUEST["type"] == "p" && $USER->GetID() == 1){
 	$arResult['USER_TYPE'] = "PARTICIP";
@@ -60,32 +58,38 @@ if($arResult['USER_TYPE'] != "PARTICIP") {
 	return;
 }
 // Проверяем существует ли такой таймслот
-$arResult['TIMESLOT'] = $req_obj->getMeetTimeslot($timeslot_id);
+$arResult['TIMESLOT'] = $req_obj->getMeetTimeslot($arResult["TIME"]);
 if (!$arResult['TIMESLOT']) {
 	$arResult['ERROR_MESSAGE'][] = GetMessage($arResult['USER_TYPE'] . '_WRONG_TIMESLOT_ID');
 }
-$companyTimeslot = $req_obj->getAllTimesByComp($userId);
+$companyTimeslot = $req_obj->getAllTimesByComp($arResult["USER_ID"]);
 $arResult['TO_RESERVE'] = 'Y';
-if(isset($companyTimeslot[$timeslot_id]) && $companyTimeslot[$timeslot_id]['meet']['status'] == $statusReserve) {
+if(isset($companyTimeslot[$arResult["TIME"]]) && $companyTimeslot[$arResult["TIME"]]['meet']['status'] == $statusReserve) {
 	$arResult['TO_RESERVE'] = 'N';
 }
 
 $fields = array(
-	'RECEIVER_ID' => $userId,
-	'SENDER_ID' => $userId,
+	'RECEIVER_ID' => $arResult["USER_ID"],
+	'SENDER_ID' => $arResult["USER_ID"],
 	'EXHIBITION_ID' => $arParams['APP_ID'],
 	'TIMESLOT_ID' => $arResult['TIMESLOT']['id'],
 	'STATUS' => '',
 );
+$arResult['SEND'] = 'N';
 if($arResult['TO_RESERVE'] == 'N') {
-	$request = $req_obj->getActiveRequest($timeslot_id, $userId, $userId);
+	$request = $req_obj->getActiveRequest($arResult["TIME"], $arResult["USER_ID"], $arResult["USER_ID"]);
 	$req_obj->rejectRequest($request);
+	$arResult['SEND'] = 'Y';
 } else {
-	if(isset($companyTimeslot[$timeslot_id])) {
-		ShowError(GetMessage("ERROR_TIMESLOT_BUSY"));
+	if(isset($companyTimeslot[$arResult["TIME"]])) {
+		$arResult['ERROR_MESSAGE'][] = GetMessage("ERROR_TIMESLOT_BUSY");
+		$this->IncludeComponentTemplate();
 		return;
 	}
-	$req_obj->reserveRequest($fields);
+	if($_REQUEST['confirm'] == 'Y') {
+		$req_obj->reserveRequest($fields);
+		$arResult['SEND'] = 'Y';
+	}
 }
 
 $this->IncludeComponentTemplate();
