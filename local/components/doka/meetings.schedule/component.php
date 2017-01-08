@@ -79,7 +79,7 @@ $arResult['MESSAGE_LINK'] = "/cabinet".$arParams['MESSAGE_LINK'];
 $arResult['SEND_REQUEST_LINK'] = "/cabinet".$arParams['SEND_REQUEST_LINK'];
 $arResult['CONFIRM_REQUEST_LINK'] = "/cabinet".$arParams['CONFIRM_REQUEST_LINK'];
 $arResult['REJECT_REQUEST_LINK'] = "/cabinet".$arParams['REJECT_REQUEST_LINK'];
-$arResult['RESERVE_REQUEST_LINK'] = "/cabinet".$arParams['RESERVE_REQUEST_LINK'];
+$arResult['RESERVE_REQUEST_LINK'] = $arParams['RESERVE_REQUEST_LINK'];
 if(isset($arParams["IS_HB"]) && $arParams["IS_HB"] == 'Y'){
 	$arResult['WISHLIST_LINK'] = "/cabinet/service/wishlist_hb";
 	$arResult['SHEDULE_LINK'] =  "/cabinet/service/shedule_hb";

@@ -77,7 +77,7 @@ function DokaGeneratePdf($arResult) {
 		}
 		elseif ($freeseriflot['status'] == 'reserve') {
 			$tbl .= '<tr>
-				  <td>' . $freeseriflot['timeslot_name'] . '</td>
+				  <td>' . $freeseriflot['name'] . '</td>
 				  <td colspan="'.$colspanGuest.'" align="center">Reserved by you</td>
 			  </tr>';
 		}

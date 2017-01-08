@@ -10,11 +10,10 @@ else{
 ?>
 <?$APPLICATION->IncludeComponent(
 	"doka:meetings.time.reserve",
-	"",
+	"admin",
 	Array(
 		"APP_ID" => $appId,
-		"TIME" => $_REQUEST['time'],
-		"RELOAD" => 'N'
+		"TIME" => $_REQUEST['time']
 	),
 false
 );?>

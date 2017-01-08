@@ -26,7 +26,33 @@ jQuery(document).ready(function() {
 		"scrolling": "auto",
 		"type": 'ajax'
 	});
+
+	jQuery("a.time-reserve-wind").fancybox({
+		"closeBtn" : false,
+		"width": 480,
+		"padding": 0,
+		"margin": 0,
+		"scrolling": "auto",
+		"type": 'ajax'
+	});
 });
+
 $(document).on('click','.shedule-info__close', function(){
 	$.fancybox.close();
+});
+$(document).on('click','.shedule-info__send', function(){
+	var confirmHref = $(this).closest('form').find("input[name=href]").eq(0).val();
+	$.fancybox({
+		"closeBtn" : false,
+		"width": 480,
+		"padding": 0,
+		"margin": 0,
+		"scrolling": "auto",
+		"type": 'ajax',
+		"href": confirmHref
+	});
+});
+$(document).on('click','.shedule-info__reload', function(){
+	$.fancybox.close();
+	location.reload();
 });

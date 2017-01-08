@@ -78,12 +78,12 @@
 				<?if($item['status'] == 'free'):
 					$reserveLink = $arResult['RESERVE_REQUEST_LINK']."?id=".$arResult['CURRENT_USER_ID']."&time=".$item['timeslot_id']."&app=".$arResult['APP_ID']."&type=p&exib_code=".$arResult['PARAM_EXHIBITION']['CODE'];
 					?>
-					<a href="<?=$reserveLink?>"onclick="newWindConfirmed('<?=$reserveLink?>', 500, 200); return false;"
+					<a href="<?=$reserveLink?>" class="time-reserve-wind fancybox.ajax"
 						 target="_blank">Reserve</a>
 				<?elseif($item['status'] == 'reserve'):
 					$reserveLink = $arResult['RESERVE_REQUEST_LINK']."?id=".$arResult['CURRENT_USER_ID']."&time=".$item['timeslot_id']."&app=".$arResult['APP_ID']."&type=p&exib_code=".$arResult['PARAM_EXHIBITION']['CODE'];
 					?>
-					<a href="<?=$reserveLink?>"onclick="newWind('<?=$reserveLink?>', 500, 200); return false;"
+					<a href="<?=$reserveLink?>" class="time-reserve-wind fancybox.ajax"
 						 target="_blank">Release</a>
 				<?elseif($item['status'] != 'confirmed'):?>
 					<?=$item['time_left'];?><?if($item['time_left']):?>h<?endif;?>

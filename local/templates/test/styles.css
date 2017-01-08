@@ -1367,3 +1367,13 @@ ul{margin: 0;padding: 0;list-style: none;}
     text-decoration: underline;
     cursor: pointer;
 }
+.shedule-info__btn-block {
+    text-align: center;
+}
+.shedule-info__btn{
+    text-align: center;
+    color: #00aeef;
+    text-decoration: underline;
+    cursor: pointer;
+    margin: 0 10px 0;
+}
