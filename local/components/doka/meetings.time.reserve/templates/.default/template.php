@@ -28,7 +28,7 @@
 			</form>
 		<?endif;?>
 	<?else:?>
-		<p class="shedule-info__desc">You're releasing timeslot and it can be used for to make an appointment.</p>
+		<p class="shedule-info__desc">You're releasing this timeslot and it can be used for an appointment request.</p>
 		<p class="shedule-info__btn-block">
 			<span class="shedule-info__btn shedule-info__ok shedule-info__reload" href="">OK</span>
 		</p>
