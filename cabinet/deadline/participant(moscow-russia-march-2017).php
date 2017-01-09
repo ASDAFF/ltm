@@ -7,7 +7,7 @@
 -->
 <p><b>November, 21, 2016:</b> Opening of registration for the hosted buyers.</p>
 <p><b>January, 11, 2017:</b> Opening of registration for the buyers from Moscow.<br />
-Please note that the registration for the evening reception won’t be open for everyone, access to the evening party is by invitation only.</p>
+Please note that the registration for the evening reception won't be open for everyone, access to the evening party is by invitation only.</p>
 <p><b>February, 8, 2017:</b> Password, user name and detailed instructions on how to use the online system and to set up your appointments will be sent for your attention.</p>
 <p><b>February 9 - February16, 2017:</b> Scheduling of appointments for the 1st day.</p>
 <p><b>February 16 - February 24, 2017:</b> Scheduling of appointments for the 2nd day.</p>
@@ -23,7 +23,7 @@ you will be provided with a badge and information pack.</p>
 
 <p><b><i>10:00 - 18:00 &mdash; Individual pre-scheduled appointments with Hosted Buyers.</i></b></p>
 
-<p>Each appointment will last 10 minutes according to the following scheme (5 minutes added for movingfrom one buyer to another):</p>	
+<p>Each appointment will last 10 minutes according to the following scheme (5 minutes added for moving from one buyer to another):</p>	
 <p>10:00 - 10:10 / 10:15 - 10:25 / 10:30 - 10:40 / 10:45 - 10:55 / 11:00 - 11:10<br />
 11:15 - 11:25 / 11:30 - 11:40 / 11:45 - 11:55</p>
 
@@ -69,7 +69,7 @@ buyers from Moscow and Hosted Buyers.</i></b></p>
 10:00 - 10:10 / 10:15 - 10:25 / 10:30 - 10:40 / 10:45 - 10:55 / 11:00 - 11:10<br />
 11:15 - 11:25 / 11:30 - 11:40 / 11:45 - 11:55</p>
 
-<p>11:55 - 12:25–light lunch</p>
+<p>11:55 - 12:25 - light lunch</p>
 
 <p>
 12:25 - 12:35 / 12:40 - 12:50 / 12:55 - 13:05 / 13:10 - 13:20<br />
