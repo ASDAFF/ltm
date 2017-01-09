@@ -40,7 +40,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 						$fromId = $user['id'];
 						$reserveLink = $arResult['RESERVE_REQUEST_LINK']."?id=".$fromId."&time=".$timeslot['id']."&app=".$arResult['APP']."&type=p&exib_code=".$arResult['PARAM_EXHIBITION']['CODE'];?>
 							<td class="reserved">
-								Забронирована<br />
+								Забронирован<br />
 								<a href="<?=$reserveLink?>" onclick="newWind('<?=$reserveLink?>', 500, 200); return false;"
 									 target="_blank">Освободить</a>
 							</td>

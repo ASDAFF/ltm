@@ -8,7 +8,7 @@
 <?else:?>
 	<? if($arResult['TO_RESERVE'] == 'Y'):?>
 		<?if($arResult['SEND'] == 'Y'):?>
-			<p class="shedule-info__desc">You're reserving timeslot and it can be used for your purpose.</p>
+			<p class="shedule-info__desc">You're reserving timeslot now.</p>
 			<p class="shedule-info__btn-block">
 				<span class="shedule-info__btn shedule-info__reload" href="">OK</span>
 			</p>
@@ -20,7 +20,7 @@
 				<input type="hidden" name="confirm" value="Y">
 				<input type="hidden" name="exib_code" value="<?=$arResult["EXIB_CODE"]?>">
 				<input type="hidden" name="href" value="<?=$APPLICATION->GetCurUri()?>&confirm=Y">
-				<p class="shedule-info__desc">Selected timeslot will be reserved for your purpose and won't be available to make appointment request until you release it.</p>
+				<p class="shedule-info__desc">Selected timeslot will be reserved for your personal purposes and won't be available for buyers to request an appointment until you release it.</p>
 				<p class="shedule-info__btn-block">
 					<span class="shedule-info__btn shedule-info__close">Cancel</span>
 					<span class="shedule-info__btn shedule-info__send">OK</span>
