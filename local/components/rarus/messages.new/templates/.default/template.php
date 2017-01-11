@@ -2,7 +2,7 @@
 <?
 if(isset($arResult["MESSAGE_SUCCESS"]) && $arResult["MESSAGE_SUCCESS"] != ''){
 	?>
-    <p style="color:#47ff65;"><?=$arResult["MESSAGE_SUCCESS"]?></p>
+    <p style="color:#20c400;"><?=$arResult["MESSAGE_SUCCESS"]?></p>
 	<?
 }
 else{
