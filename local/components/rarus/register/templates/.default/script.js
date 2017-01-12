@@ -130,6 +130,7 @@ $(function() {
 	$("#REGISTER_FORM").on("keyup", ".registr_buy input, .registr_buy textarea", function(){
 		if(capsLockEnabled) {
 			showErrorMessage(this,$errorText[errorLang]["capslock"]);
+			console.log(this);
 		} else {
 			hideErrorMessage(this,$errorText[errorLang]["capslock"], true);
 		}
