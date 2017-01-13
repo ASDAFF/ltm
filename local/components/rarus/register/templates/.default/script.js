@@ -131,9 +131,6 @@ $(function() {
 		if(capsLockEnabled) {
 			showErrorMessage(this,$errorText[errorLang]["capslock"]);
 			this.value = '';
-			console.log(this); // проверить, что есть this
-
-
 		} else {
 			hideErrorMessage(this,$errorText[errorLang]["capslock"], true);
 		}
