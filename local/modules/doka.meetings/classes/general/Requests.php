@@ -121,6 +121,11 @@ class Requests extends DokaRequest
         return array(self::STATUS_PROCESS, self::STATUS_CONFIRMED, self::STATUS_RESERVE);
     }
 
+    public function getStatusNotCheck()
+    {
+        return array(self::STATUS_REJECTED, self::STATUS_TIMEOUT, self::STATUS_RESERVE);
+    }
+
     public function getOption($name)
     {
         if (isset($this->options[$name]))
