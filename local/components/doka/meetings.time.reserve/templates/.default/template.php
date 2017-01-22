@@ -3,7 +3,7 @@
 <?if(isset($arResult['ERROR_MESSAGE'])):?>
 	<p class="shedule-info__desc"><? echo implode('<br>', $arResult['ERROR_MESSAGE']); ?></p>
 	<p class="shedule-info__btn-block">
-		<span class="shedule-info__btn shedule-info__ok" href="">OK</span>
+		<span class="shedule-info__btn shedule-info__close" href="">OK</span>
 	</p>
 <?else:?>
 	<? if($arResult['TO_RESERVE'] == 'Y'):?>
