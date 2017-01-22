@@ -10,24 +10,28 @@
       <th>Representative</th>
       <th>Status</th>
       <th>Notes</th>
-	  <th>Time left</th>
+	  	<th>Time left /<br>Hold slot</th>
   </tr>
 	<? foreach ($arResult['SCHEDULE'] as $item):?>
 	<? if(!in_array($item['status'], ['coffee', 'lunch'])):?>
-		<tr <?if($item['status'] == 'process' && !$item['sent_by_you']):?>class="unconfirmed"<?endif;?>>
+		<tr class="<?if($item['status'] == 'process' && !$item['sent_by_you']):?>unconfirmed<?endif;?> <?=$item['status']?>">
 			<td><?=$item['name']?></td>
-			<?if (isset($item['company_name'])):?>
-				<td><a href="/ajax/userInfo.php?id=<?=$item['company_id']?>" class="user-info-wind fancybox.ajax"
-					   target="_blank"><?=$item['company_name']?></a></td>
-				<td><?=$item['company_rep']?></td>
-			<?else:?>
+			<?if($item['status'] == 'reserve'):?>
 				<td colspan="2">
-                  <select name="company_id" class="chose-company" id="companys<?=$item['timeslot_id']?>">
-                      <option value="0">Choose a company</option>
-                    <?foreach ($item['list'] as $company):?>
-                    <option value="<?=$company['id']?>"><?=$company['name']?></option>
-                      <?endforeach;?>
-                  </select>
+					Reserved by you
+				</td>
+			<?elseif (isset($item['company_name'])):?>
+				<td><a href="/ajax/userInfo.php?id=<?=$item['company_id']?>" class="user-info-wind fancybox.ajax"
+							 target="_blank"><?=$item['company_name']?></a></td>
+				<td><?=$item['company_rep']?></td>
+				<?else:?>
+				<td colspan="2">
+					<select name="company_id" class="chose-company" id="companys<?=$item['timeslot_id']?>">
+						<option value="0">Choose a company</option>
+						<?foreach ($item['list'] as $company):?>
+							<option value="<?=$company['id']?>"><?=$company['name']?></option>
+						<?endforeach;?>
+					</select>
 				</td>
 			<?endif;?>
 			<td width="80">
@@ -51,7 +55,7 @@
 						<?
 						endif;
 						break;
-					
+
 					case 'free':
 						if(!$arResult['IS_ACTIVE']){
 						?>
@@ -69,9 +73,19 @@
 				}
 				?>
 			</td>
-			<td width="110"><?=$item['notes'];?></td>
-			<td width="50">
-				<?if($item['status'] != 'confirmed'):?>
+			<td width="100"><?=$item['notes'];?></td>
+			<td width="60">
+				<?if($item['status'] == 'free'):
+					$reserveLink = $arResult['RESERVE_REQUEST_LINK']."?id=".$arResult['CURRENT_USER_ID']."&time=".$item['timeslot_id']."&app=".$arResult['APP_ID']."&type=p&exib_code=".$arResult['PARAM_EXHIBITION']['CODE'];
+					?>
+					<a href="<?=$reserveLink?>" class="time-reserve-wind fancybox.ajax"
+						 target="_blank">Reserve</a>
+				<?elseif($item['status'] == 'reserve'):
+					$reserveLink = $arResult['RESERVE_REQUEST_LINK']."?id=".$arResult['CURRENT_USER_ID']."&time=".$item['timeslot_id']."&app=".$arResult['APP_ID']."&type=p&exib_code=".$arResult['PARAM_EXHIBITION']['CODE'];
+					?>
+					<a href="<?=$reserveLink?>" class="time-reserve-wind fancybox.ajax"
+						 target="_blank">Release</a>
+				<?elseif($item['status'] != 'confirmed'):?>
 					<?=$item['time_left'];?><?if($item['time_left']):?>h<?endif;?>
 				<?endif;?>
 			</td>

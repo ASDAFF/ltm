@@ -75,6 +75,12 @@ function DokaGeneratePdf($arResult) {
 				  <td colspan="'.$colspanGuest.'" align="center">Free time</td>
 			  </tr>';
 		}
+		elseif ($freeseriflot['status'] == 'reserve') {
+			$tbl .= '<tr>
+				  <td>' . $freeseriflot['name'] . '</td>
+				  <td colspan="'.$colspanGuest.'" align="center">Reserved by you</td>
+			  </tr>';
+		}
 		else if($freeseriflot['status'] == 'coffee'){
 			$tbl .= '<tr>
 				  <td>' . $freeseriflot['name'] . '</td>
@@ -82,9 +88,10 @@ function DokaGeneratePdf($arResult) {
 			  </tr>';
 			}
 		else if($freeseriflot['status'] == 'lunch'){
+			$lunchText = ($arResult['APP_ID'] == 1)? 'Light lunch': 'Lunch';
 			$tbl .= '<tr>
 				  <td>' . $freeseriflot['name'] . '</td>
-				  <td colspan="'.$colspanGuest.'" align="center">Lunch</td>
+				  <td colspan="'.$colspanGuest.'" align="center">'.$lunchText.'</td>
 			  </tr>';
 			}
 		else {
