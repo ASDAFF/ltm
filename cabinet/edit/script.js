@@ -274,6 +274,8 @@ $(document).ready(function(){
 	$(".guest-form").on("click", ".send input[type=submit]", function(e){
 		e.preventDefault();
 		if(validateGuest()) {
+			var submitBtn = $(this).closest('form').find('input[name=web_form_apply]').val();
+			$(this).closest('form').append('<input type="hidden" name="web_form_apply" value="'+submitBtn+'">');
 			$(this).closest('form').submit();
 		} else {
 			$('body,html').animate({scrollTop:300},300);
@@ -282,7 +284,7 @@ $(document).ready(function(){
 
 	$(".guest-form").on("focusout", ".collegue", function(event){
 		var that = this;
-		var parentBlock = $(this).closest(".profil");
+		var parentBlock = $(this).closest(".profil-field");
 		if($(this).val() != '') {
 			parentBlock.find("input").each(function(ind, elem) {
 				if(elem != that) {
