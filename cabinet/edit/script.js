@@ -7,13 +7,17 @@ $(document).ready(function(){
 			{
 				show_contries: "Show all countries",
 				hide_contries: "Hide list of countries",
-				capslock: "Caps lock should be off"
+				capslock: "Caps lock should be off",
+				en: "Only English characters.",
+				require: "This field is required."
 			},
 			ru :
 			{
 				show_contries: "Показать все страны",
 				hide_contries: "Скрыть список",
-				capslock: "Внимание: нажат CapsLock!"
+				capslock: "Внимание: нажат CapsLock!",
+				en: "Только латинские символы.",
+				require: "Это поле является обязательным."
 			}
 	};
 
@@ -63,8 +67,21 @@ $(document).ready(function(){
 	$(".guest-form").on("keyup", ".data-control input, .data-control textarea", function(){
 		if(capsLockEnabled) {
 			showErrorMessage(this,MESS[LANGUAGE_ID]["capslock"]);
+			this.value = '';
 		} else {
 			hideErrorMessage(this,MESS[LANGUAGE_ID]["capslock"]);
+		}
+	});
+
+	$(".guest-form").on("focusout", ".data-control input, .data-control textarea", function(){
+		var input = $(this);
+		var value = input.val();
+
+		if(!value.match(/^[^а-яА-Я]+$/) && value.length > 0) {
+			showErrorMessage(this,MESS[LANGUAGE_ID]["en"]);
+		}
+		else {
+			hideErrorMessage(this,MESS[LANGUAGE_ID]["en"]);
 		}
 	});
 	
@@ -92,7 +109,6 @@ $(document).ready(function(){
 	    event.preventDefault();
 	});
 	
-	
 	/*DropDown выбор*/
 	$("div.create-company").on("click", "ul.dropdown-items li", function(){
 		var selectedLi = $(this);
@@ -107,8 +123,6 @@ $(document).ready(function(){
 		name.text(selectedLi.text());
 		name.trigger("click");
 	});
-	
-	
 	
 	/*Групповые чекбоксы приоритетные направления разворачивание*/
 	$("div.priority-wrap").on("click", ".priority-toggle", function(){ 
@@ -259,11 +273,57 @@ $(document).ready(function(){
 
 	$(".guest-form").on("click", ".send input[type=submit]", function(e){
 		e.preventDefault();
-		var errorStatus = $(".input-error-border").length;
-		if(errorStatus == 0) {
+		if(validateGuest()) {
 			$(this).closest('form').submit();
 		} else {
 			$('body,html').animate({scrollTop:300},300);
+		}
+	});
+
+	$(".guest-form").on("focusout", ".collegue", function(event){
+		var that = this;
+		var parentBlock = $(this).closest(".profil");
+		if($(this).val() != '') {
+			parentBlock.find("input").each(function(ind, elem) {
+				if(elem != that) {
+					$(elem).addClass("require");
+				}
+			});
+			parentBlock.find("select").addClass("select-requer");
+		} else {
+			parentBlock.find("input").each(function(ind, elem) {
+				$(elem).removeClass("require");
+				hideErrorMessage(elem,MESS[LANGUAGE_ID]["require"]);
+			});
+			parentBlock.find("select").removeClass("select-requer");
+			parentBlock.find("select").trigger('change');
+		}
+	});
+
+	$(".guest-form").on("focusout", ".require", function(){
+		var input = $(this);
+		var value = input.val();
+
+		if(value.length <= 0) {
+			showErrorMessage(this,MESS[LANGUAGE_ID]["require"]);
+		} else {
+			hideErrorMessage(this,MESS[LANGUAGE_ID]["require"]);
+		}
+	});
+
+	$(".guest-form").on("change", "select", function(){
+		var value = $(this).val();
+		var select = $(this).closest(".dropdown-group");
+
+		if(!$(this).hasClass('select-requer')) {
+			hideErrorMessage(this,MESS[LANGUAGE_ID]["require"]);
+			return;
+		}
+		var curValue = $(this).find("option:selected").text();
+		if(curValue == 'None') {
+			showErrorMessage(this,MESS[LANGUAGE_ID]["require"]);
+		} else {
+			hideErrorMessage(this,MESS[LANGUAGE_ID]["require"]);
 		}
 	});
 
@@ -323,6 +383,37 @@ $(document).ready(function(){
 				errorTextDiv.remove();
 				input.removeClass('input-error-border');
 			}
+		}
+	}
+
+	function validateGuest()
+	{
+		$(".guest-form input").each(function(ind, elem) {
+			if(!$(elem).hasClass('require')) {
+				return;
+			}
+			if($(elem).val() == '') {
+				showErrorMessage(elem,MESS[LANGUAGE_ID]["require"]);
+			} else {
+				hideErrorMessage(elem,MESS[LANGUAGE_ID]["require"]);
+			}
+		});
+		$(".guest-form select").each(function(ind, elem) {
+			if(!$(elem).hasClass('select-requer')) {
+				return;
+			}
+			var curValue = $(elem).find("option:selected").text();
+			if(curValue == 'None') {
+				showErrorMessage(elem,MESS[LANGUAGE_ID]["require"]);
+			} else {
+				hideErrorMessage(elem,MESS[LANGUAGE_ID]["require"]);
+			}
+		});
+		var errorStatus = $(".input-error-border").length;
+		if(errorStatus == 0) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 });
