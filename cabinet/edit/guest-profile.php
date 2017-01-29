@@ -94,6 +94,7 @@ try{
 				array("ID"=>"SIMPLE_QUESTION_269", "IS_PIC"=>true),					//Фото
 				array("ID"=>"SIMPLE_QUESTION_750"),									//Имя
 				array("ID"=>"SIMPLE_QUESTION_823"),									//Фамилия
+				array("ID"=>"SALUTATION"),									//Обращение
 				array("ID"=>"SIMPLE_QUESTION_115", "DISABLED"=>true),				//Название компании
 				array("ID"=>"SIMPLE_QUESTION_391"),									//Должность
 				array("ID"=>"SIMPLE_QUESTION_773", "TITLE"=>"Адрес"),				//Фактический адрес компании
