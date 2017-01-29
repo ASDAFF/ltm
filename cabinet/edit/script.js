@@ -9,6 +9,8 @@ $(document).ready(function(){
 				hide_contries: "Hide list of countries",
 				capslock: "Caps lock should be off",
 				en: "Only English characters.",
+				email:"This field must be formatted as an email.",
+				phone:"This field must be formatted as phone number.",
 				require: "This field is required."
 			},
 			ru :
@@ -17,6 +19,8 @@ $(document).ready(function(){
 				hide_contries: "Скрыть список",
 				capslock: "Внимание: нажат CapsLock!",
 				en: "Только латинские символы.",
+				email:"Некорректный E-mail.",
+				phone:"Это поле должно быть в формате телефонного номера.",
 				require: "Это поле является обязательным."
 			}
 	};
@@ -307,10 +311,18 @@ $(document).ready(function(){
 		var value = input.val();
 
 		if(value.length <= 0) {
-			showErrorMessage(this,MESS[LANGUAGE_ID]["require"]);
+			showErrorMessage(this, MESS[LANGUAGE_ID]["require"]);
 		} else {
-			hideErrorMessage(this,MESS[LANGUAGE_ID]["require"]);
+			hideErrorMessage(this, MESS[LANGUAGE_ID]["require"]);
 		}
+	});
+
+	$(".guest-form").on("focusout", ".email", function(){
+		isValidEmail(this);
+	});
+
+	$(".guest-form").on("focusout", ".phone", function(){
+		isValidPhone(this);
 	});
 
 	$(".guest-form").on("change", "select", function(){
@@ -388,9 +400,39 @@ $(document).ready(function(){
 		}
 	}
 
+	function isValidEmail(input) {
+		if(!$(input).hasClass('email')) {
+			return true;
+		}
+		var value = $(input).val();
+
+		if(!value.match(/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*(\.[a-z]{2,8})+$/i)
+			&& value.length > 0) {
+			showErrorMessage(input, MESS[LANGUAGE_ID]["email"]);
+		} else {
+			hideErrorMessage(input, MESS[LANGUAGE_ID]["email"]);
+		}
+	}
+
+	function isValidPhone(input) {
+		if(!$(input).hasClass('phone')) {
+			return true;
+		}
+		var value = $(input).val();
+
+		if(!value.match(/^\+?[0-9()\t\n\r\f\v\s-]+$/) && value.length > 0) {
+			showErrorMessage(input, MESS[LANGUAGE_ID]["phone"]);
+		} else {
+			hideErrorMessage(input, MESS[LANGUAGE_ID]["phone"]);
+		}
+	}
+
 	function validateGuest()
 	{
 		$(".guest-form input").each(function(ind, elem) {
+			isValidEmail(elem);
+			isValidPhone(elem);
+
 			if(!$(elem).hasClass('require')) {
 				return;
 			}
@@ -400,6 +442,7 @@ $(document).ready(function(){
 				hideErrorMessage(elem,MESS[LANGUAGE_ID]["require"]);
 			}
 		});
+
 		$(".guest-form select").each(function(ind, elem) {
 			if(!$(elem).hasClass('select-requer')) {
 				return;
