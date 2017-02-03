@@ -47,9 +47,6 @@ $curDir = $APPLICATION->GetCurDir();
 	</div>
 <?php // Блок с данными пользователя ?>
 
-<?//Цены на выставки ?>
-<?$APPLICATION->IncludeComponent("bitrix:main.include", "", array("AREA_FILE_SHOW" => "file", "PATH" => SITE_TEMPLATE_PATH."/include/fees.php"), false);?>
-
 <? if($USER->IsAdmin() || (PARTICIPANT_CABINET == "Y" && !empty($arResult["EXHIBITION"]["CONFIRMED"]))):?>
     <?php // Зарегистророваные ?>
     <? foreach ($arResult["EXHIBITION"]["CONFIRMED"] as $arExhibition):?>
@@ -108,3 +105,5 @@ $curDir = $APPLICATION->GetCurDir();
     <? endforeach;?>
     <?php // Не зарегистророваные ?>
 <? endif;?>
+<?//Цены на выставки ?>
+<?$APPLICATION->IncludeComponent("bitrix:main.include", "", array("AREA_FILE_SHOW" => "file", "PATH" => SITE_TEMPLATE_PATH."/include/fees.php"), false);?>
