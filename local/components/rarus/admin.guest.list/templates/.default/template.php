@@ -196,6 +196,7 @@ function printVal($ar, $glue)
 				<a class="custom-buttom" href="/exel/guest.php?type=guests&app=<?=$arResult["EXHIB"]["CODE"]?>&PAGEN_1=3">Генерировать Excel 3</a>
 				<a class="custom-buttom" href="/exel/guest.php?type=guests_all&app=<?=$arResult["EXHIB"]["CODE"]?>&PAGEN_1=1">Excel (все люди) 1</a>
 				<a class="custom-buttom" href="/exel/guest.php?type=guests_all&app=<?=$arResult["EXHIB"]["CODE"]?>&PAGEN_1=2">Excel (все люди) 2</a>
+                <a class="custom-buttom" href="/exel/guest.php?type=guests_all&app=<?=$arResult["EXHIB"]["CODE"]?>&PAGEN_1=3">Excel (все люди) 3</a>
 				<a class="custom-buttom go" href="/ajax/all_pdf_shedule.php?type=guest&app=<?=$arResult["EXHIB"]["CODE"]?>" data-hb="" data-to="shedule">PDF расписания</a>
 				<a class="custom-buttom go" href="/ajax/all_pdf_wishlist.php?type=guest&app=<?=$arResult["EXHIB"]["CODE"]?>" data-hb="" data-to="wishlist">PDF вишлисты</a>
 				<? /*<input class="custom-buttom" type="button" name="edit" disabled value="Редактировать">$arParams["EXHIBIT_CODE"]
