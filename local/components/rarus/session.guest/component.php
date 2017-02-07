@@ -116,9 +116,8 @@ if ($cache_time > 0 && $cache->InitCache($cache_time, $cache_id, $cache_path))
 if ($cache_time > 0 && $cache->InitCache($cache_time, $cacheFormId, $cache_path))
 {
 	$res = $cache->GetVars();
-	if (is_array($res["userAns"]) && (count($res["userQuest"]) > 0)){
+	if (is_array($res["userAns"]) && (count($res["userAns"]) > 0)){
 		$arAnswers = $res["userAns"];
-		$arQuestions = $res["userQuest"];
 	}
 }
 if (!is_array($arResult["USERS"]) || empty($arResult["USERS"])) {
@@ -154,14 +153,22 @@ if (!is_array($arResult["USERS"]) || empty($arResult["USERS"])) {
 	}
 }
 
-if(empty($arAnswers) || empty($arQuestions)) {
+if(empty($arAnswers)) {
 	//получение результатов заполнения формы регистрациия для пользователей
+	$formFields = [
+		"SIMPLE_QUESTION_115", "SIMPLE_QUESTION_677", "SIMPLE_QUESTION_672", "SIMPLE_QUESTION_678",
+		"SIMPLE_QUESTION_243", "SIMPLE_QUESTION_750", "SIMPLE_QUESTION_823", "SIMPLE_QUESTION_391",
+		"SIMPLE_QUESTION_552", "SIMPLE_QUESTION_166", "SIMPLE_QUESTION_383", "SIMPLE_QUESTION_244",
+		"SIMPLE_QUESTION_212", "SIMPLE_QUESTION_497", "SIMPLE_QUESTION_526", "SIMPLE_QUESTION_878"
+	];
 	CForm::GetResultAnswerArray(
 		GUEST_FORM_ID,
 		$arQuestions,
 		$arAnswers,
 		$arAnswersVarname,
-		array("RESULT_ID" => implode("|",$arResultId)
+		array(
+			"RESULT_ID" => implode("|", $arResultId),
+			"FIELD_SID" =>implode("|", $formFields)
 		)
 	);
 
@@ -170,7 +177,6 @@ if(empty($arAnswers) || empty($arQuestions)) {
 		$cache->StartDataCache($cache_time, $cacheFormId, $cache_path);
 		$cache->EndDataCache(array(
 			"userAns"=>$arAnswers,
-			"userQuest"=>$arQuestions,
 		));
 	}
 }
