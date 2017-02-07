@@ -116,9 +116,8 @@ if ($cache_time > 0 && $cache->InitCache($cache_time, $cache_id, $cache_path))
 if ($cache_time > 0 && $cache->InitCache($cache_time, $cacheFormId, $cache_path))
 {
 	$res = $cache->GetVars();
-	if (is_array($res["userAns"]) && (count($res["userQuest"]) > 0)){
+	if (is_array($res["userAns"]) && (count($res["userAns"]) > 0)){
 		$arAnswers = $res["userAns"];
-		$arQuestions = $res["userQuest"];
 	}
 }
 if (!is_array($arResult["USERS"]) || empty($arResult["USERS"])) {
@@ -154,7 +153,7 @@ if (!is_array($arResult["USERS"]) || empty($arResult["USERS"])) {
 	}
 }
 
-if(empty($arAnswers) || empty($arQuestions)) {
+if(empty($arAnswers)) {
 	//получение результатов заполнения формы регистрациия для пользователей
 	CForm::GetResultAnswerArray(
 		GUEST_FORM_ID,
@@ -170,7 +169,6 @@ if(empty($arAnswers) || empty($arQuestions)) {
 		$cache->StartDataCache($cache_time, $cacheFormId, $cache_path);
 		$cache->EndDataCache(array(
 			"userAns"=>$arAnswers,
-			"userQuest"=>$arQuestions,
 		));
 	}
 }
