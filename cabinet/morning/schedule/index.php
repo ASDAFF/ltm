@@ -54,6 +54,10 @@ elseif($_SESSION["USER_TYPE"] == "GUEST")
 		<div id="session-tab-1">
 		<? include("guest.php");?>
 		</div>
+            
+        <div class="files">
+            Список файлов здесь
+        </div>
 	</div>
 <?
 }
