@@ -52,7 +52,10 @@ elseif($_SESSION["USER_TYPE"] == "GUEST")
 		<?endif;?>
 	</ul>
         <div class="files">
-            Список файлов здесь
+            <ul class="files__items">
+                <li class="files__item"><a href="" class="files__link">Скачать план залов (участники в алфавитном порядке)</a></li>
+                <li class="files__item"><a href="" class="files__link">Скачать план залов (участники по номеру стола)</a></li>
+            </ul>
         </div>
 		<div id="session-tab-1">
 		<? include("guest.php");?>
