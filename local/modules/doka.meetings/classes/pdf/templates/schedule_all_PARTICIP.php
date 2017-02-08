@@ -9,10 +9,10 @@ function DokaGeneratePdf($arResult) {
 	$pdf->ImageSVG($file=DOKA_MEETINGS_MODULE_DIR . '/images/logo.svg', $x=30, $y=5, $w='150', $h='', $link='', $align='', $palign='', $border=0, $fitonpage=false);
 	$arResult["exhib"]["TITLE"] .= "\n";
 	if($arResult["exhib"]["IS_HB"]){
-		//$dayline = "Day 1 - March 10, 2016";
+		$dayline = "Day 1 - March 2, 2017";
 	}
 	else {
-		//$dayline = "Day 2 - March 11, 2016";
+		$dayline = "Day 2 - March 3, 2017";
 	}
 
 	$pdf->setXY(0,25);
