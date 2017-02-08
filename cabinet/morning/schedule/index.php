@@ -51,13 +51,14 @@ elseif($_SESSION["USER_TYPE"] == "GUEST")
 			<li><a href="<?= $page . "list/" . (($userId)?"?UID=".$userId:"")?>" title="">Список участников</a></li>
 		<?endif;?>
 	</ul>
+        <div class="files">
+            Список файлов здесь
+        </div>
 		<div id="session-tab-1">
 		<? include("guest.php");?>
 		</div>
             
-        <div class="files">
-            Список файлов здесь
-        </div>
+
 	</div>
 <?
 }
