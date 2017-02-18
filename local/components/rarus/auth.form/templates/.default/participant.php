@@ -113,5 +113,3 @@ $curDir = $APPLICATION->GetCurDir();
     <? endforeach;?>
     <?php // Не зарегистророваные ?>
 <? endif;?>
-<?//Цены на выставки ?>
-<?$APPLICATION->IncludeComponent("bitrix:main.include", "", array("AREA_FILE_SHOW" => "file", "PATH" => SITE_TEMPLATE_PATH."/include/fees.php"), false);?>
