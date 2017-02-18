@@ -649,3 +649,7 @@ video {
 .fees-list p{
 	font-size: 14px;
 }
+
+.exh-fee__price, .exh-fee_status {
+	font-weight: bold;
+}
