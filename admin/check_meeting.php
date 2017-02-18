@@ -62,11 +62,13 @@ while ($exhibition = $rsExhibitions->Fetch()) {
     	foreach ($timeslotsId as $key => $timeId) {
     		$userTmp = substr($arParticip["MEET_".$timeId], 0, -1);//для читабельности
     		$statusTmp = $arParticip["STATUS_".$timeId];//для читабельности
-        $participTime = &$particip[$arParticip["USER_ID"]][$timeId];
+
+        $participTimeTmp = &$particip[$arParticip["USER_ID"]][$timeId];
         $guestTime = $guest[$userTmp][$timeId];
 
-    		$participTime["USER"] = $userTmp;
-    		$participTime["STATUS"] = $statusTmp;
+        $participTimeTmp["USER"] = $userTmp;
+        $participTimeTmp["STATUS"] = $statusTmp;
+
     		/* Сразу же проверяем со стороны участников*/
     		if($userTmp != '' && $guestTime["USER"] != $arParticip["USER_ID"]){//Если у участника и гостя не совпадают оппоненты, но при этом статусы не Таймаут и не Отменен
     			if(!in_array($statusTmp, $statusNotCheck)){
@@ -83,25 +85,26 @@ while ($exhibition = $rsExhibitions->Fetch()) {
     		}
     	}    	
     }
-    /* Проверяем со стороны гостей */
-    foreach ($guest as $partId => $arParticip) {
-        foreach ($timeslotsId as $key => $timeId) {
-            $userTmp = $arParticip[$timeId]["USER"];//для читабельности
-            $statusTmp = $arParticip[$timeId]["STATUS"];//для читабельности
-            $participTime = $particip[$userTmp][$timeId];
 
-            if($userTmp != '' && $participTime["USER"] != $partId){//Если у участника и гостя не совпадают оппоненты, но при этом статусы не Таймаут и не Отменен
-                if(!in_array($statusTmp, $statusNotCheck)){
-                    $erStr .= '(Diff user) Timeslot '.$timeslots[$timeId]["name"].'('.$timeId.') 
-                    Particip to Guest - '.$partId.'-'.$userTmp.'('.$statusTmp.') 
-                    Guest to Particip - '.$userTmp.'-'.$participTime["USER"].'('.$participTime["STATUS"].')<br />';
+    /* Проверяем со стороны гостей */
+    foreach ($guest as $guestId => $arParticip) {
+        foreach ($timeslotsId as $key => $timeId) {
+            $participantId = $arParticip[$timeId]["USER"];//для читабельности
+            $guestStatus = $arParticip[$timeId]["STATUS"];//для читабельности
+            $participTime = $particip[$participantId][$timeId];
+
+            if($participantId != '' && $participTime["USER"] != $guestId){//Если у участника и гостя не совпадают оппоненты, но при этом статусы не Таймаут и не Отменен
+                if(!in_array($guestStatus, $statusNotCheck)){
+                    $erStr .= '(Diff user) Timeslot '.$timeslots[$timeId]["name"].'('.$timeId.')
+                    Particip to Guest - '.$guestId.'-'.$participantId.'('.$guestStatus.')
+                    Guest to Particip - '.$participantId.'-'.$participTime["USER"].'('.$participTime["STATUS"].')<br />';
                 }
                 
             }
-            elseif($userTmp != '' && $participTime["STATUS"] != $statusTmp){//Если оппоненты совпадают, но статусы разные
-                $erStr .= '(Diff status) Timeslot '.$timeslots[$timeId]["name"].'('.$timeId.') 
-                Particip to Guest - '.$partId.'-'.$userTmp.'('.$statusTmp.') 
-                Guest to Particip - '.$userTmp.'-'.$participTime["USER"].'('.$participTime["STATUS"].')<br />';
+            elseif($participantId != '' && $participTime["STATUS"] != $guestStatus){//Если оппоненты совпадают, но статусы разные
+                $erStr .= '(Diff status) Timeslot '.$timeslots[$timeId]["name"].'('.$timeId.')
+                Particip to Guest - '.$guestId.'-'.$participantId.'('.$guestStatus.')
+                Guest to Particip - '.$participantId.'-'.$participTime["USER"].'('.$participTime["STATUS"].')<br />';
             }
         }
     }
