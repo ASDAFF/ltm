@@ -13,7 +13,700 @@ $( document ).ready(function() {
 		
 	});
 
+	$('.fixed-table').fixedHeaderTable({
+		altClass: 'odd',
+		footer: false,
+		cloneHeadToFoot: false,
+		fixedColumn: 1,
+		height: 500,
+		width: 1200
+	});
+
 });
 
- (function(e){e.fn.fixedHeaderTable=function(t){var n={width:"100%",height:"100%",themeClass:"fht-default",borderCollapse:!0,fixedColumns:0,fixedColumn:!1,sortable:!1,autoShow:!0,footer:!1,cloneHeadToFoot:!1,autoResize:!1,create:null},r={},i={init:function(t){r=e.extend({},n,t);return this.each(function(){var t=e(this);if(s._isTable(t)){i.setup.apply(this,Array.prototype.slice.call(arguments,1));e.isFunction(r.create)&&r.create.call(this)}else e.error("Invalid table mark-up")})},setup:function(){var t=e(this),n=this,o=t.find("thead"),u=t.find("tfoot"),a=0,f,l,c,h,p;r.originalTable=e(this).clone();r.includePadding=s._isPaddingIncludedWithWidth();r.scrollbarOffset=s._getScrollbarWidth();r.themeClassName=r.themeClass;r.width.search("%")>-1?p=t.parent().width()-r.scrollbarOffset:p=r.width-r.scrollbarOffset;t.css({width:p});if(!t.closest(".fht-table-wrapper").length){t.addClass("fht-table");t.wrap('<div class="fht-table-wrapper"></div>')}f=t.closest(".fht-table-wrapper");r.fixedColumn==1&&r.fixedColumns<=0&&(r.fixedColumns=1);if(r.fixedColumns>0&&f.find(".fht-fixed-column").length==0){t.wrap('<div class="fht-fixed-body"></div>');e('<div class="fht-fixed-column"></div>').prependTo(f);h=f.find(".fht-fixed-body")}f.css({width:r.width,height:r.height}).addClass(r.themeClassName);t.hasClass("fht-table-init")||t.wrap('<div class="fht-tbody"></div>');c=t.closest(".fht-tbody");var d=s._getTableProps(t);s._setupClone(c,d.tbody);if(!t.hasClass("fht-table-init")){r.fixedColumns>0?l=e('<div class="fht-thead"><table class="fht-table"></table></div>').prependTo(h):l=e('<div class="fht-thead"><table class="fht-table"></table></div>').prependTo(f);l.find("table.fht-table").addClass(r.originalTable.attr("class"));o.clone().appendTo(l.find("table"))}else l=f.find("div.fht-thead");s._setupClone(l,d.thead);t.css({"margin-top":-l.outerHeight(!0)});if(r.footer==1){s._setupTableFooter(t,n,d);u.length||(u=f.find("div.fht-tfoot table"));a=u.outerHeight(!0)}var v=f.height()-o.outerHeight(!0)-a-d.border;c.css({height:v});t.addClass("fht-table-init");typeof r.altClass!="undefined"&&i.altRows.apply(n);r.fixedColumns>0&&s._setupFixedColumn(t,n,d);r.autoShow||f.hide();s._bindScroll(c,d);return n},resize:function(){var e=this;return e},altRows:function(t){var n=e(this),i=typeof t!="undefined"?t:r.altClass;n.closest(".fht-table-wrapper").find("tbody tr:odd:not(:hidden)").addClass(i)},show:function(t,n,r){var i=e(this),s=this,o=i.closest(".fht-table-wrapper");if(typeof t!="undefined"&&typeof t=="number"){o.show(t,function(){e.isFunction(n)&&n.call(this)});return s}if(typeof t!="undefined"&&typeof t=="string"&&typeof n!="undefined"&&typeof n=="number"){o.show(t,n,function(){e.isFunction(r)&&r.call(this)});return s}i.closest(".fht-table-wrapper").show();e.isFunction(t)&&t.call(this);return s},hide:function(t,n,r){var i=e(this),s=this,o=i.closest(".fht-table-wrapper");if(typeof t!="undefined"&&typeof t=="number"){o.hide(t,function(){e.isFunction(r)&&r.call(this)});return s}if(typeof t!="undefined"&&typeof t=="string"&&typeof n!="undefined"&&typeof n=="number"){o.hide(t,n,function(){e.isFunction(r)&&r.call(this)});return s}i.closest(".fht-table-wrapper").hide();e.isFunction(r)&&r.call(this);return s},destroy:function(){var t=e(this),n=this,r=t.closest(".fht-table-wrapper");t.insertBefore(r).removeAttr("style").append(r.find("tfoot")).removeClass("fht-table fht-table-init").find(".fht-cell").remove();r.remove();return n}},s={_isTable:function(e){var t=e,n=t.is("table"),r=t.find("thead").length>0,i=t.find("tbody").length>0;return n&&r&&i?!0:!1},_bindScroll:function(e){var t=e,n=t.closest(".fht-table-wrapper"),i=t.siblings(".fht-thead"),s=t.siblings(".fht-tfoot");t.bind("scroll",function(){if(r.fixedColumns>0){var e=n.find(".fht-fixed-column");e.find(".fht-tbody table").css({"margin-top":-t.scrollTop()})}i.find("table").css({"margin-left":-this.scrollLeft});(r.footer||r.cloneHeadToFoot)&&s.find("table").css({"margin-left":-this.scrollLeft})})},_fixHeightWithCss:function(e,t){r.includePadding?e.css({height:e.height()+t.border}):e.css({height:e.parent().height()+t.border})},_fixWidthWithCss:function(t,n,i){r.includePadding?t.each(function(){e(this).css({width:i==undefined?e(this).width()+n.border:i+n.border})}):t.each(function(){e(this).css({width:i==undefined?e(this).parent().width()+n.border:i+n.border})})},_setupFixedColumn:function(t,n,i){var o=t,u=o.closest(".fht-table-wrapper"),a=u.find(".fht-fixed-body"),f=u.find(".fht-fixed-column"),l=e('<div class="fht-thead"><table class="fht-table"><thead><tr></tr></thead></table></div>'),c=e('<div class="fht-tbody"><table class="fht-table"><tbody></tbody></table></div>'),h=e('<div class="fht-tfoot"><table class="fht-table"><tfoot><tr></tr></tfoot></table></div>'),p=u.width(),d=a.find(".fht-tbody").height()-r.scrollbarOffset,v,m,g,y,b;l.find("table.fht-table").addClass(r.originalTable.attr("class"));c.find("table.fht-table").addClass(r.originalTable.attr("class"));h.find("table.fht-table").addClass(r.originalTable.attr("class"));v=a.find(".fht-thead thead tr > *:lt("+r.fixedColumns+")");g=r.fixedColumns*i.border;v.each(function(){g+=e(this).outerWidth(!0)});s._fixHeightWithCss(v,i);s._fixWidthWithCss(v,i);var w=[];v.each(function(){w.push(e(this).width())});b="tbody tr > *:not(:nth-child(n+"+(r.fixedColumns+1)+"))";m=a.find(b).each(function(t){s._fixHeightWithCss(e(this),i);s._fixWidthWithCss(e(this),i,w[t%r.fixedColumns])});l.appendTo(f).find("tr").append(v.clone());c.appendTo(f).css({"margin-top":-1,height:d+i.border});m.each(function(t){if(t%r.fixedColumns==0){y=e("<tr></tr>").appendTo(c.find("tbody"));r.altClass&&e(this).parent().hasClass(r.altClass)&&y.addClass(r.altClass)}e(this).clone().appendTo(y)});f.css({height:0,width:g});var E=f.find(".fht-tbody .fht-table").height()-f.find(".fht-tbody").height();f.find(".fht-table").bind("mousewheel",function(t,n,r,i){if(i==0)return;var s=parseInt(e(this).css("marginTop"),10)+(i>0?120:-120);s>0&&(s=0);s<-E&&(s=-E);e(this).css("marginTop",s);a.find(".fht-tbody").scrollTop(-s).scroll();return!1});a.css({width:p});if(r.footer==1||r.cloneHeadToFoot==1){var S=a.find(".fht-tfoot tr > *:lt("+r.fixedColumns+")"),x;s._fixHeightWithCss(S,i);h.appendTo(f).find("tr").append(S.clone());x=h.find("table").innerWidth();h.css({top:r.scrollbarOffset,width:x})}},_setupTableFooter:function(t,n,i){var o=t,u=o.closest(".fht-table-wrapper"),a=o.find("tfoot"),f=u.find("div.fht-tfoot");f.length||(r.fixedColumns>0?f=e('<div class="fht-tfoot"><table class="fht-table"></table></div>').appendTo(u.find(".fht-fixed-body")):f=e('<div class="fht-tfoot"><table class="fht-table"></table></div>').appendTo(u));f.find("table.fht-table").addClass(r.originalTable.attr("class"));switch(!0){case!a.length&&r.cloneHeadToFoot==1&&r.footer==1:var l=u.find("div.fht-thead");f.empty();l.find("table").clone().appendTo(f);break;case a.length&&r.cloneHeadToFoot==0&&r.footer==1:f.find("table").append(a).css({"margin-top":-i.border});s._setupClone(f,i.tfoot)}},_getTableProps:function(t){var n={thead:{},tbody:{},tfoot:{},border:0},i=1;r.borderCollapse==1&&(i=2);n.border=(t.find("th:first-child").outerWidth()-t.find("th:first-child").innerWidth())/i;t.find("thead tr:first-child > *").each(function(t){n.thead[t]=e(this).width()+n.border});t.find("tfoot tr:first-child > *").each(function(t){n.tfoot[t]=e(this).width()+n.border});t.find("tbody tr:first-child > *").each(function(t){n.tbody[t]=e(this).width()+n.border});return n},_setupClone:function(t,n){var i=t,s=i.find("thead").length?"thead tr:first-child > *":i.find("tfoot").length?"tfoot tr:first-child > *":"tbody tr:first-child > *",o;i.find(s).each(function(t){o=e(this).find("div.fht-cell").length?e(this).find("div.fht-cell"):e('<div class="fht-cell"></div>').appendTo(e(this));o.css({width:parseInt(n[t],10)});if(!e(this).closest(".fht-tbody").length&&e(this).is(":last-child")&&!e(this).closest(".fht-fixed-column").length){var i=Math.max((e(this).innerWidth()-e(this).width())/2,r.scrollbarOffset);e(this).css({"padding-right":i+"px"})}})},_isPaddingIncludedWithWidth:function(){var t=e('<table class="fht-table"><tr><td style="padding: 10px; font-size: 10px;">test</td></tr></table>'),n,i;t.addClass(r.originalTable.attr("class"));t.appendTo("body");n=t.find("td").height();t.find("td").css("height",t.find("tr").height());i=t.find("td").height();t.remove();return n!=i?!0:!1},_getScrollbarWidth:function(){var t=0;if(!t)if(/msie/.test(navigator.userAgent.toLowerCase())){var n=e('<textarea cols="10" rows="2"></textarea>').css({position:"absolute",top:-1e3,left:-1e3}).appendTo("body"),r=e('<textarea cols="10" rows="2" style="overflow: hidden;"></textarea>').css({position:"absolute",top:-1e3,left:-1e3}).appendTo("body");t=n.width()-r.width()+2;n.add(r).remove()}else{var i=e("<div />").css({width:100,height:100,overflow:"auto",position:"absolute",top:-1e3,left:-1e3}).prependTo("body").append("<div />").find("div").css({width:"100%",height:200});t=100-i.width();i.parent().remove()}return t}};if(i[t])return i[t].apply(this,Array.prototype.slice.call(arguments,1));if(typeof t=="object"||!t)return i.init.apply(this,arguments);e.error('Method "'+t+'" does not exist in fixedHeaderTable plugin!')}})(jQuery);
+(function ($) {
 
+	$.fn.fixedHeaderTable = function (method) {
+
+		// plugin's default options
+		var defaults = {
+			width:          '100%',
+			height:         '100%',
+			themeClass:     'fht-default',
+			borderCollapse:  true,
+			fixedColumns:    0, // fixed first columns
+			fixedColumn:     false, // For backward-compatibility
+			sortable:        false,
+			autoShow:        true, // hide table after its created
+			footer:          false, // show footer
+			cloneHeadToFoot: false, // clone head and use as footer
+			autoResize:      false, // resize table if its parent wrapper changes size
+			create:          null // callback after plugin completes
+		};
+
+		var settings = {};
+
+		// public methods
+		var methods = {
+			init: function (options) {
+				settings = $.extend({}, defaults, options);
+
+				// iterate through all the DOM elements we are attaching the plugin to
+				return this.each(function () {
+					var $self = $(this); // reference the jQuery version of the current DOM element
+
+					if (helpers._isTable($self)) {
+						methods.setup.apply(this, Array.prototype.slice.call(arguments, 1));
+						$.isFunction(settings.create) && settings.create.call(this);
+					} else {
+						$.error('Invalid table mark-up');
+					}
+				});
+			},
+
+			/*
+			 * Setup table structure for fixed headers and optional footer
+			 */
+			setup: function () {
+				var $self       = $(this),
+					self        = this,
+					$thead      = $self.find('thead'),
+					$tfoot      = $self.find('tfoot'),
+					tfootHeight = 0,
+					$wrapper,
+					$divHead,
+					$divBody,
+					$fixedBody,
+					widthMinusScrollbar;
+
+				settings.originalTable = $(this).clone();
+				settings.includePadding = helpers._isPaddingIncludedWithWidth();
+				settings.scrollbarOffset = helpers._getScrollbarWidth();
+				settings.themeClassName = settings.themeClass;
+
+				if (settings.width.search && settings.width.search('%') > -1) {
+					widthMinusScrollbar = $self.parent().width() - settings.scrollbarOffset;
+				} else {
+					widthMinusScrollbar = settings.width - settings.scrollbarOffset;
+				}
+
+				$self.css({
+					width: widthMinusScrollbar
+				});
+
+
+				if (!$self.closest('.fht-table-wrapper').length) {
+					$self.addClass('fht-table');
+					$self.wrap('<div class="fht-table-wrapper"></div>');
+				}
+
+				$wrapper = $self.closest('.fht-table-wrapper');
+
+				if(settings.fixedColumn == true && settings.fixedColumns <= 0) {
+					settings.fixedColumns = 1;
+				}
+
+				if (settings.fixedColumns > 0 && $wrapper.find('.fht-fixed-column').length == 0) {
+					$self.wrap('<div class="fht-fixed-body"></div>');
+
+					$('<div class="fht-fixed-column"></div>').prependTo($wrapper);
+
+					$fixedBody    = $wrapper.find('.fht-fixed-body');
+				}
+
+				$wrapper.css({
+					width: settings.width,
+					height: settings.height
+				})
+					.addClass(settings.themeClassName);
+
+				if (!$self.hasClass('fht-table-init')) {
+					$self.wrap('<div class="fht-tbody"></div>');
+				}
+
+				$divBody = $self.closest('.fht-tbody');
+
+				var tableProps = helpers._getTableProps($self);
+
+				helpers._setupClone($divBody, tableProps.tbody);
+
+				if (!$self.hasClass('fht-table-init')) {
+					if (settings.fixedColumns > 0) {
+						$divHead = $('<div class="fht-thead"><table class="fht-table"></table></div>').prependTo($fixedBody);
+					} else {
+						$divHead = $('<div class="fht-thead"><table class="fht-table"></table></div>').prependTo($wrapper);
+					}
+
+					$divHead.find('table.fht-table')
+						.addClass(settings.originalTable.attr('class'))
+						.attr('style', settings.originalTable.attr('style'));
+
+					$thead.clone().appendTo($divHead.find('table'));
+				} else {
+					$divHead = $wrapper.find('div.fht-thead');
+				}
+
+				helpers._setupClone($divHead, tableProps.thead);
+
+				$self.css({
+					'margin-top': -$divHead.outerHeight(true)
+				});
+
+				/*
+				 * Check for footer
+				 * Setup footer if present
+				 */
+				if (settings.footer == true) {
+					helpers._setupTableFooter($self, self, tableProps);
+
+					if (!$tfoot.length) {
+						$tfoot = $wrapper.find('div.fht-tfoot table');
+					}
+
+					tfootHeight = $tfoot.outerHeight(true);
+				}
+
+				var tbodyHeight = $wrapper.height() - $thead.outerHeight(true) - tfootHeight - tableProps.border;
+
+				$divBody.css({
+					'height': tbodyHeight
+				});
+
+				$self.addClass('fht-table-init');
+
+				if (typeof(settings.altClass) !== 'undefined') {
+					methods.altRows.apply(self);
+				}
+
+				if (settings.fixedColumns > 0) {
+					helpers._setupFixedColumn($self, self, tableProps);
+				}
+
+				if (!settings.autoShow) {
+					$wrapper.hide();
+				}
+
+				helpers._bindScroll($divBody, tableProps);
+
+				return self;
+			},
+
+			/*
+			 * Resize the table
+			 * Incomplete - not implemented yet
+			 */
+			resize: function() {
+				var self  = this;
+				return self;
+			},
+
+			/*
+			 * Add CSS class to alternating rows
+			 */
+			altRows: function(arg1) {
+				var $self = $(this),
+					altClass  = (typeof(arg1) !== 'undefined') ? arg1 : settings.altClass;
+
+				$self.closest('.fht-table-wrapper')
+					.find('tbody tr:odd:not(:hidden)')
+					.addClass(altClass);
+			},
+
+			/*
+			 * Show a hidden fixedHeaderTable table
+			 */
+			show: function(arg1, arg2, arg3) {
+				var $self   = $(this),
+					self      = this,
+					$wrapper  = $self.closest('.fht-table-wrapper');
+
+				// User provided show duration without a specific effect
+				if (typeof(arg1) !== 'undefined' && typeof(arg1) === 'number') {
+					$wrapper.show(arg1, function() {
+						$.isFunction(arg2) && arg2.call(this);
+					});
+
+					return self;
+
+				} else if (typeof(arg1) !== 'undefined' && typeof(arg1) === 'string' &&
+					typeof(arg2) !== 'undefined' && typeof(arg2) === 'number') {
+					// User provided show duration with an effect
+
+					$wrapper.show(arg1, arg2, function() {
+						$.isFunction(arg3) && arg3.call(this);
+					});
+
+					return self;
+
+				}
+
+				$self.closest('.fht-table-wrapper')
+					.show();
+				$.isFunction(arg1) && arg1.call(this);
+
+				return self;
+			},
+
+			/*
+			 * Hide a fixedHeaderTable table
+			 */
+			hide: function(arg1, arg2, arg3) {
+				var $self     = $(this),
+					self    = this,
+					$wrapper  = $self.closest('.fht-table-wrapper');
+
+				// User provided show duration without a specific effect
+				if (typeof(arg1) !== 'undefined' && typeof(arg1) === 'number') {
+					$wrapper.hide(arg1, function() {
+						$.isFunction(arg3) && arg3.call(this);
+					});
+
+					return self;
+				} else if (typeof(arg1) !== 'undefined' && typeof(arg1) === 'string' &&
+					typeof(arg2) !== 'undefined' && typeof(arg2) === 'number') {
+
+					$wrapper.hide(arg1, arg2, function() {
+						$.isFunction(arg3) && arg3.call(this);
+					});
+
+					return self;
+				}
+
+				$self.closest('.fht-table-wrapper')
+					.hide();
+
+				$.isFunction(arg3) && arg3.call(this);
+
+
+
+				return self;
+			},
+
+			/*
+			 * Destory fixedHeaderTable and return table to original state
+			 */
+			destroy: function() {
+				var $self    = $(this),
+					self     = this,
+					$wrapper = $self.closest('.fht-table-wrapper');
+
+				$self.insertBefore($wrapper)
+					.removeAttr('style')
+					.append($wrapper.find('tfoot'))
+					.removeClass('fht-table fht-table-init')
+					.find('.fht-cell')
+					.remove();
+
+				$wrapper.remove();
+
+				return self;
+			}
+
+		};
+
+		// private methods
+		var helpers = {
+
+			/*
+			 * return boolean
+			 * True if a thead and tbody exist.
+			 */
+			_isTable: function($obj) {
+				var $self = $obj,
+					hasTable = $self.is('table'),
+					hasThead = $self.find('thead').length > 0,
+					hasTbody = $self.find('tbody').length > 0;
+
+				if (hasTable && hasThead && hasTbody) {
+					return true;
+				}
+
+				return false;
+
+			},
+
+			/*
+			 * return void
+			 * bind scroll event
+			 */
+			_bindScroll: function($obj) {
+				var $self = $obj,
+					$wrapper = $self.closest('.fht-table-wrapper'),
+					$thead = $self.siblings('.fht-thead'),
+					$tfoot = $self.siblings('.fht-tfoot');
+
+				$self.bind('scroll', function() {
+					if (settings.fixedColumns > 0) {
+						var $fixedColumns = $wrapper.find('.fht-fixed-column');
+
+						$fixedColumns.find('.fht-tbody table')
+							.css({
+								'margin-top': -$self.scrollTop()
+							});
+					}
+
+					$thead.find('table')
+						.css({
+							'margin-left': -this.scrollLeft
+						});
+
+					if (settings.footer || settings.cloneHeadToFoot) {
+						$tfoot.find('table')
+							.css({
+								'margin-left': -this.scrollLeft
+							});
+					}
+				});
+			},
+
+			/*
+			 * return void
+			 */
+			_fixHeightWithCss: function ($obj, tableProps) {
+				if (settings.includePadding) {
+					$obj.css({
+						'height': $obj.height() + tableProps.border
+					});
+				} else {
+					$obj.css({
+						'height': $obj.parent().height() + tableProps.border
+					});
+				}
+			},
+
+			/*
+			 * return void
+			 */
+			_fixWidthWithCss: function($obj, tableProps, width) {
+				if (settings.includePadding) {
+					$obj.each(function() {
+						$(this).css({
+							'width': width == undefined ? $(this).width() + tableProps.border : width + tableProps.border
+						});
+					});
+				} else {
+					$obj.each(function() {
+						$(this).css({
+							'width': width == undefined ? $(this).parent().width() + tableProps.border : width + tableProps.border
+						});
+					});
+				}
+
+			},
+
+			/*
+			 * return void
+			 */
+			_setupFixedColumn: function ($obj, obj, tableProps) {
+				var $self             = $obj,
+					$wrapper          = $self.closest('.fht-table-wrapper'),
+					$fixedBody        = $wrapper.find('.fht-fixed-body'),
+					$fixedColumn      = $wrapper.find('.fht-fixed-column'),
+					$thead            = $('<div class="fht-thead"><table class="fht-table"><thead><tr></tr></thead></table></div>'),
+					$tbody            = $('<div class="fht-tbody"><table class="fht-table"><tbody></tbody></table></div>'),
+					$tfoot            = $('<div class="fht-tfoot"><table class="fht-table"><tfoot><tr></tr></tfoot></table></div>'),
+					fixedBodyWidth    = $wrapper.width(),
+					fixedBodyHeight   = $fixedBody.find('.fht-tbody').height() - settings.scrollbarOffset,
+					$firstThChildren,
+					$firstTdChildren,
+					fixedColumnWidth,
+					$newRow,
+					firstTdChildrenSelector;
+
+				$thead.find('table.fht-table').addClass(settings.originalTable.attr('class'));
+				$tbody.find('table.fht-table').addClass(settings.originalTable.attr('class'));
+				$tfoot.find('table.fht-table').addClass(settings.originalTable.attr('class'));
+
+				$firstThChildren = $fixedBody.find('.fht-thead thead tr > *:lt(' + settings.fixedColumns + ')');
+				fixedColumnWidth = settings.fixedColumns * tableProps.border;
+				$firstThChildren.each(function() {
+					fixedColumnWidth += $(this).outerWidth(true);
+				});
+
+				// Fix cell heights
+				helpers._fixHeightWithCss($firstThChildren, tableProps);
+				helpers._fixWidthWithCss($firstThChildren, tableProps);
+
+				var tdWidths = [];
+				$firstThChildren.each(function() {
+					tdWidths.push($(this).width());
+				});
+
+				firstTdChildrenSelector = 'tbody tr > *:not(:nth-child(n+' + (settings.fixedColumns + 1) + '))';
+				$firstTdChildren = $fixedBody.find(firstTdChildrenSelector)
+					.each(function(index) {
+						helpers._fixHeightWithCss($(this), tableProps);
+						helpers._fixWidthWithCss($(this), tableProps, tdWidths[index % settings.fixedColumns] );
+					});
+
+				// clone header
+				$thead.appendTo($fixedColumn)
+					.find('tr')
+					.append($firstThChildren.clone());
+
+				$tbody.appendTo($fixedColumn)
+					.css({
+						'margin-top': -1,
+						'height': fixedBodyHeight + tableProps.border
+					});
+
+				$firstTdChildren.each(function(index) {
+					if (index % settings.fixedColumns == 0) {
+						$newRow = $('<tr></tr>').appendTo($tbody.find('tbody'));
+
+						if (settings.altClass && $(this).parent().hasClass(settings.altClass)) {
+							$newRow.addClass(settings.altClass);
+						}
+					}
+
+					$(this).clone()
+						.appendTo($newRow);
+				});
+
+				// set width of fixed column wrapper
+				$fixedColumn.css({
+					'height': 0,
+					'width': fixedColumnWidth
+				});
+
+
+				// bind mousewheel events
+				var maxTop = $fixedColumn.find('.fht-tbody .fht-table').height() - $fixedColumn.find('.fht-tbody').height();
+				$fixedColumn.find('.fht-tbody .fht-table').bind('mousewheel', function(event, delta, deltaX, deltaY) {
+					if (deltaY == 0) {
+						return;
+					}
+					var top = parseInt($(this).css('marginTop'), 10) + (deltaY > 0 ? 120 : -120);
+					if (top > 0) {
+						top = 0;
+					}
+					if (top < -maxTop) {
+						top = -maxTop;
+					}
+					$(this).css('marginTop', top);
+					$fixedBody.find('.fht-tbody').scrollTop(-top).scroll();
+					return false;
+				});
+
+
+				// set width of body table wrapper
+				$fixedBody.css({
+					'width': fixedBodyWidth
+				});
+
+				// setup clone footer with fixed column
+				if (settings.footer == true || settings.cloneHeadToFoot == true) {
+					var $firstTdFootChild = $fixedBody.find('.fht-tfoot tr > *:lt(' + settings.fixedColumns + ')'),
+						footwidth;
+
+					helpers._fixHeightWithCss($firstTdFootChild, tableProps);
+					$tfoot.appendTo($fixedColumn)
+						.find('tr')
+						.append($firstTdFootChild.clone());
+					// Set (view width) of $tfoot div to width of table (this accounts for footers with a colspan)
+					footwidth = $tfoot.find('table').innerWidth();
+					$tfoot.css({
+						'top': settings.scrollbarOffset,
+						'width': footwidth
+					});
+				}
+			},
+
+			/*
+			 * return void
+			 */
+			_setupTableFooter: function ($obj, obj, tableProps) {
+				var $self     = $obj,
+					$wrapper  = $self.closest('.fht-table-wrapper'),
+					$tfoot    = $self.find('tfoot'),
+					$divFoot  = $wrapper.find('div.fht-tfoot');
+
+				if (!$divFoot.length) {
+					if (settings.fixedColumns > 0) {
+						$divFoot = $('<div class="fht-tfoot"><table class="fht-table"></table></div>').appendTo($wrapper.find('.fht-fixed-body'));
+					} else {
+						$divFoot = $('<div class="fht-tfoot"><table class="fht-table"></table></div>').appendTo($wrapper);
+					}
+				}
+				$divFoot.find('table.fht-table').addClass(settings.originalTable.attr('class'));
+
+				switch (true) {
+					case !$tfoot.length && settings.cloneHeadToFoot == true && settings.footer == true:
+
+						var $divHead = $wrapper.find('div.fht-thead');
+
+						$divFoot.empty();
+						$divHead.find('table')
+							.clone()
+							.appendTo($divFoot);
+
+						break;
+					case $tfoot.length && settings.cloneHeadToFoot == false && settings.footer == true:
+
+						$divFoot.find('table')
+							.append($tfoot)
+							.css({
+								'margin-top': -tableProps.border
+							});
+
+						helpers._setupClone($divFoot, tableProps.tfoot);
+
+						break;
+				}
+
+			},
+
+			/*
+			 * return object
+			 * Widths of each thead cell and tbody cell for the first rows.
+			 * Used in fixing widths for the fixed header and optional footer.
+			 */
+			_getTableProps: function($obj) {
+				var tableProp = {
+						thead: {},
+						tbody: {},
+						tfoot: {},
+						border: 0
+					},
+					borderCollapse = 1;
+
+				if (settings.borderCollapse == true) {
+					borderCollapse = 2;
+				}
+
+				tableProp.border = ($obj.find('th:first-child').outerWidth() - $obj.find('th:first-child').innerWidth()) / borderCollapse;
+
+				$obj.find('thead tr:first-child > *').each(function(index) {
+					tableProp.thead[index] = $(this).width() + tableProp.border;
+				});
+
+				$obj.find('tfoot tr:first-child > *').each(function(index) {
+					tableProp.tfoot[index] = $(this).width() + tableProp.border;
+				});
+
+				$obj.find('tbody tr:first-child > *').each(function(index) {
+					tableProp.tbody[index] = $(this).width() + tableProp.border;
+				});
+
+				return tableProp;
+			},
+
+			/*
+			 * return void
+			 * Fix widths of each cell in the first row of obj.
+			 */
+			_setupClone: function($obj, cellArray) {
+				var $self    = $obj,
+					selector = ($self.find('thead').length) ?
+						'thead tr:first-child > *' :
+						($self.find('tfoot').length) ?
+							'tfoot tr:first-child > *' :
+							'tbody tr:first-child > *',
+					$cell;
+
+				$self.find(selector).each(function(index) {
+					$cell = ($(this).find('div.fht-cell').length) ? $(this).find('div.fht-cell') : $('<div class="fht-cell"></div>').appendTo($(this));
+
+					$cell.css({
+						'width': parseInt(cellArray[index], 10)
+					});
+
+					/*
+					 * Fixed Header and Footer should extend the full width
+					 * to align with the scrollbar of the body
+					 */
+					if (!$(this).closest('.fht-tbody').length && $(this).is(':last-child') && !$(this).closest('.fht-fixed-column').length) {
+						var padding = Math.max((($(this).innerWidth() - $(this).width()) / 2), settings.scrollbarOffset);
+						$(this).css({
+							'padding-right': parseInt($(this).css('padding-right')) + padding + 'px'
+						});
+					}
+				});
+			},
+
+			/*
+			 * return boolean
+			 * Determine how the browser calculates fixed widths with padding for tables
+			 * true if width = padding + width
+			 * false if width = width
+			 */
+			_isPaddingIncludedWithWidth: function() {
+				var $obj = $('<table class="fht-table"><tr><td style="padding: 10px; font-size: 10px;">test</td></tr></table>'),
+					defaultHeight,
+					newHeight;
+
+				$obj.addClass(settings.originalTable.attr('class'));
+				$obj.appendTo('body');
+
+				defaultHeight = $obj.find('td').height();
+
+				$obj.find('td')
+					.css('height', $obj.find('tr').height());
+
+				newHeight = $obj.find('td').height();
+				$obj.remove();
+
+				if (defaultHeight != newHeight) {
+					return true;
+				} else {
+					return false;
+				}
+
+			},
+
+			/*
+			 * return int
+			 * get the width of the browsers scroll bar
+			 */
+			_getScrollbarWidth: function() {
+				var scrollbarWidth = 0;
+
+				if (!scrollbarWidth) {
+					if (/msie/.test(navigator.userAgent.toLowerCase())) {
+						var $textarea1 = $('<textarea cols="10" rows="2"></textarea>')
+								.css({ position: 'absolute', top: -1000, left: -1000 }).appendTo('body'),
+							$textarea2 = $('<textarea cols="10" rows="2" style="overflow: hidden;"></textarea>')
+								.css({ position: 'absolute', top: -1000, left: -1000 }).appendTo('body');
+
+						scrollbarWidth = $textarea1.width() - $textarea2.width() + 2; // + 2 for border offset
+						$textarea1.add($textarea2).remove();
+					} else {
+						var $div = $('<div />')
+							.css({ width: 100, height: 100, overflow: 'auto', position: 'absolute', top: -1000, left: -1000 })
+							.prependTo('body').append('<div />').find('div')
+							.css({ width: '100%', height: 200 });
+
+						scrollbarWidth = 100 - $div.width();
+						$div.parent().remove();
+					}
+				}
+
+				return scrollbarWidth;
+			}
+
+		};
+
+
+		// if a method as the given argument exists
+		if (methods[method]) {
+
+			// call the respective method
+			return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+
+			// if an object is given as method OR nothing is given as argument
+		} else if (typeof method === 'object' || !method) {
+
+			// call the initialization method
+			return methods.init.apply(this, arguments);
+
+			// otherwise
+		} else {
+
+			// trigger an error
+			$.error('Method "' +  method + '" does not exist in fixedHeaderTable plugin!');
+
+		}
+
+	};
+
+})(jQuery);

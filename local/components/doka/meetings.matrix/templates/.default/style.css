@@ -26,6 +26,43 @@ td.times-list select{
 	margin-top:10px;
 }
 
+.table-block td.red, #legenda td.red{
+	background: red;
+	color:#fff;
+}
+.table-block td.yellow, #legenda td.yellow{
+	background: yellow;
+	color:#000;
+}
+.table-block td.confirmed, #legenda td.confirmed{
+	background: #ccc;
+	color:#fff;
+}
+.table-block td a{
+	text-decoration:underline;
+	font-weight:bold;
+	color:#fff;
+	}
+.table-block td.yellow a{
+	color:#000;
+	}
+.table-block td select{
+	width:190px;
+	}
+.table-block td {
+	background-color: #0f0f0f;
+}
+.table-block {
+	margin-bottom: 20px;
+}
+.table.fixed-table {
+	margin-bottom: 0;
+}
+
+
+
+/* @group Reset */
+
 .fht-table,
 .fht-table thead,
 .fht-table tfoot,
@@ -34,22 +71,22 @@ td.times-list select{
 .fht-table th,
 .fht-table td {
 	/* position */
-    margin: 0;
-    
-    /* size */
+	margin: 0;
+
+	/* size */
 	padding: 0;
 
 	/* text */
 	font-size: 100%;
 	font: inherit;
 	vertical-align: top;
-	}
+}
 
 .fht-table {
 	/* appearance */
-    border-collapse: collapse;
-    border-spacing: 0;
-	}
+	border-collapse: collapse;
+	border-spacing: 0;
+}
 
 /* @end */
 
@@ -63,60 +100,36 @@ td.times-list select{
 .fht-table-wrapper .fht-tbody {
 	/* appearance */
 	overflow: hidden;
-	
+
 	/* position */
 	position: relative;
-	}
+}
 
-	.fht-table-wrapper .fht-fixed-body .fht-tbody,
-	.fht-table-wrapper .fht-tbody {
-		/* appearance */
-	    overflow: auto;
-		}
+.fht-table-wrapper .fht-fixed-body .fht-tbody,
+.fht-table-wrapper .fht-tbody {
+	/* appearance */
+	overflow: auto;
+}
 
-		.fht-table-wrapper .fht-table .fht-cell {
-			/* appearance */
-			overflow: hidden;
-			
-			/* size */
-		    height: 1px;
-			}
-	
-	.fht-table-wrapper .fht-fixed-column,
-	.fht-table-wrapper .fht-fixed-body {
-	    /* position */
-	    top: 0;
-	    left: 0;
-	    position: absolute;
-	    }
-	    
-	.fht-table-wrapper .fht-fixed-column {
-	    /* position */
-	    z-index: 1;
-	    }
+.fht-table-wrapper .fht-table .fht-cell {
+	/* appearance */
+	overflow: hidden;
+
+	/* size */
+	height: 1px;
+}
+
+.fht-table-wrapper .fht-fixed-column,
+.fht-table-wrapper .fht-fixed-body {
+	/* position */
+	top: 0;
+	left: 0;
+	position: absolute;
+}
+
+.fht-table-wrapper .fht-fixed-column {
+	/* position */
+	z-index: 1;
+}
 
 /* @end */
-
-#results td.red, #legenda td.red{
-	background: red;
-	color:#fff;
-}
-#results td.yellow, #legenda td.yellow{
-	background: yellow;
-	color:#000;
-}
-#results td.confirmed, #legenda td.confirmed{
-	background: #ccc;
-	color:#fff;
-}
-#results td a{
-	text-decoration:underline;
-	font-weight:bold;
-	color:#fff;
-	}
-#results td.yellow a{
-	color:#000;
-	}
-#results td select{
-	width:190px;
-	}
