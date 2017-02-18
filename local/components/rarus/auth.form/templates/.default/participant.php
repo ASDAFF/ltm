@@ -104,7 +104,7 @@ $curDir = $APPLICATION->GetCurDir();
 						<p class="exh-fee">
 							Participation fee: <span class="exh-fee__price"><?=$arExhibition["PARTICIPATION_FEE"]?></span>
 							<?if(strtolower($arExhibition["STATUS"]) != 'available'):?>
-								<span class="exh-fee_status">(<?=strtolower($arExhibition["STATUS"])?>)</span>
+								<span class="exh-fee__status">(<?=strtolower($arExhibition["STATUS"])?>)</span>
 							<?endif;?>
 						</p>
 					<?endif;?>

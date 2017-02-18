@@ -650,6 +650,6 @@ video {
 	font-size: 14px;
 }
 
-.exh-fee__price, .exh-fee_status {
+.exh-fee__price, .exh-fee__status {
 	font-weight: bold;
 }
