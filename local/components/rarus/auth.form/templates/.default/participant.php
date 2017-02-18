@@ -100,6 +100,14 @@ $curDir = $APPLICATION->GetCurDir();
 						<a href="javascript:void(0)" title="<?= GetMessage("AUTH_P_REGISTER_FOR")?> <?= $arExhibition["EXH_NAME"]?>" onclick="regForExhib('<?= $exhId?>','<?= $userId?>', '<?=$arExhibition["ID"]?>')"><?= GetMessage("AUTH_P_REGISTER_FOR")?> <?= $arExhibition["EXH_NAME"]?></a>
 					<?endif;?>
 
+					<?if(!empty($arExhibition["PARTICIPATION_FEE"])):?>
+						<p class="exh-fee">
+							Participation fee: <?=$arExhibition["PARTICIPATION_FEE"]?>
+							<?if(strtolower($arExhibition["STATUS"]) != 'available'):?>
+								<span class="exh-fee_status">(<?=strtolower($arExhibition["STATUS"])?>)</span>
+							<?endif;?>
+						</p>
+					<?endif;?>
     		</div>
     	</div>
     <? endforeach;?>

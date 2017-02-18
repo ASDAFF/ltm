@@ -140,6 +140,7 @@ while($obElement = $rsElement->GetNextElement()) {
 
     $arExhib = array();
     $arExhib["STATUS"] = $arItem["PROPERTIES"]["STATUS"]["VALUE"];
+    $arExhib["PARTICIPATION_FEE"] = $arItem["PROPERTIES"]["PARTICIPATION_FEE"]["VALUE"];
     $arExhib["STATUS_G_M"] = $arItem["PROPERTIES"]["STATUS_G_M"]["VALUE"];
     $arExhib["STATUS_G_E"] = $arItem["PROPERTIES"]["STATUS_G_E"]["VALUE"];
     //если пользователь зарегистрирован на эту выставку
