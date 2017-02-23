@@ -1,9 +1,9 @@
 <div class="main-modal">
     <div class="mdl-cross-close"></div>
-    <h1>LTM Mobile App</h1>
+    <h1 class="main-modal__header">LTM Mobile App</h1>
     <div class="clearfix">
         <div class="mdl-content">
-            <h2>With the LTM Mobile App you can:</h2>
+            <h2 class="main-modal__subheader">With the LTM Mobile App you can:</h2>
             <ul>
                 <li>check your schedule</li>
                 <li>see who is around you</li>
