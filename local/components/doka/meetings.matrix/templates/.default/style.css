@@ -1,27 +1,27 @@
-.table td {
+.table-fixed td {
 	background-color: #0f0f0f;
 }
-.table td.red, #legenda td.red{
+.table-fixed td.red, #legenda td.red{
 	background: red;
 	color:#fff;
 }
-.table td.yellow, #legenda td.yellow{
+.table-fixed td.yellow, #legenda td.yellow{
 	background: yellow;
 	color:#000;
 }
-.table td.confirmed, #legenda td.confirmed{
+.table-fixed td.confirmed, #legenda td.confirmed{
 	background: #ccc;
 	color:#fff;
 }
-.table td a{
+.table-fixed td a{
 	text-decoration:underline;
 	font-weight:bold;
 	color:#fff;
 	}
-.table td.yellow a{
+.table-fixed td.yellow a{
 	color:#000;
 	}
-.table td select{
+.table-fixed td select{
 	width:190px;
 	}
 .timeslots-free{
@@ -30,13 +30,13 @@
 td.times-list select{
 	margin-top:10px;
 }
-table.table {
+table.table-fixed {
 	margin-bottom: 0;
 }
-.admin-container table.table{
+.admin-container table.table-fixed{
 	border: 0;
 }
-.admin-container table th.table {
+.admin-container table th.table-fixed {
 	border-top: 0 !important;
 }
 .table-results {
