@@ -21,6 +21,22 @@
 		url('fonts/Helios_L.ttf') format('truetype'),
 		url('fonts/Helios_L.svg#agopuscregular') format('svg');
 }
+@font-face {
+  font-family: 'Proxima';
+  src:  url('fonts/ProximaNova-Bold.woff2') format('woff2'),
+        url('fonts/ProximaNova-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Proxima';
+  src:  url('fonts/ProximaNova-Semibold.woff2') format('woff2'),
+        url('fonts/ProximaNova-Semibold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+}
+
 
 html, body{
 	margin: 0;
@@ -579,11 +595,12 @@ video {
 	cursor: pointer;
 }
 
-.main-modal h1 {
+.main-modal__header {
 	text-align: center;
 	font-size: 44px;
 	margin: 20px 0 12px;
-	font-family: "Helios_N", Tahoma, sans-serif;
+	font-family: "Proxima", Tahoma, sans-serif;
+	font-weight: 400;
 }
 
 .mdl-content {
@@ -592,12 +609,13 @@ video {
 	position: relative;
 }
 
-.mdl-content h2 {
-	color: #0084ff;
+.main-modal__subheader {
+	color: #00a5c7;
 	font-size: 25px;
 	margin-left: 25px;
 	margin-top: 0;
-	font-family: "Helios_L", Tahoma, sans-serif;
+	font-family: "Proxima", Tahoma, sans-serif;
+	font-weight: 700;
 }
 
 .mdl-content ul {
@@ -624,6 +642,10 @@ video {
 .mdl-content p {
 	text-align: center;
 	margin-bottom: 30px;
+}
+.mdl-content__description {
+	font-family: "Proxima", Tahoma, sans-serif;
+	font-weight: 600;
 }
 
 .appstores {

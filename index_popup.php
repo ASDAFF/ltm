@@ -13,7 +13,7 @@
                 <li>report no-shows and provide feedback</li>
                 <li>contact the organisers</li>
             </ul>
-            <p>Search for "LTM" and download the App to use at this and other Luxury Travel Mart events</p>
+            <p class="mdl-content__description">Search for "LTM" and download the App to use at this and other Luxury Travel Mart events</p>
             <div class="appstores">
                 <a href="https://itunes.apple.com/us/app/ltm-guest-system/id972720598" target="_blank"><img src="<?=SITE_TEMPLATE_PATH?>/images/app-store.svg" alt="" class="storelogo"></a>
                 <a href="https://play.google.com/store/apps/details?id=volpis.com.ltm" target="_blank"><img src="<?=SITE_TEMPLATE_PATH?>/images/google-play.svg" alt="" class="storelogo"></a>
