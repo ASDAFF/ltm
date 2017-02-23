@@ -598,7 +598,7 @@ video {
 .main-modal__header {
 	text-align: center;
 	font-size: 44px;
-	margin: 20px 0 12px;
+	margin: 20px 0 25px;
 	font-family: "Proxima", Tahoma, sans-serif;
 	font-weight: 400;
 }
@@ -660,7 +660,7 @@ video {
 }
 
 .mdl-close {
-	margin: 20px auto 0;
+	margin: 30px auto 0;
 	display: block;
 	text-align: center;
 	text-decoration: none;
