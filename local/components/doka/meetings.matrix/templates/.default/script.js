@@ -13,6 +13,6 @@ $( document ).ready(function() {
 		
 	});
 
-	$(".table-fixed").fixedHeaderTable({ footer: false, fixedColumn: true });
+	$(".table-fixed").fixedHeaderTable({ footer: false, fixedColumn: false });
 
 });
