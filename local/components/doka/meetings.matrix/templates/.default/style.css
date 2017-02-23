@@ -1,30 +1,56 @@
-/*!
-* jquery.fixedHeaderTable. The jQuery fixedHeaderTable plugin
-*
-* Copyright (c) 2011 Mark Malek
-* http://fixedheadertable.com
-*
-* Licensed under MIT
-* http://www.opensource.org/licenses/mit-license.php
-* 
-* http://docs.jquery.com/Plugins/Authoring
-* jQuery authoring guidelines
-*
-* Launch  : October 2009
-* Version : 1.3
-* Released: May 9th, 2011
-*
-* 
-* all CSS sizing (width,height) is done in pixels (px)
-*/
-
-/* @group Reset */
+.table td {
+	background-color: #0f0f0f;
+}
+.table td.red, #legenda td.red{
+	background: red;
+	color:#fff;
+}
+.table td.yellow, #legenda td.yellow{
+	background: yellow;
+	color:#000;
+}
+.table td.confirmed, #legenda td.confirmed{
+	background: #ccc;
+	color:#fff;
+}
+.table td a{
+	text-decoration:underline;
+	font-weight:bold;
+	color:#fff;
+	}
+.table td.yellow a{
+	color:#000;
+	}
+.table td select{
+	width:190px;
+	}
 .timeslots-free{
 	display: none;
 }
 td.times-list select{
 	margin-top:10px;
 }
+table.table {
+	margin-bottom: 0;
+}
+.admin-container table.table{
+	border: 0;
+}
+.admin-container table th.table {
+	border-top: 0 !important;
+}
+.table-results {
+	width: 98vw;
+	height: 90vh;
+	margin-bottom: 20px;
+}
+
+
+/*!
+* jquery.fixedHeaderTable. The jQuery fixedHeaderTable plugin
+*/
+
+/* @group Reset */
 
 .fht-table,
 .fht-table thead,
@@ -34,22 +60,22 @@ td.times-list select{
 .fht-table th,
 .fht-table td {
 	/* position */
-    margin: 0;
-    
-    /* size */
+	margin: 0;
+
+	/* size */
 	padding: 0;
 
 	/* text */
 	font-size: 100%;
 	font: inherit;
 	vertical-align: top;
-	}
+}
 
 .fht-table {
 	/* appearance */
-    border-collapse: collapse;
-    border-spacing: 0;
-	}
+	border-collapse: collapse;
+	border-spacing: 0;
+}
 
 /* @end */
 
@@ -63,60 +89,36 @@ td.times-list select{
 .fht-table-wrapper .fht-tbody {
 	/* appearance */
 	overflow: hidden;
-	
+
 	/* position */
 	position: relative;
-	}
+}
 
-	.fht-table-wrapper .fht-fixed-body .fht-tbody,
-	.fht-table-wrapper .fht-tbody {
-		/* appearance */
-	    overflow: auto;
-		}
+.fht-table-wrapper .fht-fixed-body .fht-tbody,
+.fht-table-wrapper .fht-tbody {
+	/* appearance */
+	overflow: auto;
+}
 
-		.fht-table-wrapper .fht-table .fht-cell {
-			/* appearance */
-			overflow: hidden;
-			
-			/* size */
-		    height: 1px;
-			}
-	
-	.fht-table-wrapper .fht-fixed-column,
-	.fht-table-wrapper .fht-fixed-body {
-	    /* position */
-	    top: 0;
-	    left: 0;
-	    position: absolute;
-	    }
-	    
-	.fht-table-wrapper .fht-fixed-column {
-	    /* position */
-	    z-index: 1;
-	    }
+.fht-table-wrapper .fht-table .fht-cell {
+	/* appearance */
+	overflow: hidden;
+
+	/* size */
+	height: 1px;
+}
+
+.fht-table-wrapper .fht-fixed-column,
+.fht-table-wrapper .fht-fixed-body {
+	/* position */
+	top: 0;
+	left: 0;
+	position: absolute;
+}
+
+.fht-table-wrapper .fht-fixed-column {
+	/* position */
+	z-index: 1;
+}
 
 /* @end */
-
-#results td.red, #legenda td.red{
-	background: red;
-	color:#fff;
-}
-#results td.yellow, #legenda td.yellow{
-	background: yellow;
-	color:#000;
-}
-#results td.confirmed, #legenda td.confirmed{
-	background: #ccc;
-	color:#fff;
-}
-#results td a{
-	text-decoration:underline;
-	font-weight:bold;
-	color:#fff;
-	}
-#results td.yellow a{
-	color:#000;
-	}
-#results td select{
-	width:190px;
-	}

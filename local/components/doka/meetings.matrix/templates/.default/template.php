@@ -1,6 +1,6 @@
 <?
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
-$APPLICATION->AddHeadString('<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>',true);
+$APPLICATION->AddHeadString('<script type="text/javascript" src="'.SITE_TEMPLATE_PATH.'/js/fixedheadertable.min.js"></script>',true);
 ?>
 
 <table border="0" cellspacing="0" cellpadding="10" id="legenda">
@@ -35,15 +35,3 @@ switch ($arResult['USER_TYPE']) {
 }
 ?>
 	<div class="navigate"><?=$arResult["NAVIGATE"]?></div>
-<script>
-	$(document).ready(function() {
-    	// $('#results').fixedHeaderTable({ 
-    	// 	footer: false, 
-    	// 	cloneHeadToFoot: true, 
-    	// 	altClass: 'odd', 
-    	// 	autoShow: true, 
-    	// 	fixedColumns: 1, 
-    	// 	height: 400
-    	// });
-	});
-</script>
