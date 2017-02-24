@@ -244,7 +244,8 @@ while ($data = $rsCompanies->Fetch()) {
 		'city' => $users_list[$data['ID']]['city'],
 		'path' => $pdfFolder.$pdfName,
 		'schedule' => array(),
-		'exhib' => $exhibitionParam
+		'exhib' => $exhibitionParam,
+		'APP_ID' => $arResult['APP_ID']
 	);
 
 	$statuses = $req_obj->getTimslotsStatuses($data);
