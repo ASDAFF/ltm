@@ -460,24 +460,20 @@ Account: 40802978702410000010";
 		}; break;
 
 			case "EM" : {
-				$data["BENEFICIARY"] = "Travel Media,
-registered as Society with limited liability
-with State Registration Number 1047796617472
-at Federal Tax Service Inspectorate No 46 in Moscow
-Общество с ограниченной ответственностью «Трэвэл Медиа»,
-зарегистрированное Инспекцией Федеральной
-Налоговой Службы № 46 по г. Москве,
-государственный регистрационный номер 1047796617472
-ИНН 7707525284
-
-Moscow, Russia";
+				$data["BENEFICIARY"] = "UAB «Europae Media»,
+Įmonės kodas/ company code: 303360184
+PVM mokėtojo kodas/ VAT code: LT100008970519
+Adresas/Address: Vilnius, Tilto g. 12b-23
+Lietuva/Lithuania";
 
 
-				$data["BANK_DETAILS"] = "Beneficiary's Bank:
-VTB Bank (open joint-stock company), Moscow, Russia
-SWIFT: VTBRRUMM
-Beneficiary: Travel Media
-Account: 40702978900140010240";
+				$data["BANK_DETAILS"] = "UAB «Europae Media»
+                
+IBAN LT17 7044 0600 0799 5211
+
+Banko kodas/ Bank code: 70440
+Bankas /Bank: SEB bankas
+SWIFT: CBVILT2X";
 
 				$data["BENEFICIARY_NAME"] = "Elena Vetrova / Ветрова Елена Васильевна";
 			}; break;
