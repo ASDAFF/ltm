@@ -643,11 +643,12 @@ function FooterPDF($data, &$oPDF, $folder)
     $oPDF->SetFont('freeserif','',FONT_SIZE);
     $oPDF->MultiCell(0, 5, $data["BANK_DETAILS"], 0, "C");
     $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
-
-    $oPDF->SetFont('freeserif','B',FONT_SIZE);
-    $oPDF->MultiCell(0, 5, "PLEASE NOTE THAT IBAN CODES DO NOT EXIST IN THE RUSSIAN FEDERATION\n", 0, "C");
-    $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
-
+    if($data["PAY_REQUISITE_XML"] !== "EM") 
+    {
+        $oPDF->SetFont('freeserif','B',FONT_SIZE);
+        $oPDF->MultiCell(0, 5, "PLEASE NOTE THAT IBAN CODES DO NOT EXIST IN THE RUSSIAN FEDERATION\n", 0, "C");
+        $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
+    }
     $oPDF->SetFont('freeserif','',FONT_SIZE);
     $sData  = "This invoice is valid for payments within specified time. Bank charges at payer's expense\n";
     $sData .= "Инвойс действителен в течение оговорённого времени.\n";
