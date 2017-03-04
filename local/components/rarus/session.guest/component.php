@@ -226,7 +226,7 @@ foreach($arResult["USERS"] as &$arUser){
 	//если ввели два адреса
 	$gCompanyLink = trim($arAnswers[$resultId][119][222]["USER_TEXT"]);
 
-	if($gCompanyLink == "http://")
+	if($gCompanyLink == "http://" || empty($gCompanyLink))
 	{
 		$gCompanyLink = "";
 	}
