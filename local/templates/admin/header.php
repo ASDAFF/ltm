@@ -5,8 +5,8 @@
 <head>
 
 	<title><?$APPLICATION->ShowTitle()?></title>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<?$APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH.'/js/bootstrap/bootstrap.css')?>
-	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/jquery-1.10.2.min.js')?>
 	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/bootstrap/bootstrap.min.js')?>
 	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/fancybox/jquery.fancybox.js')?>
 	<?$APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH.'/js/fancybox/jquery.fancybox.css',true)?>
