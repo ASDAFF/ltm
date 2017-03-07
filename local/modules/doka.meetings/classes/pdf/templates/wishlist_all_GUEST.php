@@ -12,7 +12,7 @@ function DokaGeneratePdf($arResult) {
 		$dayline = "День 1, 2 марта 2017";
 	}
 	else {
-		$dayline = "День 2, 3 марта 2017";
+		//$dayline = "День 2, 3 марта 2017";
 	}
 	$arResult["exhib"]["TITLE_RU"] .= "\n";
 	$pdf->multiCell(210, 5, "Список неподтвержденных запросов на\n" . $arResult["exhib"]["TITLE_RU"] . $dayline, 0, C);

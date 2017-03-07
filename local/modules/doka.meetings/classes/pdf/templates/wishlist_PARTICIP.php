@@ -12,7 +12,7 @@ function DokaGeneratePdf($arResult) {
 		$dayline = "Day 1 - March 2, 2017";
 	}
 	else {
-		$dayline = "Day 2 - March 3, 2017";
+		//$dayline = "Day 2 - March 3, 2017";
 	}
 	$pdf->multiCell(180, 5, "Wish-list " . $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'] . " for ", 0, C);
 	$pdf->SetFont('freeserif','',15);

@@ -17,7 +17,7 @@ function DokaGeneratePdf($arResult) {
 		$dayline = "Day 1 - March 2, 2017";
 	}
 	else {
-		$dayline = "Day 2 - March 3, 2017";
+		//$dayline = "Day 2 - March 3, 2017";
 		$arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'] .= "\n";
 	}
 	$pdf->multiCell(200, 6, "at " . $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'] . $dayline, 0, C);
