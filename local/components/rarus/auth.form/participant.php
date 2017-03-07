@@ -176,7 +176,7 @@ while($obElement = $rsElement->GetNextElement()) {
             $meets += $meetsArr["incoming"];
         }
         $arExhib["SCHEDULE"] = array(
-            "LINK" => $arParams["PROFILE_URL"] . "" . $arItem["CODE"] . "/hb/schedule/" . (($USER->IsAdmin())?"?UID=". $arUser["ID"]:""),
+            "LINK" => $arParams["PROFILE_URL"] . "" . $arItem["CODE"] . "/morning/schedule/" . (($USER->IsAdmin())?"?UID=". $arUser["ID"]:""),
             "COUNT" => $meets,
             "APP" => $appId,
             "APP_HB" => $appHBId,
