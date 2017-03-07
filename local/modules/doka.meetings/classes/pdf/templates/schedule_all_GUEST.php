@@ -15,7 +15,7 @@ function DokaGeneratePdf($arResult) {
 		$dayline = "День 1, 2 марта 2017";
 	}
 	else {
-		$dayline = "День 2, 3 марта 2017";
+		//$dayline = "День 2, 3 марта 2017";
 	}
 	$pdf->multiCell(210, 5, "Расписание встреч на утренней сессии\n" . $arResult["exhib"]["TITLE_RU"] . $dayline, 0, C);
 /*$pdf->multiCell(210, 5, "Список неподтвержденных запросов на\nLuxury Travel Mart Баку", 0, C);*/
