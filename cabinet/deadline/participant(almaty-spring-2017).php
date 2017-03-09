@@ -2,7 +2,7 @@
 
 <p><b>January, 12, 2017:</b> Opening of registration for the buyers.</p>
 <p><b>March, 13, 2017:</b> Password, user name and detailed instructions on how to use the online system and to set up your appointments will be sent for your attention.</p>
-<p><b>March 13-30, 2017:</b> Scheduling of appointments for the morning session.</p>
+<p><b>March 14-30, 2017:</b> Scheduling of appointments for the morning session.</p>
 <p><b>March, 30, 2017:</b> Your schedule should be ready and available for printing. A final exhibitors check for the badges.</p>
 
 <h3>PROGRAMM OF THE EVENT</h3>
