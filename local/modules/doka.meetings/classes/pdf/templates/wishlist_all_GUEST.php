@@ -9,10 +9,10 @@ function DokaGeneratePdf($arResult) {
 	$pdf->setXY(0,23);
 	$pdf->SetFont('freeserif','B',17);
 	if($arResult["exhib"]["IS_HB"]){
-		//$dayline = "День 1, 10 марта 2016";
+		$dayline = "День 1, 2 марта 2017";
 	}
 	else {
-		//$dayline = "День 2, 11 марта 2016";
+		//$dayline = "День 2, 3 марта 2017";
 	}
 	$arResult["exhib"]["TITLE_RU"] .= "\n";
 	$pdf->multiCell(210, 5, "Список неподтвержденных запросов на\n" . $arResult["exhib"]["TITLE_RU"] . $dayline, 0, C);

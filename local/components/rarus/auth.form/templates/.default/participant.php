@@ -47,9 +47,6 @@ $curDir = $APPLICATION->GetCurDir();
 	</div>
 <?php // Блок с данными пользователя ?>
 
-<?//Цены на выставки ?>
-<?$APPLICATION->IncludeComponent("bitrix:main.include", "", array("AREA_FILE_SHOW" => "file", "PATH" => SITE_TEMPLATE_PATH."/include/fees.php"), false);?>
-
 <? if($USER->IsAdmin() || (PARTICIPANT_CABINET == "Y" && !empty($arResult["EXHIBITION"]["CONFIRMED"]))):?>
     <?php // Зарегистророваные ?>
     <? foreach ($arResult["EXHIBITION"]["CONFIRMED"] as $arExhibition):?>
@@ -103,6 +100,14 @@ $curDir = $APPLICATION->GetCurDir();
 						<a href="javascript:void(0)" title="<?= GetMessage("AUTH_P_REGISTER_FOR")?> <?= $arExhibition["EXH_NAME"]?>" onclick="regForExhib('<?= $exhId?>','<?= $userId?>', '<?=$arExhibition["ID"]?>')"><?= GetMessage("AUTH_P_REGISTER_FOR")?> <?= $arExhibition["EXH_NAME"]?></a>
 					<?endif;?>
 
+					<?if(!empty($arExhibition["PARTICIPATION_FEE"])):?>
+						<p class="exh-fee">
+							Participation fee: <span class="exh-fee__price"><?=$arExhibition["PARTICIPATION_FEE"]?></span>
+							<?if(strtolower($arExhibition["STATUS"]) != 'available'):?>
+								<span class="exh-fee__status">(<?=strtolower($arExhibition["STATUS"])?>)</span>
+							<?endif;?>
+						</p>
+					<?endif;?>
     		</div>
     	</div>
     <? endforeach;?>

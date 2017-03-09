@@ -12,10 +12,10 @@ function DokaGeneratePdf($arResult) {
 	$pdf->SetFont('freeserif', 'B',17);
 	$arResult["exhib"]["TITLE_RU"] .= "\n";
 	if($arResult["exhib"]["IS_HB"]){
-		//$dayline = "День 1, 10 марта 2016";
+		$dayline = "День 1, 2 марта 2017";
 	}
 	else {
-		//$dayline = "День 2, 11 марта 2016";
+		//$dayline = "День 2, 3 марта 2017";
 	}
 	$pdf->multiCell(210, 5, "Расписание встреч на утренней сессии\n" . $arResult["exhib"]["TITLE_RU"] . $dayline, 0, C);
 /*$pdf->multiCell(210, 5, "Список неподтвержденных запросов на\nLuxury Travel Mart Баку", 0, C);*/
@@ -90,17 +90,17 @@ function DokaGeneratePdf($arResult) {
                     </tr>';
 		}
 		else if($freeseriflot['status'] == 'coffee'){
-			$lunchText = ($arResult['APP_ID'] == 1)? 'Легкий обед': 'Перерыв на обед';
 			$tbl .= '<tr>
-									<td>'.$freeseriflot['name'].'</td>
-									<td colspan="3" align="center">'.$lunchText.'</td>
+									<td>'.$freeseriflot['timeslot_name'].'</td>
+									<td colspan="3" align="center">Перерыв на кофе</td>
 							</tr>';
 			}
 		else if($freeseriflot['status'] == 'lunch'){
+			$lunchText = ($arResult['APP_ID'] == 1)? 'Легкий обед': 'Обед';
 			$tbl .= '<tr>
-                        <td>'.$freeseriflot['timeslot_name'].'</td>
-                        <td colspan="3" align="center">Перерыв на обед</td>
-                    </tr>';
+									<td>'.$freeseriflot['timeslot_name'].'</td>
+									<td colspan="3" align="center">'.$lunchText.'</td>
+							</tr>';
 			}
 		else {
 			$tbl .= '<tr>

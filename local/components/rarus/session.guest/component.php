@@ -101,60 +101,82 @@ $propertyName = CFormMatrix::getPropertyIDByExh($arParams["EXIB_ID"]);
 $cache = new CPHPCache();
 $cache_time = $arParams["CACHE_TIME"];
 $cache_id = 'userList'.$arParams["TYPE"].'gr'.$cGuestGroup.'ex'.$arParams["EXIB_ID"];
+$cacheFormId = 'userForm'.$arParams["TYPE"].'gr'.$cGuestGroup.'ex'.$arParams["EXIB_ID"];
 $cache_path = 'userList';
 if ($cache_time > 0 && $cache->InitCache($cache_time, $cache_id, $cache_path))
 {
 	$res = $cache->GetVars();
 	if (is_array($res["userList"]) && (count($res["userList"]) > 0)){
 		$arResult["USERS"] = $res["userList"];
-		$arAnswers = $res["userAns"];
-		$arQuestions = $res["userQuest"];
+		foreach($arResult["USERS"] as $user) {
+			$arResultId[] = $user[$propertyName];
+		}
 	}
 }
-if (!is_array($arResult["USERS"]) || empty($arResult["USERS"])){
+if ($cache_time > 0 && $cache->InitCache($cache_time, $cacheFormId, $cache_path))
+{
+	$res = $cache->GetVars();
+	if (is_array($res["userAns"]) && (count($res["userAns"]) > 0)){
+		$arAnswers = $res["userAns"];
+	}
+}
+if (!is_array($arResult["USERS"]) || empty($arResult["USERS"])) {
 	$arFilter = array(
 		"GROUPS_ID" => $cGuestGroup,
 		"ACTIVE" => "Y",
 	);
-	if($arParams["TYPE"] == "MORNING"){
+	if ($arParams["TYPE"] == "MORNING") {
 		$arFilter["UF_MR"] = 1;
-	}
-	elseif($arParams["TYPE"] == "EVENING"){
+	} elseif ($arParams["TYPE"] == "EVENING") {
 		$arFilter["UF_EV"] = 1;
-	}
-	elseif($arParams["TYPE"] == "HB"){
+	} elseif ($arParams["TYPE"] == "HB") {
 		$arFilter["UF_HB"] = 1;
 	}
 
-	$arParamsUser= array(
+	$arParamsUser = array(
 		"FIELDS" => array("ID", "NAME", "LAST_NAME", "WORK_COMPANY", "LOGIN", "EMAIL"),
 		"SELECT" => array("UF_*")
 	);
-	$rsUsers = $USER->GetList(($by="work_company"), ($order="asc"), $arFilter, $arParamsUser);
+	$rsUsers = $USER->GetList(($by = "work_company"), ($order = "asc"), $arFilter, $arParamsUser);
 
 	$arResultId = array();//тут список результатов пользователей
-	while($arUser = $rsUsers->Fetch()){
+	while ($arUser = $rsUsers->Fetch()) {
 		$arResultId[] = $arUser[$propertyName];//дописываем id результата заполнения формы
 		$arResult["USERS"][$arUser["ID"]] = $arUser;
 	}
-
-	//получение результатов заполнения формы регистрациия для пользователей
-	CForm::GetResultAnswerArray(
-		GUEST_FORM_ID,
-		$arQuestions,
-		$arAnswers,
-		$arAnswersVarname,
-		array("RESULT_ID" => implode("|",$arResultId)
-		)
-	);
-
 	//////////// end cache /////////
 	if ($cache_time > 0){
 		$cache->StartDataCache($cache_time, $cache_id, $cache_path);
 		$cache->EndDataCache(array(
 			"userList"=>$arResult["USERS"],
+		));
+	}
+}
+
+if(empty($arAnswers)) {
+	//получение результатов заполнения формы регистрациия для пользователей
+	$formFields = [
+		"SIMPLE_QUESTION_115", "SIMPLE_QUESTION_677", "SIMPLE_QUESTION_672", "SIMPLE_QUESTION_678",
+		"SIMPLE_QUESTION_243", "SIMPLE_QUESTION_750", "SIMPLE_QUESTION_823", "SIMPLE_QUESTION_391",
+		"SIMPLE_QUESTION_552", "SIMPLE_QUESTION_166", "SIMPLE_QUESTION_383", "SIMPLE_QUESTION_244",
+		"SIMPLE_QUESTION_212", "SIMPLE_QUESTION_497", "SIMPLE_QUESTION_526", "SIMPLE_QUESTION_878"
+	];
+	CForm::GetResultAnswerArray(
+		GUEST_FORM_ID,
+		$arQuestions,
+		$arAnswers,
+		$arAnswersVarname,
+		array(
+			"RESULT_ID" => implode("|", $arResultId),
+			"FIELD_SID" =>implode("|", $formFields)
+		)
+	);
+
+	//////////// end cache /////////
+	if ($cache_time > 0){
+		$cache->StartDataCache($cache_time, $cacheFormId, $cache_path);
+		$cache->EndDataCache(array(
 			"userAns"=>$arAnswers,
-			"userQuest"=>$arQuestions,
 		));
 	}
 }
@@ -204,7 +226,7 @@ foreach($arResult["USERS"] as &$arUser){
 	//если ввели два адреса
 	$gCompanyLink = trim($arAnswers[$resultId][119][222]["USER_TEXT"]);
 
-	if($gCompanyLink == "http://")
+	if($gCompanyLink == "http://" || empty($gCompanyLink))
 	{
 		$gCompanyLink = "";
 	}

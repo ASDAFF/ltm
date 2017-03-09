@@ -7,11 +7,6 @@ $user = $arResult["USER"];
 if($arResult["ERROR_MESSAGE"] == ''){
 	if($arResult["TYPE"] == "FORM"){
 	?>
-	<? /*
-<style>
-input:disabled{background-color : rgb(143, 188, 143);}
-</style>
-*/?>
 	<form action="" method="post" name="count">
     <table width="100%" border="0" cellspacing="0" cellpadding="5">
       <tr>
@@ -37,15 +32,6 @@ input:disabled{background-color : rgb(143, 188, 143);}
                 <br />
             <? endforeach;?>
 		</td>
-        <? /* вывод селектом если понадобится
-        <td><?$selected = $data["PAY_REQUISITE"];?>
-            <select name="PAY_REQUISITE">
-            <? foreach ($arResult["PAY_REQUISITE"] as $arRequisite):?>
-                <option value="<?= $arRequisite["ID"]?>" <?= ( (!$selected && "Y" == $arRequisite["DEF"]) || ($selected == $arRequisite["ID"]))?"selected":"";?>><?= $arRequisite["VALUE"]?></option>
-            <? endforeach;?>
-            </select>
-		</td>
-		*/?>
       </tr>
       <tr>
         <td><strong>Название компании</strong></td>
@@ -67,14 +53,6 @@ input:disabled{background-color : rgb(143, 188, 143);}
         <input name="RESULT_ID" type="hidden" value="<?= $arResult["USER_RESULT_ID"]?>" />
         <input name="FORM_ID" type="hidden" value="<?= $arResult["FORM_ID"]?>" />
     </form>
-    <? /*
-    <script type="text/javascript">
-    $("div.edit-button").on("click", function()
-	{
-		$(this).siblings("input[name=PAY_NAME]").prop("disabled", false);
-	})
-	</script>
-	*/?>
 	<?
 	}
 	elseif($arResult["TYPE"] == "SENT"){

@@ -257,7 +257,8 @@ if($arResult["ERROR_MESSAGE"] == '')
 	     {
 	     	case 0 : $arData["PAY_REQUISITE_XML"] = "IP"; break;
 	     	case 1 : $arData["PAY_REQUISITE_XML"] = "TM"; break;
-			case 2 : $arData["PAY_REQUISITE_XML"] = "EV"; break;
+				case 2 : $arData["PAY_REQUISITE_XML"] = "EV"; break;
+				case 3 : $arData["PAY_REQUISITE_XML"] = "EM"; break;
 	     	default: $arData["PAY_REQUISITE_XML"] = "IP";
 	     }
 
@@ -458,6 +459,25 @@ Account: 40802978702410000010";
 			$data["BENEFICIARY_NAME"] = "Elena V. Vetrova / Ветрова Елена Васильевна";
 		}; break;
 
+			case "EM" : {
+				$data["BENEFICIARY"] = "UAB «Europae Media»,
+Įmonės kodas/ company code: 303360184
+PVM mokėtojo kodas/ VAT code: LT100008970519
+Adresas/Address: Vilnius, Tilto g. 12b-23
+Lietuva/Lithuania";
+
+
+				$data["BANK_DETAILS"] = "UAB «Europae Media»
+                
+IBAN LT17 7044 0600 0799 5211
+
+Banko kodas/ Bank code: 70440
+Bankas /Bank: SEB bankas
+SWIFT: CBVILT2X";
+
+				$data["BENEFICIARY_NAME"] = "Elena Vetrova / Ветрова Елена Васильевна";
+			}; break;
+
     }
 
     global $APPLICATION;
@@ -525,13 +545,20 @@ function ContractPDF($data, &$oPDF, $folder)
     }
 	elseif($data["PAY_REQUISITE_XML"] == "EV")
 	{
-		$stampY = $oPDF->getY() - 30;
-		$stampX = 100;
+		$stampY = $oPDF->getY() - 25;
+		$stampX = 130;
 		$img = __DIR__ . '/images/stamp_ev.png';
-		$height = 40;
-		$width = 100.94;
-
+		$height = 30;
+		$width = 32;
 	}
+		elseif($data["PAY_REQUISITE_XML"] == "EM")
+		{
+			$stampY = $oPDF->getY() - 30;
+			$stampX = 130;
+			$img = __DIR__ . '/images/stamp_tm.png';
+			$height = 40;
+			$width = 52.88;
+		}
 
     $oPDF->Image($img,$stampX,$stampY,$width,$height ,'','','',false,72,'',false,false,1);
 
@@ -614,20 +641,14 @@ function FooterPDF($data, &$oPDF, $folder)
     $oPDF->MultiCell(0, 5, "Bank details / Банковские реквизиты:\n", 0, "C");
 
     $oPDF->SetFont('freeserif','',FONT_SIZE);
-    /*
-    $sData  = "Beneficiary's Bank:\n";
-    $sData .= "VTB Bank (open joint-stock company), Moscow, Russia\n";
-    $sData .= "SWIFT: VTBRRUMM\n";
-    $sData .= "Beneficiary: Travel Media\n";
-    $sData .= "Account: 40702978900140010240\n";
-    */
     $oPDF->MultiCell(0, 5, $data["BANK_DETAILS"], 0, "C");
     $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
-
-    $oPDF->SetFont('freeserif','B',FONT_SIZE);
-    $oPDF->MultiCell(0, 5, "PLEASE NOTE THAT IBAN CODES DO NOT EXIST IN THE RUSSIAN FEDERATION\n", 0, "C");
-    $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
-
+    if($data["PAY_REQUISITE_XML"] !== "EM") 
+    {
+        $oPDF->SetFont('freeserif','B',FONT_SIZE);
+        $oPDF->MultiCell(0, 5, "PLEASE NOTE THAT IBAN CODES DO NOT EXIST IN THE RUSSIAN FEDERATION\n", 0, "C");
+        $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
+    }
     $oPDF->SetFont('freeserif','',FONT_SIZE);
     $sData  = "This invoice is valid for payments within specified time. Bank charges at payer's expense\n";
     $sData .= "Инвойс действителен в течение оговорённого времени.\n";
@@ -638,10 +659,6 @@ function FooterPDF($data, &$oPDF, $folder)
 
 
     $oPDF->SetFont('freeserif','',FONT_SIZE);
-    /*
-    $sData  = "Elena Vetrova /\n";
-    $sData .= "Ветрова Елена Васильевна\n";
-    */
     $oPDF->MultiCell(0, 5, $data["BENEFICIARY_NAME"], 0, "L");
     $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
 

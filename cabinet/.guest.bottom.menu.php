@@ -19,7 +19,7 @@ if($exhibCode)
             array()
         ),*/
         array(
-            "Утренняя сессия",
+            "Расписание встреч",
             "/cabinet/" . $exhibCode . "/morning/",
             array(),
             array()

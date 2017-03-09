@@ -193,26 +193,17 @@ if("Y" != $exhParticipantEdit)
 				<input type="text" name="form_text_30" id="" class="form-control" value="<?= $value?>" disabled=disabled />
 			</div>
 			<div class="pull-left company-info data-control">
-				<div class="title">Select area of business</div>
+				<div class="title">Area of business</div>
+				<?
+				$arAnswer = reset($arAnswers["SIMPLE_QUESTION_284"]);
+				$valueId = $arAnswer["ANSWER_ID"];
+				$value = $arAnswer["ANSWER_TEXT"];
+				?>
+				<input type="hidden" name="SIMPLE_QUESTION_284" value="<?= $valueId?>" />
+				<input type="text" name="area_of_business" class="form-control" value="<?= $value?>" disabled=disabled />
 				
 				<? $arAnswer = reset($arAnswers["SIMPLE_QUESTION_284"]);?>
-				
-				<div class="dropdown-group">
-					<div class="dropdown-name"><?=$arAnswer["ANSWER_TEXT"]?></div>
-					<ul class="dropdown-items" id="dropdown-items-<?= randString(5)?>">
-						<?foreach ($arAnswersList["SIMPLE_QUESTION_284"] as $areaItem): ?>
-							<li data-id="<?=$areaItem["ID"]?>" <?if($arAnswer["ANSWER_ID"] == $areaItem["ID"]):?>selected<?endif;?>><?= $areaItem["MESSAGE"]?></li>
-						<?endforeach; ?>
-					</ul>
-					<select name="SIMPLE_QUESTION_284" class="none">
-						<?foreach ($arAnswersList["SIMPLE_QUESTION_284"] as $areaItem):?>
-							<option value="<?=$areaItem["ID"]?>" <?if($arAnswer["ANSWER_ID"] == $areaItem["ID"]):?>selected<?endif;?>><?= $areaItem["MESSAGE"]?></option>
-						<?endforeach; ?>
-					</select>
-				</div>
-
-
-			</div>
+		</div>
 			<div class="pull-left company-info">
 				<div class="title">Jpg only!</div>
 				<label class="button-dark ltm-btn" id="upload_logo" >upload logo<? /*<input type="hidden" name="SIMPLE_QUESTION_395" id="" value="" />*/?></label>

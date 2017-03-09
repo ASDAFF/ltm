@@ -1,10 +1,13 @@
 <h3>DEADLINES</h3>
-<!--
-<p><a href="http://luxurytravelmart.ru/files/DAY1-HB.pdf" target="_blank">Download floor plan for the first day</a><br />
-	<a href="http://luxurytravelmart.ru/files/DAY2-EXHIBITORS.pdf" target="_blank">Download floor plan for the second day</a><br />
-	<a href="http://luxurytravelmart.ru/files/LTM2016_exhibitors_program.pdf" target="_blank">Download program for the event</a>
+<h4>Files for download</h4>
+<p><a href="/files/spring-2017/day1_alphabetical.pdf" target="_blank">Download floor plan for the first day in alphabetical order</a><br />
+	<a href="/files/spring-2017/day1_by_table.pdf" target="_blank">Download floor plan for the first day by table number</a><br />
+	<a href="/files/spring-2017/day2_alphabetical.pdf" target="_blank">Download floor plan for the second day in alphabetical order</a><br />
+    <a href="/files/spring-2017/day2_by_table.pdf" target="_blank">Download floor plan for the second day by table number</a><br />
+    <a href="/files/spring-2017/LTM2017_exhibitors_program.pdf" target="_blank">Download program for the event</a><br />
+    
 </p>
--->
+
 <p><b>November, 21, 2016:</b> Opening of registration for the hosted buyers.</p>
 <p><b>January, 11, 2017:</b> Opening of registration for the buyers from Moscow.<br />
 Please note that the registration for the evening reception won't be open for everyone, access to the evening party is by invitation only.</p>

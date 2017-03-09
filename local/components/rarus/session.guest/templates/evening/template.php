@@ -26,7 +26,7 @@
 					<tr>
 						<td class="company">
 							<? if($userFormData["COMPANY"]["LINK"]):?>
-							<a class="company-name" href="<?= $userFormData["COMPANY"]["LINK"]?>" title="<?= $userFormData["COMPANY"]["NAME"]?>"><?= $userFormData["COMPANY"]["NAME"]?></a>
+							<a class="company-name" href="<?= $userFormData["COMPANY"]["LINK"]?>" title="<?= $userFormData["COMPANY"]["NAME"]?>" target="_blank"><?= $userFormData["COMPANY"]["NAME"]?></a>
 							<? else:?>
 							<div class="company-name"><?= $userFormData["COMPANY"]["NAME"]?></div>
 							<? endif;?>
