@@ -143,7 +143,7 @@ while($obElement = $rsElement->GetNextElement())
 
         $arProfile["SCHEDULE"] = array(
             "COUNT" => $meets["incoming"] + $meetsHb["incoming"],
-            "LINK" => $arParams["PROFILE_URL"] . $arItem["CODE"] ."/deadline/" . (($USER->IsAdmin())?"?UID=". $arUser["ID"]:""),
+            "LINK" => $arParams["PROFILE_URL"] . $arItem["CODE"] ."/morning/schedule/" . (($USER->IsAdmin())?"?UID=". $arUser["ID"]:""),
             "APP" => $appId,
             "APP_HB" => $appHbId
         );
