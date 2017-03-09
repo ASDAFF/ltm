@@ -51,12 +51,12 @@ elseif($_SESSION["USER_TYPE"] == "GUEST")
 			<li><a href="<?= $page . "list/" . (($userId)?"?UID=".$userId:"")?>" title="">Список участников</a></li>
 		<?endif;?>
 	</ul>
-        <div class="files">
-            <ul class="files__items">
-                <li class="files__item"><a href="/files/spring-2017/day2_alphabetical.pdf" class="files__link" target="_blank">Скачать план залов (участники в алфавитном порядке)</a></li>
-                <li class="files__item"><a href="/files/spring-2017/day2_by_table.pdf" class="files__link" target="_blank">Скачать план залов (участники по номеру стола)</a></li>
-            </ul>
-        </div>
+<!--         <div class="files">
+			            <ul class="files__items">
+			                <li class="files__item"><a href="/files/spring-2017/day2_alphabetical.pdf" class="files__link" target="_blank">Скачать план залов (участники в алфавитном порядке)</a></li>
+			                <li class="files__item"><a href="/files/spring-2017/day2_by_table.pdf" class="files__link" target="_blank">Скачать план залов (участники по номеру стола)</a></li>
+			            </ul>
+			        </div> -->
 		<div id="session-tab-1">
 		<? include("guest.php");?>
 		</div>
