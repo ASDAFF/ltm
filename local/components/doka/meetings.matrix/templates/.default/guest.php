@@ -1,7 +1,8 @@
 <?
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 ?>
-<table class="table" id="results">
+<div class="table-results">
+	<table class="table table-fixed">
 	<thead>
 		<tr>
 			<th>Компания и представитель</th>
@@ -67,3 +68,4 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 		<?endforeach;?>
 	</tbody>
 </table>
+</div>
