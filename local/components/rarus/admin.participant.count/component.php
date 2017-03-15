@@ -494,7 +494,7 @@ SWIFT: CBVILT2X";
     $pdf->SetAutoPageBreak(TRUE, 5);
 
     $pdf->AddFont('freeserif','I','freeserifi.php');
-    $pdf->AddFont('helvetica','I','helveticai.php');
+    //$pdf->AddFont('helvetica','I','helveticai.php');
     $pdf->setPrintHeader(false);
     $pdf->setPrintFooter(false);
 
@@ -522,7 +522,7 @@ function ContractPDF($data, &$oPDF, $folder)
     $arReplace = array($data["COMPANY_NAME_INVOICE"], $data["PAY_NAME"], $data["FIRST_NAME"], $data["LAST_NAME"], $data["DATE"]);//заносим данные в html
     $html = str_replace($arSearch, $arReplace, $html);
 
-    $oPDF->SetFont('helvetica','',FONT_SIZE);
+    $oPDF->SetFont('freesans','',FONT_SIZE);
     $oPDF->writeHTML($html, true, false, false, false, '');
 
     //печати и подписи
@@ -555,7 +555,7 @@ function ContractPDF($data, &$oPDF, $folder)
 		{
 			$stampY = $oPDF->getY() - 30;
 			$stampX = 130;
-			$img = __DIR__ . '/images/stamp_tm.png';
+			$img = __DIR__ . '/images/stamp_em.png';
 			$height = 40;
 			$width = 52.88;
 		}
