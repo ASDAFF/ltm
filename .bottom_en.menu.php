@@ -28,5 +28,12 @@ $aMenuLinks = Array(
 		Array(), 
 		"" 
 	)
+    Array(
+        "Privacy policy", 
+        "/privacy-policy/", 
+        Array(), 
+        Array(), 
+        "" 
+	)
 );
 ?>
