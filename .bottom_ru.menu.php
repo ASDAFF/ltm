@@ -20,7 +20,7 @@ $aMenuLinks = Array(
 		Array(), 
 		Array(), 
 		"" 
-	)
+	),
     Array(
         "Политика конфиденциальности", 
         "/privacy-policy/", 
