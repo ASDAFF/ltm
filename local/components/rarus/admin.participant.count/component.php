@@ -460,24 +460,20 @@ Account: 40802978702410000010";
 		}; break;
 
 			case "EM" : {
-				$data["BENEFICIARY"] = "Travel Media,
-registered as Society with limited liability
-with State Registration Number 1047796617472
-at Federal Tax Service Inspectorate No 46 in Moscow
-Общество с ограниченной ответственностью «Трэвэл Медиа»,
-зарегистрированное Инспекцией Федеральной
-Налоговой Службы № 46 по г. Москве,
-государственный регистрационный номер 1047796617472
-ИНН 7707525284
-
-Moscow, Russia";
+				$data["BENEFICIARY"] = "UAB «Europae Media»,
+Įmonės kodas/ company code: 303360184
+PVM mokėtojo kodas/ VAT code: LT100008970519
+Adresas/Address: Vilnius, Tilto g. 12b-23
+Lietuva/Lithuania";
 
 
-				$data["BANK_DETAILS"] = "Beneficiary's Bank:
-VTB Bank (open joint-stock company), Moscow, Russia
-SWIFT: VTBRRUMM
-Beneficiary: Travel Media
-Account: 40702978900140010240";
+				$data["BANK_DETAILS"] = "UAB «Europae Media»
+                
+IBAN LT17 7044 0600 0799 5211
+
+Banko kodas/ Bank code: 70440
+Bankas /Bank: SEB bankas
+SWIFT: CBVILT2X";
 
 				$data["BENEFICIARY_NAME"] = "Elena Vetrova / Ветрова Елена Васильевна";
 			}; break;
@@ -498,7 +494,7 @@ Account: 40702978900140010240";
     $pdf->SetAutoPageBreak(TRUE, 5);
 
     $pdf->AddFont('freeserif','I','freeserifi.php');
-    $pdf->AddFont('helvetica','I','helveticai.php');
+    //$pdf->AddFont('helvetica','I','helveticai.php');
     $pdf->setPrintHeader(false);
     $pdf->setPrintFooter(false);
 
@@ -526,7 +522,7 @@ function ContractPDF($data, &$oPDF, $folder)
     $arReplace = array($data["COMPANY_NAME_INVOICE"], $data["PAY_NAME"], $data["FIRST_NAME"], $data["LAST_NAME"], $data["DATE"]);//заносим данные в html
     $html = str_replace($arSearch, $arReplace, $html);
 
-    $oPDF->SetFont('helvetica','',FONT_SIZE);
+    $oPDF->SetFont('freesans','',FONT_SIZE);
     $oPDF->writeHTML($html, true, false, false, false, '');
 
     //печати и подписи
@@ -549,17 +545,17 @@ function ContractPDF($data, &$oPDF, $folder)
     }
 	elseif($data["PAY_REQUISITE_XML"] == "EV")
 	{
-		$stampY = $oPDF->getY() - 30;
-		$stampX = 100;
+		$stampY = $oPDF->getY() - 25;
+		$stampX = 130;
 		$img = __DIR__ . '/images/stamp_ev.png';
-		$height = 40;
-		$width = 100.94;
+		$height = 30;
+		$width = 32;
 	}
 		elseif($data["PAY_REQUISITE_XML"] == "EM")
 		{
 			$stampY = $oPDF->getY() - 30;
 			$stampX = 130;
-			$img = __DIR__ . '/images/stamp_tm.png';
+			$img = __DIR__ . '/images/stamp_em.png';
 			$height = 40;
 			$width = 52.88;
 		}
@@ -647,11 +643,12 @@ function FooterPDF($data, &$oPDF, $folder)
     $oPDF->SetFont('freeserif','',FONT_SIZE);
     $oPDF->MultiCell(0, 5, $data["BANK_DETAILS"], 0, "C");
     $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
-
-    $oPDF->SetFont('freeserif','B',FONT_SIZE);
-    $oPDF->MultiCell(0, 5, "PLEASE NOTE THAT IBAN CODES DO NOT EXIST IN THE RUSSIAN FEDERATION\n", 0, "C");
-    $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
-
+    if($data["PAY_REQUISITE_XML"] !== "EM") 
+    {
+        $oPDF->SetFont('freeserif','B',FONT_SIZE);
+        $oPDF->MultiCell(0, 5, "PLEASE NOTE THAT IBAN CODES DO NOT EXIST IN THE RUSSIAN FEDERATION\n", 0, "C");
+        $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
+    }
     $oPDF->SetFont('freeserif','',FONT_SIZE);
     $sData  = "This invoice is valid for payments within specified time. Bank charges at payer's expense\n";
     $sData .= "Инвойс действителен в течение оговорённого времени.\n";
