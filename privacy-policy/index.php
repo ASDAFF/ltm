@@ -17,7 +17,7 @@ $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 if(LANGUAGE_ID == "ru")
 {
 ?>
-<h1>Privacy Policy</h1>
+<h2>Privacy Policy</h2>
 <p>21-02- 2017</p>
 <p>We are very concerned about your privacy. By using the LTM application, you are putting your trust in us, and we appreciate that. We make every effort to keep your personal data safe. In this document, we will try to clearly explain how we process your personal data. In addition, we will explain how you can contact us if you have any questions concerning your personal data.</p>
 
@@ -49,7 +49,7 @@ You can always exercise your right to find out which of your personal data is st
 
 <h3>Why does LTM collect and use your personal information?</h3>
 <p>We use information collected about you in a variety of ways. Your personal data can be used as follows:</p>
-<ul>
+<ul class="static_ul">
     <li>Participation in the exhibition: first and foremost, we use your personal information to identify you as an exhibitor.</li>
     <li>Support: we provide operational support during the event via online chat.</li>
     <li>Account: LTM users can only create an account on our website as a tourist market specialist, only after approval as a participant by the event organizer. We use the information you provide us to manage your account. With it, users can access useful services. You can use all available functions such as Ring, Block, Message.</li>
@@ -58,7 +58,7 @@ You can always exercise your right to find out which of your personal data is st
     <li>Legal purposes: in some cases we may use your information to process and resolve legal disputes, to investigate at the request of state authorities, to comply with regulatory requirements and to ensure compliance with the terms under which LTM provides services.</li>
 </ul>
 <p>To process the information, as outlined above, we rely on the following legal basis:</p>
-<ul>
+<ul class="static_ul">
     <li>Execution of the agreement: the use of your information may be necessary to execute the contract between us. For example, if you use our services, we will use your information to fulfil our obligations.</li>
     <li>Legitimate interests: we may use your information to fulfil our legitimate interests, for example, to provide you with the most appropriate website content, emails and e-newsletters, to improve and promote our services and the website, for administrative and legal purposes.</li>
     <li>Consent: we may count on your consent to use your personal information for certain direct marketing purposes. You can withdraw your consent at any time by contacting us at the addresses listed at the end of this Privacy Statement.</li>
@@ -95,7 +95,7 @@ You can also contact us if you think we have incorrect information about you, if
 elseif(LANGUAGE_ID == "en")
 {
 ?>
-<h1>Privacy Policy</h1>
+<h2>Privacy Policy</h2>
 <p>21-02- 2017</p>
 <p>We are very concerned about your privacy. By using the LTM application, you are putting your trust in us, and we appreciate that. We make every effort to keep your personal data safe. In this document, we will try to clearly explain how we process your personal data. In addition, we will explain how you can contact us if you have any questions concerning your personal data.</p>
 
@@ -127,7 +127,7 @@ You can always exercise your right to find out which of your personal data is st
 
 <h3>Why does LTM collect and use your personal information?</h3>
 <p>We use information collected about you in a variety of ways. Your personal data can be used as follows:</p>
-<ul>
+<ul class="static_ul">
     <li>Participation in the exhibition: first and foremost, we use your personal information to identify you as an exhibitor.</li>
     <li>Support: we provide operational support during the event via online chat.</li>
     <li>Account: LTM users can only create an account on our website as a tourist market specialist, only after approval as a participant by the event organizer. We use the information you provide us to manage your account. With it, users can access useful services. You can use all available functions such as Ring, Block, Message.</li>
@@ -136,7 +136,7 @@ You can always exercise your right to find out which of your personal data is st
     <li>Legal purposes: in some cases we may use your information to process and resolve legal disputes, to investigate at the request of state authorities, to comply with regulatory requirements and to ensure compliance with the terms under which LTM provides services.</li>
 </ul>
 <p>To process the information, as outlined above, we rely on the following legal basis:</p>
-<ul>
+<ul class="static_ul">
     <li>Execution of the agreement: the use of your information may be necessary to execute the contract between us. For example, if you use our services, we will use your information to fulfil our obligations.</li>
     <li>Legitimate interests: we may use your information to fulfil our legitimate interests, for example, to provide you with the most appropriate website content, emails and e-newsletters, to improve and promote our services and the website, for administrative and legal purposes.</li>
     <li>Consent: we may count on your consent to use your personal information for certain direct marketing purposes. You can withdraw your consent at any time by contacting us at the addresses listed at the end of this Privacy Statement.</li>
