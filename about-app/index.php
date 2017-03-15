@@ -24,7 +24,7 @@ Luxury Travel Mart делает участие в своих выставках 
 Загрузить приложение для iOS <a href="https://appsto.re/ru/wNO-5.i" target="_blank">возможно здесь</a>.
 </p>
 <p>
-Загрузить приложение для Android <a href="https://play.google.com/store/apps/details?id=volpis.com.ltm" target="_blank">возможно здесь</a>.
+Загрузить приложение для Android <a href="https://play.google.com/store/apps/details?id=volpis.com.ltm" target="_blank">возможно здесь</a>.</p>
 
  <?
 }
