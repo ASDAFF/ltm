@@ -13,19 +13,10 @@ if(strlen(trim($data["COMPANY_NAME_FOR_INVOICE"])) <= 0)
 	$data["COMPANY_NAME_FOR_INVOICE"] = $data["COMPANY_NAME"];
 }
 
-/*
-if($data["PASSWORD"] != $data["CONF_PASSWORD"])
-{
-	$arResult["ERRORS"][] = GetMessage("R_E_PASS_NOT_EQUAL");
-}
-*/
-
 if(empty($data["EXHIBITION"]))
 {
 	$arResult["ERRORS"][] = GetMessage("R_E_EMPTY_EXHIBITION");
 }
-
-
 
 $arExhibitions = &$arResult["EXHIBITION"];
 
@@ -75,19 +66,6 @@ GetListFiles($uploaddir."personal",$personalPhoto);
 if(!empty($personalPhoto))
 {
 	$personalPhoto = reset($personalPhoto);
-	/*
-	 $rif = CFile::ResizeImageFile( // уменьшение картинки для превью
-	 		$sourceFile = $logotip,
-	 		$destinationFile =  $uploaddir."tmpimgfile.tmp",
-	 		$arSize = array('width'=>100,'height'=>99999),
-	 		$resizeType = BX_RESIZE_IMAGE_PROPORTIONAL
-	 );
-	
-	if ($rif) {//заменяем картинку
-	unlink($logotip);
-	rename($uploaddir."tmpimgfile.tmp", $logotip);
-	}
-	*/
 	$arPersonal = CFile::MakeFileArray($personalPhoto);
 }
 
@@ -218,19 +196,17 @@ foreach ($data["EXHIBITION"] as $exhId)
 	}
 	
 	/*Добавляем тип почтовых событий для отправки писем*/
-	switch ($exhId)
-	{
-		case "361":{$eventName[] = "REG_NEW_E_MOSSP";} break; //Москва, Россия. 13 марта 2014
-		case "357":{$eventName[] = "REG_NEW_E_BAK";} break; //Баку, Азербайджан. 10 апреля 2014
-		case "360":{$eventName[] = "REG_NEW_E_KIEV";} break; //Киев, Украина. 23 сентября 2014	
-		case "359":{$eventName[] = "REG_NEW_E_ALM";} break; //Алматы, Казахстан. 26 сентября 2014
-		case "358":{$eventName[] = "REG_NEW_E_MOSOT";} break; //Москва, Россия. 2 октября 2014	
-		case "488":{$eventName[] = "REG_NEW_E_MOSSP15";} break; //Москва, Россия. 12-13 марта 2015
-		case "3521":{$eventName[] = "REG_NEW_E_ALM15";} break; //Алматы, Казахстан. 2015
-		case "3522":{$eventName[] = "REG_NEW_E_KIEV15";} break; //Киев, Украина 2015
-		case "3523":{$eventName[] = "REG_NEW_E_MOSOT15";} break; //Москва, Россия 2015
-		case "14025":{$eventName[] = "REG_NEW_E_ALMSP17";} break; //Алматы, Казахстан. весна 2017
-	}
+	$eventName[] = [
+		"EVENT" => $arExhibitions[$exhId]["PROPERTIES"]["EVENT_REG_PARTICIPANT"]["VALUE"],
+		"EXIB" => [
+			"EXIB_NAME_RU" => $arExhibitions[$exhId]["NAME"],
+			"EXIB_NAME_EN" => $arExhibitions[$exhId]["PROPERTIES"]["NAME_EN"]["VALUE"],
+			"EXIB_SHORT_RU" => $arExhibitions[$exhId]["PROPERTIES"]["V_RU"]["VALUE"],
+			"EXIB_SHORT_EN" => $arExhibitions[$exhId]["PROPERTIES"]["V_EN"]["VALUE"],
+			"EXIB_DATE" => $arExhibitions[$exhId]["PROPERTIES"]["DATE"]["VALUE"],
+			"EXIB_PLACE" => $arExhibitions[$exhId]["PROPERTIES"]["VENUE"]["VALUE"],
+		]
+	];
 }
 
 /*Записываем результаты вебформы в свойства пользователя*/
@@ -246,15 +222,6 @@ if($ID_PHOTO_SECTION)
 {
 	$arUserFields["UF_ID_GROUP"] = $ID_PHOTO_SECTION;
 }
-
-/*
-pre("arCompanyFormFields", "f");
-pre($arCompanyFormFields, "f");
-pre("arPersonalFormFields", "f");
-pre($arPersonalFormFields, "f");
-pre("arUserFields", "f");
-pre($arUserFields, "f");
-*/
 
 $arResult["VALUES"] = $arUserFields;
 $bOk = true;
@@ -288,9 +255,10 @@ if (intval($USER_ID) > 0)
 
 	$event = new CEvent;
 
-	foreach ($eventName as $eventNameElem)
+	foreach ($eventName as $eventInfo)
 	{
-		$event->SendImmediate($eventNameElem, SITE_ID, $arEventFields);
+		$fullEventFields = array_merge($arEventFields, $eventInfo["EXIB"]);
+		$event->SendImmediate($eventInfo["EVENT"], SITE_ID, $fullEventFields);
 	}
 
 
