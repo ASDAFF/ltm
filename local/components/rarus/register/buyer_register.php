@@ -223,7 +223,7 @@ if (intval($USER_ID) > 0) {
 	/*Выбор типа почтового собырия*/
 	if(!empty($morning)) {
 		$eventName["M"] = [
-			"EVENT" => $arExhibition["PROPERTIES"]["EVENT_REG_PARTICIPANT"]["VALUE"],
+			"EVENT" => $arExhibition["PROPERTIES"]["EVENT_REG_GUEST"]["VALUE"],
 			"EXIB" => [
 				"EXIB_NAME_RU" => $arExhibition["NAME"],
 				"EXIB_NAME_EN" => $arExhibition["PROPERTIES"]["NAME_EN"]["VALUE"],
@@ -237,7 +237,7 @@ if (intval($USER_ID) > 0) {
 	}
 	if(!empty($evening)) {
 		$eventName["E"] = [
-			"EVENT" => $arExhibition["PROPERTIES"]["EVENT_REG_PARTICIPANT"]["VALUE"],
+			"EVENT" => $arExhibition["PROPERTIES"]["EVENT_REG_GUEST"]["VALUE"],
 			"EXIB" => [
 				"EXIB_NAME_RU" => $arExhibition["NAME"],
 				"EXIB_NAME_EN" => $arExhibition["PROPERTIES"]["NAME_EN"]["VALUE"],
