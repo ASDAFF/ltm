@@ -223,7 +223,7 @@ if (intval($USER_ID) > 0) {
 	/*Выбор типа почтового собырия*/
 	if(!empty($morning)) {
 		$eventName["M"] = [
-			"EVENT" => $arExhibition["PROPERTIES"]["EVENT_REG_PARTICIPANT"]["VALUE"],
+			"EVENT" => $arExhibition["PROPERTIES"]["EVENT_REG_GUEST"]["VALUE"],
 			"EXIB" => [
 				"EXIB_NAME_RU" => $arExhibition["NAME"],
 				"EXIB_NAME_EN" => $arExhibition["PROPERTIES"]["NAME_EN"]["VALUE"],
@@ -231,13 +231,13 @@ if (intval($USER_ID) > 0) {
 				"EXIB_SHORT_EN" => $arExhibition["PROPERTIES"]["V_EN"]["VALUE"],
 				"EXIB_DATE" => $arExhibition["PROPERTIES"]["DATE"]["VALUE"],
 				"EXIB_PLACE" => $arExhibition["PROPERTIES"]["VENUE"]["VALUE"],
-				"TYPE" => "утренняя сессия"
+				"TYPE" => "утреннюю"
 			]
 		];
 	}
 	if(!empty($evening)) {
 		$eventName["E"] = [
-			"EVENT" => $arExhibition["PROPERTIES"]["EVENT_REG_PARTICIPANT"]["VALUE"],
+			"EVENT" => $arExhibition["PROPERTIES"]["EVENT_REG_GUEST"]["VALUE"],
 			"EXIB" => [
 				"EXIB_NAME_RU" => $arExhibition["NAME"],
 				"EXIB_NAME_EN" => $arExhibition["PROPERTIES"]["NAME_EN"]["VALUE"],
@@ -245,7 +245,7 @@ if (intval($USER_ID) > 0) {
 				"EXIB_SHORT_EN" => $arExhibition["PROPERTIES"]["V_EN"]["VALUE"],
 				"EXIB_DATE" => $arExhibition["PROPERTIES"]["DATE"]["VALUE"],
 				"EXIB_PLACE" => $arExhibition["PROPERTIES"]["VENUE"]["VALUE"],
-				"TYPE" => "вечерняя сессия"
+				"TYPE" => "вечернюю"
 			]
 		];
 	}
