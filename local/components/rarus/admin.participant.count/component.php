@@ -465,7 +465,9 @@ Account: 40802978702410000010";
 PVM mokėtojo kodas/ VAT code: LT100008970519
 Adresas/Address: Vilnius, Tilto g. 12b-23
 Lietuva/Lithuania
-IBAN LT17 7044 0600 0799 5211";
+IBAN LT17 7044 0600 0799 5211
+
+";
 
 
 				$data["BANK_DETAILS"] = "UAB «Europae Media»
