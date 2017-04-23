@@ -47,7 +47,7 @@ if($exhibID && $userID)
 
 	$arEventFields = array(
 		"LOGIN"            => $arUser["LOGIN"],
-		"MAIL"             => $arUser["EMAIL"],
+		"EMAIL"             => $arUser["EMAIL"],
 		"COMP_NAME"        => $arUser["WORK_COMPANY"],
 		"PASSWORD"         => $arUser["UF_PAS"],
 		"EXIB_NAME_RU" => $arExhibitionFields["NAME"],
@@ -70,7 +70,7 @@ if($exhibID && $userID)
 		//заменяем email из вебформы, если там есть
 		if(isset($arFormData["EMAIL"]) && !empty($arFormData["EMAIL"]))
 		{
-			$arEventFields["MAIL"] = $arFormData["EMAIL"];
+			$arEventFields["EMAIL"] = $arFormData["EMAIL"];
 		}
 
 		if($sendType && !empty($arEventFields))
