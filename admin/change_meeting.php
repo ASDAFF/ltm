@@ -98,8 +98,12 @@ while ($exhibition = $rsExhibitions->Fetch()) {
             'TIMESLOT_NAME' => $timeslot['name'],
             'SENDER_COMPANY' => $sender['company_name'],
             'RECEIVER_COMPANY' => $receiver['company_name'],
-            "EXIB_NAME" => $arResult["PARAM_EXHIBITION"]["NAME"],
-            "EXIB_SHORT" => $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]["VALUE"]
+            "EXIB_NAME_RU" => $arResult["PARAM_EXHIBITION"]["NAME"],
+            "EXIB_NAME_EN" => $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["NAME_EN"]["VALUE"],
+            "EXIB_SHORT_RU" => $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]["VALUE"],
+            "EXIB_SHORT_EN" => $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]["VALUE"],
+            "EXIB_DATE" => $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["DATE"]["VALUE"],
+            "EXIB_PLACE" => $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["VENUE"]["VALUE"],
         );
 
         CEvent::Send($exhibition['EVENT_TIMEOUT'], "s1", $mail_fields);
