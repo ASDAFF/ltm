@@ -25,11 +25,14 @@ if($exhibID && $userID)
 
 	$rsExhib = CIBlockElement::GetByID($exhibID);
 	$obExhib = $rsExhib->GetNextElement();
-	$arProps = $obExhib->GetProperty("UC_PARTICIPANTS_GROUP");
 
+	$arExhibitionProperties = $obExhib->GetProperties();
+	$arExhibitionFields = $obExhib->GetFields();
+
+	$arProps = $obExhib->GetProperty("UC_PARTICIPANTS_GROUP");
 	$ucExhibGroupID = $arProps["VALUE"];
 
-	$arProps = $obExhib->GetProperty("EVENT_PREREG_LK");
+	$arProps = $obExhib->GetProperty("EVENT_REG_PARTICIPANT");
 	$sendType = $arProps["VALUE"];
 
 	$arUserGroups = $user->GetUserGroup($userID);
@@ -44,9 +47,15 @@ if($exhibID && $userID)
 
 	$arEventFields = array(
 		"LOGIN"            => $arUser["LOGIN"],
-		"MAIL"             => $arUser["EMAIL"],
+		"EMAIL"             => $arUser["EMAIL"],
 		"COMP_NAME"        => $arUser["WORK_COMPANY"],
-		"PASSWORD"         => $aruser["UF_PAS"]
+		"PASSWORD"         => $arUser["UF_PAS"],
+		"EXIB_NAME_RU" => $arExhibitionFields["NAME"],
+		"EXIB_NAME_EN" => $arExhibitionProperties["NAME_EN"]["VALUE"],
+		"EXIB_SHORT_RU" => $arExhibitionProperties["V_RU"]["VALUE"],
+		"EXIB_SHORT_EN" => $arExhibitionProperties["V_EN"]["VALUE"],
+		"EXIB_DATE" => $arExhibitionProperties["DATE"]["VALUE"],
+		"EXIB_PLACE" => $arExhibitionProperties["VENUE"]["VALUE"],
 	);
 
 
@@ -61,7 +70,7 @@ if($exhibID && $userID)
 		//заменяем email из вебформы, если там есть
 		if(isset($arFormData["EMAIL"]) && !empty($arFormData["EMAIL"]))
 		{
-			$arEventFields["MAIL"] = $arFormData["EMAIL"];
+			$arEventFields["EMAIL"] = $arFormData["EMAIL"];
 		}
 
 		if($sendType && !empty($arEventFields))

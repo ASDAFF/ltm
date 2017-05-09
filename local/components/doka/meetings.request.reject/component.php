@@ -164,8 +164,12 @@ if (!isset($arResult['ERROR_MESSAGE']) && ($arResult['IS_ACTIVE'] || $arResult['
 			"EMAIL" => $arResult["SENDER"]["email"],
 			"COMPANY" => $arResult["RECEIVER"]["company_name"],
 			"USER" => $arResult["RECEIVER"]["repr_name"],
-			"EXIB_NAME" => $arResult["PARAM_EXHIBITION"]["NAME"],
-			"EXIB_SHORT" => $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]["VALUE"]
+			"EXIB_NAME_RU" => $arResult["PARAM_EXHIBITION"]["NAME"],
+			"EXIB_NAME_EN" => $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["NAME_EN"]["VALUE"],
+			"EXIB_SHORT_RU" => $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]["VALUE"],
+			"EXIB_SHORT_EN" => $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]["VALUE"],
+			"EXIB_DATE" => $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["DATE"]["VALUE"],
+			"EXIB_PLACE" => $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["VENUE"]["VALUE"],
 		);
 		CEvent::Send($req_obj->getOption('EVENT_REJECT'),"s1",$arFieldsMes);
 	}

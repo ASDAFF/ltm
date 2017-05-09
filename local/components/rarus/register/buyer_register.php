@@ -172,63 +172,41 @@ $arUserFields = array(
 /*Добавляем стандартные группы при регистрации*/
 $def_group = COption::GetOptionString("main", "new_user_registration_def_group", "");
 
-if($def_group != "")
+if($def_group != "") {
 	$arUserFields["GROUP_ID"] = explode(",", $def_group);
+}
 
 /*Добавляем в группу неподтвержденных гостей выставки*/
-
 $ucGuestGroupID = $arExhibition["PROPERTIES"]["UC_GUESTS_GROUP"]["VALUE"];
-if($ucGuestGroupID)
-{
+if($ucGuestGroupID) {
 	$arUserFields["GROUP_ID"][] = $ucGuestGroupID;
 }
 
 /*Записываем результаты вебформы в свойства пользователя*/
 
 $exhibPropName = CFormMatrix::getPropertyIDByExh($exhibitionID);
-if($exhibPropName && $RESULT_ID)
-{
+if($exhibPropName && $RESULT_ID) {
 	$arUserFields[$exhibPropName] = $RESULT_ID;
 	$arUserFields["UF_ID_COMP"] = $RESULT_ID;
 }
-
-/*Запись гостя на утро или на вечер*/
-//$arUserFields["UF_MR"] = (!empty($morning))?"Y":"N";
-//$arUserFields["UF_EV"] = (!empty($evening))?"Y":"N";
-
 
 /*отправляем в компонент*/
 $arResult["VALUES"] = $arUserFields;
 $bOk = true;
 
-//pre("request\r\n", "f");
-//pre($_REQUEST, "f");
-
-/*
-pre("arUserFormFields\r\n", "f");
-pre($arUserFormFields, "f");
-*/
-/*
-pre("arUserFields\r\n", "f");
-pre($arResult["VALUES"], "f");
-*/
-
 global $USER_FIELD_MANAGER;
 $USER_FIELD_MANAGER->EditFormAddFields("USER", $arResult["VALUES"]);
 
-if ($bOk)
-{
+if ($bOk) {
 	$user = new CUser();
 	$USER_ID = $user->Add($arResult["VALUES"]);
 }
 
-if (intval($USER_ID) > 0)
-{
+if (intval($USER_ID) > 0) {
 	$register_done = true;
 
 	// authorize user
-	if ($arParams["AUTH"] == "Y" && $arResult["VALUES"]["ACTIVE"] == "Y")
-	{
+	if ($arParams["AUTH"] == "Y" && $arResult["VALUES"]["ACTIVE"] == "Y") {
 		if (!$arAuthResult = $USER->Login($arResult["VALUES"]["LOGIN"], $arResult["VALUES"]["PASSWORD"]))
 			$arResult["ERRORS"][] = $arAuthResult;
 	}
@@ -243,156 +221,57 @@ if (intval($USER_ID) > 0)
 	$eventName = array();
 	
 	/*Выбор типа почтового собырия*/
-	switch ($exhibitionID)
-	{
-		case "361" ://Москва, Россия. 13 марта 2014
-			{
-				if(!empty($morning))
-				{
-					$eventName["M"] = "REG_NEW_B_MOSSP_M";
-				}
-				if(!empty($evening))
-				{
-					$eventName["E"] = "REG_NEW_B_MOSSP_E";
-				}
-			}
-		break;
-		case "357" ://Баку, Азербайджан. 10 апреля 2014
-			{
-				if(!empty($morning))
-				{
-					$eventName["M"] = "REG_NEW_B_BAK_M";
-				}
-				if(!empty($evening))
-				{
-					$eventName["E"] = "REG_NEW_B_BAK_E";
-				}
-			}
-		break;
-		case "360" ://Киев, Украина. 23 сентября 2014	
-			{
-				if(!empty($morning))
-				{
-					$eventName["M"] = "REG_NEW_B_KIEV_M";
-				}
-				if(!empty($evening))
-				{
-					$eventName["E"] = "REG_NEW_B_KIEV_E";
-				}
-			}
-		break;
-		case "488" ://Москва, Россия. 12-13 марта 2015	
-			{
-				if(!empty($morning))
-				{
-					$eventName["M"] = "REG_NEW_B_MOSSP15_M";
-				}
-				if(!empty($evening))
-				{
-					$eventName["E"] = "REG_NEW_B_MOSSP15_E";
-				}
-			}
-		break;
-		case "358" ://Москва, Россия. 2 октября 2014	
-			{
-				if(!empty($morning))
-				{
-					$eventName["M"] = "REG_NEW_B_MOSOT_M";
-				}
-				if(!empty($evening))
-				{
-					$eventName["E"] = "REG_NEW_B_MOSOT_E";
-				}
-			}
-		break;
-		case "359" ://Алматы, Казахстан. 26 сентября 2014
-			{
-				if(!empty($morning))
-				{
-					$eventName["M"] = "REG_NEW_B_ALM_M";
-				}
-				if(!empty($evening))
-				{
-					$eventName["E"] = "REG_NEW_B_ALM_E";
-				}
-			}
-		break;
-		case "3522" ://Киев, Украина. 22 сентября 2015
-		{
-			if(!empty($morning))
-			{
-				$eventName["M"] = "REG_NEW_B_KIEV_M";
-			}
-			if(!empty($evening))
-			{
-				$eventName["E"] = "REG_NEW_B_KIEV_E";
-			}
-		}
-		break;
-		case "3523" ://Москва, Россия. 1 октября 2015
-		{
-			if(!empty($morning))
-			{
-				$eventName["M"] = "REG_NEW_B_MOSOT_M";
-			}
-			if(!empty($evening))
-			{
-				$eventName["E"] = "REG_NEW_B_MOSOT_E";
-			}
-		}
-			break;
-		case "3521" ://Алматы, Казахстан. 25 сентября 2015
-		{
-			if(!empty($morning))
-			{
-				$eventName["M"] = "REG_NEW_B_ALM_M";
-			}
-			if(!empty($evening))
-			{
-				$eventName["E"] = "REG_NEW_B_ALM_E";
-			}
-		}
-			break;
-		case "14025" ://Алматы, Казахстан. весна 2017
-		{
-			if(!empty($morning))
-			{
-				$eventName["M"] = "REG_NEW_B_ALMSP17_M";
-			}
-			if(!empty($evening))
-			{
-				$eventName["E"] = "REG_NEW_B_ALMSP17_E";
-			}
-		}
-			break;
+	if(!empty($morning)) {
+		$eventName["M"] = [
+			"EVENT" => $arExhibition["PROPERTIES"]["EVENT_REG_GUEST"]["VALUE"],
+			"EXIB" => [
+				"EXIB_NAME_RU" => $arExhibition["NAME"],
+				"EXIB_NAME_EN" => $arExhibition["PROPERTIES"]["NAME_EN"]["VALUE"],
+				"EXIB_SHORT_RU" => $arExhibition["PROPERTIES"]["V_RU"]["VALUE"],
+				"EXIB_SHORT_EN" => $arExhibition["PROPERTIES"]["V_EN"]["VALUE"],
+				"EXIB_DATE" => $arExhibition["PROPERTIES"]["DATE"]["VALUE"],
+				"EXIB_PLACE" => $arExhibition["PROPERTIES"]["VENUE"]["VALUE"],
+				"TYPE" => "утреннюю"
+			]
+		];
+	}
+	if(!empty($evening)) {
+		$eventName["E"] = [
+			"EVENT" => $arExhibition["PROPERTIES"]["EVENT_REG_GUEST"]["VALUE"],
+			"EXIB" => [
+				"EXIB_NAME_RU" => $arExhibition["NAME"],
+				"EXIB_NAME_EN" => $arExhibition["PROPERTIES"]["NAME_EN"]["VALUE"],
+				"EXIB_SHORT_RU" => $arExhibition["PROPERTIES"]["V_RU"]["VALUE"],
+				"EXIB_SHORT_EN" => $arExhibition["PROPERTIES"]["V_EN"]["VALUE"],
+				"EXIB_DATE" => $arExhibition["PROPERTIES"]["DATE"]["VALUE"],
+				"EXIB_PLACE" => $arExhibition["PROPERTIES"]["VENUE"]["VALUE"],
+				"TYPE" => "вечернюю"
+			]
+		];
 	}
 
-	foreach ($eventName as $when => $eventNameElem)
-	{
-		$event->SendImmediate($eventNameElem, SITE_ID, $arEventFields);
-		if($arParams["COLLEAGUE_SEND_EMAIL"] == "Y")
-		{
-			if($when == "E")
-			{
-				foreach ($data["COLLEAGUE"] as $type => $arColleague)
-				{
+	foreach ($eventName as $when => $eventInfo) {
+		$fullEventFields = array_merge($arEventFields, $eventInfo["EXIB"]);
+		$event->SendImmediate($eventInfo["EVENT"], SITE_ID, $fullEventFields);
+
+		$eventColleagueRegistration =  $arExhibition["PROPERTIES"]["EVENT_REG_GUEST_COLLEAGUE"]["VALUE"];
+
+		if($arParams["COLLEAGUE_SEND_EMAIL"] == "Y") {
+			if($when == "E") {
+				foreach ($data["COLLEAGUE"] as $type => $arColleague) {
 					$arEveningColleagueEventFields = array();
-					if(!empty($arColleague["EMAIL"]) && !empty($arColleague["NAME"]) && "MORNING" !== $type)
-					{
+					if(!empty($arColleague["EMAIL"]) && !empty($arColleague["NAME"]) && "MORNING" !== $type) {
 						$arEveningColleagueEventFields = $arColleague;
 						$arEveningColleagueEventFields["MAIL"] = $arColleague["EMAIL"];
 						$arEveningColleagueEventFields["EXHIB"] = $arResult["EXHIBITION"][$exhibitionID]["PROPERTIES"]["menu_en"]["VALUE"];
 						$arEveningColleagueEventFields["BUYER"] = "{$data["NAME"]} {$data["LAST_NAME"]}";
 
-						$event->Send("REG_GUEST_COLLEAGUE", SITE_ID, $arEveningColleagueEventFields);
+						$event->Send($eventColleagueRegistration, SITE_ID, $arEveningColleagueEventFields);
 					}
 				}
-			}
-			elseif($when == "M")
-			{
+			} elseif($when == "M") {
 				$arMailFields = array();
-				if(!empty($data["COLLEAGUE"]["MORNING"]["EMAIL"]) && !empty($data["COLLEAGUE"]["MORNING"]["EMAIL"]))
-				{
+				if(!empty($data["COLLEAGUE"]["MORNING"]["EMAIL"]) && !empty($data["COLLEAGUE"]["MORNING"]["EMAIL"])) {
 					$arMailFields = $data["COLLEAGUE"]["MORNING"];
 					$arMailFields["MAIL"] = $data["COLLEAGUE"]["MORNING"]["EMAIL"];
 					$arMailFields["EXHIB"] = $arResult["EXHIBITION"][$exhibitionID]["PROPERTIES"]["menu_en"]["VALUE"];
@@ -403,50 +282,18 @@ if (intval($USER_ID) > 0)
 			}
 		}
 	}
-	
-	/*
-	 
-	$arEveningColleagueEventFields = array();
-	foreach ($data["COLLEAGUE"] as $arColleague)
-	{
-		if(!empty($arColleague["EMAIL"]) && !empty($arColleague["NAME"]))
-		{
-			$arEveningColleagueEventFields[] = $arColleague;
-			$arEveningColleagueEventFields["MAIL"] = $arColleague["EMAIL"];
-		}
-	}
-	 
-	foreach($arEveningColleagueEventFields as $arEveningEventFields) 
-	{
-		$event->SendImmediate("", SITE_ID, $arEveningEventFields);
-	}
-	
-	*/
-	
-	if($bConfirmReq)
+
+	if($bConfirmReq) {
 		$event->SendImmediate("NEW_USER_CONFIRM", SITE_ID, $arEventFields);
-	
-	
-	/*Отправка писем о регистрации*/
-	
-	/*
-	$event->SendImmediate("NEW_USER", SITE_ID, $arEventFields);
-	if($bConfirmReq)
-		$event->SendImmediate("NEW_USER_CONFIRM", SITE_ID, $arEventFields);
-	*/
-}
-else
-{
+	}
+} else {
 	$arResult["ERRORS"][] = $user->LAST_ERROR;
 }
 
-if(count($arResult["ERRORS"]) <= 0)
-{
+if(count($arResult["ERRORS"]) <= 0) {
 	if(COption::GetOptionString("main", "event_log_register", "N") === "Y")
 		CEventLog::Log("SECURITY", "USER_REGISTER", "main", $ID);
-}
-else
-{
+} else {
 	if(COption::GetOptionString("main", "event_log_register_fail", "N") === "Y")
 		CEventLog::Log("SECURITY", "USER_REGISTER_FAIL", "main", $ID, implode("<br>", $arResult["ERRORS"]));
 }
