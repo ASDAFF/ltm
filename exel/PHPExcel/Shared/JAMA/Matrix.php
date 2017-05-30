@@ -9,7 +9,7 @@ if (!defined('PHPEXCEL_ROOT')) {
 	 * @ignore
 	 */
 	define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../../');
-	require(PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php');
+	require(PHPEXCEL_ROOT . 'PHPExcel_2222/Autoloader.php');
 }
 
 
@@ -1028,7 +1028,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 			$LU = new PHPExcel_Shared_JAMA_LUDecomposition($this);
 			return $LU->solve($B);
 		} else {
-			$QR = new QRDecomposition($this);
+			$QR = new PHPExcel_Shared_JAMA_QRDecomposition($this);
 			return $QR->solve($B);
 		}
 	}	//	function solve()
@@ -1054,6 +1054,4 @@ class PHPExcel_Shared_JAMA_Matrix {
 		$L = new PHPExcel_Shared_JAMA_LUDecomposition($this);
 		return $L->det();
 	}	//	function det()
-
-
 }	//	class PHPExcel_Shared_JAMA_Matrix
