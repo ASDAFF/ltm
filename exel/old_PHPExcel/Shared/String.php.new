@@ -1,0 +1,158 @@
+<?php
+/**
+ * PHPExcel
+ *
+ * Copyright (c) 2006 - 2013 PHPExcel
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ *
+ * @category   PHPExcel
+ * @package    PHPExcel_Shared
+ * @copyright  Copyright (c) 2006 - 2013 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
+ * @version    1.7.9, 2013-06-02
+ */
+
+
+/**
+ * PHPExcel_Shared_String
+ *
+ * @category   PHPExcel
+ * @package    PHPExcel_Shared
+ * @copyright  Copyright (c) 2006 - 2013 PHPExcel (http://www.codeplex.com/PHPExcel)
+ */
+class PHPExcel_Shared_String
+{
+	/**	Constants				*/
+	/**	Regular Expressions		*/
+	//	Fraction
+	const STRING_REGEXP_FRACTION	= '(-?)(\d+)\s+(\d+\/\d+)';
+
+
+	/**
+	 * Control characters array
+	 *
+	 * @var string[]
+	 */
+	private static $_controlCharacters = array();
+
+	/**
+	 * SYLK Characters array
+	 *
+	 * $var array
+	 */
+	private static $_SYLKCharacters = array();
+
+	/**
+	 * Decimal separator
+	 *
+	 * @var string
+	 */
+	private static $_decimalSeparator;
+
+	/**
+	 * Thousands separator
+	 *
+	 * @var string
+	 */
+	private static $_thousandsSeparator;
+
+	/**
+	 * Currency code
+	 *
+	 * @var string
+	 */
+	private static $_currencyCode;
+
+	/**
+	 * Is mbstring extension avalable?
+	 *
+	 * @var boolean
+	 */
+	private static $_isMbstringEnabled;
+
+	/**
+	 * Is iconv extension avalable?
+	 *
+	 * @var boolean
+	 */
+	private static $_isIconvEnabled;
+
+	/**
+	 * Build control characters array
+	 */
+	private static function _buildControlCharacters() {
+		for ($i = 0; $i <= 31; ++$i) {
+			if ($i != 9 && $i != 10 && $i != 13) {
+				$find = '_x' . sprintf('%04s' , strtoupper(dechex($i))) . '_';
+				$replace = chr($i);
+				self::$_controlCharacters[$find] = $replace;
+			}
+		}
+	}
+
+	/**
+	 * Build SYLK characters array
+	 */
+	private static function _buildSYLKCharacters()
+	{
+		self::$_SYLKCharacters = array(
+			"\x1B 0"  => chr(0),
+			"\x1B 1"  => chr(1),
+			"\x1B 2"  => chr(2),
+			"\x1B 3"  => chr(3),
+			"\x1B 4"  => chr(4),
+			"\x1B 5"  => chr(5),
+			"\x1B 6"  => chr(6),
+			"\x1B 7"  => chr(7),
+			"\x1B 8"  => chr(8),
+			"\x1B 9"  => chr(9),
+			"\x1B :"  => chr(10),
+			"\x1B ;"  => chr(11),
+			"\x1B <"  => chr(12),
+			"\x1B :"  => chr(13),
+			"\x1B >"  => chr(14),
+			"\x1B ?"  => chr(15),
+			"\x1B!0"  => chr(16),
+			"\x1B!1"  => chr(17),
+			"\x1B!2"  => chr(18),
+			"\x1B!3"  => chr(19),
+			"\x1B!4"  => chr(20),
+			"\x1B!5"  => chr(21),
+			"\x1B!6"  => chr(22),
+			"\x1B!7"  => chr(23),
+			"\x1B!8"  => chr(24),
+			"\x1B!9"  => chr(25),
+			"\x1B!:"  => chr(26),
+			"\x1B!;"  => chr(27),
+			"\x1B!<"  => chr(28),
+			"\x1B!="  => chr(29),
+			"\x1B!>"  => chr(30),
+			"\x1B!?"  => chr(31),
+			"\x1B'?"  => chr(127),
+			"\x1B(0"  => 'в‚¬', // 128 in CP1252
+			"\x1B(2"  => 'вЂљ', // 130 in CP1252
+			"\x1B(3"  => 'Ж’', // 131 in CP1252
+			"\x1B(4"  => 'вЂћ', // 132 in CP1252
+			"\x1B(5"  => 'вЂ¦', // 133 in CP1252
+			"\x1B(6"  => 'вЂ ', // 134 in CP1252
+			"\x1B(7"  => 'вЂЎ', // 135 in CP1252
+			"\x1B(8"  => 'Л†', // 136 in CP1252
+			"\x1B(9"  => 'вЂ°', // 137 in CP1252
+			"\x1B(:"  => 'Е ', // 138 in CP1252
+			"\x1B(;"  => 'вЂ№', // 139 in CP1252
+			"\x1BNj"  => 'Е’', // 140 in CP1252
+			"\x1B(>"  => 'ЕЅ', // 142 in CP1252
+			"\x1B)1"  => 'вЂ
