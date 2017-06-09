@@ -62,20 +62,20 @@ $resAllComp = array(); //Массив результатов О компании
 if($arParams["TYPE"] == 'particip'){
 	$filter["GROUPS_ID"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["USER_GROUP_ID"]["VALUE"];
 	$formId = CFormMatrix::getPFormIDByExh($arResult["PARAM_EXHIBITION"]["ID"]);
-	$fileName = "Участники ".$fileName." подтвержденные.xls";
+	$fileName = "Участники ".$fileName." подтвержденные.xlsx";
 }
 elseif($arParams["TYPE"] == 'particip_all'){
 	$filter["GROUPS_ID"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["USER_GROUP_ID"]["VALUE"];
 	$formId = CFormMatrix::getPFormIDByExh($arResult["PARAM_EXHIBITION"]["ID"]);
 	$isAll = true;
-	$fileName = "Участники ".$fileName." подтвержденные (коллеги отдельно).xls";
+	$fileName = "Участники ".$fileName." подтвержденные (коллеги отдельно).xlsx";
 }
 elseif($arParams["TYPE"] == 'particip_no'){
 	$filter["GROUPS_ID"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["UC_PARTICIPANTS_GROUP"]["VALUE"];
 	$formId = 4;
 	$resultCode = "UF_ID";//свойство представителя
 	$resultCode2 = "UF_ID6";
-	$fileName = "Участники ".$fileName." неподтвержденные.xls";
+	$fileName = "Участники ".$fileName." неподтвержденные.xlsx";
 }
 elseif($arParams["TYPE"] == 'particip_no_all'){
 	$filter["GROUPS_ID"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["UC_PARTICIPANTS_GROUP"]["VALUE"];
@@ -83,14 +83,14 @@ elseif($arParams["TYPE"] == 'particip_no_all'){
 	$resultCode = "UF_ID";//свойство представителя
 	$resultCode2 = "UF_ID6";
 	$isAll = true;
-	$fileName = "Участники ".$fileName." неподтвержденные (коллеги отдельно).xls";
+	$fileName = "Участники ".$fileName." неподтвержденные (коллеги отдельно).xlsx";
 }
 elseif($arParams["TYPE"] == 'particip_spam'){
 	$filter["GROUPS_ID"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["PARTICIPANT_SPAM_GROUP"]["VALUE"];
 	$formId = 4;
 	$resultCode = "UF_ID";//свойство представителя
 	$resultCode2 = "UF_ID6";
-	$fileName = "Участники ".$fileName." спам.xls";
+	$fileName = "Участники ".$fileName." спам.xlsx";
 }
 else{
 	echo 'Oops, we are not found this type.';

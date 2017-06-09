@@ -297,10 +297,10 @@ unset($arCompField);
 
 // Настройки
 $cacheMethod = PHPExcel_CachedObjectStorageFactory:: cache_to_phpTemp;
-$cacheSettings = array( ' memoryCacheSize ' => '1MB');
+$cacheSettings = array( 'memoryCacheSize ' => '128MB');
 PHPExcel_Settings::setCacheStorageMethod($cacheMethod, $cacheSettings);
 PHPExcel_Settings::setLocale('ru_ru');
-
+PHPExcel_Settings::setZipClass(PHPExcel_Settings::PCLZIP);
 $objPHPExcel = new PHPExcel();
 $objPHPExcel->getProperties()->setCreator("LTM Site")->setLastModifiedBy("LTM Site")->setTitle("Office 2007 XLSX Test Document")->setSubject("Office 2007 XLSX Test Document") ->setDescription("Document generated list of exhibitors.")->setKeywords("office 2007 openxml php");
 

@@ -215,9 +215,10 @@ require_once 'PHPExcel.php';
 
 // Настройки
 $cacheMethod = PHPExcel_CachedObjectStorageFactory:: cache_to_phpTemp;
-$cacheSettings = array( ' memoryCacheSize ' => '1MB');
+$cacheSettings = array( ' memoryCacheSize ' => '128MB');
 PHPExcel_Settings::setCacheStorageMethod($cacheMethod, $cacheSettings);
 PHPExcel_Settings::setLocale('ru_ru');
+PHPExcel_Settings::setZipClass(PHPExcel_Settings::PCLZIP);
 
 $objPHPExcel = new PHPExcel();
 
