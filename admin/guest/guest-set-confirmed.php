@@ -7,7 +7,15 @@ try {
 
 		$rs = CIBlockElement::GetList(array(),
 				array("ID"=>intval($_REQUEST["EXHIB_ID"])), false, array("nTopCount"=>1),
-				array("ID", "IBLOCK_ID", "PROPERTY_C_GUESTS_GROUP", "PROPERTY_UC_GUESTS_GROUP", "PROPERTY_menu_en"));
+				array("ID",
+                    "IBLOCK_ID",
+                    "PROPERTY_C_GUESTS_GROUP",
+                    "PROPERTY_UC_GUESTS_GROUP",
+                    "PROPERTY_menu_en",
+                    "PROPERTY_TEMPL_GUEST_HB_CONFIRM",
+                    "PROPERTY_TEMPL_GUEST_MORNING_CONFIRM",
+                    "PROPERTY_TEMPL_GUEST_EVENING_CONFIRM",
+                    "PROPERTY_TEMPL_GUEST_MORNING_EVENING_CONFIRM"));
 		if($arExhib = $rs->Fetch()) {
 			if(isset($arExhib["PROPERTY_UC_GUESTS_GROUP_VALUE"]) && $arExhib["PROPERTY_UC_GUESTS_GROUP_VALUE"]) {
 				$unconfirmmedGuestGroupId = $arExhib["PROPERTY_UC_GUESTS_GROUP_VALUE"];
@@ -108,21 +116,38 @@ function confirmUser($userId, $arUserChanges, $unconfirmmedGuestGroupId, $confir
 	
 	$arFields["PASSWORD"] = $arFields["S133"];//пароль
 
-	//отправляем письмо
-	if(isset($_REQUEST["CONFIRM_UF_MR_{$userId}"])
-		&& ($templateId = intval(CFormMatrix::getPostTemplateByExhibID($arExhib["ID"], "GUEST_MORNING")))) {
-		CEvent::Send("GUEST_MORNING_CONFIRM", SITE_ID, $arFields, "Y", $templateId);
-	}
+    //отправляем письмо
+    //HB
+    if(isset($_REQUEST["CONFIRM_UF_HB_{$userId}"])){
+        $templateId = $arExhib['PROPERTY_TEMPL_GUEST_HB_CONFIRM_VALUE'];
+        if(!empty($arFields) && !empty($templateId)) {
+            CEvent::Send("GUEST_HB_CONFIRM", SITE_ID, $arFields, "Y", $templateId);
+        }
 
-	if(isset($_REQUEST["CONFIRM_UF_EV_{$userId}"])
-		&& ($templateId = intval(CFormMatrix::getPostTemplateByExhibID($arExhib["ID"], "GUEST_EVENING")))) {
-		CEvent::Send("GUEST_EVENING_CONFIRM", SITE_ID, $arFields, "Y", $templateId);
+    }
+    //утро+вечер (не НВ)
+    else if(isset($_REQUEST["CONFIRM_UF_MR_{$userId}"]) && isset($_REQUEST["CONFIRM_UF_EV_{$userId}"]))
+    {
+        $templateId = $arExhib['PROPERTY_TEMPL_GUEST_MORNING_EVENING_CONFIRM_VALUE'];
+        if(!empty($arFields) && !empty($templateId)){
+            CEvent::Send("GUEST_MORNING_EVENING_CONFIRM", SITE_ID, $arFields, "Y", $templateId);
+        }
+    }
+    //утро (не НВ)
+	else if(isset($_REQUEST["CONFIRM_UF_MR_{$userId}"])){
+		$templateId = $arExhib['PROPERTY_TEMPL_GUEST_MORNING_CONFIRM_VALUE'];
+        if(!empty($arFields) && !empty($templateId)){
+            CEvent::Send("GUEST_MORNING_CONFIRM", SITE_ID, $arFields, "Y", $templateId);
+        }
 	}
-	
-	if(isset($_REQUEST["CONFIRM_UF_HB_{$userId}"]) && isset($_REQUEST["CONFIRM_UF_MR_{$userId}"]) &&
-		in_array($arExhib["ID"], ["361", "488"])) {
-		CEvent::Send("GUEST_HB_CONFIRM", SITE_ID, $arFields);
-	}
+    //вечер (не НВ)
+	else if(isset($_REQUEST["CONFIRM_UF_EV_{$userId}"])){
+        $templateId = $arExhib['PROPERTY_TEMPL_GUEST_EVENING_CONFIRM_VALUE'];
+        if(!empty($arFields) && !empty($templateId)) {
+            CEvent::Send("GUEST_EVENING_CONFIRM", SITE_ID, $arFields, "Y", $templateId);
+        }
+    }
+
 
 	//Проеряем наличие у него коллег и отправляем им письмо
 
