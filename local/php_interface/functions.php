@@ -10,11 +10,24 @@ function passCode($str, $passw=""){
     }
     return $str^$gamma;
 }
+function passExcelCode($str, $passw=""){
+    $salt = "Dn82n9j";
+    $len = mb_strlen($str);
+    $gamma = '';
+    $n = $len>100 ? 16 : 4;
+    while( mb_strlen($gamma)<2*$len ){
+        $gamma .= mb_substr(pack('H*', sha1($passw.$gamma.$salt)), 0, $n);
+    }
+    return $str^$gamma;
+}
 function makePassCode($passw=""){
     return base64_encode(passCode($passw, 'luxoran'));
 }
 function makePassDeCode($passw=""){
     return passCode(base64_decode($passw), "luxoran");
+}
+function makePassExcelDeCode($passw=""){
+    return passExcelCode(base64_decode($passw), "luxoran");
 }
 
 function pre($arr, $name = NULL)

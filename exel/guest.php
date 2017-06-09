@@ -116,7 +116,7 @@ $arTmpUsers = array();
 while ($arUser = $rsUsers->Fetch()){
 	$arTmpUsers[$i]['ID']       = $arUser['ID'];
 	$arTmpUsers[$i]['LOGIN']    = $arUser['LOGIN'];
-	$arTmpUsers[$i]['PASSWORD'] = makePassDeCode($arUser["UF_PAS"]);
+	$arTmpUsers[$i]['PASSWORD'] = makePassExcelDeCode($arUser["UF_PAS"]);
 	$arTmpUsers[$i]['FORM_COMP'] = $arUser[$resultAllCode];
 
 	//Данные по всей компании
