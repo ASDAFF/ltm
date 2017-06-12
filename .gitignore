@@ -21,3 +21,4 @@ test.php
 # upload
 /upload/*
 /cgi-bin/
+/local/log/*
