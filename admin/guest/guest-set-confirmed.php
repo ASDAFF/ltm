@@ -187,7 +187,7 @@ function confirmUser($userId, $arUserChanges, $unconfirmmedGuestGroupId, $confir
 	);
 
 
-	$templateId = $arExhib['PROPERTY_TEMPL_GUEST_COLLEAGUE_CONFIRM'];
+	$templateId = $arExhib['PROPERTY_TEMPL_GUEST_COLLEAGUE_CONFIRM_VALUE'];
 
 	foreach($arCollFields as $type => $arColleague)
 	{
