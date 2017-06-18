@@ -1,5 +1,8 @@
 <?header( 'Content-Type: text/html; charset=utf-8' );
+
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include.php");
+require_once $_SERVER["DOCUMENT_ROOT"]."/../lib/vendor/autoload.php";
+
 //all-luxury.ru/exel/indexNewGuest.php?type=guests&app=moscow-russia-march-12-2015
 if (!CModule::IncludeModule("iblock") || !CModule::IncludeModule("form")) {
 	ShowError("404 Not Found");
@@ -287,13 +290,10 @@ ini_set('display_errors', TRUE);
 ini_set('display_startup_errors', TRUE);
 date_default_timezone_set('Europe/London');
 
-require_once 'PHPExcel.php';
-
 unset($arTmpResult["QUESTIONS"]);
 unset($arTmpResult["ANSWERS"]);
 unset($arTmpResult["ANSWERS2"]);
 unset($arCompField);
-
 
 // Настройки
 $cacheMethod = PHPExcel_CachedObjectStorageFactory:: cache_to_phpTemp;
