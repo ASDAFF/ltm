@@ -231,7 +231,8 @@ if (intval($USER_ID) > 0) {
 				"EXIB_SHORT_EN" => $arExhibition["PROPERTIES"]["V_EN"]["VALUE"],
 				"EXIB_DATE" => $arExhibition["PROPERTIES"]["DATE"]["VALUE"],
 				"EXIB_PLACE" => $arExhibition["PROPERTIES"]["VENUE"]["VALUE"],
-				"TYPE" => "утреннюю"
+				"TYPE" => "утреннюю",
+				"TYPE_KIEV" => "Дякуємо Вам за реєстрацію на Робочі зустрічі за заздалегідь призначенім розкладом на"
 			]
 		];
 	}
@@ -245,7 +246,8 @@ if (intval($USER_ID) > 0) {
 				"EXIB_SHORT_EN" => $arExhibition["PROPERTIES"]["V_EN"]["VALUE"],
 				"EXIB_DATE" => $arExhibition["PROPERTIES"]["DATE"]["VALUE"],
 				"EXIB_PLACE" => $arExhibition["PROPERTIES"]["VENUE"]["VALUE"],
-				"TYPE" => "вечернюю"
+				"TYPE" => "вечернюю",
+				"TYPE_KIEV" => "Дякуємо Вам за реєстрацію на Вечірній коктейль"
 			]
 		];
 	}
@@ -277,7 +279,7 @@ if (intval($USER_ID) > 0) {
 					$arMailFields["EXHIB"] = $arResult["EXHIBITION"][$exhibitionID]["PROPERTIES"]["menu_en"]["VALUE"];
 					$arMailFields["BUYER"] = "{$data["NAME"]} {$data["LAST_NAME"]}";
 
-					$event->Send("REG_GUEST_COLLEAGUE", SITE_ID, $arMailFields);
+					$event->Send($eventColleagueRegistration, SITE_ID, $arMailFields);
 				}
 			}
 		}
