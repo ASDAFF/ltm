@@ -113,8 +113,15 @@ function confirmUser($userId, $arUserChanges, $unconfirmmedGuestGroupId, $confir
 	//сохраняем пользователя
 	$user = new CUser;
 	$user->Update($userId, $arUserFields);
-	
-	$arFields["PASSWORD"] = $arFields["S133"];//пароль
+
+    if(!empty($arFields["S133"])){
+        $arFields["PASSWORD"] = $arFields["S133"];//пароль
+    }
+    else{
+        $arFields["PASSWORD"] = makePassDeCode($arFields['UF_PAS']);
+        $arFields["S133"] = $arFields["PASSWORD"];
+        $arFields["S132"] = $arFields["LOGIN"];
+    }
 
     //отправляем письмо
     //HB
