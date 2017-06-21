@@ -205,6 +205,7 @@ foreach ($data["EXHIBITION"] as $exhId)
 			"EXIB_SHORT_EN" => $arExhibitions[$exhId]["PROPERTIES"]["V_EN"]["VALUE"],
 			"EXIB_DATE" => $arExhibitions[$exhId]["PROPERTIES"]["DATE"]["VALUE"],
 			"EXIB_PLACE" => $arExhibitions[$exhId]["PROPERTIES"]["VENUE"]["VALUE"],
+			"EVENT_EMAIL" => $arExhibition["PROPERTIES"]["EVENT_EMAIL"]["VALUE"],
 		]
 	];
 }
