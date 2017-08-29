@@ -553,8 +553,8 @@ function ContractPDF($data, &$oPDF, $folder)
 		$stampY = $oPDF->getY() - 25;
 		$stampX = 130;
 		$img = __DIR__ . '/images/stamp_ev.png';
-		$height = 30;
-		$width = 32;
+		$height = 40;
+		$width = 62;
 	}
 		elseif($data["PAY_REQUISITE_XML"] == "EM")
 		{
