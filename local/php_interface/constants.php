@@ -1,5 +1,5 @@
 <?php
-define("PARTICIPANT_CABINET", "Y");
+define("PARTICIPANT_CABINET", "N");
 define("GUEST_CABINET", "N");
 
 define("IMG_TMP_PATH", "/upload/tmp/");
