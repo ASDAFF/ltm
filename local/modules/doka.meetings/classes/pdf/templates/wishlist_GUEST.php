@@ -21,7 +21,11 @@ function DokaGeneratePdf($arResult) {
 	$pdf->setXY(30,$pdf->getY() + 2);
 	$pdf->multiCell(210, 5, $arResult["USER"]['COMPANY'].", ". $arResult["USER"]['CITY'], 0, L);
 	$pdf->setXY(30,$pdf->getY() + 1);
-	$pdf->multiCell(210, 5, $arResult["USER"]['REP'], 0, L);
+    if ($arResult["USER"]['COL_REP'] == "") {
+        $pdf->multiCell(210, 5, $arResult["USER"]['REP'], 0, L);
+    } else {
+        $pdf->multiCell(210, 5, $arResult["USER"]['REP'] . ", " . $arResult["USER"]['COL_REP'], 0, L);
+    }
 
 
 	$pdf->SetFont('freeserif','B',13);
