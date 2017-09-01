@@ -1,8 +1,22 @@
 <?
 function DokaGeneratePdf($arResult) {
-	$pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
-	$pdf->setPrintHeader(false);
-	$pdf->setPrintFooter(false);
+    /** Extend the TCPDF class to create custom Footer*/
+    class MYPDF extends TCPDF
+    {
+        /** Custom page header and footer are defined by extending the TCPDF class
+        and overriding the Header() and Footer() methods*/
+        public function Footer()// Page footer
+        {
+            $this->SetY(-15);// Position at 15 mm from bottom
+            $this->SetFont('helvetica', 'I', 9);// Set font
+            // Page number
+            $this->Cell(0, 10, 'Page ' . $this->getAliasNumPage() . '/' . $this->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
+        }
+    }
+    // create new PDF document
+	$pdf = new MYPDF('P', 'mm', 'A4', true, 'UTF-8', false);
+    $pdf->setPrintHeader(false);
+    $pdf->setPrintFooter(true);
 	$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 	// $pdf->AddFont('freeserif','I','freeserifi.php');
 	$pdf->AddPage();
@@ -38,105 +52,102 @@ function DokaGeneratePdf($arResult) {
 		$pdf->setXY(30,$pdf->getY() + 2);
 	}
 	$pdf->SetFont('freeserif','',11);
-	$pdf->SetX(20);
+    $pdf->SetY($pdf->getY()+10);
+    $pdf->SetX(10);
 
 	/* Формируем таблицу */
 	if($arResult["EXHIBITION"]["IS_HB"] == '1'){
-		$header = '
+		$tbl = '
 		<table cellspacing="0" cellpadding="5" border="1">
-				<tr>
-					<th align="center" width="70">Time</th>
+			<thead>
+				<tr nobr="true">
+					<th align="center" width="85">Time</th>
 					<th align="center" width="240">Companies</th>
-					<th align="center" width="90"> </th>
-					<td align="center" width="95">Hall, Table</td>
+					<th align="center" width="100"> </th>
+					<td align="center" width="110">Hall, Table</td>
 				</tr>
+			</thead>
+			<tbody>
 		';
 		$colspanGuest = 3;
 	}
 	else{
-		$header = '
+		$tbl = '
 		<table cellspacing="0" cellpadding="5" border="1">
-				<tr>
-					<th align="center" width="75">Time</th>
+			<thead>
+				<tr nobr="true">
+					<th align="center" width="85">Time</th>
 					<th align="center" width="340">Companies</th>
-					<th align="center" width="90"> </th>
+					<th align="center" width="110"> </th>
 				</tr>
+			</thead>
+			<tbody>
 		';
 		$colspanGuest = 2;
 	}
 
-	$tbl = $header;
 	$count = 0;
 	foreach ($arResult['SCHEDULE'] as $freeseriflot) {
 		$count++;
 		if ($freeseriflot['status'] == 'free') {
-			$tbl .= '<tr>
-				  <td>' . $freeseriflot['name'] . '</td>
-				  <td colspan="'.$colspanGuest.'" align="center">Free time</td>
+			$tbl .= '<tr nobr="true">
+				  <td width="85" align="center">' . $freeseriflot['name'] . '</td>
+				  <td colspan="'.$colspanGuest.'" width="450" align="center">Free time</td>
 			  </tr>';
 		}
 		elseif ($freeseriflot['status'] == 'reserve') {
-			$tbl .= '<tr>
-				  <td>' . $freeseriflot['name'] . '</td>
-				  <td colspan="'.$colspanGuest.'" align="center">Reserved by you</td>
+			$tbl .= '<tr nobr="true">
+				  <td width="85" align="center">' . $freeseriflot['name'] . '</td>
+				  <td colspan="'.$colspanGuest.'" width="450" align="center">Reserved by you</td>
 			  </tr>';
 		}
 		else if($freeseriflot['status'] == 'coffee'){
-			$tbl .= '<tr>
-				  <td>' . $freeseriflot['name'] . '</td>
-				  <td colspan="'.$colspanGuest.'" align="center">Coffee-break</td>
+			$tbl .= '<tr nobr="true">
+				  <td width="85" align="center">' . $freeseriflot['name'] . '</td>
+				  <td colspan="'.$colspanGuest.'" width="450" align="center">Coffee-break</td>
 			  </tr>';
 			}
 		else if($freeseriflot['status'] == 'lunch'){
 			$lunchText = ($arResult['APP_ID'] == 1)? 'Light lunch': 'Lunch';
-			$tbl .= '<tr>
-				  <td>' . $freeseriflot['name'] . '</td>
-				  <td colspan="'.$colspanGuest.'" align="center">'.$lunchText.'</td>
+			$tbl .= '<tr nobr="true">
+				  <td width="85" align="center">' . $freeseriflot['name'] . '</td>
+				  <td colspan="'.$colspanGuest.'" width="450" align="center">'.$lunchText.'</td>
 			  </tr>';
 			}
 		else {
 			if(!$arResult["EXHIBITION"]["IS_HB"]){
-				$tbl .= '<tr>
-					  <td>' . $freeseriflot['name'] . '</td>
-					  <td>Company: ' . $freeseriflot['company_name'] . '<br />Representative: ' . $freeseriflot['company_rep'] . '</td>
-					  <td align="center">' . $freeseriflot['notes'] . '</td>
+				$tbl .= '<tr nobr="true">
+					  <td width="85" align="center">' . $freeseriflot['name'] . '</td>
+					  <td width="340">Company: ' . $freeseriflot['company_name'] . '<br />Representative: ' . $freeseriflot['company_rep'] . '</td>
+					  <td width="110" align="center">' . $freeseriflot['notes'] . '</td>
 				  </tr>';
 			}
 			else{
-				$tbl .= '<tr>
-					  <td>' . $freeseriflot['name'] . '</td>
-					  <td>Company: ' . $freeseriflot['company_name'] . '<br />Representative: ' . $freeseriflot['company_rep'] . '</td>
-					  <td align="center">' . $freeseriflot['notes'] . '</td>';
+				$tbl .= '<tr nobr="true">
+					  <td width="85" align="center">' . $freeseriflot['name'] . '</td>
+					  <td width="240">Company: ' . $freeseriflot['company_name'] . '<br />Representative: ' . $freeseriflot['company_rep'] . '</td>
+					  <td width="100" align="center">' . $freeseriflot['notes'] . '</td>';
 				if($freeseriflot['hall']){
-				 	$tbl .= '<td>'.$freeseriflot['hall'].', '.$freeseriflot['table'].'</td>
-							</tr>';
+				 	$tbl .= '<td width="110">'.$freeseriflot['hall'].', '.$freeseriflot['table'].'</td>
+							 </tr>';
 				}
 				else{
-					$tbl .= '<td> </td>
-                                </tr>';
+					$tbl .= '<td width="110"> </td>
+                             </tr>';
 				}		
 			}
 		}
-		if ($count % $arResult['CUT'] == 0 && $count != count($arResult['SCHEDULE'])) {
-			$tbl .= '</table>';
-			$pdf->writeHTML($tbl, true, false, false, false, '');
-			$pdf->setXY(0,$pdf->getY() + 1);
-			$pdf->multiCell(210, 5, "continued on the next page", 0, C);
-			$pdf->AddPage();
-			$tbl = $header;
-		}
-	}
-	$tbl .= '</table>';
-	$pdf->writeHTML($tbl, true, false, false, false, '');
 
+	}
+	$tbl .= '</tbody></table>';
+	$pdf->writeHTML($tbl, true, false, false, false, '');
 	$pdf->setXY(0,$pdf->getY() + 10);
 	$pdf->multiCell(210, 5, "Please make your appointments in time; any delay in timing will effect the next exhibitor after you.", 0, C);
 	$pdf->setXY(0,$pdf->getY() + 5);
 	$pdf->multiCell(210, 5, "Please report all no-shows to your Hall Manager or to the registration desk of the Luxury Travel Mart.", 0, C);
 	$pdf->Output("print.pdf", I);
 	die();
-	// var_dump($test);die();
-	
+
 }
 
 
