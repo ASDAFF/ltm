@@ -142,13 +142,14 @@ function DokaGeneratePdf($arResult)
 
     $pdf->setXY(20, $pdf->getY() + 10);
     $y = $pdf->getY();
-    $html = '<b>Регистрация гостей и выдача бейджей</b> будет проходить в день мероприятия на стойке регистрации Luxury Travel Mart <b>с 09:30 до 11:30.</b>';
+    $html = '<p><b>Регистрация гостей и выдача бейджей</b> будет проходить в день мероприятия на стойке регистрации Luxury Travel Mart <b>с 09:30 до 11:30.</b></p>
+	<p>Пожалуйста, имейте при себе <b>достаточное количество визитных карточек на английском языке.</b></p>';
     $pdf->writeHTMLCell('', '', 20, $y, $html, $border = 0, $ln = 0, $fill = 0, $reseth = true, $align = '', $autopadding = true);
 
-    $pdf->setY($pdf->getY() + 15);
-    $y = $pdf->getY();
-    $html = 'Пожалуйста, имейте при себе <b>достаточное количество визитных карточек на английском языке.</b>';
-    $pdf->writeHTMLCell('', '', 20, $y, $html, $border = 0, $ln = 0, $fill = 0, $reseth = true, $align = '', $autopadding = true);
+//    $pdf->setY($pdf->getY() + 15);
+//    $y = $pdf->getY();
+//    $html = '';
+//    $pdf->writeHTMLCell('', '', 20, $y, $html, $border = 0, $ln = 0, $fill = 0, $reseth = true, $align = '', $autopadding = true);
 
     $pdf->Output("print.pdf", I);
     die();
