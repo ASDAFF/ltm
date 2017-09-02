@@ -1,4 +1,4 @@
-<? /* TODO посмотреть какие поля реально нужны для блока со встречами
+<?/* TODO посмотреть какие поля реально нужны для блока со встречами
     * ID, CODE, PROPERTY_APP_ID, PROPERTY_APP_HB_ID, PROPERTY_V_EN, PROPERTY_V_RU
   * Переписать определение данных об участниках из форм. Сделать 1 запрос, а не много маленьких
   * Убрать все лишнее
@@ -315,25 +315,27 @@ while ($data = $rsCompanies->Fetch()) {
 	$company['exhibition'] = $req_obj->getOptions();
 	DokaGeneratePdf($company);
 }
-/* Создание архива и удаление папки */
-include_once($_SERVER["DOCUMENT_ROOT"]."/local/php_interface/lib/pclzip.lib.php"); //Подключаем библиотеку.
-$archive = new PclZip($_SERVER['DOCUMENT_ROOT'].$shotPath.$arParams["EXIB_CODE"].$isHB.'.zip'); //Создаём объект и в качестве аргумента, указываем название архива, с которым работаем.
-$result = $archive->create($pdfFolder, PCLZIP_OPT_REMOVE_PATH, $_SERVER['DOCUMENT_ROOT'].$shotPath); // Этим методом класса мы создаём архив с заданным выше названием
-if($result == 0) {
-	echo $archive->errorInfo(true); //Возращает причину ошибки
-}
-else{
-	$arEventFields = array(
-		"EMAIL" => $arParams["EMAIL"],
-		"EXIBITION" => $exhibitionParam["TITLE"],
-		"TYPE" => "расписание",
-		"USER_TYPE" => strtolower($arParams["USER_TYPE"]),
-		"LINK" => "http://".$_SERVER['SERVER_NAME'].$shotPath.strtolower($arParams["EXIB_CODE"]).$isHB.'.zip'
-	);
-	CEvent::SendImmediate("ARCHIVE_READY", "s1", $arEventFields, $Duplicate = "Y");
-}
+/**-----------------------------------
+ * Создание архива и удаление папки
+ * $pdfFolder - исходная папка
+ * $fileName - имя архива
+ -----------------------------------*/
 
+$fileName = $_SERVER['DOCUMENT_ROOT'].$shotPath.$arParams["EXIB_CODE"].$isHB.'.zip';//имя файла архива
+MakeZipArchive($pdfFolder,$fileName);
+if(file_exists($fileName) && is_file($fileName) && filesize($fileName)>0){
+    AddMessage2Log(['filesize'=>filesize($fileName)]);
+    $arEventFields = array(
+        "EMAIL" => $arParams["EMAIL"],
+        "EXIBITION" => $exhibitionParam["TITLE"],
+        "TYPE" => "расписание",
+        "USER_TYPE" => strtolower($arParams["USER_TYPE"]),
+        "LINK" => "http://".$_SERVER['SERVER_NAME'].$shotPath.strtolower($arParams["EXIB_CODE"]).$isHB.'.zip'
+    );
+    CEvent::SendImmediate("ARCHIVE_READY", "s1", $arEventFields, $Duplicate = "Y");
+}
 fullRemove_ff($pdfFolder);
+/** --------------------------------- */
 
 
 function DokaGetNote($meet, $user_type, $curUser) {
@@ -389,4 +391,3 @@ function fullRemove_ff($path,$t="1") {
 	}
 	return $rtrn;
 }
-?>
