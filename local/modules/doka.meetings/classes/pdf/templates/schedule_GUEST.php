@@ -1,20 +1,21 @@
 <?
+
+/** Extend the TCPDF class to create custom Footer*/
+class MYPDF extends TCPDF
+{
+    /** Custom page header and footer are defined by extending the TCPDF class
+     * and overriding the Header() and Footer() methods*/
+    public function Footer()// Page footer
+    {
+        $this->SetY(-15);// Position at 15 mm from bottom
+        $this->SetFont('helvetica', 'I', 9);// Set font
+        // Page number
+        $this->Cell(0, 10, 'Page ' . $this->getAliasNumPage() . '/' . $this->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
+    }
+}
+
 function DokaGeneratePdf($arResult)
 {
-    /** Extend the TCPDF class to create custom Footer*/
-    class MYPDF extends TCPDF
-    {
-        /** Custom page header and footer are defined by extending the TCPDF class
-         * and overriding the Header() and Footer() methods*/
-        public function Footer()// Page footer
-        {
-            $this->SetY(-15);// Position at 15 mm from bottom
-            $this->SetFont('helvetica', 'I', 9);// Set font
-            // Page number
-            $this->Cell(0, 10, 'Page ' . $this->getAliasNumPage() . '/' . $this->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
-        }
-    }
-
     // create new PDF document
     $pdf = new MYPDF('P', 'mm', 'A4', true, 'UTF-8', false);
     $pdf->setPrintHeader(false);
@@ -37,7 +38,7 @@ function DokaGeneratePdf($arResult)
     }
     $pdf->multiCell(210, 5, "Расписание встреч на утренней сессии\n" . $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'] . $dayline, 0, C);
     /*$pdf->multiCell(210, 5, "Список неподтвержденных запросов на\nLuxury Travel Mart Баку", 0, C);*/
-    $pdf->SetFont('freeserif', '', 15);
+    $pdf->SetFont('freeserif', '', 14);
     $pdf->setXY(30, $pdf->getY() + 2);
     $pdf->multiCell(210, 5, $arResult["USER"]['COMPANY'] . ", " . $arResult["USER"]['CITY'], 0, L);
     $pdf->setXY(30, $pdf->getY() + 1);
@@ -51,11 +52,10 @@ function DokaGeneratePdf($arResult)
     $pdf->setXY(30, $pdf->getY() + 1);
     $pdf->multiCell(210, 5, "Телефон: " . $arResult["USER"]['PHONE'], 0, L);
     $pdf->setXY(30, $pdf->getY() + 1);
-    $pdf->SetY($pdf->getY() + 5 );
+    $pdf->SetY($pdf->getY() + 8);
 
     if ($arResult["EXHIBITION"]["IS_HB"] && $arResult["HALL"] != "None") {
         $pdf->multiCell(210, 5, "Hall, Table: " . $arResult["HALL"] . ", " . $arResult["TABLE"], 0, L);
-
         $pdf->setXY(0, 90);
         $pdf->SetFont('freeserif', '', 15);
         $pdf->multiCell(210, 5, "Ваше расписание", 0, C);
@@ -75,24 +75,24 @@ function DokaGeneratePdf($arResult)
     }
 
     $pdf->SetFont('freeserif', '', 10);
-    $pdf->SetY($pdf->getY() + 5);
+    $pdf->SetY($pdf->getY() + 2);
     $pdf->SetX(10);
 
     /* Формируем таблицу */
     if ($arResult["EXHIBITION"]["IS_HB"]) {
         $tbl = '<table cellspacing="0" cellpadding="5" border="1">
-            <thead>
-            <tr>
-                <td align="center" width="85">Время</td>
-                <td align="center" width="340">Участники</td>
-                <td align="center" width="110">Статус</td>
-            </tr>
-            </thead>
-			<tbody>
+                <thead>
+                    <tr nobr="true">
+                        <td align="center" width="85">Время</td>
+                        <td align="center" width="340">Участники</td>
+                        <td align="center" width="110">Статус</td>
+                    </tr>
+                </thead>
+                <tbody>
             ';
     } else {
         $tbl = '<table cellspacing="0" cellpadding="5" border="1">
-            <thead>
+                <thead>
                 <tr nobr="true">
                     <td align="center" width="85">Время</td>
                     <td align="center" width="240">Участники</td>
@@ -142,19 +142,15 @@ function DokaGeneratePdf($arResult)
 
     $pdf->setXY(20, $pdf->getY() + 10);
     $y = $pdf->getY();
-    $html = '<p><b>Регистрация гостей и выдача бейджей</b> будет проходить в день мероприятия на стойке регистрации Luxury Travel Mart <b>с 09:30 до 11:30.</b></p>
-	<p>Пожалуйста, имейте при себе <b>достаточное количество визитных карточек на английском языке.</b></p>';
+    $html = '<b>Регистрация гостей и выдача бейджей</b> будет проходить в день мероприятия на стойке регистрации Luxury Travel Mart <b>с 09:30 до 11:30.</b>';
     $pdf->writeHTMLCell('', '', 20, $y, $html, $border = 0, $ln = 0, $fill = 0, $reseth = true, $align = '', $autopadding = true);
 
-//    $pdf->setY($pdf->getY() + 15);
-//    $y = $pdf->getY();
-//    $html = '';
-//    $pdf->writeHTMLCell('', '', 20, $y, $html, $border = 0, $ln = 0, $fill = 0, $reseth = true, $align = '', $autopadding = true);
+    $pdf->setY($pdf->getY() + 15);
+    $y = $pdf->getY();
+    $html = 'Пожалуйста, имейте при себе <b>достаточное количество визитных карточек на английском языке.</b>';
+    $pdf->writeHTMLCell('', '', 20, $y, $html, $border = 0, $ln = 0, $fill = 0, $reseth = true, $align = '', $autopadding = true);
 
     $pdf->Output("print.pdf", I);
     die();
 
 }
-
-
-?>

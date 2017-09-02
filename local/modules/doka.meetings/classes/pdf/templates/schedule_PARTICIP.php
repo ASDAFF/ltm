@@ -1,18 +1,19 @@
 <?
-function DokaGeneratePdf($arResult) {
-    /** Extend the TCPDF class to create custom Footer*/
-    class MYPDF extends TCPDF
+/** Extend the TCPDF class to create custom Footer*/
+class MYPDF extends TCPDF
+{
+    /** Custom page header and footer are defined by extending the TCPDF class
+    and overriding the Header() and Footer() methods*/
+    public function Footer()// Page footer
     {
-        /** Custom page header and footer are defined by extending the TCPDF class
-        and overriding the Header() and Footer() methods*/
-        public function Footer()// Page footer
-        {
-            $this->SetY(-15);// Position at 15 mm from bottom
-            $this->SetFont('helvetica', 'I', 9);// Set font
-            // Page number
-            $this->Cell(0, 10, 'Page ' . $this->getAliasNumPage() . '/' . $this->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
-        }
+        $this->SetY(-15);// Position at 15 mm from bottom
+        $this->SetFont('helvetica', 'I', 9);// Set font
+        // Page number
+        $this->Cell(0, 10, 'Page ' . $this->getAliasNumPage() . '/' . $this->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
     }
+}
+function DokaGeneratePdf($arResult) {
+
     // create new PDF document
 	$pdf = new MYPDF('P', 'mm', 'A4', true, 'UTF-8', false);
     $pdf->setPrintHeader(false);
@@ -149,6 +150,3 @@ function DokaGeneratePdf($arResult) {
 	die();
 
 }
-
-
-?>
