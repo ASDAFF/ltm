@@ -1,5 +1,5 @@
 <div class="hosted-session">
-	<h4>Hosted Buyers Session details</h4>
+	<h4>Hosted Buyers details</h4>
 	<p>Time: 15:30 &mdash; 17:45</p>
 	<p><b>Place:</b> Ballroom Hall</p>
 	<p><b>Format:</b> Buyers will be seated, and exhibitors will move from one buyer to another, without pre- scheduled appointments. 5 minutes strictly for each appointment; at the end of each appointment a bell will ring. Please respect other exhibitors and move forward to another buyer immediately after the bell.</p>
