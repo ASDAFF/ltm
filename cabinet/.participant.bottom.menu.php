@@ -19,7 +19,7 @@ if($exhibCode)
         array()
       ),
       array(
-        "Hosted Buyers Session",
+        "Hosted Buyers",
         "/cabinet/" . $exhibCode . "/hb/",
         array(),
         array()
