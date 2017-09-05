@@ -39,10 +39,11 @@ function DokaGeneratePdf($arResult)
     $pdf->setXY(30, $pdf->getY() + 2);
     $pdf->multiCell(210, 5, $arResult["name"] . ", " . $arResult['city'], 0, L);
     $pdf->setXY(30, $pdf->getY() + 1);
-    if ($arResult["USER"]['COL_REP'] == "") {
-        $pdf->multiCell(210, 5, $arResult["rep"], 0, L);
-    } else {
-        $pdf->multiCell(210, 5, $arResult["rep"] . ", " . $arResult["col_rep"], 0, L);
+
+    if (!empty($arResult["rep"]) && !empty(trim($arResult["col_rep"]))){
+        $pdf->multiCell(300, 5, trim($arResult["rep"]). ", данные коллеги - " . trim($arResult["col_rep"]), 0, L);
+    }else{
+        $pdf->multiCell(300, 5, trim($arResult["rep"]), 0, L);
     }
     $pdf->setXY(30, $pdf->getY() + 1);
     $pdf->multiCell(210, 5, "Мобильный телефон: " . $arResult["mob"], 0, L);

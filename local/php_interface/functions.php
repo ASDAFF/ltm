@@ -34,7 +34,7 @@ function pre($arr, $name = NULL)
 {
     global $USER;
     $login = $USER->GetLogin();
-    $arDevUsers = array("dmitrz", 'prisve', "test2_partc");
+    $arDevUsers = array("dmitrz", 'admin', "test2_partc");
 
     if(isset($name) && $name == $login)
     {
