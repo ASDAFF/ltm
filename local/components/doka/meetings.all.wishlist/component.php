@@ -129,6 +129,7 @@ require(DOKA_MEETINGS_MODULE_DIR . '/classes/pdf/tcpdf.php');
 require_once(DOKA_MEETINGS_MODULE_DIR . '/classes/pdf/templates/wishlist_all_' . $arParams['USER_TYPE'] . '.php');
 
 while ($arUser = $rsUsers->Fetch()) {
+    AddMessage2Log($arUser);
 	$pdfName = str_replace(" ", "_", $arUser["WORK_COMPANY"])."_".$arUser["ID"].".pdf";
 	$pdfName = str_replace("/", "", $pdfName);
 	$pdfName = str_replace("*", "", $pdfName);
@@ -136,6 +137,7 @@ while ($arUser = $rsUsers->Fetch()) {
 		'id' => $arUser['ID'],
 		'name' => $arUser['WORK_COMPANY'],
 		'rep' => $arUser["NAME"]." ".$arUser["LAST_NAME"],
+		'col_rep' => '',
 		'city' => '',
 		'path' => $pdfFolder.$pdfName,
 		'exhib' => $exhibitionParam,
@@ -160,6 +162,18 @@ while ($arUser = $rsUsers->Fetch()) {
 		foreach($arAnswer2["SIMPLE_QUESTION_672"] as $value){
 			$company['city'] = $value["USER_TEXT"];
 		}
+        $guestFields = CFormMatrix::$arExelGuestField;
+        $guestQuestCode = array_flip($guestFields["NAMES_AR"]);
+        $guestFieldsIndex = array(
+            "F_NAME_COL" => $guestQuestCode["F_NAME_COL"],
+            "L_NAME_COL" => $guestQuestCode["L_NAME_COL"],
+        );
+		foreach($arAnswer2[ $guestFields["QUEST_CODE"][ $guestFieldsIndex["F_NAME_COL"] ] ] as $value){
+            $company['col_rep'] = trim($value["USER_TEXT"]);
+        }
+        foreach($arAnswer2[$guestFields["QUEST_CODE"][$guestFieldsIndex["L_NAME_COL"]] ] as $value){
+            $company['col_rep'] .= " ".trim($value["USER_TEXT"]);
+        }
 	}
 	$APPLICATION->RestartBuffer();
 	$company['STATUS_REQUEST'] = [

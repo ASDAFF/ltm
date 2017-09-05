@@ -1,9 +1,10 @@
 <?
 function DokaGeneratePdf($arResult) {
+    AddMessage2Log(['$arResult'=>$arResult]);
 	$pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
 	$pdf->setPrintHeader(false);
 	$pdf->setPrintFooter(false);
-	 $pdf->AddFont('freeserif','I','freeserifi.php');
+    $pdf->AddFont('freeserif','I','freeserifi.php');
 	$pdf->AddPage();
 	$pdf->ImageSVG($file=DOKA_MEETINGS_MODULE_DIR . '/images/logo.svg', $x=30, $y=5, $w='150', $h='', $link='', $align='', $palign='', $border=0, $fitonpage=false);
 	$pdf->setXY(0,23);
@@ -21,8 +22,12 @@ function DokaGeneratePdf($arResult) {
 	$pdf->setXY(30,$pdf->getY() + 2);
 	$pdf->multiCell(210, 5, $arResult["USER"]['COMPANY'].", ". $arResult["USER"]['CITY'], 0, L);
 	$pdf->setXY(30,$pdf->getY() + 1);
-	$pdf->multiCell(210, 5, $arResult["USER"]['REP'], 0, L);
 
+    if (!empty($arResult["rep"]) && !empty(trim($arResult["col_rep"]))){
+        $pdf->multiCell(300, 5, trim($arResult["rep"]). ", данные коллеги - " . trim($arResult["col_rep"]), 0, L);
+    }else{
+        $pdf->multiCell(300, 5, trim($arResult["rep"]), 0, L);
+    }
 
 	$pdf->SetFont('freeserif','B',13);
 	$pdf->setXY(0,$pdf->getY() + 5);
