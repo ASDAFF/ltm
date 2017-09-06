@@ -1,6 +1,6 @@
 <?
 function DokaGeneratePdf($arResult) {
-    AddMessage2Log(['$arResult'=>$arResult]);
+
 	$pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
 	$pdf->setPrintHeader(false);
 	$pdf->setPrintFooter(false);
@@ -23,10 +23,10 @@ function DokaGeneratePdf($arResult) {
 	$pdf->multiCell(210, 5, $arResult["USER"]['COMPANY'].", ". $arResult["USER"]['CITY'], 0, L);
 	$pdf->setXY(30,$pdf->getY() + 1);
 
-    if (!empty($arResult["rep"]) && !empty(trim($arResult["col_rep"]))){
-        $pdf->multiCell(300, 5, trim($arResult["rep"]). ", данные коллеги - " . trim($arResult["col_rep"]), 0, L);
+    if (!empty($arResult["USER"]["REP"]) && !empty(trim($arResult["USER"]["COL_REP"]))){
+        $pdf->multiCell(300, 5, trim($arResult["USER"]["REP"]). ", данные коллеги - " . trim($arResult["USER"]["COL_REP"]), 0, L);
     }else{
-        $pdf->multiCell(300, 5, trim($arResult["rep"]), 0, L);
+        $pdf->multiCell(300, 5, trim($arResult["USER"]["REP"]), 0, L);
     }
 
 	$pdf->SetFont('freeserif','B',13);

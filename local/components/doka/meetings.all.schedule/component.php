@@ -324,7 +324,6 @@ while ($data = $rsCompanies->Fetch()) {
 $fileName = $_SERVER['DOCUMENT_ROOT'].$shotPath.$arParams["EXIB_CODE"].$isHB.'.zip';//имя файла архива
 MakeZipArchive($pdfFolder,$fileName);
 if(file_exists($fileName) && is_file($fileName) && filesize($fileName)>0){
-    AddMessage2Log(['filesize'=>filesize($fileName)]);
     $arEventFields = array(
         "EMAIL" => $arParams["EMAIL"],
         "EXIBITION" => $exhibitionParam["TITLE"],
