@@ -117,6 +117,19 @@ if(isset($_REQUEST['mode']) && $_REQUEST['mode'] == 'pdf'){
 		foreach($arAnswer2["SIMPLE_QUESTION_672"] as $value){
 			$arResult['CITY'] = $value["USER_TEXT"];
 		}
+        $guestFields = CFormMatrix::$arExelGuestField;
+        $guestQuestCode = array_flip($guestFields["NAMES_AR"]);
+        $guestFieldsIndex = array(
+            "F_NAME_COL" => $guestQuestCode["F_NAME_COL"],
+            "L_NAME_COL" => $guestQuestCode["L_NAME_COL"],
+        );
+        $col_rep ='';
+        foreach($arAnswer2[ $guestFields["QUEST_CODE"][ $guestFieldsIndex["F_NAME_COL"] ] ] as $value){
+            $col_rep = trim($value["USER_TEXT"]);
+        }
+        foreach($arAnswer2[$guestFields["QUEST_CODE"][$guestFieldsIndex["L_NAME_COL"]] ] as $value){
+            $col_rep .= " ".trim($value["USER_TEXT"]);
+        }
 	}
 	require(DOKA_MEETINGS_MODULE_DIR . '/classes/pdf/tcpdf.php');
 	require_once(DOKA_MEETINGS_MODULE_DIR . '/classes/pdf/templates/wishlist_' . $arParams['USER_TYPE'] . '.php');
@@ -138,6 +151,7 @@ if(isset($_REQUEST['mode']) && $_REQUEST['mode'] == 'pdf'){
         	'REP' => $fioParticip,
         	'COMPANY' => $arUser['WORK_COMPANY'],
         	'CITY' => $arResult['CITY'],
+            'COL_REP' => $col_rep,
         );
 			$arResult['STATUS_REQUEST'] = [
 				'empty' => "",

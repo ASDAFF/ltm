@@ -129,7 +129,6 @@ require(DOKA_MEETINGS_MODULE_DIR . '/classes/pdf/tcpdf.php');
 require_once(DOKA_MEETINGS_MODULE_DIR . '/classes/pdf/templates/wishlist_all_' . $arParams['USER_TYPE'] . '.php');
 
 while ($arUser = $rsUsers->Fetch()) {
-    AddMessage2Log($arUser);
 	$pdfName = str_replace(" ", "_", $arUser["WORK_COMPANY"])."_".$arUser["ID"].".pdf";
 	$pdfName = str_replace("/", "", $pdfName);
 	$pdfName = str_replace("*", "", $pdfName);
