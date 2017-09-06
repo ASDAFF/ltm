@@ -23,8 +23,9 @@ function DokaGeneratePdf($arResult) {
 	$pdf->multiCell(210, 5, $arResult["USER"]['COMPANY'].", ". $arResult["USER"]['CITY'], 0, L);
 	$pdf->setXY(30,$pdf->getY() + 1);
 
+	//если есть коллега, выводим его через запятую
     if (!empty($arResult["USER"]["REP"]) && !empty(trim($arResult["USER"]["COL_REP"]))){
-        $pdf->multiCell(300, 5, trim($arResult["USER"]["REP"]). ", данные коллеги - " . trim($arResult["USER"]["COL_REP"]), 0, L);
+        $pdf->multiCell(300, 5, trim($arResult["USER"]["REP"]). ", " . trim($arResult["USER"]["COL_REP"]), 0, L);
     }else{
         $pdf->multiCell(300, 5, trim($arResult["USER"]["REP"]), 0, L);
     }
@@ -115,6 +116,3 @@ Mart, например, во время ланча, перерыва на коф
 	$pdf->Output("print_wish.pdf", I);
 	die();
 }
-
-
-?>

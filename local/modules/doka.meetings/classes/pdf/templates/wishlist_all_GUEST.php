@@ -21,8 +21,9 @@ function DokaGeneratePdf($arResult) {
 	$pdf->multiCell(210, 5, $arResult['name'].", ". $arResult['city'], 0, L);
 	$pdf->setXY(30,$pdf->getY() + 1);
 
+    //если есть коллега, выводим его через запятую
     if (!empty($arResult["rep"]) && !empty(trim($arResult["col_rep"]))){
-        $pdf->multiCell(300, 5, trim($arResult["rep"]). ", данные коллеги - " . trim($arResult["col_rep"]), 0, L);
+        $pdf->multiCell(300, 5, trim($arResult["rep"]). ", " . trim($arResult["col_rep"]), 0, L);
     }else{
         $pdf->multiCell(300, 5, trim($arResult["rep"]), 0, L);
     }
