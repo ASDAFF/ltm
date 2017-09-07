@@ -110,12 +110,15 @@ while ($exhibition = $rsExhibitions->Fetch()) {
     }
 
     if($erStr != ''){
-    	$erStrAll .= 'Exibition '.$exhibition['NAME'].'('.$exhibition['ID'].')<br />';
+    	$erStrAll .= 'Exhibition '.$exhibition['NAME'].'('.$exhibition['ID'].')<br />';
     	$erStrAll .= $erStr;
+		mail("mail@ae-studio.ru", "Проверка встреч на ЛТМ", "Есть ошибки!");
+
     }
     else{
-    	$erStrAll .= 'Exibition '.$exhibition['NAME'].'('.$exhibition['ID'].')<br />';
+    	$erStrAll .= 'Exhibition '.$exhibition['NAME'].'('.$exhibition['ID'].')<br />';
     	$erStrAll .= 'It\'s OK<br />';
+		mail("mitya-spb@mail.ru", "Все ОК", "Ошибок нет, расслабься");
     }
 }
 print_r($erStrAll);
