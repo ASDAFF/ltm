@@ -53,7 +53,7 @@ elseif(isset($_REQUEST["type"]) && $USER->GetID() == 1){
 	$arResult['USER_TYPE'] = "GUEST";
 }
 
-if($arResult['USER_TYPE'] != "PARTICIP") {
+if($arResult['USER_TYPE'] != "PARTICIP" && $arResult['USER_TYPE'] != 'ADMIN') {
 	ShowError(GetMessage("ERROR_NOT_PARTICIP"));
 	return;
 }
