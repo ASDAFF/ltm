@@ -16,7 +16,7 @@ $MESS["R_B_EXTEND_TITLE"] = "ГОСТЬ (VIP BUYER, BUYER, HOSTED BUYER)";
 $MESS["R_E_EXHIBITION_TITLE"] = "PLEASE SELECT THE EVENT YOU WOULD LIKE TO REGISTER FOR";
 $MESS["R_B_EXHIBITION_TITLE"] = "<p>Гостевая регистрация на осенние выставки Luxury Travel Mart закончена.</p>
 
-<p>Свой запрос на участие вы можете направить на электронный адрес <a href='guests@luxurytravelmart.ru'>guests@luxurytravelmart.ru</a></p>
+<p>Свой запрос на участие вы можете направить на электронный адрес <a href='mailto:guests@luxurytravelmart.ru'>guests@luxurytravelmart.ru</a></p>
 
 <p>Все заявки будут рассмотрены в индивидуальном порядке. Организаторы оставляют за собой право отказать в участии без объяснения причины.</p>
 
