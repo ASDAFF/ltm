@@ -1,6 +1,6 @@
 <?php
 
-namespace Ltm\Domain\Util\IblockOrm;
+namespace Ltm\Domain\IblockOrm;
 
 use Bitrix\Iblock;
 use Bitrix\Main;

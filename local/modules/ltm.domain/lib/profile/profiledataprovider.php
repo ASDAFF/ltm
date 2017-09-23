@@ -4,6 +4,7 @@ namespace Ltm\Domain\Profile;
 
 use Bitrix\Iblock;
 use Bitrix\Main\Entity;
+use Bitrix\Main\Entity\Query;
 use Bitrix\Main\Application;
 use Bitrix\Main\SystemException;
 use Bitrix\Main\Data\Cache;
@@ -18,7 +19,7 @@ class ProfileDataProvider
   public function getQuestionListBySectionId($sectionId)
   {
     $iblockId = $this->getQuestionIblockId();
-    /** @var Main\Entity\DataManager $table */
+    /** @var \Bitrix\Main\Entity\DataManager $table */
     $table = IblockOrm\Manager::getInstance()->getProvider($iblockId)->getElementTableClassName();
 
     $filter = ["=IBLOCK_SECTION_ID" => $sectionId];
@@ -27,7 +28,7 @@ class ProfileDataProvider
       "NOT_EDITABLE"  => "NOT_EDITABLE.TYPE", "NOT_ADMIN_LIST"  => "NOT_ADMIN_LIST.TYPE",
       "HL_NAME"  => "HL_NAME.TYPE", "MULTIPLE"  => "MULTIPLE.TYPE"
     ];
-    $query = new Main\Entity\Query($table::getEntity());
+    $query = new \Bitrix\Main\Entity\Query($table::getEntity());
 
     $query ->setSelect($select)
       ->setFilter($filter);

@@ -1,9 +1,9 @@
 <?php
 
-namespace Ltm\Domain\Util\IblockOrm\DataManager;
+namespace Ltm\Domain\IblockOrm\DataManager;
 
 use Bitrix\Main\Entity;
-use Ltm\Domain\Util\IblockOrm\AbstractIblockIdGetterTrait;
+use Ltm\Domain\IblockOrm\AbstractIblockIdGetterTrait;
 
 /**
  * Абстрактный класс для таблицы множественных свойств инфоблока 2.0

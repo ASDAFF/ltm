@@ -1,6 +1,6 @@
 <?php
 
-namespace Ltm\Domain\Util\IblockOrm\PropertyProvider;
+namespace Ltm\Domain\IblockOrm\PropertyProvider;
 
 use Bitrix\Iblock;
 use Bitrix\Main\Entity;

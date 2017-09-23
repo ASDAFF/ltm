@@ -1,6 +1,6 @@
 <?php
 
-namespace Ltm\Domain\Util\IblockOrm;
+namespace Ltm\Domain\IblockOrm;
 
 /**
  * Интерфейс для провайдера сущностей по конкретному инфоблоку: определяет набор

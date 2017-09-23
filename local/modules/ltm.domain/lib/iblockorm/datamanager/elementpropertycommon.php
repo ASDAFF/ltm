@@ -1,11 +1,11 @@
 <?php
 
-namespace Ltm\Domain\Util\IblockOrm\DataManager;
+namespace Ltm\Domain\IblockOrm\DataManager;
 
 use Bitrix\Iblock;
 use Bitrix\Main;
-use Ltm\Domain\Util\IblockOrm\AbstractIblockIdGetterTrait;
-use Ltm\Domain\Util\IblockOrm\PropertyProvider\Multiple as MultiplePropertyProvider;
+use Ltm\Domain\IblockOrm\AbstractIblockIdGetterTrait;
+use Ltm\Domain\IblockOrm\PropertyProvider\Multiple as MultiplePropertyProvider;
 
 /**
  * Абстрактный класс фейковой сущности для организации работы со свойствами

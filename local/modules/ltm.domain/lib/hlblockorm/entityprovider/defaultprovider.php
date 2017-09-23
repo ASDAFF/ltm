@@ -1,10 +1,10 @@
 <?php
 
-namespace Ltm\Domain\Util\HlblockOrm\EntityProvider;
+namespace Ltm\Domain\HlblockOrm\EntityProvider;
 
 use Bitrix\Highloadblock\HighloadBlockTable;
 use Bitrix\Main\Entity;
-use Ltm\Domain\Util\HlblockOrm\Model;
+use Ltm\Domain\HlblockOrm\Model;
 
 class DefaultProvider
 {

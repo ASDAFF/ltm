@@ -2,20 +2,21 @@
 
 namespace Ltm\Domain\Profile;
 
-use Ltm\Domain\Profile\Question;
+use Ltm\Domain\IblockOrm\Manager;
 
 class Form
 {
-  const QUESTION_IBLOCK_ID = 25;
-  protected $questionList;
+    const QUESTION_IBLOCK_ID = 25;
 
-  protected function __construct($sectionId)
-  {
+    protected $questionList;
 
-  }
+    protected function __construct($sectionId)
+    {
 
-  protected function loadQuestionList()
-  {
+    }
 
-  }
+    protected function loadQuestionList()
+    {
+
+    }
 }

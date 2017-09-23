@@ -1,6 +1,6 @@
 <?php
 
-namespace Ltm\Domain\Util\IblockOrm;
+namespace Ltm\Domain\IblockOrm;
 
 use Bitrix\Main;
 
@@ -248,7 +248,7 @@ class DefaultEntityProvider implements EntityProviderInterface
     /**
      * Возвращает объект модели для получения данных инфоблока
      * 
-     * @return \Ltm\Domain\Util\IblockOrm\Model
+     * @return \Ltm\Domain\IblockOrm\Model
      * @throws \Bitrix\Main\SystemException Если инфоблок не найден
      */
     protected function getModel(): Model

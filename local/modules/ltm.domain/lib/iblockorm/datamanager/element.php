@@ -1,10 +1,10 @@
 <?php
 
-namespace Ltm\Domain\Util\IblockOrm\DataManager;
+namespace Ltm\Domain\IblockOrm\DataManager;
 
 use Bitrix\Iblock;
 use Bitrix\Main\Entity;
-use Ltm\Domain\Util\IblockOrm\EntityProviderGetterTrait;
+use Ltm\Domain\IblockOrm\EntityProviderGetterTrait;
 
 /**
  * Абстрактный табличный класс для элемента, определяет поля-связки с сущностью

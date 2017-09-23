@@ -1,6 +1,6 @@
 <?php
 
-namespace Ltm\Domain\Util\HlblockOrm;
+namespace Ltm\Domain\HlblockOrm;
 
 use Ltm\Domain\Util\SingletonTrait;
 

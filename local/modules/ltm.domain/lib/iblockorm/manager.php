@@ -1,6 +1,6 @@
 <?php
 
-namespace Ltm\Domain\Util\IblockOrm;
+namespace Ltm\Domain\IblockOrm;
 
 use Ltm\Domain\Util\SingletonTrait;
 
@@ -25,7 +25,7 @@ class Manager
      * @param int $iblockId
      * @param callable $createCallback
      * 
-     * @return \Ltm\Domain\Util\IblockOrm\EntityProviderInterface
+     * @return \Ltm\Domain\IblockOrm\EntityProviderInterface
      */
     public function getProvider(int $iblockId, callable $createCallback = null): EntityProviderInterface 
     {
@@ -44,7 +44,7 @@ class Manager
      * Регистрирует объект провайдера сущностей для инфоблока
      * 
      * @param int $iblockId
-     * @param \Ltm\Domain\Util\IblockOrm\EntityProviderInterface $provider
+     * @param \Ltm\Domain\IblockOrm\EntityProviderInterface $provider
      */
     public function registerProvider(int $iblockId, EntityProviderInterface $provider) 
     {
@@ -59,7 +59,7 @@ class Manager
      * @param int $iblockId
      * @param string $providerClassName
      * 
-     * @return \Ltm\Domain\Util\IblockOrm\EntityProviderInterface
+     * @return \Ltm\Domain\IblockOrm\EntityProviderInterface
      * 
      * @uses self::getDefaultProviderClassName() Получение названия класса провайдера по умолчанию
      */

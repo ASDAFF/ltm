@@ -51,7 +51,7 @@ abstract class Entity
      */
     public static function loadListByCondition(array $conditia, array $params = array())
     {
-        /** @var Main\Entity\DataManager $className */
+        /** @var \Bitrix\Main\Entity\DataManager $className */
         $className = static::getEntityClass();
         
         $q = $className::getList(array_replace(
@@ -113,7 +113,7 @@ abstract class Entity
      */
     protected static function getDataByCondition(array $condition)
     {
-        /** @var Main\Entity\DataManager $className */
+        /** @var \Bitrix\Main\Entity\DataManager $className */
         $className = static::getEntityClass();
         return $className::getRow(static::createCondition($condition, static::getFieldsSelection()));
     }
@@ -123,13 +123,13 @@ abstract class Entity
      * @return array|false
      * 
      * @uses self::getEntityClass()
-     * @uses Main\Entity\DataManager::getByPrimary()
+     * @uses \Bitrix\Main\Entity\DataManager::getByPrimary()
      * @uses self::getLoadByPrimaryParams()
      * @uses self::getFetchConverter()
      */
     protected static function getDataByPrimary($primary)
     {
-        /** @var Main\Entity\DataManager $className */
+        /** @var \Bitrix\Main\Entity\DataManager $className */
         $className = static::getEntityClass();
         $result = $className::getByPrimary($primary, static::getLoadByPrimaryParams());
         return $result->fetch(static::getFetchConverter());
@@ -175,7 +175,7 @@ abstract class Entity
      */
     protected static function getIdentifiersConditia(array $identifiers, string $entityClassName = null)
     {
-        /** @var Main\Entity\DataManager $entityClassName */
+        /** @var \Bitrix\Main\Entity\DataManager $entityClassName */
         if(empty($entityClassName)) {
             $entityClassName = static::getEntityClass();
         }

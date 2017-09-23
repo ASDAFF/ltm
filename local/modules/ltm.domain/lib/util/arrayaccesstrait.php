@@ -23,10 +23,10 @@ trait ArrayAccessTrait
 
     public function offsetGet($instance)
     {
-        if (!isset($this[$instance])) {
-            $this[$instance] = $this->get($instance);
+        if (!isset($this->registry[$instance])) {
+            $this->registry[$instance] = $this->get($instance);
         }
 
-        return isset($this[$instance]) ? $this->registry[$instance] : null;
+        return isset($this->registry[$instance]) ? $this->registry[$instance] : null;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ltm\Domain\Util\IblockOrm;
+namespace Ltm\Domain\IblockOrm;
 
 trait AbstractIblockIdGetterTrait
 {
@@ -14,7 +14,7 @@ trait AbstractIblockIdGetterTrait
     /**
      * Возвращает объект модели текущего инфоблока
      * 
-     * @return \Ltm\Domain\Util\IblockOrm\Model
+     * @return \Ltm\Domain\IblockOrm\Model
      * 
      * @throws \Bitrix\Main\SystemException Если инфоблок не найден
      */
