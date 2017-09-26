@@ -36,7 +36,7 @@ class ltm_domain extends CModule
 
     public function installDB()
     {
-        global $DB, $DBType, $APPLICATION;
+        /*global $DB, $DBType, $APPLICATION;
 
         $pathInfo = pathinfo(__FILE__);
         $errors = $DB->RunSQLBatch("$pathInfo[dirname]/db/$DBType/install.sql");
@@ -44,7 +44,7 @@ class ltm_domain extends CModule
         if (!empty($errors)) {
             $APPLICATION->ThrowException(implode("", $errors));
             return false;
-        }
+        }*/
 
         RegisterModule($this->MODULE_ID);
 
