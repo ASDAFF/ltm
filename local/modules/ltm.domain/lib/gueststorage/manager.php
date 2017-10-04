@@ -32,20 +32,62 @@ class Manager
     public function addFormResult($resultId, $resultData = null, $user = null)
     {
         $ltmFormResult = new LtmFormResult();
-        if(empty($resultId)) return null;
-        if(empty($resultData)) $resultData = $ltmFormResult->getResultData($resultId);
-        if(empty($user)) $user = $ltmFormResult->getUserByResultId($resultId);
-        if($resultData !== false && $user !== false)
-        {
-            $resultData['fields']['UF_NORTH_AMERICA'] = $this->northamerica[ $resultData['fields']['UF_NORTH_AMERICA'] ]['ID'];
-            $resultData['fields']['UF_EUROPE'] = $this->europe[ $resultData['fields']['UF_EUROPE'] ]['ID'];
-            $resultData['fields']['UF_SOUTH_AMERICA'] = $this->southamerica[ $resultData['fields']['UF_SOUTH_AMERICA'] ]['ID'];
-            $resultData['fields']['UF_AFRICA'] = $this->africa[ $resultData['fields']['UF_AFRICA'] ]['ID'];
-            $resultData['fields']['UF_ASIA'] = $this->asia[ $resultData['fields']['UF_ASIA'] ]['ID'];
-            $resultData['fields']['UF_OCEANIA'] = $this->oceania[ $resultData['fields']['UF_OCEANIA'] ]['ID'];
-            $resultData['fields']['UF_COUNTRY'] = $this->countryList[ $resultData['fields']['UF_COUNTRY'] ]['ID'];
-            $resultData['fields']['UF_SALUTATION'] = $this->salutation[ $resultData['fields']['UF_SALUTATION'] ]['ID'];
+        if (empty($resultId)) {
+            return null;
+        }
+        if (empty($resultData)) {
+            $resultData = $ltmFormResult->getResultData($resultId);
+        }
+        if (empty($user)) {
+            $user = $ltmFormResult->getUserByResultId($resultId);
+        }
+        if ($resultData !== false && $user !== false) {
             $resultData['fields']['UF_USER_ID'] = $user['ID'];
+            $resultData['fields']['UF_COUNTRY'] = $this->countryList[$resultData['fields']['UF_COUNTRY']]['ID'];
+            $resultData['fields']['UF_SALUTATION'] = $this->salutation[$resultData['fields']['UF_SALUTATION']]['ID'];
+
+            $t = [];
+            foreach ($resultData['fields']['UF_NORTH_AMERICA'] as $area) {
+                $t[] = $this->northamerica[$area]['ID'];
+            }
+            $resultData['fields']['UF_NORTH_AMERICA'] = $t;
+
+            $t = [];
+            foreach ($resultData['fields']['UF_EUROPE'] as $area) {
+                $t[] = $this->europe[$area]['ID'];
+            }
+            $resultData['fields']['UF_EUROPE'] = $t;
+
+            $t = [];
+            foreach ($resultData['fields']['UF_SOUTH_AMERICA'] as $area) {
+                $t[] = $this->southamerica[$area]['ID'];
+            }
+            $resultData['fields']['UF_SOUTH_AMERICA'] = $t;
+
+            $t = [];
+            foreach ($resultData['fields']['UF_AFRICA'] as $area) {
+                $t[] = $this->africa[$area]['ID'];
+            }
+            $resultData['fields']['UF_AFRICA'] = $t;
+
+            $t = [];
+            foreach ($resultData['fields']['UF_ASIA'] as $area) {
+                $t[] = $this->asia[$area]['ID'];
+            }
+            $resultData['fields']['UF_ASIA'] = $t;
+
+            $t = [];
+            foreach ($resultData['fields']['UF_OCEANIA'] as $area) {
+                $t[] = $this->oceania[$area]['ID'];
+            }
+            $resultData['fields']['UF_OCEANIA'] = $t;
+
+            $t = [];
+            foreach ($resultData['fields']['UF_PRIORITY_AREAS'] as $area) {
+                $t[] = $this->areas[$area]['ID'];
+            }
+            $resultData['fields']['UF_PRIORITY_AREAS'] = $t;
+
 
             $conn = \Bitrix\Main\Application::getConnection();
             $conn->startTransaction();
@@ -71,6 +113,7 @@ class Manager
                         }
                     } else {
                         $conn->rollbackTransaction();
+
                         return false;
                     }
                 }
@@ -82,11 +125,99 @@ class Manager
             $res = $entity::add($resultData['fields']);
             if ($res->isSuccess()) {
                 $conn->commitTransaction();
+
                 return $res->getId();
             }
             $conn->rollbackTransaction();
         }
+
         return false;
+    }
+
+    public function getResultListByUserIDs($userIDs)
+    {
+        $provider = HlBlockManager::getInstance()->getProvider('GuestStorage');
+        $entity = $provider->getEntityClassName();
+        $provider = HlBlockManager::getInstance()->getProvider('GuestStorageColleague');
+        $entityColleague = $provider->getEntityClassName();
+
+        $res = $entity::getList(['filter' => ['UF_USER_ID' => $userIDs]]);
+        $results = [];
+
+        $ltmFormResult = new LtmFormResult();
+        $mapping = $ltmFormResult->getMapping();
+        $questions = $ltmFormResult->getQuestionArrays();
+
+        while ($record = $res->Fetch()) {
+            foreach ($this->countryList as $country => $v) {
+                if ($v['ID'] == $record['UF_COUNTRY']) {
+                    $record['UF_COUNTRY'] = $v['UF_VALUE'];
+                    break;
+                }
+            }
+            foreach ($this->salutation as $salutation => $v) {
+                if ($v['ID'] == $record['UF_SALUTATION']) {
+                    $record['UF_SALUTATION'] = $v['UF_VALUE'];
+                    break;
+                }
+            }
+            $item = $questions;
+            foreach ($record as $k => $v) {
+                if (isset($mapping[$k])) {
+                    $item[$mapping[$k]]['VALUE'] = $v;
+                }
+            }
+
+            $colleagueItems = [];
+            foreach ($record['UF_COLLEAGUES'] as $k => $colId) {
+                $colleague = $entityColleague::getById($colId)->Fetch();
+                if ($k == 0) {
+                    $colleagueItem = [
+                        '628' => ['VALUE' => $colleague['UF_NAME']],
+                        '629' => ['VALUE' => $colleague['UF_SURNAME']],
+                        '630' => ['VALUE' => $colleague['UF_JOB_TITLE']],
+                        '631' => ['VALUE' => $colleague['UF_EMAIL']],
+                        '668' => ['VALUE' => $colleague['UF_SALUTATION']],
+                    ];
+                } elseif ($k == 1) {
+                    $colleagueItem = [
+                        '632' => ['VALUE' => $colleague['UF_NAME']],
+                        '633' => ['VALUE' => $colleague['UF_SURNAME']],
+                        '635' => ['VALUE' => $colleague['UF_JOB_TITLE']],
+                        '634' => ['VALUE' => $colleague['UF_EMAIL']],
+                        '669' => ['VALUE' => $colleague['UF_SALUTATION']],
+                    ];
+                } elseif ($k == 2) {
+                    $colleagueItem = [
+                        '636' => ['VALUE' => $colleague['UF_NAME']],
+                        '637' => ['VALUE' => $colleague['UF_SURNAME']],
+                        '638' => ['VALUE' => $colleague['UF_JOB_TITLE']],
+                        '639' => ['VALUE' => $colleague['UF_EMAIL']],
+                        '670' => ['VALUE' => $colleague['UF_SALUTATION']],
+                    ];
+                }
+                $colleagueItems[$colleague['ID']] = $colleagueItem;
+            }
+            foreach ($colleagueItems as $colleagueItem) {
+                $item = $item + $colleagueItem;
+            }
+            if (!empty($record['UF_MORNING_COLLEAGUE']) && isset($colleagueItems[$record['UF_MORNING_COLLEAGUE']])) {
+                $colleagueItem = [
+                    '650' => ['VALUE' => $colleague['UF_NAME']],
+                    '651' => ['VALUE' => $colleague['UF_SURNAME']],
+                    '652' => ['VALUE' => $colleague['UF_JOB_TITLE']],
+                    '653' => ['VALUE' => $colleague['UF_EMAIL']],
+                    '672' => ['VALUE' => $colleague['UF_SALUTATION']],
+                    '657' => ['VALUE' => $colleague['UF_PHOTO']],
+                ];
+                $item = $item + $colleagueItem;
+            }
+
+
+            $results[$record['UF_USER_ID']] = $item;
+        }
+
+        return $results;
     }
 
     public function init()

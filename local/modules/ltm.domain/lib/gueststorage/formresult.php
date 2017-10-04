@@ -12,6 +12,62 @@ class FormResult
     const STORAGE_FORM = 31;
     const STORAGE_FORM_GROUP = 59;
 
+    const HL2FORM_MAPPING = [
+        'UF_COMPANY' => '612',
+        'UF_ADDRESS' => '614',
+        'UF_PRIORITY_AREAS' => '613',
+        'UF_POSTCODE' => '615',
+        'UF_CITY' => '616',
+        'UF_COUNTRY' => '617',
+        'UF_COUNTRY_OTHER' => '618',
+        'UF_NAME' => '619',
+        'UF_SURNAME' => '620',
+        'UF_POSITION' => '621',
+        'UF_PHONE' => '622',
+        'UF_MOBILE' => '623',
+        'UF_SKYPE' => '624',
+        'UF_EMAIL' => '625',
+        'UF_SITE' => '627',
+        'UF_LOGIN' => '640',
+        'UF_PASSWORD' => '641',
+        'UF_DESCRIPTION' => '643',
+        'UF_NORTH_AMERICA' => '644',
+        'UF_EUROPE' => '645',
+        'UF_SOUTH_AMERICA' => '646',
+        'UF_AFRICA' => '647',
+        'UF_ASIA' => '648',
+        'UF_OCEANIA' => '649',
+        'UF_MORNING' => '654',
+        'UF_EVENING' => '655',
+        'UF_PHOTO' => '656',
+        'UF_PHOTO_MORNING' => '657',
+        'UF_ROOM' => '658',
+        'UF_TABLE' => '659',
+        'UF_HOTEL' => '673',
+        'UF_SALUTATION' => '667',
+    ];
+
+    public function getMapping()
+    {
+        return self::HL2FORM_MAPPING;
+    }
+
+    public function getQuestionArrays()
+    {
+        $rsQuestions = \CFormField::GetList(self::STORAGE_FORM, "N");
+        $arQuestions = [];
+        while ($arQuestion = $rsQuestions->Fetch()) {
+            $question = [];
+            $question['FIELD_TYPE'] = $arQuestion['FIELD_TYPE'];
+            $question['QUESTIONS'] = $arQuestion['TITLE'];
+            //$question['ANSWER_ID'] = $arQuestion['FIELD_TYPE'];
+            $question['SID'] = $arQuestion['SID'];
+            $question['VALUE'] = $arQuestion['VALUE'];
+            $arQuestions[$arQuestion['ID']] = $question;
+        }
+        return $arQuestions;
+    }
+
     public function getUserByResultId($resultId)
     {
         $arUserFilter = array(
@@ -53,57 +109,53 @@ class FormResult
             foreach ($arAnswer2 as $i => $arAnswerArr) {
                 $answer = [];
                 foreach ($arAnswerArr as $k => $v) {
-                    switch ($v[0]["FIELD_TYPE"]) {
-                        case "dropdown" :
-                        case "checkbox" :
-                            $propAnswer = "ANSWER_TEXT";
-                            break;
-                        case "text" :
-                            $propAnswer = "USER_TEXT";
-                            break;
-                        case "image" :
-                            $propAnswer = "USER_FILE_ID";
-                            break;
-                        default:
-                            $propAnswer = "USER_TEXT";
+                    if (count($v) > 1) {
+                        foreach($v as $k1=>$v1)
+                        {
+                            switch ($v1["FIELD_TYPE"]) {
+                                case "dropdown" :
+                                case "checkbox" :
+                                    $propAnswer = "ANSWER_TEXT";
+                                    break;
+                                case "text" :
+                                    $propAnswer = "USER_TEXT";
+                                    break;
+                                case "image" :
+                                    $propAnswer = "USER_FILE_ID";
+                                    break;
+                                default:
+                                    $propAnswer = "USER_TEXT";
+                            }
+                            $answer[$v[$k1]['FIELD_ID']][] = $v[$k1][$propAnswer];
+                        }
+                    } else {
+                        switch ($v[0]["FIELD_TYPE"]) {
+                            case "dropdown" :
+                            case "checkbox" :
+                                $propAnswer = "ANSWER_TEXT";
+                                break;
+                            case "text" :
+                                $propAnswer = "USER_TEXT";
+                                break;
+                            case "image" :
+                                $propAnswer = "USER_FILE_ID";
+                                break;
+                            default:
+                                $propAnswer = "USER_TEXT";
+                        }
+                        $answer[$v[0]['FIELD_ID']] = $v[0][$propAnswer];
                     }
-                    $answer[$v[0]['FIELD_ID']] = $v[0][$propAnswer];
+
                 }
             }
-            $arFields = [
-                'UF_COMPANY' => $answer[612],
-                'UF_ADDRESS' => $answer[614],
-                'UF_PRIORITY_AREAS' => $answer[613],
-                'UF_POSTCODE' => $answer[615],
-                'UF_CITY' => $answer[616],
-                'UF_COUNTRY' => $answer[617],
-                'UF_COUNTRY_OTHER' => $answer[618],
-                'UF_NAME' => $answer[619],
-                'UF_SURNAME' => $answer[620],
-                'UF_POSITION' => $answer[621],
-                'UF_PHONE' => $answer[622],
-                'UF_MOBILE' => $answer[623],
-                'UF_SKYPE' => $answer[624],
-                'UF_EMAIL' => $answer[625],
-                'UF_SITE' => $answer[627],
-                'UF_LOGIN' => $answer[640],
-                'UF_PASSWORD' => $answer[641],
-                'UF_DESCRIPTION' => $answer[643],
-                'UF_NORTH_AMERICA' => $answer[644],
-                'UF_EUROPE' => $answer[645],
-                'UF_SOUTH_AMERICA' => $answer[646],
-                'UF_AFRICA' => $answer[647],
-                'UF_ASIA' => $answer[648],
-                'UF_OCEANIA' => $answer[649],
-                'UF_MORNING' => $answer[654],
-                'UF_EVENING' => $answer[655],
-                'UF_PHOTO' => $answer[656],
-                'UF_PHOTO_MORNING' => $answer[657],
-                'UF_ROOM' => $answer[658],
-                'UF_TABLE' => $answer[659],
-                'UF_HOTEL' => $answer[673],
-                'UF_SALUTATION' => $answer[667],
-            ];
+            $arFields = [];
+            foreach(self::HL2FORM_MAPPING as $k => $v)
+            {
+                if(isset($answer[$v]))
+                {
+                    $arFields[$k] = $answer[$v];
+                }
+            }
 
             $colleagues = [];
             if (!empty($answer[628])) {
