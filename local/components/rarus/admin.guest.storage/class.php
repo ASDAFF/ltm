@@ -149,7 +149,7 @@ class CAdminGuestStorage extends CBitrixComponent
 		//Получаем ID результатов веб-форм
 		$arResultUserID = array();
 		foreach($this->arResult['USERS'] as $k=>$arUser){
-			if($arUser['UF_ID_COMP']){
+			if($arUser['ID']){
 				$arResultUserID[$arUser['ID']] = $k;
 			}
 		}
@@ -166,7 +166,6 @@ class CAdminGuestStorage extends CBitrixComponent
 		while ($arQuestion = $rsQuestions->Fetch()) {
 			$arQuestions[$arQuestion['ID']] = $arQuestion;
 		}
-
 		$this->arResult["QUESTIONS"]  =$arQuestions;
 	}
 

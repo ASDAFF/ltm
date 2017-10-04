@@ -129,21 +129,24 @@ class FormResult
                             $answer[$v[$k1]['FIELD_ID']][] = $v[$k1][$propAnswer];
                         }
                     } else {
-                        switch ($v[0]["FIELD_TYPE"]) {
-                            case "dropdown" :
-                            case "checkbox" :
-                                $propAnswer = "ANSWER_TEXT";
-                                break;
-                            case "text" :
-                                $propAnswer = "USER_TEXT";
-                                break;
-                            case "image" :
-                                $propAnswer = "USER_FILE_ID";
-                                break;
-                            default:
-                                $propAnswer = "USER_TEXT";
+                        foreach($v as $k1=>$v1)
+                        {
+                            switch ($v1["FIELD_TYPE"]) {
+                                case "dropdown" :
+                                case "checkbox" :
+                                    $propAnswer = "ANSWER_TEXT";
+                                    break;
+                                case "text" :
+                                    $propAnswer = "USER_TEXT";
+                                    break;
+                                case "image" :
+                                    $propAnswer = "USER_FILE_ID";
+                                    break;
+                                default:
+                                    $propAnswer = "USER_TEXT";
+                            }
+                            $answer[$v[$k1]['FIELD_ID']] = $v[$k1][$propAnswer];
                         }
-                        $answer[$v[0]['FIELD_ID']] = $v[0][$propAnswer];
                     }
 
                 }
@@ -155,6 +158,34 @@ class FormResult
                 {
                     $arFields[$k] = $answer[$v];
                 }
+            }
+            if(!is_array($arFields['UF_PRIORITY_AREAS']))
+            {
+                $arFields['UF_PRIORITY_AREAS'] = [$arFields['UF_PRIORITY_AREAS']];
+            }
+            if(!is_array($arFields['UF_NORTH_AMERICA']))
+            {
+                $arFields['UF_NORTH_AMERICA'] = [$arFields['UF_NORTH_AMERICA']];
+            }
+            if(!is_array($arFields['UF_EUROPE']))
+            {
+                $arFields['UF_EUROPE'] = [$arFields['UF_EUROPE']];
+            }
+            if(!is_array($arFields['UF_SOUTH_AMERICA']))
+            {
+                $arFields['UF_SOUTH_AMERICA'] = [$arFields['UF_SOUTH_AMERICA']];
+            }
+            if(!is_array($arFields['UF_AFRICA']))
+            {
+                $arFields['UF_AFRICA'] = [$arFields['UF_AFRICA']];
+            }
+            if(!is_array($arFields['UF_ASIA']))
+                {
+                $arFields['UF_ASIA'] = [$arFields['UF_ASIA']];
+            }
+            if(!is_array($arFields['UF_OCEANIA']))
+            {
+                $arFields['UF_OCEANIA'] = [$arFields['UF_OCEANIA']];
             }
 
             $colleagues = [];
@@ -213,7 +244,7 @@ class FormResult
     public function getResultList()
     {
         $rsResults = \CFormResult::GetList(self::STORAGE_FORM,
-            ($by="s_timestamp"),
+            ($by="id"),
             ($order="desc"),
             $arFilter,
             $is_filtered,

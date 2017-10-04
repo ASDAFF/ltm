@@ -37,7 +37,7 @@ if (Loader::includeModule('ltm.domain')) {
     echo '<pre>';
 
     $ltmFormResult = new LtmFormResult();
-    $resultList = $ltmFormResult->getResultList($resultId);
+    $resultList = $ltmFormResult->getResultList();
     foreach($resultList as $resultId)
     {
         $res = $guestStorageManager->addFormResult($resultId);
@@ -50,7 +50,6 @@ if (Loader::includeModule('ltm.domain')) {
         ob_flush();
         ob_end_flush();
     }
-
     echo '</pre>';
     ob_implicit_flush(false);
 }

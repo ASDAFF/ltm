@@ -158,9 +158,64 @@ class Manager
             foreach ($this->salutation as $salutation => $v) {
                 if ($v['ID'] == $record['UF_SALUTATION']) {
                     $record['UF_SALUTATION'] = $v['UF_VALUE'];
-                    break;
                 }
             }
+            $t = [];
+            foreach ($this->northamerica as $area => $v) {
+                if (in_array($v['ID'], $record['UF_NORTH_AMERICA'])) {
+                    $t[] = $v['UF_VALUE'];
+                }
+            }
+            $record['UF_NORTH_AMERICA'] = $t;
+
+            $t = [];
+            foreach ($this->europe as $area => $v) {
+                if (in_array($v['ID'], $record['UF_EUROPE'])) {
+                    $t[] = $v['UF_VALUE'];
+                }
+            }
+            $record['UF_EUROPE'] = $t;
+
+            $t = [];
+            foreach ($this->southamerica as $area => $v) {
+                if (in_array($v['ID'], $record['UF_SOUTH_AMERICA'])) {
+                    $t[] = $v['UF_VALUE'];
+                }
+            }
+            $record['UF_SOUTH_AMERICA'] = $t;
+
+            $t = [];
+            foreach ($this->africa as $area => $v) {
+                if (in_array($v['ID'], $record['UF_AFRICA'])) {
+                    $t[] = $v['UF_VALUE'];
+                }
+            }
+            $record['UF_AFRICA'] = $t;
+
+            $t = [];
+            foreach ($this->asia as $area => $v) {
+                if (in_array($v['ID'], $record['UF_ASIA'])) {
+                    $t[] = $v['UF_VALUE'];
+                }
+            }
+            $record['UF_ASIA'] = $t;
+
+            $t = [];
+            foreach ($this->oceania as $area => $v) {
+                if (in_array($v['ID'], $record['UF_OCEANIA'])) {
+                    $t[] = $v['UF_VALUE'];
+                }
+            }
+            $record['UF_OCEANIA'] = $t;
+
+            $t = [];
+            foreach ($this->areas as $area => $v) {
+                if (in_array($v['ID'], $record['UF_PRIORITY_AREAS'])) {
+                    $t[] = $v['UF_VALUE'];
+                }
+            }
+            $record['UF_PRIORITY_AREAS'] = $t;
+
             $item = $questions;
             foreach ($record as $k => $v) {
                 if (isset($mapping[$k])) {
