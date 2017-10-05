@@ -2582,6 +2582,36 @@ class CFormMatrix
 			'SIMPLE_QUESTION_156' => array(        //Вечер
 				844,//Выбран
 			),
+			'SALUTATION' => array(        //Обращение
+				1845,//Mr.
+				1846,//Mrs.
+				1847,//Ms.
+				1848,//Dr.
+			),
+			'SALUTATION_1' => array(        //Обращение 1
+				1849,//Mr.
+				1850,//Mrs.
+				1851,//Ms.
+				1852,//Dr.
+			),
+			'SALUTATION_2' => array(        //Обращение 2
+				1853,//Mr.
+				1854,//Mrs.
+				1855,//Ms.
+				1856,//Dr.
+			),
+			'SALUTATION_3' => array(        //Обращение 3
+				1857,//Mr.
+				1858,//Mrs.
+				1859,//Ms.
+				1860,//Dr.
+			),
+			'SALUTATION_COL' => array(        //Обращение утро
+				1862,//Mr.
+				1863,//Mrs.
+				1864,//Ms.
+				1865,//Dr.
+			),
 		),
 		31 => array(
 			'SIMPLE_QUESTION_677' => array(        //Вид деятельности
@@ -2874,6 +2904,36 @@ class CFormMatrix
 			),
 			'SIMPLE_QUESTION_156' => array(        //Вечер
 				1832,//Выбран
+			),
+			'SALUTATION' => array(        //Обращение
+				1868,//Mr.
+				1869,//Mrs.
+				1870,//Ms.
+				1871,//Dr.
+			),
+			'SALUTATION_1' => array(        //Обращение 1
+				1872,//Mr.
+				1873,//Mrs.
+				1874,//Ms.
+				1875,//Dr.
+			),
+			'SALUTATION_2' => array(        //Обращение 2
+				1876,//Mr.
+				1877,//Mrs.
+				1878,//Ms.
+				1879,//Dr.
+			),
+			'SALUTATION_3' => array(        //Обращение 3
+				1880,//Mr.
+				1881,//Mrs.
+				1882,//Ms.
+				1883,//Dr.
+			),
+			'SALUTATION_COL' => array(        //Обращение утро
+				1885,//Mr.
+				1886,//Mrs.
+				1887,//Ms.
+				1888,//Dr.
 			),
 		),
 	);

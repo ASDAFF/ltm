@@ -7,6 +7,8 @@
  * Time: 20:44
  */
 use Bitrix\Main\Loader;
+use Ltm\Domain\GuestStorage\Manager as GuestStorageManager;
+use Ltm\Domain\GuestStorage\FormResult as LtmFormResult;
 
 class CLTMGuestStorage
 {
@@ -35,6 +37,9 @@ class CLTMGuestStorage
 		if(!Loader::includeModule('iblock')){
 			$this->userID[] = 'iblock module is not installed';
 		}
+		if(!Loader::includeModule('ltm.domain')){
+			$this->userID[] = 'ltm.domain module is not installed';
+		}
 	}
 
 	/** Places the guest in storage
@@ -44,7 +49,7 @@ class CLTMGuestStorage
 	 * @param bool $evening
 	 * @return bool
 	 */
-	public function putInWorking($userID, $exhID, $morning = false, $evening = false)
+	public function putInWorkingOld($userID, $exhID, $morning = false, $evening = false)
 	{
 		$userID = intval($userID);
 		if(!$userID){
@@ -80,7 +85,6 @@ class CLTMGuestStorage
 
 				foreach($fieldSID as $index => $sid){
 					if(isset($arAnswerSID[$sid])){
-
 						foreach($arAnswerSID[$sid] as $arAnswer){
 							switch($arAnswer["FIELD_TYPE"]){
 								case "dropdown" :
@@ -122,7 +126,6 @@ class CLTMGuestStorage
 				if($evening){
 					$newArAnswerSID['form_checkbox_SIMPLE_QUESTION_156'] = array(844);
 				}
-
 				$newResultID = CFormResult::Add(self::WORKING_FORM, $newArAnswerSID);
 
 				$arExhGroups = self::getExhGroups($exhID);
@@ -162,11 +165,146 @@ class CLTMGuestStorage
 		return false;
 	}
 
+	public function putInWorking($userID, $exhID, $morning = false, $evening = false)
+	{
+		$userID = intval($userID);
+		if (!$userID) {
+			$this->errors[] = 'Empty user ID';
+
+			return false;
+		} else {
+			$this->userID = $userID;
+		}
+
+		$exhID = intval($exhID);
+		if (!$exhID) {
+			$this->errors[] = 'Empty exhibiton ID';
+
+			return false;
+		} else {
+			$this->exhID = $exhID;
+		}
+
+		if (self::getUserInfo()) {
+			$guestStorageManager = new GuestStorageManager();
+			$res = $guestStorageManager->getResultListByUserIDs([$userID]);
+			$newArAnswerSID = array();
+			$res[$userID][626]['VALUE'] = $res[$userID][625]['VALUE'];
+			$res[$userID][642]['VALUE'] = $res[$userID][641]['VALUE'];
+
+			foreach ($res[$userID] as $qid => $question) {
+				if (count($question['ANSWERS']) > 1) {
+					$answers = [];
+					foreach ($question['ANSWERS'] as $k => $v) {
+						$answers[$v['MESSAGE']] = $k;
+					}
+					if(count($question['VALUE']) > 1) {
+						$values = [];
+						foreach ($question['VALUE'] as $val) {
+							$values[] = $answers[$val];
+						}
+					} else {
+						$values = $answers[$question['VALUE']];
+					}
+				} else {
+					$values = $question['VALUE'];
+				}
+				$answer = $question["ANSWERS"][ array_keys($question["ANSWERS"])[0] ];
+				$fieldID = '';
+				switch ($answer['FIELD_TYPE']) {
+					case "dropdown" :
+						if(count($values) > 1)
+						{
+							$t = [];
+							foreach($values as $val)
+							{
+								$val_new = CFormMatrix::getListAnswersIDGuestForm(self::STORAGE_FORM, self::WORKING_FORM, $question['SID'], $val);
+								$t[] = $val_new;
+							}
+						} else {
+							$t = CFormMatrix::getListAnswersIDGuestForm(self::STORAGE_FORM, self::WORKING_FORM, $question['SID'], $values);
+						}
+						$questionName = "form_{$answer['FIELD_TYPE']}_{$question['SID']}";
+						$newArAnswerSID[$questionName] = $t;
+						break;
+					case "multiselect" :
+					case "checkbox" :
+						if(count($values) > 1)
+						{
+							$t = [];
+							foreach($values as $val)
+							{
+								$val_new = CFormMatrix::getListAnswersIDGuestForm(self::STORAGE_FORM, self::WORKING_FORM, $question['SID'], $val);
+								$t[] = $val_new;
+							}
+						} else {
+							$t = CFormMatrix::getListAnswersIDGuestForm(self::STORAGE_FORM, self::WORKING_FORM, $question['SID'], $values);
+						}
+						$questionName = "form_{$answer['FIELD_TYPE']}_{$question['SID']}";
+						$newArAnswerSID[$questionName] = $t;
+						break;
+					case "image" :
+						$fieldID = CFormMatrix::getAnswerGuestForm($answer["ID"], self::STORAGE_FORM,
+							self::WORKING_FORM);
+						$questionName = "form_{$answer['FIELD_TYPE']}_{$fieldID}";
+						$newArAnswerSID[$questionName] = $values;
+						break;
+					case "text" :
+					case "textarea" :
+					case "password" :
+					case "date" :
+						$fieldID = CFormMatrix::getAnswerGuestForm($answer["ID"], self::STORAGE_FORM,
+							self::WORKING_FORM);
+						$questionName = "form_{$answer['FIELD_TYPE']}_{$fieldID}";
+						$newArAnswerSID[$questionName] = $values;
+						break;
+				}
+			}
+			//Если выбрали утро
+			if($morning){
+				$newArAnswerSID['form_checkbox_SIMPLE_QUESTION_836'] = array(843);
+			}
+			//Если выбрали вечер
+			if($evening){
+				$newArAnswerSID['form_checkbox_SIMPLE_QUESTION_156'] = array(844);
+			}
+			$newResultID = CFormResult::Add(self::WORKING_FORM, $newArAnswerSID);
+			$arExhGroups = self::getExhGroups($exhID);
+			$arNewGroups = array_diff($this->arUser['GROUPS'], array(self::STORAGE_GROUP_ID));
+			$arNewGroups[] = $arExhGroups['NOT_CONFIRMED'];
+
+			$arNewUserFields = array(
+				'UF_ID_COMP' => $newResultID,
+				'UF_MR' => "",	//$morning
+				'UF_EV' => "",	//$evening
+				'UF_HB' => "",
+				CFormMatrix::getPropertyIDByExh($exhID) => $newResultID,
+				'GROUP_ID' => $arNewGroups
+			);
+
+
+			//Обновляем пользователя
+			$obUser = new CUser();
+			if($obUser->Update($this->userID, $arNewUserFields)){
+				$guestStorageManager = new GuestStorageManager();
+				$guestStorageManager->deleteResult($userID);
+			}else{
+				$this->errors[] = 'User not updated. ' . $obUser->LAST_ERROR;
+			}
+		}
+
+		if (empty($this->errors)) {
+			return true;
+		}
+
+		return false;
+	}
+
 	/** Puts a guest in a working form
 	 * @param $userID
 	 * @return bool
 	 */
-	public function putInStorage($userID)
+	public function putInStorageOld($userID)
 	{
 		$userID = intval($userID);
 		if(!$userID){
@@ -175,7 +313,6 @@ class CLTMGuestStorage
 		}else{
 			$this->userID = $userID;
 		}
-
 
 		if(self::getUserInfo()){
 			$resultID = intval($this->arUser['UF_ID_COMP']);
@@ -251,6 +388,62 @@ class CLTMGuestStorage
 					CFormResult::Delete($resultID);
 				}else{
 					$this->errors[] = 'User not updated. ' . $obUser->LAST_ERROR;
+				}
+			}else{
+				$this->errors[] = 'Web-form result ID not found';
+				return false;
+			}
+		}
+
+		if(empty($this->errors)){
+			return true;
+		}
+		return false;
+	}
+
+	public function putInStorage($userID)
+	{
+		$userID = intval($userID);
+		if(!$userID){
+			$this->errors[] = 'Empty user ID';
+			return false;
+		}else{
+			$this->userID = $userID;
+		}
+
+		if(self::getUserInfo()){
+			$guestStorageManager = new GuestStorageManager();
+			$resultID = intval($this->arUser['UF_ID_COMP']);
+			if($resultID){
+				$res = $guestStorageManager->addActiveFormResult($resultID);
+
+				if ($res === false) {
+					$this->errors[] = 'HL record not created.' ;
+				} else {
+					$newResultID = $res;
+					$exhID = self::getExhID();
+					$arExhGroups = self::getExhGroups($exhID);
+
+					//Подготавливаем данные для обновления пользователя
+					$arNewGroups = array_diff($this->arUser['GROUPS'], array_values($arExhGroups));
+					$arNewGroups[] = self::STORAGE_GROUP_ID;
+
+					$arNewUserFields = array(
+						'UF_ID_COMP' => $newResultID,
+						'UF_MR' => "",
+						'UF_EV' => "",
+						'UF_HB' => "",
+						CFormMatrix::getPropertyIDByExh($exhID) => "",
+						'GROUP_ID' => $arNewGroups
+					);
+
+					//Обновляем пользователя
+					$obUser = new CUser();
+					if($obUser->Update($this->userID, $arNewUserFields)){
+						CFormResult::Delete($resultID);
+					}else{
+						$this->errors[] = 'User not updated. ' . $obUser->LAST_ERROR;
+					}
 				}
 			}else{
 				$this->errors[] = 'Web-form result ID not found';

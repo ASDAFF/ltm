@@ -29,18 +29,19 @@ class Manager
         $this->init();
     }
 
-    public function addFormResult($resultId, $resultData = null, $user = null)
+    public function addActiveFormResult($resultId, $resultData = null, $user = null)
     {
         $ltmFormResult = new LtmFormResult();
         if (empty($resultId)) {
             return null;
         }
         if (empty($resultData)) {
-            $resultData = $ltmFormResult->getResultData($resultId);
+            $resultData = $ltmFormResult->getActiveResultData($resultId);
         }
         if (empty($user)) {
             $user = $ltmFormResult->getUserByResultId($resultId);
         }
+
         if ($resultData !== false && $user !== false) {
             $resultData['fields']['UF_USER_ID'] = $user['ID'];
             $resultData['fields']['UF_COUNTRY'] = $this->countryList[$resultData['fields']['UF_COUNTRY']]['ID'];
@@ -83,6 +84,109 @@ class Manager
             $resultData['fields']['UF_OCEANIA'] = $t;
 
             $t = [];
+            if(!is_array($resultData['fields']['UF_PRIORITY_AREAS'])) $resultData['fields']['UF_PRIORITY_AREAS'] = [$resultData['fields']['UF_PRIORITY_AREAS']];
+            foreach ($resultData['fields']['UF_PRIORITY_AREAS'] as $area) {
+                $t[] = $this->areas[$area]['ID'];
+            }
+            $resultData['fields']['UF_PRIORITY_AREAS'] = $t;
+
+            $conn = \Bitrix\Main\Application::getConnection();
+            $conn->startTransaction();
+
+            if (count($resultData['colleagues']) > 0) {
+                $provider = HlBlockManager::getInstance()->getProvider('GuestStorageColleague');
+                $entityColleague = $provider->getEntityClassName();
+                $colIDs = [];
+                foreach ($resultData['colleagues'] as $colleague) {
+                    $f = false;
+                    if (isset($colleague['MORNING'])) {
+                        $f = true;
+                        unset($colleague['MORNING']);
+                    }
+                    $colleague['UF_USER_ID'] = $user['ID'];
+                    $res = $entityColleague::add($colleague);
+                    if ($res->isSuccess()) {
+                        $colId = $res->getId();
+                        $colIDs[] = $colId;
+
+                        if ($f) {
+                            $resultData['fields']['UF_MORNING_COLLEAGUE'] = $colId;
+                        }
+                    } else {
+                        $conn->rollbackTransaction();
+                        return false;
+                    }
+                }
+                $resultData['fields']['UF_COLLEAGUES'] = $colIDs;
+            }
+            $provider = HlBlockManager::getInstance()->getProvider('GuestStorage');
+            $entity = $provider->getEntityClassName();
+            $res = $entity::add($resultData['fields']);
+            if ($res->isSuccess()) {
+                $conn->commitTransaction();
+                return $res->getId();
+            }
+            $conn->rollbackTransaction();
+        }
+        return false;
+    }
+
+    public function addFormResult($resultId, $resultData = null, $user = null)
+    {
+        $ltmFormResult = new LtmFormResult();
+        if (empty($resultId)) {
+            return null;
+        }
+        if (empty($resultData)) {
+            $resultData = $ltmFormResult->getResultData($resultId);
+        }
+        if (empty($user)) {
+            $user = $ltmFormResult->getUserByResultId($resultId);
+        }
+
+        if ($resultData !== false && $user !== false) {
+            $resultData['fields']['UF_USER_ID'] = $user['ID'];
+            $resultData['fields']['UF_COUNTRY'] = $this->countryList[$resultData['fields']['UF_COUNTRY']]['ID'];
+            $resultData['fields']['UF_SALUTATION'] = $this->salutation[$resultData['fields']['UF_SALUTATION']]['ID'];
+
+            $t = [];
+            foreach ($resultData['fields']['UF_NORTH_AMERICA'] as $area) {
+                $t[] = $this->northamerica[$area]['ID'];
+            }
+            $resultData['fields']['UF_NORTH_AMERICA'] = $t;
+
+            $t = [];
+            foreach ($resultData['fields']['UF_EUROPE'] as $area) {
+                $t[] = $this->europe[$area]['ID'];
+            }
+            $resultData['fields']['UF_EUROPE'] = $t;
+
+            $t = [];
+            foreach ($resultData['fields']['UF_SOUTH_AMERICA'] as $area) {
+                $t[] = $this->southamerica[$area]['ID'];
+            }
+            $resultData['fields']['UF_SOUTH_AMERICA'] = $t;
+
+            $t = [];
+            foreach ($resultData['fields']['UF_AFRICA'] as $area) {
+                $t[] = $this->africa[$area]['ID'];
+            }
+            $resultData['fields']['UF_AFRICA'] = $t;
+
+            $t = [];
+            foreach ($resultData['fields']['UF_ASIA'] as $area) {
+                $t[] = $this->asia[$area]['ID'];
+            }
+            $resultData['fields']['UF_ASIA'] = $t;
+
+            $t = [];
+            foreach ($resultData['fields']['UF_OCEANIA'] as $area) {
+                $t[] = $this->oceania[$area]['ID'];
+            }
+            $resultData['fields']['UF_OCEANIA'] = $t;
+
+            $t = [];
+            if(!is_array($resultData['fields']['UF_PRIORITY_AREAS'])) $resultData['fields']['UF_PRIORITY_AREAS'] = [$resultData['fields']['UF_PRIORITY_AREAS']];
             foreach ($resultData['fields']['UF_PRIORITY_AREAS'] as $area) {
                 $t[] = $this->areas[$area]['ID'];
             }
@@ -113,7 +217,6 @@ class Manager
                         }
                     } else {
                         $conn->rollbackTransaction();
-
                         return false;
                     }
                 }
@@ -125,12 +228,14 @@ class Manager
             $res = $entity::add($resultData['fields']);
             if ($res->isSuccess()) {
                 $conn->commitTransaction();
-
+                $obUser = new \CUser();
+                if($obUser->Update($user['ID'], ['UF_ID_COMP' => $res->getId()])){
+                    \CFormResult::Delete($resultId);
+                }
                 return $res->getId();
             }
             $conn->rollbackTransaction();
         }
-
         return false;
     }
 
@@ -147,7 +252,6 @@ class Manager
         $ltmFormResult = new LtmFormResult();
         $mapping = $ltmFormResult->getMapping();
         $questions = $ltmFormResult->getQuestionArrays();
-
         while ($record = $res->Fetch()) {
             foreach ($this->countryList as $country => $v) {
                 if ($v['ID'] == $record['UF_COUNTRY']) {
@@ -254,7 +358,10 @@ class Manager
                 $colleagueItems[$colleague['ID']] = $colleagueItem;
             }
             foreach ($colleagueItems as $colleagueItem) {
-                $item = $item + $colleagueItem;
+                foreach($colleagueItem as $k=>$v)
+                {
+                    $item[$k] = array_merge($item[$k], $v);
+                }
             }
             if (!empty($record['UF_MORNING_COLLEAGUE']) && isset($colleagueItems[$record['UF_MORNING_COLLEAGUE']])) {
                 $colleagueItem = [
@@ -265,14 +372,31 @@ class Manager
                     '672' => ['VALUE' => $colleague['UF_SALUTATION']],
                     '657' => ['VALUE' => $colleague['UF_PHOTO']],
                 ];
-                $item = $item + $colleagueItem;
+
+                foreach($colleagueItem as $k=>$v)
+                {
+                    $item[$k] = array_merge($item[$k], $v);
+                }
             }
-
-
             $results[$record['UF_USER_ID']] = $item;
         }
-
         return $results;
+    }
+
+    public function deleteResult($userId)
+    {
+        $provider = HlBlockManager::getInstance()->getProvider('GuestStorageColleague');
+        $entityColleague = $provider->getEntityClassName();
+        $provider = HlBlockManager::getInstance()->getProvider('GuestStorage');
+        $entity = $provider->getEntityClassName();
+        $res = $entity::getList(['filter' => ['=UF_USER_ID' => $userId]]);
+        while ($record = $res->Fetch()) {
+            print_r($record);
+            foreach ($record['UF_COLLEAGUES'] as $k => $colId) {
+                $entityColleague::delete($colId);
+            }
+            $entity::delete($record['ID']);
+        }
     }
 
     public function init()

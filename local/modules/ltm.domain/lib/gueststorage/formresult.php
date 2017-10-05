@@ -10,6 +10,7 @@ namespace Ltm\Domain\GuestStorage;
 class FormResult
 {
     const STORAGE_FORM = 31;
+    const WORKING_FORM = 10;
     const STORAGE_FORM_GROUP = 59;
 
     const HL2FORM_MAPPING = [
@@ -47,6 +48,41 @@ class FormResult
         'UF_SALUTATION' => '667',
     ];
 
+    const HL2FORM_ACTIVE_MAPPING = [
+        'UF_COMPANY' => '107',
+        'UF_ADDRESS' => '109',
+        'UF_PRIORITY_AREAS' => '108',
+        'UF_POSTCODE' => '110',
+        'UF_CITY' => '111',
+        'UF_COUNTRY' => '112',
+        'UF_COUNTRY_OTHER' => '305',
+        'UF_NAME' => '113',
+        'UF_SURNAME' => '114',
+        'UF_POSITION' => '115',
+        'UF_PHONE' => '116',
+        'UF_MOBILE' => '569',
+        'UF_SKYPE' => '596',
+        'UF_EMAIL' => '117',
+        'UF_SITE' => '119',
+        'UF_LOGIN' => '132',
+        'UF_PASSWORD' => '133',
+        'UF_DESCRIPTION' => '135',
+        'UF_NORTH_AMERICA' => '136',
+        'UF_EUROPE' => '137',
+        'UF_SOUTH_AMERICA' => '138',
+        'UF_AFRICA' => '139',
+        'UF_ASIA' => '475',
+        'UF_OCEANIA' => '476',
+        'UF_MORNING' => '481',
+        'UF_EVENING' => '482',
+        'UF_PHOTO' => '494',
+        'UF_PHOTO_MORNING' => '495',
+        'UF_ROOM' => '570',
+        'UF_TABLE' => '571',
+        'UF_HOTEL' => '666',
+        'UF_SALUTATION' => '660',
+    ];
+
     public function getMapping()
     {
         return self::HL2FORM_MAPPING;
@@ -61,8 +97,14 @@ class FormResult
             $question['FIELD_TYPE'] = $arQuestion['FIELD_TYPE'];
             $question['QUESTIONS'] = $arQuestion['TITLE'];
             //$question['ANSWER_ID'] = $arQuestion['FIELD_TYPE'];
-            $question['SID'] = $arQuestion['SID'];
+            $question['SID'] = $arQuestion['VARNAME'];
             $question['VALUE'] = $arQuestion['VALUE'];
+
+            $rsAnswers = \CFormAnswer::GetList($arQuestion['ID']);
+            while ($arAnswer = $rsAnswers->Fetch())
+            {
+                $question['ANSWERS'][$arAnswer['ID']] = ['ID' => $arAnswer['ID'], 'MESSAGE' => $arAnswer['MESSAGE'], 'FIELD_TYPE' => $arAnswer['FIELD_TYPE']];
+            }
             $arQuestions[$arQuestion['ID']] = $question;
         }
         return $arQuestions;
@@ -72,7 +114,6 @@ class FormResult
     {
         $arUserFilter = array(
             'ACTIVE' => 'Y',
-            'GROUPS_ID' => self::STORAGE_FORM_GROUP,
             'UF_ID_COMP' => $resultId,
         );
         $rsUsers = \CUser::GetList(
@@ -91,14 +132,164 @@ class FormResult
         return false;
     }
 
-    public function getResultData($resultId)
+    public function getActiveResultData($resultId)
     {
         $rsFormResult = \CFormResult::GetByID($resultId);
 
         if ($rsFormResult && $rsFormResult->SelectedRowsCount() > 0) {
             $resultData = [];
 
+            \CForm::GetResultAnswerArray(
+                self::WORKING_FORM,
+                $arQuestions,
+                $arAnswer,
+                $arAnswer2,
+                array("RESULT_ID" => $resultId)
+            );
+            foreach ($arAnswer2 as $i => $arAnswerArr) {
+                $answer = [];
+                foreach ($arAnswerArr as $k => $v) {
+                    if (count($v) > 1) {
+                        foreach($v as $k1=>$v1)
+                        {
+                            switch ($v1["FIELD_TYPE"]) {
+                                case "dropdown" :
+                                case "checkbox" :
+                                    $propAnswer = "ANSWER_TEXT";
+                                    break;
+                                case "text" :
+                                    $propAnswer = "USER_TEXT";
+                                    break;
+                                case "image" :
+                                    $propAnswer = "USER_FILE_ID";
+                                    break;
+                                default:
+                                    $propAnswer = "USER_TEXT";
+                            }
+                            $answer[$v[$k1]['FIELD_ID']][] = $v[$k1][$propAnswer];
+                        }
+                    } else {
+                        foreach($v as $k1=>$v1)
+                        {
+                            switch ($v1["FIELD_TYPE"]) {
+                                case "dropdown" :
+                                case "checkbox" :
+                                    $propAnswer = "ANSWER_TEXT";
+                                    break;
+                                case "text" :
+                                    $propAnswer = "USER_TEXT";
+                                    break;
+                                case "image" :
+                                    $propAnswer = "USER_FILE_ID";
+                                    break;
+                                default:
+                                    $propAnswer = "USER_TEXT";
+                            }
+                            $answer[$v[$k1]['FIELD_ID']] = $v[$k1][$propAnswer];
+                        }
+                    }
+
+                }
+            }
+            $arFields = [];
+            foreach(self::HL2FORM_ACTIVE_MAPPING as $k => $v)
+            {
+                if(isset($answer[$v]))
+                {
+                    $arFields[$k] = $answer[$v];
+                }
+            }
+            if(!is_array($arFields['UF_PRIORITY_AREAS']))
+            {
+                $arFields['UF_PRIORITY_AREAS'] = [$arFields['UF_PRIORITY_AREAS']];
+            }
+            if(!is_array($arFields['UF_NORTH_AMERICA']))
+            {
+                $arFields['UF_NORTH_AMERICA'] = [$arFields['UF_NORTH_AMERICA']];
+            }
+            if(!is_array($arFields['UF_EUROPE']))
+            {
+                $arFields['UF_EUROPE'] = [$arFields['UF_EUROPE']];
+            }
+            if(!is_array($arFields['UF_SOUTH_AMERICA']))
+            {
+                $arFields['UF_SOUTH_AMERICA'] = [$arFields['UF_SOUTH_AMERICA']];
+            }
+            if(!is_array($arFields['UF_AFRICA']))
+            {
+                $arFields['UF_AFRICA'] = [$arFields['UF_AFRICA']];
+            }
+            if(!is_array($arFields['UF_ASIA']))
+            {
+                $arFields['UF_ASIA'] = [$arFields['UF_ASIA']];
+            }
+            if(!is_array($arFields['UF_OCEANIA']))
+            {
+                $arFields['UF_OCEANIA'] = [$arFields['UF_OCEANIA']];
+            }
+
+            $colleagues = [];
+
+            if (!empty($answer[120])) {
+                $colleague = [
+                    'UF_NAME' => trim($answer[120]),
+                    'UF_SURNAME' => trim($answer[121]),
+                    'UF_JOB_TITLE' => $answer[122],
+                    'UF_EMAIL' => $answer[123],
+                    'UF_SALUTATION' => $answer[661],
+                ];
+                $colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME']] = $colleague;
+            }
+            if (!empty($answer[124])) {
+                $colleague = [
+                    'UF_NAME' => trim($answer[124]),
+                    'UF_SURNAME' => trim($answer[125]),
+                    'UF_JOB_TITLE' => $answer[127],
+                    'UF_EMAIL' => $answer[126],
+                    'UF_SALUTATION' => $answer[662],
+                ];
+                $colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME']] = $colleague;
+            }
+            if (!empty($answer[128])) {
+                $colleague = [
+                    'UF_NAME' => trim($answer[128]),
+                    'UF_SURNAME' => trim($answer[129]),
+                    'UF_JOB_TITLE' => $answer[130],
+                    'UF_EMAIL' => $answer[131],
+                    'UF_SALUTATION' => $answer[663],
+                ];
+                $colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME']] = $colleague;
+            }
+            if (!empty($answer[477])) {
+                $colleague = [
+                    'MORNING' => true,
+                    'UF_NAME' => trim($answer[477]),
+                    'UF_SURNAME' => trim($answer[478]),
+                    'UF_JOB_TITLE' => $answer[479],
+                    'UF_EMAIL' => $answer[480],
+                    'UF_SALUTATION' => $answer[665],
+                    'UF_PHOTO' => $answer[495],
+                ];
+                $colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME']] = $colleague;
+            }
+
+            $resultData['fields'] = $arFields;
+            $resultData['colleagues'] = $colleagues;
+
+            return $resultData;
+        }
+
+        return false;
+    }
+
+    public function getResultData($resultId)
+    {
+        $rsFormResult = \CFormResult::GetByID($resultId);
+
+        if ($rsFormResult && $rsFormResult->SelectedRowsCount() > 0) {
             $arFormResult = $rsFormResult->Fetch();
+            $resultData = [];
+
             \CForm::GetResultAnswerArray(
                 self::STORAGE_FORM,
                 $arQuestions,
