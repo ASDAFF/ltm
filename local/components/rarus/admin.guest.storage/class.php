@@ -1,6 +1,7 @@
 <? if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 use \Bitrix\Main\Localization\Loc;
 use \Bitrix\Main\Loader;
+use Ltm\Domain\GuestStorage\Manager as GuestStorageManager;
 
 class CAdminGuestStorage extends CBitrixComponent
 {
@@ -36,7 +37,11 @@ class CAdminGuestStorage extends CBitrixComponent
 		if(empty($this->errors)){
 			//получаем список гостей в хранилище
 			self::getGuestList();
-			self::getGuestFormData();
+			if($request->get('old')){
+				self::getGuestFormData();
+			} else {
+				self::getHLGuestFormData();
+			}
 		}
 
 
@@ -135,6 +140,38 @@ class CAdminGuestStorage extends CBitrixComponent
 	/**
 	 * Preparation web forms data
 	 */
+	private function getHLGuestFormData()
+	{
+		if(empty($this->arResult['USERS'])){
+			$this->errors[] = 'Users not found';
+		}
+
+		//Получаем ID результатов веб-форм
+		$arResultUserID = array();
+		foreach($this->arResult['USERS'] as $k=>$arUser){
+			if($arUser['ID']){
+				$arResultUserID[$arUser['ID']] = $k;
+			}
+		}
+
+		$guestStorageManager = new GuestStorageManager();
+		$res = $guestStorageManager->getResultListByUserIDs(array_keys($arResultUserID));
+		foreach($res as $userid => $data)
+		{
+			$this->arResult['USERS'][ $arResultUserID[$userid] ]['FORM_DATA'] = $data;
+		}
+
+		$rsQuestions = \CFormField::GetList(self::STORAGE_FORM, "N");
+		$arQuestions = [];
+		while ($arQuestion = $rsQuestions->Fetch()) {
+			$arQuestions[$arQuestion['ID']] = $arQuestion;
+		}
+		$this->arResult["QUESTIONS"]  =$arQuestions;
+	}
+
+	/**
+	 * Preparation web forms data
+	 */
 	private function getGuestFormData()
 	{
 		if(empty($this->arResult['USERS'])){
@@ -227,6 +264,9 @@ class CAdminGuestStorage extends CBitrixComponent
 		}
 		if(!Loader::includeModule('form')){
 			$this->errors[] = 'web-form module is not installed';
+		}
+		if(!Loader::includeModule('ltm.domain')){
+			$this->errors[] = 'ltm.domain module is not installed';
 		}
 	}
 
