@@ -192,7 +192,7 @@ class CLTMGuestStorage
 			$res[$userID][626]['VALUE'] = $res[$userID][625]['VALUE'];
 			$res[$userID][642]['VALUE'] = $res[$userID][641]['VALUE'];
 
-			$fieldAr = ['SIMPLE_QUESTION_383', 'SIMPLE_QUESTION_244', 'SIMPLE_QUESTION_212', 'SIMPLE_QUESTION_497', 'SIMPLE_QUESTION_526', 'SIMPLE_QUESTION_878'];
+			$fieldAr = ['SIMPLE_QUESTION_677', 'SIMPLE_QUESTION_383', 'SIMPLE_QUESTION_244', 'SIMPLE_QUESTION_212', 'SIMPLE_QUESTION_497', 'SIMPLE_QUESTION_526', 'SIMPLE_QUESTION_878'];
 			foreach ($res[$userID] as $qid => $question) {
 				if (count($question['ANSWERS']) > 1) {
 					$answers = [];
