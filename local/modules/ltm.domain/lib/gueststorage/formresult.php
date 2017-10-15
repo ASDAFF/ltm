@@ -12,6 +12,8 @@ class FormResult
     const STORAGE_FORM = 31;
     const WORKING_FORM = 10;
     const STORAGE_FORM_GROUP = 59;
+    const MORNING_VAL = 6;
+    const EVENING_VAL = 7;
 
     const HL2FORM_MAPPING = [
         'UF_COMPANY' => '612',
@@ -191,6 +193,7 @@ class FormResult
 
                 }
             }
+
             $arFields = [];
             foreach(self::HL2FORM_ACTIVE_MAPPING as $k => $v)
             {
@@ -199,7 +202,7 @@ class FormResult
                     $arFields[$k] = $answer[$v];
                 }
             }
-            if(!is_array($arFields['UF_PRIORITY_AREAS']))
+            if(!empty($arFields['UF_PRIORITY_AREAS']) && !is_array($arFields['UF_PRIORITY_AREAS']))
             {
                 $arFields['UF_PRIORITY_AREAS'] = [$arFields['UF_PRIORITY_AREAS']];
             }
@@ -237,8 +240,9 @@ class FormResult
                     'UF_JOB_TITLE' => $answer[122],
                     'UF_EMAIL' => $answer[123],
                     'UF_SALUTATION' => $answer[661],
+                    'UF_DAYTIME' => [self::EVENING_VAL],
                 ];
-                $colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME']] = $colleague;
+                if(!isset($colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME'].' '.$colleague['UF_EMAIL']])) $colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME'].' '.$colleague['UF_EMAIL']] = $colleague;
             }
             if (!empty($answer[124])) {
                 $colleague = [
@@ -247,8 +251,9 @@ class FormResult
                     'UF_JOB_TITLE' => $answer[127],
                     'UF_EMAIL' => $answer[126],
                     'UF_SALUTATION' => $answer[662],
+                    'UF_DAYTIME' => [self::EVENING_VAL],
                 ];
-                $colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME']] = $colleague;
+                if(!isset($colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME'].' '.$colleague['UF_EMAIL']])) $colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME'].' '.$colleague['UF_EMAIL']] = $colleague;
             }
             if (!empty($answer[128])) {
                 $colleague = [
@@ -257,20 +262,26 @@ class FormResult
                     'UF_JOB_TITLE' => $answer[130],
                     'UF_EMAIL' => $answer[131],
                     'UF_SALUTATION' => $answer[663],
+                    'UF_DAYTIME' => [self::EVENING_VAL],
                 ];
-                $colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME']] = $colleague;
+                if(!isset($colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME'].' '.$colleague['UF_EMAIL']])) $colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME']] = $colleague;
             }
             if (!empty($answer[477])) {
                 $colleague = [
-                    'MORNING' => true,
                     'UF_NAME' => trim($answer[477]),
                     'UF_SURNAME' => trim($answer[478]),
                     'UF_JOB_TITLE' => $answer[479],
                     'UF_EMAIL' => $answer[480],
                     'UF_SALUTATION' => $answer[665],
                     'UF_PHOTO' => $answer[495],
+                    'UF_DAYTIME' => [self::MORNING_VAL],
                 ];
-                $colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME']] = $colleague;
+                if (!isset($colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME'].' '.$colleague['UF_EMAIL']])) {
+                    $colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME'].' '.$colleague['UF_EMAIL']] = $colleague;
+                } else {
+                    $colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME'].' '.$colleague['UF_EMAIL']]['UF_DAYTIME'][] = self::MORNING_VAL;
+                }
+                $colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME'].' '.$colleague['UF_EMAIL']]['UF_DAYTIME'] = array_unique($colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME'].' '.$colleague['UF_EMAIL']]['UF_DAYTIME']);
             }
 
             $resultData['fields'] = $arFields;
@@ -387,8 +398,9 @@ class FormResult
                     'UF_JOB_TITLE' => $answer[630],
                     'UF_EMAIL' => $answer[631],
                     'UF_SALUTATION' => $answer[668],
+                    'UF_DAYTIME' => [self::EVENING_VAL],
                 ];
-                $colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME']] = $colleague;
+                if(!isset($colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME'].' '.$colleague['UF_EMAIL']])) $colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME']] = $colleague;
             }
             if (!empty($answer[632])) {
                 $colleague = [
@@ -397,8 +409,9 @@ class FormResult
                     'UF_JOB_TITLE' => $answer[635],
                     'UF_EMAIL' => $answer[634],
                     'UF_SALUTATION' => $answer[669],
+                    'UF_DAYTIME' => [self::EVENING_VAL],
                 ];
-                $colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME']] = $colleague;
+                if(!isset($colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME'].' '.$colleague['UF_EMAIL']])) $colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME']] = $colleague;
             }
             if (!empty($answer[636])) {
                 $colleague = [
@@ -407,20 +420,26 @@ class FormResult
                     'UF_JOB_TITLE' => $answer[638],
                     'UF_EMAIL' => $answer[639],
                     'UF_SALUTATION' => $answer[670],
+                    'UF_DAYTIME' => [self::EVENING_VAL],
                 ];
-                $colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME']] = $colleague;
+                if(!isset($colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME'].' '.$colleague['UF_EMAIL']])) $colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME']] = $colleague;
             }
             if (!empty($answer[650])) {
                 $colleague = [
-                    'MORNING' => true,
                     'UF_NAME' => trim($answer[650]),
                     'UF_SURNAME' => trim($answer[651]),
                     'UF_JOB_TITLE' => $answer[652],
                     'UF_EMAIL' => $answer[653],
                     'UF_SALUTATION' => $answer[672],
                     'UF_PHOTO' => $answer[657],
+                    'UF_DAYTIME' => [self::MORNING_VAL],
                 ];
-                $colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME']] = $colleague;
+                if (!isset($colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME'].' '.$colleague['UF_EMAIL']])) {
+                    $colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME'].' '.$colleague['UF_EMAIL']] = $colleague;
+                } else {
+                    $colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME'].' '.$colleague['UF_EMAIL']]['UF_DAYTIME'][] = self::MORNING_VAL;
+                }
+                $colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME'].' '.$colleague['UF_EMAIL']]['UF_DAYTIME'] = array_unique($colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME'].' '.$colleague['UF_EMAIL']]['UF_DAYTIME']);
             }
 
             $resultData['fields'] = $arFields;
