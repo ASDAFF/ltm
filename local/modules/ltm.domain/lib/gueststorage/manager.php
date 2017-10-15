@@ -135,7 +135,7 @@ class Manager
     {
         $ltmFormResult = new LtmFormResult();
         if (empty($resultId)) {
-            return null;
+            return false;
         }
         if (empty($resultData)) {
             $resultData = $ltmFormResult->getResultData($resultId);
@@ -185,8 +185,11 @@ class Manager
             }
             $resultData['fields']['UF_OCEANIA'] = $t;
 
+            if (!empty($resultData['fields']['UF_PRIORITY_AREAS']) && !is_array($resultData['fields']['UF_PRIORITY_AREAS'])) {
+                $resultData['fields']['UF_PRIORITY_AREAS'] = [$resultData['fields']['UF_PRIORITY_AREAS']];
+            }
+
             $t = [];
-            if(!is_array($resultData['fields']['UF_PRIORITY_AREAS'])) $resultData['fields']['UF_PRIORITY_AREAS'] = [$resultData['fields']['UF_PRIORITY_AREAS']];
             foreach ($resultData['fields']['UF_PRIORITY_AREAS'] as $area) {
                 $t[] = $this->areas[$area]['ID'];
             }
@@ -201,20 +204,11 @@ class Manager
                 $entityColleague = $provider->getEntityClassName();
                 $colIDs = [];
                 foreach ($resultData['colleagues'] as $colleague) {
-                    $f = false;
-                    if (isset($colleague['MORNING'])) {
-                        $f = true;
-                        unset($colleague['MORNING']);
-                    }
                     $colleague['UF_USER_ID'] = $user['ID'];
                     $res = $entityColleague::add($colleague);
                     if ($res->isSuccess()) {
                         $colId = $res->getId();
                         $colIDs[] = $colId;
-
-                        if ($f) {
-                            $resultData['fields']['UF_MORNING_COLLEAGUE'] = $colId;
-                        }
                     } else {
                         $conn->rollbackTransaction();
                         return false;
@@ -327,57 +321,61 @@ class Manager
                 }
             }
 
-            $colleagueItems = [];
+            $e = 0;
             foreach ($record['UF_COLLEAGUES'] as $k => $colId) {
                 $colleague = $entityColleague::getById($colId)->Fetch();
-                if ($k == 0) {
+                if(in_array(LtmFormResult::MORNING_VAL, $colleague['UF_DAYTIME'])) {
                     $colleagueItem = [
-                        '628' => ['VALUE' => $colleague['UF_NAME']],
-                        '629' => ['VALUE' => $colleague['UF_SURNAME']],
-                        '630' => ['VALUE' => $colleague['UF_JOB_TITLE']],
-                        '631' => ['VALUE' => $colleague['UF_EMAIL']],
-                        '668' => ['VALUE' => $colleague['UF_SALUTATION']],
+                        '650' => ['VALUE' => $colleague['UF_NAME']],
+                        '651' => ['VALUE' => $colleague['UF_SURNAME']],
+                        '652' => ['VALUE' => $colleague['UF_JOB_TITLE']],
+                        '653' => ['VALUE' => $colleague['UF_EMAIL']],
+                        '672' => ['VALUE' => $colleague['UF_SALUTATION']],
+                        '657' => ['VALUE' => $colleague['UF_PHOTO']],
                     ];
-                } elseif ($k == 1) {
-                    $colleagueItem = [
-                        '632' => ['VALUE' => $colleague['UF_NAME']],
-                        '633' => ['VALUE' => $colleague['UF_SURNAME']],
-                        '635' => ['VALUE' => $colleague['UF_JOB_TITLE']],
-                        '634' => ['VALUE' => $colleague['UF_EMAIL']],
-                        '669' => ['VALUE' => $colleague['UF_SALUTATION']],
-                    ];
-                } elseif ($k == 2) {
-                    $colleagueItem = [
-                        '636' => ['VALUE' => $colleague['UF_NAME']],
-                        '637' => ['VALUE' => $colleague['UF_SURNAME']],
-                        '638' => ['VALUE' => $colleague['UF_JOB_TITLE']],
-                        '639' => ['VALUE' => $colleague['UF_EMAIL']],
-                        '670' => ['VALUE' => $colleague['UF_SALUTATION']],
-                    ];
-                }
-                $colleagueItems[$colleague['ID']] = $colleagueItem;
-            }
-            foreach ($colleagueItems as $colleagueItem) {
-                foreach($colleagueItem as $k=>$v)
-                {
-                    $item[$k] = array_merge($item[$k], $v);
-                }
-            }
-            if (!empty($record['UF_MORNING_COLLEAGUE']) && isset($colleagueItems[$record['UF_MORNING_COLLEAGUE']])) {
-                $colleagueItem = [
-                    '650' => ['VALUE' => $colleague['UF_NAME']],
-                    '651' => ['VALUE' => $colleague['UF_SURNAME']],
-                    '652' => ['VALUE' => $colleague['UF_JOB_TITLE']],
-                    '653' => ['VALUE' => $colleague['UF_EMAIL']],
-                    '672' => ['VALUE' => $colleague['UF_SALUTATION']],
-                    '657' => ['VALUE' => $colleague['UF_PHOTO']],
-                ];
 
-                foreach($colleagueItem as $k=>$v)
-                {
-                    $item[$k] = array_merge($item[$k], $v);
+                    foreach($colleagueItem as $k1=>$v1)
+                    {
+                        $item[$k1] = array_merge($item[$k1], $v1);
+                    }
+                }
+                if(in_array(LtmFormResult::EVENING_VAL, $colleague['UF_DAYTIME'])) {
+                    $colleagueItem = [];
+                    if ($e == 0) {
+                        $colleagueItem = [
+                            '628' => ['VALUE' => $colleague['UF_NAME']],
+                            '629' => ['VALUE' => $colleague['UF_SURNAME']],
+                            '630' => ['VALUE' => $colleague['UF_JOB_TITLE']],
+                            '631' => ['VALUE' => $colleague['UF_EMAIL']],
+                            '668' => ['VALUE' => $colleague['UF_SALUTATION']],
+                        ];
+                        $e++;
+                    } elseif ($e == 1) {
+                        $colleagueItem = [
+                            '632' => ['VALUE' => $colleague['UF_NAME']],
+                            '633' => ['VALUE' => $colleague['UF_SURNAME']],
+                            '635' => ['VALUE' => $colleague['UF_JOB_TITLE']],
+                            '634' => ['VALUE' => $colleague['UF_EMAIL']],
+                            '669' => ['VALUE' => $colleague['UF_SALUTATION']],
+                        ];
+                        $e++;
+                    } elseif ($e == 2) {
+                        $colleagueItem = [
+                            '636' => ['VALUE' => $colleague['UF_NAME']],
+                            '637' => ['VALUE' => $colleague['UF_SURNAME']],
+                            '638' => ['VALUE' => $colleague['UF_JOB_TITLE']],
+                            '639' => ['VALUE' => $colleague['UF_EMAIL']],
+                            '670' => ['VALUE' => $colleague['UF_SALUTATION']],
+                        ];
+                        $e++;
+                    }
+                    foreach($colleagueItem as $k1=>$v1)
+                    {
+                        $item[$k1] = array_merge($item[$k1], $v1);
+                    }
                 }
             }
+
             $results[$record['UF_USER_ID']] = $item;
         }
         return $results;
@@ -391,7 +389,6 @@ class Manager
         $entity = $provider->getEntityClassName();
         $res = $entity::getList(['filter' => ['=UF_USER_ID' => $userId]]);
         while ($record = $res->Fetch()) {
-            print_r($record);
             foreach ($record['UF_COLLEAGUES'] as $k => $colId) {
                 $entityColleague::delete($colId);
             }
