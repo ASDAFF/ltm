@@ -43,7 +43,6 @@ class FormResult
         'UF_MORNING' => '654',
         'UF_EVENING' => '655',
         'UF_PHOTO' => '656',
-        'UF_PHOTO_MORNING' => '657',
         'UF_ROOM' => '658',
         'UF_TABLE' => '659',
         'UF_HOTEL' => '673',
@@ -78,7 +77,6 @@ class FormResult
         'UF_MORNING' => '481',
         'UF_EVENING' => '482',
         'UF_PHOTO' => '494',
-        'UF_PHOTO_MORNING' => '495',
         'UF_ROOM' => '570',
         'UF_TABLE' => '571',
         'UF_HOTEL' => '666',
@@ -202,6 +200,10 @@ class FormResult
                     $arFields[$k] = $answer[$v];
                 }
             }
+            if(!empty($arFields['UF_PHOTO']))
+            {
+                $arFields['UF_PHOTO'] = \CFile::MakeFileArray($arFields['UF_PHOTO']);
+            }
             if(!empty($arFields['UF_PRIORITY_AREAS']) && !is_array($arFields['UF_PRIORITY_AREAS']))
             {
                 $arFields['UF_PRIORITY_AREAS'] = [$arFields['UF_PRIORITY_AREAS']];
@@ -273,7 +275,7 @@ class FormResult
                     'UF_JOB_TITLE' => $answer[479],
                     'UF_EMAIL' => $answer[480],
                     'UF_SALUTATION' => $answer[665],
-                    'UF_PHOTO' => $answer[495],
+                    'UF_PHOTO' => \CFile::MakeFileArray($answer[495]),
                     'UF_DAYTIME' => [self::MORNING_VAL],
                 ];
                 if (!isset($colleagues[$colleague['UF_NAME'].' '.$colleague['UF_SURNAME'].' '.$colleague['UF_EMAIL']])) {
