@@ -366,7 +366,6 @@ class Manager
                     }
                 }
             }
-
             $results[$record['UF_USER_ID']] = $item;
         }
         return $results;
@@ -381,7 +380,14 @@ class Manager
         $res = $entity::getList(['filter' => ['=UF_USER_ID' => $userId]]);
         while ($record = $res->Fetch()) {
             foreach ($record['UF_COLLEAGUES'] as $k => $colId) {
+                $colleague = $entityColleague::getById($colId)->Fetch();
+                if(!empty($colleague['UF_PHOTO'])) {
+                    \CFile::Delete($colleague['UF_PHOTO']);
+                }
                 $entityColleague::delete($colId);
+            }
+            if(!empty($record['UF_PHOTO'])) {
+                \CFile::Delete($record['UF_PHOTO']);
             }
             $entity::delete($record['ID']);
         }

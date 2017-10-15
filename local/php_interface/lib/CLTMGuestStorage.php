@@ -314,6 +314,18 @@ class CLTMGuestStorage
 					$newArAnswerSID['form_checkbox_SIMPLE_QUESTION_878'] = [$newArAnswerSID['form_checkbox_SIMPLE_QUESTION_878']];
 				}
 			}
+			if(isset($newArAnswerSID['form_image_1312']))
+			{
+				if(!empty($newArAnswerSID['form_image_1312'])) {
+					$newArAnswerSID['form_image_1312'] = \CFile::MakeFileArray($newArAnswerSID['form_image_1312']);
+				}
+			}
+			if(isset($newArAnswerSID['form_image_1313']))
+			{
+				if(!empty($newArAnswerSID['form_image_1313'])) {
+					$newArAnswerSID['form_image_1313'] = \CFile::MakeFileArray($newArAnswerSID['form_image_1313']);
+				}
+			}
 			$newResultID = CFormResult::Add(self::WORKING_FORM, $newArAnswerSID);
 			$arExhGroups = self::getExhGroups($exhID);
 			$arNewGroups = array_diff($this->arUser['GROUPS'], array(self::STORAGE_GROUP_ID));
