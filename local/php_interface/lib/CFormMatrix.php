@@ -2998,6 +2998,10 @@ class CFormMatrix
 		if(!intval($fromFormID) || !intval($needFormID) || !$SID || !isset(self::$arListAnswerGuestForm[$fromFormID][$SID]) || !isset(self::$arListAnswerGuestForm[$needFormID][$SID])){
 			return false;
 		}
+		if(empty($id))
+		{
+			return false;
+		}
 
 		$index = array_search($id, self::$arListAnswerGuestForm[$fromFormID][$SID]);
 		return self::$arListAnswerGuestForm[$needFormID][$SID][$index];
