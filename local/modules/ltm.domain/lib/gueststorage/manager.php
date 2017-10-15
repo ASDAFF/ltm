@@ -98,20 +98,11 @@ class Manager
                 $entityColleague = $provider->getEntityClassName();
                 $colIDs = [];
                 foreach ($resultData['colleagues'] as $colleague) {
-                    $f = false;
-                    if (isset($colleague['MORNING'])) {
-                        $f = true;
-                        unset($colleague['MORNING']);
-                    }
                     $colleague['UF_USER_ID'] = $user['ID'];
                     $res = $entityColleague::add($colleague);
                     if ($res->isSuccess()) {
                         $colId = $res->getId();
                         $colIDs[] = $colId;
-
-                        if ($f) {
-                            $resultData['fields']['UF_MORNING_COLLEAGUE'] = $colId;
-                        }
                     } else {
                         $conn->rollbackTransaction();
                         return false;
