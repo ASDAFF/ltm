@@ -192,6 +192,7 @@ class CLTMGuestStorage
 			$res[$userID][626]['VALUE'] = $res[$userID][625]['VALUE'];
 			$res[$userID][642]['VALUE'] = $res[$userID][641]['VALUE'];
 
+			$fieldAr = ['SIMPLE_QUESTION_383', 'SIMPLE_QUESTION_244', 'SIMPLE_QUESTION_212', 'SIMPLE_QUESTION_497', 'SIMPLE_QUESTION_526', 'SIMPLE_QUESTION_878'];
 			foreach ($res[$userID] as $qid => $question) {
 				if (count($question['ANSWERS']) > 1) {
 					$answers = [];
@@ -204,11 +205,16 @@ class CLTMGuestStorage
 							$values[] = $answers[$val];
 						}
 					} else {
-						$values = $answers[$question['VALUE']];
+						if(in_array($question['SID'], $fieldAr)){
+							$values = $answers[$question['VALUE'][0]];
+						} else {
+							$values = $answers[$question['VALUE']];
+						}
 					}
 				} else {
 					$values = $question['VALUE'];
 				}
+
 				$answer = $question["ANSWERS"][ array_keys($question["ANSWERS"])[0] ];
 				$fieldID = '';
 				switch ($answer['FIELD_TYPE']) {
@@ -244,8 +250,7 @@ class CLTMGuestStorage
 						$newArAnswerSID[$questionName] = $t;
 						break;
 					case "image" :
-						$fieldID = CFormMatrix::getAnswerGuestForm($answer["ID"], self::STORAGE_FORM,
-							self::WORKING_FORM);
+						$fieldID = CFormMatrix::getAnswerGuestForm($answer["ID"], self::STORAGE_FORM, self::WORKING_FORM);
 						$questionName = "form_{$answer['FIELD_TYPE']}_{$fieldID}";
 						$newArAnswerSID[$questionName] = $values;
 						break;
@@ -253,8 +258,7 @@ class CLTMGuestStorage
 					case "textarea" :
 					case "password" :
 					case "date" :
-						$fieldID = CFormMatrix::getAnswerGuestForm($answer["ID"], self::STORAGE_FORM,
-							self::WORKING_FORM);
+						$fieldID = CFormMatrix::getAnswerGuestForm($answer["ID"], self::STORAGE_FORM, self::WORKING_FORM);
 						$questionName = "form_{$answer['FIELD_TYPE']}_{$fieldID}";
 						$newArAnswerSID[$questionName] = $values;
 						break;
@@ -272,6 +276,42 @@ class CLTMGuestStorage
 			{
 				if(!is_array($newArAnswerSID['form_checkbox_SIMPLE_QUESTION_677'])) {
 					$newArAnswerSID['form_checkbox_SIMPLE_QUESTION_677'] = [$newArAnswerSID['form_checkbox_SIMPLE_QUESTION_677']];
+				}
+			}
+			if(isset($newArAnswerSID['form_checkbox_SIMPLE_QUESTION_383']))
+			{
+				if(!is_array($newArAnswerSID['form_checkbox_SIMPLE_QUESTION_383'])) {
+					$newArAnswerSID['form_checkbox_SIMPLE_QUESTION_383'] = [$newArAnswerSID['form_checkbox_SIMPLE_QUESTION_383']];
+				}
+			}
+			if(isset($newArAnswerSID['form_checkbox_SIMPLE_QUESTION_244']))
+			{
+				if(!is_array($newArAnswerSID['form_checkbox_SIMPLE_QUESTION_244'])) {
+					$newArAnswerSID['form_checkbox_SIMPLE_QUESTION_244'] = [$newArAnswerSID['form_checkbox_SIMPLE_QUESTION_244']];
+				}
+			}
+			if(isset($newArAnswerSID['form_checkbox_SIMPLE_QUESTION_212']))
+			{
+				if(!is_array($newArAnswerSID['form_checkbox_SIMPLE_QUESTION_212'])) {
+					$newArAnswerSID['form_checkbox_SIMPLE_QUESTION_212'] = [$newArAnswerSID['form_checkbox_SIMPLE_QUESTION_212']];
+				}
+			}
+			if(isset($newArAnswerSID['form_checkbox_SIMPLE_QUESTION_497']))
+			{
+				if(!is_array($newArAnswerSID['form_checkbox_SIMPLE_QUESTION_497'])) {
+					$newArAnswerSID['form_checkbox_SIMPLE_QUESTION_497'] = [$newArAnswerSID['form_checkbox_SIMPLE_QUESTION_497']];
+				}
+			}
+			if(isset($newArAnswerSID['form_checkbox_SIMPLE_QUESTION_526']))
+			{
+				if(!is_array($newArAnswerSID['form_checkbox_SIMPLE_QUESTION_526'])) {
+					$newArAnswerSID['form_checkbox_SIMPLE_QUESTION_526'] = [$newArAnswerSID['form_checkbox_SIMPLE_QUESTION_526']];
+				}
+			}
+			if(isset($newArAnswerSID['form_checkbox_SIMPLE_QUESTION_878']))
+			{
+				if(!is_array($newArAnswerSID['form_checkbox_SIMPLE_QUESTION_878'])) {
+					$newArAnswerSID['form_checkbox_SIMPLE_QUESTION_878'] = [$newArAnswerSID['form_checkbox_SIMPLE_QUESTION_878']];
 				}
 			}
 			$newResultID = CFormResult::Add(self::WORKING_FORM, $newArAnswerSID);
