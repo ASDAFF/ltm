@@ -268,6 +268,12 @@ class CLTMGuestStorage
 			if($evening){
 				$newArAnswerSID['form_checkbox_SIMPLE_QUESTION_156'] = array(844);
 			}
+			if(isset($newArAnswerSID['form_checkbox_SIMPLE_QUESTION_677']))
+			{
+				if(!is_array($newArAnswerSID['form_checkbox_SIMPLE_QUESTION_677'])) {
+					$newArAnswerSID['form_checkbox_SIMPLE_QUESTION_677'] = [$newArAnswerSID['form_checkbox_SIMPLE_QUESTION_677']];
+				}
+			}
 			$newResultID = CFormResult::Add(self::WORKING_FORM, $newArAnswerSID);
 			$arExhGroups = self::getExhGroups($exhID);
 			$arNewGroups = array_diff($this->arUser['GROUPS'], array(self::STORAGE_GROUP_ID));
