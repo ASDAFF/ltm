@@ -19,7 +19,8 @@ $(function() {
 			"conf_pass":"Passwords do not match.",
 			"en_num":"Only English characters and numbers.",
 			"login_busy": "Login has already been taken.",
-			"capslock": "Caps lock should be off"
+			"capslock": "Caps lock should be off",
+			"capitals": "Please don't use 2 or more capital letters one after another"
 	};
 	
 	var ru = {
@@ -40,7 +41,8 @@ $(function() {
 			"conf_pass":"Пароли не совпадают.",
 			"en_num":"Только латинские символы и цифры.",
 			"login_busy": "Логин уже занят.",
-			"capslock": "Внимание: нажат CapsLock!"
+			"capslock": "Внимание: нажат CapsLock!",
+			"capitals": "Пожалуйста, не используйте две и более заглавные буквы в тексте"
 	};
 	
 
@@ -1306,6 +1308,20 @@ $(function() {
 	});
 });
 
+//две и более заглавные буквы друг за другом
+$(function() {
+  $('#REGISTER_FORM').on("focusout", ".capitals", function() {
+    var value = $(this).val();
+    if (/[A-Z]{2,}/.test(value)) {
+		 showErrorMessage(this,$errorText[errorLang]["capitals"]);
+	}
+	else {
+	 hideErrorMessage(this,$errorText[errorLang]["capitals"], true);
+	}
+  })
+})
+
+
 //обязательные поля
 $(function() {
 	$("#REGISTER_FORM").on("focusout", ".require", function(){
@@ -1538,7 +1554,7 @@ function validateRegFormB()
 {
 	correctly = true;
 	//проверка на заполнение полей
-	 $("#REGISTER_FORM .require, .email, .index, .web, .phone, .country_other").each(function(ind, elem)
+	 $("#REGISTER_FORM .require, .email, .index, .web, .phone, .country_other, .capitals").each(function(ind, elem)
 		{
 			 $(elem).trigger("focusout");
 		}
