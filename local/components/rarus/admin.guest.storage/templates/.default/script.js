@@ -46,4 +46,23 @@ $(document).ready(function () {
 	});
 
 	$(document).on('submit', 'form[name=inworking]', function(){BX.showWait();});
+
+
+	$('.table tbody').on('click', 'a.to-delete', function (e) {
+		e.preventDefault();
+
+		var userID = $(this).data('id');
+
+		$.fancybox({
+			'padding': 0,
+			'margin': 0,
+			'autoSize': true,
+			'autoDimensions': false,
+			'scrolling': 'no',
+			'type': 'ajax',
+			'href': window.location.pathname + '?popup=Y&action=delete&ID=' + userID
+		});
+	});
+
+	$(document).on('submit', 'form[name=todelete]', function(){BX.showWait();});
 });

@@ -20,17 +20,25 @@ class CAdminGuestStorage extends CBitrixComponent
 		self::checkModules();
 
 		$request = self::getRequest();
-		$this->arResult['ACTION_URL'] = $APPLICATION->GetCurPageParam('', array('FILTER_DATA', 'FILTER_TYPE', 'filter', 'reset_filter', 'popup', 'ID'));
+		$this->arResult['ACTION_URL'] = $APPLICATION->GetCurPageParam('', array('FILTER_DATA', 'FILTER_TYPE', 'filter', 'reset_filter', 'popup', 'ID', 'action'));
 		if($request->get("reset_filter")){
 			LocalRedirect($this->arResult['ACTION_URL']);
 		}
 
 		if($request->get('popup')){
-			self::showPopup();
+			if($request->get('action') == 'delete'){
+				self::showPopupDelete();
+			} else {
+				self::showPopup();
+			}
 		}
 
 		if($request->get('TYPE') == 'inworking'){
 			self::putInWorking();
+		}
+
+		if($request->get('TYPE') == 'todelete'){
+			self::deleteUser();
 		}
 
 
@@ -66,6 +74,14 @@ class CAdminGuestStorage extends CBitrixComponent
 		}
 	}
 
+	private function deleteUser()
+	{
+		$request = self::getRequest();
+		$obGS = new CLTMGuestStorage();
+		$obGS->deleteUser($request->get('ID'));
+		LocalRedirect($this->arResult['ACTION_URL']);
+	}
+
 	/**
 	 * Preparation data for pop-up window
 	 */
@@ -78,6 +94,21 @@ class CAdminGuestStorage extends CBitrixComponent
 
 		$APPLICATION->RestartBuffer();
 		$this->includeComponentTemplate('ajax-form');
+		die();
+	}
+
+	/**
+	 * Preparation data for pop-up window
+	 */
+	private function showPopupDelete()
+	{
+		global $APPLICATION;
+		$request = self::getRequest();
+		self::getExhibitions();
+		$this->arResult['USER_ID'] = $request->get('ID');
+
+		$APPLICATION->RestartBuffer();
+		$this->includeComponentTemplate('ajax-delete');
 		die();
 	}
 
@@ -142,6 +173,7 @@ class CAdminGuestStorage extends CBitrixComponent
 	 */
 	private function getHLGuestFormData()
 	{
+		$request = self::getRequest();
 		if(empty($this->arResult['USERS'])){
 			$this->errors[] = 'Users not found';
 		}
@@ -153,13 +185,21 @@ class CAdminGuestStorage extends CBitrixComponent
 				$arResultUserID[$arUser['ID']] = $k;
 			}
 		}
+		$sortField = $this->arResult["SORT"] = ($request->get('sort'))?$request->get('sort'):"UF_USER_ID";
+		$sortOrder = $this->arResult["ORDER"]  = ($request->get('order'))?$request->get('order'):"asc";
 
 		$guestStorageManager = new GuestStorageManager();
-		$res = $guestStorageManager->getResultListByUserIDs(array_keys($arResultUserID));
+		$res = $guestStorageManager->getResultListByUserIDs(array_keys($arResultUserID), $sortField, $sortOrder);
+
+		$t = [];
 		foreach($res as $userid => $data)
 		{
-			$this->arResult['USERS'][ $arResultUserID[$userid] ]['FORM_DATA'] = $data;
+			$item = $this->arResult['USERS'][ $arResultUserID[$userid] ];
+			$item['FORM_DATA'] = $data;
+			//$this->arResult['USERS'][ $arResultUserID[$userid] ]['FORM_DATA'] = $data;
+			$t[$arResultUserID[$userid]] = $item;
 		}
+		$this->arResult['USERS'] = $t;
 
 		$rsQuestions = \CFormField::GetList(self::STORAGE_FORM, "N");
 		$arQuestions = [];
