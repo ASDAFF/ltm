@@ -224,14 +224,20 @@ class Manager
         return false;
     }
 
-    public function getResultListByUserIDs($userIDs)
+    public function getResultListByUserIDs($userIDs, $sortby = null, $sortorder = null)
     {
         $provider = HlBlockManager::getInstance()->getProvider('GuestStorage');
         $entity = $provider->getEntityClassName();
         $provider = HlBlockManager::getInstance()->getProvider('GuestStorageColleague');
         $entityColleague = $provider->getEntityClassName();
 
-        $res = $entity::getList(['filter' => ['UF_USER_ID' => $userIDs]]);
+        $filter = [
+            'filter' => ['UF_USER_ID' => $userIDs],
+        ];
+        if (!empty($sortby)) {
+            $filter['order'] = [$sortby => $sortorder];
+        }
+        $res = $entity::getList($filter);
         $results = [];
 
         $ltmFormResult = new LtmFormResult();

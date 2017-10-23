@@ -358,6 +358,24 @@ class CLTMGuestStorage
 		return false;
 	}
 
+	public function deleteUser($userID)
+	{
+		$userID = intval($userID);
+		if (!$userID) {
+			$this->errors[] = 'Empty user ID';
+
+			return false;
+		} else {
+			$this->userID = $userID;
+		}
+
+		if (self::getUserInfo()) {
+			$guestStorageManager = new GuestStorageManager();
+			$guestStorageManager->deleteResult($userID);
+			CUser::Delete($this->userID);
+		}
+	}
+
 	/** Puts a guest in a working form
 	 * @param $userID
 	 * @return bool
