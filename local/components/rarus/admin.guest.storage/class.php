@@ -1,7 +1,9 @@
 <? if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 use \Bitrix\Main\Localization\Loc;
 use \Bitrix\Main\Loader;
-use Ltm\Domain\GuestStorage\Manager as GuestStorageManager;
+use Ltm\Domain\GuestStorage\FormResult as LtmFormResult;
+use Bitrix\Highloadblock as HL;
+use Ltm\Domain\HlblockOrm\Manager as HlBlockManager;
 
 class CAdminGuestStorage extends CBitrixComponent
 {
@@ -44,8 +46,8 @@ class CAdminGuestStorage extends CBitrixComponent
 
 		if(empty($this->errors)){
 			//получаем список гостей в хранилище
-			self::getGuestList();
 			if($request->get('old')){
+				self::getGuestList();
 				self::getGuestFormData();
 			} else {
 				self::getHLGuestFormData();
@@ -161,7 +163,7 @@ class CAdminGuestStorage extends CBitrixComponent
 				//"NAV_PARAMS" => array("nPageSize" => $this->arParams['COUNT'])
 			)
 		);
-		$rsUsers->NavStart($this->arParams['COUNT'], false);
+		//$rsUsers->NavStart($this->arParams['COUNT'], false);
 		$this->arResult["NAVIGATE"] = $rsUsers->GetNavPrint(GetMessage("STORAGE_PAGES"));
 		while($arUser = $rsUsers->Fetch()){
 			$this->arResult['USERS'][$arUser['ID']] = $arUser;
@@ -174,32 +176,37 @@ class CAdminGuestStorage extends CBitrixComponent
 	private function getHLGuestFormData()
 	{
 		$request = self::getRequest();
-		if(empty($this->arResult['USERS'])){
-			$this->errors[] = 'Users not found';
+		$ltmFormResult = new LtmFormResult();
+		$mapping = array_flip($ltmFormResult->getMapping());
+		$fields = [];
+		foreach($this->arParams["FIELDS"] as $val) {
+			$fields[$val] = $mapping[$val];
 		}
+		$this->arParams["FIELDS2"] = $fields;
+		$this->arResult["SORT"] = ($request->get('sort'))?$request->get('sort'):"ID";
+		$this->arResult["ORDER"]  = ($request->get('order'))?$request->get('order'):"asc";
 
-		//Получаем ID результатов веб-форм
-		$arResultUserID = array();
-		foreach($this->arResult['USERS'] as $k=>$arUser){
-			if($arUser['ID']){
-				$arResultUserID[$arUser['ID']] = $k;
-			}
-		}
-		$sortField = $this->arResult["SORT"] = ($request->get('sort'))?$request->get('sort'):"UF_USER_ID";
-		$sortOrder = $this->arResult["ORDER"]  = ($request->get('order'))?$request->get('order'):"asc";
+		$provider = HlBlockManager::getInstance()->getProvider('GuestStorage');
+		$entity = $provider->getEntityClassName();
+		$params = [];
+		$params['order'] = [$this->arResult["SORT"] == 'ID' ? 'UF_USER_ID' : $this->arResult["SORT"]  => $this->arResult["ORDER"]];
 
-		$guestStorageManager = new GuestStorageManager();
-		$res = $guestStorageManager->getResultListByUserIDs(array_keys($arResultUserID), $sortField, $sortOrder);
+		$nav = new \Bitrix\Main\UI\PageNavigation("nav");
+		$nav->allowAllRecords(true)
+			->setPageSize( $this->arParams['COUNT'] )
+			->initFromUri();
+		$params['count_total'] = true;
+		$params['limit'] = $nav->getLimit();
+		$params['offset'] = $nav->getOffset();
 
-		$t = [];
-		foreach($res as $userid => $data)
+		$listRes = $entity::getList($params);
+		$this->arResult['USERS'] = [];
+		while($data = $listRes->Fetch())
 		{
-			$item = $this->arResult['USERS'][ $arResultUserID[$userid] ];
-			$item['FORM_DATA'] = $data;
-			//$this->arResult['USERS'][ $arResultUserID[$userid] ]['FORM_DATA'] = $data;
-			$t[$arResultUserID[$userid]] = $item;
+			$this->arResult['USERS'][$data['UF_USER_ID']] = $data;
 		}
-		$this->arResult['USERS'] = $t;
+		$nav->setRecordCount($listRes->getCount());
+		$this->arResult["NAVIGATE"] = $this->setNavigation($nav, 'Storage');
 
 		$rsQuestions = \CFormField::GetList(self::STORAGE_FORM, "N");
 		$arQuestions = [];
@@ -207,6 +214,23 @@ class CAdminGuestStorage extends CBitrixComponent
 			$arQuestions[$arQuestion['ID']] = $arQuestion;
 		}
 		$this->arResult["QUESTIONS"]  =$arQuestions;
+	}
+
+	private function setNavigation(\Bitrix\Main\UI\PageNavigation $nav, $title)
+	{
+		global $APPLICATION;
+
+		ob_start();
+		$APPLICATION->IncludeComponent(
+			"bitrix:main.pagenavigation",
+			"",
+			array(
+				"NAV_OBJECT" => $nav,
+				"TITLE" => $title,
+			)
+		);
+
+		return ob_get_clean();
 	}
 
 	/**
