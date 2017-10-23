@@ -51,8 +51,8 @@ $request = \Bitrix\Main\HttpContext::getCurrent()->getRequest();
 				<table class="table">
 					<thead>
 					<tr>
-						<?$orderSort = 'asc'; $class=""; if('UF_USER_ID' == $arResult["SORT"]) {$class = 'active'; if($arResult['ORDER'] == 'asc') { $orderSort = 'desc';}}?>
-						<th><a href="?sort=UF_USER_ID&order=<?=$orderSort;?>" class="sort-title <??>"><?=Loc::getMessage('STORAGE_ID')?></a></th>
+						<?$orderSort = 'asc'; $class=""; if('ID' == $arResult["SORT"]) {$class = 'active'; if($arResult['ORDER'] == 'asc') { $orderSort = 'desc';}}?>
+						<th><a href="?sort=ID&order=<?=$orderSort;?>" class="sort-title <??>"><?=Loc::getMessage('STORAGE_ID')?></a></th>
 						<?$orderSort = 'asc'; $class=""; if('UF_LOGIN' == $arResult["SORT"]) {$class = 'active'; if($arResult['ORDER'] == 'asc') { $orderSort = 'desc';}}?>
 						<th><a href="?sort=UF_LOGIN&order=<?=$orderSort;?>" class="sort-title <??>"><?=Loc::getMessage('STORAGE_LOGIN')?></a></th>
 						<? foreach($arParams["FIELDS"] as $questionID): ?>
@@ -79,10 +79,10 @@ $request = \Bitrix\Main\HttpContext::getCurrent()->getRequest();
 					<? $index = 1; ?>
 					<? foreach($arResult['USERS'] as $arUser): ?>
 						<tr class="<?=(($index++ % 2) != 0) ? "even" : "odd"?>">
-							<td><?=$arUser['ID']?></td>
-							<td><?=$arUser['LOGIN']?></td>
-							<? foreach($arParams["FIELDS"] as $questionID): ?>
-								<? $value = $arUser['FORM_DATA'][$questionID]['VALUE'] ?>
+							<td><?=$arUser['UF_USER_ID']?></td>
+							<td><?=$arUser['UF_LOGIN']?></td>
+							<? foreach($arParams["FIELDS2"] as $questionID): ?>
+								<? $value = $arUser[$questionID]?>
 								<td>
 									<div class="data-wrap">
 										<?=(is_array($value)) ? implode('<br/>', $value) : $value?>
@@ -90,11 +90,11 @@ $request = \Bitrix\Main\HttpContext::getCurrent()->getRequest();
 								</td>
 							<? endforeach; ?>
 							<td>
-								<div class="action" id="action_<?=$arUser["ID"]?>">
+								<div class="action" id="action_<?=$arUser["UF_USER_ID"]?>">
 									<img src="/local/templates/admin/images/edit.png">
 									<ul class="ul-popup">
-										<li><a class="in-working" data-id="<?=$arUser['ID']?>"><?=Loc::getMessage('STORAGE_MOVE')?></a></li>
-										<li><a class="to-delete" data-id="<?=$arUser['ID']?>"><?=Loc::getMessage('STORAGE_DELETE')?></a></li>
+										<li><a class="in-working" data-id="<?=$arUser['UF_USER_ID']?>"><?=Loc::getMessage('STORAGE_MOVE')?></a></li>
+										<li><a class="to-delete" data-id="<?=$arUser['UF_USER_ID']?>"><?=Loc::getMessage('STORAGE_DELETE')?></a></li>
 									</ul>
 								</div>
 							</td>
