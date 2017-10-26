@@ -26,6 +26,13 @@ $APPLICATION->SetTitle("Хранилище гостей");
 			14 => "647",
 			15 => "648",
 			16 => "649",*/
+			17 => 'UF_FULL_ADDRESS',
+			18 => 'MORNING_COLLEAGUE_NAME',
+			19 => 'MORNING_COLLEAGUE_EMAIL',
+			20 => 'MORNING_COLLEAGUE_JOB_TITLE',
+			21 => 'EVENING_COLLEAGUE_NAME',
+			22 => 'EVENING_COLLEAGUE_EMAIL',
+			23 => 'EVENING_COLLEAGUE_JOB_TITLE',
 		)
 	),
 	false

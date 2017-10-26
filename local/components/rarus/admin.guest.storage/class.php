@@ -4,6 +4,7 @@ use \Bitrix\Main\Loader;
 use Ltm\Domain\GuestStorage\FormResult as LtmFormResult;
 use Bitrix\Highloadblock as HL;
 use Ltm\Domain\HlblockOrm\Manager as HlBlockManager;
+use Ltm\Domain\GuestStorage\Manager as GuestStorageManager;
 
 class CAdminGuestStorage extends CBitrixComponent
 {
@@ -182,9 +183,19 @@ class CAdminGuestStorage extends CBitrixComponent
 		foreach($this->arParams["FIELDS"] as $val) {
 			$fields[$val] = $mapping[$val];
 		}
+		$fields['UF_FULL_ADDRESS'] = 'UF_FULL_ADDRESS';
+		$fields['MORNING_COLLEAGUE_NAME'] = 'MORNING_COLLEAGUE_NAME';
+		$fields['MORNING_COLLEAGUE_EMAIL'] = 'MORNING_COLLEAGUE_EMAIL';
+		$fields['MORNING_COLLEAGUE_JOB_TITLE'] = 'MORNING_COLLEAGUE_JOB_TITLE';
+		$fields['EVENING_COLLEAGUE_NAME'] = 'EVENING_COLLEAGUE_NAME';
+		$fields['EVENING_COLLEAGUE_EMAIL'] = 'EVENING_COLLEAGUE_EMAIL';
+		$fields['EVENING_COLLEAGUE_JOB_TITLE'] = 'EVENING_COLLEAGUE_JOB_TITLE';
 		$this->arParams["FIELDS2"] = $fields;
 		$this->arResult["SORT"] = ($request->get('sort'))?$request->get('sort'):"ID";
 		$this->arResult["ORDER"]  = ($request->get('order'))?$request->get('order'):"asc";
+
+		$provider = HlBlockManager::getInstance()->getProvider('GuestStorageColleague');
+		$entityColleague = $provider->getEntityClassName();
 
 		$provider = HlBlockManager::getInstance()->getProvider('GuestStorage');
 		$entity = $provider->getEntityClassName();
@@ -201,9 +212,30 @@ class CAdminGuestStorage extends CBitrixComponent
 
 		$listRes = $entity::getList($params);
 		$this->arResult['USERS'] = [];
-		while($data = $listRes->Fetch())
-		{
-			$this->arResult['USERS'][$data['UF_USER_ID']] = $data;
+		$guestStorageManager = new GuestStorageManager();
+		$countryList = $guestStorageManager->getCountryList();
+		$countries = [];
+		foreach ($countryList as $countryItem) {
+			$countries[$countryItem['ID']] = $countryItem['UF_VALUE'];
+		}
+		while ($data = $listRes->Fetch()) {
+			$item = $data;
+			$colleagues = $entityColleague::getList(['filter' => ['UF_USER_ID' => $data['UF_USER_ID']]]);
+			foreach ($colleagues as $colleague) {
+				if(in_array(LtmFormResult::MORNING_VAL, $colleague['UF_DAYTIME'])) {
+					$item['MORNING_COLLEAGUE_NAME'] = $colleague['UF_NAME'].' '.$colleague['UF_SURNAME'];
+					$item['MORNING_COLLEAGUE_EMAIL'] = $colleague['UF_EMAIL'];
+					$item['MORNING_COLLEAGUE_JOB_TITLE'] = $colleague['UF_JOB_TITLE'];
+				}
+				if(in_array(LtmFormResult::EVENING_VAL, $colleague['UF_DAYTIME']) && empty($item['EVENING_COLLEAGUE_NAME'])) {
+					$item['EVENING_COLLEAGUE_NAME'] = $colleague['UF_NAME'].' '.$colleague['UF_SURNAME'];
+					$item['EVENING_COLLEAGUE_EMAIL'] = $colleague['UF_EMAIL'];
+					$item['EVENING_COLLEAGUE_JOB_TITLE'] = $colleague['UF_JOB_TITLE'];
+				}
+			}
+			$item['UF_COUNTRY'] = $countries[$item['UF_COUNTRY']];
+			$item['UF_FULL_ADDRESS'] = $item['UF_POSTCODE'].', '.$item['UF_ADDRESS'];
+			$this->arResult['USERS'][$data['UF_USER_ID']] = $item;
 		}
 		$nav->setRecordCount($listRes->getCount());
 		$this->arResult["NAVIGATE"] = $this->setNavigation($nav, 'Storage');
@@ -214,6 +246,13 @@ class CAdminGuestStorage extends CBitrixComponent
 			$arQuestions[$arQuestion['ID']] = $arQuestion;
 		}
 		$this->arResult["QUESTIONS"]  =$arQuestions;
+		$this->arResult['QUESTIONS']['UF_FULL_ADDRESS']['TITLE'] = 'Адрес';
+		$this->arResult['QUESTIONS']['MORNING_COLLEAGUE_NAME']['TITLE'] = 'Имя коллеги (Утро)';
+		$this->arResult['QUESTIONS']['MORNING_COLLEAGUE_EMAIL']['TITLE'] = 'Email (Утро)';
+		$this->arResult['QUESTIONS']['MORNING_COLLEAGUE_JOB_TITLE']['TITLE'] = 'Должность (Утро)';
+		$this->arResult['QUESTIONS']['EVENING_COLLEAGUE_NAME']['TITLE'] = 'Имя коллеги';
+		$this->arResult['QUESTIONS']['EVENING_COLLEAGUE_EMAIL']['TITLE'] = 'Email';
+		$this->arResult['QUESTIONS']['EVENING_COLLEAGUE_JOB_TITLE']['TITLE'] = 'Должность';
 	}
 
 	private function setNavigation(\Bitrix\Main\UI\PageNavigation $nav, $title)
