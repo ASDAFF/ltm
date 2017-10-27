@@ -18,7 +18,7 @@ if(LANGUAGE_ID == "ru")
 {
 ?>
 <p>
- <b>Программа LTM Киев и Алматы:</b><br>
+ <b>Программа LTM Киев и Алматы и&nbsp;</b><b>осеннего LTM Москва</b><b>:</b>
 </p>
 <p>
 	 10:00 – 16:55&nbsp;— Индивидуальные встречи с участниками выставки по заранее составленному расписанию. Каждая встреча протяженностью 10 минут.
@@ -34,27 +34,6 @@ if(LANGUAGE_ID == "ru")
 </p>
 <p>
 	 ___________
-</p>
-<p>
- <b>Программа осеннего LTM Москва:</b><br>
-</p>
-<p>
-	 10:00 – 14:20 — Утренняя сессия. Индивидуальные встречи с участниками выставки по заранее составленному расписанию. Каждая встреча протяженностью 10 минут, один перерыв на кофе.
-</p>
-<p>
-	 Все встречи назначаются через сайт либо мобильное приложение LTM.
-</p>
-<p>
-	 14:30 – 15:30 — Свободное общение с участниками мероприятия и ланч для гостей и участников.
-</p>
-<p>
-	 15:30 – 17:30 — Встречи с региональными агентствами по программе Hosted Buyer. Доступ строго по приглашению организаторов.&nbsp;
-</p>
-<p>
-	 19:00 – 21:30 — Вечерняя сессия и коктейль в непринуждённой атмосфере, без заранее назначенных встреч.
-</p>
-<p>
-	 ___________<br>
 </p>
 <p>
  <b>Программа весеннего LTM Москва:</b>
@@ -86,7 +65,7 @@ elseif(LANGUAGE_ID == "en")
 {
 ?>
 <p>
- <b>Program of LTM Kiev and Almaty:</b><br>
+ <b>Program of LTM Kyiv,&nbsp;Almaty &amp; LTM Moscow Autumn:</b><br>
 </p>
 <p>
 	 10:00 – 16:55&nbsp;— Individual pre-scheduled appointments with top-buyers. Each appointment will last 10 minutes.
@@ -101,28 +80,7 @@ elseif(LANGUAGE_ID == "en")
 	 19:00 – 21:30 — Cocktail reception for travel agents, corporate clients and journalists in relaxed atmosphere.
 </p>
 <p>
-	 ___________<br>
-</p>
-<p>
- <b>Program of LTM Moscow Autumn:</b><br>
-</p>
-<p>
-	 10:00 – 14:20 — Morning session. Individual pre-scheduled appointments with top-buyers. Each appointment will last 10 minutes, one coffee-break.
-</p>
-<p>
-	 All appointments are scheduled through LTM web-site and/or LTM mobile apps.<br>
-</p>
-<p>
-	 14:30 – 15:30 — After-session networking and lunch with guests of the morning session.
-</p>
-<p>
-	 15:30 – 17:30 — Appointments with the hosted buyers.&nbsp;
-</p>
-<p>
-	 19:00 – 21:30 — Evening session. Workshop and cocktail reception for travel agents, corporate clients and journalists in relaxed atmosphere.
-</p>
-<p>
-	 ___________<br>
+	 ___________
 </p>
 <p>
  <b>Program of LTM Moscow Spring:</b>
