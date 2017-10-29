@@ -14,7 +14,6 @@ use \Bitrix\Main\Localization\Loc;
 
 $request = \Bitrix\Main\HttpContext::getCurrent()->getRequest();
 ?>
-
 <? if(!empty($arResult["USERS"]) || $request->get('filter')): ?>
 	<div class="storage">
 		<div class="filter">
@@ -43,14 +42,35 @@ $request = \Bitrix\Main\HttpContext::getCurrent()->getRequest();
 				if(!empty($component->errors)){
 					ShowError(implode('<br/>', $component->errors));
 				}
+				$tableSortableCols = [
+					612 => 'UF_COMPANY',
+					619 => 'UF_NAME',
+					620 => 'UF_SURNAME',
+				];
 				?>
 				<table class="table">
 					<thead>
 					<tr>
-						<th><?=Loc::getMessage('STORAGE_ID')?></th>
-						<th><?=Loc::getMessage('STORAGE_LOGIN')?></th>
+						<?$orderSort = 'asc'; $class=""; if('ID' == $arResult["SORT"]) {$class = 'active'; if($arResult['ORDER'] == 'asc') { $orderSort = 'desc';}}?>
+						<th><a href="?sort=ID&order=<?=$orderSort;?>" class="sort-title <??>"><?=Loc::getMessage('STORAGE_ID')?></a></th>
+						<?$orderSort = 'asc'; $class=""; if('UF_LOGIN' == $arResult["SORT"]) {$class = 'active'; if($arResult['ORDER'] == 'asc') { $orderSort = 'desc';}}?>
+						<th><a href="?sort=UF_LOGIN&order=<?=$orderSort;?>" class="sort-title <??>"><?=Loc::getMessage('STORAGE_LOGIN')?></a></th>
 						<? foreach($arParams["FIELDS"] as $questionID): ?>
-							<th><?=$arResult['QUESTIONS'][$questionID]['TITLE']?></th>
+							<th>
+								<?
+								$orderSort = 'asc';
+								if($tableSortableCols[$questionID] == $arResult["SORT"] && $arResult["ORDER"] == 'asc'){
+									$orderSort = 'desc';
+								}
+								$class="";
+								if($tableSortableCols[$questionID] == $arResult["SORT"]){
+									$class = 'active';
+								}
+								?>
+								<? if(array_key_exists($questionID, $tableSortableCols)) {?><a href="?sort=<?=$tableSortableCols[$questionID]?>&order=<?=$orderSort;?>" class="sort-title <?=$class?>"><?}?>
+								<?=$arResult['QUESTIONS'][$questionID]['TITLE']?>
+								<? if(array_key_exists($questionID, $tableSortableCols)) {?></a><?}?>
+							</th>
 						<? endforeach; ?>
 						<th><?=Loc::getMessage('STORAGE_ACTIONS')?></th>
 					</tr>
@@ -59,18 +79,25 @@ $request = \Bitrix\Main\HttpContext::getCurrent()->getRequest();
 					<? $index = 1; ?>
 					<? foreach($arResult['USERS'] as $arUser): ?>
 						<tr class="<?=(($index++ % 2) != 0) ? "even" : "odd"?>">
-							<td><?=$arUser['ID']?></td>
-							<td><?=$arUser['LOGIN']?></td>
-							<? foreach($arParams["FIELDS"] as $questionID): ?>
-								<? $value = $arUser['FORM_DATA'][$questionID]['VALUE'] ?>
+							<td><?=$arUser['UF_USER_ID']?></td>
+							<td><?=$arUser['UF_LOGIN']?></td>
+							<? foreach($arParams["FIELDS2"] as $questionID): ?>
+								<? $value = $arUser[$questionID]?>
 								<td>
 									<div class="data-wrap">
 										<?=(is_array($value)) ? implode('<br/>', $value) : $value?>
 									</div>
 								</td>
 							<? endforeach; ?>
-							<td><a class="in-working"
-								   data-id="<?=$arUser['ID']?>"><?=Loc::getMessage('STORAGE_MOVE')?></a></td>
+							<td>
+								<div class="action" id="action_<?=$arUser["UF_USER_ID"]?>">
+									<img src="/local/templates/admin/images/edit.png">
+									<ul class="ul-popup">
+										<li><a class="in-working" data-id="<?=$arUser['UF_USER_ID']?>"><?=Loc::getMessage('STORAGE_MOVE')?></a></li>
+										<li><a class="to-delete" data-id="<?=$arUser['UF_USER_ID']?>"><?=Loc::getMessage('STORAGE_DELETE')?></a></li>
+									</ul>
+								</div>
+							</td>
 						</tr>
 					<? endforeach; ?>
 					</tbody>

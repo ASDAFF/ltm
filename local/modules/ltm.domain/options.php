@@ -1,16 +1,11 @@
-<?
-if(!$USER->IsAdmin())
+<? if(!$USER->IsAdmin())
 	return;
 
 IncludeModuleLangFile($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/options.php");
 IncludeModuleLangFile(__FILE__);
 
-$module_id = 'mts.domain';
+$module_id = 'ltm.domain';
 
-$arBonusOptions = array(
-	array("bonus_min", GetMessage("BONUS_MIN"), "5", array("text", 5)),
-	array("bonus_cost", GetMessage("BONUS_COST"), "30", array("text", 5)),
-);
 $aTabs = [
     array(
         "DIV" => "edit1",
@@ -47,27 +42,7 @@ if ($STAS_RIGHT >= "R") {
     ?>
     <form method="post" action="<?echo $APPLICATION->GetCurPage()?>?mid=<?=urlencode($mid)?>&amp;lang=<?echo LANGUAGE_ID?>">
     <?$tabControl->BeginNextTab();?>
-        <!-- Настройки бонусов -->
-        <tr class="heading"><td colSpan="2"><?= GetMessage('CAL_BONUS_SETTINGS')?></td></tr>
-            <?
-            foreach($arBonusOptions as $arOption):
-                    $val = COption::GetOptionString($module_id, $arOption[0], $arOption[2]);
-                    $type = $arOption[3];
-            ?>
-            <tr>
-                    <td width="40%" nowrap <?if($type[0]=="textarea") echo 'class="adm-detail-valign-top"'?>>
-                            <label for="<?echo htmlspecialcharsbx($arOption[0])?>"><?echo $arOption[1]?>:</label>
-                    <td width="60%">
-                            <?if($type[0]=="checkbox"):?>
-                                    <input type="checkbox" id="<?echo htmlspecialcharsbx($arOption[0])?>" name="<?echo htmlspecialcharsbx($arOption[0])?>" value="Y"<?if($val=="Y")echo" checked";?>>
-                            <?elseif($type[0]=="text"):?>
-                                    <input type="text" size="<?echo $type[1]?>" maxlength="255" value="<?echo htmlspecialcharsbx($val)?>" name="<?echo htmlspecialcharsbx($arOption[0])?>">
-                            <?elseif($type[0]=="textarea"):?>
-                                    <textarea rows="<?echo $type[1]?>" cols="<?echo $type[2]?>" name="<?echo htmlspecialcharsbx($arOption[0])?>"><?echo htmlspecialcharsbx($val)?></textarea>
-                            <?endif?>
-                    </td>
-            </tr>
-            <?endforeach?>
+
     <?$tabControl->Buttons();?>
             <input type="submit" name="Update" value="<?=GetMessage("MAIN_SAVE")?>" title="<?=GetMessage("MAIN_OPT_SAVE_TITLE")?>" class="adm-btn-save">
             <input type="submit" name="Apply" value="<?=GetMessage("MAIN_OPT_APPLY")?>" title="<?=GetMessage("MAIN_OPT_APPLY_TITLE")?>">

@@ -11,6 +11,7 @@ $MESS["STORAGE_RESET"] = "Сбосить";
 $MESS["STORAGE_ID"] = "ID";
 $MESS["STORAGE_ACTIONS"] = "Действия";
 $MESS["STORAGE_MOVE"] = "Перенести";
+$MESS["STORAGE_DELETE"] = "Удалить";
 
 
 /*
@@ -26,4 +27,5 @@ $MESS["STORAGE_RESET"] = "Reset";
 $MESS["STORAGE_ID"] = "ID";
 $MESS["STORAGE_ACTIONS"] = "Actions";
 $MESS["STORAGE_MOVE"] = "Move";
+$MESS["STORAGE_DELETE"] = "Delete";
  */
