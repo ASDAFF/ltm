@@ -12,6 +12,7 @@ $APPLICATION->SetTitle("Хранилище гостей");
 			0 => "612",
 			//1 => "613",
 			//2 => "615",
+			17 => 'UF_FULL_ADDRESS',
 			3 => "616",
 			4 => "617",
 			5 => "619",
@@ -26,7 +27,6 @@ $APPLICATION->SetTitle("Хранилище гостей");
 			14 => "647",
 			15 => "648",
 			16 => "649",*/
-			17 => 'UF_FULL_ADDRESS',
 			18 => 'MORNING_COLLEAGUE_NAME',
 			19 => 'MORNING_COLLEAGUE_EMAIL',
 			20 => 'MORNING_COLLEAGUE_JOB_TITLE',
