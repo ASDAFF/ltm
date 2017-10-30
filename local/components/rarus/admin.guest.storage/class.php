@@ -200,6 +200,9 @@ class CAdminGuestStorage extends CBitrixComponent
 		$provider = HlBlockManager::getInstance()->getProvider('GuestStorage');
 		$entity = $provider->getEntityClassName();
 		$params = [];
+		if($request->get('FILTER_TYPE')){
+			$params['filter'] = [$request->get('FILTER_TYPE') => "%" . $request->get('FILTER_DATA') . "%"];
+		}
 		$params['order'] = [$this->arResult["SORT"] == 'ID' ? 'UF_USER_ID' : $this->arResult["SORT"]  => $this->arResult["ORDER"]];
 
 		$nav = new \Bitrix\Main\UI\PageNavigation("nav");

@@ -20,16 +20,16 @@ $request = \Bitrix\Main\HttpContext::getCurrent()->getRequest();
 			<form type="GET" action="<?=$arResult['ACTION_URL']?>">
 				<input type="text" name="FILTER_DATA" value="<?=$request->get('FILTER_DATA')?>">
 				<select name="FILTER_TYPE">
-					<option value="EMAIL"
-							<? if($request->get('FILTER_TYPE') == 'EMAIL'): ?>selected="selected"<? endif ?>><?=Loc::getMessage('STORAGE_EMAIL')?></option>
-					<option value="WORK_COMPANY"
-							<? if($request->get('FILTER_TYPE') == 'WORK_COMPANY'): ?>selected="selected"<? endif ?>><?=Loc::getMessage('STORAGE_WORK_COMPANY')?></option>
-					<option value="PERSONAL_PHONE"
-							<? if($request->get('FILTER_TYPE') == 'PERSONAL_PHONE'): ?>selected="selected"<? endif ?>><?=Loc::getMessage('STORAGE_PERSONAL_PHONE')?></option>
-					<option value="LOGIN"
-							<? if($request->get('FILTER_TYPE') == 'LOGIN'): ?>selected="selected"<? endif ?>><?=Loc::getMessage('STORAGE_LOGIN')?></option>
-					<option value="NAME"
-							<? if($request->get('FILTER_TYPE') == 'NAME'): ?>selected="selected"<? endif ?>><?=Loc::getMessage('STORAGE_NAME')?></option>
+					<option value="UF_EMAIL"
+							<? if($request->get('FILTER_TYPE') == 'UF_EMAIL'): ?>selected="selected"<? endif ?>><?=Loc::getMessage('STORAGE_EMAIL')?></option>
+					<option value="UF_COMPANY"
+							<? if($request->get('FILTER_TYPE') == 'UF_COMPANY'): ?>selected="selected"<? endif ?>><?=Loc::getMessage('STORAGE_WORK_COMPANY')?></option>
+					<option value="UF_PHONE"
+							<? if($request->get('FILTER_TYPE') == 'UF_PHONE'): ?>selected="selected"<? endif ?>><?=Loc::getMessage('STORAGE_PERSONAL_PHONE')?></option>
+					<option value="UF_LOGIN"
+							<? if($request->get('FILTER_TYPE') == 'UF_LOGIN'): ?>selected="selected"<? endif ?>><?=Loc::getMessage('STORAGE_LOGIN')?></option>
+					<option value="UF_NAME"
+							<? if($request->get('FILTER_TYPE') == 'UF_NAME'): ?>selected="selected"<? endif ?>><?=Loc::getMessage('STORAGE_NAME')?></option>
 				</select>
 				<input type="submit" value="<?=Loc::getMessage('STORAGE_SEARCH')?>" name="filter">
 				<input type="submit" value="<?=Loc::getMessage('STORAGE_RESET')?>" name="reset_filter">
