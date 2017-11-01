@@ -202,6 +202,17 @@ class CAdminGuestStorage extends CBitrixComponent
 		$params = [];
 		if($request->get('FILTER_TYPE')){
 			$params['filter'] = [$request->get('FILTER_TYPE') => "%" . $request->get('FILTER_DATA') . "%"];
+			if($request->get('FILTER_TYPE') === 'UF_NAME') {
+				$params['filter'] = [
+					'LOGIC' => 'OR',
+					array(
+						'UF_NAME' => "%" . $request->get('FILTER_DATA') . "%"
+					),
+					array(
+						'UF_SURNAME' => "%" . $request->get('FILTER_DATA') . "%"
+					)
+				];
+			}
 		}
 		$params['order'] = [$this->arResult["SORT"] == 'ID' ? 'UF_USER_ID' : $this->arResult["SORT"]  => $this->arResult["ORDER"]];
 
