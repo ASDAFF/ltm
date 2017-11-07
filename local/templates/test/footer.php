@@ -21,8 +21,8 @@ if($exhibCode)
                    	"FORGOT_PASSWORD_URL" => "/remind/",
                    	"PROFILE_URL" => "/cabinet/",
                    	"SHOW_ERRORS" => "Y",
-				    "PARTICPANT_GROUPS_ID" => array("10","9", "12", "11", "14","13", "16", "15", "18", "17", "21", "20", "43", "42", "46", "47", "50", "51", "55", "56"),
-				    "GUESTS_GROUPS_ID" => array("22", "25", "23", "26", "24", "27", "19", "44", "48", "52", "57"),
+				    "PARTICPANT_GROUPS_ID" => array("10","9", "12", "11", "14","13", "16", "15", "18", "17", "21", "20", "43", "42", "46", "47", "50", "51", "55", "56", "61", "62"),
+				    "GUESTS_GROUPS_ID" => array("22", "25", "23", "26", "24", "27", "19", "44", "48", "52", "57", "63"),
                    	),
                    	false
                 );?>
@@ -35,9 +35,8 @@ if($exhibCode)
 	".default", 
 	array(
 		"USER_GROUP_ID" => array(
-			0 => "42",
-			1 => "46",
-			2 => "50",
+			0 => "10",
+			1 => "61",
 		),
 		"FORM_FIELD_COMPANY_NAME_ID" => "17",
 		"FORM_FIELD_LOGIN_ID" => "18",
