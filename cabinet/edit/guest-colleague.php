@@ -64,7 +64,7 @@ try{
 				array("ID"=>"SALUTATION_1", "TITLE"=>"Обращение"),
 				array("ID"=>"SIMPLE_QUESTION_187", "TITLE"=>"Должность"),
 				array("ID"=>"SIMPLE_QUESTION_421", "TITLE"=>"E-mail")));
-		$arQuestionToShow[] = array("NAME"=>"Коллега на вечернюю сессию", "ITEMS"=>array(
+	/*	$arQuestionToShow[] = array("NAME"=>"Коллега на вечернюю сессию", "ITEMS"=>array(
 				array("ID"=>"SIMPLE_QUESTION_225", "TITLE"=>"Имя"),
 				array("ID"=>"SIMPLE_QUESTION_770", "TITLE"=>"Фамилия"),
 				array("ID"=>"SALUTATION_2", "TITLE"=>"Обращение"),
@@ -75,7 +75,7 @@ try{
 				array("ID"=>"SIMPLE_QUESTION_627", "TITLE"=>"Фамилия"),
 				array("ID"=>"SALUTATION_3", "TITLE"=>"Обращение"),
 				array("ID"=>"SIMPLE_QUESTION_788", "TITLE"=>"Должность"),
-				array("ID"=>"SIMPLE_QUESTION_230", "TITLE"=>"E-mail")));
+				array("ID"=>"SIMPLE_QUESTION_230", "TITLE"=>"E-mail")));*/
 	}
 
 	if(isset($_REQUEST["formresult"]) && $_REQUEST["formresult"] == "editok")

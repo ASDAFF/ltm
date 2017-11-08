@@ -231,9 +231,9 @@ if (intval($USER_ID) > 0) {
 				"EXIB_SHORT_EN" => $arExhibition["PROPERTIES"]["V_EN"]["VALUE"],
 				"EXIB_DATE" => $arExhibition["PROPERTIES"]["DATE"]["VALUE"],
 				"EXIB_PLACE" => $arExhibition["PROPERTIES"]["VENUE"]["VALUE"],
-				"EXIB_YEAR" => $arExhibition["PROPERTIES"]["menu_en"]["VALUE"],
 				"EVENT_EMAIL" => $arExhibition["PROPERTIES"]["EVENT_EMAIL"]["VALUE"],
-				"TYPE" => "рабочие встречи",
+				"EXIB_YEAR" => $arExhibition["PROPERTIES"]["menu_en"]["VALUE"],               
+				"TYPE" => "Рабочие встречи",
 				"TYPE_KIEV" => "Дякуємо Вам за реєстрацію на Робочі зустрічі за заздалегідь призначенім розкладом на"
 			]
 		];
@@ -250,7 +250,7 @@ if (intval($USER_ID) > 0) {
 				"EXIB_PLACE" => $arExhibition["PROPERTIES"]["VENUE"]["VALUE"],
 				"EXIB_YEAR" => $arExhibition["PROPERTIES"]["menu_en"]["VALUE"],
 				"EVENT_EMAIL" => $arExhibition["PROPERTIES"]["EVENT_EMAIL"]["VALUE"],
-				"TYPE" => "вечерний коктейль",
+				"TYPE" => "Вечерний коктейль",
 				"TYPE_KIEV" => "Дякуємо Вам за реєстрацію на Вечірній коктейль"
 			]
 		];
