@@ -269,7 +269,8 @@ if (intval($USER_ID) > 0) {
 					if(!empty($arColleague["EMAIL"]) && !empty($arColleague["NAME"]) && "MORNING" !== $type) {
 						$arEveningColleagueEventFields = $arColleague;
 						$arEveningColleagueEventFields["MAIL"] = $arColleague["EMAIL"];
-						$arEveningColleagueEventFields["EXHIB"] = $arResult["EXHIBITION"][$exhibitionID]["PROPERTIES"]["menu_en"]["VALUE"];
+						$arEveningColleagueEventFields["EXHIB"] = $arResult["EXHIBITION"][$exhibitionID]["PROPERTIES"]["menu_ru"]["VALUE"];
+                        $arEveningColleagueEventFields["EXIB_SHORT_EN"] = $arResult["EXHIBITION"][$exhibitionID]["PROPERTIES"]["V_EN"]["VALUE"];
 						$arEveningColleagueEventFields["BUYER"] = "{$data["NAME"]} {$data["LAST_NAME"]}";
 
 						$event->Send($eventColleagueRegistration, SITE_ID, $arEveningColleagueEventFields);
@@ -280,7 +281,8 @@ if (intval($USER_ID) > 0) {
 				if(!empty($data["COLLEAGUE"]["MORNING"]["EMAIL"]) && !empty($data["COLLEAGUE"]["MORNING"]["EMAIL"])) {
 					$arMailFields = $data["COLLEAGUE"]["MORNING"];
 					$arMailFields["MAIL"] = $data["COLLEAGUE"]["MORNING"]["EMAIL"];
-					$arMailFields["EXHIB"] = $arResult["EXHIBITION"][$exhibitionID]["PROPERTIES"]["menu_en"]["VALUE"];
+					$arMailFields["EXHIB"] = $arResult["EXHIBITION"][$exhibitionID]["PROPERTIES"]["menu_ru"]["VALUE"];
+                    $arMailFields["EXIB_SHORT_EN"] = $arResult["EXHIBITION"][$exhibitionID]["PROPERTIES"]["V_EN"]["VALUE"];
 					$arMailFields["BUYER"] = "{$data["NAME"]} {$data["LAST_NAME"]}";
 
 					$event->Send($eventColleagueRegistration, SITE_ID, $arMailFields);
