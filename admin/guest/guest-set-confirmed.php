@@ -12,6 +12,7 @@ try {
                     "PROPERTY_C_GUESTS_GROUP",
                     "PROPERTY_UC_GUESTS_GROUP",
                     "PROPERTY_menu_ru",
+                    "PROPERTY_V_EN",
                     "PROPERTY_TEMPL_GUEST_HB_CONFIRM",
                     "PROPERTY_TEMPL_GUEST_MORNING_CONFIRM",
                     "PROPERTY_TEMPL_GUEST_EVENING_CONFIRM",
