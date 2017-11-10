@@ -11,7 +11,7 @@ try {
                     "IBLOCK_ID",
                     "PROPERTY_C_GUESTS_GROUP",
                     "PROPERTY_UC_GUESTS_GROUP",
-                    "PROPERTY_menu_en",
+                    "PROPERTY_menu_ru",
                     "PROPERTY_TEMPL_GUEST_HB_CONFIRM",
                     "PROPERTY_TEMPL_GUEST_MORNING_CONFIRM",
                     "PROPERTY_TEMPL_GUEST_EVENING_CONFIRM",
@@ -195,7 +195,8 @@ function confirmUser($userId, $arUserChanges, $unconfirmmedGuestGroupId, $confir
 		{
 			$arColleagueEventFields = $arColleague;
 			$arColleagueEventFields["BUYER"] = "{$arUserFields["NAME"]} {$arUserFields["LAST_NAME"]}";
-			$arColleagueEventFields["EXHIB"] = $arExhib["PROPERTY_MENU_EN_VALUE"];
+			$arColleagueEventFields["EXHIB"] = $arExhib["PROPERTY_MENU_RU_VALUE"];
+            $arColleagueEventFields["EXIB_SHORT_EN"] = $arExhib["PROPERTY_V_EN_VALUE"];
 
 			CEvent::Send("GUEST_CONFIRM_COLLEAGUE", SITE_ID, $arColleagueEventFields, "Y", $templateId);
 		}
