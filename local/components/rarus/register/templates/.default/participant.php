@@ -66,7 +66,7 @@ AjaxPatch = <?=CUtil::PhpToJSObject($arResult["AJAX_PATCH"])?>;
 			<?/*Country*/?>
 			<?= ShowText("SIMPLE_QUESTION_778","COUNTRY", $arResult["COMPANY_FORM"], "require en");?>
 			<?/*http://*/?>
-			<?= ShowText("SIMPLE_QUESTION_501","WEB_SITE", $arResult["COMPANY_FORM"], "web", GetMessage("R_E_WEB_SITE"));?>
+			<?= ShowText("SIMPLE_QUESTION_501","WEB_SITE", $arResult["COMPANY_FORM"], "", GetMessage("R_E_WEB_SITE"));?>
 			<?/*Company description (max.1200 symbols)*/?>
 			<?= ShowTextArea("SIMPLE_QUESTION_163","COMPANY_DESCRIPTION", $arResult["COMPANY_FORM"], "require description");?>
 			<div class="line-sep-small"></div>
