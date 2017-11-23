@@ -15,13 +15,13 @@ if($exhibCode)
             array()
         ),
         array(
-            "First Day (March 2)",
+            "First Day (March 1)",
             "/cabinet/" . $exhibCode . "/hb/",
             array(),
             array()
         ),
         array(
-            "Second Day (March 3)",
+            "Second Day (March 2)",
             "/cabinet/" . $exhibCode . "/morning/",
             array(),
             array()
