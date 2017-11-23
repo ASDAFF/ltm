@@ -27,14 +27,18 @@ function DokaGeneratePdf($arResult) {
 	$pdf->SetFont('freeserif','B',18);
 	$pdf->multiCell(220, 6, 'Personal diary during the morning session', 0, C);
 	$pdf->SetFont('freeserif','B',18);
-	if($arResult["EXHIBITION"]["IS_HB"]){
-		$arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'] .= " Hosted Buyers session\n";
-		$dayline = "Day 1 - March 1, 2018";
-	}
-	else {
-		$dayline = "Day 2 - March 2, 2018";
-		$arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'] .= "\n";
-	}
+    // Если в свойствах выставки отмечено "Есть сессия НВ"
+    if($arResult["PARAM_EXHIBITION"]["PROPERTIES"]["HB_EXIST"]['VALUE']){
+        // Если в настройках встреч отмечено "Сессия с НВ"
+        if($arResult["EXHIBITION"]["IS_HB"]){
+            $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'] .= " Hosted Buyers session\n";
+            $dayline = "Day 1 - March 1, 2018";
+        }
+        else {
+            $dayline = "Day 2 - March 2, 2018";
+            $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'] .= "\n";
+        }
+    }
 	$pdf->multiCell(200, 6, "at " . $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'] . $dayline, 0, C);
 	$pdf->SetFont('freeserif','',15);
 	$pdf->setXY(30,$pdf->getY() + 2);
