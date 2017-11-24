@@ -80,6 +80,7 @@ $exhibitionParam = array();
 $exhibitionParam["IS_HB"] = $arParams["IS_HB"];
 $exhibitionParam["TITLE"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'];
 $exhibitionParam["TITLE_RU"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'];
+$exhibitionParam["HB_EXIST"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["HB_EXIST"]['VALUE'];
 if(isset($arParams["IS_HB"]) && $arParams["IS_HB"] == 'Y'){
 	$exhibitionParam["TITLE"] .= " Hosted Buyers session";
 	$exhibitionParam["TITLE_RU"] .= " Hosted Buyers сессия";

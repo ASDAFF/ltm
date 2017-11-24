@@ -25,12 +25,15 @@ function DokaGeneratePdf($arResult)
     $pdf->AddPage();
     $pdf->ImageSVG($file = DOKA_MEETINGS_MODULE_DIR . '/images/logo.svg', $x = 30, $y = 5, $w = '150', $h = '', $link = '', $align = '', $palign = '', $border = 0, $fitonpage = false);
     $arResult["exhib"]["TITLE"] .= "\n";
-    if ($arResult["exhib"]["IS_HB"]) {
-        $dayline = "Day 1 - March 2, 2017";
-    } else {
-        //$dayline = "Day 2 - March 3, 2017";
+    // Если в свойствах выставки отмечено "Есть сессия НВ"
+    if($arResult["exhib"]["HB_EXIST"]){
+        // Если в настройках встреч отмечено "Сессия с НВ"
+        if ($arResult["exhib"]["IS_HB"]) {
+            $dayline = "Day 1 - March 1, 2018";
+        } else {
+            $dayline = "Day 2 - March 2, 2018";
+        }
     }
-
     $pdf->setXY(0, 25);
     $pdf->SetFont('freeserif', 'B', 18);
     $pdf->multiCell(220, 6, 'Personal diary during the morning session', 0, C);
