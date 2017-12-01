@@ -7,13 +7,17 @@ function DokaGeneratePdf($arResult) {
 	$pdf->ImageSVG($file=DOKA_MEETINGS_MODULE_DIR . '/images/logo.svg', $x=30, $y=5, $w='150', $h='', $link='', $align='', $palign='', $border=0, $fitonpage=false);
 	$pdf->setXY(15,25);
 	$pdf->SetFont('freeserif','B',17);
-	if($arResult["EXHIBITION"]["IS_HB"]){
-		$arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'] .= " Hosted Buyers session";
-		$dayline = "Day 1 - March 2, 2017";
-	}
-	else {
-		//$dayline = "Day 2 - March 3, 2017";
-	}
+    // Если в свойствах выставки отмечено "Есть сессия НВ"
+    if($arResult["PARAM_EXHIBITION"]["PROPERTIES"]["HB_EXIST"]['VALUE']){
+        // Если в настройках встреч отмечено "Сессия с НВ"
+        if($arResult["EXHIBITION"]["IS_HB"]){
+            $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'] .= " Hosted Buyers session";
+            $dayline = "Day 1 - March 1, 2018";
+        }
+        else {
+            $dayline = "Day 1 - March 2, 2018";
+        }
+    }
 	$pdf->multiCell(180, 5, "Wish-list " . $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'] . " for ", 0, C);
 	$pdf->SetFont('freeserif','',15);
 	$pdf->setXY(30,$pdf->getY() + 2);
