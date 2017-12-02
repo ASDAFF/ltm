@@ -9,14 +9,18 @@ function DokaGeneratePdf($arResult) {
 	$pdf->ImageSVG($file=DOKA_MEETINGS_MODULE_DIR . '/images/logo.svg', $x=30, $y=5, $w='150', $h='', $link='', $align='', $palign='', $border=0, $fitonpage=false);
 	$pdf->setXY(0,23);
 	$pdf->SetFont('freeserif','B',17);
-	if($arResult["EXHIBITION"]["IS_HB"]){
-		$arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'] .= " Hosted Buyers сессия\n";
-		$dayline = "День 1, 2 марта 2017";
-	}
-	else {
-		//$dayline = "День 2, 3 марта 2017";
-		$arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'] .= "\n";
-	}
+    // Если в свойствах выставки отмечено "Есть сессия НВ"
+    if($arResult["PARAM_EXHIBITION"]["PROPERTIES"]["HB_EXIST"]['VALUE']){
+        // Если в настройках встреч отмечено "Сессия с НВ"        
+        if($arResult["EXHIBITION"]["IS_HB"]){
+            $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'] .= " Hosted Buyers сессия\n";
+            $dayline = "День 1, 1 марта 2018";
+        }
+        else {
+            $dayline = "День 2, 2 марта 2018";
+            $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'] .= "\n";
+        }
+    }
 	$pdf->multiCell(210, 5, "Список неподтвержденных запросов на\n" . $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'] . $dayline, 0, C);
 	$pdf->SetFont('freeserif','',15);
 	$pdf->setXY(30,$pdf->getY() + 2);
