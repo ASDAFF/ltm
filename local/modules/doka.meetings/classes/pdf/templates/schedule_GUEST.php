@@ -29,12 +29,16 @@ function DokaGeneratePdf($arResult)
 
     $pdf->setXY(0, 25);
     $pdf->SetFont('freeserif', 'B', 17);
-    if ($arResult["EXHIBITION"]["IS_HB"]) {
-        $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'] .= " Hosted Buyers сессия\n";
-        $dayline = "День 1, 2 марта 2017";
-    } else {
-        //$dayline = "День 2, 3 марта 2017";
-        $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'] .= "\n";
+    // Если в свойствах выставки отмечено "Есть сессия НВ"
+    if($arResult["PARAM_EXHIBITION"]["PROPERTIES"]["HB_EXIST"]['VALUE']){    
+        // Если в настройках встреч отмечено "Сессия с НВ"
+        if ($arResult["EXHIBITION"]["IS_HB"]) {
+            $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'] .= " Hosted Buyers сессия\n";
+            $dayline = "День 1, 1 марта 2018";
+        } else {
+            $dayline = "День 2, 2 марта 2018";
+            $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'] .= "\n";
+        }
     }
     $pdf->multiCell(210, 5, "Расписание встреч на утренней сессии\n" . $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'] . $dayline, 0, C);
     /*$pdf->multiCell(210, 5, "Список неподтвержденных запросов на\nLuxury Travel Mart Баку", 0, C);*/
