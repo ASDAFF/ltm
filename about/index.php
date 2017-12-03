@@ -47,7 +47,7 @@ if(LANGUAGE_ID == "ru")
 <p>
  <b>Весенний Luxury Travel Mart Москва, Россия <br>
  </b>Даты проведения в 2018: 1-2&nbsp;марта&nbsp;<br>
-	 Место проведения: The Ritz-Carlton, Moscow<b><br>
+	 Место проведения: Hyatt Regency Moscow Petrovsky Park<b><br>
  </b>
 </p>
 <p>
@@ -111,7 +111,7 @@ elseif(LANGUAGE_ID == "en")
 	 Dates for 2018: March 1-2&nbsp;(two-days event) &nbsp; &nbsp;&nbsp;
 </p>
 <p>
-	 Venue: The Ritz-Carlton, Moscow&nbsp;<br>
+	 Venue:&nbsp;Hyatt Regency Moscow Petrovsky Park&nbsp;<br>
 	 Approximate number of guests: 320 hosted buyers at the first day, 300-350 at the morning session of the second day, over 1000 guests at the evening reception.<b><br>
  </b>
 </p>
