@@ -128,15 +128,21 @@ function DokaGeneratePdf($arResult)
                 </tr>';
         } else {
             $tbl .= '<tr nobr="true">
-                        <td width="85" align="center">' . $freeseriflot['name'] . '</td>
-                        <td width="240">Компания: ' . $freeseriflot['company_name'] . '<br />Представитель: ' . $freeseriflot['company_rep'] . '</td>
-                        <td width="100" align="center">' . $freeseriflot['notes'] . '</td>';
+                        <td width="85" align="center">' . $freeseriflot['name'] . '</td>';
+                        if ($arResult["EXHIBITION"]["IS_HB"]) {
+                            $tbl .= '<td width="340">Компания: ' . $freeseriflot['company_name'] . '<br />Представитель: ' . $freeseriflot['company_rep'] . '</td>
+                            <td width="110" align="center">' . $freeseriflot['notes'] . '</td>';
+                        } else {
+                            $tbl .= '<td width="240">Компания: ' . $freeseriflot['company_name'] . '<br />Представитель: ' . $freeseriflot['company_rep'] . '</td>
+                                    <td width="100" align="center">' . $freeseriflot['notes'] . '</td>';
+                            if ($freeseriflot['hall']) {
+                                $tbl .= '<td width="110">' . $freeseriflot['hall'] . ', ' . $freeseriflot['table'] . '</td>';
+                            } else {
+                                $tbl .= '<td width="110"></td>';
+                            }
+                        }               
             if (!$arResult["EXHIBITION"]["IS_HB"]) {
-                if ($freeseriflot['hall']) {
-                    $tbl .= '<td width="110">' . $freeseriflot['hall'] . ', ' . $freeseriflot['table'] . '</td>';
-                } else {
-                    $tbl .= '<td width="110"></td>';
-                }
+
             }
             $tbl .= '</tr>';
         }
