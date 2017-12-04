@@ -8,12 +8,15 @@ function DokaGeneratePdf($arResult) {
 	$pdf->ImageSVG($file=DOKA_MEETINGS_MODULE_DIR . '/images/logo.svg', $x=30, $y=5, $w='150', $h='', $link='', $align='', $palign='', $border=0, $fitonpage=false);
 	$pdf->setXY(0,23);
 	$pdf->SetFont('freeserif','B',17);
-	if($arResult["exhib"]["IS_HB"]){
-		$dayline = "День 1, 2 марта 2017";
-	}
-	else {
-		//$dayline = "День 2, 3 марта 2017";
-	}
+    // Если в свойствах выставки отмечено "Есть сессия НВ"
+    if($arResult["exhib"]["HB_EXIST"]){
+        // Если в настройках встреч отмечено "Сессия с НВ"
+        if ($arResult["exhib"]["IS_HB"]) {
+            $dayline = "День 1 - 1 марта, 2018";
+        } else {
+            $dayline = "День 2 - 2 марта, 2018";
+        }
+    }
 	$arResult["exhib"]["TITLE_RU"] .= "\n";
 	$pdf->multiCell(210, 5, "Список неподтвержденных запросов на\n" . $arResult["exhib"]["TITLE_RU"] . $dayline, 0, C);
 	$pdf->SetFont('freeserif','',15);

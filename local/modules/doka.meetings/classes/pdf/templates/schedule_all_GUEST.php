@@ -28,13 +28,16 @@ function DokaGeneratePdf($arResult)
     $pdf->setXY(0, 25);
     $pdf->SetFont('freeserif', 'B', 17);
     $arResult["exhib"]["TITLE_RU"] .= "\n";
-    if ($arResult["exhib"]["IS_HB"]) {
-        $dayline = "День 1, 2 марта 2017";
-    } else {
-        //$dayline = "День 2, 3 марта 2017";
+    // Если в свойствах выставки отмечено "Есть сессия НВ"
+    if($arResult["exhib"]["HB_EXIST"]){
+        // Если в настройках встреч отмечено "Сессия с НВ"
+        if ($arResult["exhib"]["IS_HB"]) {
+            $dayline = "День 1 - 1 марта, 2018";
+        } else {
+            $dayline = "День 2 - 2 марта, 2018";
+        }
     }
     $pdf->multiCell(210, 5, "Расписание встреч на утренней сессии\n" . $arResult["exhib"]["TITLE_RU"] . $dayline, 0, C);
-    /*$pdf->multiCell(210, 5, "Список неподтвержденных запросов на\nLuxury Travel Mart Баку", 0, C);*/
     $pdf->SetFont('freeserif', '', 14);
     $pdf->setXY(30, $pdf->getY() + 2);
     $pdf->multiCell(210, 5, $arResult["name"] . ", " . $arResult['city'], 0, L);
@@ -50,8 +53,7 @@ function DokaGeneratePdf($arResult)
     $pdf->multiCell(210, 5, "Мобильный телефон: " . $arResult["mob"], 0, L);
     $pdf->setXY(30, $pdf->getY() + 1);
     $pdf->multiCell(210, 5, "Телефон: " . $arResult["phone"], 0, L);
-    $pdf->setXY(30, $pdf->getY() + 1);
-    $pdf->SetY($pdf->getY() + 8);
+    $pdf->setXY(30, $pdf->getY() + 4);
 
     if ($arResult["exhib"]["IS_HB"] && $arResult["hall"] != "None") {
         $pdf->multiCell(210, 5, "Hall, Table: " . $arResult["hall"] . ", " . $arResult["table"], 0, L);
@@ -122,18 +124,25 @@ function DokaGeneratePdf($arResult)
                         <td colspan="3" width="450" align="center">' . $lunchText . '</td>
                     </tr>';
         } else {
-            $tbl .= '<tr>
-                        <td width="85" align="center">' . $freeseriflot['timeslot_name'] . '</td>
-                        <td width="240">Компания: ' . $freeseriflot['company_name'] . '<br />Представитель: ' . $freeseriflot['company_rep'] . '</td>
-                        <td width="100" align="center">' . $freeseriflot['notes'] . '</td>';
-            if (!$arResult["exhib"]["IS_HB"]) {
+            if ($arResult["exhib"]["IS_HB"]) {
+                $tbl .= '<tr nobr="true">
+					  <td width="85" align="center">' . $freeseriflot['timeslot_name'] . '</td>
+					  <td width="340">Company: ' . $freeseriflot['company_name'] . '<br />Representative: ' . $freeseriflot['company_rep'] . '</td>
+					  <td width="110" align="center" >' . $freeseriflot['notes'] . '</td>
+				  </tr>';
+            } else {
+                $tbl .= '<tr nobr="true">
+					  <td width="85" align="center">' . $freeseriflot['timeslot_name'] . '</td>
+					  <td width="240">Company: ' . $freeseriflot['company_name'] . '<br />Representative: ' . $freeseriflot['company_rep'] . '</td>
+					  <td width="100" align="center">' . $freeseriflot['notes'] . '</td>';
                 if ($freeseriflot['hall']) {
-                    $tbl .= '<td width="110">' . $freeseriflot['hall'] . ', ' . $freeseriflot['table'] . '</td>';
+                    $tbl .= '<td width="110">' . $freeseriflot['hall'] . ', ' . $freeseriflot['table'] . '</td>
+							</tr>';
                 } else {
-                    $tbl .= '<td width="110"> </td>';
+                    $tbl .= '<td width="110"> </td>
+                                </tr>';
                 }
             }
-            $tbl .= '</tr>';
         }
     }
     $tbl .= '</tbody></table>';

@@ -7,7 +7,7 @@ function DokaGeneratePdf($arResult) {
 	$pdf->ImageSVG($file=DOKA_MEETINGS_MODULE_DIR . '/images/logo.svg', $x=30, $y=5, $w='150', $h='', $link='', $align='', $palign='', $border=0, $fitonpage=false);
 	$pdf->setXY(15,30);
     // Если в свойствах выставки отмечено "Есть сессия НВ"
-    if($arResult["exhib"]["HB_EXIST"]){ //добавить в компоненте получение значения этого поля выставки
+    if($arResult["exhib"]["HB_EXIST"]){
         // Если в настройках встреч отмечено "Сессия с НВ"
         if ($arResult["exhib"]["IS_HB"]) {
             $dayline = "Day 1 - March 1, 2018";
