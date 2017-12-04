@@ -66,7 +66,7 @@ function DokaGeneratePdf($arResult)
 				<tr nobr="true">
 					<th align="center" width="85">Time</th>
 					<th align="center" width="240">Companies</th>
-					<th align="center" width="90"> </th>
+					<th align="center" width="100"> </th>
 					<td align="center" width="110">Hall, Table</td>
 				</tr>
 			    </thead>
@@ -122,8 +122,8 @@ function DokaGeneratePdf($arResult)
             } else {
                 $tbl .= '<tr nobr="true">
 					  <td width="85" align="center">' . $freeseriflot['timeslot_name'] . '</td>
-					  <td width="340">Company: ' . $freeseriflot['company_name'] . '<br />Representative: ' . $freeseriflot['company_rep'] . '</td>
-					  <td width="110" align="center">' . $freeseriflot['notes'] . '</td>';
+					  <td width="240">Company: ' . $freeseriflot['company_name'] . '<br />Representative: ' . $freeseriflot['company_rep'] . '</td>
+					  <td width="100" align="center">' . $freeseriflot['notes'] . '</td>';
                 if ($freeseriflot['hall']) {
                     $tbl .= '<td width="110">' . $freeseriflot['hall'] . ', ' . $freeseriflot['table'] . '</td>
 							</tr>';

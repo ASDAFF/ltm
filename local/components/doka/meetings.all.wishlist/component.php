@@ -32,7 +32,7 @@ if(isset($arParams["EXIB_CODE"]) && $arParams["EXIB_CODE"]!=''){
 				),
 			false,
 			false,
-			array("ID", "CODE", "PROPERTY_APP_ID", "PROPERTY_APP_HB_ID", "PROPERTY_V_EN", "PROPERTY_V_RU")
+			array("ID", "CODE", "PROPERTY_APP_ID", "PROPERTY_APP_HB_ID", "PROPERTY_V_EN", "PROPERTY_V_RU", "PROPERTY_HB_EXIST")
 			);
 	if($oExhib = $rsExhib->Fetch())
 	{
@@ -78,6 +78,7 @@ $exhibitionParam = array();
 $exhibitionParam["IS_HB"] = $arParams["IS_HB"];
 $exhibitionParam["TITLE"] = $arResult["EXIB"]["PROPERTY_V_EN_VALUE"];
 $exhibitionParam["TITLE_RU"] = $arResult["EXIB"]["PROPERTY_V_RU_VALUE"];
+$exhibitionParam["HB_EXIST"] = $arResult["EXIB"]["PROPERTY_HB_EXIST_VALUE"];
 if(isset($arParams["IS_HB"]) && $arParams["IS_HB"] == 'Y'){
 	$exhibitionParam["TITLE"] .= " Hosted Buyers session";
 	$exhibitionParam["TITLE_RU"] .= " Hosted Buyers session";
