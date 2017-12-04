@@ -6,12 +6,15 @@ function DokaGeneratePdf($arResult) {
 	$pdf->AddPage();
 	$pdf->ImageSVG($file=DOKA_MEETINGS_MODULE_DIR . '/images/logo.svg', $x=30, $y=5, $w='150', $h='', $link='', $align='', $palign='', $border=0, $fitonpage=false);
 	$pdf->setXY(15,30);
-	if($arResult["exhib"]["IS_HB"]){
-		$dayline = "Day 1 - March 2, 2017";
-	}
-	else {
-		//$dayline = "Day 2 - March 3, 2017";
-	}
+    // Если в свойствах выставки отмечено "Есть сессия НВ"
+    if($arResult["exhib"]["HB_EXIST"]){ //добавить в компоненте получение значения этого поля выставки
+        // Если в настройках встреч отмечено "Сессия с НВ"
+        if ($arResult["exhib"]["IS_HB"]) {
+            $dayline = "Day 1 - March 1, 2018";
+        } else {
+            $dayline = "Day 2 - March 2, 2018";
+        }
+    }
 	$pdf->SetFont('freeserif','B',17);
 	$pdf->multiCell(180, 5, "Wish-list " . $arResult["exhib"]["TITLE"] . " for ", 0, C);
 	$pdf->SetFont('freeserif','',15);
