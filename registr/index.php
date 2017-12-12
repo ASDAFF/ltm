@@ -14,7 +14,7 @@ $APPLICATION->SetPageProperty("title", $title);
 $APPLICATION->SetPageProperty("NOT_SHOW_NAV_CHAIN", "Y");
 $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 ?> 
-<?$APPLICATION->IncludeComponent("rarus:register",
+<?$APPLICATION->IncludeComponent("ltm:register",
 	 ".default", 
 	array(
 		"AUTH" => "N",

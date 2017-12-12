@@ -63,11 +63,25 @@ class ltm_domain extends CModule
 
         $step2 = "$_SERVER[DOCUMENT_ROOT]/local/modules/{$this->MODULE_ID}/install/step2.php";
         $APPLICATION->IncludeAdminFile(GetMessage("LTM_DOMAIN_MODULE_INSTALL_TITLE"), $step2);
+
+        RegisterModuleDependences('iblock', 'OnBeforeIBlockElementUpdate', 'ltm.domain', 'Ltm\Domain\GuestStorage\Handler', 'OnBeforeIBlockElementUpdate');
+        RegisterModuleDependences('iblock', 'OnBeforeIBlockElementDelete', 'ltm.domain', 'Ltm\Domain\GuestStorage\Handler', 'OnBeforeIBlockElementDelete');
+        RegisterModuleDependences('iblock', 'OnBeforeIBlockElementAdd', 'ltm.domain', 'Ltm\Domain\GuestStorage\Handler', 'OnBeforeIBlockElementAdd');
+        RegisterModuleDependences('iblock', 'OnAfterIBlockElementUpdate', 'ltm.domain', 'Ltm\Domain\GuestStorage\Handler', 'OnAfterIBlockElementUpdate');
+        RegisterModuleDependences('iblock', 'OnAfterIBlockElementDelete', 'ltm.domain', 'Ltm\Domain\GuestStorage\Handler', 'OnAfterIBlockElementDelete');
+        RegisterModuleDependences('iblock', 'OnAfterIBlockElementAdd', 'ltm.domain', 'Ltm\Domain\GuestStorage\Handler', 'OnAfterIBlockElementAdd');
     }
 
     public function doUninstall()
     {
         global $APPLICATION;
+
+        UnRegisterModuleDependences('iblock', 'OnBeforeIBlockElementUpdate', 'ltm.domain', 'Ltm\Domain\GuestStorage\Handler', 'OnBeforeIBlockElementUpdate');
+        UnRegisterModuleDependences('iblock', 'OnBeforeIBlockElementDelete', 'ltm.domain', 'Ltm\Domain\GuestStorage\Handler', 'OnBeforeIBlockElementDelete');
+        UnRegisterModuleDependences('iblock', 'OnBeforeIBlockElementAdd', 'ltm.domain', 'Ltm\Domain\GuestStorage\Handler', 'OnBeforeIBlockElementAdd');
+        UnRegisterModuleDependences('iblock', 'OnAfterIBlockElementUpdate', 'ltm.domain', 'Ltm\Domain\GuestStorage\Handler', 'OnAfterIBlockElementUpdate');
+        UnRegisterModuleDependences('iblock', 'OnAfterIBlockElementDelete', 'ltm.domain', 'Ltm\Domain\GuestStorage\Handler', 'OnAfterIBlockElementDelete');
+        UnRegisterModuleDependences('iblock', 'OnAfterIBlockElementAdd', 'ltm.domain', 'Ltm\Domain\GuestStorage\Handler', 'OnAfterIBlockElementAdd');
 
         $title = GetMessage("LTM_DOMAIN_MODULE_INSTALL_TITLE");
         $stepFile = "$_SERVER[DOCUMENT_ROOT]/local/modules/{$this->MODULE_ID}/install/unstep1.php";
