@@ -39,7 +39,7 @@ if($arParams["COLLEAGUE_SEND_EMAIL"] != "Y")
 
 require_once("function.php");
 
-if(!CModule::IncludeModule("iblock") || !CModule::IncludeModule("form"))
+if(!CModule::IncludeModule("iblock") || !CModule::IncludeModule("form") || !CModule::IncludeModule("ltm.domain"))
 {
 	$arResult["ERROR_MESSAGE"] = GetMessage("MODULES_NOT_FOUND")."<br />";
 }

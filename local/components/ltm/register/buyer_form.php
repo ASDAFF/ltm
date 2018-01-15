@@ -15,5 +15,8 @@ CForm::GetDataByID(
 //pre($arResult["GUEST_FORM"]["QUESTIONS"]);
 
 
+$buyer = new Ltm\Domain\Data\Buyer();
+$arResult['GUEST_FORM_QUESTIONS'] = $buyer->getMap();
+pre($arResult);
 
 ?>
