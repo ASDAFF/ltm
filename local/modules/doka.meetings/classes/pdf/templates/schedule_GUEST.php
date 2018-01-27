@@ -44,7 +44,7 @@ function DokaGeneratePdf($arResult)
     /*$pdf->multiCell(210, 5, "Список неподтвержденных запросов на\nLuxury Travel Mart Баку", 0, C);*/
     $pdf->SetFont('freeserif', '', 14);
     $pdf->setXY(30, $pdf->getY() + 2);
-    if($arResult["APP_ID"] == 1 && $arResult['IS_HB']) {
+    if(in_array($arResult["APP_ID"], [1,6]) && $arResult['IS_HB']) {
         $pdf->multiCell(210, 5, $arResult["USER"]['COMPANY'], 0, L);
     } else {
         $pdf->multiCell(210, 5, $arResult["USER"]['COMPANY'] . ", " . $arResult["USER"]['CITY'], 0, L);

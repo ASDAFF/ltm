@@ -40,7 +40,7 @@ function DokaGeneratePdf($arResult)
     $pdf->multiCell(210, 5, "Расписание встреч на утренней сессии\n" . $arResult["exhib"]["TITLE_RU"] . $dayline, 0, C);
     $pdf->SetFont('freeserif', '', 14);
     $pdf->setXY(30, $pdf->getY() + 2);
-    if($arResult["APP_ID"] == 1 && $arResult['is_hb']) {
+    if(in_array($arResult["APP_ID"], [1,6]) && $arResult['is_hb']) {
         $pdf->multiCell(210, 5, $arResult["name"], 0, L);
     } else {
         $pdf->multiCell(210, 5, $arResult["name"] . ", " . $arResult['city'], 0, L);
