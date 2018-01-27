@@ -189,7 +189,7 @@ while ($arUser = $rsGUsers->Fetch()) {
 		'hall' => "",
 		'table' => "",
 		'city' => "",
-		'is_hb' => $arUser["UF_HB"]
+		'is_hb' => ($arUser["UF_HB"] == 1)
 	);
 	foreach($arAnswer2[$guestFields["QUEST_CODE"][ $guestFieldsIndex["CITY"] ]] as $value){
 		$users_list[$arUser['ID']]['city'] = $value["USER_TEXT"];
@@ -248,7 +248,7 @@ while ($data = $rsCompanies->Fetch()) {
 		'path' => $pdfFolder.$pdfName,
 		'schedule' => array(),
 		'exhib' => $exhibitionParam,
-		'APP_ID' => $arResult['APP_ID']
+		'APP_ID' => $arResult['APP_ID'],
 	);
 
 	$statuses = $req_obj->getTimslotsStatuses($data);
