@@ -374,8 +374,8 @@ function printVal($ar, $glue)
 												href="/admin/service/wishlist_guest.php?id=<?=$arUser["ID"]?>&app=<?=$arResult["EXHIB"]["PROPERTIES"]["APP_ID"]["VALUE"]?>&exhib=<?=$arResult['EXHIB']['CODE']?>&type=p&mode=pdf"
 												target="_blank"
 												onclick="newWind('/admin/service/wishlist_guest.php?id=<?=$arUser["ID"]?>&app=<?=$arResult["EXHIB"]["PROPERTIES"]["APP_ID"]["VALUE"]?>&exhib=<?=$arResult['EXHIB']['CODE']?>&type=p&mode=pdf', 600, 700); return false;">Генерировать вишлист</a></li>
-										<? if($arParams["ACT"] == "hostbuy" && (isset($arResult["EXHIB"]["PROPERTIES"]["APP_HB_ID"]["VALUE"]) && $arResult["EXHIB"]["PROPERTIES"]["APP_HB_ID"]["VALUE"] != '')){
-											$appId = $arResult["EXHIB"]["PROPERTIES"]["APP_HB_ID"]["VALUE"];
+										<? if($arParams["ACT"] == "hostbuy" && (isset($arResult["EXHIB"]["PROPERTY_APP_HB_ID_VALUE"]) && $arResult["EXHIB"]["PROPERTY_APP_HB_ID_VALUE"] != '')){
+											$appId = $arResult["EXHIB"]["PROPERTY_APP_HB_ID_VALUE"];
 											?>
 											<li><a
 													href="/admin/service/pdf_shedule_guest_hb.php?id=<?=$arUser["ID"]?>&app=<?=$appId?>&exhib=<?=$arResult['EXHIB']['CODE']?>&type=p&mode=pdf"
