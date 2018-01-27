@@ -29,7 +29,7 @@ $sortOrder = $arResult["ORDER"]  = ($_REQUEST["order"])?$_REQUEST["order"]:"asc"
 	$rs = CIBlockElement::GetList(array("SORT"=>"ASC"),
 	        array("IBLOCK_ID"=>intval($arParams["IBLOCK_ID_EXHIB"]), "CODE"=>$arParams["EXHIBIT_CODE"]/*, "ACTIVE"=>"Y"*/),
 	        false, array("nTopCount"=>1),
-	        array("ID", "NAME", "CODE", "PROPERTY_UC_GUESTS_GROUP", "PROPERTY_GUEST_SPAM_GROUP", "PROPERTY_C_GUESTS_GROUP"));
+	        array("ID", "NAME", "CODE", "PROPERTY_UC_GUESTS_GROUP", "PROPERTY_GUEST_SPAM_GROUP", "PROPERTY_C_GUESTS_GROUP", "PROPERTY_APP_HB_ID"));
 	if($ar = $rs->GetNext(true, false)) {
 	    $arResult["EXHIB"] = $ar;
 	}
