@@ -4,4 +4,4 @@ use Ltm\Domain\Profile;
 
 $profileProvider = new Profile\ProfileDataProvider();
 
-var_dump($profileProvider->getQuestionListBySectionId(2579));
+pri($profileProvider->getQuestionListBySectionId(2579));

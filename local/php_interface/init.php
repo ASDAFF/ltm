@@ -3,8 +3,8 @@ use Bitrix\Main\Loader;
 use Ltm\Domain\Service;
 use Ltm\Domain\Service\Configuration\Provider\BitrixSettings;
 
-//require_once(realpath("/home/bitrix/ext_www/lib/vendor/autoload.php"));
-require_once(realpath(__DIR__."/../../../lib/vendor/autoload.php"));
+require_once(realpath("/home/bitrix/ext_www/lib/vendor/autoload.php"));
+//require_once(realpath(__DIR__."/../../../lib/vendor/autoload.php"));
 
 Loader::includeModule('ltm.domain');
 Loader::includeModule('iblock');

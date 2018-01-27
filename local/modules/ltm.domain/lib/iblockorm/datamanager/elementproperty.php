@@ -1,6 +1,6 @@
 <?php
 
-namespace Ltm\Domain\Util\IblockOrm\DataManager;
+namespace Ltm\Domain\IblockOrm\DataManager;
 
 use Bitrix\Main\Entity;
 

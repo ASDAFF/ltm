@@ -3,10 +3,8 @@
 namespace Ltm\Domain\Profile;
 
 use Bitrix\Iblock;
-use Bitrix\Main\Entity;
-use Bitrix\Main\Application;
-use Bitrix\Main\SystemException;
-use Bitrix\Main\Data\Cache;
+use Bitrix\Main;
+use Bitrix\Main\{Entity, Application, SystemException, Data\Cache};
 
 use Ltm\Domain\IblockOrm;
 
@@ -19,13 +17,14 @@ class ProfileDataProvider
   {
     $iblockId = $this->getQuestionIblockId();
     /** @var Main\Entity\DataManager $table */
-    $table = IblockOrm\Manager::getInstance()->getProvider($iblockId)->getElementTableClassName();
+    $provider = IblockOrm\Manager::getInstance()->getProvider($iblockId);
+    $table = $provider->getElementTableClassName();
 
     $filter = ["=IBLOCK_SECTION_ID" => $sectionId];
     $select = [
-      "ID", "NAME", "CODE", "TYPE" => "PROPERTY.TYPE", "REGISTRATION"  => "REGISTRATION.TYPE",
-      "NOT_EDITABLE"  => "NOT_EDITABLE.TYPE", "NOT_ADMIN_LIST"  => "NOT_ADMIN_LIST.TYPE",
-      "HL_NAME"  => "HL_NAME.TYPE", "MULTIPLE"  => "MULTIPLE.TYPE"
+      "ID", "NAME", "CODE", "TYPE" => "PROPERTY.TYPE_REFERENCE.XML_ID", "REGISTRATION"  => "PROPERTY.REGISTRATION",
+      "NOT_EDITABLE"  => "PROPERTY.NOT_EDITABLE", "NOT_ADMIN_LIST"  => "PROPERTY.NOT_ADMIN_LIST",
+      "HL_NAME"  => "PROPERTY.HL_NAME", "MULTIPLE"  => "PROPERTY.MULTIPLE"
     ];
     $query = new Main\Entity\Query($table::getEntity());
 
@@ -33,7 +32,7 @@ class ProfileDataProvider
       ->setFilter($filter);
 
     $queryResult = $query->exec()->fetchAll();
-    $result = array_combine(array_column($queryResult, "ID"), $queryResult);
+    $result = array_combine(array_column($queryResult, "CODE"), $queryResult);
 
     return $result;
   }

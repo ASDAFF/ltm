@@ -1,9 +1,9 @@
 <?php
 
-namespace Ltm\Domain\Util\IblockOrm\DataManager;
+namespace Ltm\Domain\IblockOrm\DataManager;
 
 use Bitrix\Iblock;
-use Ltm\Domain\Util\IblockOrm\AbstractIblockIdGetterTrait;
+use Ltm\Domain\IblockOrm\AbstractIblockIdGetterTrait;
 
 /**
  * Абстрактный класс для табличных классов секций, возвращает идентификатор 

@@ -1,10 +1,10 @@
 <?php
 
-namespace Ltm\Domain\Util\IblockOrm\PropertyProvider;
+namespace Ltm\Domain\IblockOrm\PropertyProvider;
 
 use Bitrix\Iblock;
 use Bitrix\Main;
-use Ltm\Domain\Util\IblockOrm\Manager;
+use Ltm\Domain\IblockOrm\Manager;
 
 /**
  * Абстрактный класс преобразователя описаний свойств инфоблока в поля сущностей
@@ -25,7 +25,7 @@ abstract class AbstractProvider
         );
         
         $ref = $this->getReferenceField($arProperty);
-        if(!$ref) {
+        if($ref) {
             $result[] = $ref;
         }
         
@@ -278,9 +278,9 @@ abstract class AbstractProvider
      * Возвращает провайдер сущностей для переданного инфоблока
      * 
      * @param int $iblockId
-     * @return \Ltm\Domain\Util\IblockOrm\EntityProviderInterface
+     * @return \Ltm\Domain\IblockOrm\EntityProviderInterface
      */
-    protected function getIblockEntityProvider(int $iblockId): \Ltm\Domain\Util\IblockOrm\EntityProviderInterface
+    protected function getIblockEntityProvider(int $iblockId): \Ltm\Domain\IblockOrm\EntityProviderInterface
     {
         return Manager::getInstance()->getProvider($iblockId);
     }

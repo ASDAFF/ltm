@@ -1,11 +1,11 @@
 <?php
 
-namespace Ltm\Domain\Util\IblockOrm\DataManager;
+namespace Ltm\Domain\IblockOrm\DataManager;
 
 use Bitrix\Main;
 use Bitrix\Main\Entity;
-use Ltm\Domain\Util\IblockOrm\EntityProviderGetterTrait;
-use Ltm\Domain\Util\IblockOrm\PropertyProvider;
+use Ltm\Domain\IblockOrm\EntityProviderGetterTrait;
+use Ltm\Domain\IblockOrm\PropertyProvider;
 
 /**
  * Абстрактный класс для таблиц значений единичных свойств инфоблоков 2.0
