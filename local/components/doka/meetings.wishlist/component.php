@@ -109,6 +109,7 @@ $arResult['CITY'] = "";
 if(isset($_REQUEST['mode']) && $_REQUEST['mode'] == 'pdf'){
 	$rsUser = CUser::GetByID($arParams['USER_ID']);
 	$thisUser = $rsUser->Fetch();
+	$arResult["IS_HB"] = $thisUser["UF_HB"];
 	$arAnswer = CFormResult::GetDataByID($thisUser[$propertyNameParticipant], array(), $arTmpResult, $arAnswer2);
 	if($arResult['USER_TYPE'] == "PARTICIP"){
 		$fioParticip = $arAnswer2[$fio_dates[0][0]][$fio_dates[0][1]]["USER_TEXT"]." ".$arAnswer2[$fio_dates[1][0]][$fio_dates[1][1]]["USER_TEXT"];

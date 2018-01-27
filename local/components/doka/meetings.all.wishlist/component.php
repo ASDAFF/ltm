@@ -102,7 +102,7 @@ else{
 	$group_opposite_id = $req_obj->getOption('GUESTS_GROUP');}
 
 // Получаем список пользователей для которыз генерируем вишлисты
-$selectPart = array( 'SELECT' => array($propertyNameParticipant),
+$selectPart = array( 'SELECT' => array($propertyNameParticipant, "UF_HB"),
 	'FIELDS' => array('WORK_COMPANY', 'ID', "NAME", "LAST_NAME") );
 $filter = array( "GROUPS_ID"  => array($group_search_id) );
 
@@ -141,6 +141,7 @@ while ($arUser = $rsUsers->Fetch()) {
 		'city' => '',
 		'path' => $pdfFolder.$pdfName,
 		'exhib' => $exhibitionParam,
+		'is_hb' => $arUser["UF_HB"],
 		'wish_in' => array(),
 		'wish_out' => array(),
 	);
