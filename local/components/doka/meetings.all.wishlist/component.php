@@ -76,6 +76,7 @@ $arResult['APP_ID'] = $arParams['APP_ID'];
 
 $exhibitionParam = array();
 $exhibitionParam["IS_HB"] = $arParams["IS_HB"];
+$exhibitionParam["APP_ID"] = $arResult['APP_ID'];
 $exhibitionParam["TITLE"] = $arResult["EXIB"]["PROPERTY_V_EN_VALUE"];
 $exhibitionParam["TITLE_RU"] = $arResult["EXIB"]["PROPERTY_V_RU_VALUE"];
 $exhibitionParam["HB_EXIST"] = $arResult["EXIB"]["PROPERTY_HB_EXIST_VALUE"];
@@ -141,9 +142,9 @@ while ($arUser = $rsUsers->Fetch()) {
 		'city' => '',
 		'path' => $pdfFolder.$pdfName,
 		'exhib' => $exhibitionParam,
-		'is_hb' => $arUser["UF_HB"],
+		'is_hb' => ($arUser["UF_HB"] == 1),
 		'wish_in' => array(),
-		'wish_out' => array(),
+		'wish_out' => array()
 	);
 	// Получим все вишлисты
 	if($arResult['USER_TYPE'] == 'GUEST'){
