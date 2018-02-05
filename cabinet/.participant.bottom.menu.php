@@ -25,7 +25,7 @@ if($exhibCode)
         array()
       ),
       array(
-        "Evening session",
+        "Evening reception",
         "/cabinet/" . $exhibCode . "/evening/",
         array(),
         array()
