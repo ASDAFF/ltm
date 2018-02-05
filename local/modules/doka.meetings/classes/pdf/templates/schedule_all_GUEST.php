@@ -37,7 +37,7 @@ function DokaGeneratePdf($arResult)
             $dayline = "День 2 - 2 марта, 2018";
         }
     }
-    $pdf->multiCell(210, 5, "Расписание встреч на утренней сессии\n" . $arResult["exhib"]["TITLE_RU"] . $dayline, 0, C);
+    $pdf->multiCell(210, 5, "Расписание встреч на выставке\n" . $arResult["exhib"]["TITLE_RU"] . $dayline, 0, C);
     $pdf->SetFont('freeserif', '', 14);
     $pdf->setXY(30, $pdf->getY() + 2);
     if(in_array($arResult["APP_ID"], [1,6]) && $arResult['is_hb']) {
