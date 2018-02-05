@@ -36,7 +36,7 @@ function DokaGeneratePdf($arResult)
     }
     $pdf->setXY(0, 25);
     $pdf->SetFont('freeserif', 'B', 18);
-    $pdf->multiCell(220, 6, 'Personal diary during the morning session', 0, C);
+    $pdf->multiCell(220, 6, 'Schedule of appointments', 0, C);
     $pdf->SetFont('freeserif', 'B', 18);
     $pdf->multiCell(200, 6, "at " . $arResult["exhib"]["TITLE"] . $dayline, 0, C);
     $pdf->SetFont('freeserif', '', 15);

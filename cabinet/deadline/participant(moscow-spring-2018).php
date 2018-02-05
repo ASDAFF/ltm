@@ -76,7 +76,7 @@ Exhibitors will be seated, and buyers will move around.</p>
 
 <p>Complementary soft beverages, coffee and tea will be available during the day on request; please ask the waiters or our staff if you need anything.</p>
 
-<p><b><i>19:00 - 01:00 Evening Reception and Party</i></b><br>
+<p><b><i>19:30 - 01:00 Evening Reception and Party</i></b><br>
 for a highly selected group of professionals from Moscow and exhibitors. All details will be kept secret until the date of the party. Dress-code: party-style.<br />
 Place: Regency Ballroom and pre-function.</p>
 

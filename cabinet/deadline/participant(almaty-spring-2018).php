@@ -2,7 +2,7 @@
 
 <p><b>January, 11, 2018:</b> Opening of registration for the buyers.</p>
 <p><b>February, 12, 2018:</b> Password, user name and detailed instructions on how to use the online system and to set up your appointments will be sent for your attention.</p>
-<p><b>February, 12 - 26, 2018:</b> Scheduling of appointments.</p>
+<p><b>February, 13 - 26, 2018:</b> Scheduling of appointments.</p>
 <p><b>February, 26, 2018:</b> Your schedule should be ready and available for printing. A final exhibitors check for the badges.</p>
 
 <h3>PROGRAMM OF THE EVENT</h3>
