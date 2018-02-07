@@ -1,5 +1,5 @@
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Выставить счет");
+$APPLICATION->SetTitle("Перенести на выставку");
 ?>
 
 <?$APPLICATION->IncludeComponent(
