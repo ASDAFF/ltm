@@ -1327,6 +1327,7 @@ ul{margin: 0;padding: 0;list-style: none;}
 .edit-profil .signature span{font-size: 12px;color: #000;}
 .edit-profil .profil-field .data-control .inputtextarea{width: 100%;max-width: 100%;min-width: 100%;border: 1px solid #8F9092;color: #77787B;}
 .edit-profil .profil-field .data-control select{border: 1px solid #8F9092;padding: 4px 5px 5px 0;width: 100%;color: #77787B;}
+.edit-profil .profil-field .data-control select:disabled {background-color: rgb(235, 235, 228);}
 
 .create-page .create-page-result{color: #5ca656;font-size: 15px;line-height: 16px;margin-bottom: 15px;}
 .creating-page {font-size: 14px;}

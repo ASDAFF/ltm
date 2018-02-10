@@ -92,14 +92,14 @@ try{
 		"QUESTION_TO_SHOW" => array(
 			array("ITEMS"=>array(
 				array("ID"=>"SIMPLE_QUESTION_269", "IS_PIC"=>true),					//Фото
-				array("ID"=>"SIMPLE_QUESTION_750"),									//Имя
-				array("ID"=>"SIMPLE_QUESTION_823"),									//Фамилия
-				array("ID"=>"SALUTATION"),									//Обращение
+				array("ID"=>"SIMPLE_QUESTION_750", "DISABLED"=>true),				//Имя
+				array("ID"=>"SIMPLE_QUESTION_823", "DISABLED"=>true),				//Фамилия
+				array("ID"=>"SALUTATION"),						                    //Обращение
+                array("ID"=>"SIMPLE_QUESTION_391"),									//Должность
 				array("ID"=>"SIMPLE_QUESTION_115", "DISABLED"=>true),				//Название компании
-				array("ID"=>"SIMPLE_QUESTION_391"),									//Должность
 				array("ID"=>"SIMPLE_QUESTION_773", "TITLE"=>"Адрес"),				//Фактический адрес компании
-				array("ID"=>"SIMPLE_QUESTION_672"),									//Город
-				array("ID"=>"SIMPLE_QUESTION_678"),									//Страна
+				array("ID"=>"SIMPLE_QUESTION_672", "DISABLED"=>true),				//Город
+				array("ID"=>"SIMPLE_QUESTION_678", "DISABLED"=>true),				//Страна
 				array("ID"=>"SIMPLE_QUESTION_756"),									//Индекс
 				array("ID"=>"SIMPLE_QUESTION_636"),									//Телефон
 				array("ID"=>"SIMPLE_QUESTION_844"),									//Мобильный телефон
