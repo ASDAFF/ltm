@@ -14,7 +14,8 @@ $MESS["R_EXHIBITIONS_NONE"] = "Exhibition is missing";
 $MESS["R_E_EXTEND_TITLE"] = "EXHIBITOR";
 $MESS["R_B_EXTEND_TITLE"] = "ГОСТЬ (VIP BUYER, BUYER, HOSTED BUYER)";
 $MESS["R_E_EXHIBITION_TITLE"] = "PLEASE SELECT THE EVENT YOU WOULD LIKE TO REGISTER FOR";
-$MESS["R_B_EXHIBITION_TITLE"] = "ПОЖАЛУЙСТА, ВЫБЕРИТЕ МЕРОПРИЯТИЕ, НА КОТОРОЕ ВЫ БЫ ХОТЕЛИ ЗАРЕГИСТРИРОВАТЬСЯ. ВОЗМОЖНО ВЫБРАТЬ ТОЛЬКО ОДНО МЕРОПРИЯТИЕ.<br />ПОЖАЛУЙСТА, ЗАПОЛНЯЙТЕ ФОРМУ НА АНГЛИЙСКОМ ЯЗЫКЕ";
+$MESS["R_B_EXHIBITION_TITLE"] = "<p>ПОЖАЛУЙСТА, ВЫБЕРИТЕ МЕРОПРИЯТИЕ, НА КОТОРОЕ ВЫ БЫ ХОТЕЛИ ЗАРЕГИСТРИРОВАТЬСЯ. ВОЗМОЖНО ВЫБРАТЬ ТОЛЬКО ОДНО МЕРОПРИЯТИЕ.<br />ПОЖАЛУЙСТА, ЗАПОЛНЯЙТЕ ФОРМУ НА АНГЛИЙСКОМ ЯЗЫКЕ</p>
+<p>Гостевая регистрация на выставку LTM Moscow Spring 2018 закрыта.</p>";
 
 $MESS["R_E_YOUR_CHOICE"] = "Your choice";
 $MESS["R_B_YOUR_CHOICE"] = "Вы выбрали";
