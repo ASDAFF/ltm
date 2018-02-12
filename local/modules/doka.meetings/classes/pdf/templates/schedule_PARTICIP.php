@@ -42,7 +42,7 @@ function DokaGeneratePdf($arResult) {
 	$pdf->multiCell(200, 6, "at " . $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'] . $dayline, 0, C);
 	$pdf->SetFont('freeserif','',15);
 	$pdf->setXY(30,$pdf->getY() + 2);
-	$pdf->multiCell(210, 5, $arResult["USER"]['COMPANY'], 0, L);
+	$pdf->multiCell(180, 5, $arResult["USER"]['COMPANY'], 0, L);
 	$pdf->setXY(30,$pdf->getY() + 1);
 	$pdf->multiCell(210, 5, $arResult["USER"]['REP'], 0, L);
 	$pdf->SetFont('freeserif','',13);
