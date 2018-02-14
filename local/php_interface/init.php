@@ -1,6 +1,10 @@
 <?
 require $_SERVER["DOCUMENT_ROOT"]."/local/php_interface/include/tools/LuxorConfig.php";
 
+if( file_exists($_SERVER["DOCUMENT_ROOT"]."/local/php_interface/kompot.php") ) {
+	require_once($_SERVER["DOCUMENT_ROOT"]."/local/php_interface/kompot.php");
+}
+
 if (file_exists($_SERVER["DOCUMENT_ROOT"]."/local/php_interface/constants.php"))
 	require_once($_SERVER["DOCUMENT_ROOT"]."/local/php_interface/constants.php");
 if (file_exists($_SERVER["DOCUMENT_ROOT"]."/local/php_interface/functions.php"))
