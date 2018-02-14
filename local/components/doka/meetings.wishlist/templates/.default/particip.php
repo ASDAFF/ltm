@@ -32,7 +32,7 @@
             </form>
         </td>
         <td>
-            <div class="wish-list">The following quests are  interested in an appointment with you outside of the morning session</div>
+            <div class="wish-list">The following guests are interested in an appointment with you outside of the morning session</div>
             <table class="morning-time">
                 <tr>
                     <th>№</th>
