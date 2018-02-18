@@ -37,7 +37,7 @@ if($bIblock)
 	        $arItem["PROPERTIES"]["HTTP"]["VALUE"] = "http://" . $arItem["PROPERTIES"]["HTTP"]["VALUE"];
 	    }
 		
-		$arResult["ITEMS"][$k]['PICT_MOD'] = CFile::ResizeImageGet($arItem["DETAIL_PICTURE"]['ID'], array('width'=>221, 'height'=>99999), BX_RESIZE_IMAGE_PROPORTIONAL, true);          
+		$arResult["ITEMS"][$k]['PICT_MOD'] = CFile::ResizeImageGet($arItem["DETAIL_PICTURE"]['ID'], array('width'=>442, 'height'=>99999), BX_RESIZE_IMAGE_PROPORTIONAL, true);          
 
 
 	}
