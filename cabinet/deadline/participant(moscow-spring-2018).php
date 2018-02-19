@@ -1,11 +1,12 @@
-<h3>DEADLINES</h3>
-<!--
-<p><a href="http://luxurytravelmart.ru/files/DAY1-HB.pdf" target="_blank">Download floor plan for the first day</a><br />
-	<a href="http://luxurytravelmart.ru/files/DAY2-EXHIBITORS.pdf" target="_blank">Download floor plan for the second day</a><br />
-	<a href="http://luxurytravelmart.ru/files/LTM2018_exhibitors_program.pdf" target="_blank">Download program for the event</a>
-</p>
--->
+<h3>FILES FOR DOWNLOAD</h3>
 
+<p><a href="/files/moscow-spring-2018/LTM_Day1.pdf" target="_blank">Download Floor Plan for Day 1</a><br />
+	<a href="/files/moscow-spring-2018/LTM_Day2.pdf" target="_blank">Download Floor Plan for Day 2</a>
+
+</p>
+
+
+<h3>DEADLINES</h3>
 <p><b>November, 13, 2017:</b> Opening of registration for the hosted buyers.</p>
 <p><b>January, 11, 2018:</b> Opening of registration for the buyers from Moscow.<br />
 Please note that the registration for the evening reception won't be open for everyone, access to the evening party is by invitation only.</p>
