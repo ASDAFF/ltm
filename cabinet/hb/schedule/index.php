@@ -30,15 +30,11 @@ elseif($_SESSION["USER_TYPE"] == "GUEST")
 		<li class="ui-tabs-active"><a href="<?= $page . "schedule/" . (($userId)?"?UID=".$userId:"")?>" title="">Расписание на сессию 1 марта</a></li>
 		<li><a href="<?= $page . "list/" . (($userId)?"?UID=".$userId:"")?>" title="">Список участников</a></li>
 	</ul>
-<!--        <div class="files">
+        <div class="files">
             <ul class="files__items">
-                <li class="files__item"><a href="/files/spring-2017/day1_alphabetical.pdf" class="files__link" target="_blank">Скачать план залов (hosted buyers в алфавитном порядке)</a></li>
-                <li class="files__item"><a href="/files/spring-2017/day1_by_table.pdf" class="files__link" target="_blank">Скачать план залов (hosted buyers по номеру стола)</a></li>
-                <li class="files__item"><a href="/files/spring-2017/day2_alphabetical.pdf" class="files__link" target="_blank">Скачать план залов (участники в алфавитном порядке)</a></li>
-                <li class="files__item"><a href="/files/spring-2017/day2_by_table.pdf" class="files__link" target="_blank">Скачать план залов (участники по номеру стола)</a></li>
+                <li class="files__item"><a href="/files/moscow-spring-2018/LTM_Day1.pdf" class="files__link" target="_blank">Скачать план рассадки Hosted Buyers (День 1)</a></li>
             </ul>
-        </div>
--->     
+        </div>     
 		<div id="session-tab-1">
 		<? include("guest.php");?>
 		</div>
