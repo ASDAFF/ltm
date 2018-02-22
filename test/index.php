@@ -3,7 +3,30 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetPageProperty("title", "");
 $APPLICATION->SetPageProperty("NOT_SHOW_NAV_CHAIN", "Y");
 $APPLICATION->SetTitle("THE MAIN EXHIBITION IN THE LUXURY TRAVEL INDUSTRY");
-phpinfo();
+
+	// test case
+	use Bitrix\Highloadblock\HighloadBlockTable as HLBT;
+
+	CModule::IncludeModule('highloadblock');
+
+	function GetEntityDataClass($HlBlockId) {
+	    if (empty($HlBlockId) || $HlBlockId < 1)
+	    {
+	        return false;
+	    }
+	    $hlblock = HLBT::getById($HlBlockId)->fetch();   
+	    $entity = HLBT::compileEntity($hlblock);
+	    $entity_data_class = $entity->getDataClass();
+	    return $entity_data_class;
+	}
+
+	$entity_data_class = GetEntityDataClass(15);
+
+	$result = $entity_data_class::add(array(
+      	'UF_NAME'  => 'тест',
+   	));
+	// test case end
+
 /*
 function strcode($str, $passw=""){
 		$salt = "Dn8*#2n!9j";
@@ -99,7 +122,7 @@ if (intval($ID) > 0)
     echo "Пользователь успешно добавлен.";
 else
     echo $user->LAST_ERROR;
-*/
+
 
 $filter = Array("ACTIVE"              => "Y");
 $rsUsers = CUser::GetList(($by="id"), ($order="desc"), $filter);
@@ -115,7 +138,6 @@ for($j=0; $j<$last;$j++){
 	if(!in_array($j, $ar)){
 		echo $j.'<br>';
 	}
-}
+}*/
 ?>
-
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

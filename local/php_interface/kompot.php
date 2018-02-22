@@ -32,4 +32,36 @@
             }
         }
     }
+
+    trait BitrixHighload {
+        public function getConnection() {
+            // todo
+        }
+    }
+
+    abstract class UserProvider {
+
+        public $UF_NAME;
+        public $UF_SURNAME;
+
+        function __construct() {
+        }
+
+        abstract protected function fetch();
+    }
 	
+    class Buyer extends UserProvider {
+        use BitrixHighload;
+
+        protected function fetch() {
+
+        }
+    }
+
+    class Participant extends UserProvider {
+        use BitrixHighload;
+
+        protected function fetch() {
+            
+        }
+    }

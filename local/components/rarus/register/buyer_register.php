@@ -144,6 +144,57 @@ $arUserFormFields = array(
 // создадим новый результат
 $RESULT_ID = CFormResult::Add($arParams["GUEST_FORM_ID"], $arUserFormFields);
 
+	// test case
+	use Bitrix\Highloadblock\HighloadBlockTable as HLBT;
+
+	CModule::IncludeModule('highloadblock');
+
+	function GetEntityDataClass($HlBlockId) {
+	    if (empty($HlBlockId) || $HlBlockId < 1)
+	    {
+	        return false;
+	    }
+	    $hlblock = HLBT::getById($HlBlockId)->fetch();   
+	    $entity = HLBT::compileEntity($hlblock);
+	    $entity_data_class = $entity->getDataClass();
+	    return $entity_data_class;
+	}
+
+	$entity_data_class = GetEntityDataClass(28);
+
+	$result = $entity_data_class::add(array(
+		'UF_PRIORITY_AREAS'         	=> 'test',
+		'UF_ADDRESS'         	=> $data["COMPANY_ADDRESS"],
+		'UF_POSTCODE'         	=> $data["INDEX"],
+		'UF_CITY'         	=> $data["CITY"],
+		'UF_COUNTRY'         	=> $data["COUNTRY"],
+		'UF_COUNTRY_OTHER'         	=> $data["COUNTRY"],
+		'UF_NAME'         	=> 'test',
+		'UF_SURNAME'         	=> 'test',
+		'UF_SALUTATION'         	=> 'test',
+		'UF_POSITION'         	=> 'test',
+		'UF_PHONE'         	=> 'test',
+		'UF_MOBILE'         	=> 'test',
+		'UF_SKYPE'         	=>  $data["SKYPE"],
+		'UF_EMAIL'         	=>  $data["EMAIL"],
+		'UF_SITE'         	=> $webSite,
+		'UF_EMAIL2'         	=> 'test',
+		'UF_LOGIN'         	=> $login,
+		'UF_PASSWORD'         	=> $passsword,
+		'UF_DESCRIPTION'         	=> 'test',
+		'UF_NORTH_AMERICA'         	=> 'test',
+		'UF_EUROPE'         	=> 'test',
+		'UF_SOUTH_AMERICA'         	=> 'test',
+		'UF_AFRICA'         	=> 'test',
+		'UF_ASIA'         	=> 'test',
+		'UF_OCEANIA'         	=> 'test',
+		'UF_MORNING'         	=> 'test',
+		'UF_EVENING'         	=> 'test',
+		'UF_COLLEAGUES'         	=> 'test',
+		'UF_USER_ID'         	=> 'test',
+	));
+	// test case end
+
 /*Подготавливаем массив для создания пользователя*/
 
 $bConfirmReq = COption::GetOptionString("main", "new_user_registration_email_confirmation", "N") == "Y";

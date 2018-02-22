@@ -1,5 +1,6 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 
+
 $data = &$arResult["POST_VALUES"];
 $eventName = array();
 
@@ -179,6 +180,7 @@ $arUserFields = array(
 
 /*Добавляем стандартные группы при регистрации*/
 $def_group = COption::GetOptionString("main", "new_user_registration_def_group", "");
+
 
 if($def_group != "")
 	$arUserFields["GROUP_ID"] = explode(",", $def_group);
