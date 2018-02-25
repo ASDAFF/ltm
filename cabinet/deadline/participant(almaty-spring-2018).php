@@ -1,3 +1,10 @@
+<h3>Files for Download</h3>
+
+<ul>
+	<li><a href="/files/Almaty_Spring_2018_Booklet.pdf" target="_blank">Download the floor plan</a></li>
+    
+</ul>
+
 <h3>DEADLINES</h3>
 
 <p><b>January, 11, 2018:</b> Opening of registration for the buyers.</p>
@@ -27,13 +34,6 @@ Place: foyer of the Grand Ballroom Hall.</p>
 <p><b>19:00 - 21:30</b> - <i>Evening cocktail.</i><br />
 	Cocktail reception for travel agents and corporate clients in a relaxed atmosphere.<br />
 Place: Grand Ballroom Hall. </p>
-
-<h3>Files for Download</h3>
-
-<ul>
-	<li><a href="/files/Almaty_Spring_2018_Booklet.pdf" target="_blank">Download the floor plan</a></li>
-    
-</ul>
 
 <div class="signature">
 	<p>All events are available only to pre-registered visitors.<br>
