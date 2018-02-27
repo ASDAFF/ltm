@@ -20,14 +20,14 @@
 </head>
 <body <? if(stristr($APPLICATION->GetCurPage(), "/cabinet/")):?>class="cabinet"<?endif;?>>
 <!-- Включаемая область для pop-up на главной странице -->
-<!--     <?$APPLICATION->IncludeComponent("bitrix:main.include", "", 
+     <?$APPLICATION->IncludeComponent("bitrix:main.include", "", 
         Array(
             "AREA_FILE_SHOW" => "page", 
             "AREA_FILE_SUFFIX" => "popup", 
             "EDIT_TEMPLATE" => ""
         )
     );?>
- -->
+
     
 	<div class="main_container">
 	<? CJSCore::Init("ajax"); ?>
