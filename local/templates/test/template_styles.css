@@ -700,6 +700,12 @@ video {
 	}
 }
 
+@media (max-width: 1400px) {
+	.main-modal {
+		width: 50%;
+	}
+}
+
 .fees-list p{
 	font-size: 14px;
 }
