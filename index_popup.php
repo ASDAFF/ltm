@@ -1,7 +1,7 @@
 <div class="main-modal">
     <div class="main-modal__close"></div>
     <div class="main-modal__header">			
-        <img src="<?=SITE_TEMPLATE_PATH?>/images/logo-modal.png" alt="" class="main-modal__logo">
+        <img src="<?=SITE_TEMPLATE_PATH?>/images/logo-modal.svg" alt="" class="main-modal__logo">
         <h1 class="main-modal__title">LTM Mobile App</h1>
     </div>
 
