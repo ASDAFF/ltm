@@ -583,14 +583,23 @@ function ContractPDF($data, &$oPDF, $folder)
 		$height = 40;
 		$width = 62;
 	}
-		elseif($data["PAY_REQUISITE_XML"] == "EM")
-		{
-			$stampY = $oPDF->getY() - 30;
-			$stampX = 130;
-			$img = __DIR__ . '/images/stamp_em.png';
-			$height = 40;
-			$width = 52.88;
-		}
+    elseif($data["PAY_REQUISITE_XML"] == "EM")
+    {
+        $stampY = $oPDF->getY() - 30;
+        $stampX = 130;
+        $img = __DIR__ . '/images/stamp_em.png';
+        $height = 40;
+        $width = 52.88;
+    }
+    elseif($data["PAY_REQUISITE_XML"] == "IPALFA")
+    {
+        $stampY = $oPDF->getY() - 30;
+        $stampX = 100;
+        $img = __DIR__ . '/images/stamp_polansky.png';
+        $height = 40;
+        $width = 100.94;
+
+    }    
 
     $oPDF->Image($img,$stampX,$stampY,$width,$height ,'','','',false,72,'',false,false,1);
 
