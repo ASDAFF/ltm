@@ -260,7 +260,7 @@ if($arResult["ERROR_MESSAGE"] == '')
             case 2 : $arData["PAY_REQUISITE_XML"] = "EV"; break;
             case 3 : $arData["PAY_REQUISITE_XML"] = "EM"; break;
             case 4:  $arData["PAY_REQUISITE_XML"] = "IPALFA"; break;
-	     	default: $arData["PAY_REQUISITE_XML"] = "IP";
+	     	default: $arData["PAY_REQUISITE_XML"] = "TM";
 	     }
 
 	}
