@@ -257,9 +257,10 @@ if($arResult["ERROR_MESSAGE"] == '')
 	     {
 	     	case 0 : $arData["PAY_REQUISITE_XML"] = "IP"; break;
 	     	case 1 : $arData["PAY_REQUISITE_XML"] = "TM"; break;
-				case 2 : $arData["PAY_REQUISITE_XML"] = "EV"; break;
-				case 3 : $arData["PAY_REQUISITE_XML"] = "EM"; break;
-	     	default: $arData["PAY_REQUISITE_XML"] = "IP";
+            case 2 : $arData["PAY_REQUISITE_XML"] = "EV"; break;
+            case 3 : $arData["PAY_REQUISITE_XML"] = "EM"; break;
+            case 4:  $arData["PAY_REQUISITE_XML"] = "IPALFA"; break;
+	     	default: $arData["PAY_REQUISITE_XML"] = "TM";
 	     }
 
 	}
@@ -482,6 +483,32 @@ SWIFT: CBVILT2X";
 
 				$data["BENEFICIARY_NAME"] = "Elena Vetrova / Ветрова Елена Васильевна";
 			}; break;
+            
+    	case "IPALFA" : {
+$data["BENEFICIARY"] = "Polanskii Artem Valentinovich,
+registered as independent entrepreneur
+with State Registration Number 309503525800010
+at Federal Tax Service Inspectorate in
+Pavlosvkiy Posad, Moscow Region
+
+Индивидуальный предприниматель
+Поланский Артём Валентинович,
+зарегистрированный Инспекцией Федеральной
+Налоговой Службы
+по г. Павловский Посад Московской области,
+государственный регистрационный номер 309503525800010
+ИНН 503507510512
+
+Moscow, Russia";
+
+$data["BANK_DETAILS"] = "Beneficiary's Bank: AO «ALFA-BANK»
+Beneficiary's bank address: 27 Kalanchevskaya str., Moscow, 107078
+SWIFT: ALFARUMM
+Beneficiary: Polanskii Artem Valentinovich
+Account: 40802978702620000127";
+
+$data["BENEFICIARY_NAME"] = "Artem V. Polanskii / Поланский Артём Валентинович";
+    	}; break;            
 
     }
 
@@ -556,14 +583,23 @@ function ContractPDF($data, &$oPDF, $folder)
 		$height = 40;
 		$width = 62;
 	}
-		elseif($data["PAY_REQUISITE_XML"] == "EM")
-		{
-			$stampY = $oPDF->getY() - 30;
-			$stampX = 130;
-			$img = __DIR__ . '/images/stamp_em.png';
-			$height = 40;
-			$width = 52.88;
-		}
+    elseif($data["PAY_REQUISITE_XML"] == "EM")
+    {
+        $stampY = $oPDF->getY() - 30;
+        $stampX = 130;
+        $img = __DIR__ . '/images/stamp_em.png';
+        $height = 40;
+        $width = 52.88;
+    }
+    elseif($data["PAY_REQUISITE_XML"] == "IPALFA")
+    {
+        $stampY = $oPDF->getY() - 30;
+        $stampX = 100;
+        $img = __DIR__ . '/images/stamp_polansky.png';
+        $height = 40;
+        $width = 100.94;
+
+    }    
 
     $oPDF->Image($img,$stampX,$stampY,$width,$height ,'','','',false,72,'',false,false,1);
 
