@@ -937,7 +937,7 @@ margin-top:0px;
 }
 
 /*photo gallery*/
-.album-preview {margin-bottom: 14px;overflow: hidden;}
+.album-preview {margin-bottom: 30px;overflow: hidden;}
 .album-preview .album-title {margin-bottom: 9px;}
 .album-preview .album-title a {
 	color:#00aeef;

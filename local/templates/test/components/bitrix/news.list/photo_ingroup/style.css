@@ -6,3 +6,7 @@ div.news-list img.preview_picture
 .news-date-time {
 	color:#486DAA;
 }
+
+.album-preview__description {
+	margin-top: 15px;
+}
