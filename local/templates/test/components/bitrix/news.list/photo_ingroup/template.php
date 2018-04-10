@@ -70,7 +70,7 @@
 	   	<? else:?>
 	   		<? $bEnd = true;?>
 	 	<? endif;?>
-
+        <div class="album-preview__description"><?= $arSection['DESCRIPTION']?></div>
 	</div>
 	<div id="popup-gallery_<?= $arSection["ID"]?>" class="popup-gallery">
 	  <div class="photo-gallery-wrap">
