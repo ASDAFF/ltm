@@ -5,7 +5,7 @@ $MESS["R_E_TITLE"] = "EXHIBITOR";
 $MESS["R_B_TITLE"] = "BUYER, HOSTED BUYER";
 $MESS["R_E_DESCRIPTION"] = "A representative of a hotel or group of hotels, airline, resort, medical facility, sports tourism organization, etc. The company is represented at the exhibition. 
 Paid participation. <br/>Registration form is not supported in early versions of Internet Explorer (min. 10 version). Please use an alternative browser.";
-$MESS["R_B_DESCRIPTION"] = "Гостевая регистрация на утреннюю, вечернюю сессии и по программе Hosted Buyer. Участие бесплатное, требуется подтверждение организаторов.
+$MESS["R_B_DESCRIPTION"] = "<strong>Гостевая регистрация</strong> на утреннюю, вечернюю сессии и по программе Hosted Buyer. Участие бесплатное, требуется подтверждение организаторов.
 Регистрационная форма не поддерживается в ранних версиях Internet Explorer (мин. 10 версия). Пожалуйста, используйте альтернативный браузер.";
 $MESS["R_BEFORE_TERMS"] = "Before registering please request <a href='#TERMS#' target='_blank'>terms &amp; conditions</a>";
 
@@ -14,18 +14,12 @@ $MESS["R_EXHIBITIONS_NONE"] = "Exhibition is missing";
 $MESS["R_E_EXTEND_TITLE"] = "EXHIBITOR";
 $MESS["R_B_EXTEND_TITLE"] = "ГОСТЬ (VIP BUYER, BUYER, HOSTED BUYER)";
 $MESS["R_E_EXHIBITION_TITLE"] = "PLEASE SELECT THE EVENT YOU WOULD LIKE TO REGISTER FOR";
-$MESS["R_B_EXHIBITION_TITLE"] = "<p>Гостевая регистрация на выставки <b>Luxury Travel Mart Moscow Spring 2018 и Luxury Travel Mart Almaty Spring 2018</b> закончена.</p>
-
-<p>Свой запрос на участие вы можете направить на электронный адрес <a href='mailto:guests@luxurytravelmart.ru'>guests@luxurytravelmart.ru</a></p>
-
-<p>Все заявки будут рассмотрены в индивидуальном порядке. Организаторы оставляют за собой право отказать в участии без объяснения причины.</p>
-
-<p>Представители гостиничных групп, индивидуальные отели, зарубежные туроператоры, не участвующие в Luxury Travel Mart, а также PR агентства и маркетинговые компании по оказанию представительских услуг в туриндустрии, рекламные отделы масс-медиа, на выставку не допускаются.</p>";
+$MESS["R_B_EXHIBITION_TITLE"] = "ПОЖАЛУЙСТА, ВЫБЕРИТЕ МЕРОПРИЯТИЕ, НА КОТОРОЕ ВЫ БЫ ХОТЕЛИ ЗАРЕГИСТРИРОВАТЬСЯ. ВОЗМОЖНО ВЫБРАТЬ ТОЛЬКО ОДНО МЕРОПРИЯТИЕ.<br />ПОЖАЛУЙСТА, ЗАПОЛНЯЙТЕ ФОРМУ НА АНГЛИЙСКОМ ЯЗЫКЕ";
 
 $MESS["R_E_YOUR_CHOICE"] = "Your choice";
 $MESS["R_B_YOUR_CHOICE"] = "Вы выбрали";
-$MESS["R_MORNING"] = ""; //"Рабочие встречи<br>10:00 - 17:00"; /*надпись над галочкой для выбора утра */
-$MESS["R_EVENING"] = ""; //"Вечерний коктейль<br>19:00 - 22:00"; /*надпись над галочкой для выбора вечера */
+$MESS["R_MORNING"] = "Рабочие встречи"; //"Рабочие встречи<br>10:00 - 17:00"; /*надпись над галочкой для выбора утра */
+$MESS["R_EVENING"] = "Вечерний коктейль"; //"Вечерний коктейль<br>19:00 - 22:00"; /*надпись над галочкой для выбора вечера */
 
 $MESS["R_E_SALUTATION"] = "Title";
 
