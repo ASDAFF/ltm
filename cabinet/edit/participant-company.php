@@ -203,10 +203,15 @@ if("Y" != $exhParticipantEdit)
 				<input type="text" name="area_of_business" class="form-control" value="<?= $value?>" disabled=disabled />
 				
 				<? $arAnswer = reset($arAnswers["SIMPLE_QUESTION_284"]);?>
-		</div>
-			<div class="pull-left company-info">
-				<div class="title">Jpg only!</div>
-				<label class="button-dark ltm-btn" id="upload_logo" >upload logo<? /*<input type="hidden" name="SIMPLE_QUESTION_395" id="" value="" />*/?></label>
+			</div>
+			
+			<div class="pull-left company-info data-control">
+				<div class="title">Web</div>
+				<?
+				$arAnswer = reset($arAnswers["SIMPLE_QUESTION_501"]);
+				$value = $arAnswer["USER_TEXT"];
+				?>
+				<input type="text" name="SIMPLE_QUESTION_501" id="" value="<?= $value?>" class="form-control" />
 			</div>
 		</div>
 
@@ -242,13 +247,10 @@ if("Y" != $exhParticipantEdit)
 		<? endif;?>
 		
 		<div class="pull-overflow city-link">
-			<div class="pull-left company-info data-control">
-				<div class="title">Web</div>
-				<?
-				$arAnswer = reset($arAnswers["SIMPLE_QUESTION_501"]);
-				$value = $arAnswer["USER_TEXT"];
-				?>
-				<input type="text" name="SIMPLE_QUESTION_501" id="" value="<?= $value?>" class="form-control" />
+			<div class="upload-logo">
+				<div class="title">Jpg only!</div>
+				<label class="button-dark ltm-btn" id="upload_logo" >upload logo<? /*<input type="hidden" name="SIMPLE_QUESTION_395" id="" value="" />*/?></label>
+				<img src="" alt="" class="show-uploaded">
 			</div>
 
 			<div class="pull-left company-info priority-wrap" style="display: block; clear: both;">
@@ -307,7 +309,6 @@ $(function(){
 		name: 	"logo",
 		data: {sid: '<?= bitrix_sessid()?>'},
 		onChange: function(file, ext){
-
 			if(btnUploadLogo.next().hasClass("load_img"))
 			{
 				return false;
@@ -338,6 +339,8 @@ $(function(){
 			{
 				btnUploadLogo.siblings("input[type=hidden]").each(function(){$(this).remove()});
 				btnUploadLogo.after("<input name='SIMPLE_QUESTION_395[PATH]' type='hidden' value='"+ response.PATH + "'/>");
+				document.querySelector('.show-uploaded').src = response.PATH;
+
 			}
 			else
 			{
@@ -346,6 +349,23 @@ $(function(){
 
 		}
 	});
+/*	var inputLogo = document.querySelector('input[name="logo"]');
+	if (inputLogo) {
+		inputLogo.addEventListener('change', function() {
+			alert(1);
+		});
+	}
+*/
+	function labelUpdate(e) {
+		var file = e.target.files[0];
+		console.log('Обновляем изображение');
+		var reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onload = function(e) {
+			document.querySelector('.show-uploaded').src = e.target.result;
+		}
+	}
+
 
 /*
 	new AjaxUpload(btnUploadPhoto, {

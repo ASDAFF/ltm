@@ -1336,7 +1336,8 @@ ul{margin: 0;padding: 0;list-style: none;}
 .creating-page .create-company{margin-bottom: 30px;}
 .creating-page .create-company .company-info:last-child{width: auto;margin-right: auto;}
 .creating-page .description .title{margin-bottom: 10px;}
-.creating-page .description textarea{margin-bottom: 15px;max-width: 620px;min-width: 620px;min-height:280px;margin: 0 0 15px;padding: 10px;border: 1px solid #f3f3f4;}
+.creating-page .description textarea{max-width: 620px;min-width: 620px;min-height:280px;margin: 0 0 30px;padding: 10px;border: 1px solid #f3f3f4;}
+.creating-page .show-uploaded {max-width: 300px; max-height: 200px; display: inline-block; vertical-align: top; margin-left: 20px; overflow: hidden;}
 
 .ltm-btn{display:inline-block;text-align: center;border: none;color: #fff;font-size: 18px;text-decoration: none;cursor: pointer;min-width:140px;padding: 5px 20px 6px;margin-bottom: 10px;}
 .button-dark{background-color: #77787b;padding:5px 50px 6px;}
@@ -1344,7 +1345,7 @@ ul{margin: 0;padding: 0;list-style: none;}
 .button-green{background: #5ca656; font-family: Proxima;}
 .creating-page .description .button-dark{margin-bottom: 30px;}
 .creating-page .company-info .button-dark{padding-right: 10px;padding-left: 10px;}
-.creating-page .city-link{margin-bottom: 30px;}
+.creating-page .city-link{margin: 30px 0;}
 .ltm-btn input{display: none;}
 
 .user-info-wind{
