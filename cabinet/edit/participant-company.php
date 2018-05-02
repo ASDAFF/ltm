@@ -320,11 +320,12 @@ $(function(){
 				return false;
 			}
 
-            if(!ext || !(/^(jpg|jpeg)$/.test(ext[0])) )
+        /*    if(!ext || !(/^(jpg|jpeg)$/.test(ext[0])) )
             {
             	alert("Photo format should be only jpg");
             	return false;
             };
+			*/
 		},
 		onSubmit: function(file, ext)
 		{
@@ -345,11 +346,8 @@ $(function(){
 			{
 				btnUploadLogo.siblings("input[type=hidden]").each(function(){$(this).remove()});
 				btnUploadLogo.after("<input name='SIMPLE_QUESTION_395[PATH]' type='hidden' value='"+ response.PATH + "'/>");
-				//document.querySelector('.show-uploaded').src = response.PATH;
 
-			}
-			else
-			{
+			} else {
 				alert(response.MESSAGE);
 			}
 
