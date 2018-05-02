@@ -11,10 +11,11 @@ if(!check_bitrix_sessid("sid"))
 	$result["MESSAGE"] = "Error session id";
 }
 
-elseif($file["type"] != "image/jpeg")
+elseif($file["type"] != ("image/jpeg" || "image/svg+xml"))
 {
 	$result["STATUS"] = "ERROR";
-	$result["MESSAGE"] = "Photo format should be only jpg";
+	//$result["MESSAGE"] = "Photo format should be only jpg";
+	$result["MESSAGE"] = $file["type"];
 
 }
 

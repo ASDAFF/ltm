@@ -103,7 +103,7 @@ SIMPLE_QUESTION_395 - Logo
 		$path = $_POST["SIMPLE_QUESTION_395"]["PATH"];
 		$filear =  CFile::MakeFileArray($path);
 		$logotipFileId = CFile::SaveFile($filear, "logo");
-		$logotipResize = CFile::ResizeImageGet($logotipFileId, array('width'=>100, 'height'=> 99999), BX_RESIZE_IMAGE_PROPORTIONAL, true);
+		$logotipResize = CFile::ResizeImageGet($logotipFileId, array('width'=>200, 'height'=> 99999), BX_RESIZE_IMAGE_PROPORTIONAL, true);
 		$filear = CFile::MakeFileArray($logotipResize['src']);
 
 		if($filear)
@@ -320,11 +320,12 @@ $(function(){
 				return false;
 			}
 
-            if(!ext || !(/^(jpg|jpeg)$/.test(ext[0])) )
+        /*    if(!ext || !(/^(jpg|jpeg)$/.test(ext[0])) )
             {
             	alert("Photo format should be only jpg");
             	return false;
             };
+			*/
 		},
 		onSubmit: function(file, ext)
 		{
@@ -345,11 +346,8 @@ $(function(){
 			{
 				btnUploadLogo.siblings("input[type=hidden]").each(function(){$(this).remove()});
 				btnUploadLogo.after("<input name='SIMPLE_QUESTION_395[PATH]' type='hidden' value='"+ response.PATH + "'/>");
-				//document.querySelector('.show-uploaded').src = response.PATH;
 
-			}
-			else
-			{
+			} else {
 				alert(response.MESSAGE);
 			}
 
