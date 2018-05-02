@@ -303,12 +303,18 @@ $(function(){
 	var btnUploadLogo = $("#upload_logo");
 	var btnUploadPhoto = $("#upload_photo");
 	var photoCount = $("#photo_count");
-
 	new AjaxUpload(btnUploadLogo, {
 		action: "/ajax/upload_logo.php",
 		name: 	"logo",
 		data: {sid: '<?= bitrix_sessid()?>'},
 		onChange: function(file, ext){
+			var file = this._input.files[0];
+			var reader = new FileReader();
+			reader.readAsDataURL(file);
+			reader.onload = function(e) {
+				document.querySelector('.show-uploaded').src = e.target.result;
+			}
+			
 			if(btnUploadLogo.next().hasClass("load_img"))
 			{
 				return false;
@@ -339,7 +345,7 @@ $(function(){
 			{
 				btnUploadLogo.siblings("input[type=hidden]").each(function(){$(this).remove()});
 				btnUploadLogo.after("<input name='SIMPLE_QUESTION_395[PATH]' type='hidden' value='"+ response.PATH + "'/>");
-				document.querySelector('.show-uploaded').src = response.PATH;
+				//document.querySelector('.show-uploaded').src = response.PATH;
 
 			}
 			else
@@ -349,23 +355,6 @@ $(function(){
 
 		}
 	});
-/*	var inputLogo = document.querySelector('input[name="logo"]');
-	if (inputLogo) {
-		inputLogo.addEventListener('change', function() {
-			alert(1);
-		});
-	}
-*/
-	function labelUpdate(e) {
-		var file = e.target.files[0];
-		console.log('Обновляем изображение');
-		var reader = new FileReader();
-		reader.readAsDataURL(file);
-		reader.onload = function(e) {
-			document.querySelector('.show-uploaded').src = e.target.result;
-		}
-	}
-
 
 /*
 	new AjaxUpload(btnUploadPhoto, {
