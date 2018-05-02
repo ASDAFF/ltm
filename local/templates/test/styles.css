@@ -756,7 +756,7 @@ a.chosen{
     width: 103px;
     float: left;
 }
-.catalogue .text-block .text-block-left img{margin-bottom: 15px;}
+.catalogue .text-block .text-block-left img{margin-bottom: 15px; width: 100px;}
 .catalogue .text-block .text-block-left span.company-info{
     margin-top: 20px;
     width: 100%;

@@ -103,7 +103,7 @@ SIMPLE_QUESTION_395 - Logo
 		$path = $_POST["SIMPLE_QUESTION_395"]["PATH"];
 		$filear =  CFile::MakeFileArray($path);
 		$logotipFileId = CFile::SaveFile($filear, "logo");
-		$logotipResize = CFile::ResizeImageGet($logotipFileId, array('width'=>100, 'height'=> 99999), BX_RESIZE_IMAGE_PROPORTIONAL, true);
+		$logotipResize = CFile::ResizeImageGet($logotipFileId, array('width'=>200, 'height'=> 99999), BX_RESIZE_IMAGE_PROPORTIONAL, true);
 		$filear = CFile::MakeFileArray($logotipResize['src']);
 
 		if($filear)

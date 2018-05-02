@@ -27,7 +27,7 @@
     <div class="text-block">
         <div class="text-block-left">
             <?if($arResult["COMPANY_LOGO"]["SRC"]):?>
-                <?$logo = CFile::ResizeImageGet($arResult["COMPANY_LOGO"]["ID"], array('width'=>100, 'height'=>999), BX_RESIZE_IMAGE_PROPORTIONAL, true);?>
+                <?$logo = CFile::ResizeImageGet($arResult["COMPANY_LOGO"]["ID"], array('width'=>200, 'height'=>999), BX_RESIZE_IMAGE_PROPORTIONAL, true);?>
                 <img src="<?=$logo["src"]?>" alt="<?=$arResult["NAME"]?>" />
             <?endif?>
             <span class="company-info"><?//=$arResult["ADDRESS"]?></span>
