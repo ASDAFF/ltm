@@ -309,11 +309,6 @@ $(function(){
 		data: {sid: '<?= bitrix_sessid()?>'},
 		onChange: function(file, ext){
 			var file = this._input.files[0];
-			var reader = new FileReader();
-			reader.readAsDataURL(file);
-			reader.onload = function(e) {
-				document.querySelector('.show-uploaded').src = e.target.result;
-			}
 			
 			if(btnUploadLogo.next().hasClass("load_img"))
 			{
@@ -325,6 +320,12 @@ $(function(){
             	alert("Photo format should be only jpg");
             	return false;
             };
+			
+			var reader = new FileReader();
+			reader.readAsDataURL(file);
+			reader.onload = function(e) {
+				document.querySelector('.show-uploaded').src = e.target.result;
+			}
 		},
 		onSubmit: function(file, ext)
 		{
