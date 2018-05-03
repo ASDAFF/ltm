@@ -308,8 +308,7 @@ $(function(){
 		name: 	"logo",
 		data: {sid: '<?= bitrix_sessid()?>'},
 		onChange: function(file, ext){
-			var file = this._input.files[0];
-			
+			var fileData = this._input.files[0];
 			if(btnUploadLogo.next().hasClass("load_img"))
 			{
 				return false;
@@ -322,7 +321,7 @@ $(function(){
             };
 			
 			var reader = new FileReader();
-			reader.readAsDataURL(file);
+			reader.readAsDataURL(fileData);
 			reader.onload = function(e) {
 				document.querySelector('.show-uploaded').src = e.target.result;
 			}
