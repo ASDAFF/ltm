@@ -91,6 +91,7 @@ SIMPLE_QUESTION_395 - Logo
 	    $arResult,
 	    $arAnswerDescr);
 
+
 	$arAnswerCompDescr = reset($arAnswerDescr["SIMPLE_QUESTION_163"]);
 	$oldCompanyDescription = $arAnswerCompDescr["USER_TEXT"];
 
@@ -177,7 +178,6 @@ if("Y" != $exhParticipantEdit)
         $arDropDown,
         $arMultiSelect
     );
-
     ?>
 <div class="create-page">
 	<div class="creating-page">
@@ -248,9 +248,13 @@ if("Y" != $exhParticipantEdit)
 		
 		<div class="pull-overflow city-link">
 			<div class="upload-logo">
-				<div class="title">Jpg only!</div>
+				<div class="title">Jpg and Svg only!</div>
 				<label class="button-dark ltm-btn" id="upload_logo" >upload logo<? /*<input type="hidden" name="SIMPLE_QUESTION_395" id="" value="" />*/?></label>
-				<img src="" alt="" class="show-uploaded">
+                <?
+                $arAnswer = reset($arAnswers["SIMPLE_QUESTION_395"]);
+                $value = !$arAnswer["USER_FILE_ID"]?:CFile::GetPath($arAnswer["USER_FILE_ID"]);
+                ?>
+                <img src="<?= $value?>" alt="" class="show-uploaded">
 			</div>
 
 			<div class="pull-left company-info priority-wrap" style="display: block; clear: both;">
@@ -314,7 +318,7 @@ $(function(){
 				return false;
 			}
 
-            if(!ext || !(/^(jpg|jpeg)$/.test(ext[0])) )
+            if(!ext || !(/^(jpg|jpeg|svg|svgz)$/.test(ext[0])) )
             {
             	alert("Photo format should be only jpg");
             	return false;
