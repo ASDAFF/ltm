@@ -258,6 +258,235 @@ $arUrlRewrite = array(
 		"ID" => "bitrix:news",
 		"PATH" => "/news/index.php",
 	),
+
+
+
+    array(
+        "CONDITION" => "#^/rst/user/getSelf/([0-9a-zA-Z-_]+)/#",
+        "RULE" => "call=user&func=getSelf&login=$1&$2",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    array(
+        "CONDITION" => "#^/rst/user/getInfo/([0-9]+)/#",
+        "RULE" => "call=user&func=getInfo&id=$1&$2",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    array(
+        "CONDITION" => "#^/rst/user/getExhibitorsList/([0-9]+)/([0-9]+)/#",
+        "RULE" => "call=user&func=getExhibitorsList&offset=$1&limit=$2&$3",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    /*
+	array(
+		"CONDITION" => "#^/rst/user/getExhibitorsList/([0-9a-zA-Z-_]+)/#",
+		"RULE" => "call=user&func=getExhibitorsList&login=$1&$2",
+		"ID" => "bitrix:news",
+		"PATH" => "/rst/api.php",
+	),*/
+    array(
+        "CONDITION" => "#^/rst/user/getExhibitorsList/#",
+        "RULE" => "call=user&func=getExhibitorsList&$1",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    array(
+        "CONDITION" => "#^/rst/user/getBuyersList/([0-9a-zA-Z-_]+)/#",
+        "RULE" => "call=user&func=getBuyersList&login=$1&$2",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    array(
+        "CONDITION" => "#^/rst/user/getBuyersList/#",
+        "RULE" => "call=user&func=getBuyersList&login=&$1",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    array(
+        "CONDITION" => "#^/rst/user/getFavorites/#",
+        "RULE" => "call=user&func=getFavorites&$1",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    array(
+        "CONDITION" => "#^/rst/user/getNearUser/([0-9]+)/([0-9]+)/#",
+        "RULE" => "call=user&func=getNearUser&offset=$1&limit=$2&$3",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    array(
+        "CONDITION" => "#^/rst/user/feedbackQuestions/#",
+        "RULE" => "call=user&func=feedbackQuestions&$1",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    array(
+        "CONDITION" => "#^/rst/user/sendFeedback/#",
+        "RULE" => "call=user&func=sendFeedback&$1",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+
+    array(
+        "CONDITION" => "#^/rst/user/find/#",
+        "RULE" => "call=user&func=find&$1",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    array(
+        "CONDITION" => "#^/rst/user/find/([0-9a-zA-Z-_]+)/#",
+        "RULE" => "call=user&func=find&q=$1&$2",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+
+    array(
+        "CONDITION" => "#^/rst/user/addToFavorite/#",
+        "RULE" => "call=user&func=addToFavorite&$1",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    array(
+        "CONDITION" => "#^/rst/user/removeFromFavorite/#",
+        "RULE" => "call=user&func=removeFromFavorite&$1",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    array(
+        "CONDITION" => "#^/rst/user/checkIn/#",
+        "RULE" => "call=user&func=checkIn&$1",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    array(
+        "CONDITION" => "#^/rst/user/checkOut/#",
+        "RULE" => "call=user&func=checkOut&$1",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+
+    array(
+        "CONDITION" => "#^/rst/user/addToBlockList/#",
+        "RULE" => "call=user&func=addToBlockList&$1",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    array(
+        "CONDITION" => "#^/rst/user/removeFromBlockList/#",
+        "RULE" => "call=user&func=removeFromBlockList&$1",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    array(
+        "CONDITION" => "#^/rst/user/removeAllFromBlockList/#",
+        "RULE" => "call=user&func=removeAllFromBlockList&$1",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    array(
+        "CONDITION" => "#^/rst/user/getSettings/([0-9]+)/#",
+        "RULE" => "call=user&func=getSettings&user_id=$1&$2",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    array(
+        "CONDITION" => "#^/rst/user/ring/#",
+        "RULE" => "call=user&func=ring&$1",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    array(
+        "CONDITION" => "#^/rst/user/abuse/#",
+        "RULE" => "call=user&func=abuse&$1",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+
+    array(
+        "CONDITION" => "#^/rst/user/logout/#",
+        "RULE" => "call=user&func=logout&$1",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+
+
+    array(
+        "CONDITION" => "#^/rst/user/addAvatar/#",
+        "RULE" => "call=user&func=addAvatar&$1",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+
+
+
+    array(
+        "CONDITION" => "#^/rst/chat/getMessage/([0-9]+)/([0-9]+)/([0-9]+)/#",
+        "RULE" => "call=chat&func=getMessage&ID=$1&AUTHOR_ID=$2&TO_USER=$3&$4",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    array(
+        "CONDITION" => "#^/rst/chat/getAdminMessage/([0-9]+)/([0-9]+)/([0-9]+)/#",
+        "RULE" => "call=chat&func=getAdminMessage&ID=$1&AUTHOR_ID=$2&TO_USER=$3&$4",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    array(
+        "CONDITION" => "#^/rst/chat/getMessages/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)/#",
+        "RULE" => "call=chat&func=getMessages&AUTHOR_ID=$1&TO_USER=$2&offset=$3&limit=$4&$5",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    array(
+        "CONDITION" => "#^/rst/chat/getAdminMessages/([0-9]+)/([0-9]+)/([0-9]+)/#",
+        "RULE" => "call=chat&func=getAdminMessages&TO_USER=$1&offset=$2&limit=$3&$4",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    array(
+        "CONDITION" => "#^/rst/chat/postMessage/#",
+        "RULE" => "call=chat&func=postMessage&$1",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    array(
+        "CONDITION" => "#^/rst/chat/postAdminMessage/#",
+        "RULE" => "call=chat&func=postAdminMessage&$1",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    array(
+        "CONDITION" => "#^/rst/chat/getChats/#",
+        "RULE" => "call=chat&func=getChats&$1",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    array(
+        "CONDITION" => "#^/rst/shedule/getUserShedule/([0-9]+)/#",
+        "RULE" => "call=shedule&func=getUserShedule&h=".time()."&SENDER_ID=$1&$2",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    array(
+        "CONDITION" => "#^/rst/shedule/postUserShedule/#",
+        "RULE" => "call=shedule&func=postUserShedule",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    array(
+        "CONDITION" => "#^/rst/shedule/postSheduleStatusSender/#",
+        "RULE" => "call=shedule&func=postSheduleStatusSender",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
+    array(
+        "CONDITION" => "#^/rst/shedule/postSheduleStatusReceiver/#",
+        "RULE" => "call=shedule&func=postSheduleStatusReceiver",
+        "ID" => "bitrix:news",
+        "PATH" => "/rst/api.php",
+    ),
 );
 
 ?>
