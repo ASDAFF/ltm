@@ -103,7 +103,7 @@ SIMPLE_QUESTION_395 - Logo
 		$path = $_POST["SIMPLE_QUESTION_395"]["PATH"];
 		$filear =  CFile::MakeFileArray($path);
 		$logotipFileId = CFile::SaveFile($filear, "logo");
-		$logotipResize = CFile::ResizeImageGet($logotipFileId, array('width'=>100, 'height'=> 99999), BX_RESIZE_IMAGE_PROPORTIONAL, true);
+		$logotipResize = CFile::ResizeImageGet($logotipFileId, array('width'=>200, 'height'=> 99999), BX_RESIZE_IMAGE_PROPORTIONAL, true);
 		$filear = CFile::MakeFileArray($logotipResize['src']);
 
 		if($filear)
@@ -203,10 +203,15 @@ if("Y" != $exhParticipantEdit)
 				<input type="text" name="area_of_business" class="form-control" value="<?= $value?>" disabled=disabled />
 				
 				<? $arAnswer = reset($arAnswers["SIMPLE_QUESTION_284"]);?>
-		</div>
-			<div class="pull-left company-info">
-				<div class="title">Jpg only!</div>
-				<label class="button-dark ltm-btn" id="upload_logo" >upload logo<? /*<input type="hidden" name="SIMPLE_QUESTION_395" id="" value="" />*/?></label>
+			</div>
+			
+			<div class="pull-left company-info data-control">
+				<div class="title">Web</div>
+				<?
+				$arAnswer = reset($arAnswers["SIMPLE_QUESTION_501"]);
+				$value = $arAnswer["USER_TEXT"];
+				?>
+				<input type="text" name="SIMPLE_QUESTION_501" id="" value="<?= $value?>" class="form-control" />
 			</div>
 		</div>
 
@@ -242,13 +247,10 @@ if("Y" != $exhParticipantEdit)
 		<? endif;?>
 		
 		<div class="pull-overflow city-link">
-			<div class="pull-left company-info data-control">
-				<div class="title">Web</div>
-				<?
-				$arAnswer = reset($arAnswers["SIMPLE_QUESTION_501"]);
-				$value = $arAnswer["USER_TEXT"];
-				?>
-				<input type="text" name="SIMPLE_QUESTION_501" id="" value="<?= $value?>" class="form-control" />
+			<div class="upload-logo">
+				<div class="title">Jpg only!</div>
+				<label class="button-dark ltm-btn" id="upload_logo" >upload logo<? /*<input type="hidden" name="SIMPLE_QUESTION_395" id="" value="" />*/?></label>
+				<img src="" alt="" class="show-uploaded">
 			</div>
 
 			<div class="pull-left company-info priority-wrap" style="display: block; clear: both;">
@@ -301,13 +303,12 @@ $(function(){
 	var btnUploadLogo = $("#upload_logo");
 	var btnUploadPhoto = $("#upload_photo");
 	var photoCount = $("#photo_count");
-
 	new AjaxUpload(btnUploadLogo, {
 		action: "/ajax/upload_logo.php",
 		name: 	"logo",
 		data: {sid: '<?= bitrix_sessid()?>'},
 		onChange: function(file, ext){
-
+			var fileData = this._input.files[0];
 			if(btnUploadLogo.next().hasClass("load_img"))
 			{
 				return false;
@@ -318,6 +319,12 @@ $(function(){
             	alert("Photo format should be only jpg");
             	return false;
             };
+			
+			var reader = new FileReader();
+			reader.readAsDataURL(fileData);
+			reader.onload = function(e) {
+				document.querySelector('.show-uploaded').src = e.target.result;
+			}
 		},
 		onSubmit: function(file, ext)
 		{
@@ -338,6 +345,8 @@ $(function(){
 			{
 				btnUploadLogo.siblings("input[type=hidden]").each(function(){$(this).remove()});
 				btnUploadLogo.after("<input name='SIMPLE_QUESTION_395[PATH]' type='hidden' value='"+ response.PATH + "'/>");
+				//document.querySelector('.show-uploaded').src = response.PATH;
+
 			}
 			else
 			{

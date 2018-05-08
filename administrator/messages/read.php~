@@ -1,0 +1,94 @@
+<?
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->SetPageProperty("description", "Luxury Travel Mart - the leading luxury travel exhibition");
+$APPLICATION->SetPageProperty("title", "Luxury Travel Mart");
+$APPLICATION->SetPageProperty("NOT_SHOW_NAV_CHAIN", "Y");
+$APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
+global $USER;
+global $DB;
+?>
+
+
+
+<? if ($USER->isAdmin()) {
+    if (intval($_REQUEST["mess"])==0 OR !intval($_REQUEST["mess"])) LocalRedirect("?exhb=".$_REQUEST["exhb"]);
+    
+    
+    
+?>
+    
+    <div class="admin_block">
+        <div class="helper_nav">
+            <a href="/administrator/messages/?exhb=<?=$_REQUEST["exhb"]?>" class="selected">Inbox</a>
+            <a href="/administrator/messages/sent.php?exhb=<?=$_REQUEST["exhb"]?>">Sent</a>
+            <a href="/administrator/messages/new.php?exhb=<?=$_REQUEST["exhb"]?>">New message or notice</a>
+        </div>
+        
+        
+        
+      <form action="<?=$_SERVER["PHP_SELF"]?>" method="post">      
+<div class="info_table">
+<table class="admin_table" >
+    <tr>
+        <th class="thcol1">Theme</th>
+        <th class="thcol2">Company</th>
+        <th class="thcol3">Sender</th>
+        <th class="thcol4">Date</th>
+    </tr>
+<?
+$q = "SELECT * FROM  `chat_admin_messages` WHERE `ID`='".$_REQUEST["mess"]."' ORDER BY `DATE_CREATE` DESC";
+$res = $DB->Query($q, false, $err_mess.__LINE__);
+while ($row = $res->Fetch()) {
+?>
+                <input type="hidden" name="COMPANY" value="<?=$row["COMPANY"]?>" />
+                <input type="hidden" name="TO_USER" value="<?=$row["TO_USER"]?>" />
+                <input type="hidden" name="mess" value="<?=$row["mess"]?>" />
+    <tr>
+        <td class="tdcol1"><a href="read.php?exhb=<?=$_REQUEST["exhb"]?>&mess=<?=$row["ID"]?>"><?=$row["MESSAGE"]?></a></td>
+        <td class="tdcol2"><?=$row["COMPANY"]?></td>
+        <td class="tdcol3">
+<?
+$rsUser = CUser::GetByID($row["TO_USER"]);
+$arUser = $rsUser->Fetch();
+?>
+        <?=$arUser["UF_FIO"]?>
+        </td>
+        <td class="tdcol4"><?=$row["DATE_CREATE"]?></td>
+    </tr>
+<?}?>
+    
+</table>
+</div>        
+        <div class="form_holder">
+                <input type="hidden" name="exhb" value="<?=$_REQUEST["exhb"]?>" >
+                <div class="message">
+                    <textarea name="message"><?=$_REQUEST["message"]?></textarea>
+                </div>
+                <div class="submit"><input type="submit" name="go" value="Answer" /></div>
+            
+        </div>
+        
+        </form>
+        
+    </div>
+    
+<?}else{?>
+
+<?$APPLICATION->IncludeComponent(
+	"btm:user.login",
+	"",
+	Array(
+		"REGISTER_URL" => "",
+		"GUEST_URL" => "",
+		"PARTICIP_URL" => "",
+		"ADMIN_URL" => "",
+		"SHOW_ERRORS" => "N"
+	),
+false
+);?>
+
+<?}?>
+
+
+
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
