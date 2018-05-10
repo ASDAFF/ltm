@@ -3,7 +3,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include.php");
 
 $file = $_FILES["logo"];
 
-$finfo = new finfo(FILEINFO_MIME_TYPE, "/usr/share/misc/magic");
+$finfo = new finfo(FILEINFO_MIME_TYPE);
 
 $result = array();
 
