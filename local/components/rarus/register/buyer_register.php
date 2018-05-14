@@ -178,6 +178,7 @@ if (intval($USER_ID) > 0) {
         /*утро или вечер*/
         "UF_MORNING" => $morning,                //Утро
         "UF_EVENING" => $evening,                //Вечер
+        "UF_EXHIB_ID" => $exhibitionID,
     );
 
 // Создаем запить с HL блоке
