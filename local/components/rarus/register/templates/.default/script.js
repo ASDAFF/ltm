@@ -750,7 +750,7 @@ $(function() {
 		name.trigger("click");
 		
 		/*если выбрали Другую страну*/
-		if(selectedId == 509)
+		if(selectedId == 16)
 		{
 			country_other.removeClass("hide");
 			country_other.focus();

@@ -50,4 +50,5 @@ $MESS ['R_PROP_PARTICIPANT_FORM_ID'] = "Participants form";
 $MESS ['R_PROP_IBLOCK_PHOTO'] = "Infoblock photos";
 $MESS ['R_PROP_TERMS_LINK'] = "Terms & conditions";
 $MESS ['R_PROP_COLLEAGUE_SEND_EMAIL'] = "Send email to colleagues";
+$MESS ['R_PROP_GUEST_HL_BLOCK_ID'] = "HL Block guests";
 ?>
