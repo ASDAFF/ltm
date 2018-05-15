@@ -38,6 +38,8 @@ if($exhibCode)
 			0 => "14",
 			1 => "16",
             2 => "18",
+            3 => "21",
+            4 => "55",
 		),
 		"FORM_FIELD_COMPANY_NAME_ID" => "17",
 		"FORM_FIELD_LOGIN_ID" => "18",
