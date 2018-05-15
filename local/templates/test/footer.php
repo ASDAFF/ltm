@@ -35,8 +35,11 @@ if($exhibCode)
 	".default", 
 	array(
 		"USER_GROUP_ID" => array(
-			0 => "10",
-			1 => "61",
+			0 => "14",
+			1 => "16",
+            2 => "18",
+            3 => "21",
+            4 => "55",
 		),
 		"FORM_FIELD_COMPANY_NAME_ID" => "17",
 		"FORM_FIELD_LOGIN_ID" => "18",
@@ -84,13 +87,13 @@ if($exhibCode)
 	),
 	false
 );?>
-			<?$APPLICATION->IncludeComponent("bitrix:main.include", ".default", array(
+			<? /*$APPLICATION->IncludeComponent("bitrix:main.include", ".default", array(
 	"AREA_FILE_SHOW" => "file",
 	"PATH" => SITE_TEMPLATE_PATH."/include/adress_".LANGUAGE_ID.".php",
 	"EDIT_TEMPLATE" => ""
 	),
 	false
-);?>
+); */?>
 			<?$APPLICATION->IncludeComponent("bitrix:main.include", ".default", array(
 	"AREA_FILE_SHOW" => "file",
 	"PATH" => SITE_TEMPLATE_PATH."/include/copyright_".LANGUAGE_ID.".php",
