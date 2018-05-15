@@ -132,13 +132,14 @@ if (intval($USER_ID) > 0) {
     $entity = HL\HighloadBlockTable::compileEntity($hlblock);
     $entity_data_class = $entity->getDataClass();
     $colleaguesIds = [];
-    foreach ($data["COLLEAGUE"] as $colleague) {
+    foreach ($data["COLLEAGUE"] as $key=>$colleague) {
         $result = $entity_data_class::add([
             "UF_NAME" => $colleague["NAME"],
             "UF_SURNAME" => $colleague["LAST_NAME"],
-            "UF_SURNAME" => $colleague["SALUTATION"],
+            "UF_SALUTATION" => $colleague["SALUTATION"],
             "UF_JOB_TITLE" => $colleague["JOB_POST"],
             "UF_EMAIL" => $colleague["EMAIL"],
+            "UF_DAYTIME" => 9,
         ]);
         $colleaguesIds[] = $result->getId();
     }
@@ -150,6 +151,7 @@ if (intval($USER_ID) > 0) {
         "UF_ADDRESS" => $data["COMPANY_ADDRESS"],                    //фактический адрес компании
         "UF_POSTCODE" => $data["INDEX"],                                //индекс
         "UF_CITY" => $data["CITY"],                                //город
+        "UF_COUNTRY" => $data["COUNTRY"],        //страна
         "UF_COUNTRY_OTHER" => $data["COUNTRY"],        //страна
         "UF_NAME" => $data["NAME"],                                //имя
         "UF_SURNAME" => $data["LAST_NAME"],                            //фамилия
