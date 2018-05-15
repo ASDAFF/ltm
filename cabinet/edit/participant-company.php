@@ -243,7 +243,7 @@ if("Y" != $exhParticipantEdit)
 		</div>
 		
 		<? if("Y" == $exhParticipantEdit):?>
-			<input type="submit" value="send to organizers" class="button-green ltm-btn" />
+			<input type="submit" value="save changes" class="button-green ltm-btn" />
 		<? endif;?>
 		
 		<div class="pull-overflow city-link">
@@ -293,7 +293,7 @@ if("Y" != $exhParticipantEdit)
 			</div>
 		</div>
 		<? if("Y" == $exhParticipantEdit):?>
-		<input type="submit" value="send to organizers" class="button-green ltm-btn" />
+		<input type="submit" value="save changes" class="button-green ltm-btn" />
 		<? endif;?>
 	</form>
 	</div>
