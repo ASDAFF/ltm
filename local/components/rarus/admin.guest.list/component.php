@@ -89,7 +89,7 @@ switch ($arParams["ACT"]) {
         $arHlBlockFilter["UF_MORNING"] = true;
         $dayTime = CUserFieldEnum::GetList(array(), array(
             "USER_FIELD_ID" => $ufEnum['ID'],
-            "XML_ID" => strtolower("evening"),
+            "XML_ID" => strtolower("morning"),
         ))->Fetch();
         $collegueDayTime = $dayTime['ID'];
         break;
