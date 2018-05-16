@@ -159,7 +159,7 @@ if (intval($USER_ID) > 0) {
         "UF_POSTCODE" => $data["INDEX"],                                //индекс
         "UF_CITY" => $data["CITY"],                                //город
         "UF_COUNTRY" => $data["COUNTRY"],        //страна
-        "UF_COUNTRY_OTHER" => $data["COUNTRY"],        //страна
+        "UF_COUNTRY_OTHER" => $data["COUNTRY_OTHER"],        //страна
         "UF_NAME" => $data["NAME"],                                //имя
         "UF_SURNAME" => $data["LAST_NAME"],                            //фамилия
         "UF_SALUTATION" => $data["SALUTATION"],        //обращение
