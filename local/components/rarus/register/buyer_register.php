@@ -132,16 +132,23 @@ if (intval($USER_ID) > 0) {
     $entity = HL\HighloadBlockTable::compileEntity($hlblock);
     $entity_data_class = $entity->getDataClass();
     $colleaguesIds = [];
+    $ufEnum = CUserTypeEntity::GetList( array(), array("ENTITY_ID" => "HLBLOCK_" . $arParams["GUEST_COLLEAGUE_HL_BLOCK_ID"], 'LANG' => LANGUAGE_ID, 'FIELD_NAME' => 'UF_DAYTIME') )->Fetch();
     foreach ($data["COLLEAGUE"] as $key=>$colleague) {
-        $result = $entity_data_class::add([
-            "UF_NAME" => $colleague["NAME"],
-            "UF_SURNAME" => $colleague["LAST_NAME"],
-            "UF_SALUTATION" => $colleague["SALUTATION"],
-            "UF_JOB_TITLE" => $colleague["JOB_POST"],
-            "UF_EMAIL" => $colleague["EMAIL"],
-            "UF_DAYTIME" => 9,
-        ]);
-        $colleaguesIds[] = $result->getId();
+        if(array_filter($colleague)){ //Штатная работа array_filter без callback`а, удаляет все элементы из массива ранвые false, null, "" https://stackoverflow.com/questions/26455839/what-does-array-filter-with-no-callback-do
+            $dayTime = CUserFieldEnum::GetList(array(), array(
+                "USER_FIELD_ID" => $ufEnum['ID'],
+                "XML_ID" => strtolower($key),
+            ))->Fetch();
+            $result = $entity_data_class::add([
+                "UF_NAME" => $colleague["NAME"],
+                "UF_SURNAME" => $colleague["LAST_NAME"],
+                "UF_SALUTATION" => $colleague["SALUTATION"],
+                "UF_JOB_TITLE" => $colleague["JOB_POST"],
+                "UF_EMAIL" => $colleague["EMAIL"],
+                "UF_DAYTIME" => [$dayTime['ID']],
+            ]);
+            $colleaguesIds[] = $result->getId();
+        }
     }
 
     $arUserFormFields = array(
