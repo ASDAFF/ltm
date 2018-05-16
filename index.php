@@ -1,7 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetPageProperty("description", "Luxury Travel Mart - the leading luxury travel exhibition");
-$APPLICATION->SetPageProperty("title", "Luxury Travel Mart");
+$APPLICATION->SetPageProperty("title", "Тестовый сайт");
 $APPLICATION->SetPageProperty("NOT_SHOW_NAV_CHAIN", "Y");
 $APPLICATION->SetTitle("THE LEADING LUXURY TRAVEL EXHIBITION");
 ?>
