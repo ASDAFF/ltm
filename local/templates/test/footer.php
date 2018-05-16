@@ -87,13 +87,13 @@ if($exhibCode)
 	),
 	false
 );?>
-			<? /*$APPLICATION->IncludeComponent("bitrix:main.include", ".default", array(
+			<? $APPLICATION->IncludeComponent("bitrix:main.include", ".default", array(
 	"AREA_FILE_SHOW" => "file",
 	"PATH" => SITE_TEMPLATE_PATH."/include/adress_".LANGUAGE_ID.".php",
 	"EDIT_TEMPLATE" => ""
 	),
 	false
-); */?>
+); ?>
 			<?$APPLICATION->IncludeComponent("bitrix:main.include", ".default", array(
 	"AREA_FILE_SHOW" => "file",
 	"PATH" => SITE_TEMPLATE_PATH."/include/copyright_".LANGUAGE_ID.".php",
