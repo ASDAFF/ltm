@@ -3,13 +3,14 @@
 <? if(!empty($arResult["ITEMS"])):?>
 <div class="contacts">
         <h2><?= GetMessage("NL_CONTACTS_TITLE")?></h2>
+		<!--
         <? foreach ($arResult["ITEMS_BY_SECTIONS"] as $id => $arSectionItem)?>
         <?$section = $arResult["SECTION"][$id];?>
         <div class="contact-item headquarters">
             <div class="name"><?= $section["NAME"]?>:</div>
             <span><?= $section["DESCRIPTION"]?></span>
         </div>
-
+		-->
         <? foreach($arSectionItem as $arContact):?>
         <?
     	$this->AddEditAction($arContact['ID'], $arContact['EDIT_LINK'], CIBlock::GetArrayByID($arContact["IBLOCK_ID"], "ELEMENT_EDIT"));
