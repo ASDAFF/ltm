@@ -219,6 +219,7 @@ while ($el = $rsData->fetch()) {
             }
         }
     }
+    $user["REP"] = $user["UF_NAME"] . "<br>" . $user["UF_SURNAME"];
     $arUserListAll[$user["LOGIN"]] = $user;
 }
 $arResult["USERS_LIST"] = $arUserListAll;

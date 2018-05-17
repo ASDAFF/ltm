@@ -9,7 +9,7 @@
 $arShowedTableCols = array(
     "ID" => "ID",
     "Компания" => "UF_COMPANY",
-    "Представитель" => array("UF_NAME", "UF_SURNAME"),
+    "Представитель" => "REP",
     "Обращение" => "UF_SALUTATION",
     "Должность" => "UF_POSITION",
     "Адрес" => "UF_ADDRESS",
@@ -24,9 +24,9 @@ $arShowedTableCols = array(
 );
 $arShowedTableColsSort = array(
     "ID" => "ID",
-    "Компания" => "COMPANY",
+    "Компания" => "UF_COMPANY",
     "Представитель" => "REP",
-    "Телефон" => "PHONE",
+    "Телефон" => "UF_PHONE",
     "Логин" => "LOGIN",
     "Емейл" => "EMAIL",
     "Дата регистрации" => "DATE_REGISTER",
@@ -55,16 +55,6 @@ switch ($arParams["ACT"]) {
         $arShowedTableCols["Обращение коллеги (вечер)"] = "COLLEAGUE_UF_SALUTATION";
         $arShowedTableCols["Должность коллеги (вечер)"] = "COLLEAGUE_UF_JOB_TITLE";
         $arShowedTableCols["Емейл коллеги (вечер)"] = "COLLEAGUE_UF_EMAIL";
-//        $arShowedTableCols["Имя коллеги2 (вечер)"] = "22";
-//        $arShowedTableCols["Фамилия коллеги2 (вечер)"] = "23";
-//        $arShowedTableCols["Обращение коллеги2 (вечер)"] = "24";
-//        $arShowedTableCols["Емейл коллеги2 (вечер)"] = "23";
-//        $arShowedTableCols["Должность коллеги2 (вечер)"] = "26";
-//        $arShowedTableCols["Имя коллеги3 (вечер)"] = "27";
-//        $arShowedTableCols["Фамилия коллеги3 (вечер)"] = "28";
-//        $arShowedTableCols["Обращение коллеги3 (вечер)"] = "29";
-//        $arShowedTableCols["Должность коллеги3 (вечер)"] = "30";
-//        $arShowedTableCols["Емейл коллеги3 (вечер)"] = "31";
         break;
 
     case "morning":
