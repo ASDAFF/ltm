@@ -750,20 +750,21 @@ $(function() {
 		name.trigger("click");
 		
 		/*если выбрали Другую страну*/
-		if(selectedId == 16)
-		{
-			country_other.removeClass("hide");
-			country_other.focus();
+		if(select.attr("name") === "COUNTRY"){
+            if(selectedId == 16)
+            {
+                country_other.removeClass("hide");
+                country_other.focus();
+            }
+            else if( typeof country_other != "undefined" && !country_other.hasClass("hide"))
+            {
+                country_other.addClass("hide");
+                country_other.val("");
+                country_other.siblings().remove();
+            }
 		}
-		else if( typeof country_other != "undefined" && !country_other.hasClass("hide"))
-		{
-			country_other.addClass("hide");
-			country_other.val("");
-			country_other.siblings().remove();
-		}
-
 	});
-	
+
 	/*Удаление файлов*/
 	$("#register_form_content").on("click", "div.delete-photo", function(){
 		var delBtn = $(this);
@@ -776,11 +777,11 @@ $(function() {
 			data: {SID:sid, FILE:delFile},
 			success: function(data){
 				data = BX.parseJSON(data);
-				
+
 				if(data.STATUS == "success")
 				{
 					/*Снимаем количество*/
-					
+
 					var photoBlockId = delBtn.closest("ul").siblings(".upload-photos").attr("id");
 
 					var addBtn = delBtn.closest("ul").siblings(".upload-photos");
@@ -817,12 +818,12 @@ $(function() {
 						case "company-photos":
 						{
 							UploadPhotosCount--;
-							
+
 							var uploadedPhotos = addBtn.siblings(".uploaded");
-							
+
 							if(typeof uploadedPhotos != "undefined")
 							{
-								
+
 								if(UploadPhotosCount > 0)
 								{
 									uploadedPhotos.text("Uploaded " + UploadPhotosCount + " photo");
@@ -832,7 +833,7 @@ $(function() {
 									uploadedPhotos.text("");
 								}
 							}
-							
+
 							if(UploadPhotosCount < UploadPhotosMaxCount)
 							{
 								obUploadPhotos.enable();
@@ -844,7 +845,7 @@ $(function() {
 						}
 						break;
 					}
-					
+
 					delBtn.closest("li").remove();
 				}
 			  }
@@ -869,18 +870,18 @@ function photoUpload()
 	{
 		errorLang = "ru";
 	}
-	
-	
+
+
 	if($("#radio_PARTICIPANT").val() != "PARTICIPANT")
 	{
 		return true;
 	}
-	
+
 /*Персональное фото*/
 $(function(){
-	
+
 	var btnUploadPP=$('#personal-photo');
-	
+
 	if(btnUploadPP.length > 0)
 	{
 		var statusPP=btnUploadPP.siblings(".upload-status");
@@ -893,12 +894,12 @@ $(function(){
 			action: AjaxPatch.UPLOAD,
 			name: 'uploadfile-personal',
 			onSubmit: function(file, ext){
-				if (! (ext && /^(jpg|png|jpeg)$/.test(ext))){ 
-					// extension is not allowed 
+				if (! (ext && /^(jpg|png|jpeg)$/.test(ext))){
+					// extension is not allowed
 					statusPP.text('Supported Formats JPG and PNG');
 					return false;
 				}
-				
+
 				statusPP.text('Loading...');
 			},
 			onComplete: function(file, response){
@@ -910,11 +911,11 @@ $(function(){
 					$('<li></li>').appendTo(ulPP).html('<img src="'+response.FILE+'" alt="" class="upload-photo-preview"/><br /><div class="delete-photo" data-sid="'+ response.SID +'" data-file="'+ response.FILE +'">DELETE</div>').addClass('success');
 
 					UploadPPCount++;
-					
+
 					if(UploadPPCount >= UploadPPMaxCount)
 					{
 						this.disable();
-						
+
 						if(!btnUploadPP.hasClass("disable-upload"))
 						{
 							btnUploadPP.addClass("disable-upload");
@@ -930,9 +931,9 @@ $(function(){
 
 /*Логотип*/
 $(function(){
-	
+
 	var btnUploadLogo=$('#company-logo');
-	
+
 	if(btnUploadLogo.length > 0)
 	{
 		var statusLogo=btnUploadLogo.siblings(".upload-status");
@@ -945,12 +946,12 @@ $(function(){
 			action: AjaxPatch.UPLOAD,
 			name: 'uploadfile-logo',
 			onSubmit: function(file, ext){
-				if (! (ext && /^(jpg|png|jpeg)$/.test(ext))){ 
-					// extension is not allowed 
+				if (! (ext && /^(jpg|png|jpeg)$/.test(ext))){
+					// extension is not allowed
 					statusLogo.text('Supported Formats JPG and PNG');
 					return false;
 				}
-				
+
 				statusLogo.text('Loading...');
 			},
 			onComplete: function(file, response){
@@ -962,11 +963,11 @@ $(function(){
 					$('<li></li>').appendTo(ulLogo).html('<img src="'+response.FILE+'" alt="" class="upload-photo-preview"/><br /><div class="delete-photo" data-sid="'+ response.SID +'" data-file="'+ response.FILE +'">DELETE</div>').addClass('success');
 
 					UploadLogoCount++;
-					
+
 					if(UploadLogoCount >= UploadLogoMaxCount)
 					{
 						this.disable();
-						
+
 						if(!btnUploadLogo.hasClass("disable-upload"))
 						{
 							btnUploadLogo.addClass("disable-upload");
@@ -982,9 +983,9 @@ $(function(){
 
 /*Фотографии*/
 $(function(){
-	
+
 	var btnUploadPhotos=$('#company-photos');
-	
+
 	if(btnUploadPhotos.length > 0)
 	{
 		var statusPhotos=btnUploadPhotos.siblings(".upload-status");
@@ -998,12 +999,12 @@ $(function(){
 			action: AjaxPatch.UPLOAD,
 			name: 'uploadfile-photos',
 			onSubmit: function(file, ext){
-				if (! (ext && /^(jpg|png|jpeg)$/.test(ext))){ 
-					// extension is not allowed 
+				if (! (ext && /^(jpg|png|jpeg)$/.test(ext))){
+					// extension is not allowed
 					statusPhotos.text('Supported Formats JPG and PNG');
 					return false;
 				}
-				
+
 				statusPhotos.text('Loading...');
 			},
 			onComplete: function(file, response){
@@ -1015,16 +1016,16 @@ $(function(){
 					$('<li></li>').appendTo(ulPhotos).html('<img src="'+response.FILE+'" alt="" class="upload-photo-preview"/><br /><div class="delete-photo" data-sid="'+ response.SID +'" data-file="'+ response.FILE +'">DELETE</div>').addClass('success');
 
 					UploadPhotosCount++;
-					
+
 					if(typeof uploadedPhotos != "undefined")
 					{
 						uploadedPhotos.text("Uploaded " + UploadPhotosCount + " photo");
 					}
-					
+
 					if(UploadPhotosCount >= UploadPhotosMaxCount)
 					{
 						this.disable();
-						
+
 						if(!btnUploadPhotos.hasClass("disable-upload"))
 						{
 							btnUploadPhotos.addClass("disable-upload");
@@ -1045,9 +1046,9 @@ function checkCompanyPhoto()
 {
 	var btnUpload = $("#company-photos");
 	var ulPhotos = btnUpload.siblings("ul.files");
-	
+
 	var photos = ulPhotos.find("li");
-	
+
 	if(photos.length > 0 && photos.length < 6)
 	{
 		return false;
@@ -1073,7 +1074,7 @@ function otherCountry()
 	var country_other = $("input[name=COUNTRY_OTHER]").val();
 	country_other = $.trim(country_other);
 
-	if(country != 509)
+	if(country != 16)
 	{
 		return true;
 	}
