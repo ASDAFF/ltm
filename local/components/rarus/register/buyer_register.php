@@ -234,7 +234,7 @@ if (intval($USER_ID) > 0) {
 				"EVENT_EMAIL" => $arExhibition["PROPERTIES"]["EVENT_EMAIL"]["VALUE"],
 				"EXIB_YEAR" => $arExhibition["PROPERTIES"]["menu_en"]["VALUE"],
 				"TYPE" => "Рабочие встречи",
-				"TYPE_KIEV" => "Дякуємо Вам за реєстрацію на Робочі зустрічі за заздалегідь призначенім розкладом на"
+				"TYPE_KIEV" => "Робочі зустрічі"
 			]
 		];
 	}
@@ -251,7 +251,7 @@ if (intval($USER_ID) > 0) {
 				"EXIB_YEAR" => $arExhibition["PROPERTIES"]["menu_en"]["VALUE"],
 				"EVENT_EMAIL" => $arExhibition["PROPERTIES"]["EVENT_EMAIL"]["VALUE"],
 				"TYPE" => "Вечерний коктейль",
-				"TYPE_KIEV" => "Дякуємо Вам за реєстрацію на Вечірній коктейль"
+				"TYPE_KIEV" => "Вечірній коктейль"
 			]
 		];
 	}
