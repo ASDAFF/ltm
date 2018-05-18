@@ -50,5 +50,5 @@ $MESS ['R_PROP_PARTICIPANT_FORM_ID'] = "Форма участников";
 $MESS ['R_PROP_IBLOCK_PHOTO'] = "Инфоблок фотографий";
 $MESS ['R_PROP_TERMS_LINK'] = "Лицензионное соглашение";
 $MESS ['R_PROP_COLLEAGUE_SEND_EMAIL'] = "Отсылать письмо коллегам";
-
+$MESS ['R_PROP_GUEST_HL_BLOCK_ID'] = "HL Block участников";
 ?>

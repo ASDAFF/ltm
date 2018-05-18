@@ -73,6 +73,13 @@ $arComponentParameters = array(
 				"DEFAULT" => "N",
 				"PARENT" => "ADDITIONAL_SETTINGS",
 		),
+
+        "GUEST_HL_BLOCK_ID" => array(
+            "NAME" => GetMessage("R_PROP_GUEST_HL_BLOCK_ID"),
+            "TYPE" => "STRING",
+            "DEFAULT" => "4",
+            "PARENT" => "ADDITIONAL_SETTINGS",
+        ),
 	),
 
 );
