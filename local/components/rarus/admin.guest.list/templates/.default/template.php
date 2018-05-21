@@ -67,7 +67,7 @@ switch ($arParams["ACT"]) {
         $arShowedTableCols["Должность коллеги"] = "COLLEAGUE_UF_JOB_TITLE";
         $arShowedTableCols["Емейл коллеги"] = "COLLEAGUE_UF_EMAIL";
         $arShowedTableCols["Описание деятельности"] = "UF_DESCRIPTION";
-        $arShowedTableCols["Приоритет. направл."] = "UF_PRIORITY_AREAS";
+        $arShowedTableCols["Приоритет. направл."] = array("UF_NORTH_AMERICA", "UF_EUROPE", "UF_SOUTH_AMERICA", "UF_AFRICA", "UF_ASIA", "UF_OCEANIA");
         $arShowedTableCols["Форма посещения"] = array("UF_MORNING", "UF_EVENING");
         $arShowedTableColsFilter["LOGIN"] = "Логин";
         break;
