@@ -25,9 +25,11 @@ switch ($arParams["ACT"]) {
 }
 
 $arResult = array();
-
+$arUserFilter = array();
 $sortField = $arResult["SORT"] = ($_REQUEST["sort"]) ? $_REQUEST["sort"] : "COMPANY";
 $sortOrder = $arResult["ORDER"] = ($_REQUEST["order"]) ? $_REQUEST["order"] : "asc";
+$collegueDayTime = false;
+$ufEnum = CUserTypeEntity::GetList(array(), array("ENTITY_ID" => "HLBLOCK_" . $arParams["HLBLOCK_GUEST_COLLEAGUES_ID"], 'LANG' => LANGUAGE_ID, 'FIELD_NAME' => 'UF_DAYTIME'))->Fetch();
 
 if (!CModule::IncludeModule("iblock") || !CModule::IncludeModule("form") || !CModule::IncludeModule("highloadblock")) {
     $this->AbortResultCache();
@@ -46,16 +48,6 @@ if ($ar = $rs->GetNext(true, false)) {
 if (!isset($arResult["EXHIB"])) {
     throw new Exception("Incorrect exhibbit");
 }
-//список пользователей
-$arUserFilter = [
-    "GROUPS_ID" => $groupId,
-    "ACTIVE" => "Y"
-];
-$arHlBlockFilter = [
-    "UF_EXHIB_ID" => $arResult["EXHIB"]["ID"],
-];
-$collegueDayTime = false;
-$ufEnum = CUserTypeEntity::GetList( array(), array("ENTITY_ID" => "HLBLOCK_" . $arParams["HLBLOCK_GUEST_COLLEAGUES_ID"], 'LANG' => LANGUAGE_ID, 'FIELD_NAME' => 'UF_DAYTIME') )->Fetch();
 switch ($arParams["ACT"]) {
     case "off":
         $groupId = $arResult["EXHIB"]["PROPERTY_UC_GUESTS_GROUP_VALUE"];
@@ -96,11 +88,14 @@ switch ($arParams["ACT"]) {
     default:
         $groupId = false;
 }
-
-
-
-$userFieldFormAnswer = CFormMatrix::getPropertyIDByExh($arResult["EXHIB"]["ID"]);
-$arUserFilter["!$userFieldFormAnswer"] = false;
+//список пользователей
+$arUserFilter = array_merge($arUserFilter, [
+    "GROUPS_ID" => $groupId,
+    "ACTIVE" => "Y"
+]);
+$arHlBlockFilter = [
+    "UF_EXHIB_ID" => $arResult["EXHIB"]["ID"],
+];
 
 $arUserListAll = array();
 $arUserFormAnswersId = array();
@@ -127,28 +122,23 @@ if (isset($_REQUEST["filter"])) {
     }
 }
 
-$rsData = CUserTypeEntity::GetList( array(), array("ENTITY_ID" => "HLBLOCK_" . $arParams["HLBLOCK_GUEST_ID"], 'LANG' => LANGUAGE_ID) );
+$rsData = CUserTypeEntity::GetList(array(), array("ENTITY_ID" => "HLBLOCK_" . $arParams["HLBLOCK_GUEST_ID"], 'LANG' => LANGUAGE_ID));
 $arHlBlockInfo = [];
-while($arRes = $rsData->Fetch())
-{
+while ($arRes = $rsData->Fetch()) {
     $arHlBlockInfo[$arRes["FIELD_NAME"]] = $arRes;
-    if($arRes["USER_TYPE_ID"] == "hlblock"){
+    if ($arRes["USER_TYPE_ID"] == "hlblock") {
         $hlblock = HL\HighloadBlockTable::getById($arRes["SETTINGS"]["HLBLOCK_ID"])->fetch();
         $entity = HL\HighloadBlockTable::compileEntity($hlblock);
         $entity_data_class = $entity->getDataClass();
         $arrFilter = [];
-        if($arRes["FIELD_NAME"] === "UF_COLLEAGUES"){
+        if ($arRes["FIELD_NAME"] === "UF_COLLEAGUES") {
             $arrFilter['UF_DAYTIME'] = $collegueDayTime;
         }
         $result = $entity_data_class::getList([
             'filter' => $arrFilter,
         ]);
-        while ($arElem = $result->Fetch()){
-            if($arRes["FIELD_NAME"] === "UF_COLLEAGUES"){
-                $arHlBlockInfo[$arRes["FIELD_NAME"]]["ITEMS"] = $arElem;
-            }else{
-                $arHlBlockInfo[$arRes["FIELD_NAME"]]["ITEMS"][$arElem["ID"]] = $arElem;
-            }
+        while ($arElem = $result->Fetch()) {
+            $arHlBlockInfo[$arRes["FIELD_NAME"]]["ITEMS"][$arElem["ID"]] = $arElem;
         }
     }
 }
@@ -162,65 +152,84 @@ $rsData = $entity_data_class::getList(array(
 ));
 
 while ($el = $rsData->fetch()) {
+    $arUserFilter["ID"] = $el["UF_USER_ID"];
+    $rsUser = CUser::GetList(
+        $by = "ID",
+        $order = "ASC",
+        $arUserFilter,
+        array(
+            "SELECT" => array("UF_*"),
+            "FIELDS" => array("ID", "LOGIN", "DATE_REGISTER")
+        )
+    );
+    if ($user = $rsUser->Fetch()) {
+        $user["REG_DATE"] = $user["DATE_REGISTER"];
+        $tmpTime = strtotime($user["REG_DATE"]);
+        $user["REG_DATE_DATE"] = date("d.m.Y", $tmpTime);
+        $diff = (time() - $tmpTime) / 60;//разница в минутах
+        $user["REG_DIFF"] = floor($diff / 60) . "ч " . ($diff % 60) . "м";
 
-    $user = CUser::GetByID($el["UF_USER_ID"])->Fetch();
-    $user["REG_DATE"] = $user["DATE_REGISTER"];
-    $tmpTime = strtotime($user["REG_DATE"]);
-    $user["REG_DATE_DATE"] = date("d.m.Y", $tmpTime);
-    $diff = (time() - $tmpTime) / 60;//разница в минутах
-    $user["REG_DIFF"] = floor($diff / 60) . "ч " . ($diff % 60) . "м";
-
-    foreach ($el as $key => $value) {
-        if(array_key_exists($key, $arHlBlockInfo)){
-            switch ($arHlBlockInfo[$key]["USER_TYPE_ID"]){
-                case "hlblock":
-                    if($key === "UF_COUNTRY"){
-                        if($el["UF_COUNTRY_OTHER"]){
-                            $user[$key] = $el["UF_COUNTRY_OTHER"];
-                        }else{
+        foreach ($el as $key => $value) {
+            if (array_key_exists($key, $arHlBlockInfo)) {
+                switch ($arHlBlockInfo[$key]["USER_TYPE_ID"]) {
+                    case "hlblock":
+                        if ($key === "UF_COUNTRY") {
+                            if ($el["UF_COUNTRY_OTHER"]) {
+                                $user[$key] = $el["UF_COUNTRY_OTHER"];
+                            } else {
+                                $user[$key] = $arHlBlockInfo[$key]["ITEMS"][$value]["UF_VALUE"];
+                            }
+                        } elseif ($key === "UF_COLLEAGUES") {
+                            foreach ($arHlBlockInfo[$key]["ITEMS"] as $val){
+                                if(in_array($val["ID"], $value)){
+                                    $user[$key] = $val;
+                                    break;
+                                }
+                            }
+                            foreach ($user[$key] as $field => $elem) {
+                                if ($field === "UF_SALUTATION") {
+                                    $user["COLLEAGUE_" . $field] = $arHlBlockInfo[$field]["ITEMS"][$elem]["UF_VALUE"];
+                                } else {
+                                    $user["COLLEAGUE_" . $field] = $elem;
+                                }
+                            }
+                        } elseif (is_array($value)) {
+                            $newValues = [];
+                            foreach ($value as $elem) {
+                                $newValues[] = $arHlBlockInfo[$key]["ITEMS"][$elem]["UF_VALUE"];
+                            }
+//                            echo "<pre>";
+//                            print_r($value);
+//                            print_r($newValues);
+//                            echo "</pre>";
+                            $user[$key] = $newValues;
+                        } else {
                             $user[$key] = $arHlBlockInfo[$key]["ITEMS"][$value]["UF_VALUE"];
                         }
-                    }elseif($key === "UF_COLLEAGUES"){
-                        $user[$key] = $arHlBlockInfo[$key]["ITEMS"];
-                        foreach ($user[$key] as $field => $elem){
-                            if($field === "UF_SALUTATION"){
-                                $user["COLLEAGUE_" . $field] = $arHlBlockInfo[$field]["ITEMS"][$elem]["UF_VALUE"];
-                            }else{
-                                $user["COLLEAGUE_" . $field] = $elem;
-                            }
+                        break;
+                    default:
+                        switch ($key) {
+                            case "UF_MORNING":
+                                if ($value) {
+                                    $user[$key] = "Утро";
+                                }
+                                break;
+                            case "UF_EVENING":
+                                if ($value) {
+                                    $user[$key] = "Вечер";
+                                }
+                                break;
+                            default:
+                                $user[$key] = $value;
+                                break;
                         }
-                    }elseif(is_array($value)){
-                        $newValues = [];
-                        foreach ($value as $elem){
-                            $newValues[] = $arHlBlockInfo[$key]["ITEMS"][$elem]["UF_VALUE"];
-                        }
-                        $user[$key] = $newValues;
-                    }else{
-                        $user[$key] = $arHlBlockInfo[$key]["ITEMS"][$value]["UF_VALUE"];
-                    }
-                    break;
-                default:
-                    switch ($key){
-                        case "UF_MORNING":
-                            if($value){
-                                $user[$key] = "Утро";
-                            }
-                            break;
-                        case "UF_EVENING":
-                            if($value){
-                                $user[$key] = "Вечер";
-                            }
-                            break;
-                        default:
-                            $user[$key] = $value;
-                            break;
-                    }
-                    break;
+                        break;
+                }
             }
         }
+        $user["REP"] = $user["UF_NAME"] . "<br>" . $user["UF_SURNAME"];
+        $arUserListAll[$user["LOGIN"]] = $user;
     }
-    $user["REP"] = $user["UF_NAME"] . "<br>" . $user["UF_SURNAME"];
-    $arUserListAll[$user["LOGIN"]] = $user;
 }
 $arResult["USERS_LIST"] = $arUserListAll;
 
