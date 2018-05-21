@@ -77,7 +77,7 @@ include($_SERVER["DOCUMENT_ROOT"] . $templateFolder . "/HLfunction.php");
         <? /*Общая информация*/ ?>
         <div class="block-common">
             <? /*название компании*/ ?>
-            <?= ShowText($arrFields['UF_COMPANY_NAME'], "COMPANY_NAME", "require en capitals"); ?>
+            <?= ShowText($arrFields['UF_COMPANY'], "COMPANY_NAME", "require en capitals"); ?>
             <? /*Вид деятельности*/ ?>
             <?= ShowGroupCheckBox($arrFields['UF_PRIORITY_AREAS'], "BUSINESS_TYPE"); ?>
             <? /*Фактический адрес компании*/ ?>
