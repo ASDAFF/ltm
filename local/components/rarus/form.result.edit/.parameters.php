@@ -87,7 +87,12 @@ $arComponentParameters = array(
 			"DEFAULT" => "N",
 			"PARENT" => "VISUAL",
 		),
-		
+        "HLBLOCK_REGISTER_GUEST_ID" => array(
+            "NAME" => GetMessage("COMP_FORM_PARAMS_RESULT_ID"),
+            "TYPE" => "STRING",
+            "DEFAULT" => "15",
+            "PARENT" => "DATA_SOURCE",
+        ),
 		//"SET_TITLE" => array(),
 		//"CACHE_TIME" => array(),
 	),
