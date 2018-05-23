@@ -1,158 +1,113 @@
 <?
-if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
+if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 ?>
-<form action="" method="POST" enctype="multipart/form-data">
-    <?= bitrix_sessid_post() ?>
-    <input type="hidden" name="ID" value="<?= $arResult["USER_DATA"]["ID"] ?>">
-    <table width="100%" border="0" cellspacing="0" cellpadding="5" class="form_edit">
-        <tbody>
-        <?
-        if ($arResult["USER_DATA"]["ID"]) {
-            ?>
-            <tr>
-                <td width="130">ID:</td>
-                <td><?= $arResult["USER_DATA"]["ID"] ?></td>
-            </tr>
-            <?
-        }
-        ?>
-        <? foreach ($arResult["FIELD_DATA"] as $fieldName => $fieldData) { ?>
-            <? if ($fieldName === "UF_COLLEAGUES") { ?>
-                <? foreach ($fieldData['ITEMS'] as $colleague) { ?>
-                    <? $dayTime = $fieldData['DAY_TIMES'][reset($colleague["UF_DAYTIME"])];
-                    $dayTimeText = $dayTime["VALUE"];
-                    $dayTimeCode = strtoupper($dayTime["XML_ID"]); ?>
-                    <? foreach ($colleague as $key => $value) { ?>
-                        <? if (!in_array($key, $fieldData["HIDDEN_FIELDS"])) { ?>
-                            <tr>
-                                <td valign="top">
-                                    <span><?= $key . '(' . $dayTimeText . ')' ?></span>
-                                </td>
-                                <td <?= $key === "UF_DAYTIME" ? "class='checkbox'" : "" ?>>
-                                    <? switch ($key) {
-                                        case "UF_DAYTIME":
-                                            ?>
-                                            <?
-                                            foreach ($arResult["FIELD_DATA"][$fieldName]["DAY_TIMES"] as $dayKey => $dayValue) {
-                                                ?>
-                                                <input type="checkbox"
-                                                       name="COLLEAGUE[<?= $dayTimeCode ?>][<?= $key ?>][]"
-                                                       id="<?= $key . '_' . $dayTimeCode . '_' . $dayValue['ID'] ?>" <?= (in_array($dayValue['ID'], $value) || $value == $dayValue['ID']) ? "checked" : "" ?>
-                                                       value="<?= $dayValue['ID'] ?>"/>
-                                                <label for="<?= $key . '_' . $dayTimeCode . '_' . $dayValue['ID'] ?>"><?= $dayValue['VALUE'] ?></label>
-                                                <br/>
-                                                <?
-                                            } ?>
-                                            <?
-                                            break;
-                                        case "UF_SALUTATION":
-                                            ?>
-                                            <select name="COLLEAGUE[<?= $dayTimeCode ?>][<?= $key ?>]" id="">
-                                                <? foreach ($arResult["FIELD_DATA"]["UF_SALUTATION"]["ITEMS"] as $itemKey => $itemValue) { ?>
-                                                    <option <?= (in_array($itemValue['ID'], $value) || $value == $itemValue['ID']) ? "selected" : "" ?>
-                                                            value="<?= $itemValue['ID'] ?>"><?= $itemValue['UF_VALUE'] ?: $itemValue['UF_NAME'] ?></option>
-                                                <? } ?>
-                                            </select>
-                                            <?
-                                            break;
-                                        default:
-                                            ?>
-                                            <input type="text" name="COLLEAGUE[<?= $dayTimeCode ?>][<?= $key ?>]"
-                                                   value="<?= $value ?>">
-                                            <?
-                                            break;
-                                    } ?>
-                                </td>
-                            </tr>
-                        <? } else { ?>
-                            <input type="hidden" name="COLLEAGUE[<?= $dayTimeCode ?>][<?= $key ?>]" value="<?= $value ?>">
-                        <? } ?>
-                    <? } ?>
-                <? } ?>
-            <? } else { ?>
-                <tr>
-                    <td valign="top">
-                        <span><?= $fieldName ?></span>
-                    </td>
-                    <? switch ($fieldData["USER_TYPE_ID"]) {
-                        case "hlblock": ?>
-                            <td class="checkbox">
-                                <? if (in_array($fieldName, $arResult["FIELD_DATA_CHECKED_ALL"])) { ?>
-                                    <? $rnd = randString(7); ?>
-                                    <input type="checkbox" name="check_all" id="<?= $rnd ?>" class="check_all"/>
-                                    <label for="<?= $rnd ?>">All</label>
-                                    <br/>
-                                <? } ?>
-                                <? if ($fieldData["MULTIPLE"] === "Y") { ?>
-                                    <? foreach ($fieldData['ITEMS'] as $itemKey => $value) { ?>
-                                        <input type="checkbox" name="<?= $fieldName . '[]' ?>"
-                                               id="<?= $fieldName . '_' . $value['ID'] ?>" <?= (in_array($value['ID'], $arResult["USER_DATA"][$fieldName]) || $arResult["USER_DATA"][$fieldName] == $value['ID']) ? "checked" : "" ?>
-                                               value="<?= $value['ID'] ?>"/>
-                                        <label for="<?= $fieldName . '_' . $value['ID'] ?>"><?= $value['UF_VALUE'] ?></label>
-                                        <br/>
-                                    <? } ?>
-                                <? } else { ?>
-                                    <select name="<?= $fieldName ?>" id="">
-                                        <? foreach ($fieldData['ITEMS'] as $itemKey => $value) { ?>
-                                            <option <?= (in_array($value['ID'], $arResult["USER_DATA"][$fieldName]) || $arResult["USER_DATA"][$fieldName] == $value['ID']) ? "selected" : "" ?>
-                                                    value="<?= $value['ID'] ?>"><?= $value['UF_VALUE'] ?: $value['UF_NAME'] ?></option>
-                                        <? } ?>
-                                    </select>
-                                <? } ?>
-                            </td>
-                            <? break;
-                        case "file":
-                            ?>
-                            <td>
-                                <input type="file" name="<?= $fieldName ?>" value="">
-                            </td>
+<?=$arResult["FORM_HEADER"]?>
+<?=bitrix_sessid_post()?>
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="form_edit">
+	<tbody>
+<?if ($arResult["FORM_NOTE"]):?>
+		<tr>
+			<td colspan="2" align="center" style="color:#F00"><?=$arResult["FORM_NOTE"]?></td>
+		</tr>
+<?endif?>
+<?if ($arResult["isFormErrors"] == "Y"):?>
+		<tr>
+			<td colspan="2" align="center" style="color:#F00"><?=$arResult["FORM_ERRORS_TEXT"];?></td>
+		</tr>
+<?endif;?>
+	<?
+	if ($arResult["isAccessFormParams"] == "Y")
+	{?>
+		<tr>
+			<td width="130">ID:</td>
+			<td><?=$arResult["RESULT_ID"]?></td>
+		</tr>
+	<?
+    }
 
-                            <?
-                            break;
-                        case "boolean":
-                            ?>
-                            <td class="checkbox">
-                                <input type="hidden" name="<?= $fieldName ?>" value="0">
-                                <input type="checkbox" name="<?= $fieldName ?>"
-                                       value="1" <?= $arResult["USER_DATA"][$fieldName] ? "checked" : "" ?>>
-                                <label for="<?= $fieldName ?>"></label>
-                            </td>
-                            <?
-                            break;
-                        default:
-                            ?>
-                            <td>
-                                <input type="text" name="<?= $fieldName ?>" id="<?= $fieldName ?>"
-                                       value="<?= $arResult["USER_DATA"][$fieldName] ?>">
-                            </td>
-                            <?
-                            break;
-                    } ?>
-                </tr>
-            <? } ?>
-        <? } ?>
-        <tr>
-            <td colspan="2" class="send">
-                <button type="submit"><?= GetMessage("FORM_APPLY") ?></button>
-                <button type="reset"><?= GetMessage("FORM_RESET"); ?></button>
-            </td>
-        </tr>
-    </table>
-</form>
+/***********************************************************************************
+					Form questions
+***********************************************************************************/
+		?>
+	<?
+	foreach ($arResult["QUESTIONS"] as $FIELD_SID => $arQuestion)
+	{
+		if($arQuestion["TYPE"] == "check"){
+	?>
+	<tr>
+		<td valign="top">
+			<?if (is_array($arResult["FORM_ERRORS"]) && array_key_exists($FIELD_SID, $arResult['FORM_ERRORS'])):?>
+			<span class="error-fld" title="<?=$arResult["FORM_ERRORS"][$FIELD_SID]?>"></span>
+			<?endif;?>
+			<?=$arQuestion["CAPTION"]?><?=$arResult["arQuestions"][$FIELD_SID]["REQUIRED"] == "Y" ? $arResult["REQUIRED_SIGN"] : ""?>
+			<?=$arQuestion["IS_INPUT_CAPTION_IMAGE"] == "Y" ? "<br />".$arQuestion["IMAGE"]["HTML_CODE"] : ""?>
+		</td>
+		<td class="checkbox">
+		    <? $rnd = randString(7);?>
+		    <? if(count($arQuestion["STRUCTURE"]) > 1):?>
+    		    <input type="checkbox" name="check_all" id="<?= $rnd?>" class="check_all" />
+    		    <label for="<?= $rnd?>">All</label>
+    		    <br />
+		    <? endif;?>
+		    <?=$arQuestion["HTML_CODE"]?>
+		</td>
+	</tr>
+	<?
+		}
+		elseif($arQuestion["TYPE"] == "text" && $arQuestion["STRUCTURE"][0]["FIELD_TYPE"] == "radio")//дикий костыль для радиобатонов
+		{
+			?>
+	<tr>
+		<td valign="top">
+			<?if (is_array($arResult["FORM_ERRORS"]) && array_key_exists($FIELD_SID, $arResult['FORM_ERRORS'])):?>
+			<span class="error-fld" title="<?=$arResult["FORM_ERRORS"][$FIELD_SID]?>"></span>
+			<?endif;?>
+			<?=$arQuestion["CAPTION"]?><?=$arResult["arQuestions"][$FIELD_SID]["REQUIRED"] == "Y" ? $arResult["REQUIRED_SIGN"] : ""?>
+			<?=$arQuestion["IS_INPUT_CAPTION_IMAGE"] == "Y" ? "<br />".$arQuestion["IMAGE"]["HTML_CODE"] : ""?>
+		</td>
+		<td class="radio">
+		    <?=$arQuestion["HTML_CODE"]?>
+		</td>
+	</tr>
+			<?
+		}
+		else{
+	?>
+	<tr>
+		<td>
+			<?if (is_array($arResult["FORM_ERRORS"]) && array_key_exists($FIELD_SID, $arResult['FORM_ERRORS'])):?>
+			<span class="error-fld" title="<?=$arResult["FORM_ERRORS"][$FIELD_SID]?>"></span>
+			<?endif;?>
+			<?=$arQuestion["CAPTION"]?><?=$arResult["arQuestions"][$FIELD_SID]["REQUIRED"] == "Y" ? $arResult["REQUIRED_SIGN"] : ""?>
+			<?=$arQuestion["IS_INPUT_CAPTION_IMAGE"] == "Y" ? "<br />".$arQuestion["IMAGE"]["HTML_CODE"] : ""?>
+		</td>
+		<td><?=$arQuestion["HTML_CODE"]?></td>
+	</tr>
+	<?
+		}
+	} //endwhile
+	?>
+	<tr>
+		<td colspan="2"  class="send">
+			<input type="hidden" name="web_form_apply" value="Y" /><input type="submit" name="web_form_apply" value="<?=GetMessage("FORM_APPLY")?>" />
+			&nbsp;<input type="reset" value="<?=GetMessage("FORM_RESET");?>" />
+		</td>
+	</tr>
+</table>
+<?=$arResult["FORM_FOOTER"]?>
 <script type="text/javascript">
-    $("input.check_all").change(function () {
-        var input = $(this);
-        var td = input.closest("td.checkbox");
+$("input.check_all").change(function(){
+	var input = $(this);
+	var td = input.closest("td.checkbox");
 
-        if (!input.prop("checked")) {
-            td.find("input[type=checkbox][name!=" + input.attr("name") + "]").each(function () {
-                $(this).prop("checked", false)
-            });
-        }
-        else {
-            td.find("input[type=checkbox][name!=" + input.attr("name") + "]").each(function () {
-                $(this).prop("checked", true)
-            });
-        }
-    });
+	if(!input.prop("checked"))
+	{
+		td.find("input[type=checkbox][name!=" + input.attr("name") + "]").each(function(){$(this).prop("checked", false)});
+	}
+	else
+	{
+		td.find("input[type=checkbox][name!=" + input.attr("name") + "]").each(function(){$(this).prop("checked", true)});
+	}
+});
 </script>
+<?//print_r($arResult);?>
