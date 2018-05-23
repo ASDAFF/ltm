@@ -38,7 +38,7 @@ if (CModule::IncludeModule("highloadblock")) {
                         while ($dayTime = $rsDayTime->Fetch()){
                             $arHlBlockInfo[$arRes["FIELD_NAME"]]["DAY_TIMES"][$dayTime['ID']] = $dayTime;
                         }
-                        $arHlBlockInfo[$arRes["FIELD_NAME"]]["IGNORE_FIELDS"] = ["ID", "UF_GUEST_ID"];
+                        $arHlBlockInfo[$arRes["FIELD_NAME"]]["HIDDEN_FIELDS"] = ["ID", "UF_GUEST_ID"];
                     }
                     $result = $entity_data_class::getList([
                         'filter' => $arrFilter,
@@ -60,8 +60,16 @@ if (CModule::IncludeModule("highloadblock")) {
             $postValues = $request->getPostList()->toArray();
             unset($postValues['sessid']);
             unset($postValues['check_all']);
-            echo "<pre>";
-            die(print_r($postValues));
+            $colleaguesIds = [];
+            foreach ($postValues['COLLEAGUE'] as $key=>$colleague){
+                $hlblock = HL\HighloadBlockTable::getById(18)->fetch();
+                $entity = HL\HighloadBlockTable::compileEntity($hlblock);
+                $entity_data_class = $entity->getDataClass();
+                $result = $entity_data_class::update($colleague['ID'], $colleague);
+                $colleaguesIds[] = $result->getId();
+            }
+            unset($postValues["COLLEAGUE"]);
+            $postValues["UF_COLLEAGUES"] = $colleaguesIds;
             $hlblock = HL\HighloadBlockTable::getById(intval($arParams["HLBLOCK_REGISTER_GUEST_ID"]))->fetch();
             $entity = HL\HighloadBlockTable::compileEntity($hlblock);
             $entity_data_class = $entity->getDataClass();

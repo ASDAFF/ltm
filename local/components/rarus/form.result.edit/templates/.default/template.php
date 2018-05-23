@@ -23,24 +23,25 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
                     $dayTimeText = $dayTime["VALUE"];
                     $dayTimeCode = strtoupper($dayTime["XML_ID"]); ?>
                     <? foreach ($colleague as $key => $value) { ?>
-                        <? if (!in_array($key, $fieldData["IGNORE_FIELDS"])) { ?>
+                        <? if (!in_array($key, $fieldData["HIDDEN_FIELDS"])) { ?>
                             <tr>
                                 <td valign="top">
                                     <span><?= $key . '(' . $dayTimeText . ')' ?></span>
                                 </td>
-                                <td <?= $key === "UF_DAYTIME"?"class='checkbox'":""?>>
+                                <td <?= $key === "UF_DAYTIME" ? "class='checkbox'" : "" ?>>
                                     <? switch ($key) {
                                         case "UF_DAYTIME":
                                             ?>
                                             <?
                                             foreach ($arResult["FIELD_DATA"][$fieldName]["DAY_TIMES"] as $dayKey => $dayValue) {
                                                 ?>
-                                                <input type="checkbox" name="COLLEAGUE[<?= $dayTimeCode ?>][<?= $key ?>][]"
+                                                <input type="checkbox"
+                                                       name="COLLEAGUE[<?= $dayTimeCode ?>][<?= $key ?>][]"
                                                        id="<?= $key . '_' . $dayTimeCode . '_' . $dayValue['ID'] ?>" <?= (in_array($dayValue['ID'], $value) || $value == $dayValue['ID']) ? "checked" : "" ?>
                                                        value="<?= $dayValue['ID'] ?>"/>
                                                 <label for="<?= $key . '_' . $dayTimeCode . '_' . $dayValue['ID'] ?>"><?= $dayValue['VALUE'] ?></label>
                                                 <br/>
-                                            <?
+                                                <?
                                             } ?>
                                             <?
                                             break;
@@ -63,6 +64,8 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
                                     } ?>
                                 </td>
                             </tr>
+                        <? } else { ?>
+                            <input type="hidden" name="COLLEAGUE[<?= $dayTimeCode ?>][<?= $key ?>]" value="<?= $value ?>">
                         <? } ?>
                     <? } ?>
                 <? } ?>
