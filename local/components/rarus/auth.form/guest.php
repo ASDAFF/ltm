@@ -1,7 +1,10 @@
 <?
+use Bitrix\Highloadblock as HL;
+use Bitrix\Main\Entity;
 CModule::IncludeModule("form");
 CModule::IncludeModule("iblock");
 CModule::IncludeModule("forum");
+CModule::IncludeModule("hlblock");
 define('FID', 1);
 
 CModule::IncludeModule("doka.meetings");
@@ -22,6 +25,16 @@ else //если не админ получаем данные для текущ�
 
 $arResult["USER"] = $arUser;
 $userResultID;
+
+$hlblock = HL\HighloadBlockTable::getById(15)->fetch();
+$entity = HL\HighloadBlockTable::compileEntity($hlblock);
+$entity_data_class = $entity->getDataClass();
+$guestData = $entity_data_class::getList(array(
+    'select' => ['*'],
+    'filter' => ["UF_USER_ID" => $arUser["ID"]],
+    'order' => ['UF_USER_ID' => 'ASC']
+))->Fetch();
+$arUser['EXHIB_ID'] = $guestData['UF_EXHIB_ID'];
 if($arParams["EXHIB_CODE"])
 {
     // id результата заполнения формы гося
@@ -66,11 +79,11 @@ while($obElement = $rsElement->GetNextElement())
 
     $userExhibPropertyID = CFormMatrix::getPropertyIDByExh($arItem["ID"]);
 
-
-
     if(!$arUser[$userExhibPropertyID])
     {
-    	continue;
+        if($arUser["EXHIB_ID"] != $arItem["ID"]){
+            continue;
+        }
     }
 
     $formID = GUEST_FORM_ID;//id формы регистрации

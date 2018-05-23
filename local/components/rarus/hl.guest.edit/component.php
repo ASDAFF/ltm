@@ -31,7 +31,7 @@ if (CModule::IncludeModule("highloadblock")) {
                     $arrFilter = [];
                     if ($arRes["FIELD_NAME"] === "UF_COLLEAGUES") {
                         $arrFilter["ID"] = $arResult["USER_DATA"]["UF_COLLEAGUES"];
-                        $ufEnum = CUserTypeEntity::GetList( array(), array("ENTITY_ID" => "HLBLOCK_" . 18, 'LANG' => LANGUAGE_ID, 'FIELD_NAME' => 'UF_DAYTIME') )->Fetch();
+                        $ufEnum = CUserTypeEntity::GetList( array(), array("ENTITY_ID" => "HLBLOCK_" . $arParams["HLBLOCK_REGISTER_GUEST_COLLEAGUE_ID"], 'LANG' => LANGUAGE_ID, 'FIELD_NAME' => 'UF_DAYTIME') )->Fetch();
                         $rsDayTime = CUserFieldEnum::GetList(array(), array(
                             "USER_FIELD_ID" => $ufEnum['ID'],
                         ));
@@ -62,7 +62,7 @@ if (CModule::IncludeModule("highloadblock")) {
             unset($postValues['check_all']);
             $colleaguesIds = [];
             foreach ($postValues['COLLEAGUE'] as $key=>$colleague){
-                $hlblock = HL\HighloadBlockTable::getById(18)->fetch();
+                $hlblock = HL\HighloadBlockTable::getById($arParams["HLBLOCK_REGISTER_GUEST_COLLEAGUE_ID"])->fetch();
                 $entity = HL\HighloadBlockTable::compileEntity($hlblock);
                 $entity_data_class = $entity->getDataClass();
                 $result = $entity_data_class::update($colleague['ID'], $colleague);
