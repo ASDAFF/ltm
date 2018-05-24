@@ -1,0 +1,10 @@
+.form_edit td input, .form_edit td textarea, .form_edit td select{
+	width:250px;
+	}
+.form_edit td.send input{
+	width:100px;
+	}
+.form_edit td.checkbox input,
+.form_edit td.radio input{
+	width:20px;
+	}

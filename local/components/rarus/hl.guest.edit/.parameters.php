@@ -25,6 +25,12 @@ $arComponentParameters = array(
             "DEFAULT" => "15",
             "PARENT" => "DATA_SOURCE",
         ),
+        "USER_ID" => array(
+            "NAME" => GetMessage("COMP_FORM_PARAMS_RESULT_ID"),
+            "TYPE" => "STRING",
+            "DEFAULT" => "15",
+            "PARENT" => "DATA_SOURCE",
+        ),
 	),
 );
 ?>
