@@ -108,7 +108,7 @@ include($_SERVER["DOCUMENT_ROOT"] . $templateFolder . "/HLfunction.php");
             <? /*email*/ ?>
             <?= ShowText($arrFields['UF_EMAIL'], "EMAIL", "require email"); ?>
             <? /*confemail*/ ?>
-            <?= ShowText($arrFields['UF_EMAIL'], "CONF_EMAIL", "require confemail"); ?>
+            <?= ShowText($arrFields['UF_EMAIL'], "CONF_EMAIL", "require confemail", "Введите E-mail ещё раз"); ?>
             <? /*сайт*/ ?>
             <?= ShowText($arrFields['UF_SITE'], "WEB_SITE", "web"); ?>
             <div class="line-sep-small"></div>
@@ -152,7 +152,7 @@ include($_SERVER["DOCUMENT_ROOT"] . $templateFolder . "/HLfunction.php");
             <? /*Введите пароль*/ ?>
             <?= ShowPassword($arrFields["UF_PASSWORD"], "PASSWORD", "pass en"); ?>
             <? /*Повторите пароль*/ ?>
-            <?= ShowPassword($arrFields["UF_PASSWORD"], "CONF_PASSWORD", "confpass"); ?>
+            <?= ShowPassword($arrFields["UF_PASSWORD"], "CONF_PASSWORD", "confpass", "Повторите пароль"); ?>
             <div class="authorize-epilogue"><?= GetMessage("R_B_AUTHORIZE_EPILOGUE") ?></div>
             <div class="line-sep-small"></div>
 
