@@ -30,7 +30,7 @@ $arrPriorityField = ["UF_NORTH_AMERICA", "UF_EUROPE", "UF_SOUTH_AMERICA", "UF_AF
                                 continue;
                             } else { ?>
                                 <div class="form-group">
-                                    <label class="control-label" for="<?= $fieldName ?>"><?= $fieldName ?></label>
+                                    <label class="control-label" for="<?= $fieldName ?>"><?= $fieldData["EDIT_FORM_LABEL"]?:$fieldName ?></label>
                                     <div class="data-control">
                                         <select name="<?= $fieldName ?>" id="">
                                             <? foreach ($fieldData['ITEMS'] as $itemKey => $value) { ?>
@@ -49,7 +49,7 @@ $arrPriorityField = ["UF_NORTH_AMERICA", "UF_EUROPE", "UF_SOUTH_AMERICA", "UF_AF
                                 <? if (is_array($arResult["FORM_ERRORS"]) && array_key_exists($FIELD_SID, $arResult['FORM_ERRORS'])): ?>
                                     <span class="error-fld" title="<?= $arResult["FORM_ERRORS"][$FIELD_SID] ?>"></span>
                                 <? endif; ?>
-                                <label class="control-label" for="<?= $fieldName ?>"><?= $fieldName ?></label>
+                                <label class="control-label" for="<?= $fieldName ?>"><?= $fieldData["EDIT_FORM_LABEL"]?:$fieldName ?></label>
                                 <div class="data-control">
                                     <?
                                     if ($fieldName === "UF_DESCRIPTION") {
@@ -101,7 +101,7 @@ $arrPriorityField = ["UF_NORTH_AMERICA", "UF_EUROPE", "UF_SOUTH_AMERICA", "UF_AF
                                     <?= (count($fieldData['ITEMS']) == count($arResult["USER_DATA"][$fieldName])) ? "checked" : "" ?>/>
 
                                 <a href="javascript:void(0);" class="priority-toggle priority-name">
-                                    <ins><?= $fieldName ?></ins>
+                                    <ins><?= $fieldData["EDIT_FORM_LABEL"]?:$fieldName ?></ins>
                                 </a>
                                 <a href="javascript:void(0);" class="priority-toggle priority-switch">
                                     <ins>Показать все страны</ins>

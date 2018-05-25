@@ -51,14 +51,9 @@ function pre($arr, $name = NULL)
 }
 
 function c($item){
-    global $USER;
-    if ($USER->IsAdmin()){
-        if(is_array($item)){
-            echo '<pre>'; print_r($item); echo '</pre>';
-        }else{
-            echo $item;
-        }
-    }
+    echo '<pre>';
+    print_r($item);
+    echo '</pre>';
 }
 
 

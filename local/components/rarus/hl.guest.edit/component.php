@@ -1,9 +1,10 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die(); ?>
 
 <?
-
 use \Bitrix\Highloadblock as HL;
 use \Bitrix\Main\Context;
+
+const FILE_DIR = 'hlguest';
 
 if (CModule::IncludeModule("highloadblock")) {
 
@@ -13,9 +14,16 @@ if (CModule::IncludeModule("highloadblock")) {
     if($request->isPost()){
         if(check_bitrix_sessid()){
             $postValues = $request->getPostList()->toArray();
+            $files = $request->getFileList()->toArray();
             $guestId = $postValues['ID'];
             unset($postValues['sessid']);
             unset($postValues['check_all']);
+            foreach ($files as $key => $file){
+                $fileId = CFile::SaveFile($file, FILE_DIR);
+                if($fileId){
+                    $postValues[$key] = $fileId;
+                }
+            }
             if($arParams["FIELD_TO_SHOW"]){
                 foreach ($postValues as $key=>$value){
                     if(!in_array($key, $arParams["FIELD_TO_SHOW"])){

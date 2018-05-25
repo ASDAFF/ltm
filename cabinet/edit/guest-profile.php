@@ -75,7 +75,7 @@ if (isset($_REQUEST["formresult"]) && $_REQUEST["formresult"] == "editok") {
 }
 $APPLICATION->IncludeComponent(
     "rarus:hl.guest.edit",
-    "guest_colleague",
+    "guest_profile",
     [
         "HLBLOCK_REGISTER_GUEST_ID" => 15,
         "HLBLOCK_REGISTER_GUEST_COLLEAGUE_ID" => 18,
