@@ -1,7 +1,10 @@
 <?
+use Bitrix\Highloadblock as HL;
+use Bitrix\Main\Entity;
 CModule::IncludeModule("form");
 CModule::IncludeModule("iblock");
 CModule::IncludeModule("forum");
+CModule::IncludeModule("hlblock");
 define('FID', 1);
 
 CModule::IncludeModule("doka.meetings");
@@ -22,6 +25,16 @@ else //если не админ получаем данные для текущ�
 
 $arResult["USER"] = $arUser;
 $userResultID;
+
+$hlblock = HL\HighloadBlockTable::getById(15)->fetch();
+$entity = HL\HighloadBlockTable::compileEntity($hlblock);
+$entity_data_class = $entity->getDataClass();
+$guestData = $entity_data_class::getList(array(
+    'select' => ['*'],
+    'filter' => ["UF_USER_ID" => $arUser["ID"]],
+    'order' => ['UF_USER_ID' => 'ASC']
+))->Fetch();
+$arUser['EXHIB_ID'] = $guestData['UF_EXHIB_ID'];
 if($arParams["EXHIB_CODE"])
 {
     // id результата заполнения формы гося
@@ -66,11 +79,11 @@ while($obElement = $rsElement->GetNextElement())
 
     $userExhibPropertyID = CFormMatrix::getPropertyIDByExh($arItem["ID"]);
 
-
-
     if(!$arUser[$userExhibPropertyID])
     {
-    	continue;
+        if($arUser["EXHIB_ID"] != $arItem["ID"]){
+            continue;
+        }
     }
 
     $formID = GUEST_FORM_ID;//id формы регистрации
@@ -80,7 +93,7 @@ while($obElement = $rsElement->GetNextElement())
     if(in_array($confirmedGroup,$arUserGroups))
     {
         //id результата заполнения формы пользователя на текущую выставку
-        $userResultID = $arUser[$userExhibPropertyID];
+        $userResultID = $guestData['ID'];
         $arResult["CONFIRMED"] = "Y";
     }
     else
@@ -91,18 +104,6 @@ while($obElement = $rsElement->GetNextElement())
 
     if($userResultID)
     {
-        //получение результата заполнени формы пользователя
-        $arResultAnswerUser = array("RESULTS"=>array(), "QUESTIONS"=>array(), "ANSWERS"=>array(), "ANSWERS2"=>array());
-
-        CForm::GetResultAnswerArray(
-        $formID,
-        $arResultAnswerUser["QUESTIONS"],
-        $arResultAnswerUser["ANSWERS"],
-        $arResultAnswerUser["ANSWERS2"],
-        array("RESULT_ID" => $userResultID)
-        );
-
-
         $arProfile = array();
         $arUserAnswer = $arResultAnswerUser["ANSWERS"][$userResultID];
 
@@ -111,11 +112,11 @@ while($obElement = $rsElement->GetNextElement())
         $arProfile["TYPE"] = "GUEST";
         $arProfile["EXIBITION"] = $arItem["ID"];
 
-        $arProfile["NAME"] = $arUserAnswer[113][216]["USER_TEXT"];//FIELD_ID 113 , ANSWER_ID 216, TITLE => Имя
+        $arProfile["NAME"] = $guestData['UF_NAME'];
 
-        $arProfile["LAST_NAME"] = $arUserAnswer[114][217]["USER_TEXT"];//FIELD_ID 114 , ANSWER_ID 217, TITLE => Фамилия
+        $arProfile["LAST_NAME"] = $guestData['UF_SURNAME'];
 
-        $arProfile["PHOTO"] = $arUserAnswer[494][1312]["USER_FILE_ID"];//FIELD_ID 494 , ANSWER_ID 1312, TITLE => Фото
+        $arProfile["PHOTO"] = $guestData['UF_PHOTO'];
 
         if($arProfile["PHOTO"])
         {
