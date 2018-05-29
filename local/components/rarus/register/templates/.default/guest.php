@@ -168,6 +168,8 @@ include($_SERVER["DOCUMENT_ROOT"] . $templateFolder . "/HLfunction.php");
                 <?= ShowText($arrFieldsColleague["UF_JOB_TITLE"], "COLLEAGUE[MORNING][JOB_POST]", "en capitals", GetMessage("R_B_JOB_POST")); ?>
                 <? /*EAMIL коллеги на утро*/ ?>
                 <?= ShowText($arrFieldsColleague["UF_EMAIL"], "COLLEAGUE[MORNING][EMAIL]", "email", GetMessage("R_B_EMAIL")); ?>
+                <? /*Моб.телефон коллеги на утро*/ ?>
+                <?= ShowText($arrFieldsColleague["UF_MOBILE_PHONE"], "COLLEAGUE[MORNING][PHONE]", "en phone", GetMessage("R_B_PHONE")); ?>
             </div>
             <div class="line-sep-small"></div>
         </div>

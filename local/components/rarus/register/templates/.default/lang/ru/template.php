@@ -55,7 +55,8 @@ $MESS["R_B_NAME"] = "Имя";
 $MESS["R_B_LAST_NAME"] = "Фамилия";
 $MESS["R_B_SALUTATION"] = "Обращение";
 $MESS["R_B_JOB_POST"] = "Должность";
-$MESS["R_B_EMAIL"] = "e-mail";
+$MESS["R_B_EMAIL"] = "E-mail";
+$MESS["R_B_PHONE"] = "Мобильный телефон";
 
 $MESS["R_E_WEB_SITE"] = "Web-site";
 
