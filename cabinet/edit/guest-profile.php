@@ -74,7 +74,7 @@ if (isset($_REQUEST["formresult"]) && $_REQUEST["formresult"] == "editok") {
     echo "<p style='color:red;'>Внесенные изменения сохранены</p>";
 }
 $APPLICATION->IncludeComponent(
-    "rarus:hl.guest.edit",
+    "ds:hl.guest.edit",
     "guest_profile",
     [
         "HLBLOCK_REGISTER_GUEST_ID" => 15,
