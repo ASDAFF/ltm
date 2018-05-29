@@ -15,8 +15,6 @@ $needEvening = $arResult["USER_DATA"]["UF_EVENING"];
                     $colleague = $value;
                 }
             }
-            ?>
-            <?
             $dayTime = $day['XML_ID'];
             if ($dayTime === 'morning') {
                 if ($needMorning) {
@@ -36,7 +34,7 @@ $needEvening = $arResult["USER_DATA"]["UF_EVENING"];
             <? if ($colleague) { ?>
                 <input type="hidden" name="COLLEAGUE[<?= $dayTime ?>][ID]" value="<?= $colleague['ID'] ?>">
             <? }else{ ?>
-                <input type="hidden" name="COLLEAGUE[<?= $dayTime ?>][UF_MORNING][]" value="<?= $id ?>">
+                <input type="hidden" name="COLLEAGUE[<?= $dayTime ?>][UF_DAYTIME][]" value="<?= $id ?>">
             <? } ?>
             <div class="profil pull-overflow">
                 <div class="pull-overflow headline">Коллега на <?= $dayTime === 'morning' ? "утреннюю" : "вечернюю" ?>

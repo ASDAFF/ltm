@@ -1,10 +1,34 @@
 <?
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
+$needMorning = $arResult["USER_DATA"]["UF_MORNING"];
+$needEvening = $arResult["USER_DATA"]["UF_EVENING"];
 ?>
-<form action="" method="POST" enctype="multipart/form-data">
+<form action="<?=$arResult['FORM_URL']?>" method="POST" enctype="multipart/form-data">
     <?= bitrix_sessid_post() ?>
     <input type="hidden" name="ID" value="<?= $arResult["USER_DATA"]["ID"] ?>">
     <table width="100%" border="0" cellspacing="0" cellpadding="5" class="form_edit">
+        <?if($arResult['SAVED']){?>
+            <thead>
+            <tr>
+                <td>
+                    <p class="success">Успешно сохранено</p>
+                </td>
+            </tr>
+            </thead>
+        <?}elseif($arResult['ERRORS']){?>
+            <thead>
+            <tr>
+                <td>
+                    <p class="error">Ошибка</p>
+                    <ul>
+                        <?foreach ($arResult['ERRORS'] as $error){?>
+                            <?c($error)?>
+                        <?}?>
+                    </ul>
+                </td>
+            </tr>
+            </thead>
+        <?}?>
         <tbody>
         <?
         if ($arResult["USER_DATA"]["ID"]) {
@@ -18,15 +42,39 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
         ?>
         <? foreach ($arResult["FIELD_DATA"] as $fieldName => $fieldData) { ?>
             <? if ($fieldName === "UF_COLLEAGUES") { ?>
-                <? foreach ($fieldData['ITEMS'] as $colleague) { ?>
-                    <? $dayTime = $fieldData['DAY_TIMES'][reset($colleague["UF_DAYTIME"])];
-                    $dayTimeText = $dayTime["VALUE"];
-                    $dayTimeCode = strtoupper($dayTime["XML_ID"]); ?>
-                    <? foreach ($colleague as $key => $value) { ?>
+                <? foreach ($fieldData['DAY_TIMES'] as $id => $day) {
+                    $colleague = [];
+                    foreach ($fieldData["ITEMS"] as $value) {
+                        if (reset($value['UF_DAYTIME']) == $id) {
+                            $colleague = $value;
+                        }
+                    }
+                    $dayTime = $day['XML_ID'];
+                    $dayTimeText = $day["VALUE"];
+                    if ($dayTime === 'morning') {
+                        if ($needMorning) {
+                            $needMorning = false;
+                        } else {
+                            continue;
+                        }
+                    }
+                    if ($dayTime === 'evening') {
+                        if ($needEvening) {
+                            $needEvening = false;
+                        } else {
+                            continue;
+                        }
+                    }
+                    if ($colleague) { ?>
+                        <input type="hidden" name="COLLEAGUE[<?= $dayTime ?>][ID]" value="<?= $colleague['ID'] ?>">
+                    <? } else { ?>
+                        <input type="hidden" name="COLLEAGUE[<?= $dayTime ?>][UF_DAYTIME][]" value="<?= $id ?>">
+                    <? } ?>
+                    <? foreach ($fieldData['FIELDS'] as $key => $field) {?>
                         <? if (!in_array($key, $fieldData["HIDDEN_FIELDS"])) { ?>
                             <tr>
                                 <td valign="top">
-                                    <span><?= $key . '(' . $dayTimeText . ')' ?></span>
+                                    <span><?= ($field['EDIT_FORM_LABEL']?:$key) . ' (' . $dayTimeText . ')' ?></span>
                                 </td>
                                 <td <?= $key === "UF_DAYTIME" ? "class='checkbox'" : "" ?>>
                                     <? switch ($key) {
@@ -36,10 +84,10 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
                                             foreach ($arResult["FIELD_DATA"][$fieldName]["DAY_TIMES"] as $dayKey => $dayValue) {
                                                 ?>
                                                 <input type="checkbox"
-                                                       name="COLLEAGUE[<?= $dayTimeCode ?>][<?= $key ?>][]"
-                                                       id="<?= $key . '_' . $dayTimeCode . '_' . $dayValue['ID'] ?>" <?= (in_array($dayValue['ID'], $value) || $value == $dayValue['ID']) ? "checked" : "" ?>
+                                                       name="COLLEAGUE[<?= $dayTime ?>][<?= $key ?>][]"
+                                                       id="<?= $key . '_' . $dayTime . '_' . $dayValue['ID'] ?>" <?= (in_array($dayValue['ID'], $colleague[$key]) || $colleague[$key] == $dayValue['ID'] || $dayValue['XML_ID'] === $dayTime ) ? "checked" : "" ?>
                                                        value="<?= $dayValue['ID'] ?>"/>
-                                                <label for="<?= $key . '_' . $dayTimeCode . '_' . $dayValue['ID'] ?>"><?= $dayValue['VALUE'] ?></label>
+                                                <label for="<?= $key . '_' . $dayTime . '_' . $dayValue['ID'] ?>"><?= $dayValue['VALUE'] ?></label>
                                                 <br/>
                                                 <?
                                             } ?>
@@ -47,9 +95,9 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
                                             break;
                                         case "UF_SALUTATION":
                                             ?>
-                                            <select name="COLLEAGUE[<?= $dayTimeCode ?>][<?= $key ?>]" id="">
-                                                <? foreach ($arResult["FIELD_DATA"]["UF_SALUTATION"]["ITEMS"] as $itemKey => $itemValue) { ?>
-                                                    <option <?= (in_array($itemValue['ID'], $value) || $value == $itemValue['ID']) ? "selected" : "" ?>
+                                            <select name="COLLEAGUE[<?= $dayTime ?>][<?= $key ?>]" id="">
+                                                <? foreach ($field["ITEMS"] as $itemKey => $itemValue) { ?>
+                                                    <option <?= (in_array($itemValue['ID'], $colleague[$key]) || $colleague[$key] == $itemValue['ID']) ? "selected" : "" ?>
                                                             value="<?= $itemValue['ID'] ?>"><?= $itemValue['UF_VALUE'] ?: $itemValue['UF_NAME'] ?></option>
                                                 <? } ?>
                                             </select>
@@ -57,22 +105,23 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
                                             break;
                                         default:
                                             ?>
-                                            <input type="text" name="COLLEAGUE[<?= $dayTimeCode ?>][<?= $key ?>]"
-                                                   value="<?= $value ?>">
+                                            <input type="text" name="COLLEAGUE[<?= $dayTime ?>][<?= $key ?>]"
+                                                   value="<?= $colleague[$key] ?>">
                                             <?
                                             break;
                                     } ?>
                                 </td>
                             </tr>
                         <? } else { ?>
-                            <input type="hidden" name="COLLEAGUE[<?= $dayTimeCode ?>][<?= $key ?>]" value="<?= $value ?>">
+                            <input type="hidden" name="COLLEAGUE[<?= $dayTime ?>][<?= $key ?>]"
+                                   value="<?= $value ?>">
                         <? } ?>
                     <? } ?>
                 <? } ?>
             <? } else { ?>
                 <tr>
                     <td valign="top">
-                        <span><?= $fieldName ?></span>
+                        <span><?= $fieldData["EDIT_FORM_LABEL"]?:$fieldName ?></span>
                     </td>
                     <? switch ($fieldData["USER_TYPE_ID"]) {
                         case "hlblock": ?>
@@ -133,8 +182,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
         <? } ?>
         <tr>
             <td colspan="2" class="send">
-                <button type="submit"><?= GetMessage("FORM_APPLY") ?></button>
-                <button type="reset"><?= GetMessage("FORM_RESET"); ?></button>
+                <button type="submit">Применить</button>
             </td>
         </tr>
     </table>

@@ -29,7 +29,7 @@ $APPLICATION->SetTitle("Редактировать");
     );
 } else {
     $APPLICATION->IncludeComponent(
-        "rarus:hl.guest.edit",
+        "ds:hl.guest.edit",
         "",
         Array(
             "HLBLOCK_REGISTER_GUEST_ID" => 15,

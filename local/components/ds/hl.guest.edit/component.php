@@ -10,6 +10,7 @@ if (CModule::IncludeModule("highloadblock")) {
 
     $request = Context::getCurrent()->getRequest();
     $userId = $request->getQuery('id')?: $arParams["USER_ID"];
+    $arResult = [];
 
     if($request->isPost()){
         if(check_bitrix_sessid()){
@@ -31,14 +32,22 @@ if (CModule::IncludeModule("highloadblock")) {
                     }
                 }
             }
-            if($postValues['COLLEAGUE']){
+            if ($postValues['COLLEAGUE']) {
                 $colleaguesIds = [];
-                foreach ($postValues['COLLEAGUE'] as $key=>$colleague){
-                    $hlblock = HL\HighloadBlockTable::getById($arParams["HLBLOCK_REGISTER_GUEST_COLLEAGUE_ID"])->fetch();
+                foreach ($postValues['COLLEAGUE'] as $key => $colleague) {
+                    $hlblock = HL\HighloadBlockTable::getById($arParams['HLBLOCK_REGISTER_GUEST_COLLEAGUE_ID'])->fetch();
                     $entity = HL\HighloadBlockTable::compileEntity($hlblock);
                     $entity_data_class = $entity->getDataClass();
-                    $result = $entity_data_class::update($colleague['ID'], $colleague);
-                    $colleaguesIds[] = $result->getId();
+                    if ($colleague['ID']) {
+                        $result = $entity_data_class::update($colleague['ID'], $colleague);
+                    } else {
+                        $result = $entity_data_class::add($colleague);
+                    }
+                    if($result->isSuccess()){
+                        $colleaguesIds[] = $result->getId();
+                    }else{
+                        $arResult['ERRORS'][] = $result->getErrors();
+                    }
                 }
                 unset($postValues["COLLEAGUE"]);
                 $postValues["UF_COLLEAGUES"] = $colleaguesIds;
@@ -47,10 +56,14 @@ if (CModule::IncludeModule("highloadblock")) {
             $entity = HL\HighloadBlockTable::compileEntity($hlblock);
             $entity_data_class = $entity->getDataClass();
             $result = $entity_data_class::update($guestId, $postValues);
+            if($result->isSuccess()){
+                $arResult['SAVED'] = true;
+            }else{
+                $arResult['ERRORS'][] = $result->getErrors();
+            }
         }
     }
 
-    $arResult = [];
     if ($userId) {
         $hlblock = HL\HighloadBlockTable::getById($arParams["HLBLOCK_REGISTER_GUEST_ID"])->fetch();
         $entity = HL\HighloadBlockTable::compileEntity($hlblock);
@@ -63,8 +76,15 @@ if (CModule::IncludeModule("highloadblock")) {
             'filter' => $arrFilter,
         ])->Fetch();
         if($result){
+            $result['ALL_COLLEAGUES'] = 0;
+            if ($result['UF_MORNING']) {
+                $result['ALL_COLLEAGUES'] += 1;
+            }
+            if ($result['UF_EVENING']) {
+                $result['ALL_COLLEAGUES'] += 1;
+            }
             $arResult["USER_DATA"] = $result;
-            $rsData = CUserTypeEntity::GetList(array(), array("ENTITY_ID" => "HLBLOCK_" . $arParams["HLBLOCK_REGISTER_GUEST_ID"], 'LANG' => LANGUAGE_ID));
+            $rsData = CUserTypeEntity::GetList(array("SORT" => "ASC"), array("ENTITY_ID" => "HLBLOCK_" . $arParams["HLBLOCK_REGISTER_GUEST_ID"], 'LANG' => LANGUAGE_ID));
             $arHlBlockInfo = [];
             while ($arRes = $rsData->Fetch()) {
                 if(is_array($arParams["FIELD_TO_SHOW"]) && $arParams["FIELD_TO_SHOW"]){
@@ -80,6 +100,32 @@ if (CModule::IncludeModule("highloadblock")) {
                     $arrFilter = [];
                     if ($arRes["FIELD_NAME"] === "UF_COLLEAGUES") {
                         $arrFilter["ID"] = $arResult["USER_DATA"]["UF_COLLEAGUES"];
+                        $rsDataColleague = CUserTypeEntity::GetList(array(), array('ENTITY_ID' => 'HLBLOCK_' . $arParams['HLBLOCK_REGISTER_GUEST_COLLEAGUE_ID'], 'LANG' => LANGUAGE_ID));
+                        $arHlBlockInfoColleague = [];
+                        while ($arResColleague = $rsDataColleague->Fetch()) {
+                            if (is_array($arParams['FIELD_TO_SHOW']) && $arParams['FIELD_TO_SHOW']) {
+                                if (!in_array($arResColleague['FIELD_NAME'], $arParams['FIELD_TO_SHOW'])) {
+                                    continue;
+                                }
+                            }
+                            $arHlBlockInfoColleague[$arResColleague['FIELD_NAME']] = $arResColleague;
+                            if ($arResColleague['USER_TYPE_ID'] === 'hlblock') {
+                                $hlblockColleague = HL\HighloadBlockTable::getById($arResColleague['SETTINGS']['HLBLOCK_ID'])->fetch();
+                                $entityColleague = HL\HighloadBlockTable::compileEntity($hlblockColleague);
+                                $entity_data_classColleague = $entityColleague->getDataClass();
+                                $result = $entity_data_classColleague::getList();
+                                while ($arElem = $result->Fetch()) {
+                                    $arHlBlockInfoColleague[$arResColleague['FIELD_NAME']]['ITEMS'][$arElem['ID']] = $arElem;
+                                }
+                            } elseif ($arResColleague['USER_TYPE_ID'] === 'enumeration') {
+                                $rsDayTime = CUserFieldEnum::GetList(array('ID' => 'ASC'), array(
+                                    'USER_FIELD_ID' => $arResColleague['ID'],
+                                ));
+                                while ($dayTime = $rsDayTime->Fetch()) {
+                                    $arResColleague[$arResColleague['FIELD_NAME']]['DAY_TIMES'][$dayTime['ID']] = $dayTime;
+                                }
+                            }
+                        }
                         $ufEnum = CUserTypeEntity::GetList( array(), array("ENTITY_ID" => "HLBLOCK_" . $arParams["HLBLOCK_REGISTER_GUEST_COLLEAGUE_ID"], 'LANG' => LANGUAGE_ID, 'FIELD_NAME' => 'UF_DAYTIME') )->Fetch();
                         $rsDayTime = CUserFieldEnum::GetList(array(), array(
                             "USER_FIELD_ID" => $ufEnum['ID'],
@@ -87,7 +133,8 @@ if (CModule::IncludeModule("highloadblock")) {
                         while ($dayTime = $rsDayTime->Fetch()){
                             $arHlBlockInfo[$arRes["FIELD_NAME"]]["DAY_TIMES"][$dayTime['ID']] = $dayTime;
                         }
-                        $arHlBlockInfo[$arRes["FIELD_NAME"]]["HIDDEN_FIELDS"] = ["ID", "UF_GUEST_ID"];
+                        $arHlBlockInfo[$arRes["FIELD_NAME"]]["FIELDS"] = $arHlBlockInfoColleague;
+                        $arHlBlockInfo[$arRes["FIELD_NAME"]]["HIDDEN_FIELDS"] = ["ID", "UF_GUEST_ID", "UF_PHOTO"];
                     }
                     $result = $entity_data_class::getList([
                         'filter' => $arrFilter,
@@ -101,7 +148,7 @@ if (CModule::IncludeModule("highloadblock")) {
             $arResult["FIELD_DATA_CHECKED_ALL"] = ["UF_NORTH_AMERICA", "UF_EUROPE", "UF_SOUTH_AMERICA", "UF_AFRICA", "UF_ASIA", "UF_OCEANIA"];
         }
     } else {
-        echo ShowError("НЕТУ ЮЗЕРА");
+        echo ShowError("ERROR");
     }
 
     $arResult['FORM_URL'] = $request->getRequestUri();
