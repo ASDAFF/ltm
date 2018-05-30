@@ -19,3 +19,21 @@ p.error{
     color: red;
     font-size: 14px;
 }
+
+.member{
+    border-radius: 50%;
+    margin-bottom: 15px;
+    overflow: hidden;
+    position: relative;
+    width: 110px;
+}
+
+.member .photo-delete:hover
+{
+    background-color: #f00;
+    color: #fff;
+    display: block;
+}
+.photo-uploader input {
+    display: none !important;
+}

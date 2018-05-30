@@ -1,7 +1,7 @@
 <?
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
-$needMorning = $arResult["USER_DATA"]["UF_MORNING"];
-$needEvening = $arResult["USER_DATA"]["UF_EVENING"];
+$needMorning = $arResult["USER_DATA"]["UF_MORNING"] && $arResult["USER_DATA"]["USER"]["UF_MR"];
+$needEvening = $arResult["USER_DATA"]["UF_EVENING"] && $arResult["USER_DATA"]["USER"]["UF_EV"];
 ?>
 <form action="<?=$arResult['FORM_URL']?>" method="POST" enctype="multipart/form-data">
     <?= bitrix_sessid_post() ?>
@@ -96,12 +96,27 @@ $needEvening = $arResult["USER_DATA"]["UF_EVENING"];
                                         case "UF_SALUTATION":
                                             ?>
                                             <select name="COLLEAGUE[<?= $dayTime ?>][<?= $key ?>]" id="">
+                                                <option value="">Не выбрано</option>
                                                 <? foreach ($field["ITEMS"] as $itemKey => $itemValue) { ?>
                                                     <option <?= (in_array($itemValue['ID'], $colleague[$key]) || $colleague[$key] == $itemValue['ID']) ? "selected" : "" ?>
                                                             value="<?= $itemValue['ID'] ?>"><?= $itemValue['UF_VALUE'] ?: $itemValue['UF_NAME'] ?></option>
                                                 <? } ?>
                                             </select>
                                             <?
+                                            break;
+                                        case "UF_PHOTO":
+                                            if($dayTime === 'morning'){
+                                                $APPLICATION->IncludeComponent("rarus:photo.input",
+                                                    ".default",
+                                                    array(
+                                                        "WIDTH" => 110,
+                                                        "HEIGHT" => 110,
+                                                        "INPUT_NAME" => "COLLEAGUE[". $dayTime ."][UF_PHOTO]",
+                                                        "FILE_ID" => $colleague[$key] ?: false,
+                                                    ),
+                                                    false
+                                                );
+                                                }
                                             break;
                                         default:
                                             ?>
@@ -153,7 +168,18 @@ $needEvening = $arResult["USER_DATA"]["UF_EVENING"];
                         case "file":
                             ?>
                             <td>
-                                <input type="file" name="<?= $fieldName ?>" value="">
+                                <?
+                                $APPLICATION->IncludeComponent("rarus:photo.input",
+                                    ".default",
+                                    array(
+                                        "WIDTH" => 110,
+                                        "HEIGHT" => 110,
+                                        "INPUT_NAME" => $fieldName,
+                                        "FILE_ID" => $arResult["USER_DATA"][$fieldName] ?: false,
+                                    ),
+                                    false
+                                );
+                                ?>
                             </td>
 
                             <?

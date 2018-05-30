@@ -19,7 +19,26 @@ if (CModule::IncludeModule("highloadblock")) {
             $guestId = $postValues['ID'];
             unset($postValues['sessid']);
             unset($postValues['check_all']);
+            foreach ($files["COLLEAGUE"] as $field => $dataField) {
+                foreach ($dataField as $id => $value) {
+                    $newFiles[$id]["UF_PHOTO"][$field] = reset($value);
+                }
+            }
+            foreach ($newFiles as $id => $item) {
+                foreach ($item as $key => $file) {
+                    $fileId = CFile::SaveFile($file, FILE_DIR);
+                    if ($fileId) {
+                        $postValues['COLLEAGUE'][$id][$key] = $fileId;
+                    }
+                }
+            }
+            unset($files["COLLEAGUE"]);
             foreach ($files as $key => $file){
+                if($postValues[$key.'_del']){
+                    $postValues[$key] = false;
+                    unset($postValues[$key.'_del']);
+                    continue;
+                }
                 $fileId = CFile::SaveFile($file, FILE_DIR);
                 if($fileId){
                     $postValues[$key] = $fileId;
@@ -41,12 +60,16 @@ if (CModule::IncludeModule("highloadblock")) {
                     if ($colleague['ID']) {
                         $result = $entity_data_class::update($colleague['ID'], $colleague);
                     } else {
-                        $result = $entity_data_class::add($colleague);
+                        if(count(array_filter($colleague)) > 1){
+                            $result = $entity_data_class::add($colleague);
+                        }
                     }
-                    if($result->isSuccess()){
-                        $colleaguesIds[] = $result->getId();
-                    }else{
-                        $arResult['ERRORS'][] = $result->getErrors();
+                    if($result){
+                        if($result->isSuccess()){
+                            $colleaguesIds[] = $result->getId();
+                        }else{
+                            $arResult['ERRORS'][] = $result->getErrors();
+                        }
                     }
                 }
                 unset($postValues["COLLEAGUE"]);
@@ -76,6 +99,7 @@ if (CModule::IncludeModule("highloadblock")) {
             'filter' => $arrFilter,
         ])->Fetch();
         if($result){
+            $result["USER"] = CUser::GetByID($userId)->Fetch();
             $result['ALL_COLLEAGUES'] = 0;
             if ($result['UF_MORNING']) {
                 $result['ALL_COLLEAGUES'] += 1;
@@ -84,7 +108,7 @@ if (CModule::IncludeModule("highloadblock")) {
                 $result['ALL_COLLEAGUES'] += 1;
             }
             $arResult["USER_DATA"] = $result;
-            $rsData = CUserTypeEntity::GetList(array("SORT" => "ASC"), array("ENTITY_ID" => "HLBLOCK_" . $arParams["HLBLOCK_REGISTER_GUEST_ID"], 'LANG' => LANGUAGE_ID));
+            $rsData = CUserTypeEntity::GetList(array("SORT" => "ASC"), array("ENTITY_ID" => "HLBLOCK_" . $arParams["HLBLOCK_REGISTER_GUEST_ID"], 'LANG' => LANGUAGE_ID, 'EDIT_IN_LIST' => !(is_array($arParams["FIELD_TO_SHOW"]) && $arParams["FIELD_TO_SHOW"])?'Y':''));
             $arHlBlockInfo = [];
             while ($arRes = $rsData->Fetch()) {
                 if(is_array($arParams["FIELD_TO_SHOW"]) && $arParams["FIELD_TO_SHOW"]){
@@ -100,7 +124,7 @@ if (CModule::IncludeModule("highloadblock")) {
                     $arrFilter = [];
                     if ($arRes["FIELD_NAME"] === "UF_COLLEAGUES") {
                         $arrFilter["ID"] = $arResult["USER_DATA"]["UF_COLLEAGUES"];
-                        $rsDataColleague = CUserTypeEntity::GetList(array(), array('ENTITY_ID' => 'HLBLOCK_' . $arParams['HLBLOCK_REGISTER_GUEST_COLLEAGUE_ID'], 'LANG' => LANGUAGE_ID));
+                        $rsDataColleague = CUserTypeEntity::GetList(array(), array('ENTITY_ID' => 'HLBLOCK_' . $arParams['HLBLOCK_REGISTER_GUEST_COLLEAGUE_ID'], 'LANG' => LANGUAGE_ID, 'EDIT_IN_LIST' => !(is_array($arParams["FIELD_TO_SHOW"]) && $arParams["FIELD_TO_SHOW"])?'Y':''));
                         $arHlBlockInfoColleague = [];
                         while ($arResColleague = $rsDataColleague->Fetch()) {
                             if (is_array($arParams['FIELD_TO_SHOW']) && $arParams['FIELD_TO_SHOW']) {
@@ -134,7 +158,7 @@ if (CModule::IncludeModule("highloadblock")) {
                             $arHlBlockInfo[$arRes["FIELD_NAME"]]["DAY_TIMES"][$dayTime['ID']] = $dayTime;
                         }
                         $arHlBlockInfo[$arRes["FIELD_NAME"]]["FIELDS"] = $arHlBlockInfoColleague;
-                        $arHlBlockInfo[$arRes["FIELD_NAME"]]["HIDDEN_FIELDS"] = ["ID", "UF_GUEST_ID", "UF_PHOTO"];
+                        $arHlBlockInfo[$arRes["FIELD_NAME"]]["HIDDEN_FIELDS"] = ["ID", "UF_GUEST_ID"];
                     }
                     $result = $entity_data_class::getList([
                         'filter' => $arrFilter,
