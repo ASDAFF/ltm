@@ -41,7 +41,7 @@
   height: 26px;
   background-color: white;
 }
-.member .photo-delete.::before {
+.member .photo-delete::before {
   transform: rotate(45deg);
 }
 .member .photo-delete::after {
