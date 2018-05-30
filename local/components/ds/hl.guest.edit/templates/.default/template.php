@@ -34,7 +34,7 @@ $needEvening = $arResult["USER_DATA"]["UF_EVENING"];
         if ($arResult["USER_DATA"]["ID"]) {
             ?>
             <tr>
-                <td width="130">ID:</td>
+                <td width="130">ID результата:</td>
                 <td><?= $arResult["USER_DATA"]["ID"] ?></td>
             </tr>
             <?
