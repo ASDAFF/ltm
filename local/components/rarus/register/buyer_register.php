@@ -145,6 +145,7 @@ if (intval($USER_ID) > 0) {
                 "UF_SALUTATION" => $colleague["SALUTATION"],
                 "UF_JOB_TITLE" => $colleague["JOB_POST"],
                 "UF_EMAIL" => $colleague["EMAIL"],
+                "UF_MOBILE_PHONE" => $colleague["MOBILE"],
                 "UF_DAYTIME" => [$dayTime['ID']],
             ]);
             $colleaguesIds[] = $result->getId();
