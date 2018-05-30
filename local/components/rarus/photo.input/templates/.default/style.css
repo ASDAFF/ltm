@@ -25,7 +25,7 @@
 	top: calc(50% - 13px);
 	right: calc(50% - 13px);
 	cursor: pointer;
-	color: #f00;
+	background-color: red;
 	border-radius: 13px;
 	display: none;
 }
