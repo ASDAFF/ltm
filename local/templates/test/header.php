@@ -119,6 +119,8 @@
                         		}
                         	}
                     	}
+
+                        $_SESSION["USER_TYPE"] = $userType;
                     }
 
 			        if("PARTICIPANT" == $userType /* && ("Y" == PARTICIPANT_CABINET || $USER->IsAdmin())*/)
