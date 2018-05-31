@@ -36,3 +36,8 @@ $request = \Bitrix\Main\HttpContext::getCurrent()->getRequest();
 		<input type="submit" value="<?=Loc::getMessage('STORAGE_P_SUBMIT')?>">
 	</form>
 </div>
+<script>
+    $(function () {
+        $('form[name=inworking]').attr('action', window.location.href)
+    }());
+</script>
