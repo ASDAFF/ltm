@@ -2,6 +2,7 @@
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 $arrPriorityField = ["UF_NORTH_AMERICA", "UF_EUROPE", "UF_SOUTH_AMERICA", "UF_AFRICA", "UF_ASIA", "UF_OCEANIA"];
 ?>
+<script>LANGUAGE_ID = 'ru';</script>
 <form action="<?=$arResult['FORM_URL']?>" method="POST" enctype="multipart/form-data">
     <?= bitrix_sessid_post() ?>
     <input type="hidden" name="ID" value="<?= $arResult["USER_DATA"]["ID"] ?>">
