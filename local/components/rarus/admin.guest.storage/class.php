@@ -82,7 +82,7 @@ class CAdminGuestStorage extends CBitrixComponent
 		$request = self::getRequest();
 		$obGS = new CLTMGuestStorage();
 		$obGS->deleteUser($request->get('ID'));
-		LocalRedirect($this->arResult['ACTION_URL']);
+		LocalRedirect($request->getRequestUri());
 	}
 
 	/**

@@ -51,10 +51,11 @@ $request = \Bitrix\Main\HttpContext::getCurrent()->getRequest();
 				<table class="table">
 					<thead>
 					<tr>
+<!--                        --><?//c($arResult)?>
 						<?$orderSort = 'asc'; $class=""; if('ID' == $arResult["SORT"]) {$class = 'active'; if($arResult['ORDER'] == 'asc') { $orderSort = 'desc';}}?>
-						<th><a href="?sort=ID&order=<?=$orderSort;?>" class="sort-title <??>"><?=Loc::getMessage('STORAGE_ID')?></a></th>
+						<th><a href="?sort=ID&order=<?=$orderSort;?>" class="sort-title <?=$class?>"><?=Loc::getMessage('STORAGE_ID')?></a></th>
 						<?$orderSort = 'asc'; $class=""; if('UF_LOGIN' == $arResult["SORT"]) {$class = 'active'; if($arResult['ORDER'] == 'asc') { $orderSort = 'desc';}}?>
-						<th><a href="?sort=UF_LOGIN&order=<?=$orderSort;?>" class="sort-title <??>"><?=Loc::getMessage('STORAGE_LOGIN')?></a></th>
+						<th><a href="?sort=UF_LOGIN&order=<?=$orderSort;?>" class="sort-title <?=$class?>"><?=Loc::getMessage('STORAGE_LOGIN')?></a></th>
 						<? foreach($arParams["FIELDS"] as $questionID): ?>
 							<th>
 								<?
