@@ -85,3 +85,7 @@
 	background: url('images/radio_act.png') no-repeat scroll 0 0 transparent;
 	color: #000000;
 }
+
+.sort-title.active {
+	color: #66CCFD;
+}
