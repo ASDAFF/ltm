@@ -1,8 +1,10 @@
 <?php
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 
-use Bitrix\Highloadblock as HL;
-use Bitrix\Main\Loader;
+use Bitrix\Highloadblock as HL,
+    Bitrix\Main\Loader,
+    PhpOffice\PhpSpreadsheet\Spreadsheet,
+    PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 Loader::includeModule('highloadblock');
 
@@ -23,8 +25,8 @@ class XlsxGenerator extends CBitrixComponent
             ],
         ];
         $result = $this->getGuestCompanyInfo($parameters);
-        c($this->getFieldsData(15));
-        $this->includeComponentTemplate();
+        $this->getFieldsData($this->arParams['REGISTER_GUEST_ENTITY_ID']);
+        $this->generateXlsx();
     }
 
     private function getEntityClass($id)
@@ -72,25 +74,42 @@ class XlsxGenerator extends CBitrixComponent
         if (intval($hlblockId) !== 0) {
             $userTypes = CUserTypeEntity::GetList(array(), array('ENTITY_ID' => 'HLBLOCK_' . $hlblockId, 'LANG' => LANGUAGE_ID));
             while ($data = $userTypes->Fetch()) {
-                switch ($data['USER_TYPE_ID']) {
-                    case 'hlblock':
-                        
-                        break;
-                    case 'enumeration':
-                        $enData = CUserFieldEnum::GetList(array('ID' => 'ASC'), array(
-                            'USER_FIELD_ID' => $data['ID'],
-                        ));
-                        while ($enDataItem = $enData->Fetch()) {
-                            $data['ITEMS'][$enDataItem['ID']] = $enDataItem;
-                        }
-                        $result[$data['FIELD_NAME']] = $data;
-                        break;
-                    default:
-                        $result[$data['FIELD_NAME']] = $data;
-                        break;
+                if (in_array($data['FIELD_NAME'], $this->arParams['SHOW_FIELDS_IN_FILE'])) {
+                    switch ($data['USER_TYPE_ID']) {
+                        case 'enumeration':
+                            $enData = CUserFieldEnum::GetList(array('ID' => 'ASC'), array(
+                                'USER_FIELD_ID' => $data['ID'],
+                            ));
+                            while ($enDataItem = $enData->Fetch()) {
+                                $data['ITEMS'][$enDataItem['ID']] = $enDataItem;
+                            }
+                            $result[$data['FIELD_NAME']] = $data;
+                            break;
+                        default:
+                            $result[$data['FIELD_NAME']] = $data;
+                            break;
+                    }
                 }
             }
         }
         return $result;
+    }
+
+    public function generateArray(){
+
+    }
+
+    public function generateXlsx()
+    {
+//        $spreadsheet = new Spreadsheet();
+//        $sheet = $spreadsheet->getActiveSheet();
+//        $sheet->setCellValue('A1', 'Hello World !');
+//
+//        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+//        header('Content-Disposition: attachment;filename="myfile.xlsx"');
+//        header('Cache-Control: max-age=0');
+//
+//        $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
+//        $writer->save('php://output');
     }
 }

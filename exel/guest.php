@@ -11,5 +11,20 @@ $APPLICATION->IncludeComponent(
         'FORMAT_TYPE' => 'COMPANY', // [COMPANY, PEOPLE]
         'REGISTER_GUEST_ENTITY_ID' => REGISTER_GUEST_ENTITY_ID,
         'REGISTER_GUEST_COLLEAGUES_ENTITY_ID' => REGISTER_GUEST_COLLEAGUES_ENTITY_ID,
+        'SHOW_FIELDS_IN_FILE' => [
+            'UF_COMPANY',
+            'UF_NAME',
+            'UF_SURNAME',
+            'UF_SALUTATION',
+            'UF_POSITION',
+            'UF_EMAIL',
+            'UF_PHONE',
+            'UF_MOBILE',
+            'UF_SKYPE',
+            'UF_ADDRESS',
+            'UF_COUNTRY',
+            'UF_SITE',
+            'UF_HOTEL',
+        ]
     ]
 );
