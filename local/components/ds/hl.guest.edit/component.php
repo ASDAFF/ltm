@@ -166,6 +166,13 @@ if (CModule::IncludeModule("highloadblock")) {
                     while ($arElem = $result->Fetch()) {
                         $arHlBlockInfo[$arRes["FIELD_NAME"]]["ITEMS"][$arElem["ID"]] = $arElem;
                     }
+                }elseif ($arRes['USER_TYPE_ID'] === 'enumeration') {
+                    $rsData = CUserFieldEnum::GetList(array('ID' => 'ASC'), array(
+                        'USER_FIELD_ID' => $arRes['ID'],
+                    ));
+                    while ($data = $rsData->Fetch()) {
+                        $arHlBlockInfo[$arRes['FIELD_NAME']]['ITEMS'][$data['ID']] = $data;
+                    }
                 }
             }
             $arResult["FIELD_DATA"] = $arHlBlockInfo;
