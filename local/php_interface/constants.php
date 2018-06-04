@@ -64,4 +64,7 @@ define('GROUP_KIEV15', 47);
 
 //Форма гостя
 //ID формы гостей
-define('ID_FORM_GUEST', 10);?>
+define('ID_FORM_GUEST', 10);
+
+define('REGISTER_GUEST_ENTITY_ID', 15);
+define('REGISTER_GUEST_COLLEAGUES_ENTITY_ID', 18);
