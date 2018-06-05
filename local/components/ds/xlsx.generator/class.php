@@ -8,6 +8,7 @@ use Bitrix\Highloadblock as HL,
     PhpOffice\PhpSpreadsheet\IOFactory;
 
 Loader::includeModule('highloadblock');
+Loader::includeModule('iblock');
 
 class XlsxGenerator extends CBitrixComponent
 {
@@ -200,8 +201,6 @@ class XlsxGenerator extends CBitrixComponent
                 $result[] = $colleague;
             }
         }
-        c($result);
-        die();
         return $result;
     }
 
@@ -234,12 +233,48 @@ class XlsxGenerator extends CBitrixComponent
             }
             $sheet->setAutoFilter('A1:' . $alphabet[count($header) - 1] . 1);
             header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-            header('Content-Disposition: attachment;filename="myfile.xlsx"');
+            header('Content-Disposition: attachment;filename="' . $this->getFileName() . '"');
             header('Cache-Control: max-age=0');
             $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
             $writer->save('php://output');
         } catch (Exception $exception) {
             die($exception->getMessage());
         }
+    }
+
+    public function getFileName(){
+        $cache = Cache::createInstance();
+        if ($cache->initCache(7200, "exhib" . $this->arParams['EXHIBITION_ID'])) {
+            $exib = $cache->getVars();
+        } elseif ($cache->startDataCache()) {
+            $exib = CIBlockElement::GetByID($this->arParams['EXHIBITION_ID'])->Fetch();
+            $cache->endDataCache($exib);
+        }
+        $result = 'Гости ' . $exib['NAME'];
+        switch ($this->arParams['GUEST_TYPE']) {
+            case 'MORNING':
+                $result .= ' (Утро)';
+                break;
+            case 'EVENING':
+                $result .= ' (Вечер)';
+                break;
+            case 'HB':
+                $result .= ' (HB)';
+                break;
+            case 'SPAM':
+                $result .= ' (Спам)';
+                break;
+            case 'UNCONFIRMED':
+                $result .= ' (Неподтверждёные)';
+                break;
+        }
+        if ($this->arParams['FORMAT_TYPE'] === 'COMPANY') {
+            $result .= ' - по компаниям.xlsx';
+        } elseif ($this->arParams['FORMAT_TYPE'] === 'PEOPLE') {
+            $result .= ' - по людям.xlsx';
+        }else{
+            $result .= '.xlsx';
+        }
+        return $result;
     }
 }
