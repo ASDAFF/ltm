@@ -1,30 +1,75 @@
 <?php
+define('NEED_AUTH', true);
 //if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die();
 require($_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/main/include/prolog_before.php');
+use Bitrix\Main\Context;
+$request = Context::getCurrent()->getRequest();
+$type = $request->get('GUEST_TYPE') ?: 'EVENING';
+$format_type = $request->get('FORMAT_TYPE') ?: 'COMPANY';
+$exhibition_id = $request->get('EXHIBITION_ID');
+$show_fields = [];
+if ($format_type === 'COMPANY') {
+    switch ($type) {
+        default:
+            $show_fields = [
+                'ID',
+                'UF_COMPANY',
+                'UF_NAME',
+                'UF_SURNAME',
+                'UF_SALUTATION',
+                'UF_POSITION',
+                'UF_EMAIL',
+                'UF_PHONE',
+                'UF_MOBILE',
+                'UF_SKYPE',
+                'UF_COLLEAGUES_UF_NAME',
+                'UF_COLLEAGUES_UF_SURNAME',
+                'UF_COLLEAGUES_UF_SALUTATION',
+                'UF_COLLEAGUES_UF_JOB_TITLE',
+                'UF_COLLEAGUES_UF_EMAIL',
+                'UF_COLLEAGUES_UF_MOBILE_PHONE',
+                'UF_ADDRESS',
+                'UF_COUNTRY',
+                'UF_SITE',
+                'UF_HOTEL',
+            ];
+            break;
+    }
+} elseif ($format_type === 'PEOPLE') {
+    switch ($type) {
+        default:
+            $show_fields = [
+                'ID',
+                'UF_COMPANY',
+                'UF_NAME',
+                'UF_SURNAME',
+                'UF_SALUTATION',
+                'UF_POSITION',
+                'UF_EMAIL',
+                'UF_PHONE',
+                'UF_MOBILE',
+                'UF_SKYPE',
+                'UF_ADDRESS',
+                'UF_COUNTRY',
+                'UF_SITE',
+                'UF_HOTEL',
+            ];
+            break;
+    }
+}else{
+    exit('Нужен правильный тип');
+}
+
 
 $APPLICATION->IncludeComponent(
     'ds:xlsx.generator',
     '',
     [
-        'EXHIBITION_ID' => '19485',
-        'GUEST_TYPE' => '', // [MORNING, EVENING, HB, SPAM, UNCONFIRMED]
-        'FORMAT_TYPE' => 'COMPANY', // [COMPANY, PEOPLE]
+        'EXHIBITION_ID' => $exhibition_id,
+        'GUEST_TYPE' => $type, // [MORNING, EVENING, HB, SPAM, UNCONFIRMED]
+        'FORMAT_TYPE' => $format_type, // [COMPANY, PEOPLE]
         'REGISTER_GUEST_ENTITY_ID' => REGISTER_GUEST_ENTITY_ID,
         'REGISTER_GUEST_COLLEAGUES_ENTITY_ID' => REGISTER_GUEST_COLLEAGUES_ENTITY_ID,
-        'SHOW_FIELDS_IN_FILE' => [
-            'UF_COMPANY',
-            'UF_NAME',
-            'UF_SURNAME',
-            'UF_SALUTATION',
-            'UF_POSITION',
-            'UF_EMAIL',
-            'UF_PHONE',
-            'UF_MOBILE',
-            'UF_SKYPE',
-            'UF_ADDRESS',
-            'UF_COUNTRY',
-            'UF_SITE',
-            'UF_HOTEL',
-        ]
+        'SHOW_FIELDS_IN_FILE' => $show_fields
     ]
 );
