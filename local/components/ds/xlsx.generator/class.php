@@ -258,31 +258,31 @@ class XlsxGenerator extends CBitrixComponent
                     }
                 }
                 if(is_array($item[$headCode])){
-                    $tmpData[$headCode] = array_reduce($item[$headCode], function ($carry, $item){
+                    $tmpData[$headCode] = trim(array_reduce($item[$headCode], function ($carry, $item){
                         if($carry){
                             $carry .= ', ' . $item['UF_VALUE'];
                         }else{
                             $carry = $item['UF_VALUE'];
                         }
                         return $carry;
-                    });
+                    }));
                 }else{
-                    $tmpData[$headCode] = $item[$headCode];
+                    $tmpData[$headCode] = trim($item[$headCode]);
                 }
                 if ($this->arParams['FORMAT_TYPE'] === 'PEOPLE') {
                     foreach ($item['UF_COLLEAGUES'] as $ckey => $colleague) {
                         switch ($headCode) {
                             case 'UF_POSITION':
-                                $tmpColleague[$ckey]['UF_POSITION'] = $colleague['UF_JOB_TITLE'];
+                                $tmpColleague[$ckey]['UF_POSITION'] = trim($colleague['UF_JOB_TITLE']);
                                 break;
                             case 'UF_MOBILE':
-                                $tmpColleague[$ckey]['UF_MOBILE'] = $colleague['UF_JOB_TITLE'];
+                                $tmpColleague[$ckey]['UF_MOBILE'] = trim($colleague['UF_JOB_TITLE']);
                                 break;
                             default:
                                 if ($colleague[$headCode]) {
-                                    $tmpColleague[$ckey][$headCode] = $colleague[$headCode];
+                                    $tmpColleague[$ckey][$headCode] = trim($colleague[$headCode]);
                                 } else {
-                                    $tmpColleague[$ckey][$headCode] = $item[$headCode];
+                                    $tmpColleague[$ckey][$headCode] = trim($item[$headCode]);
                                 }
                                 break;
                         }

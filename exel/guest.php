@@ -37,8 +37,6 @@ if ($format_type === 'COMPANY') {
                 'UF_POSTCODE',
                 'UF_DESCRIPTION',
                 'UF_PRIORITY_AREAS',
-                'UF_SITE',
-                'UF_HOTEL',
                 'Приоритетные направления' => [
                     'UF_NORTH_AMERICA',
                     'UF_EUROPE',
@@ -46,7 +44,9 @@ if ($format_type === 'COMPANY') {
                     'UF_AFRICA',
                     'UF_ASIA',
                     'UF_OCEANIA',
-                ]
+                ],
+                'UF_SITE',
+                'UF_HOTEL',
             ];
             break;
     }
@@ -67,7 +67,19 @@ if ($format_type === 'COMPANY') {
                 'UF_MOBILE',
                 'UF_SKYPE',
                 'UF_ADDRESS',
+                'UF_CITY',
                 'UF_COUNTRY',
+                'UF_POSTCODE',
+                'UF_DESCRIPTION',
+                'UF_PRIORITY_AREAS',
+                'Приоритетные направления' => [
+                    'UF_NORTH_AMERICA',
+                    'UF_EUROPE',
+                    'UF_SOUTH_AMERICA',
+                    'UF_AFRICA',
+                    'UF_ASIA',
+                    'UF_OCEANIA',
+                ],
                 'UF_SITE',
                 'UF_HOTEL',
             ];
