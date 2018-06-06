@@ -1,5 +1,5 @@
 <?php
-if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
+if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die();
 
 use Bitrix\Highloadblock as HL,
     Bitrix\Main\Loader,
@@ -51,61 +51,96 @@ class XlsxGenerator extends CBitrixComponent
                 return [];
             }
             while ($data = $rsData->fetch()) {
+                if ($hlblock === $this->arParams['REGISTER_GUEST_ENTITY_ID']) {
+                    $exib = $this->getExhibition();
+                    $arUserFilter = ['ID' => $data['UF_USER_ID'], 'ACTIVE' => 'Y', 'GROUPS_ID' => $exib['PROPERTY']['C_GUESTS_GROUP']['VALUE']];
+                    switch ($this->arParams['GUEST_TYPE']) {
+                        case 'MORNING':
+                            $arUserFilter['UF_MR'] = true;
+                            break;
+                        case 'EVENING':
+                            $arUserFilter['UF_EV'] = true;
+                            break;
+                        case 'HB':
+                            $arUserFilter['UF_HB'] = true;
+                            break;
+                        case 'SPAM':
+                            $arUserFilter['GROUPS_ID'] = $exib['PROPERTY']['GUEST_SPAM_GROUP']['VALUE'];
+                            break;
+                        case 'UNCONFIRMED':
+                            $arUserFilter['GROUPS_ID'] = $exib['PROPERTY']['UC_GUESTS_GROUP']['VALUE'];
+                            break;
+                    }
+                    $rsUser = CUser::GetList(
+                        $by = 'ID',
+                        $order = 'ASC',
+                        $arUserFilter,
+                        array(
+                            'SELECT' => array('UF_*'),
+                            'FIELDS' => array('ID', 'LOGIN', 'DATE_REGISTER')
+                        )
+                    );
+                    if (!($user = $rsUser->Fetch())) {
+                        continue;
+                    }
+                }
                 $tmpData = [];
                 foreach ($data as $key => $value) {
                     $tmpData['ID'] = $data['ID'];
                     if ($field = $fields[$prefix . $key]) {
                         switch ($field['USER_TYPE_ID']) {
                             case 'hlblock':
-                                $parameters['filter'] = ['ID' => $value];
-                                if ($field['SETTINGS']['HLBLOCK_ID'] === $this->arParams['REGISTER_GUEST_COLLEAGUES_ENTITY_ID']) {
-                                    $daytimes = $fields[$key . '_UF_DAYTIME']['ITEMS'];
-                                    $daytime = reset($daytimes);
-                                    switch ($this->arParams['GUEST_TYPE']) {
-                                        case 'EVENING':
-                                            foreach ($daytimes as $item) {
-                                                if ($item['XML_ID'] === 'evening') {
-                                                    $daytime = $item;
+                                if ($value) {
+                                    $parameters['filter'] = ['ID' => $value];
+                                    if ($field['SETTINGS']['HLBLOCK_ID'] === $this->arParams['REGISTER_GUEST_COLLEAGUES_ENTITY_ID']) {
+                                        $daytimes = $fields[$key . '_UF_DAYTIME']['ITEMS'];
+                                        $daytime = reset($daytimes);
+                                        switch ($this->arParams['GUEST_TYPE']) {
+                                            case 'EVENING':
+                                                foreach ($daytimes as $item) {
+                                                    if ($item['XML_ID'] === 'evening') {
+                                                        $daytime = $item;
+                                                    }
                                                 }
-                                            }
-                                            $parameters['filter']['UF_DAYTIME'] = $daytime['ID'];
-                                            break;
-                                        case 'MORNING':
-                                        case 'HB':
-                                            foreach ($daytimes as $item) {
-                                                if ($item['XML_ID'] === 'morning') {
-                                                    $daytime = $item;
+                                                $parameters['filter']['UF_DAYTIME'] = [$daytime['ID']];
+                                                break;
+                                            case 'MORNING':
+                                            case 'HB':
+                                                foreach ($daytimes as $item) {
+                                                    if ($item['XML_ID'] === 'morning') {
+                                                        $daytime = $item;
+                                                    }
                                                 }
-                                            }
-                                            $parameters['filter']['UF_DAYTIME'] = $daytime['ID'];
-                                            break;
-                                        default:
-                                            $parameters['filter']['UF_DAYTIME'] = $daytime['ID'];
-                                            break;
-                                    }
-                                }
-                                $items = $this->getData($field['SETTINGS']['HLBLOCK_ID'], $parameters, $key);
-                                if ($field['SETTINGS']['HLBLOCK_ID'] === $this->arParams['REGISTER_GUEST_COLLEAGUES_ENTITY_ID']) {
-                                    if ($this->arParams['FORMAT_TYPE'] === 'PEOPLE') {
-                                        $tmpData[$key] = $items;
-                                        continue;
-                                    }
-                                    $tmpData[$key] = reset($items);
-                                    foreach ($tmpData[$key] as $ckey => $value) {
-                                        if ($ckey === 'UF_SALUTATION') {
-                                            $tmpData[$key . '_' . $ckey] = reset($value)['UF_VALUE'];
-                                        } else {
-                                            $tmpData[$key . '_' . $ckey] = $value;
+                                                $parameters['filter']['UF_DAYTIME'] = [$daytime['ID']];
+                                                break;
+                                            default:
+                                                $parameters['filter']['UF_DAYTIME'] = [$daytime['ID']];
+                                                break;
                                         }
                                     }
-                                } else {
-                                    if ($field['MULTIPLE'] !== 'Y') {
-                                        $tmpData[$key] = reset($items)['UF_VALUE'];
-                                        if($key === 'UF_COUNTRY' && $tmpData[$key] === 'other'){
-                                            $tmpData[$key] = $data['UF_COUNTRY_OTHER'];
+                                    $items = $this->getData($field['SETTINGS']['HLBLOCK_ID'], $parameters, $key);
+                                    if ($field['SETTINGS']['HLBLOCK_ID'] === $this->arParams['REGISTER_GUEST_COLLEAGUES_ENTITY_ID']) {
+                                        if ($this->arParams['FORMAT_TYPE'] === 'PEOPLE') {
+                                            $tmpData[$key] = $items;
+                                            continue;
+                                        }
+                                        $tmpData[$key] = reset($items);
+                                        foreach ($tmpData[$key] as $ckey => $value) {
+                                            if ($ckey === 'UF_SALUTATION') {
+                                                $tmpData[$key . '_' . $ckey] = reset($value)['UF_VALUE'];
+                                            } else {
+                                                $tmpData[$key . '_' . $ckey] = $value;
+                                            }
                                         }
                                     } else {
-                                        $tmpData[$key] = $items;
+                                        if ($field['MULTIPLE'] !== 'Y') {
+                                            $tmpData[$key] = reset($items)['UF_VALUE'];
+                                            if ($key === 'UF_COUNTRY' && $tmpData[$key] === 'other') {
+                                                $tmpData[$key] = $data['UF_COUNTRY_OTHER'];
+                                            }
+                                        } else {
+                                            $tmpData[$key] = $items;
+                                        }
                                     }
                                 }
                                 break;
@@ -128,7 +163,7 @@ class XlsxGenerator extends CBitrixComponent
     {
 
         $cache = Cache::createInstance();
-        if ($cache->initCache(7200, "fieldData" . $prefix)) {
+        if ($cache->initCache(7200, 'fieldData' . $prefix)) {
             $result = $cache->getVars();
         } elseif ($cache->startDataCache()) {
             $result = [];
@@ -172,33 +207,36 @@ class XlsxGenerator extends CBitrixComponent
             ],
         ];
         $data = $this->getData($this->arParams['REGISTER_GUEST_ENTITY_ID'], $parameters);
-
         foreach ($data as $item) {
             $tmpData = [];
             $tmpColleague = [];
-            foreach ($header as $head) {
-                $tmpData[$head] = $item[$head];
-                foreach ($item['UF_COLLEAGUES'] as $ckey => $colleague) {
-                    switch ($head) {
-                        case 'UF_POSITION':
-                            $tmpColleague[$ckey]['UF_POSITION'] = $colleague['UF_JOB_TITLE'];
-                            break;
-                        case 'UF_MOBILE':
-                            $tmpColleague[$ckey]['UF_MOBILE'] = $colleague['UF_JOB_TITLE'];
-                            break;
-                        default:
-                            if($colleague[$head]){
-                                $tmpColleague[$ckey][$head] = $colleague[$head];
-                            }else{
-                                $tmpColleague[$ckey][$head] = $item[$head];
-                            }
-                            break;
+            foreach ($header as $headCode => $head) {
+                $tmpData[$headCode] = $item[$headCode];
+                if ($this->arParams['FORMAT_TYPE'] === 'PEOPLE') {
+                    foreach ($item['UF_COLLEAGUES'] as $ckey => $colleague) {
+                        switch ($headCode) {
+                            case 'UF_POSITION':
+                                $tmpColleague[$ckey]['UF_POSITION'] = $colleague['UF_JOB_TITLE'];
+                                break;
+                            case 'UF_MOBILE':
+                                $tmpColleague[$ckey]['UF_MOBILE'] = $colleague['UF_JOB_TITLE'];
+                                break;
+                            default:
+                                if ($colleague[$headCode]) {
+                                    $tmpColleague[$ckey][$headCode] = $colleague[$headCode];
+                                } else {
+                                    $tmpColleague[$ckey][$headCode] = $item[$headCode];
+                                }
+                                break;
+                        }
                     }
                 }
             }
             $result[] = $tmpData;
-            foreach ($tmpColleague as $colleague) {
-                $result[] = $colleague;
+            if ($this->arParams['FORMAT_TYPE'] === 'PEOPLE') {
+                foreach ($tmpColleague as $colleague) {
+                    $result[] = $colleague;
+                }
             }
         }
         return $result;
@@ -211,10 +249,10 @@ class XlsxGenerator extends CBitrixComponent
         foreach ($this->arParams['SHOW_FIELDS_IN_FILE'] as $item) {
             if (array_key_exists($item, $fieldsGuest)) {
                 $field = $fieldsGuest[$item];
-                $result[] = $field['LIST_COLUMN_LABEL'] ?: $item;
+                $result[$item] = $field['LIST_COLUMN_LABEL'] ?: $item;
             }
         }
-        array_unshift($result, 'ID');
+        $result = array_merge(['ID' => 'ID'], $result);
         return $result;
     }
 
@@ -228,8 +266,8 @@ class XlsxGenerator extends CBitrixComponent
             $sheet = $spreadsheet->getActiveSheet();
             $sheet->fromArray($header, '', 'A1');
             $sheet->fromArray($data, null, 'A2');
-            foreach ($header as $key => $value) {
-                $sheet->getColumnDimension($alphabet[$key])->setAutoSize(true);
+            for ($i = 0; $i < count($header); $i++) {
+                $sheet->getColumnDimension($alphabet[$i])->setAutoSize(true);
             }
             $sheet->setAutoFilter('A1:' . $alphabet[count($header) - 1] . 1);
             header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -238,18 +276,14 @@ class XlsxGenerator extends CBitrixComponent
             $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
             $writer->save('php://output');
         } catch (Exception $exception) {
+            c($exception);
             die($exception->getMessage());
         }
     }
 
-    public function getFileName(){
-        $cache = Cache::createInstance();
-        if ($cache->initCache(7200, "exhib" . $this->arParams['EXHIBITION_ID'])) {
-            $exib = $cache->getVars();
-        } elseif ($cache->startDataCache()) {
-            $exib = CIBlockElement::GetByID($this->arParams['EXHIBITION_ID'])->Fetch();
-            $cache->endDataCache($exib);
-        }
+    public function getFileName()
+    {
+        $exib = $this->getExhibition();
         $result = 'Гости ' . $exib['NAME'];
         switch ($this->arParams['GUEST_TYPE']) {
             case 'MORNING':
@@ -272,9 +306,26 @@ class XlsxGenerator extends CBitrixComponent
             $result .= ' - по компаниям.xlsx';
         } elseif ($this->arParams['FORMAT_TYPE'] === 'PEOPLE') {
             $result .= ' - по людям.xlsx';
-        }else{
+        } else {
             $result .= '.xlsx';
         }
         return $result;
+    }
+
+    public function getExhibition()
+    {
+        $cache = Cache::createInstance();
+        if ($cache->initCache(7200, 'exhib' . $this->arParams['EXHIBITION_ID'])) {
+            $exib = $cache->getVars();
+        } elseif ($cache->startDataCache()) {
+            $exib = CIBlockElement::GetByID($this->arParams['EXHIBITION_ID'])->Fetch();
+            $rsProps = CIBlockElement::GetProperty($exib['IBLOCK_ID'], $exib['ID']);
+            while ($prop = $rsProps->Fetch()) {
+                $exib['PROPERTY'][$prop['CODE']] = $prop;
+            }
+
+            $cache->endDataCache($exib);
+        }
+        return $exib;
     }
 }
