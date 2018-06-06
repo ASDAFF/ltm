@@ -1,8 +1,8 @@
 <?php
 define('NEED_AUTH', true);
 //if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die();
-//require($_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/main/include/prolog_before.php');
-require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+require($_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/main/include/prolog_before.php');
+
 use Bitrix\Main\Context;
 $request = Context::getCurrent()->getRequest();
 $type = $request->get('GUEST_TYPE') ?: 'EVENING';
@@ -74,5 +74,3 @@ $APPLICATION->IncludeComponent(
         'SHOW_FIELDS_IN_FILE' => $show_fields
     ]
 );
-
-require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
