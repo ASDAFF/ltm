@@ -13,7 +13,9 @@ if ($format_type === 'COMPANY') {
     switch ($type) {
         default:
             $show_fields = [
-                'ID',
+                'USER_LOGIN',
+                'USER_UF_PAS',
+                'USER_ID',
                 'UF_COMPANY',
                 'UF_NAME',
                 'UF_SURNAME',
@@ -30,9 +32,21 @@ if ($format_type === 'COMPANY') {
                 'UF_COLLEAGUES_UF_EMAIL',
                 'UF_COLLEAGUES_UF_MOBILE_PHONE',
                 'UF_ADDRESS',
+                'UF_CITY',
                 'UF_COUNTRY',
+                'UF_POSTCODE',
+                'UF_DESCRIPTION',
+                'UF_PRIORITY_AREAS',
                 'UF_SITE',
                 'UF_HOTEL',
+                'Приоритетные направления' => [
+                    'UF_NORTH_AMERICA',
+                    'UF_EUROPE',
+                    'UF_SOUTH_AMERICA',
+                    'UF_AFRICA',
+                    'UF_ASIA',
+                    'UF_OCEANIA',
+                ]
             ];
             break;
     }
@@ -40,7 +54,9 @@ if ($format_type === 'COMPANY') {
     switch ($type) {
         default:
             $show_fields = [
-                'ID',
+                'USER_LOGIN',
+                'USER_UF_PAS',
+                'USER_ID',
                 'UF_COMPANY',
                 'UF_NAME',
                 'UF_SURNAME',

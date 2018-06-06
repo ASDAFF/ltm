@@ -80,7 +80,11 @@ class XlsxGenerator extends CBitrixComponent
                             'FIELDS' => array('ID', 'LOGIN', 'DATE_REGISTER')
                         )
                     );
-                    if (!($user = $rsUser->Fetch())) {
+                    if ($user = $rsUser->Fetch()) {
+                        foreach ($user as $key => $value){
+                            $data['USER_' . $key] = $value;
+                        }
+                    }else{
                         continue;
                     }
                 }
@@ -119,6 +123,7 @@ class XlsxGenerator extends CBitrixComponent
                                         }
                                     }
                                     $items = $this->getData($field['SETTINGS']['HLBLOCK_ID'], $parameters, $key);
+
                                     if ($field['SETTINGS']['HLBLOCK_ID'] === $this->arParams['REGISTER_GUEST_COLLEAGUES_ENTITY_ID']) {
                                         if ($this->arParams['FORMAT_TYPE'] === 'PEOPLE') {
                                             $tmpData[$key] = $items;
@@ -126,15 +131,11 @@ class XlsxGenerator extends CBitrixComponent
                                         }
                                         $tmpData[$key] = reset($items);
                                         foreach ($tmpData[$key] as $ckey => $value) {
-                                            if ($ckey === 'UF_SALUTATION') {
-                                                $tmpData[$key . '_' . $ckey] = reset($value)['UF_VALUE'];
-                                            } else {
-                                                $tmpData[$key . '_' . $ckey] = $value;
-                                            }
+                                            $tmpData[$key . '_' . $ckey] = $value;
                                         }
                                     } else {
                                         if ($field['MULTIPLE'] !== 'Y') {
-                                            $tmpData[$key] = reset($items)['UF_VALUE'];
+                                            $tmpData[$key] = reset($items)['UF_VALUE']?:reset($items)['UF_NAME'];
                                             if ($key === 'UF_COUNTRY' && $tmpData[$key] === 'other') {
                                                 $tmpData[$key] = $data['UF_COUNTRY_OTHER'];
                                             }
@@ -163,7 +164,7 @@ class XlsxGenerator extends CBitrixComponent
     {
 
         $cache = Cache::createInstance();
-        if ($cache->initCache(7200, 'fieldData' . $prefix)) {
+        if ($cache->initCache(7200, $this->arParams['FORMAT_TYPE'] . '_' . $this->arParams['GUEST_TYPE'] .'_fieldData_'. serialize($this->arParams['SHOW_FIELDS_IN_FILE']) . $prefix)) {
             $result = $cache->getVars();
         } elseif ($cache->startDataCache()) {
             $result = [];
@@ -191,6 +192,35 @@ class XlsxGenerator extends CBitrixComponent
                             break;
                     }
                 }
+                if($hlblockId === $this->arParams['REGISTER_GUEST_ENTITY_ID']){
+                    //Получаем пользовательские поля сущьности USER
+                    $userTypes = CUserTypeEntity::GetList(array(), array('ENTITY_ID' => 'USER', 'LANG' => 'ru'));
+                    while ($data = $userTypes->Fetch()) {
+                        switch ($data['USER_TYPE_ID']) {
+                            case 'hlblock':
+                                $result['USER_' . $data['FIELD_NAME']] = $data;
+                                $fields = $this->getFieldsData($data['SETTINGS']['HLBLOCK_ID'], $prefix . $data['FIELD_NAME']);
+                                $result = array_merge($result, $fields);
+                                break;
+                            case 'enumeration':
+                                $enData = CUserFieldEnum::GetList(array('ID' => 'ASC'), array(
+                                    'USER_FIELD_ID' => $data['ID'],
+                                ));
+                                while ($enDataItem = $enData->Fetch()) {
+                                    $data['ITEMS'][$enDataItem['ID']] = $enDataItem;
+                                }
+                                $result['USER_' . $data['FIELD_NAME']] = $data;
+                                break;
+                            default:
+                                $result['USER_' . $data['FIELD_NAME']] = $data;
+                                break;
+                        }
+                    }
+                    $ufields = Bitrix\Main\UserTable::getMap();
+                    foreach ($ufields as $key => $ufield){
+                        $result['USER_' . $key] = $ufield;
+                    }
+                }
             }
             $cache->endDataCache($result);
         }
@@ -211,7 +241,34 @@ class XlsxGenerator extends CBitrixComponent
             $tmpData = [];
             $tmpColleague = [];
             foreach ($header as $headCode => $head) {
-                $tmpData[$headCode] = $item[$headCode];
+                if(is_array($head)){
+                    foreach ($head as $headInnerCode){
+                        $tmpItem = $item[$headInnerCode];
+                        if(is_array($tmpItem)){
+                            $prev = $item[$headCode];
+                            $item[$headCode] .= array_reduce($tmpItem, function ($carry, $item){
+                                if($carry){
+                                    $carry .= ', ' . $item['UF_VALUE'];
+                                }else{
+                                    $carry = $item['UF_VALUE'];
+                                }
+                                return $carry;
+                            }, $prev);
+                        }
+                    }
+                }
+                if(is_array($item[$headCode])){
+                    $tmpData[$headCode] = array_reduce($item[$headCode], function ($carry, $item){
+                        if($carry){
+                            $carry .= ', ' . $item['UF_VALUE'];
+                        }else{
+                            $carry = $item['UF_VALUE'];
+                        }
+                        return $carry;
+                    });
+                }else{
+                    $tmpData[$headCode] = $item[$headCode];
+                }
                 if ($this->arParams['FORMAT_TYPE'] === 'PEOPLE') {
                     foreach ($item['UF_COLLEAGUES'] as $ckey => $colleague) {
                         switch ($headCode) {
@@ -242,24 +299,35 @@ class XlsxGenerator extends CBitrixComponent
         return $result;
     }
 
-    public function getHeader()
+    public function getHeader($noArray = false)
     {
         $fieldsGuest = $this->getFieldsData($this->arParams['REGISTER_GUEST_ENTITY_ID']);
         $result = [];
-        foreach ($this->arParams['SHOW_FIELDS_IN_FILE'] as $item) {
+        foreach ($this->arParams['SHOW_FIELDS_IN_FILE'] as $key => $item) {
             if (array_key_exists($item, $fieldsGuest)) {
                 $field = $fieldsGuest[$item];
                 $result[$item] = $field['LIST_COLUMN_LABEL'] ?: $item;
+            }elseif(is_array($item)){
+                if($noArray){
+                    $result[$key] = $key;
+                }else{
+                    $result[$key] = $item;
+                }
             }
         }
-        $result = array_merge(['ID' => 'ID'], $result);
         return $result;
     }
 
     public function generateXlsx()
     {
         $alphabet = range('A', 'Z');
-        $header = $this->getHeader();
+        foreach ($alphabet as $key){
+            foreach ($alphabet as $value){
+                $manyAlphabet[] = $key.$value;
+            }
+        }
+        $alphabet = array_merge($alphabet, $manyAlphabet);
+        $header = $this->getHeader(true);
         $data = $this->generateArray();
         $spreadsheet = new Spreadsheet();
         try {
@@ -315,7 +383,7 @@ class XlsxGenerator extends CBitrixComponent
     public function getExhibition()
     {
         $cache = Cache::createInstance();
-        if ($cache->initCache(7200, 'exhib' . $this->arParams['EXHIBITION_ID'])) {
+        if ($cache->initCache(7200, $this->arParams['FORMAT_TYPE'] . '_' . $this->arParams['GUEST_TYPE'] . 'exhib' . $this->arParams['EXHIBITION_ID'])) {
             $exib = $cache->getVars();
         } elseif ($cache->startDataCache()) {
             $exib = CIBlockElement::GetByID($this->arParams['EXHIBITION_ID'])->Fetch();
