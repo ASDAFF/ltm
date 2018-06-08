@@ -16,7 +16,7 @@ $request = \Bitrix\Main\HttpContext::getCurrent()->getRequest();
 ?>
 <? if(!empty($arResult["USERS"]) || $request->get('filter')): ?>
 	<div class="storage">
-        <button class="custom-buttom" name="toDelete" style="margin-bottom: 10px;">Удалить (отмеченные записи)</button>
+        <button class="custom-buttom" name="toDeleteMass" style="margin-bottom: 10px;">Удалить (отмеченные записи)</button>
 		<div class="filter">
 			<form type="GET" action="<?=$arResult['ACTION_URL']?>">
 				<input type="text" name="FILTER_DATA" value="<?=$request->get('FILTER_DATA')?>">

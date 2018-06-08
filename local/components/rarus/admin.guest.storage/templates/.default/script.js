@@ -105,7 +105,7 @@ $(document).ready(function () {
         });
     });
 
-    $(document).on('click', 'button[name=toDelete]', function (ev) {
+    $(document).on('click', 'button[name=toDeleteMass]', function (ev) {
         ev.preventDefault();
         var checked = $('.storage input[name=checkToDeleted]:checked');
         if(checked.length){

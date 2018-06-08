@@ -30,3 +30,8 @@ $request = \Bitrix\Main\HttpContext::getCurrent()->getRequest();
         <input type="submit" value="Удалить">
     </form>
 </div>
+<script>
+    $(function () {
+        $('form[name=todeletemass]').attr('action', window.location.href)
+    }());
+</script>

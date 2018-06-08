@@ -27,7 +27,7 @@ class CAdminGuestStorage extends CBitrixComponent
 		if($request->get("reset_filter")){
 			LocalRedirect($this->arResult['ACTION_URL']);
 		}
-
+//		die($request->getRequestUri());
 		if($request->get('popup')){
 			if($request->get('action') == 'delete'){
 				self::showPopupDelete();
