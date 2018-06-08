@@ -27,6 +27,16 @@ function DokaGeneratePdf($arResult)
     $pdf->AddPage();
     $pdf->ImageSVG($file = DOKA_MEETINGS_MODULE_DIR . '/images/logo.svg', $x = 30, $y = 5, $w = '150', $h = '', $link = '', $align = '', $palign = '', $border = 0, $fitonpage = false);
 
+    $style = array(
+        'border' => false,
+        'vpadding' => 0,
+        'hpadding' => 0,
+        'fgcolor' => array(0,0,0),
+        'bgcolor' => false, //array(255,255,255)
+        'module_width' => 1, // width of a single module in points
+        'module_height' => 1 // height of a single module in points
+    );
+    $pdf->write2DBarcode($arResult["CURRENT_USER_ID"], 'QRCODE,H', 166, 5, 33, 33, $style, 'N');
     $pdf->setXY(0, 25);
     $pdf->SetFont('freeserif', 'B', 17);
     // Если в свойствах выставки отмечено "Есть сессия НВ"

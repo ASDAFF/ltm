@@ -24,7 +24,16 @@ function DokaGeneratePdf($arResult)
     $pdf->AddFont('freeserif', 'I', 'freeserifi.php');
     $pdf->AddPage();
     $pdf->ImageSVG($file = DOKA_MEETINGS_MODULE_DIR . '/images/logo.svg', $x = 30, $y = 5, $w = '150', $h = '', $link = '', $align = '', $palign = '', $border = 0, $fitonpage = false);
-
+    $style = array(
+        'border' => 2,
+        'vpadding' => 'auto',
+        'hpadding' => 'auto',
+        'fgcolor' => array(0,0,0),
+        'bgcolor' => false, //array(255,255,255)
+        'module_width' => 1, // width of a single module in points
+        'module_height' => 1 // height of a single module in points
+    );
+    $pdf->write2DBarcode($arResult["id"], 'QRCODE,H', 160, 5, 35, 35, $style, 'N');
     $pdf->setXY(0, 25);
     $pdf->SetFont('freeserif', 'B', 17);
     $arResult["exhib"]["TITLE_RU"] .= "\n";
