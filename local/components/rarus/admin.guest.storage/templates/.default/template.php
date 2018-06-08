@@ -16,6 +16,7 @@ $request = \Bitrix\Main\HttpContext::getCurrent()->getRequest();
 ?>
 <? if(!empty($arResult["USERS"]) || $request->get('filter')): ?>
 	<div class="storage">
+        <button class="custom-buttom" name="toDeleteMass" style="margin-bottom: 10px;">Удалить (отмеченные записи)</button>
 		<div class="filter">
 			<form type="GET" action="<?=$arResult['ACTION_URL']?>">
 				<input type="text" name="FILTER_DATA" value="<?=$request->get('FILTER_DATA')?>">
@@ -51,7 +52,7 @@ $request = \Bitrix\Main\HttpContext::getCurrent()->getRequest();
 				<table class="table">
 					<thead>
 					<tr>
-<!--                        --><?//c($arResult)?>
+                        <th></th>
 						<?$orderSort = 'asc'; $class=""; if('ID' == $arResult["SORT"]) {$class = 'active'; if($arResult['ORDER'] == 'asc') { $orderSort = 'desc';}}?>
 						<th><a href="?sort=ID&order=<?=$orderSort;?>" class="sort-title <?=$class?>"><?=Loc::getMessage('STORAGE_ID')?></a></th>
 						<?$orderSort = 'asc'; $class=""; if('UF_LOGIN' == $arResult["SORT"]) {$class = 'active'; if($arResult['ORDER'] == 'asc') { $orderSort = 'desc';}}?>
@@ -80,6 +81,9 @@ $request = \Bitrix\Main\HttpContext::getCurrent()->getRequest();
 					<? $index = 1; ?>
 					<? foreach($arResult['USERS'] as $arUser): ?>
 						<tr class="<?=(($index++ % 2) != 0) ? "even" : "odd"?>">
+                            <td>
+                                <input type="checkbox" name="checkToDeleted" value="<?=$arUser['UF_USER_ID']?>">
+                            </td>
 							<td><?=$arUser['UF_USER_ID']?></td>
 							<td><?=$arUser['UF_LOGIN']?></td>
 							<? foreach($arParams["FIELDS2"] as $questionID): ?>
