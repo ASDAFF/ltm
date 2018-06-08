@@ -82,7 +82,12 @@ class XlsxGenerator extends CBitrixComponent
                     );
                     if ($user = $rsUser->Fetch()) {
                         foreach ($user as $key => $value){
-                            $data['USER_' . $key] = $value;
+                            if($key === 'UF_PAS'){
+                                $data['USER_' . $key] = makePassExcelDeCode($value);
+                            }else{
+                                $data['USER_' . $key] = $value;
+                            }
+
                         }
                     }else{
                         continue;
@@ -246,7 +251,7 @@ class XlsxGenerator extends CBitrixComponent
                         $tmpItem = $item[$headInnerCode];
                         if(is_array($tmpItem)){
                             $prev = $item[$headCode];
-                            $item[$headCode] .= array_reduce($tmpItem, function ($carry, $item){
+                            $item[$headCode] = array_reduce($tmpItem, function ($carry, $item){
                                 if($carry){
                                     $carry .= ', ' . $item['UF_VALUE'];
                                 }else{
@@ -276,13 +281,13 @@ class XlsxGenerator extends CBitrixComponent
                                 $tmpColleague[$ckey]['UF_POSITION'] = trim($colleague['UF_JOB_TITLE']);
                                 break;
                             case 'UF_MOBILE':
-                                $tmpColleague[$ckey]['UF_MOBILE'] = trim($colleague['UF_JOB_TITLE']);
+                                $tmpColleague[$ckey]['UF_MOBILE'] = trim($colleague['UF_MOBILE_PHONE']);
                                 break;
                             default:
                                 if ($colleague[$headCode]) {
                                     $tmpColleague[$ckey][$headCode] = trim($colleague[$headCode]);
                                 } else {
-                                    $tmpColleague[$ckey][$headCode] = trim($item[$headCode]);
+                                    $tmpColleague[$ckey][$headCode] = trim($tmpData[$headCode]);
                                 }
                                 break;
                         }
@@ -334,8 +339,9 @@ class XlsxGenerator extends CBitrixComponent
             $sheet = $spreadsheet->getActiveSheet();
             $sheet->fromArray($header, '', 'A1');
             $sheet->fromArray($data, null, 'A2');
+
             for ($i = 0; $i < count($header); $i++) {
-                $sheet->getColumnDimension($alphabet[$i])->setAutoSize(true);
+                $sheet->getColumnDimension($alphabet[$i])->setWidth(25);
             }
             $sheet->setAutoFilter('A1:' . $alphabet[count($header) - 1] . 1);
             header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
