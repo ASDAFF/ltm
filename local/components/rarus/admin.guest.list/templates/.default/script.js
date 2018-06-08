@@ -64,7 +64,7 @@ $(document).ready(function() {
 			}
 			else{
 				$("#pdf_error").removeClass("error");
-				$("#pdf_error").text("На ваш email будет отправлена ссылка на архивю");
+				$("#pdf_error").text("На ваш email будет отправлена ссылка на архив.");
 				$("#pdf_error").addClass("sucsess");
 				var req = $.post(toPage, { type: curType, app: curApp, email: curEmail, hb: curHB} );
 				setTimeout(function () {
