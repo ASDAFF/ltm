@@ -31,7 +31,12 @@ class CAdminGuestStorage extends CBitrixComponent
 		if($request->get('popup')){
 			if($request->get('action') == 'delete'){
 				self::showPopupDelete();
-			} else {
+			} elseif($request->get('action') == 'deleteMass'){
+                $APPLICATION->RestartBuffer();
+                $this->arResult['VALUES'] = $request->get('items');
+                $this->includeComponentTemplate('ajax-delete-mass');
+                die();
+            }else{
 				self::showPopup();
 			}
 		}
@@ -42,6 +47,10 @@ class CAdminGuestStorage extends CBitrixComponent
 
 		if($request->get('TYPE') == 'todelete'){
 			self::deleteUser();
+		}
+
+		if($request->get('TYPE') == 'todeletemass'){
+			self::deleteMassUser();
 		}
 
 
@@ -55,6 +64,9 @@ class CAdminGuestStorage extends CBitrixComponent
 			}
 		}
 
+		if($request->isAjaxRequest()){
+		    $APPLICATION->RestartBuffer();
+        }
 
 		$this->includeComponentTemplate();
 	}
@@ -70,9 +82,7 @@ class CAdminGuestStorage extends CBitrixComponent
 
 		$res = $obGS->putInWorking($request->get('ID'), $request->get('EXHIBITION'), $request->get('MORNING'), $request->get('EVENING'));
 
-		if($res){
-			LocalRedirect($request->getRequestUri());
-		}else{
+		if(!$res){
 			$this->errors = array_merge($this->errors, $obGS->errors);
 		}
 	}
@@ -82,7 +92,6 @@ class CAdminGuestStorage extends CBitrixComponent
 		$request = self::getRequest();
 		$obGS = new CLTMGuestStorage();
 		$obGS->deleteUser($request->get('ID'));
-		LocalRedirect($request->getRequestUri());
 	}
 
 	/**
@@ -394,4 +403,17 @@ class CAdminGuestStorage extends CBitrixComponent
 	{
 		return $this->request;
 	}
+
+	public function deleteMassUser(){
+        $request = self::getRequest();
+        $obGS = new CLTMGuestStorage();
+        $values = $request->get('VALUES');
+        if($values){
+            $values = explode(',', $values);
+            foreach ($values as $value){
+                $obGS->deleteUser($value);
+            }
+        }
+
+    }
 }
