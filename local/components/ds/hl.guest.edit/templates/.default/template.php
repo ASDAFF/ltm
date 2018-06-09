@@ -2,6 +2,7 @@
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 $needMorning = $arResult["USER_DATA"]["USER"]["UF_MR"];
 $needEvening = $arResult["USER_DATA"]["USER"]["UF_EV"];
+c($arResult["FIELD_DATA"]);
 ?>
 <form action="<?=$arResult['FORM_URL']?>" method="POST" enctype="multipart/form-data">
     <?= bitrix_sessid_post() ?>
