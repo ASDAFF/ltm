@@ -3,7 +3,6 @@
 <?
 use \Bitrix\Highloadblock as HL;
 use \Bitrix\Main\Context;
-
 const FILE_DIR = 'hlguest';
 
 if (CModule::IncludeModule("highloadblock")) {
