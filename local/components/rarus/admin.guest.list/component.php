@@ -4,6 +4,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 use Bitrix\Highloadblock as HL;
 use Bitrix\Main\Entity;
 
+
 global $DB, $USER, $APPLICATION;
 global $sortField, $sortOrder;
 
