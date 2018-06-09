@@ -75,8 +75,8 @@ switch ($arParams["ACT"]) {
 
 //добавляем поля зал и стол для HB
 if ($arParams["ACT"] == "hostbuy") {
-    $arShowedTableCols["Зал"] = "UF_HALL";
-    $arShowedTableCols["Стол"] = "UF_TABLE";
+    $arShowedTableCols["Зал"] = "49";
+    $arShowedTableCols["Стол"] = "50";
 }
 
 function getValById($ar, $id, $formId)

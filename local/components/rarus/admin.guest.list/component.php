@@ -140,13 +140,6 @@ while ($arRes = $rsData->Fetch()) {
         while ($arElem = $result->Fetch()) {
             $arHlBlockInfo[$arRes["FIELD_NAME"]]["ITEMS"][$arElem["ID"]] = $arElem;
         }
-    } elseif ($arRes['USER_TYPE_ID'] === 'enumeration') {
-        $rsData = CUserFieldEnum::GetList(array('ID' => 'ASC'), array(
-            'USER_FIELD_ID' => $arRes['ID'],
-        ));
-        while ($data = $rsData->Fetch()) {
-            $arHlBlockInfo[$arRes['FIELD_NAME']]['ITEMS'][$data['ID']] = $data;
-        }
     }
 }
 $hlblock = HL\HighloadBlockTable::getById($arParams["HLBLOCK_GUEST_ID"])->fetch();
@@ -187,8 +180,8 @@ while ($el = $rsData->fetch()) {
                                 $user[$key] = $arHlBlockInfo[$key]["ITEMS"][$value]["UF_VALUE"];
                             }
                         } elseif ($key === "UF_COLLEAGUES") {
-                            foreach ($arHlBlockInfo[$key]["ITEMS"] as $val) {
-                                if (in_array($val["ID"], $value)) {
+                            foreach ($arHlBlockInfo[$key]["ITEMS"] as $val){
+                                if(in_array($val["ID"], $value)){
                                     $user[$key] = $val;
                                     break;
                                 }
@@ -205,13 +198,14 @@ while ($el = $rsData->fetch()) {
                             foreach ($value as $elem) {
                                 $newValues[] = $arHlBlockInfo[$key]["ITEMS"][$elem]["UF_VALUE"];
                             }
+//                            echo "<pre>";
+//                            print_r($value);
+//                            print_r($newValues);
+//                            echo "</pre>";
                             $user[$key] = $newValues;
                         } else {
                             $user[$key] = $arHlBlockInfo[$key]["ITEMS"][$value]["UF_VALUE"];
                         }
-                        break;
-                    case "enumeration":
-                        $user[$key] = $arHlBlockInfo[$key]["ITEMS"][$value]["VALUE"];
                         break;
                     default:
                         switch ($key) {
