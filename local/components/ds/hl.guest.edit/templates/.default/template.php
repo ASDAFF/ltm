@@ -2,13 +2,13 @@
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 $needMorning = $arResult["USER_DATA"]["USER"]["UF_MR"];
 $needEvening = $arResult["USER_DATA"]["USER"]["UF_EV"];
-c($arResult["FIELD_DATA"]);
+
 ?>
-<form action="<?=$arResult['FORM_URL']?>" method="POST" enctype="multipart/form-data">
+<form action="<?= $arResult['FORM_URL'] ?>" method="POST" enctype="multipart/form-data">
     <?= bitrix_sessid_post() ?>
     <input type="hidden" name="ID" value="<?= $arResult["USER_DATA"]["ID"] ?>">
     <table width="100%" border="0" cellspacing="0" cellpadding="5" class="form_edit">
-        <?if($arResult['SAVED']){?>
+        <? if ($arResult['SAVED']) { ?>
             <thead>
             <tr>
                 <td>
@@ -16,20 +16,20 @@ c($arResult["FIELD_DATA"]);
                 </td>
             </tr>
             </thead>
-        <?}elseif($arResult['ERRORS']){?>
+        <? } elseif ($arResult['ERRORS']) { ?>
             <thead>
             <tr>
                 <td>
                     <p class="error">Ошибка</p>
                     <ul>
-                        <?foreach ($arResult['ERRORS'] as $error){?>
-                            <?c($error)?>
-                        <?}?>
+                        <? foreach ($arResult['ERRORS'] as $error) { ?>
+                            <? c($error) ?>
+                        <? } ?>
                     </ul>
                 </td>
             </tr>
             </thead>
-        <?}?>
+        <? } ?>
         <tbody>
         <?
         if ($arResult["USER_DATA"]["ID"]) {
@@ -71,11 +71,11 @@ c($arResult["FIELD_DATA"]);
                     <? } else { ?>
                         <input type="hidden" name="COLLEAGUE[<?= $dayTime ?>][UF_DAYTIME][]" value="<?= $id ?>">
                     <? } ?>
-                    <? foreach ($fieldData['FIELDS'] as $key => $field) {?>
+                    <? foreach ($fieldData['FIELDS'] as $key => $field) { ?>
                         <? if (!in_array($key, $fieldData["HIDDEN_FIELDS"])) { ?>
                             <tr>
                                 <td valign="top">
-                                    <span><?= ($field['EDIT_FORM_LABEL']?:$key) . ' (' . $dayTimeText . ')' ?></span>
+                                    <span><?= ($field['EDIT_FORM_LABEL'] ?: $key) . ' (' . $dayTimeText . ')' ?></span>
                                 </td>
                                 <td <?= $key === "UF_DAYTIME" ? "class='checkbox'" : "" ?>>
                                     <? switch ($key) {
@@ -86,7 +86,7 @@ c($arResult["FIELD_DATA"]);
                                                 ?>
                                                 <input type="checkbox"
                                                        name="COLLEAGUE[<?= $dayTime ?>][<?= $key ?>][]"
-                                                       id="<?= $key . '_' . $dayTime . '_' . $dayValue['ID'] ?>" <?= (in_array($dayValue['ID'], $colleague[$key]) || $colleague[$key] == $dayValue['ID'] || $dayValue['XML_ID'] === $dayTime ) ? "checked" : "" ?>
+                                                       id="<?= $key . '_' . $dayTime . '_' . $dayValue['ID'] ?>" <?= (in_array($dayValue['ID'], $colleague[$key]) || $colleague[$key] == $dayValue['ID'] || $dayValue['XML_ID'] === $dayTime) ? "checked" : "" ?>
                                                        value="<?= $dayValue['ID'] ?>"/>
                                                 <label for="<?= $key . '_' . $dayTime . '_' . $dayValue['ID'] ?>"><?= $dayValue['VALUE'] ?></label>
                                                 <br/>
@@ -106,18 +106,18 @@ c($arResult["FIELD_DATA"]);
                                             <?
                                             break;
                                         case "UF_PHOTO":
-                                            if($dayTime === 'morning'){
+                                            if ($dayTime === 'morning') {
                                                 $APPLICATION->IncludeComponent("rarus:photo.input",
                                                     ".default",
                                                     array(
                                                         "WIDTH" => 110,
                                                         "HEIGHT" => 110,
-                                                        "INPUT_NAME" => "COLLEAGUE[". $dayTime ."][UF_PHOTO]",
+                                                        "INPUT_NAME" => "COLLEAGUE[" . $dayTime . "][UF_PHOTO]",
                                                         "FILE_ID" => $colleague[$key] ?: false,
                                                     ),
                                                     false
                                                 );
-                                                }
+                                            }
                                             break;
                                         default:
                                             ?>
@@ -137,7 +137,7 @@ c($arResult["FIELD_DATA"]);
             <? } else { ?>
                 <tr>
                     <td valign="top">
-                        <span><?= $fieldData["EDIT_FORM_LABEL"]?:$fieldName ?></span>
+                        <span><?= $fieldData["EDIT_FORM_LABEL"] ?: $fieldName ?></span>
                     </td>
                     <? switch ($fieldData["USER_TYPE_ID"]) {
                         case "hlblock": ?>
@@ -194,6 +194,18 @@ c($arResult["FIELD_DATA"]);
                                 <label for="<?= $fieldName ?>"></label>
                             </td>
                             <?
+                            break;
+                        case "enumeration":
+                            ?>
+                            <td>
+                            <select name="<?= $fieldName ?>" id="">
+                                <option value="">Не выбрано</option>
+                                <? foreach ($fieldData['ITEMS'] as $itemKey => $value) { ?>
+                                    <option <?= (in_array($value['ID'], $arResult["USER_DATA"][$fieldName]) || $arResult["USER_DATA"][$fieldName] == $value['ID']) ? "selected" : "" ?>
+                                            value="<?= $value['ID'] ?>"><?= $value['VALUE'] ?: $value['ID'] ?></option>
+                                <? } ?>
+                            </select>
+                            </td><?
                             break;
                         default:
                             ?>

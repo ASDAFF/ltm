@@ -73,6 +73,7 @@ switch ($arParams["ACT"]) {
         break;
 }
 
+
 //добавляем поля зал и стол для HB
 if ($arParams["ACT"] == "hostbuy") {
     $arShowedTableCols["Зал"] = "49";
