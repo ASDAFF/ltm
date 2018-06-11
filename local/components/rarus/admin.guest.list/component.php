@@ -141,6 +141,13 @@ while ($arRes = $rsData->Fetch()) {
         while ($arElem = $result->Fetch()) {
             $arHlBlockInfo[$arRes["FIELD_NAME"]]["ITEMS"][$arElem["ID"]] = $arElem;
         }
+    }elseif ($arRes['USER_TYPE_ID'] === 'enumeration') {
+        $rsDataEnum = CUserFieldEnum::GetList(array('ID' => 'ASC'), array(
+            'USER_FIELD_ID' => $arRes['ID'],
+        ));
+        while ($data = $rsDataEnum->Fetch()) {
+            $arHlBlockInfo[$arRes['FIELD_NAME']]['ITEMS'][$data['ID']] = $data;
+        }
     }
 }
 $hlblock = HL\HighloadBlockTable::getById($arParams["HLBLOCK_GUEST_ID"])->fetch();
