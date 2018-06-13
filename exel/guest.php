@@ -1,408 +1,226 @@
-<?header( 'Content-Type: text/html; charset=utf-8' );
-require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include.php");
-//all-luxury.ru/exel/indexNewGuest.php?type=guests&app=moscow-russia-march-12-2015
-if (!CModule::IncludeModule("iblock") || !CModule::IncludeModule("form")) {
-	ShowError("404 Not Found");
-	@define("ERROR_404", "Y");
-	CHTTP::SetStatus("404 Not Found");
+<?php
+define('NEED_AUTH', true);
+//if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die();
+require($_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/main/include/prolog_before.php');
+
+use Bitrix\Main\Context;
+$request = Context::getCurrent()->getRequest();
+$type = $request->get('GUEST_TYPE') ?: 'EVENING';
+$format_type = $request->get('FORMAT_TYPE') ?: 'COMPANY';
+$exhibition_id = $request->get('EXHIBITION_ID');
+$show_fields = [];
+if ($format_type === 'COMPANY') {
+    switch ($type) {
+        case 'HB':
+            $show_fields = [
+                'USER_LOGIN',
+                'USER_UF_PAS',
+                'USER_ID',
+                'UF_COMPANY',
+                'UF_NAME',
+                'UF_SURNAME',
+                'UF_SALUTATION',
+                'UF_POSITION',
+                'UF_EMAIL',
+                'UF_PHONE',
+                'UF_MOBILE',
+                'UF_SKYPE',
+                'UF_COLLEAGUES_UF_NAME',
+                'UF_COLLEAGUES_UF_SURNAME',
+                'UF_COLLEAGUES_UF_SALUTATION',
+                'UF_COLLEAGUES_UF_JOB_TITLE',
+                'UF_COLLEAGUES_UF_EMAIL',
+                'UF_COLLEAGUES_UF_MOBILE_PHONE',
+                'UF_ADDRESS',
+                'UF_CITY',
+                'UF_COUNTRY',
+                'UF_POSTCODE',
+                'UF_DESCRIPTION',
+                'UF_PRIORITY_AREAS',
+                'Приоритетные направления' => [
+                    'UF_NORTH_AMERICA',
+                    'UF_EUROPE',
+                    'UF_SOUTH_AMERICA',
+                    'UF_AFRICA',
+                    'UF_ASIA',
+                    'UF_OCEANIA',
+                ],
+                'UF_SITE',
+                'UF_HOTEL',
+                'UF_HALL',
+                'UF_TABLE',
+            ];
+            break;
+        case 'EVENING':
+            $show_fields = [
+                'USER_ID',
+                'UF_COMPANY',
+                'UF_NAME',
+                'UF_SURNAME',
+                'UF_SALUTATION',
+                'UF_POSITION',
+                'UF_EMAIL',
+                'UF_PHONE',
+                'UF_MOBILE',
+                'UF_SKYPE',
+                'UF_COLLEAGUES_UF_NAME',
+                'UF_COLLEAGUES_UF_SURNAME',
+                'UF_COLLEAGUES_UF_SALUTATION',
+                'UF_COLLEAGUES_UF_JOB_TITLE',
+                'UF_COLLEAGUES_UF_EMAIL',
+                'UF_COLLEAGUES_UF_MOBILE_PHONE',
+                'UF_ADDRESS',
+                'UF_CITY',
+                'UF_COUNTRY',
+                'UF_POSTCODE',
+                'UF_PRIORITY_AREAS',
+                'UF_SITE',
+                'UF_HOTEL',
+            ];
+            break;
+        default:
+            $show_fields = [
+                'USER_LOGIN',
+                'USER_UF_PAS',
+                'USER_ID',
+                'UF_COMPANY',
+                'UF_NAME',
+                'UF_SURNAME',
+                'UF_SALUTATION',
+                'UF_POSITION',
+                'UF_EMAIL',
+                'UF_PHONE',
+                'UF_MOBILE',
+                'UF_SKYPE',
+                'UF_COLLEAGUES_UF_NAME',
+                'UF_COLLEAGUES_UF_SURNAME',
+                'UF_COLLEAGUES_UF_SALUTATION',
+                'UF_COLLEAGUES_UF_JOB_TITLE',
+                'UF_COLLEAGUES_UF_EMAIL',
+                'UF_COLLEAGUES_UF_MOBILE_PHONE',
+                'UF_ADDRESS',
+                'UF_CITY',
+                'UF_COUNTRY',
+                'UF_POSTCODE',
+                'UF_DESCRIPTION',
+                'UF_PRIORITY_AREAS',
+                'Приоритетные направления' => [
+                    'UF_NORTH_AMERICA',
+                    'UF_EUROPE',
+                    'UF_SOUTH_AMERICA',
+                    'UF_AFRICA',
+                    'UF_ASIA',
+                    'UF_OCEANIA',
+                ],
+                'UF_SITE',
+                'UF_HOTEL',
+            ];
+            break;
+    }
+} elseif ($format_type === 'PEOPLE') {
+    switch ($type) {
+        case 'HB':
+            $show_fields = [
+                'USER_LOGIN',
+                'USER_UF_PAS',
+                'USER_ID',
+                'UF_COMPANY',
+                'UF_NAME',
+                'UF_SURNAME',
+                'UF_SALUTATION',
+                'UF_POSITION',
+                'UF_EMAIL',
+                'UF_PHONE',
+                'UF_MOBILE',
+                'UF_SKYPE',
+                'UF_ADDRESS',
+                'UF_CITY',
+                'UF_COUNTRY',
+                'UF_POSTCODE',
+                'UF_DESCRIPTION',
+                'UF_PRIORITY_AREAS',
+                'Приоритетные направления' => [
+                    'UF_NORTH_AMERICA',
+                    'UF_EUROPE',
+                    'UF_SOUTH_AMERICA',
+                    'UF_AFRICA',
+                    'UF_ASIA',
+                    'UF_OCEANIA',
+                ],
+                'UF_SITE',
+                'UF_HOTEL',
+                'UF_HALL',
+                'UF_TABLE',
+            ];
+            break;
+        case 'EVENING':
+            $show_fields = [
+                'USER_ID',
+                'UF_COMPANY',
+                'UF_NAME',
+                'UF_SURNAME',
+                'UF_SALUTATION',
+                'UF_POSITION',
+                'UF_EMAIL',
+                'UF_PHONE',
+                'UF_MOBILE',
+                'UF_SKYPE',
+                'UF_ADDRESS',
+                'UF_CITY',
+                'UF_COUNTRY',
+                'UF_POSTCODE',
+                'UF_PRIORITY_AREAS',
+                'UF_SITE',
+                'UF_HOTEL',
+            ];
+            break;
+        default:
+            $show_fields = [
+                'USER_LOGIN',
+                'USER_UF_PAS',
+                'USER_ID',
+                'UF_COMPANY',
+                'UF_NAME',
+                'UF_SURNAME',
+                'UF_SALUTATION',
+                'UF_POSITION',
+                'UF_EMAIL',
+                'UF_PHONE',
+                'UF_MOBILE',
+                'UF_SKYPE',
+                'UF_ADDRESS',
+                'UF_CITY',
+                'UF_COUNTRY',
+                'UF_POSTCODE',
+                'UF_DESCRIPTION',
+                'UF_PRIORITY_AREAS',
+                'Приоритетные направления' => [
+                    'UF_NORTH_AMERICA',
+                    'UF_EUROPE',
+                    'UF_SOUTH_AMERICA',
+                    'UF_AFRICA',
+                    'UF_ASIA',
+                    'UF_OCEANIA',
+                ],
+                'UF_SITE',
+                'UF_HOTEL',
+            ];
+            break;
+    }
+}else{
+    exit('Нужен правильный тип');
 }
 
-$arParams["TYPE"] = strip_tags($_REQUEST['type']);
-$arParams["APP_CODE"] = strip_tags($_REQUEST['app']);
 
-$arResult = array();
-
-/* Получаем данные по ИБ Выставки*/
-if(isset($arParams["APP_CODE"]) && $arParams["APP_CODE"]!=''){
-	$rsExhib = CIBlockElement::GetList(
-			array(),
-			array(
-					"IBLOCK_ID" => "15",
-					"CODE" => $arParams["APP_CODE"]
-				),
-			false,
-			false,
-			array("ID", "CODE","IBLOCK_ID", "NAME","PROPERTY_APP_ID", "PROPERTY_APP_HB_ID",
-				"PROPERTY_C_GUESTS_GROUP", "PROPERTY_UC_GUESTS_GROUP")
-			);
-	while($oExhib = $rsExhib->GetNextElement(true, false))
-	{
-		$arResult["PARAM_EXHIBITION"] = $oExhib->GetFields();
-		$arResult["PARAM_EXHIBITION"]["PROPERTIES"] = $oExhib->GetProperties();
-	}
-}
-
-$fileName = $arResult["PARAM_EXHIBITION"]["NAME"]; // Название файла == Название выставки + указание кто это
-
-$filter = array(); //Массив с полями для фильтрации списка пользователей
-$isAll = false; //Коллеги отдельной строкой
-$isEvening = false; //Гости на вечер
-$isHB = false; //Гости HB
-
-
-$formId = 10; //Id формы
-
-//Поля с id результатов
-$resultAllCode = CFormMatrix::getPropertyIDByExh($arResult["PARAM_EXHIBITION"]["ID"]);//Поле с ID формы О КОМПАНИИ
-$filter["!$resultAllCode"] = false;
-$resAllComp = array(); //Массив результатов О компании
-
-if($arParams["TYPE"] == 'guests'){
-	$filter["GROUPS_ID"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["C_GUESTS_GROUP"]["VALUE"];
-	$filter["UF_MR"] = 1;
-	$fileName = "Гости ".$fileName." подтвержденные.xls";
-}
-elseif($arParams["TYPE"] == 'guests_all'){
-	$filter["GROUPS_ID"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["C_GUESTS_GROUP"]["VALUE"];
-	$filter["UF_MR"] = 1;
-	$isAll = true;	
-	$fileName = "Гости ".$fileName." подтвержденные (коллеги отдельно).xls";
-}
-elseif($arParams["TYPE"] == 'guests_hb'){
-	$filter["GROUPS_ID"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["C_GUESTS_GROUP"]["VALUE"];
-	$filter["UF_HB"] = 1;
-	$fileName = "Гости ".$fileName." HB.xls";
-	$isHB = true;
-
-}
-elseif($arParams["TYPE"] == 'guests_hb_all'){
-	$filter["GROUPS_ID"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["C_GUESTS_GROUP"]["VALUE"];
-	$filter["UF_HB"] = 1;
-	$isAll = true;
-	$fileName = "Гости ".$fileName." HB (коллеги отдельно).xls";
-	$isHB = true;
-
-}
-elseif($arParams["TYPE"] == 'guests_ev'){
-	$filter["GROUPS_ID"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["C_GUESTS_GROUP"]["VALUE"];
-	$filter["UF_EV"] = 1;
-	$fileName = "Гости ".$fileName." вечер.xlsx";
-	$isEvening = true;
-
-}
-elseif($arParams["TYPE"] == 'guests_ev_all'){
-	$filter["GROUPS_ID"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["C_GUESTS_GROUP"]["VALUE"];
-	$filter["UF_EV"] = 1;
-	$fileName = "Гости ".$fileName." вечер (коллеги отдельно).xlsx";
-	$isAll = true;
-	$isEvening = true;
-}
-elseif($arParams["TYPE"] == 'guests_no'){
-	$filter["GROUPS_ID"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["UC_GUESTS_GROUP"]["VALUE"];
-	$fileName = "Гости ".$fileName." неподтвержденные.xls";
-	$isEvening = true;
-}
-elseif($arParams["TYPE"] == 'guests_no_all'){
-	$filter["GROUPS_ID"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["UC_GUESTS_GROUP"]["VALUE"];
-	$fileName = "Гости ".$fileName." неподтвержденные (коллеги отдельно).xls";
-	$isAll = true;
-	$isEvening = true;
-}
-elseif($arParams["TYPE"] == 'guests_spam'){
-	$filter["GROUPS_ID"] = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["GUEST_SPAM_GROUP"]["VALUE"];
-	$fileName = "Гости ".$fileName." спам.xls";
-	$isEvening = false;
-	$formId = 10;
-}
-else{
-	echo 'Oops, we are not found this type.';
-}
-
-$rsUsers = CUser::GetList(($by="work_company"), ($order="asc"), $filter, array("SELECT"=>array("UF_*"), "FIELDS"=>array("ID","LOGIN")));
-$rsUsers->NavStart(250); // разбиваем постранично по 30 записей
-$arResult["NAVIGATE"] = $rsUsers->GetPageNavStringEx($navComponentObject, "Пользователи", "");
-$i = 0;
-$arTmpUsers = array();
-while ($arUser = $rsUsers->Fetch()){
-	$arTmpUsers[$i]['ID']       = $arUser['ID'];
-	$arTmpUsers[$i]['LOGIN']    = $arUser['LOGIN'];
-	$arTmpUsers[$i]['PASSWORD'] = makePassExcelDeCode($arUser["UF_PAS"]);
-	$arTmpUsers[$i]['FORM_COMP'] = $arUser[$resultAllCode];
-
-	//Данные по всей компании
-	$resAllComp[] = $arUser[$resultAllCode];
-	$i++;
-}
-
-//Получение ответов формы Гости
-$arTmpResult = array("QUESTIONS"=>array(), "ANSWERS"=>array(), "ANSWERS2"=>array());
-
-CForm::GetResultAnswerArray(
-    $formId,
-    $arTmpResult["QUESTIONS"],
-    $arTmpResult["ANSWERS"],
-    $arTmpResult["ANSWERS2"],
-    array("RESULT_ID" => implode("|", $resAllComp))
+$APPLICATION->IncludeComponent(
+    'ds:xlsx.generator',
+    '',
+    [
+        'EXHIBITION_ID' => $exhibition_id,
+        'GUEST_TYPE' => $type, // [MORNING, EVENING, HB, SPAM, UNCONFIRMED]
+        'FORMAT_TYPE' => $format_type, // [COMPANY, PEOPLE]
+        'REGISTER_GUEST_ENTITY_ID' => REGISTER_GUEST_ENTITY_ID,
+        'REGISTER_GUEST_COLLEAGUES_ENTITY_ID' => REGISTER_GUEST_COLLEAGUES_ENTITY_ID,
+        'SHOW_FIELDS_IN_FILE' => $show_fields
+    ]
 );
-
-$arResult["ANSWERS"] = array();
-$j=0;
-if($isEvening)//Получаем данные по полям для Exel из справочника
-	$arCompField = CFormMatrix::$arExelEvGuestField;
-else
-	$arCompField = CFormMatrix::$arExelGuestField;
-
-foreach ($arTmpUsers as $arUser) {
-	/*Данные из пользователя*/
-	if(!$isEvening){
-		$arResult["ANSWERS"][$j]["LOGIN"] = $arUser['LOGIN'];
-		$arResult["ANSWERS"][$j]["PASSWORD"] = $arUser['PASSWORD'];
-	}
-	$arResult["ANSWERS"][$j]["ID"] = $arUser['ID'];
-	/* Данные о компании */
-	if(!$isAll){
-		foreach ($arCompField["QUEST_CODE"] as $idQuest => $codeRes){
-			$fieldValue = $arTmpResult["ANSWERS2"][$arUser['FORM_COMP']][$codeRes]["0"][$arCompField["ANS_TYPE"][$idQuest]];
-			
-			if(strpos($arCompField["NAMES"][$idQuest], '(other)') !== false){
-				if($fieldValue != '' && $fieldValue != "None"){
-					$arResult["ANSWERS"][$j][$arCompField["NAMES_AR"][$idQuest]] = $fieldValue;
-				}
-			}
-			elseif(!$isHB && ($arCompField["NAMES_AR"][$idQuest] == 'HALL' || $arCompField["NAMES_AR"][$idQuest] == 'TABLE')){
-				continue;
-			}
-			elseif($arCompField["NAMES_AR"][$idQuest] != "DESTINITIONS" && $arCompField["NAMES_AR"][$idQuest] != "AREA"){
-				$arResult["ANSWERS"][$j][$arCompField["NAMES_AR"][$idQuest]] = $fieldValue;
-			}
-			else{
-				if(!isset($arResult["ANSWERS"][$j][$arCompField["NAMES_AR"][$idQuest]])){
-					$arResult["ANSWERS"][$j][$arCompField["NAMES_AR"][$idQuest]] == array();
-				}
-				foreach ($arTmpResult["ANSWERS2"][$arUser['FORM_COMP']][$codeRes] as $dest) {
-					$arResult["ANSWERS"][$j][$arCompField["NAMES_AR"][$idQuest]][] = $dest[$arCompField["ANS_TYPE"][$idQuest]];
-				}
-			}		
-		}
-		if(!$isEvening){
-			$arResult["ANSWERS"][$j]["LOGIN"] = $arUser['LOGIN'];
-			$arResult["ANSWERS"][$j]["PASSWORD"] = $arUser['PASSWORD'];
-		}
-	}
-	else{//Если все представители, то + коллега отдельной строкой
-		$isCollege = false;
-		foreach ($arCompField["QUEST_CODE"] as $idQuest => $codeRes){
-			$fieldValue = $arTmpResult["ANSWERS2"][$arUser['FORM_COMP']][$codeRes]["0"][$arCompField["ANS_TYPE"][$idQuest]];
-			if(strpos($arCompField["NAMES"][$idQuest], '(на утро)') !== false || strpos($arCompField["NAMES"][$idQuest], ' коллеги ') !== false){
-				if($fieldValue != '' && $fieldValue != "None"){
-					$isCollege = $isCollege || true;
-				}
-			}
-			elseif(strpos($arCompField["NAMES"][$idQuest], '(other)') !== false){
-				if($fieldValue != '' && $fieldValue != "None"){
-					$arResult["ANSWERS"][$j][$arCompField["NAMES_AR"][$idQuest]] = $fieldValue;
-				}
-			}
-			elseif(!$isHB && ($arCompField["NAMES_AR"][$idQuest] == 'HALL' || $arCompField["NAMES_AR"][$idQuest] == 'TABLE')){
-				continue;
-			}
-			elseif($arCompField["NAMES_AR"][$idQuest] != "DESTINITIONS" && $arCompField["NAMES_AR"][$idQuest] != "AREA"){
-				$arResult["ANSWERS"][$j][$arCompField["NAMES_AR"][$idQuest]] = $fieldValue;
-			}
-
-			else{
-				if(!isset($arResult["ANSWERS"][$j][$arCompField["NAMES_AR"][$idQuest]])){
-					$arResult["ANSWERS"][$j][$arCompField["NAMES_AR"][$idQuest]] == array();
-				}
-				foreach ($arTmpResult["ANSWERS2"][$arUser['FORM_COMP']][$codeRes] as $dest) {
-					$arResult["ANSWERS"][$j][$arCompField["NAMES_AR"][$idQuest]][] = $dest[$arCompField["ANS_TYPE"][$idQuest]];
-				}				
-			}
-		}
-		if(!$isEvening){
-			$arResult["ANSWERS"][$j]["LOGIN"] = $arUser['LOGIN'];
-			$arResult["ANSWERS"][$j]["PASSWORD"] = $arUser['PASSWORD'];
-		}
-		if($isCollege){
-			if($isEvening){
-				$numberCol = 0;
-				$firstFieldRes = 0;
-				$firstFieldId = 0;
-				foreach ($arCompField["QUEST_CODE"] as $idQuest => $codeRes){
-					if(strpos($arCompField["NAMES"][$idQuest], ' коллеги ') !== false){//заменяем то, что отличается
-						$numderColTmp = substr($arCompField["NAMES_AR"][$idQuest], -1);
-						$fieldValue = $arTmpResult["ANSWERS2"][$arUser['FORM_COMP']][$codeRes]["0"][$arCompField["ANS_TYPE"][$idQuest]];
-						if($numberCol != $numderColTmp && $fieldValue != "" && $fieldValue != "None"){
-							$numberCol = $numderColTmp;
-							$firstFieldRes = $codeRes;
-							$firstFieldId = $idQuest;
-							if(!isset($arResult["ANSWERS"][$j+$numberCol]))
-								$arResult["ANSWERS"][$j+$numberCol]=$arResult["ANSWERS"][$j];//скопировать всю общую информацию
-						}
-						elseif($numberCol != $numderColTmp){
-							$firstFieldRes = 0;
-						}
-						if($firstFieldRes){
-							$arResult["ANSWERS"][$j+$numberCol][str_replace ("_COL".$numberCol, "", $arCompField["NAMES_AR"][$idQuest])] = $fieldValue;
-						}
-					}		
-				}			
-				$j += $numberCol;	
-			}
-			else{
-				$arResult["ANSWERS"][$j+1]=$arResult["ANSWERS"][$j];//скопировать всю общую информацию
-				$j++;
-				foreach ($arCompField["QUEST_CODE"] as $idQuest => $codeRes){
-					$fieldValue = $arTmpResult["ANSWERS2"][$arUser['FORM_COMP']][$codeRes]["0"][$arCompField["ANS_TYPE"][$idQuest]];
-					if(strpos($arCompField["NAMES"][$idQuest], '(на утро)') !== false){//заменяем то, что отличается
-						$arResult["ANSWERS"][$j][str_replace ("_COL", "", $arCompField["NAMES_AR"][$idQuest])] = $fieldValue;
-					}		
-				}				
-			}
-
-		}
-	}	
-	$j++;	
-}
-$arResultTitles = array();
-if(!$isEvening){
-	$arResultTitles[] ="Login";
-	$arResultTitles[] ="Password";
-}
-$arResultTitles[] =  "uId";
-$isDestinationsWrite = false;
-foreach($arCompField["QUEST_CODE"] as $idQuest => $codeRes){
-	if($arCompField["NAMES_AR"][$idQuest] == 'DESTINITIONS'){
-		if($isDestinationsWrite){
-			continue;
-		}
-		$isDestinationsWrite = true;
-		$arResultTitles[] = $arCompField["NAMES"][$idQuest];
-	}
- 	elseif($isAll && (strpos($arCompField["NAMES"][$idQuest], '(на утро)') !== false || strpos($arCompField["NAMES"][$idQuest], ' коллеги ') !== false)){//Если у нас все представители, то коллега отдельной строкой
-		continue;
-	}
-	elseif(strpos($arCompField["NAMES"][$idQuest], '(other)') !== false){
-		continue;
-	}
-	elseif(!$isHB && ($arCompField["NAMES_AR"][$idQuest] == 'HALL' || $arCompField["NAMES_AR"][$idQuest] == 'TABLE')){
-		continue;
-	}
-	else{//Если у нас все представители, то коллега отдельной строкой
-		$arResultTitles[] = $arCompField["NAMES"][$idQuest];
-	}
-}
-
-ini_set('display_errors', TRUE);
-ini_set('display_startup_errors', TRUE);
-date_default_timezone_set('Europe/London');
-
-require_once 'PHPExcel.php';
-
-unset($arTmpResult["QUESTIONS"]);
-unset($arTmpResult["ANSWERS"]);
-unset($arTmpResult["ANSWERS2"]);
-unset($arCompField);
-
-
-// Настройки
-$cacheMethod = PHPExcel_CachedObjectStorageFactory:: cache_to_phpTemp;
-$cacheSettings = array( 'memoryCacheSize ' => '128MB');
-PHPExcel_Settings::setCacheStorageMethod($cacheMethod, $cacheSettings);
-PHPExcel_Settings::setLocale('ru_ru');
-PHPExcel_Settings::setZipClass(PHPExcel_Settings::PCLZIP);
-$objPHPExcel = new PHPExcel();
-$objPHPExcel->getProperties()->setCreator("LTM Site")->setLastModifiedBy("LTM Site")->setTitle("Office 2007 XLSX Test Document")->setSubject("Office 2007 XLSX Test Document") ->setDescription("Document generated list of exhibitors.")->setKeywords("office 2007 openxml php");
-
-$objPHPExcel->setActiveSheetIndex(0);
-$aSheet = $objPHPExcel->getActiveSheet();
-
-$baseFont = array(
-	'font'=>array(
-		'name'=>'Arial',
-		'size'=>'12',
-		'bold'=>false
-	),
-    'alignment' => array (
-            'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT
-    )
-);
-
-/*Устанавливаем ширину колонок (разная инфа, лучше индивидуально)*/
-if(!$isEvening){
-	$aSheet->getColumnDimension('A')->setWidth(18);	//Login
-	$aSheet->getColumnDimension('B')->setWidth(18);	//Password
-	$aSheet->getColumnDimension('C')->setWidth(7);	//uId
-}
-else{
-	$aSheet->getColumnDimension('A')->setWidth(7);	//uId
-	$aSheet->getColumnDimension('B')->setWidth(20);
-	$aSheet->getColumnDimension('C')->setWidth(20);
-}
-$aSheet->getColumnDimension('D')->setWidth(35);	//Компания
-$aSheet->getColumnDimension('E')->setWidth(20); //Имя
-$aSheet->getColumnDimension('F')->setWidth(25); //Фамилия
-$aSheet->getColumnDimension('G')->setWidth(25); //Должность
-$aSheet->getColumnDimension('H')->setWidth(25); //Телефон
-$aSheet->getColumnDimension('I')->setWidth(25); //Моб Телефон
-$aSheet->getColumnDimension('J')->setWidth(20);	//Вид деятельности
-$aSheet->getColumnDimension('K')->setWidth(20); //Адрес
-$aSheet->getColumnDimension('L')->setWidth(20);	//Индекс
-$aSheet->getColumnDimension('M')->setWidth(20);	//Город
-$aSheet->getColumnDimension('N')->setWidth(20); //Страна
-$aSheet->getColumnDimension('O')->setWidth(20); //E-mail
-$aSheet->getColumnDimension('P')->setWidth(20); //Сайт
-$aSheet->getColumnDimension('Q')->setWidth(20); //Приоритетные направления
-$aSheet->getColumnDimension('R')->setWidth(20); //Описание компании
-if(!$isAll || strpos($arRepField["NAMES"][$idQuest], '(на утро)') === false){
-	$aSheet->getColumnDimension('S')->setWidth(20); //Имя коллеги (на утро)
-	$aSheet->getColumnDimension('T')->setWidth(25); //Фамилия коллеги (на утро)
-	$aSheet->getColumnDimension('U')->setWidth(25); //Должность коллеги (на утро)
-	$aSheet->getColumnDimension('V')->setWidth(35); //E-mail коллеги (на утро)
-}
-
-/* Шапка таблицы */
-$row_count = 1;
-$col_count = 0;
-foreach($arResultTitles as $idQuest => $codeRes){
- 	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, $codeRes);
-	$objPHPExcel->getActiveSheet()->getStyleByColumnAndRow($col_count, $row_count)->applyFromArray($baseFont);
-	$objPHPExcel->getActiveSheet()->getStyleByColumnAndRow($col_count, $row_count)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-    $col_count++;
-}
-$row_count++;
-unset($arResultTitles);
-
-/* Вывод данных */
-foreach ($arResult["ANSWERS"] as $numb => $ans) {
-	$col_count = 0;	
-	foreach($ans as $userAns){
-		if(is_array($userAns)){
-			$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, implode(', ', $userAns));		
-		}
-		elseif($userAns == '' || $userAns == 'None'){
-			$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, '  ');
-		}
-		else{
-			$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, $userAns);
-		}
-	 	$objPHPExcel->getActiveSheet()->getStyleByColumnAndRow($col_count, $row_count)->applyFromArray($baseFont);
-	    $col_count++;
-	}
-	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col_count, $row_count, '  ');
-	$row_count++;
-	unset($arResult["ANSWERS"][$numb]);
-}
-
-$objPHPExcel->getActiveSheet()->setTitle('Guest_excel');
-$objPHPExcel->setActiveSheetIndex(0);
-
-// Redirect output to a client’s web browser (Excel5)
-header('Content-Type: application/vnd.ms-excel');
-header('Content-Disposition: attachment;filename="'.$fileName.'"');
-header('Cache-Control: max-age=0');
-// If you're serving to IE 9, then the following may be needed
-header('Cache-Control: max-age=1');
-
-// If you're serving to IE over SSL, then the following may be needed
-header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
-header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
-header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
-header ('Pragma: public'); // HTTP/1.0
-
-
-$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-$objWriter->save('php://output');
-exit;
-//echo "<pre>"; print_r($arResult["ANSWERS"]); echo "</pre>";
-?>

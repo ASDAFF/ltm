@@ -156,109 +156,72 @@ function printVal($ar, $glue)
 </div>
 <div id="overlay"></div><!-- Подложка -->
 <form action="" method="post">
+    <?
+    $exhib_id = $arResult['EXHIB']['ID'];
+    ?>
     <? switch ($arParams["ACT"]):
         case "off":
             ?>
             <input class="custom-buttom confirm-participate-button-mass" type="button" name="confirm"
                    value="Подтвердить участие">
-            <? /*
-			<input class="custom-buttom" type="button" name="edit" disabled value="Редактировать">
-			*/
-            ?>
             <input class="custom-buttom spam-guest-button-mass" type="button" name="spam" value="В спам">
             <input type="hidden" name="SPAM_TYPE" value="Y">
-            <a class="custom-buttom"
-               href="/exel/guest.php?type=guests_no&app=<?= $arResult["EXHIB"]["CODE"] ?>&PAGEN_1=1">Генерировать Excel
-                1</a>
-            <a class="custom-buttom"
-               href="/exel/guest.php?type=guests_no&app=<?= $arResult["EXHIB"]["CODE"] ?>&PAGEN_1=2">Генерировать Excel
-                2</a>
 
+            <a class="custom-buttom"
+               href="/exel/guest.php?GUEST_TYPE=UNCONFIRMED&FORMAT_TYPE=COMPANY&EXHIBITION_ID=<?= $arResult["EXHIB"]["ID"] ?>">Генерировать
+                Excel (по компаниям)</a>
+            <a class="custom-buttom"
+               href="/exel/guest.php?GUEST_TYPE=UNCONFIRMED&FORMAT_TYPE=PEOPLE&EXHIBITION_ID=<?= $arResult["EXHIB"]["ID"] ?>">Генерировать
+                Excel (по людям)</a>
             <? break ?>
         <? case "spam": ?>
             <input class="custom-buttom spam-guest-button-mass" type="button" name="spam" value="Восстановить">
-            <a class="custom-buttom"
-               href="/exel/guest.php?type=guests_spam&app=<?= $arResult["EXHIB"]["CODE"] ?>&PAGEN_1=1">Генерировать
-                Excel 1</a>
-            <a class="custom-buttom"
-               href="/exel/guest.php?type=guests_spam&app=<?= $arResult["EXHIB"]["CODE"] ?>&PAGEN_1=2">Генерировать
-                Excel 2</a>
             <input type="hidden" name="SPAM_TYPE" value="N">
 
+            <a class="custom-buttom"
+               href="/exel/guest.php?GUEST_TYPE=SPAM&FORMAT_TYPE=COMPANY&EXHIBITION_ID=<?= $arResult["EXHIB"]["ID"] ?>">Генерировать
+                Excel (по компаниям)</a>
+            <a class="custom-buttom"
+               href="/exel/guest.php?GUEST_TYPE=SPAM&FORMAT_TYPE=PEOPLE&EXHIBITION_ID=<?= $arResult["EXHIB"]["ID"] ?>">Генерировать
+                Excel (по людям)</a>
             <? break ?>
         <? case "evening": ?>
+
             <a class="custom-buttom"
-               href="/exel/guest.php?type=guests_ev&app=<?= $arResult["EXHIB"]["CODE"] ?>&PAGEN_1=1">Генерировать Excel
-                1</a>
+               href="/exel/guest.php?GUEST_TYPE=EVENING&FORMAT_TYPE=COMPANY&EXHIBITION_ID=<?= $arResult["EXHIB"]["ID"] ?>">Генерировать
+                Excel (по компаниям)</a>
             <a class="custom-buttom"
-               href="/exel/guest.php?type=guests_ev&app=<?= $arResult["EXHIB"]["CODE"] ?>&PAGEN_1=2">Генерировать Excel
-                2</a>
-            <a class="custom-buttom"
-               href="/exel/guest.php?type=guests_ev_all&app=<?= $arResult["EXHIB"]["CODE"] ?>&PAGEN_1=1">Excel (все
-                люди) 1</a>
-            <a class="custom-buttom"
-               href="/exel/guest.php?type=guests_ev_all&app=<?= $arResult["EXHIB"]["CODE"] ?>&PAGEN_1=2">Excel (все
-                люди) 2</a>
-            <? /*
-			<input class="custom-buttom" type="button" name="edit" disabled value="Редактировать">
-			<input class="custom-buttom" type="button" name="spam" disabled value="В СПАМ">
-			<input class="custom-buttom unconfirm-participate-button-mass" type="button" name="unconfirm" value="Отправить в Неподтвержденные">
-			*/ ?>
+               href="/exel/guest.php?GUEST_TYPE=EVENING&FORMAT_TYPE=PEOPLE&EXHIBITION_ID=<?= $arResult["EXHIB"]["ID"] ?>">Генерировать
+                Excel (по людям)</a>
             <? break ?>
         <? case "morning": ?>
-            <a class="custom-buttom" href="/exel/guest.php?type=guests&app=<?= $arResult["EXHIB"]["CODE"] ?>&PAGEN_1=1">Генерировать
-                Excel 1</a>
-            <a class="custom-buttom" href="/exel/guest.php?type=guests&app=<?= $arResult["EXHIB"]["CODE"] ?>&PAGEN_1=2">Генерировать
-                Excel 2</a>
-            <a class="custom-buttom" href="/exel/guest.php?type=guests&app=<?= $arResult["EXHIB"]["CODE"] ?>&PAGEN_1=3">Генерировать
-                Excel 3</a>
             <a class="custom-buttom"
-               href="/exel/guest.php?type=guests_all&app=<?= $arResult["EXHIB"]["CODE"] ?>&PAGEN_1=1">Excel (все люди)
-                1</a>
+               href="/exel/guest.php?GUEST_TYPE=MORNING&FORMAT_TYPE=COMPANY&EXHIBITION_ID=<?= $arResult["EXHIB"]["ID"] ?>">Генерировать
+                Excel (по компаниям)</a>
             <a class="custom-buttom"
-               href="/exel/guest.php?type=guests_all&app=<?= $arResult["EXHIB"]["CODE"] ?>&PAGEN_1=2">Excel (все люди)
-                2</a>
-            <a class="custom-buttom"
-               href="/exel/guest.php?type=guests_all&app=<?= $arResult["EXHIB"]["CODE"] ?>&PAGEN_1=3">Excel (все люди)
-                3</a>
+               href="/exel/guest.php?GUEST_TYPE=MORNING&FORMAT_TYPE=PEOPLE&EXHIBITION_ID=<?= $arResult["EXHIB"]["ID"] ?>">Генерировать
+                Excel (по людям)</a>
             <a class="custom-buttom go"
                href="/ajax/all_pdf_shedule.php?type=guest&app=<?= $arResult["EXHIB"]["CODE"] ?>" data-hb=""
                data-to="shedule">PDF расписания</a>
             <a class="custom-buttom go"
                href="/ajax/all_pdf_wishlist.php?type=guest&app=<?= $arResult["EXHIB"]["CODE"] ?>" data-hb=""
                data-to="wishlist">PDF вишлисты</a>
-            <? /*<input class="custom-buttom" type="button" name="edit" disabled value="Редактировать">$arParams["EXHIBIT_CODE"]
-			<input class="custom-buttom" type="button" name="generate-schedule" disabled value="Генерировать расписание">
-			<input class="custom-buttom" type="button" name="generate-wishlist" disabled value="Генерировать вишлист">
-			<input class="custom-buttom unconfirm-participate-button-mass" type="button" name="unconfirm" value="Отправить в Неподтвержденные">
-			<input class="custom-buttom" type="button" name="cancell-participation" disabled value="Отменить участие">
-			*/ ?>
             <? break ?>
         <? case "hostbuy": ?>
             <a class="custom-buttom"
-               href="/exel/guest.php?type=guests_hb&app=<?= $arResult["EXHIB"]["CODE"] ?>&PAGEN_1=1">Генерировать Excel
-                1</a>
+               href="/exel/guest.php?GUEST_TYPE=HB&FORMAT_TYPE=COMPANY&EXHIBITION_ID=<?= $arResult["EXHIB"]["ID"] ?>">Генерировать
+                Excel (по компаниям)</a>
             <a class="custom-buttom"
-               href="/exel/guest.php?type=guests_hb&app=<?= $arResult["EXHIB"]["CODE"] ?>&PAGEN_1=2">Генерировать Excel
-                2</a>
-            <a class="custom-buttom"
-               href="/exel/guest.php?type=guests_hb_all&app=<?= $arResult["EXHIB"]["CODE"] ?>&PAGEN_1=1">Excel (все
-                люди) 1</a>
-            <a class="custom-buttom"
-               href="/exel/guest.php?type=guests_hb_all&app=<?= $arResult["EXHIB"]["CODE"] ?>&PAGEN_1=2">Excel (все
-                люди) 2</a>
+               href="/exel/guest.php?GUEST_TYPE=HB&FORMAT_TYPE=PEOPLE&EXHIBITION_ID=<?= $arResult["EXHIB"]["ID"] ?>">Генерировать
+                Excel (по людям)</a>
+
             <a class="custom-buttom go"
                href="/ajax/all_pdf_shedule.php?type=guest&app=<?= $arResult["EXHIB"]["CODE"] ?>&hb=y" data-hb="y"
                data-to="shedule">PDF HB расписания</a>
             <a class="custom-buttom go"
                href="/ajax/all_pdf_wishlist.php?type=guest&app=<?= $arResult["EXHIB"]["CODE"] ?>&hb=y" data-hb="y"
                data-to="wishlist">PDF HB вишлисты</a>
-            <? /*<input class="custom-buttom" type="button" name="edit" disabled value="Редактировать">$arParams["EXHIBIT_CODE"]
-			<input class="custom-buttom" type="button" name="generate-schedule" disabled value="Генерировать расписание">
-			<input class="custom-buttom" type="button" name="generate-wishlist" disabled value="Генерировать вишлист">
-			<input class="custom-buttom unconfirm-participate-button-mass" type="button" name="unconfirm" value="Отправить в Неподтвержденные">
-			<input class="custom-buttom" type="button" name="cancell-participation" disabled value="Отменить участие">
-			*/ ?>
             <? break ?>
         <? endswitch ?>
     <input class="custom-buttom in-storage-button-mass" type="button" name="in-storage" value="В хранилище">
@@ -311,7 +274,7 @@ function printVal($ar, $glue)
                 <? endforeach ?>
                 <th>Действия</th>
             </tr>
-<!--            --><?// print_r($arShowedTableCols) ?>
+            <!--            --><? // print_r($arShowedTableCols) ?>
             <? $i = 0;
             foreach ($arResult["USERS_LIST"] as $arUser): ?>
                 <tr class="<? if ($i++ % 2): ?>odd<? else: ?>even<? endif ?>">
@@ -337,16 +300,6 @@ function printVal($ar, $glue)
                             <? endif; ?>
                         </td>
                     <? endforeach ?>
-                    <? /*foreach($arFormPos as $key=>$val):?>
-					<td>
-						<?foreach($val as $v):?>
-							<?if(($k = CFormMatrix::getFormQuestionIdByFormIDAndQuestionName($arParams["GUEST_FORM_ID"], $v))
-									&& isset($arUser[$k])):?>
-								<?=$arUser[$k]?>
-							<?endif?>
-						<?endforeach?>
-					</td>
-				<?endforeach*/ ?>
                     <? foreach ($arShowedTableColsBool as $key => $val): ?>
                         <td class="text-center">
                             <? if (isset($arUser[$val]) && $arUser[$val]): ?>
