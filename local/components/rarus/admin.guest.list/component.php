@@ -206,14 +206,13 @@ while ($el = $rsData->fetch()) {
                             foreach ($value as $elem) {
                                 $newValues[] = $arHlBlockInfo[$key]["ITEMS"][$elem]["UF_VALUE"];
                             }
-//                            echo "<pre>";
-//                            print_r($value);
-//                            print_r($newValues);
-//                            echo "</pre>";
                             $user[$key] = $newValues;
                         } else {
                             $user[$key] = $arHlBlockInfo[$key]["ITEMS"][$value]["UF_VALUE"];
                         }
+                        break;
+                    case "enumeration":
+                        $user[$key] = $arHlBlockInfo[$key]["ITEMS"][$value]["VALUE"];
                         break;
                     default:
                         switch ($key) {
