@@ -70,7 +70,14 @@ event. All applications will be reviewed and processed manually.</p>
 <p>If your company/hotel meets the Luxury Travel Mart standarts regarding exhibitors, confirmation and invoice
 will be sent to your email within 48 hours. If for some reasons your profile doesn't meet the LTM criteria,
 your application will be refused and you'll receive notification of this.</p>";
-$MESS["R_B_REGISTER_COMPLETE"] = "<p>Благодарим Вас за регистрацию на сайте для участия в выставке<br /><strong>Luxury Travel Mart.</strong></p>
+$MESS["R_B_REGISTER_COMPLETE"] = "<p>Благодарим Вас за регистрацию на сайте для участия в выставке<br /><strong>Luxury Travel Mart!</strong></p>
 <p>Ваша заявка на участие рассматривается организаторами выставки. Вы получите уведомление <strong>в течение 48 часов</strong>.</p>
-<p>Список участников и программу мероприятия вы можете посмотреть на сайте.</p>";
+
+<p><strong>Важно:</strong> Заполнение формы онлайн-заявки автоматически не гарантирует подтверждения Вашего участия в мероприятии – каждая гостевая регистрация проверяется.</p>
+
+<p>PR агентства и маркетинговые компании по оказанию представительских услуг в туриндустрии, рекламные отделы масс-медиа, иностранные поставщики туристических услуг и отели, а также их представители, не участвующие в <strong>Luxury Travel Mart</strong> в качестве экспонентов, не допускаются к гостевому посещению из-за возможного конфликта интересов с участниками выставки.</p>
+
+<p>Список участников и программу мероприятия вы можете посмотреть на сайте.</p>
+
+<p>Хорошего дня!</p>";
 ?>
