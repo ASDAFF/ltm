@@ -3,7 +3,6 @@
 <?
 use \Bitrix\Highloadblock as HL;
 use \Bitrix\Main\Context;
-
 const FILE_DIR = 'hlguest';
 
 if (CModule::IncludeModule("highloadblock")) {
@@ -166,7 +165,14 @@ if (CModule::IncludeModule("highloadblock")) {
                     while ($arElem = $result->Fetch()) {
                         $arHlBlockInfo[$arRes["FIELD_NAME"]]["ITEMS"][$arElem["ID"]] = $arElem;
                     }
-                }
+                }elseif ($arRes['USER_TYPE_ID'] === 'enumeration') {
+                    $reDataEnum = CUserFieldEnum::GetList(array('ID' => 'ASC'), array(
+                        'USER_FIELD_ID' => $arRes['ID'],
+                    ));
+                    while ($data = $reDataEnum->Fetch()) {
+                        $arHlBlockInfo[$arRes['FIELD_NAME']]['ITEMS'][$data['ID']] = $data;
+                    }
+                 }
             }
             $arResult["FIELD_DATA"] = $arHlBlockInfo;
             $arResult["FIELD_DATA_CHECKED_ALL"] = ["UF_NORTH_AMERICA", "UF_EUROPE", "UF_SOUTH_AMERICA", "UF_AFRICA", "UF_ASIA", "UF_OCEANIA"];
