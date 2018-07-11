@@ -259,11 +259,11 @@ class GuestStorageTable extends DataManager
     {
         $exib = CIBlockElement::GetList([], ['ID' => $exibId], false, false, ['PROPERTY_UC_GUESTS_GROUP', 'PROPERTY_C_GUESTS_GROUP'])->Fetch();
         if ($exib) {
-            $groupId = [($morning || $evening)? $exib['PROPERTY_C_GUESTS_GROUP_VALUE'] : $exib['PROPERTY_UC_GUESTS_GROUP_VALUE']];
+            $groupId = [$exib['PROPERTY_UC_GUESTS_GROUP_VALUE']];
 
             $arFields = [
-                'UF_MR' => $morning ?: false,
-                'UF_EV' => $evening ?: false,
+                'UF_MR' => false,
+                'UF_EV' => false,
                 'GROUP_ID' => $groupId
             ];
             $user = new CUser();
