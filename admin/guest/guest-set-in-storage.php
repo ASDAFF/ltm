@@ -2,5 +2,8 @@
 
 $APPLICATION->IncludeComponent(
     'ds:guest.store',
-    ''
+    '',
+    [
+        'MOVE_TO' => MOVE_TO_STORAGE
+    ]
 );

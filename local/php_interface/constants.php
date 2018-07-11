@@ -68,3 +68,7 @@ define('ID_FORM_GUEST', 10);
 
 define('REGISTER_GUEST_ENTITY_ID', 15);
 define('REGISTER_GUEST_COLLEAGUES_ENTITY_ID', 18);
+
+//Константы для переноса гостей.
+define('MOVE_TO_STORAGE', 1);
+define('MOVE_FROM_STORAGE', 2);

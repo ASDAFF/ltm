@@ -13,6 +13,10 @@ use Bitrix\Main\Entity\DataManager;
 use Bitrix\Main\Entity\EnumField;
 use Bitrix\Main\Entity\IntegerField;
 use Bitrix\Main\Entity\StringField;
+use Bitrix\Main\Entity\Event;
+use Bitrix\Main\Entity\EventResult;
+use CFile;
+use CUser;
 
 class RegistrGuestTable extends DataManager
 {
@@ -215,36 +219,82 @@ class RegistrGuestTable extends DataManager
         ];
     }
 
+    public static function getRowByUserID($userId) : array
+    {
+        $result = self::getList([
+            'filter' => [
+                'UF_USER_ID' => $userId
+            ],
+            'limit' => 1
+        ])->fetch();
+        return $result ?: [];
+    }
+
+    private static function moveUserToStoreGroup(int $userId, array $groupIds = [59]) : bool
+    {
+        $result = CUser::SetUserGroup(10, $groupIds);
+        return is_null($result);
+    }
+
     public static function moveGuestToStorage(int $userId)
     {
-        $row = self::getRowById($userId);
-        if(isset($row['UF_COLLEAGUES'])){
-            $newColleagues = [];
-            foreach ($row['UF_COLLEAGUES'] as $colleagueId){
-                $newId = RegistrGuestColleagueTable::moveColleagueToStorage($colleagueId);
-                if(!is_null($newId)){
-                    $newColleagues[] = $newId;
+        $row = self::getRowByUserID($userId);
+
+        if($row && self::moveUserToStoreGroup($userId)){
+            if(isset($row['UF_COLLEAGUES'])){
+                $newColleagues = [];
+                foreach ($row['UF_COLLEAGUES'] as $colleagueId){
+                    $newId = RegistrGuestColleagueTable::moveColleagueToStorage($colleagueId);
+                    if(!is_null($newId)){
+                        $newColleagues[] = $newId;
+                    }
                 }
+                $row['UF_COLLEAGUES'] = $newColleagues;
             }
-            $row['UF_COLLEAGUES'] = $newColleagues;
-        }
-        $result = GuestStorageTable::add($row);
-        if($result->isSuccess()){
-            self::delete($userId);
-            return $result->getId();
+            $result = GuestStorageTable::add($row);
+            if($result->isSuccess()){
+                self::delete($row['ID']);
+                return $result->getId();
+            }else{
+                return null;
+            }
         }else{
             return null;
         }
     }
 
-    public static function moveToStorage(array $userIds): bool
+    public static function moveToStorage(array $userIds)
     {
         if(count($userIds) == 0){
             return false;
         }
 
         foreach ($userIds as $userId){
-            $result = self::moveGuestToStorage($userId);
+            self::moveGuestToStorage($userId);
         }
+    }
+
+    public static function onBeforeAdd(Event $event)
+    {
+        $result = new EventResult;
+        $data = $event->getParameter("fields");
+        $fieldsKey = array_keys(self::getEntity()->getFields());
+        if (isset($data['ID']))
+        {
+            $result->unsetField('ID');
+        }
+
+        if(isset($data['UF_PHOTO'])){
+            $newFileId = CFile::CopyFile($data['UF_PHOTO']);
+            $result->modifyFields(['UF_PHOTO' => $newFileId]);
+        }
+
+        foreach ($data as $key => $value){
+            if(!in_array($key, $fieldsKey)){
+                $result->unsetField($key);
+            }
+        }
+
+        return $result;
     }
 }

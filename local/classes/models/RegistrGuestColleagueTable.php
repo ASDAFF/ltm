@@ -125,10 +125,14 @@ class RegistrGuestColleagueTable extends DataManager
     public static function moveColleagueToStorage(int $colleague_id)
     {
         $row = self::getRowById($colleague_id);
-        $result = GuestStorageColleagueTable::add($row);
-        if($result->isSuccess()){
-            self::delete($colleague_id);
-           return $result->getId();
+        if($row){
+            $result = GuestStorageColleagueTable::add($row);
+            if($result->isSuccess()){
+                self::delete($colleague_id);
+                return $result->getId();
+            }else{
+                return null;
+            }
         }else{
             return null;
         }

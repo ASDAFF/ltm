@@ -10,6 +10,7 @@ use Bitrix\Highloadblock as HL;
 use CUserTypeEntity;
 use CUserFieldEnum;
 use Bitrix\Main\Loader;
+use CFile;
 
 Loader::includeModule('highloadblock');
 
@@ -124,9 +125,30 @@ class GuestStorageColleagueTable extends DataManager
 
         if (isset($data['ID']))
         {
-            $result->modifyFields(array('ID' => null));
+            $result->unsetField('ID');
+        }
+
+        if(isset($data['UF_PHOTO'])){
+            $newFileId = CFile::CopyFile($data['UF_PHOTO']);
+            $result->modifyFields(['UF_PHOTO' => $newFileId]);
         }
 
         return $result;
+    }
+
+    public static function moveColleagueToExib(int $colleague_id)
+    {
+        $row = self::getRowById($colleague_id);
+        if($row){
+            $result = RegistrGuestColleagueTable::add($row);
+            if($result->isSuccess()){
+                self::delete($colleague_id);
+                return $result->getId();
+            }else{
+                return null;
+            }
+        }else{
+            return null;
+        }
     }
 }
