@@ -11,12 +11,12 @@ use Bitrix\Main\Entity\StringField;
 class SettingsTable extends DataManager
 {
 
-    public static function getTableName()
+    public static function getTableName() : string
     {
         return "meetings_settings";
     }
 
-    public static function getMap()
+    public static function getMap() : array
     {
         return [
             new IntegerField('ID', [
