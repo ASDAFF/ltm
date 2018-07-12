@@ -175,7 +175,7 @@ while($arRes = $rsData->NavNext(true, "f_"))
 	$row->AddViewField("ID", '<a href="' . $edit_url . '" title="' . GetMessage("IBLIST_A_EDIT") . '">' . $f_ID . '</a>');
 	$row->AddViewField("SENDER_ID", $f_SENDER_ID . ' [' . DokaGetUserName($f_SENDER_ID) .']');
 	$row->AddViewField("RECEIVER_ID", $f_RECEIVER_ID . ' [' . DokaGetUserName($f_RECEIVER_ID) .']');
-	$row->AddViewField("EXHIBITION_ID", $f_EXHIBITION_ID . ' [' . DokaGetExhibitionName($f_EXHIBITION_ID) .']');
+	$row->AddViewField("EXHIBITION_ID", $f_EXHIBITION_ID . ' [' . GetExhibitionName($f_EXHIBITION_ID) .']');
 	// $row->AddViewField("STATUS", GetMessage('STATUS'));
 
 	$can_edit = true;

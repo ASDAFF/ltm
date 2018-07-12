@@ -135,7 +135,7 @@ while ($arRes = $rsData->NavNext(true, "f_")) {
     $row->AddViewField("ID", '<a href="' . $edit_url . '" title="' . GetMessage("IBLIST_A_EDIT") . '">' . $f_ID . '</a>');
     $row->AddViewField("SORT", $f_SORT);
     $row->AddViewField("NAME", $f_NAME);
-    $row->AddViewField("EXHIBITION_ID", $f_EXHIBITION_ID . ' [' . DokaGetExhibitionName($f_EXHIBITION_ID) . ']');
+    $row->AddViewField("EXHIBITION_ID", $f_EXHIBITION_ID . ' [' . GetExhibitionName($f_EXHIBITION_ID) . ']');
 
     $can_edit = true;
 
@@ -246,7 +246,7 @@ $lAdmin->CheckListMode();
 
 $lAdmin->DisplayList();
 
-function DokaGetExhibitionName($exhibition_id)
+function GetExhibitionName($exhibition_id)
 {
     $ID = IntVal($exhibition_id);
     static $cache = array();
