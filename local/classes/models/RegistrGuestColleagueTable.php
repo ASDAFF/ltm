@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: amf1k
- * Date: 10.07.18
- * Time: 12:53
- */
 
 namespace Spectr\Models;
 
@@ -15,6 +9,9 @@ use Bitrix\Highloadblock as HL;
 use CUserTypeEntity;
 use CUserFieldEnum;
 use Bitrix\Main\Loader;
+use Bitrix\Main\Entity\Event;
+use Bitrix\Main\Entity\EventResult;
+use CFile;
 
 Loader::includeModule('highloadblock');
 
@@ -122,12 +119,37 @@ class RegistrGuestColleagueTable extends DataManager
         ];
     }
 
+    public static function onBeforeAdd(Event $event)
+    {
+        $result = new EventResult;
+        $data = $event->getParameter("fields");
+        $fieldsKey = array_keys(self::getEntity()->getFields());
+        if (isset($data['ID']))
+        {
+            $result->unsetField('ID');
+        }
+
+        if(isset($data['UF_PHOTO'])){
+            $newFileId = CFile::CopyFile($data['UF_PHOTO']);
+            $result->modifyFields(['UF_PHOTO' => $newFileId]);
+        }
+
+        foreach ($data as $key => $value){
+            if(!in_array($key, $fieldsKey)){
+                $result->unsetField($key);
+            }
+        }
+
+        return $result;
+    }
+
     public static function moveColleagueToStorage(int $colleague_id)
     {
         $row = self::getRowById($colleague_id);
         if($row){
             $result = GuestStorageColleagueTable::add($row);
             if($result->isSuccess()){
+                self::delete($colleague_id);
                 return $result->getId();
             }else{
                 return null;
@@ -135,5 +157,16 @@ class RegistrGuestColleagueTable extends DataManager
         }else{
             return null;
         }
+    }
+
+    public static function onAfterAdd(Event $event)
+    {
+        $id = $event->getParameter('id');
+        $data = $event->getParameter('fields');
+        $valueId = self::getEnumValueIdByXMLID($data['UF_DAYTIME'], 'UF_DAYTIME');
+        $hlblock = HL\HighloadBlockTable::getById(self::getId())->fetch();
+        $entity = HL\HighloadBlockTable::compileEntity($hlblock);
+        $entity_data_class = $entity->getDataClass();
+        $entity_data_class::update($id, ['UF_DAYTIME' => [$valueId]]);
     }
 }

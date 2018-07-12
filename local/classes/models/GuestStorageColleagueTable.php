@@ -122,7 +122,7 @@ class GuestStorageColleagueTable extends DataManager
     {
         $result = new EventResult;
         $data = $event->getParameter("fields");
-
+        $fieldsKey = array_keys(self::getEntity()->getFields());
         if (isset($data['ID']))
         {
             $result->unsetField('ID');
@@ -133,7 +133,24 @@ class GuestStorageColleagueTable extends DataManager
             $result->modifyFields(['UF_PHOTO' => $newFileId]);
         }
 
+        foreach ($data as $key => $value){
+            if(!in_array($key, $fieldsKey)){
+                $result->unsetField($key);
+            }
+        }
+
         return $result;
+    }
+
+    public static function onAfterAdd(Event $event)
+    {
+        $id = $event->getParameter('id');
+        $data = $event->getParameter('fields');
+        $valueId = self::getEnumValueIdByXMLID($data['UF_DAYTIME'], 'UF_DAYTIME');
+        $hlblock = HL\HighloadBlockTable::getById(self::getId())->fetch();
+        $entity = HL\HighloadBlockTable::compileEntity($hlblock);
+        $entity_data_class = $entity->getDataClass();
+        $entity_data_class::update($id, ['UF_DAYTIME' => [$valueId]]);
     }
 
     public static function moveColleagueToExib(int $colleague_id)

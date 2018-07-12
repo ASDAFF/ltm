@@ -1,16 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: amf1k
- * Date: 10.07.18
- * Time: 12:09
- */
 
 namespace Spectr\Models;
 
 use Bitrix\Main\Entity\BooleanField;
 use Bitrix\Main\Entity\DataManager;
-use Bitrix\Main\Entity\EnumField;
 use Bitrix\Main\Entity\IntegerField;
 use Bitrix\Main\Entity\StringField;
 use Bitrix\Main\Entity\Event;
@@ -230,17 +223,28 @@ class RegistrGuestTable extends DataManager
         return $result ?: [];
     }
 
-    private static function moveUserToStoreGroup(int $userId, array $groupIds = [59]) : bool
+    private static function updateUser(int $userId, array $groupIds = [59]) : bool
     {
-        $result = CUser::SetUserGroup(10, $groupIds);
-        return is_null($result);
+        $arFields = [
+            'UF_MR' => false,
+            'UF_EV' => false,
+            'UF_HB' => false,
+            'GROUP_ID' => $groupIds
+        ];
+        $user = new CUser();
+        $user->Update($userId, $arFields);
+        if(!$user->LAST_ERROR){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public static function moveGuestToStorage(int $userId)
     {
         $row = self::getRowByUserID($userId);
 
-        if($row && self::moveUserToStoreGroup($userId)){
+        if($row && self::updateUser($userId)){
             if(isset($row['UF_COLLEAGUES'])){
                 $newColleagues = [];
                 foreach ($row['UF_COLLEAGUES'] as $colleagueId){

@@ -1,15 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: amf1k
- * Date: 10.07.18
- * Time: 10:51
- */
 
 namespace Spectr\Models;
 
-use Bitrix\Iblock\IblockTable;
-use Bitrix\Iblock\PropertyTable;
 use Bitrix\Main\Entity\BooleanField;
 use Bitrix\Main\Entity\DataManager;
 use Bitrix\Main\Entity\IntegerField;
@@ -257,13 +249,14 @@ class GuestStorageTable extends DataManager
 
     public static function updateUser(int $userId, int $exibId, bool $morning = null, bool $evening = null): bool
     {
-        $exib = CIBlockElement::GetList([], ['ID' => $exibId], false, false, ['PROPERTY_UC_GUESTS_GROUP', 'PROPERTY_C_GUESTS_GROUP'])->Fetch();
+        $exib = CIBlockElement::GetList([], ['ID' => $exibId], false, false, ['PROPERTY_UC_GUESTS_GROUP'])->Fetch();
         if ($exib) {
             $groupId = [$exib['PROPERTY_UC_GUESTS_GROUP_VALUE']];
 
             $arFields = [
                 'UF_MR' => false,
                 'UF_EV' => false,
+                'UF_HB' => false,
                 'GROUP_ID' => $groupId
             ];
             $user = new CUser();
