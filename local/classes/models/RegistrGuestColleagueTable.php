@@ -96,7 +96,7 @@ class RegistrGuestColleagueTable extends DataManager
                             if(is_array($value)){
                                 $value = reset($value);
                             }
-                            return self::getEnumValueIdByXMLID($value, 'UF_DAYTIME');
+                            return serialize([self::getEnumValueIdByXMLID($value, 'UF_DAYTIME')]);
                         }
                     ];
                 },
@@ -128,7 +128,6 @@ class RegistrGuestColleagueTable extends DataManager
         if($row){
             $result = GuestStorageColleagueTable::add($row);
             if($result->isSuccess()){
-                self::delete($colleague_id);
                 return $result->getId();
             }else{
                 return null;

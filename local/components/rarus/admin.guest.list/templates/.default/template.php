@@ -470,7 +470,7 @@ function printVal($ar, $glue)
             method: "POST",
             data: data,
             success: function () {
-                // document.location.reload(true)
+                document.location.reload(true)
             },
             error: function (d) {
                 alert("error: " + d.responseText)
