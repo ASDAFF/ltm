@@ -10,5 +10,7 @@ CModule::AddAutoloadClasses('doka.meetings', array(
 	'\Doka\Meetings\Requests' => 'classes/general/Requests.php',
 	'Doka\Meetings\Wishlists' => 'classes/general/Wishlists.php',
 	'\Doka\Meetings\Wishlists' => 'classes/general/Wishlists.php',
+	'Spectr\Meeting\Models\TimeslotTable' => 'lib/Models/TimeslotTable.php',
+	'Spectr\Meeting\Models\SettingsTable' => 'lib/Models/SettingsTable.php',
 ));
 ?>
