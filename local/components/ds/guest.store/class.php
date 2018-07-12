@@ -15,7 +15,7 @@ class GuestStore extends CBitrixComponent
     {
         $result = $arParams;
         $result['USER_ID'] = intval($arParams['USER_ID']) ?: intval($this->request->get('USER_ID'));
-        $result['USER_IDS'] = $this->request->get('USERS_LIST') ?: [$result['USER_ID']];
+        $result['USER_IDS'] = $result['USER_ID'] ? [$result['USER_ID']] : $this->request->get('USERS_LIST');
         return $result;
     }
 
