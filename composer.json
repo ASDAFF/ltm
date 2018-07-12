@@ -1,2 +1,7 @@
 {
+    "require": {
+        "mpdf/mpdf": "^7.1",
+        "phpoffice/phpspreadsheet": "^1.2",
+        "cjp2600/bim-core": "^1.1"
+    }
 }
