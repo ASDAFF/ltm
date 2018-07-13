@@ -25,11 +25,103 @@ class SettingsTable extends DataManager
             ]),
             new StringField('NAME'),
             new StringField('CODE'),
-            new BooleanField('IS_LOCKED'),
-            new BooleanField('ACTIVE'),
+            new BooleanField('IS_LOCKED', [
+                'save_data_modification' => function () {
+                    return array(
+                        function ($value) {
+                            if (is_bool($value)) {
+                                return $value;
+                            } else {
+                                return (int)$value == 1;
+                            }
+                        },
+                    );
+                },
+                'fetch_data_modification' => function () {
+                    return array(
+                        function ($value) {
+                            if (is_bool($value)) {
+                                return $value;
+                            } else {
+                                return (int)$value == 1;
+                            }
+                        },
+                    );
+                },
+            ]),
+            new BooleanField('ACTIVE', [
+                'save_data_modification' => function () {
+                    return array(
+                        function ($value) {
+                            if (is_bool($value)) {
+                                return $value;
+                            } else {
+                                return (int)$value == 1;
+                            }
+                        },
+                    );
+                },
+                'fetch_data_modification' => function () {
+                    return array(
+                        function ($value) {
+                            if (is_bool($value)) {
+                                return $value;
+                            } else {
+                                return (int)$value == 1;
+                            }
+                        },
+                    );
+                },
+            ]),
             new IntegerField('GUESTS_GROUP'),
-            new BooleanField('IS_GUEST'),
-            new BooleanField('IS_HB'),
+            new BooleanField('IS_GUEST', [
+                'save_data_modification' => function () {
+                    return array(
+                        function ($value) {
+                            if (is_bool($value)) {
+                                return $value;
+                            } else {
+                                return (int)$value == 1;
+                            }
+                        },
+                    );
+                },
+                'fetch_data_modification' => function () {
+                    return array(
+                        function ($value) {
+                            if (is_bool($value)) {
+                                return $value;
+                            } else {
+                                return (int)$value == 1;
+                            }
+                        },
+                    );
+                },
+            ]),
+            new BooleanField('IS_HB', [
+                'save_data_modification' => function () {
+                    return array(
+                        function ($value) {
+                            if (is_bool($value)) {
+                                return $value;
+                            } else {
+                                return (int)$value == 1;
+                            }
+                        },
+                    );
+                },
+                'fetch_data_modification' => function () {
+                    return array(
+                        function ($value) {
+                            if (is_bool($value)) {
+                                return $value;
+                            } else {
+                                return (int)$value == 1;
+                            }
+                        },
+                    );
+                },
+            ]),
             new IntegerField('MEMBERS_GROUP'),
             new IntegerField('ADMINS_GROUP'),
             new StringField('EVENT_REJECT'),

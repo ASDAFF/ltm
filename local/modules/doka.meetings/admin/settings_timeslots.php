@@ -1,10 +1,10 @@
 <?php
 
+use Bitrix\Main\Context;
 use Bitrix\Main\Loader;
 use Bitrix\Main\Localization\Loc;
-use Spectr\Meeting\Models\TimeslotTable;
 use Spectr\Meeting\Models\SettingsTable;
-use Bitrix\Main\Context;
+use Spectr\Meeting\Models\TimeslotTable;
 
 @set_time_limit(7200);
 @ini_set('max_execution_time', 7200);
@@ -54,7 +54,7 @@ if (($arID = $lAdmin->GroupAction()) && check_bitrix_sessid()) {
             case "delete":
                 @set_time_limit(0);
                 $DB->StartTransaction();
-                if (!TimeslotTable::Delete($ID)) {
+                if (!TimeslotTable::Delete($ID)->isSuccess()) {
                     $DB->Rollback();
                     $lAdmin->AddGroupError(Loc::getMessage("DELETE_ERROR"), $ID);
                 }

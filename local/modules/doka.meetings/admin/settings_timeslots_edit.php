@@ -1,11 +1,10 @@
 <?
 
+use Bitrix\Main\Context;
 use Bitrix\Main\Loader;
 use Bitrix\Main\Localization\Loc;
-use Bitrix\Main\Context;
-use Spectr\Meeting\Models\TimeslotTable;
 use Spectr\Meeting\Models\SettingsTable;
-use Doka\Meetings\Timeslots as DMT;
+use Spectr\Meeting\Models\TimeslotTable;
 
 @set_time_limit(7200);
 @ini_set("max_execution_time", 7200);
@@ -115,7 +114,6 @@ if ($ID > 0) {
     }
 }
 
-//context menu
 $aMenu = [
     [
         "TEXT" => Loc::getMessage("DOKA_MEET_LIST"),
@@ -132,15 +130,11 @@ if ($ID > 0) {
     ];
 }
 
-// SHOW FORM
 require $_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_admin_after.php";
 
-// Add admin context menu
 $context = new CAdminContextMenu($aMenu);
 $context->Show();
-?>
 
-<?
 $fields = TimeslotTable::getEntity()->getFields();
 $arFields = [];
 foreach ($fields as $field) {
@@ -199,7 +193,7 @@ foreach ($fields as $field) {
                         ?>
                         <input type="checkbox" id="<?= htmlspecialcharsbx($code) ?>"
                                name="<?= htmlspecialcharsbx($code) ?>"
-                               value="Y"<?= ($val == "1")? " checked" : "" ?>>
+                               value="Y"<?= ($val == "1") ? " checked" : "" ?>>
                         <?
                         break;
                     case "text":
