@@ -141,20 +141,21 @@ $context->Show();
 $fields = SettingsTable::getEntity()->getFields();
 $arFields = [];
 foreach ($fields as $field) {
-    if ($field->getName() === "ID") continue;
+    $fieldCode = $field->getName();
+    if ($fieldCode === "ID") continue;
     $res = [];
     $res = [
-        "NAME" => Loc::getMessage("DOKA_MEET_" . $field->getName()),
+        "NAME" => Loc::getMessage("DOKA_MEET_" . $fieldCode),
     ];
-    if ($field->getName() == 'IS_LOCKED' || $field->getName() == 'ACTIVE' || $field->getName() == 'IS_GUEST' || $field->getName() == 'IS_HB') {
+    if ($fieldCode === 'IS_LOCKED' || $fieldCode === 'ACTIVE' || $fieldCode === 'IS_GUEST' || $fieldCode === 'IS_HB') {
         $res["TYPE"] = 'checkbox';
-    } else if ($field->getName() == 'MEMBERS_GROUP' || $field->getName() == 'GUESTS_GROUP' || $field->getName() == 'ADMINS_GROUP') {
+    } else if ($fieldCode === 'MEMBERS_GROUP' || $fieldCode === 'GUESTS_GROUP' || $fieldCode === 'ADMINS_GROUP') {
         $res["TYPE"] = 'group';
     } else {
         $res["TYPE"] = "text";
         $res["SIZE"] = 30;
     }
-    $arFields[$field->getName()] = $res;
+    $arFields[$fieldCode] = $res;
 }
 ?>
 

@@ -4,9 +4,9 @@ namespace Spectr\Meeting\Models;
 
 
 use Bitrix\Main\Entity\DataManager;
+use Bitrix\Main\Entity\DateTimeField;
 use Bitrix\Main\Entity\IntegerField;
 use Bitrix\Main\Entity\StringField;
-use Bitrix\Main\Entity\DateTimeField;
 
 class RequestTable extends DataManager
 {
@@ -18,7 +18,7 @@ class RequestTable extends DataManager
     const STATUS_TIMEOUT   = 4;
     const STATUS_RESERVE   = 5;
 
-    static $types = array(
+    static $statuses = array(
         self::STATUS_EMPTY     => 'empty',
         self::STATUS_PROCESS   => 'process',
         self::STATUS_CONFIRMED => 'confirmed',
@@ -49,20 +49,25 @@ class RequestTable extends DataManager
                 'save_data_modification' => function(){
                     return [
                         function($value){
-                            return self::$types[$value];
+                            return self::$statuses[$value];
                         }
                     ];
                 },
                 'fetch_data_modification' => function(){
                     return [
                         function($value){
-                            return array_search($value, self::$types);
+                            return self::$statuses[array_search($value, self::$statuses)];
                         }
                     ];
                 }
             ]),
             new IntegerField('EXHIBITION_ID'),
         ];
+    }
+
+    static public function getStatuses()
+    {
+        return self::$statuses;
     }
 
 }

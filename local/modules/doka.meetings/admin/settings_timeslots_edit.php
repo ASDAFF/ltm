@@ -138,15 +138,16 @@ $context->Show();
 $fields = TimeslotTable::getEntity()->getFields();
 $arFields = [];
 foreach ($fields as $field) {
-    if ($field->getName() === "ID") continue;
+    $fieldCode = $field->getName();
+    if ($fieldCode === "ID") continue;
     $res = [];
     $res = [
-        "NAME" => Loc::getMessage("DOKA_MEET_" . $field->getName()),
+        "NAME" => Loc::getMessage("DOKA_MEET_" . $fieldCode),
     ];
 
-    if ($field->getName() == "EXHIBITION_ID" || $field->getName() == "SLOT_TYPE") {
+    if ($fieldCode === "EXHIBITION_ID" || $fieldCode === "SLOT_TYPE") {
         $res["TYPE"] = "select";
-    } else if ($field->getName() == "TIME_FROM" || $field->getName() == "TIME_TO") {
+    } else if ($fieldCode === "TIME_FROM" || $fieldCode === "TIME_TO") {
         $res["TYPE"] = "info";
         if ($ID <= 0)
             $res["TYPE"] = "hide";
@@ -155,7 +156,7 @@ foreach ($fields as $field) {
         $res["SIZE"] = 30;
     }
 
-    $arFields[$field->getName()] = $res;
+    $arFields[$fieldCode] = $res;
 }
 ?>
 

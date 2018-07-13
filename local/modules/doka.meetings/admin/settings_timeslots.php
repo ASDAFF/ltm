@@ -224,7 +224,7 @@ $lAdmin->DisplayList();
 
 function GetExhibitionName($exhibition_id)
 {
-    $ID = IntVal($exhibition_id);
+    $ID = (int)$exhibition_id;
     static $cache = [];
     if (!array_key_exists($ID, $cache)) {
         $arItem = SettingsTable::getRowById($exhibition_id);
