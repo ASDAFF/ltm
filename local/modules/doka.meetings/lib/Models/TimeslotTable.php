@@ -14,7 +14,7 @@ class TimeslotTable extends DataManager
     const TYPE_LUNCH = 4;
     const TYPE_FREE = 8;
 
-    static $types = [
+    private static $types = [
         self::TYPE_MEET => 'meet',
         self::TYPE_COFFEE => 'coffee',
         self::TYPE_LUNCH => 'lunch',
@@ -55,6 +55,10 @@ class TimeslotTable extends DataManager
                 }
             ]),
         ];
+    }
+
+    public static function getTypes(){
+        return self::$types;
     }
 
 }
