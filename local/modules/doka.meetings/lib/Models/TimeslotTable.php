@@ -67,7 +67,7 @@ class TimeslotTable extends DataManager
         }
     }
 
-    public static function getHtmlInput(int $currentValue, string $exhibCode = "EXHIBITION_ID", string $timeslotCode = "TIMESLOT_ID", array $filterExhib = [], array $filterTimeslot = []): string
+    public static function getHtmlInput(int $currentValueExhib, int $currentValueTimeslot, string $exhibCode = "EXHIBITION_ID", string $timeslotCode = "TIMESLOT_ID", array $filterExhib = [], array $filterTimeslot = []): string
     {
         $html = '';
         $randString = randString();
@@ -81,7 +81,7 @@ class TimeslotTable extends DataManager
         foreach ($timeslotList as $timeslot) {
             $timeslotListFormated[$timeslot['EXHIBITION_ID']][] = $timeslot;
         }
-        unset($timeslotList);
+        
         $html .= '<script type="text/javascript">
         function OnType_' . $randString . '_Changed(typeSelect, iblockSelectID)
         {
@@ -93,7 +93,8 @@ class TimeslotTable extends DataManager
                     iblockSelect.remove(i);
                 for(var j in arSecondSelectVals[typeSelect.value])
                 {
-                    var newOption = new Option(arSecondSelectVals[typeSelect.value][j], j, false, false);
+                    var elem = arSecondSelectVals[typeSelect.value][j];
+                    var newOption = new Option(elem.NAME, elem.ID, false, false);
                     iblockSelect.options.add(newOption);
                 }
             }
@@ -104,16 +105,18 @@ class TimeslotTable extends DataManager
         $htmltimeslotCode = htmlspecialcharsbx($timeslotCode);
         $onChangeType = 'OnType_' . $randString . '_Changed(this, \'' . CUtil::JSEscape($timeslotCode) . '\');';
         $html .= '<select name="' . $htmlexhibCode . '" id="' . $htmlexhibCode . '" onchange="' . htmlspecialcharsbx($onChangeType) . '">' . "\n";
-        foreach ($exhibitionList as $key => $value) {
-            if ($currentValue === false)
-                $currentValue = $key;
-            $html .= '<option value="' . htmlspecialcharsbx($key) . '"' . ($currentValue === $key ? ' selected' : '') . '>' . htmlspecialcharsEx($value) . '</option>' . "\n";
+        foreach ($exhibitionList as $value) {
+            if ($currentValueExhib === false) {
+                $currentValueExhib = $value['ID'];
+            }
+
+            $html .= '<option value="' . htmlspecialcharsbx($value['ID']) . '"' . ($currentValueExhib == $value['ID'] ? ' selected' : '') . '>' . htmlspecialcharsEx($value['NAME']) . '</option>' . "\n";
         }
         $html .= "</select>\n";
         $html .= "&nbsp;\n";
         $html .= '<select name="' . $htmltimeslotCode . '" id="' . $htmltimeslotCode . '">' . "\n";
-        foreach ($timeslotListFormated[$currentValue] as $key => $value) {
-            $html .= '<option value="' . htmlspecialcharsbx($key) . '"' . ($currentValue == $key ? ' selected' : '') . '>' . htmlspecialcharsEx($value) . '</option>' . "\n";
+        foreach ($timeslotListFormated[$currentValueExhib] as $value) {
+            $html .= '<option value="' . htmlspecialcharsbx($value['ID']) . '"' . ($currentValueTimeslot == $value['ID'] ? ' selected' : '') . '>' . htmlspecialcharsEx($value['NAME']) . '</option>' . "\n";
         }
         $html .= "</select>\n";
         return $html;

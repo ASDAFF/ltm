@@ -247,7 +247,8 @@ foreach ($fields as $field) {
                         <?
                         break;
                     case "timeslot":
-                        echo TimeslotTable::getHtmlInput($val);
+                        $exhibId = $requestModel['EXHIBITION_ID'];
+                        echo TimeslotTable::getHtmlInput($exhibId, $val);
                         break;
                     case "userNAME":
                         ?>
