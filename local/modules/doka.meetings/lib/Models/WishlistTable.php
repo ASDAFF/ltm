@@ -6,6 +6,7 @@ namespace Spectr\Meeting\Models;
 use Bitrix\Main\Entity\DataManager;
 use Bitrix\Main\Entity\DatetimeField;
 use Bitrix\Main\Entity\IntegerField;
+use Bitrix\Main\Entity\ReferenceField;
 use Bitrix\Main\Entity\StringField;
 
 class WishlistTable extends DataManager
@@ -48,13 +49,33 @@ class WishlistTable extends DataManager
                 'fetch_data_modification' => function(){
                     return [
                         function($value){
-                            return array_search($value, self::$types);
+                            return self::$types[array_search($value, self::$types)];
                         }
                     ];
                 }
             ]),
             new IntegerField('EXHIBITION_ID'),
+            new ReferenceField('SENDER_USER', 'Bitrix\Main\UserTable', [
+                '=this.SENDER_ID' => 'ref.ID',
+            ]),
+            new ReferenceField('RECEIVER_USER', 'Bitrix\Main\UserTable', [
+                '=this.RECEIVER_ID' => 'ref.ID',
+            ]),
         ];
     }
 
+    public static function getWishlistFromUser(int $userId, int $exhibId): array
+    {
+        $wishlist = self::getList([
+            'filter' => [
+                'SENDER_ID' => $userId,
+                'EXHIBITION_ID' => $exhibId,
+                '!=REASON' => false,
+            ],
+        ]);
+        while ($item = $wishlist->fetch()) {
+
+        }
+        return $wishlist->fetchAll();
+    }
 }
