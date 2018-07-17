@@ -2,9 +2,9 @@
 if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die();
 
 use Bitrix\Main\Loader;
-use Spectr\Models\RegistrGuestTable;
+use Spectr\Meeting\Models\RegistrGuestTable;
 
-Loader::includeModule('highloadblock');
+Loader::includeModule('doka.meetings');
 
 class GuestStore extends CBitrixComponent
 {
@@ -21,6 +21,7 @@ class GuestStore extends CBitrixComponent
 
     public function executeComponent()
     {
+
         switch ($this->arParams['MOVE_TO']) {
             case self::MOVE_TO_STORAGE:
                 RegistrGuestTable::moveToStorage($this->arParams['USER_IDS']);

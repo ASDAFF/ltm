@@ -1,11 +1,10 @@
 <? if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
-use \Bitrix\Main\Localization\Loc;
-use \Bitrix\Main\Loader;
+
+use Bitrix\Main\Loader;
 use Ltm\Domain\GuestStorage\FormResult as LtmFormResult;
-use Bitrix\Highloadblock as HL;
-use Ltm\Domain\HlblockOrm\Manager as HlBlockManager;
 use Ltm\Domain\GuestStorage\Manager as GuestStorageManager;
-use Spectr\Models\GuestStorageTable;
+use Ltm\Domain\HlblockOrm\Manager as HlBlockManager;
+use Spectr\Meeting\Models\GuestStorageTable;
 
 class CAdminGuestStorage extends CBitrixComponent
 {
@@ -66,10 +65,6 @@ class CAdminGuestStorage extends CBitrixComponent
 	private function putInWorking()
 	{
 		$request = self::getRequest();
-
-//		$obGS = new CLTMGuestStorage();
-//
-//		$res = $obGS->putInWorking($request->get('ID'), $request->get('EXHIBITION'), $request->get('MORNING'), $request->get('EVENING'));
 
         $res = GuestStorageTable::moveToExib($request->get('ID'), $request->get('EXHIBITION'), $request->get('MORNING'), $request->get('EVENING'));
 		if($res){
@@ -234,15 +229,15 @@ class CAdminGuestStorage extends CBitrixComponent
 		}
 		while ($data = $listRes->Fetch()) {
 			$item = $data;
-			foreach ($data['UF_COLLEAGUES'] as $colleagueId){
+            foreach ($data['UF_COLLEAGUES'] as $colleagueId) {
                 $colleague = $entityColleague::getRowById($colleagueId);
-                if(in_array(LtmFormResult::MORNING_VAL, $colleague['UF_DAYTIME'])) {
-                    $item['MORNING_COLLEAGUE_NAME'] = $colleague['UF_NAME'].' '.$colleague['UF_SURNAME'];
+                if (in_array(LtmFormResult::MORNING_VAL, $colleague['UF_DAYTIME'])) {
+                    $item['MORNING_COLLEAGUE_NAME'] = $colleague['UF_NAME'] . ' ' . $colleague['UF_SURNAME'];
                     $item['MORNING_COLLEAGUE_EMAIL'] = $colleague['UF_EMAIL'];
                     $item['MORNING_COLLEAGUE_JOB_TITLE'] = $colleague['UF_JOB_TITLE'];
                 }
-                if(in_array(LtmFormResult::EVENING_VAL, $colleague['UF_DAYTIME']) && empty($item['EVENING_COLLEAGUE_NAME'])) {
-                    $item['EVENING_COLLEAGUE_NAME'] = $colleague['UF_NAME'].' '.$colleague['UF_SURNAME'];
+                if (in_array(LtmFormResult::EVENING_VAL, $colleague['UF_DAYTIME']) && empty($item['EVENING_COLLEAGUE_NAME'])) {
+                    $item['EVENING_COLLEAGUE_NAME'] = $colleague['UF_NAME'] . ' ' . $colleague['UF_SURNAME'];
                     $item['EVENING_COLLEAGUE_EMAIL'] = $colleague['UF_EMAIL'];
                     $item['EVENING_COLLEAGUE_JOB_TITLE'] = $colleague['UF_JOB_TITLE'];
                 }
@@ -385,6 +380,9 @@ class CAdminGuestStorage extends CBitrixComponent
 		if(!Loader::includeModule('ltm.domain')){
 			$this->errors[] = 'ltm.domain module is not installed';
 		}
+        if (!Loader::includeModule('doka.meetings')) {
+            $this->errors[] = 'ltm.domain module is not installed';
+        }
 	}
 
 	/**

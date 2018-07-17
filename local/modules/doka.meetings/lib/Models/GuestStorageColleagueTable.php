@@ -1,22 +1,23 @@
 <?php
 
-namespace Spectr\Models;
+namespace Spectr\Meeting\Models;
+
+use Bitrix\Highloadblock as HL;
 use Bitrix\Main\Entity\DataManager;
-use Bitrix\Main\Entity\IntegerField;
-use Bitrix\Main\Entity\StringField;
 use Bitrix\Main\Entity\Event;
 use Bitrix\Main\Entity\EventResult;
-use Bitrix\Highloadblock as HL;
-use CUserTypeEntity;
-use CUserFieldEnum;
+use Bitrix\Main\Entity\IntegerField;
+use Bitrix\Main\Entity\StringField;
 use Bitrix\Main\Loader;
 use CFile;
+use CUserFieldEnum;
+use CUserTypeEntity;
 
 Loader::includeModule('highloadblock');
 
 class GuestStorageColleagueTable extends DataManager
 {
-    public static function getTableName() : string
+    public static function getTableName(): string
     {
         return "ltm_guest_storage_colleague";
     }
@@ -26,8 +27,8 @@ class GuestStorageColleagueTable extends DataManager
         try {
             $HLBlock = HL\HighloadBlockTable::getList([
                 'filter' => [
-                    'TABLE_NAME' => self::getTableName()
-                ]
+                    'TABLE_NAME' => self::getTableName(),
+                ],
             ])->fetch();
         } catch (ArgumentException $e) {
             return 0;
@@ -50,7 +51,7 @@ class GuestStorageColleagueTable extends DataManager
             [],
             [
                 'ENTITY_ID' => self::getHlId(),
-                'FIELD_NAME' => $code
+                'FIELD_NAME' => $code,
             ]
         )->Fetch();
         return $result['ID'];
@@ -66,7 +67,7 @@ class GuestStorageColleagueTable extends DataManager
         return $result['XML_ID'];
     }
 
-    public static function getEnumValueIdByXMLID($xml_id, string $code) : int
+    public static function getEnumValueIdByXMLID($xml_id, string $code): int
     {
         $userFieldId = self::getUserFieldId($code);
         $result = CUserFieldEnum::GetList([], [
@@ -81,7 +82,7 @@ class GuestStorageColleagueTable extends DataManager
         return [
             new IntegerField('ID', [
                 'primary' => true,
-                'autocomplete' => true
+                'autocomplete' => true,
             ]),
             new StringField('UF_MOBILE_PHONE'),
             new IntegerField('UF_SALUTATION'),
@@ -89,11 +90,11 @@ class GuestStorageColleagueTable extends DataManager
                 'save_data_modification' => function () {
                     return [
                         function ($value) {
-                            if(is_array($value)){
+                            if (is_array($value)) {
                                 $value = reset($value);
                             }
                             return serialize([self::getEnumValueIdByXMLID($value, 'UF_DAYTIME')]);
-                        }
+                        },
                     ];
                 },
                 'fetch_data_modification' => function () {
@@ -106,9 +107,9 @@ class GuestStorageColleagueTable extends DataManager
                             } else {
                                 return null;
                             }
-                        }
+                        },
                     ];
-                }
+                },
             ]),
             new StringField('UF_EMAIL'),
             new IntegerField('UF_PHOTO'),
@@ -123,18 +124,17 @@ class GuestStorageColleagueTable extends DataManager
         $result = new EventResult;
         $data = $event->getParameter("fields");
         $fieldsKey = array_keys(self::getEntity()->getFields());
-        if (isset($data['ID']))
-        {
+        if (isset($data['ID'])) {
             $result->unsetField('ID');
         }
 
-        if(isset($data['UF_PHOTO'])){
+        if (isset($data['UF_PHOTO'])) {
             $newFileId = CFile::CopyFile($data['UF_PHOTO']);
             $result->modifyFields(['UF_PHOTO' => $newFileId]);
         }
 
-        foreach ($data as $key => $value){
-            if(!in_array($key, $fieldsKey)){
+        foreach ($data as $key => $value) {
+            if (!in_array($key, $fieldsKey)) {
                 $result->unsetField($key);
             }
         }
@@ -156,15 +156,15 @@ class GuestStorageColleagueTable extends DataManager
     public static function moveColleagueToExib(int $colleague_id)
     {
         $row = self::getRowById($colleague_id);
-        if($row){
+        if ($row) {
             $result = RegistrGuestColleagueTable::add($row);
-            if($result->isSuccess()){
+            if ($result->isSuccess()) {
                 self::delete($colleague_id);
                 return $result->getId();
-            }else{
+            } else {
                 return null;
             }
-        }else{
+        } else {
             return null;
         }
     }

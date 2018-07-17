@@ -1,13 +1,13 @@
 <?php
 
-namespace Spectr\Models;
+namespace Spectr\Meeting\Models;
 
 use Bitrix\Main\Entity\BooleanField;
 use Bitrix\Main\Entity\DataManager;
-use Bitrix\Main\Entity\IntegerField;
-use Bitrix\Main\Entity\StringField;
 use Bitrix\Main\Entity\Event;
 use Bitrix\Main\Entity\EventResult;
+use Bitrix\Main\Entity\IntegerField;
+use Bitrix\Main\Entity\StringField;
 use CFile;
 use CUser;
 
@@ -23,7 +23,7 @@ class RegistrGuestTable extends DataManager
         return [
             new IntegerField('ID', [
                 'primary' => true,
-                'autocomplete' => true
+                'autocomplete' => true,
             ]),
             new StringField('UF_COMPANY'),
             new IntegerField('UF_PRIORITY_AREAS', [
@@ -36,7 +36,7 @@ class RegistrGuestTable extends DataManager
                             } else {
                                 return $value;
                             }
-                        }
+                        },
                     ];
                 },
             ]),
@@ -66,7 +66,7 @@ class RegistrGuestTable extends DataManager
                             } else {
                                 return $value;
                             }
-                        }
+                        },
                     ];
                 },
             ]),
@@ -80,7 +80,7 @@ class RegistrGuestTable extends DataManager
                             } else {
                                 return $value;
                             }
-                        }
+                        },
                     ];
                 },
             ]),
@@ -94,7 +94,7 @@ class RegistrGuestTable extends DataManager
                             } else {
                                 return $value;
                             }
-                        }
+                        },
                     ];
                 },
             ]),
@@ -108,7 +108,7 @@ class RegistrGuestTable extends DataManager
                             } else {
                                 return $value;
                             }
-                        }
+                        },
                     ];
                 },
             ]),
@@ -122,7 +122,7 @@ class RegistrGuestTable extends DataManager
                             } else {
                                 return $value;
                             }
-                        }
+                        },
                     ];
                 },
             ]),
@@ -136,56 +136,56 @@ class RegistrGuestTable extends DataManager
                             } else {
                                 return $value;
                             }
-                        }
+                        },
                     ];
                 },
             ]),
-            new BooleanField('UF_EVENING',[
+            new BooleanField('UF_EVENING', [
                 'save_data_modification' => function () {
-                    return array(
+                    return [
                         function ($value) {
-                            if(is_bool($value)){
+                            if (is_bool($value)) {
                                 return $value;
-                            }else{
+                            } else {
                                 return (int)$value == 1;
                             }
-                        }
-                    );
+                        },
+                    ];
                 },
                 'fetch_data_modification' => function () {
-                    return array(
+                    return [
                         function ($value) {
-                            if(is_bool($value)){
+                            if (is_bool($value)) {
                                 return $value;
-                            }else{
+                            } else {
                                 return (int)$value == 1;
                             }
-                        }
-                    );
-                }
+                        },
+                    ];
+                },
             ]),
-            new BooleanField('UF_MORNING',[
+            new BooleanField('UF_MORNING', [
                 'save_data_modification' => function () {
-                    return array(
+                    return [
                         function ($value) {
-                            if(is_bool($value)){
+                            if (is_bool($value)) {
                                 return $value;
-                            }else{
+                            } else {
                                 return (int)$value == 1;
                             }
-                        }
-                    );
+                        },
+                    ];
                 },
                 'fetch_data_modification' => function () {
-                    return array(
+                    return [
                         function ($value) {
-                            if(is_bool($value)){
+                            if (is_bool($value)) {
                                 return $value;
-                            }else{
+                            } else {
                                 return (int)$value == 1;
                             }
-                        }
-                    );
+                        },
+                    ];
                 },
             ]),
             new IntegerField('UF_COLLEAGUES', [
@@ -198,7 +198,7 @@ class RegistrGuestTable extends DataManager
                             } else {
                                 return $value;
                             }
-                        }
+                        },
                     ];
                 },
             ]),
@@ -212,30 +212,30 @@ class RegistrGuestTable extends DataManager
         ];
     }
 
-    public static function getRowByUserID($userId) : array
+    public static function getRowByUserID($userId): array
     {
         $result = self::getList([
             'filter' => [
-                'UF_USER_ID' => $userId
+                'UF_USER_ID' => $userId,
             ],
-            'limit' => 1
+            'limit' => 1,
         ])->fetch();
         return $result ?: [];
     }
 
-    private static function updateUser(int $userId, array $groupIds = [59]) : bool
+    private static function updateUser(int $userId, array $groupIds = [59]): bool
     {
         $arFields = [
             'UF_MR' => false,
             'UF_EV' => false,
             'UF_HB' => false,
-            'GROUP_ID' => $groupIds
+            'GROUP_ID' => $groupIds,
         ];
         $user = new CUser();
         $user->Update($userId, $arFields);
-        if(!$user->LAST_ERROR){
+        if (!$user->LAST_ERROR) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -244,36 +244,36 @@ class RegistrGuestTable extends DataManager
     {
         $row = self::getRowByUserID($userId);
 
-        if($row && self::updateUser($userId)){
-            if(isset($row['UF_COLLEAGUES'])){
+        if ($row && self::updateUser($userId)) {
+            if (isset($row['UF_COLLEAGUES'])) {
                 $newColleagues = [];
-                foreach ($row['UF_COLLEAGUES'] as $colleagueId){
+                foreach ($row['UF_COLLEAGUES'] as $colleagueId) {
                     $newId = RegistrGuestColleagueTable::moveColleagueToStorage($colleagueId);
-                    if(!is_null($newId)){
+                    if (!is_null($newId)) {
                         $newColleagues[] = $newId;
                     }
                 }
                 $row['UF_COLLEAGUES'] = $newColleagues;
             }
             $result = GuestStorageTable::add($row);
-            if($result->isSuccess()){
+            if ($result->isSuccess()) {
                 self::delete($row['ID']);
                 return $result->getId();
-            }else{
+            } else {
                 return null;
             }
-        }else{
+        } else {
             return null;
         }
     }
 
     public static function moveToStorage(array $userIds)
     {
-        if(count($userIds) == 0){
+        if (count($userIds) == 0) {
             return false;
         }
 
-        foreach ($userIds as $userId){
+        foreach ($userIds as $userId) {
             self::moveGuestToStorage($userId);
         }
     }
@@ -283,18 +283,17 @@ class RegistrGuestTable extends DataManager
         $result = new EventResult;
         $data = $event->getParameter("fields");
         $fieldsKey = array_keys(self::getEntity()->getFields());
-        if (isset($data['ID']))
-        {
+        if (isset($data['ID'])) {
             $result->unsetField('ID');
         }
 
-        if(isset($data['UF_PHOTO'])){
+        if (isset($data['UF_PHOTO'])) {
             $newFileId = CFile::CopyFile($data['UF_PHOTO']);
             $result->modifyFields(['UF_PHOTO' => $newFileId]);
         }
 
-        foreach ($data as $key => $value){
-            if(!in_array($key, $fieldsKey)){
+        foreach ($data as $key => $value) {
+            if (!in_array($key, $fieldsKey)) {
                 $result->unsetField($key);
             }
         }

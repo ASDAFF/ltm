@@ -1,13 +1,13 @@
 <?php
 
-namespace Spectr\Models;
+namespace Spectr\Meeting\Models;
 
 use Bitrix\Main\Entity\BooleanField;
 use Bitrix\Main\Entity\DataManager;
-use Bitrix\Main\Entity\IntegerField;
-use Bitrix\Main\Entity\StringField;
 use Bitrix\Main\Entity\Event;
 use Bitrix\Main\Entity\EventResult;
+use Bitrix\Main\Entity\IntegerField;
+use Bitrix\Main\Entity\StringField;
 use CFile;
 use CIBlockElement;
 use CUser;
@@ -25,7 +25,7 @@ class GuestStorageTable extends DataManager
         return [
             new IntegerField('ID', [
                 'primary' => true,
-                'autocomplete' => true
+                'autocomplete' => true,
             ]),
             new IntegerField('UF_PRIORITY_AREAS', [
                 'serialized' => true,
@@ -37,7 +37,7 @@ class GuestStorageTable extends DataManager
                             } else {
                                 return $value;
                             }
-                        }
+                        },
                     ];
                 },
             ]),
@@ -51,7 +51,7 @@ class GuestStorageTable extends DataManager
                             } else {
                                 return $value;
                             }
-                        }
+                        },
                     ];
                 },
             ]),
@@ -61,51 +61,51 @@ class GuestStorageTable extends DataManager
             new StringField('UF_ROOM'),
             new BooleanField('UF_EVENING', [
                 'save_data_modification' => function () {
-                    return array(
+                    return [
                         function ($value) {
                             if (is_bool($value)) {
                                 return $value;
                             } else {
                                 return (int)$value == 1;
                             }
-                        }
-                    );
+                        },
+                    ];
                 },
                 'fetch_data_modification' => function () {
-                    return array(
+                    return [
                         function ($value) {
                             if (is_bool($value)) {
                                 return $value;
                             } else {
                                 return (int)$value == 1;
                             }
-                        }
-                    );
-                }
+                        },
+                    ];
+                },
             ]),
             new BooleanField('UF_MORNING', [
                 'save_data_modification' => function () {
-                    return array(
+                    return [
                         function ($value) {
                             if (is_bool($value)) {
                                 return $value;
                             } else {
                                 return (int)$value == 1;
                             }
-                        }
-                    );
+                        },
+                    ];
                 },
                 'fetch_data_modification' => function () {
-                    return array(
+                    return [
                         function ($value) {
                             if (is_bool($value)) {
                                 return $value;
                             } else {
                                 return (int)$value == 1;
                             }
-                        }
-                    );
-                }
+                        },
+                    ];
+                },
             ]),
             new IntegerField('UF_OCEANIA', [
                 'serialized' => true,
@@ -117,7 +117,7 @@ class GuestStorageTable extends DataManager
                             } else {
                                 return $value;
                             }
-                        }
+                        },
                     ];
                 },
             ]),
@@ -131,7 +131,7 @@ class GuestStorageTable extends DataManager
                             } else {
                                 return $value;
                             }
-                        }
+                        },
                     ];
                 },
             ]),
@@ -145,7 +145,7 @@ class GuestStorageTable extends DataManager
                             } else {
                                 return $value;
                             }
-                        }
+                        },
                     ];
                 },
             ]),
@@ -159,7 +159,7 @@ class GuestStorageTable extends DataManager
                             } else {
                                 return $value;
                             }
-                        }
+                        },
                     ];
                 },
             ]),
@@ -173,7 +173,7 @@ class GuestStorageTable extends DataManager
                             } else {
                                 return $value;
                             }
-                        }
+                        },
                     ];
                 },
             ]),
@@ -187,7 +187,7 @@ class GuestStorageTable extends DataManager
                             } else {
                                 return $value;
                             }
-                        }
+                        },
                     ];
                 },
             ]),
@@ -240,9 +240,9 @@ class GuestStorageTable extends DataManager
     {
         $result = self::getList([
             'filter' => [
-                'UF_USER_ID' => $userId
+                'UF_USER_ID' => $userId,
             ],
-            'limit' => 1
+            'limit' => 1,
         ])->fetch();
         return $result ?: [];
     }
@@ -257,13 +257,13 @@ class GuestStorageTable extends DataManager
                 'UF_MR' => false,
                 'UF_EV' => false,
                 'UF_HB' => false,
-                'GROUP_ID' => $groupId
+                'GROUP_ID' => $groupId,
             ];
             $user = new CUser();
             $user->Update($userId, $arFields);
-            if(!$user->LAST_ERROR){
+            if (!$user->LAST_ERROR) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
         } else {
