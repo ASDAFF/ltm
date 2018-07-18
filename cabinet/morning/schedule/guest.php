@@ -44,7 +44,6 @@ if ($appId != "") {
     ?>
     <div class="request-guests">
     <?
-    print_r([$exhibCode, $appId, $userType, $curUser]);
     $APPLICATION->IncludeComponent(
         'ds:meetings.wishlist',
         '',

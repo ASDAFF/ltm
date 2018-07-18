@@ -22,6 +22,7 @@ class CompanyScheduleTable extends DataManager
             new IntegerField('USER_ID'),
             new IntegerField('STATUS'),
             new IntegerField('VISITOR_ID'),
+            new IntegerField('EXHIBITION_ID'),
         ];
     }
 }

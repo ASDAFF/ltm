@@ -165,7 +165,6 @@ if (in_array($req_obj->getOption('GUESTS_GROUP'), $arGroups) || (isset($_REQUEST
 else
     $group_search_id = $req_obj->getOption('GUESTS_GROUP');
 // Соберем список компаний, у которых заняты все таймслоты
-c($group_search_id);
 $rsCompanies = $req_obj->getBusyCompanies($group_search_id);
 while ($data = $rsCompanies->Fetch()) {
     $arResult['COMPANIES'][] = $data;
