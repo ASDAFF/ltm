@@ -18,5 +18,6 @@ CModule::AddAutoloadClasses('doka.meetings', array(
     'Spectr\Meeting\Models\GuestStorageTable' => 'lib/Models/GuestStorageTable.php',
     'Spectr\Meeting\Models\RegistrGuestColleagueTable' => 'lib/Models/RegistrGuestColleagueTable.php',
     'Spectr\Meeting\Models\RegistrGuestTable' => 'lib/Models/RegistrGuestTable.php',
+    'Spectr\Meeting\Models\CompanyScheduleTable' => 'lib/Models/CompanyScheduleTable.php',
 ));
 ?>

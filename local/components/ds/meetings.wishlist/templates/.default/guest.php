@@ -14,14 +14,16 @@ Loc::loadLanguageFile(__FILE__);
                     <th>N</th>
                     <th><?= Loc::getMessage("WISHLIST_COMPANY") ?></th>
                 </tr>
-                <? $counter = 0;
-                foreach ($arResult["WISH_IN"] as $item):?>
-                    <? $counter++; ?>
+                <?
+                foreach ($arResult['WISHLIST_FROM_USER'] as $key => $item) {
+                    ?>
                     <tr>
-                        <td><?= $counter ?></td>
-                        <td> <?= $item["company_name"] ?></td>
+                        <td><?= $key + 1 ?></td>
+                        <td> <?= $item['COMPANY_NAME'] ?></td>
                     </tr>
-                <? endforeach; ?>
+                    <?
+                }
+                ?>
             </table>
             <form action="">
                 <div class="send-request">
@@ -45,14 +47,16 @@ Loc::loadLanguageFile(__FILE__);
                     <th>N</th>
                     <th><?= Loc::getMessage("WISHLIST_COMPANY") ?></th>
                 </tr>
-                <? $counter = 0;
-                foreach ($arResult["WISH_OUT"] as $item):?>
-                    <? $counter++; ?>
+                <?
+                foreach ($arResult['WISHLIST_FOR_USER'] as $key => $item) {
+                    ?>
                     <tr>
-                        <td><?= $counter ?></td>
-                        <td> <?= $item["company_name"] ?></td>
+                        <td><?= $key + 1 ?></td>
+                        <td> <?= $item['COMPANY_NAME'] ?></td>
                     </tr>
-                <? endforeach; ?>
+                    <?
+                }
+                ?>
             </table>
         </td>
     </tr>
