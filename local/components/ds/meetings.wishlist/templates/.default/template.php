@@ -27,9 +27,9 @@ Loc::loadLanguageFile(__FILE__);
             </table>
             <form action="">
                 <div class="send-request">
-                    <a href="/cabinet/service/wish.php?id=<?= $arResult["USER_ID"] ?>&to=0&app=<?= $arResult["APP_ID"] ?>"
+                    <a href="/cabinet/service/wish.php?id=<?= $arResult["USER_ID"] ?>&to=0&app=<?= $arParams["EXHIBITION_ID"] ?>"
                        target="_blank"
-                       onclick="newWish("<?= $arResult["USER_ID"] ?>","<?= $arResult["APP_ID"] ?>
+                       onclick="newWish("<?= $arParams["USER_ID"] ?>","<?= $arParams["EXHIBITION_ID"] ?>
                     ","<?= $arParams['ADD_LINK_TO_WISHLIST'] ?>"); return false;">Отправить запрос</a>
                 </div>
                 <select name="wishlistComp" id="wishlistComp">
