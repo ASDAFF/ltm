@@ -30,7 +30,7 @@ Loc::loadLanguageFile(__FILE__);
                     <a href="/cabinet/service/wish.php?id=<?= $arResult["USER_ID"] ?>&to=0&app=<?= $arResult["APP_ID"] ?>"
                        target="_blank"
                        onclick="newWish("<?= $arResult["USER_ID"] ?>","<?= $arResult["APP_ID"] ?>
-                    ","/cabinet/service/wish.php"); return false;">Отправить запрос</a>
+                    ","<?= $arParams['ADD_LINK_TO_WISHLIST'] ?>"); return false;">Отправить запрос</a>
                 </div>
                 <select name="wishlistComp" id="wishlistComp">
                     <option value="0"><?= Loc::getMessage("WISHLIST_CHOOSE_COMPANY") ?></option>

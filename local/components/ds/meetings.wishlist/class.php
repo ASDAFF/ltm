@@ -13,8 +13,9 @@ class MeetingsWishlist extends CBitrixComponent
     public function onPrepareComponentParams(array $arParams): array
     {
         $result = $arParams;
-        $result['EHIB_ID'] = (int)$arParams['EHIB_ID'];
+        $result['EXHIBITION_ID'] = (int)$arParams['EXHIBITION_ID'];
         $result['USER_ID'] = (int)$arParams['USER_ID'];
+        $result['ADD_LINK_TO_WISHLIST'] = $result['ADD_LINK_TO_WISHLIST'] ?: "cabinet/service/wish.php";
         return $result;
     }
 
@@ -25,7 +26,7 @@ class MeetingsWishlist extends CBitrixComponent
             'WISHLIST_FOR_USER' => $this->getWithListForUser(),
             'WISHLIST_FROM_USER' => $this->getWithListFromUser(),
         ];
-        $this->includeComponentTemplate($this->componentTemplate);
+        $this->includeComponentTemplate();
     }
 
     public function checkComponentTemplate()
@@ -37,13 +38,13 @@ class MeetingsWishlist extends CBitrixComponent
 
     public function getWithListForUser(): array
     {
-        $result = WishlistTable::getWishlistForUser($this->arParams['USER_ID'], $this->arParams['EHIB_ID']);
+        $result = WishlistTable::getWishlistForUser($this->arParams['USER_ID'], $this->arParams['EXHIBITION_ID']);
         return $result;
     }
 
     public function getWithListFromUser(): array
     {
-        $result = WishlistTable::getWishlistFromUser($this->arParams['USER_ID'], $this->arParams['EHIB_ID']);
+        $result = WishlistTable::getWishlistFromUser($this->arParams['USER_ID'], $this->arParams['EXHIBITION_ID']);
         return $result;
     }
 

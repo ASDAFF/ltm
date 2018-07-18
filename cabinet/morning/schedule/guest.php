@@ -48,27 +48,12 @@ if ($appId != "") {
         'ds:meetings.wishlist',
         '',
         [
-            'EHIB_ID' => $appId,
-            'EHIB_CODE' => $exhibCode,
+            'EXHIBITION_ID' => $appId,
+            'EXHIBITION_CODE' => $exhibCode,
             "USER_TYPE" => $userType,
             "USER_ID" => $curUser,
+            "ADD_LINK_TO_WISHLIST" => "cabinet/service/wish.php",
         ]);
-
-    $APPLICATION->IncludeComponent(
-        "doka:meetings.wishlist",
-        "",
-        [
-            "CACHE_TYPE" => "A",
-            "CACHE_TIME" => "3600",
-            "EXHIB_IBLOCK_ID" => "15",
-            "EXIB_CODE" => $exhibCode,
-            "APP_ID" => $appId,
-            "USER_TYPE" => $userType,
-            "USER_ID" => $curUser,
-            "MESSAGE_LINK" => "/cabinet/service/write.php",
-        ],
-        false
-    );
     ?></div><?
 } else {
     ?>
