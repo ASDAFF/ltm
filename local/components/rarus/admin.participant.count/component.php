@@ -427,7 +427,7 @@ Moscow, Russia";
 
 $data["BANK_DETAILS"] = "Beneficiary's Bank:
 VTB Bank (open joint-stock company), Moscow, Russia
-SWIFT: VTBRRUMM
+SWIFT: VTBRRUM2MSK
 Beneficiary: Travel Media
 Account: 40702978900140010240";
 
