@@ -200,7 +200,6 @@ foreach ($fields as $field) {
     <?
     foreach ($arFields as $code => $arField) {
         if ($arField["TYPE"] === "hide") continue;
-        $type = $arField[3];
         $val = $requestModel[$code];
         ?>
         <tr>
@@ -280,7 +279,7 @@ foreach ($fields as $field) {
     <?
     $tabControl->Buttons([
         "disabled" => $RIGHT < "W",
-        "back_url" => "/bitrix/admin/" . ADMIN_MODULE_NAME . "_requests_edit.php?lang=" . LANGUAGE_ID . GetFilterParams("filter_", false),
+        "back_url" => "/bitrix/admin/" . ADMIN_MODULE_NAME . "_requests.php?lang=" . LANGUAGE_ID . GetFilterParams("filter_", false),
     ]);
     $tabControl->End();
     ?>

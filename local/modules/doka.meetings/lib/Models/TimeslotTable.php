@@ -50,7 +50,7 @@ class TimeslotTable extends DataManager
                 'fetch_data_modification' => function () {
                     return [
                         function ($value) {
-                            return array_search($value, self::$types);
+                            return self::$types[array_search($value, self::$types)];
                         },
                     ];
                 },

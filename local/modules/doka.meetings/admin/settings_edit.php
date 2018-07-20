@@ -72,11 +72,11 @@ if ($RIGHT >= 'W' && $request->isPost() && check_bitrix_sessid()) {
     $arFields = [
         'NAME' => $NAME,
         'CODE' => $CODE,
-        'IS_LOCKED' => $IS_LOCKED == 'Y' ? 1 : 0,
-        'ACTIVE' => $ACTIVE == 'Y' ? 1 : 0,
+        'IS_LOCKED' => $IS_LOCKED == 'Y' ? true : false,
+        'ACTIVE' => $ACTIVE == 'Y' ? true : false,
         'GUESTS_GROUP' => (int)$GUESTS_GROUP,
-        'IS_GUEST' => $IS_GUEST == 'Y' ? 1 : 0,
-        'IS_HB' => $IS_HB == 'Y' ? 1 : 0,
+        'IS_GUEST' => $IS_GUEST == 'Y' ? true : false,
+        'IS_HB' => $IS_HB == 'Y' ? true : false,
         'MEMBERS_GROUP' => (int)$MEMBERS_GROUP,
         'ADMINS_GROUP' => (int)$ADMINS_GROUP,
         'EVENT_SENT' => $EVENT_SENT,
@@ -94,7 +94,6 @@ if ($RIGHT >= 'W' && $request->isPost() && check_bitrix_sessid()) {
     } else {
         $result = SettingsTable::add($arFields);
     }
-
     if (!$result->isSuccess()) {
         $DB->Rollback();
     } else {
