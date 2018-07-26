@@ -7,6 +7,10 @@ use Bitrix\Main\Entity\BooleanField;
 use Bitrix\Main\Entity\DataManager;
 use Bitrix\Main\Entity\IntegerField;
 use Bitrix\Main\Entity\StringField;
+use Bitrix\Main\Loader;
+use CIBlockElement;
+
+Loader::includeModule("iblock");
 
 class SettingsTable extends DataManager
 {
@@ -135,4 +139,23 @@ class SettingsTable extends DataManager
         ];
     }
 
+    public static function getSettiongs(string $exhibCode): array
+    {
+        return self::getList([
+            'filter' => [
+                'CODE' => $exhibCode,
+            ],
+        ])->fetch();
+    }
+
+    public static function getExhibition(string $exhibCode): array
+    {
+        $result = [];
+        $rsExhib = CIBlockElement::GetList([], ["CODE" => $exhibCode]);
+        if ($oExhib = $rsExhib->GetNextElement(true, false)) {
+            $result["PARAM_EXHIBITION"] = $oExhib->GetFields();
+            $result["PARAM_EXHIBITION"]["PROPERTIES"] = $oExhib->GetProperties();
+        }
+        return $result;
+    }
 }
