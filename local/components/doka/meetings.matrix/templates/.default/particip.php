@@ -70,7 +70,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 						<?else:?>
 							<td class="times-list">
 								<a href="<?=$arResult['SEND_REQUEST_LINK']?>?id=<?=$user['id']?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>"
-                                    target="_blank" data-timeslot="<?=$timeslot['id']?>">Назначить</a>
+                                    target="_blank" data-timeslot="<?=$timeslot['id']?>">Встреча</a><br />
 						<?endif;?>
 					</td>
 				<?endforeach;?>
