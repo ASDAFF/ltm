@@ -6,7 +6,7 @@ $appCode= 1;
 $exhibCode = trim($_REQUEST["EXHIBIT_CODE"]);
 ?>
 <?$APPLICATION->IncludeComponent(
-	"doka:meetings.matrix2",
+	"doka:meetings.matrix",
 	"",
 	Array(
 		"CACHE_TYPE" => "A",
