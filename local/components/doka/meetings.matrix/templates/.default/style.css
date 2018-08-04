@@ -18,6 +18,16 @@
 	font-weight:bold;
 	color:#fff;
 	}
+.times-list a.meeting, .times-list a.request, .times-list a.reserve {
+	display: block;
+}
+.table-fixed td span.cancel{
+	text-decoration:underline;
+	cursor: pointer;
+	font-weight:bold;
+	color:#fff;
+	display: none;
+}
 .table-fixed td.yellow a{
 	color:#000;
 	}
