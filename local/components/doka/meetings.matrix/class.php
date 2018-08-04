@@ -59,20 +59,6 @@ class MeetingsMatrix extends CBitrixComponent
     }
   }
 
-  /**
-  * @return array|mixed
-  */
-  public function executeComponent()
-  {
-    $this->onIncludeComponentLang();
-    $this->checkModules();
-
-    $this->arResult = $this->getResult();
-
-    $this->includeComponentTemplate();
-    return $this->arResult;
-  }
-
   protected function getResult()
   {
     $arResult = array();
@@ -281,5 +267,103 @@ class MeetingsMatrix extends CBitrixComponent
       $arResult["IS_HB"] = "N";
 
     return $arResult;
+  }
+
+  protected function prepareLinks()
+  {
+    if(isset($this->arParams["IS_HB"]) && $this->arParams["IS_HB"] == 'Y'){
+      $links['SEND_REQUEST_LINK'] = "/admin/service/appointment_hb.php";
+      $links['CONFIRM_REQUEST_LINK'] = "/admin/service/appointment_hb_confirm.php";
+      $links['REJECT_REQUEST_LINK'] = "/admin/service/appointment_hb_del.php";
+    }
+    else{
+      $links['SEND_REQUEST_LINK'] = "/admin/service/appointment.php";
+      $links['CONFIRM_REQUEST_LINK'] = "/admin/service/appointment_confirm.php";
+      $links['REJECT_REQUEST_LINK'] = "/admin/service/appointment_del.php";
+    }
+    $links['RESERVE_REQUEST_LINK'] = "/admin/service/appointment_reserve.php";
+
+    return [
+      "meeting" => [
+        "LINK" => $links['SEND_REQUEST_LINK'],
+        "LINK_PARAMS" => [
+          "id" => "%ID%",
+          "time" => "%TIME%",
+          "status" => "admin",
+          "app" => $this->arResult['APP'],
+          "exib_code" => $this->arResult['PARAM_EXHIBITION']['CODE']
+        ],
+        "TITLE" => "Встреча",
+        "CLASS" => []
+      ],
+      "request" => [
+        "LINK" => $links['SEND_REQUEST_LINK'],
+        "LINK_PARAMS" => [
+          "id" => "%ID%",
+          "time" => "%TIME%",
+          "status" => 'user',
+          "app" => $this->arResult['APP'],
+          "exib_code" => $this->arResult['PARAM_EXHIBITION']['CODE']
+        ],
+        "TITLE" => "Запрос",
+        "CLASS" => []
+      ],
+      "reserve" => [
+        "LINK" => $links['RESERVE_REQUEST_LINK'],
+        "LINK_PARAMS" => [
+          "id" => "%ID%",
+          "time" => "%TIME%",
+          "type" => "p",
+          "app" => $this->arResult['APP'],
+          "exib_code" => $this->arResult['PARAM_EXHIBITION']['CODE']
+        ],
+        "TITLE" => "Забронировать",
+        "CLASS" => []
+      ],
+      "confirm" => [
+        "LINK" => $links['CONFIRM_REQUEST_LINK'],
+        "LINK_PARAMS" => [
+          "id" => "%ID%",
+          "to" => "%TO%",
+          "time" => "%TIME%",
+          "app" => $this->arResult['APP'],
+          "exib_code" => $this->arResult['PARAM_EXHIBITION']['CODE']
+        ],
+        "TITLE" => "Подтвердить"
+      ],
+      "reject" => [
+        "LINK" => $links['REJECT_REQUEST_LINK'],
+        "LINK_PARAMS" => [
+          "id" => "%ID%",
+          "to" => "%TO%",
+          "time" => "%TIME%",
+          "app" => $this->arResult['APP'],
+          "exib_code" => $this->arResult['PARAM_EXHIBITION']['CODE']
+        ],
+        "TITLE" => "Отменить"
+      ]
+    ];
+  }
+
+  protected function returnFreeLinks()
+  {
+    $freeLinks = ['meeting', 'request', 'reserve'];
+    return array_intersect_key($this->arResult["LINKS"], array_flip($freeLinks));
+  }
+
+  /**
+   * @return array|mixed
+   */
+  public function executeComponent()
+  {
+    $this->onIncludeComponentLang();
+    $this->checkModules();
+
+    $this->arResult = $this->getResult();
+    $this->arResult["LINKS"] = $this->prepareLinks();
+    $this->arResult["FREE_LINKS"] = $this->returnFreeLinks();
+
+    $this->includeComponentTemplate();
+    return $this->arResult;
   }
 }

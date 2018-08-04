@@ -33,17 +33,34 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 							<td class="confirmed">
 								<?=$timeSlotInfo['company_name']?><br />
 								<?=$timeSlotInfo['rep']?><br />
-                                <a href="<?=$arResult['REJECT_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>"
-                                    target="_blank"
-                                    onclick="newWindConfirm('<?=$arResult['REJECT_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>', 500, 400, 'Вы хотите отменить запрос?'); return false;">Отменить</a>
-                                <? //var_dump($timeSlotInfo);?>
-						<?elseif($scheduleStatus == 'reserve'):
+								<?
+								$values = [
+									"%ID%" => $fromId,
+									"%TO%" => $toId,
+									"%TIME%" => $timeslot['id']
+								];
+								$params = str_replace(array_keys($values), array_values($values), $arResult["LINKS"]["reject"]["LINK_PARAMS"]);
+								$linkURL = $arResult["LINKS"]["reject"]["LINK"]."?".http_build_query($params);
+								?>
+								<a href="<?$linkURL?>" target="_blank"
+									 onclick="newWindConfirm('<?=$linkURL?>', 500, 400, 'Вы хотите отменить запрос?'); return false;">
+									<?=$arResult["LINKS"]["reject"]["TITLE"]?>
+								</a>
+						<?elseif($scheduleStatus == 'reserve'):?>
+						<?
 						$fromId = $user['id'];
-						$reserveLink = $arResult['RESERVE_REQUEST_LINK']."?id=".$fromId."&time=".$timeslot['id']."&app=".$arResult['APP']."&type=p&exib_code=".$arResult['PARAM_EXHIBITION']['CODE'];?>
+						$values = [
+							"%ID%" => $fromId,
+							"%TIME%" => $timeslot['id']
+						];
+						$params = str_replace(array_keys($values), array_values($values), $arResult["LINKS"]["reserve"]["LINK_PARAMS"]);
+						$reserveLink = $arResult["LINKS"]["reserve"]["LINK"]."?".http_build_query($params);
+						?>
 							<td class="reserved">
 								Забронирован<br />
-								<a href="<?=$reserveLink?>" onclick="newWind('<?=$reserveLink?>', 500, 200); return false;"
-									 target="_blank">Освободить</a>
+								<a href="<?=$reserveLink?>" onclick="newWind('<?=$reserveLink?>', 500, 200); return false;" target="_blank">
+									Освободить
+								</a>
 							</td>
 						<?elseif($timeSlotInfo['is_busy']):?>
 							<?
@@ -60,17 +77,43 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 							<td class="<?=$class?>">
 								<?=$timeSlotInfo['company_name']?><br />
 								<?=$timeSlotInfo['rep']?><br />
-								<a href="<?=$arResult['CONFIRM_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>"
-                                    target="_blank"
-                                    onclick="newWind('<?=$arResult['CONFIRM_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>', 500, 400); return false;">Подтвердить</a><br />
-                                <a href="<?=$arResult['REJECT_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>"
-                                    target="_blank"
-                                    onclick="newWindConfirm('<?=$arResult['REJECT_REQUEST_LINK']?>?id=<?=$fromId?>&to=<?=$toId?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>', 500, 400, 'Вы хотите отменить запрос?'); return false;">Отменить</a>
-                                <? //var_dump($timeSlotInfo);?>
+								<?
+								$values = [
+									"%ID%" => $fromId,
+									"%TO%" => $toId,
+									"%TIME%" => $timeslot['id']
+								];
+								$params = str_replace(array_keys($values), array_values($values), $arResult["LINKS"]["confirm"]["LINK_PARAMS"]);
+								$linkURL = $arResult["LINKS"]["confirm"]["LINK"]."?".http_build_query($params);
+								?>
+								<a href="<?=$linkURL?>" target="_blank" onclick="newWind('<?=$linkURL?>', 500, 400); return false;)">
+									<?=$arResult["LINKS"]["confirm"]["TITLE"]?>
+								</a><br />
+								<?
+								$params = str_replace(array_keys($values), array_values($values), $arResult["LINKS"]["reject"]["LINK_PARAMS"]);
+								$linkURL = $arResult["LINKS"]["reject"]["LINK"]."?".http_build_query($params);
+								?>
+                <a href="<?$linkURL?>" target="_blank"
+									 onclick="newWindConfirm('<?=$linkURL?>', 500, 400, 'Вы хотите отменить запрос?'); return false;">
+									<?=$arResult["LINKS"]["reject"]["TITLE"]?>
+								</a>
 						<?else:?>
 							<td class="times-list">
-								<a href="<?=$arResult['SEND_REQUEST_LINK']?>?id=<?=$user['id']?>&time=<?=$timeslot['id']?>&app=<?=$arResult['APP']?>&exib_code=<?=$arResult['PARAM_EXHIBITION']['CODE']?>"
-                                    target="_blank" data-timeslot="<?=$timeslot['id']?>">Встреча</a><br />
+								<?foreach($arResult["FREE_LINKS"] as $link_code => $link):?>
+									<?
+										$values = [
+											"%ID%" => $user['id'],
+											"%TIME%" => $timeslot['id']
+										];
+										$params = str_replace(array_keys($values), array_values($values), $link["LINK_PARAMS"]);
+										$linkURL = $link["LINK"]."?".http_build_query($params);
+										$classNames = array_merge([$link_code], $link["CLASS"]);
+									?>
+									<a href="<?=$linkURL?>" target="_blank" data-timeslot="<?=$timeslot['id']?>" class="<?=implode(" ", $classNames)?>">
+										<?=$link["TITLE"]?>
+									</a>
+								<?endforeach;?>
+								<span class="cancel">Отменить</span>
 						<?endif;?>
 					</td>
 				<?endforeach;?>

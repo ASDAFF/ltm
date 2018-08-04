@@ -86,6 +86,7 @@ if ($receiver_id <= 0) {
 }
 
 $arResult['IS_ACTIVE'] = !$req_obj->getOption('IS_LOCKED');
+$arResult['OPERATION_TYPE'] = $_REQUEST["status"];
 
 if (isset($_REQUEST['id']) && $arResult['USER_TYPE'] == 'ADMIN' )
 	$sender_id = intval($_REQUEST['id']);
@@ -161,12 +162,17 @@ if (!$arResult['RECEIVER']) {
 if (!isset($arResult['ERROR_MESSAGE']) && isset($_POST['submit'])) {
 	// Проверим, свободны ли таймслоты
 	if ($req_obj->checkTimeslotIsFree( $arResult['TIMESLOT']['id'], array($arResult['RECEIVER']['company_id'], $arResult['SENDER']['company_id']) )) {
-	    $fields = array(
+	  $status = DokaRequest::STATUS_PROCESS;
+		if($arResult['USER_TYPE'] == 'ADMIN' && $arResult['OPERATION_TYPE'] == 'ADMIN') {
+			$status = DokaRequest::STATUS_CONFIRMED;
+		}
+
+		$fields = array(
 	        'RECEIVER_ID' => $arResult['RECEIVER']['company_id'],
 	        'SENDER_ID' => $arResult['SENDER']['company_id'],
 	        'EXHIBITION_ID' => $arParams['APP_ID'],
 	        'TIMESLOT_ID' => $arResult['TIMESLOT']['id'],
-	        'STATUS' => ($arResult['USER_TYPE'] == 'ADMIN') ? DokaRequest::getStatusCode(DokaRequest::STATUS_CONFIRMED) : DokaRequest::getStatusCode(DokaRequest::STATUS_PROCESS),
+	        'STATUS' => DokaRequest::getStatusCode($status),
 	    );
 		$req_obj->Add($fields);
 		$arFieldsMes = array(
