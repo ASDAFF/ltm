@@ -53,8 +53,8 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 							"%ID%" => $fromId,
 							"%TIME%" => $timeslot['id']
 						];
-						$params = str_replace(array_keys($values), array_values($values), $arResult["LINKS"]["reserve"]["LINK_PARAMS"]);
-						$reserveLink = $arResult["LINKS"]["reserve"]["LINK"]."?".http_build_query($params);
+						$params = str_replace(array_keys($values), array_values($values), $arResult["LINKS"]["reserve_cancel"]["LINK_PARAMS"]);
+						$reserveLink = $arResult["LINKS"]["reserve_cancel"]["LINK"]."?".http_build_query($params);
 						?>
 							<td class="reserved">
 								Забронирован<br />

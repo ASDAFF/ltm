@@ -1,5 +1,8 @@
-<?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die(); ?>
 <?
+$MESS['IBLOCK_MODULE_NOT_INSTALLED'] = 'Ошибка при подключении модуля iblock';
+$MESS['DOKA_MODULE_NOT_INSTALLED'] = 'Ошибка при подключении модуля doka.meetings';
+$MESS['F0RM_MODULE_NOT_INSTALLED'] = 'Ошибка при подключении модуля form';
+
 $MESS['ERROR_EMPTY_USER_ID'] = 'Пользователь не авторизован';
 $MESS['ERROR_EMPTY_TIMESLOT_ID'] = 'Таймслот не задан';
 $MESS['ERROR_NOT_PARTICIP'] = 'Error! Only exhibitors can reserve timeslots';
@@ -11,4 +14,3 @@ $MESS['GUEST_WRONG_TIMESLOT_ID'] = 'Таймслот не существует';
 $MESS['ADMIN_WRONG_TIMESLOT_ID'] = 'Таймслот не существует';
 
 $MESS['EXHIBITION_BLOCKED'] = 'Appointments schedule blocked by the organizers';
-?>

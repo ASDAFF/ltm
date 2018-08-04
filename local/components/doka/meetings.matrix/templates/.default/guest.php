@@ -19,17 +19,21 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 				<?=$user['rep']?>
 			</td>
 			<?foreach($arResult['TIME'] as $timeslot):?>
-			<?if($user['schedule'][$timeslot['id']]['is_busy'] && $user['schedule'][$timeslot['id']]['status'] == 'confirmed'):?>
-				<? if($user['schedule'][$timeslot['id']]['user_is_sender']) {
+				<?
+				$timeSlotInfo = $user['schedule'][$timeslot['id']];
+				$scheduleStatus = $timeSlotInfo['status'];
+				?>
+			<?if($timeSlotInfo['is_busy'] && $scheduleStatus == 'confirmed'):?>
+				<? if($timeSlotInfo['user_is_sender']) {
 					$fromId = $user['id'];
-					$toId = $user['schedule'][$timeslot['id']]['company_id'];
+					$toId = $timeSlotInfo['company_id'];
 				} else {
-					$fromId = $user['schedule'][$timeslot['id']]['company_id'];
+					$fromId = $timeSlotInfo['company_id'];
 					$toId = $user['id'];
 				}?>
 				<td class="confirmed">
-					<?=$user['schedule'][$timeslot['id']]['company_name']?><br />
-					<?=$user['schedule'][$timeslot['id']]['rep']?><br />
+					<?=$timeSlotInfo['company_name']?><br />
+					<?=$timeSlotInfo['rep']?><br />
 					<?
 					$values = [
 						"%ID%" => $fromId,
@@ -43,21 +47,37 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 						 onclick="newWindConfirm('<?=$linkURL?>', 500, 400, 'Вы хотите отменить запрос?'); return false;">
 						<?=$arResult["LINKS"]["reject"]["TITLE"]?>
 					</a>
-			<?elseif($user['schedule'][$timeslot['id']]['is_busy']):?>
+				<?elseif($scheduleStatus == 'reserve'):?>
+					<?
+					$fromId = $user['id'];
+					$values = [
+						"%ID%" => $fromId,
+						"%TIME%" => $timeslot['id']
+					];
+					$params = str_replace(array_keys($values), array_values($values), $arResult["LINKS"]["reserve_cancel"]["LINK_PARAMS"]);
+					$reserveLink = $arResult["LINKS"]["reserve_cancel"]["LINK"]."?".http_build_query($params);
+					?>
+					<td class="reserved">
+						Забронирован<br />
+						<a href="<?=$reserveLink?>" onclick="newWind('<?=$reserveLink?>', 500, 200); return false;" target="_blank">
+							Освободить
+						</a>
+					</td>
+			<?elseif($timeSlotInfo['is_busy']):?>
 				<?
-				if($user['schedule'][$timeslot['id']]['user_is_sender']) {
+				if($timeSlotInfo['user_is_sender']) {
 					$class = "red";
 					$fromId = $user['id'];
-					$toId = $user['schedule'][$timeslot['id']]['company_id'];
+					$toId = $timeSlotInfo['company_id'];
 				} else {
 					$class = "yellow";
-					$fromId = $user['schedule'][$timeslot['id']]['company_id'];
+					$fromId = $timeSlotInfo['company_id'];
 					$toId = $user['id'];
 				}
 				?>
 				<td class="<?=$class?>">
-					<?=$user['schedule'][$timeslot['id']]['company_name']?><br />
-					<?=$user['schedule'][$timeslot['id']]['rep']?><br />
+					<?=$timeSlotInfo['company_name']?><br />
+					<?=$timeSlotInfo['rep']?><br />
 					<?
 					$values = [
 						"%ID%" => $fromId,

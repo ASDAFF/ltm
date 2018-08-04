@@ -314,6 +314,19 @@ class MeetingsMatrix extends CBitrixComponent
           "id" => "%ID%",
           "time" => "%TIME%",
           "type" => "p",
+          "confirm" => "Y",
+          "app" => $this->arResult['APP'],
+          "exib_code" => $this->arResult['PARAM_EXHIBITION']['CODE']
+        ],
+        "TITLE" => "Забронировать",
+        "CLASS" => []
+      ],
+      "reserve_cancel" => [
+        "LINK" => $links['RESERVE_REQUEST_LINK'],
+        "LINK_PARAMS" => [
+          "id" => "%ID%",
+          "time" => "%TIME%",
+          "type" => "p",
           "app" => $this->arResult['APP'],
           "exib_code" => $this->arResult['PARAM_EXHIBITION']['CODE']
         ],

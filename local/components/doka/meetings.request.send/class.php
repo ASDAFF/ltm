@@ -13,7 +13,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
   die();
 }
 
-class MeetingsMatrix extends CBitrixComponent
+class MeetingsRequestSend extends CBitrixComponent
 {
 
   /**
@@ -62,14 +62,14 @@ class MeetingsMatrix extends CBitrixComponent
   {
     global $USER;
     $arResult = array();
-    if((isset($_REQUEST["exib_code"]) && $_REQUEST["exib_code"]!='') || !empty($arParams["APP_ID"])){
-      $filterEx = array("IBLOCK_ID" => $arParams["EXHIB_IBLOCK_ID"]);
+    if((isset($_REQUEST["exib_code"]) && $_REQUEST["exib_code"]!='') || !empty($this->arParams["APP_ID"])){
+      $filterEx = array("IBLOCK_ID" => $this->arParams["EXHIB_IBLOCK_ID"]);
       if(!empty($_REQUEST["exib_code"]))
         $filterEx["CODE"] = $_REQUEST["exib_code"];
-      elseif(isset($arParams["IS_HB"]) && $arParams["IS_HB"] == 'Y')
-        $filterEx["PROPERTY_APP_HB_ID"] = $arParams["APP_ID"];
+      elseif(isset($this->arParams["IS_HB"]) && $this->arParams["IS_HB"] == 'Y')
+        $filterEx["PROPERTY_APP_HB_ID"] = $this->arParams["APP_ID"];
       else{
-        $filterEx["PROPERTY_APP_ID"] = $arParams["APP_ID"];
+        $filterEx["PROPERTY_APP_ID"] = $this->arParams["APP_ID"];
       }
 
       $rsExhib = \CIBlockElement::GetList(
@@ -85,7 +85,7 @@ class MeetingsMatrix extends CBitrixComponent
         $arResult["PARAM_EXHIBITION"]["PROPERTIES"] = $oExhib->GetProperties();
         unset($arResult["PARAM_EXHIBITION"]["PROPERTIES"]["MORE_PHOTO"]);
         $exibOther = '';
-        if(isset($arParams["IS_HB"]) && $arParams["IS_HB"] == 'Y'){
+        if(isset($this->arParams["IS_HB"]) && $this->arParams["IS_HB"] == 'Y'){
           $appId = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["APP_HB_ID"]["VALUE"];
           $exibOther = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["APP_ID"]["VALUE"];
         }
@@ -93,8 +93,8 @@ class MeetingsMatrix extends CBitrixComponent
           $appId = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["APP_ID"]["VALUE"];
           $exibOther = $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["APP_HB_ID"]["VALUE"];
         }
-        $arParams["APP_ID"] = $appId;
-        $arParams["APP_ID_OTHER"] = $exibOther;
+        $this->arParams["APP_ID"] = $appId;
+        $this->arParams["APP_ID_OTHER"] = $exibOther;
       }
     }
 
@@ -117,9 +117,9 @@ class MeetingsMatrix extends CBitrixComponent
     }
     $receiver_id = intval($_REQUEST['to']);
 
-    $req_obj = new DokaRequest($arParams['APP_ID']);
+    $req_obj = new DokaRequest($this->arParams['APP_ID']);
 
-    $arResult["APP"] = $arParams['APP_ID'];
+    $arResult["APP"] = $this->arParams['APP_ID'];
     $arResult['USER_TYPE'] = $req_obj->getUserType();
     if ($receiver_id <= 0) {
       if($arResult['USER_TYPE'] == 'PARTICIP'){
@@ -167,9 +167,9 @@ class MeetingsMatrix extends CBitrixComponent
     }
 
 //Проверяем нет ли уже встреч с этим же пользователем
-    $exibArr = array($arParams["APP_ID"]);
-    if($arParams["APP_ID_OTHER"])
-      $exibArr[] = $arParams["APP_ID_OTHER"];
+    $exibArr = array($this->arParams["APP_ID"]);
+    if($this->arParams["APP_ID_OTHER"])
+      $exibArr[] = $this->arParams["APP_ID_OTHER"];
 
     $allSlotsBetween = $req_obj->getAllSlotsBetween($sender_id, $receiver_id, $exibArr);
     if(!empty($allSlotsBetween)){
@@ -216,7 +216,7 @@ class MeetingsMatrix extends CBitrixComponent
         $fields = array(
           'RECEIVER_ID' => $arResult['RECEIVER']['company_id'],
           'SENDER_ID' => $arResult['SENDER']['company_id'],
-          'EXHIBITION_ID' => $arParams['APP_ID'],
+          'EXHIBITION_ID' => $this->arParams['APP_ID'],
           'TIMESLOT_ID' => $arResult['TIMESLOT']['id'],
           'STATUS' => DokaRequest::getStatusCode($status),
         );
