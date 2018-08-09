@@ -232,7 +232,7 @@ if (intval($USER_ID) > 0) {
 				"EXIB_DATE" => $arExhibition["PROPERTIES"]["DATE"]["VALUE"],
 				"EXIB_PLACE" => $arExhibition["PROPERTIES"]["VENUE"]["VALUE"],
 				"EVENT_EMAIL" => $arExhibition["PROPERTIES"]["EVENT_EMAIL"]["VALUE"],
-				"EXIB_YEAR" => $arExhibition["PROPERTIES"]["menu_en"]["VALUE"],
+				"EXIB_YEAR" => $arExhibition["PROPERTIES"]["menu_en"]["VALUE"],               
 				"TYPE" => "Рабочие встречи",
 				"TYPE_KIEV" => "Робочі зустрічі"
 			]

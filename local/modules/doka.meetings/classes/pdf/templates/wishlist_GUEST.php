@@ -1,9 +1,9 @@
 <?
 function DokaGeneratePdf($arResult) {
 
-	$pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
-	$pdf->setPrintHeader(false);
-	$pdf->setPrintFooter(false);
+    $pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
+    $pdf->setPrintHeader(false);
+    $pdf->setPrintFooter(false);
     $pdf->AddFont('freeserif','I','freeserifi.php');
 	$pdf->AddPage();
 	$pdf->ImageSVG($file=DOKA_MEETINGS_MODULE_DIR . '/images/logo.svg', $x=30, $y=5, $w='150', $h='', $link='', $align='', $palign='', $border=0, $fitonpage=false);
@@ -39,89 +39,89 @@ function DokaGeneratePdf($arResult) {
         $pdf->multiCell(300, 5, trim($arResult["USER"]["REP"]), 0, L);
     }
 
-	$pdf->SetFont('freeserif','B',13);
-	$pdf->setXY(0,$pdf->getY() + 5);
-	$pdf->multiCell(210, 5, "Вы также хотели бы встретиться со следующими компаниями", 0, C);
+    $pdf->SetFont('freeserif','B',13);
+    $pdf->setXY(0,$pdf->getY() + 5);
+    $pdf->multiCell(210, 5, "Вы также хотели бы встретиться со следующими компаниями", 0, C);
 
-	$pdf->SetFont('freeserif','',10);
-	$pdf->setXY(0,$pdf->getY() + 1);
-	$pdf->multiCell(210, 5, "(возможно, данные участники отклонили ваши запросы или их расписание уже полное):", 0, C);
+    $pdf->SetFont('freeserif','',10);
+    $pdf->setXY(0,$pdf->getY() + 1);
+    $pdf->multiCell(210, 5, "(возможно, данные участники отклонили ваши запросы или их расписание уже полное):", 0, C);
 
 
-	/* Формируем таблицу */
-	if (!$arResult['WISH_IN']) {
-		$pdf->setXY(0, $pdf->getY() + 5);
-		$pdf->SetFont('freeserif','',13);
-		$pdf->multiCell(210, 5, "Этот список запросов пуст.", 0, C);
-	} else {
-		$pdf->setXY(20,$pdf->getY() + 5);
-		$pdf->SetFont('freeserif','',11);
+    /* Формируем таблицу */
+    if (!$arResult['WISH_IN']) {
+        $pdf->setXY(0, $pdf->getY() + 5);
+        $pdf->SetFont('freeserif','',13);
+        $pdf->multiCell(210, 5, "Этот список запросов пуст.", 0, C);
+    } else {
+        $pdf->setXY(20,$pdf->getY() + 5);
+        $pdf->SetFont('freeserif','',11);
 
-		$tbl = '<table cellspacing="0" cellpadding="5" border="1">
+        $tbl = '<table cellspacing="0" cellpadding="5" border="1">
 			<tr>
 				<td align="center" width="40">№</td>
 				<td align="center" width="220">Компания</td>
 				<td align="center" width="160">Представитель</td>
 				<td align="center" width="90">Причина</td>
 			</tr>';
-		$i = 1;
-		foreach ($arResult['WISH_IN'] as $item) {
-		  $tbl .= '<tr>
+        $i = 1;
+        foreach ($arResult['WISH_IN'] as $item) {
+            $tbl .= '<tr>
 				<td align="center">'.$i.'</td>
 				<td>'.$item["company_name"].'</td>
 				<td>'.$item["company_rep"].'</td>
 				<td>'.$arResult['STATUS_REQUEST'][ $item["company_reason"] ].'</td>
 			</tr>';
-			$i++;
-		}
-	    $tbl .= '</table>';
-	    $pdf->writeHTML($tbl, true, false, false, false, '');
-	}
+            $i++;
+        }
+        $tbl .= '</table>';
+        $pdf->writeHTML($tbl, true, false, false, false, '');
+    }
 
 
-	$pdf->SetFont('freeserif','B',13);
-	$pdf->setXY(0,$pdf->getY() + 10);
-	$pdf->multiCell(210, 5, "С вами также хотели бы встретиться следующие компании", 0, C);
+    $pdf->SetFont('freeserif','B',13);
+    $pdf->setXY(0,$pdf->getY() + 10);
+    $pdf->multiCell(210, 5, "С вами также хотели бы встретиться следующие компании", 0, C);
 
-	$pdf->SetFont('freeserif','',10);
-	$pdf->setX(0);
-	$pdf->multiCell(210, 5, "(возможно, вы отклонили запросы от этих участников или ваше расписание уже полное):", 0, C);
+    $pdf->SetFont('freeserif','',10);
+    $pdf->setX(0);
+    $pdf->multiCell(210, 5, "(возможно, вы отклонили запросы от этих участников или ваше расписание уже полное):", 0, C);
 
-	if (!$arResult["WISH_OUT"]) {
-		$pdf->setXY(0,$pdf->getY() + 5);
-		$pdf->SetFont('freeserif','',13);
-		$pdf->multiCell(210, 5, "Этот список запросов пуст.", 0, C);
-	} else {
-		$pdf->setXY(20,$pdf->getY() + 5);
-		$pdf->SetFont('freeserif','',11);
+    if (!$arResult["WISH_OUT"]) {
+        $pdf->setXY(0,$pdf->getY() + 5);
+        $pdf->SetFont('freeserif','',13);
+        $pdf->multiCell(210, 5, "Этот список запросов пуст.", 0, C);
+    } else {
+        $pdf->setXY(20,$pdf->getY() + 5);
+        $pdf->SetFont('freeserif','',11);
 
-		$tbl = '<table cellspacing="0" cellpadding="5" border="1">
+        $tbl = '<table cellspacing="0" cellpadding="5" border="1">
 			<tr>
 				<td align="center" width="40">№</td>
 				<td align="center" width="220">Компания</td>
 				<td align="center" width="160">Представитель</td>
 				<td align="center" width="90">Причина</td>
 			</tr>';
-		$i = 1;
-		foreach ($arResult['WISH_OUT'] as $item) {
-		  $tbl .= '<tr>
+        $i = 1;
+        foreach ($arResult['WISH_OUT'] as $item) {
+            $tbl .= '<tr>
 				<td align="center">'.$i.'</td>
 				<td>'.$item["company_name"].'</td>
 				<td>'.$item["company_rep"].'</td>
 				<td>'.$arResult['STATUS_REQUEST'][ $item["company_reason"] ].'</td>
 			</tr>';
-			$i++;
-		}
-	  $tbl .= '</table>';
-	  $pdf->writeHTML($tbl, true, false, false, false, '');
+            $i++;
+        }
+        $tbl .= '</table>';
+        $pdf->writeHTML($tbl, true, false, false, false, '');
 
-	}
+    }
 
-	$pdf->setXY(20,$pdf->getY() + 10);
-	$html = '<p>Вы можете встретиться со всеми компаниями, указанными выше, в любое другое время Luxury Travel
+    $pdf->setXY(20,$pdf->getY() + 10);
+    $html = '<p>Вы можете встретиться со всеми компаниями, указанными выше, в любое другое время Luxury Travel
 Mart, например, во время ланча, перерыва на кофе или на вечерней сессии.<p>';
-	$pdf->writeHTML($html, true, false, false, false, '');
+    $pdf->writeHTML($html, true, false, false, false, '');
 
-	$pdf->Output("print_wish.pdf", I);
-	die();
+    $pdf->Output("print_wish.pdf", I);
+    die();
 }
