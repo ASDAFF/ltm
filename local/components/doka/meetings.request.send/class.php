@@ -139,6 +139,8 @@ class MeetingsRequestSend extends CBitrixComponent
     else
       $sender_id = $USER->GetID();
 
+    $arResult['SENDER_TYPE'] = $req_obj->getUserTypeById($sender_id);
+
     if(isset($_REQUEST["type"]) && $_REQUEST["type"] == "p" && $USER->GetID() == 1){
       $arResult['USER_TYPE'] = "PARTICIP";
     }
@@ -187,15 +189,13 @@ class MeetingsRequestSend extends CBitrixComponent
     $fio_datesPart[2][1] = \CFormMatrix::getAnswerRelBase(89 ,$formId);
 
 // Инфо об отправителе
-    if($arResult['USER_TYPE'] == 'PARTICIP'){
+    if($arResult['SENDER_TYPE'] == 'PARTICIP'){
       $arResult['SENDER'] = $req_obj->getUserInfoFull($sender_id, $formId, $propertyNameParticipant, $fio_datesPart);
       $arResult['RECEIVER'] = $req_obj->getUserInfo($receiver_id);
-    }
-    else{
+    } else {
       $arResult['RECEIVER'] = $req_obj->getUserInfoFull($receiver_id, $formId, $propertyNameParticipant, $fio_datesPart);
       $arResult['SENDER'] = $req_obj->getUserInfo($sender_id);
     }
-
 
     if (!$arResult['SENDER']) {
       $arResult['ERROR_MESSAGE'][] = GetMessage($arResult['USER_TYPE'] . '_WRONG_SENDER_ID');
@@ -212,7 +212,6 @@ class MeetingsRequestSend extends CBitrixComponent
         if($arResult['USER_TYPE'] == 'ADMIN' && $arResult['OPERATION_TYPE'] == 'admin') {
           $status = DokaRequest::STATUS_CONFIRMED;
         }
-
         $fields = array(
           'RECEIVER_ID' => $arResult['RECEIVER']['company_id'],
           'SENDER_ID' => $arResult['SENDER']['company_id'],
@@ -221,16 +220,18 @@ class MeetingsRequestSend extends CBitrixComponent
           'STATUS' => DokaRequest::getStatusCode($status),
         );
         $req_obj->Add($fields);
-        $arFieldsMes = array(
-          "EMAIL" => $arResult["RECEIVER"]["email"],
-          "EXIB_NAME_RU" => $arResult["PARAM_EXHIBITION"]["NAME"],
-          "EXIB_NAME_EN" => $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["NAME_EN"]["VALUE"],
-          "EXIB_SHORT_RU" => $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]["VALUE"],
-          "EXIB_SHORT_EN" => $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]["VALUE"],
-          "EXIB_DATE" => $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["DATE"]["VALUE"],
-          "EXIB_PLACE" => $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["VENUE"]["VALUE"],
-        );
-        \CEvent::Send($req_obj->getOption('EVENT_SENT'),"s1",$arFieldsMes);
+        if($status == DokaRequest::STATUS_PROCESS) {
+          $arFieldsMes = array(
+            "EMAIL" => $arResult["RECEIVER"]["email"],
+            "EXIB_NAME_RU" => $arResult["PARAM_EXHIBITION"]["NAME"],
+            "EXIB_NAME_EN" => $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["NAME_EN"]["VALUE"],
+            "EXIB_SHORT_RU" => $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]["VALUE"],
+            "EXIB_SHORT_EN" => $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]["VALUE"],
+            "EXIB_DATE" => $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["DATE"]["VALUE"],
+            "EXIB_PLACE" => $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["VENUE"]["VALUE"],
+          );
+          \CEvent::Send($req_obj->getOption('EVENT_SENT'),"s1",$arFieldsMes);
+        }
       } else {
         $arResult['FORM_ERROR'] = 'ошибка отправки';
       }
