@@ -248,7 +248,7 @@ class Requests extends DokaRequest
         global $USER;
         
         $arGroups = \CUser::GetUserGroup($user_id);
-        if (in_array($this->getOption('ADMINS_GROUP'), $arGroups) || $USER->IsAdmin())
+        if (in_array($this->getOption('ADMINS_GROUP'), $arGroups))
             $group_type = 'ADMIN';
         else if (in_array($this->getOption('GUESTS_GROUP'), $arGroups))
             $group_type = 'GUEST';
