@@ -685,6 +685,7 @@ class Requests extends DokaRequest
                         'request_id' => $data['ID'],
                         'status' => $data['STATUS'],
                         'company_id' => $data['repr_id'],
+                        'sender_id' =>  $data['SENDER_ID'],
                         'company_rep' => $data['repr_fio'],
                         'form_res' => $data['repr_fio'],
                         'company_name' => $data['WORK_COMPANY'],
