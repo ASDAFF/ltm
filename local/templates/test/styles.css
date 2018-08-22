@@ -1174,7 +1174,7 @@ ul{margin: 0;padding: 0;list-style: none;}
  margin-left: 100%;
  display: inline-block;
 }
-
+.exhibition-session .bluecolor {color: #00aeef;}
 .exhibition-session p{margin: 0 0 20px;}
 .exhibition-session ul{margin: 0 0 15px;}
 .exhibition-session ul li{margin: 0 0 5px;}
