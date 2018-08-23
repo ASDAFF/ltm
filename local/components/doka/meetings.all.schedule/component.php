@@ -286,7 +286,7 @@ while ($data = $rsCompanies->Fetch()) {
 					'timeslot_name' => $timeslotValue['name'],
 					'status' => $meet['status'],
 					'notes' => DokaGetNote($meet, $arResult['USER_TYPE'], $data["ID"]),
-					'user_is_sender' => ($meet['modified_by'] == $data["ID"]),
+					'user_is_sender' => ($meet['sender_id'] == $data["ID"]),
 					'company_name' => $users_list[$user_id]['name'],
 					'company_rep' => $users_list[$user_id]['repr_name'],
 					'company_id' => $users_list[$user_id]['id'],
@@ -343,7 +343,7 @@ fullRemove_ff($pdfFolder);
 function DokaGetNote($meet, $user_type, $curUser) {
 	switch ($meet['status']) {
 		case 'process':
-			if ($meet['modified_by'] == $curUser)
+			if ($meet['sender_id'] == $curUser)
 				$msg = GetMessage($user_type.'_SENT_BY_YOU');
 			else
 				$msg = GetMessage($user_type.'_SENT_TO_YOU');

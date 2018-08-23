@@ -248,7 +248,7 @@ class Requests extends DokaRequest
         global $USER;
         
         $arGroups = \CUser::GetUserGroup($user_id);
-        if (in_array($this->getOption('ADMINS_GROUP'), $arGroups) || $USER->IsAdmin())
+        if (in_array($this->getOption('ADMINS_GROUP'), $arGroups))
             $group_type = 'ADMIN';
         else if (in_array($this->getOption('GUESTS_GROUP'), $arGroups))
             $group_type = 'GUEST';
@@ -685,6 +685,7 @@ class Requests extends DokaRequest
                         'request_id' => $data['ID'],
                         'status' => $data['STATUS'],
                         'company_id' => $data['repr_id'],
+                        'sender_id' =>  $data['SENDER_ID'],
                         'company_rep' => $data['repr_fio'],
                         'form_res' => $data['repr_fio'],
                         'company_name' => $data['WORK_COMPANY'],
@@ -760,13 +761,14 @@ class Requests extends DokaRequest
                             'request_id' => $data['ID'],
                             'status' => $data['STATUS'],
                             'company_id' => $data['repr_id'],
+                            'sender_id' =>  $data['SENDER_ID'],
                             'form_res' => $data['repr_fio'],
                             'company_rep' => trim($name)." ".trim($suname),
                             'hall' => trim($hall),
                             'table' => trim($table),
                             'company_name' => $data['WORK_COMPANY'],
                             'modified_by' => $data['MODIFIED_BY'],
-                            'date' => $time_left
+                            'date' => $time_left,
                         )
                     );
                 }
@@ -778,6 +780,7 @@ class Requests extends DokaRequest
                             'request_id' => $data['ID'],
                             'status' => $data['STATUS'],
                             'company_id' => $data['repr_id'],
+                            'sender_id' =>  $data['SENDER_ID'],
                             'form_res' => $data['repr_fio'],
                             'company_rep' => trim($arAnswer2[$fio[0][0]][$fio[0][1]]["USER_TEXT"])." ".trim($arAnswer2[$fio[1][0]][$fio[1][1]]["USER_TEXT"]),
                             'hall' => trim($hall),
