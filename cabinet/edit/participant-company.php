@@ -320,7 +320,7 @@ $(function(){
 
             if(!ext || !(/^(jpg|jpeg|svg|svgz)$/.test(ext[0])) )
             {
-            	alert("Photo format should be only jpg");
+            	alert("Photo format should be only jpg or svg");
             	return false;
             };
 			
