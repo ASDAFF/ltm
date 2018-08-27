@@ -60,7 +60,7 @@ class MeetingsWishlist extends CBitrixComponent
     {
         $wishListForUser = $this->getWishListForUser();
         $wishListFromUser = $this->getWishListFromUser();
-        $exhibSettings = SettingsTable::getSettiongs($this->arParams['EXHIBITION_CODE']);
+        $exhibSettings = SettingsTable::getSettingsByCode($this->arParams['EXHIBITION_CODE']);
         $exhibition = SettingsTable::getExhibition($this->arParams['EXHIBITION_CODE']);
 //        c($exhibition);
         $filter = ['ID' => $this->arParams['USER_ID']];

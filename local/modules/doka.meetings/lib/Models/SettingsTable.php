@@ -3,6 +3,7 @@
 namespace Spectr\Meeting\Models;
 
 
+use Bitrix\Main\ArgumentException;
 use Bitrix\Main\Entity\BooleanField;
 use Bitrix\Main\Entity\DataManager;
 use Bitrix\Main\Entity\IntegerField;
@@ -24,13 +25,13 @@ class SettingsTable extends DataManager
     {
         return [
             new IntegerField('ID', [
-                'primary' => true,
+                'primary'      => true,
                 'autocomplete' => true,
             ]),
             new StringField('NAME'),
             new StringField('CODE'),
             new BooleanField('IS_LOCKED', [
-                'save_data_modification' => function () {
+                'save_data_modification'  => function () {
                     return [
                         function ($value) {
                             if (is_bool($value)) {
@@ -54,7 +55,7 @@ class SettingsTable extends DataManager
                 },
             ]),
             new BooleanField('ACTIVE', [
-                'save_data_modification' => function () {
+                'save_data_modification'  => function () {
                     return [
                         function ($value) {
                             if (is_bool($value)) {
@@ -79,7 +80,7 @@ class SettingsTable extends DataManager
             ]),
             new IntegerField('GUESTS_GROUP'),
             new BooleanField('IS_GUEST', [
-                'save_data_modification' => function () {
+                'save_data_modification'  => function () {
                     return [
                         function ($value) {
                             if (is_bool($value)) {
@@ -103,7 +104,7 @@ class SettingsTable extends DataManager
                 },
             ]),
             new BooleanField('IS_HB', [
-                'save_data_modification' => function () {
+                'save_data_modification'  => function () {
                     return [
                         function ($value) {
                             if (is_bool($value)) {
@@ -139,7 +140,7 @@ class SettingsTable extends DataManager
         ];
     }
 
-    public static function getSettiongs(string $exhibCode): array
+    public static function getSettingsByCode(string $exhibCode): array
     {
         return self::getList([
             'filter' => [
@@ -148,14 +149,26 @@ class SettingsTable extends DataManager
         ])->fetch();
     }
 
+    /**
+     * @param int $id
+     *
+     * @throws ArgumentException
+     * @return array
+     */
+    public static function getSettingsById(int $id): array
+    {
+        return self::getList(['filter' => ['ID' => $id]])->fetch();
+    }
+
     public static function getExhibition(string $exhibCode): array
     {
-        $result = [];
+        $result  = [];
         $rsExhib = CIBlockElement::GetList([], ["CODE" => $exhibCode]);
         if ($oExhib = $rsExhib->GetNextElement(true, false)) {
-            $result["PARAM_EXHIBITION"] = $oExhib->GetFields();
+            $result["PARAM_EXHIBITION"]               = $oExhib->GetFields();
             $result["PARAM_EXHIBITION"]["PROPERTIES"] = $oExhib->GetProperties();
         }
+
         return $result;
     }
 }
