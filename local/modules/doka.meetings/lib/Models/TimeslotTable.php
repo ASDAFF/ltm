@@ -2,7 +2,6 @@
 
 namespace Spectr\Meeting\Models;
 
-use Bitrix\Main\ArgumentTypeException;
 use Bitrix\Main\Entity\DataManager;
 use Bitrix\Main\Entity\IntegerField;
 use Bitrix\Main\Entity\StringField;
@@ -132,15 +131,13 @@ class TimeslotTable extends DataManager
     /**
      * @param int $id
      *
-     * @throws /ArgumentTypeException
      * @return array
      */
     public static function getTimeslotForMeet($id)
     {
         return self::getRow([
-            'select' => ['ID'],
+            'select' => ['ID', 'NAME'],
             'filter' => ['ID' => $id, 'SLOT_TYPE' => self::$types[self::TYPE_MEET]],
-        ])->fetch();
+        ]);
     }
-
 }

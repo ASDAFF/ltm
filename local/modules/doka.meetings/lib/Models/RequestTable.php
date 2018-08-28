@@ -20,12 +20,12 @@ class RequestTable extends DataManager
     const STATUS_RESERVE = 5;
 
     static $statuses = [
-        self::STATUS_EMPTY => 'empty',
-        self::STATUS_PROCESS => 'process',
+        self::STATUS_EMPTY     => 'empty',
+        self::STATUS_PROCESS   => 'process',
         self::STATUS_CONFIRMED => 'confirmed',
-        self::STATUS_REJECTED => 'rejected',
-        self::STATUS_TIMEOUT => 'timeout',
-        self::STATUS_RESERVE => 'reserve',
+        self::STATUS_REJECTED  => 'rejected',
+        self::STATUS_TIMEOUT   => 'timeout',
+        self::STATUS_RESERVE   => 'reserve',
     ];
 
     public static function getTableName(): string
@@ -37,7 +37,7 @@ class RequestTable extends DataManager
     {
         return [
             new IntegerField('ID', [
-                'primary' => true,
+                'primary'      => true,
                 'autocomplete' => true,
             ]),
             new IntegerField('SENDER_ID'),
@@ -47,7 +47,7 @@ class RequestTable extends DataManager
             new IntegerField('MODIFIED_BY'),
             new IntegerField('TIMESLOT_ID'),
             new StringField('STATUS', [
-                'save_data_modification' => function () {
+                'save_data_modification'  => function () {
                     return [
                         function ($value) {
                             return self::$statuses[$value];
@@ -87,12 +87,67 @@ class RequestTable extends DataManager
                 'RECEIVER_USER.WORK_COMPANY',
             ],
             'filter' => [
-                '=EXHIBITION_ID' => $exhibId,
-                '!=STATUS' => self::STATUS_CONFIRMED,
+                '=EXHIBITION_ID'      => $exhibId,
+                '!=STATUS'            => self::STATUS_CONFIRMED,
                 '=TIMESLOT.SLOT_TYPE' => TimeslotTable::TYPE_MEET,
 
             ],
         ])->fetchAll();
     }
 
+    /**
+     * @param array $users
+     * @param array $exhibitions
+     *
+     * @throws \Bitrix\Main\ArgumentException
+     * @return array
+     */
+    public static function getAllSlotsBetweenUsers($users, $exhibitions)
+    {
+        return self::getList([
+            'select' => ['ID'],
+            'filter' => [
+                '=ID' => $exhibitions,
+                [
+                    'LOGIC' => 'OR',
+                    [
+                        '=SENDER_ID'   => $users[0],
+                        '=RECEIVER_ID' => $users[1],
+                    ],
+                    [
+                        '=SENDER_ID'   => $users[1],
+                        '=RECEIVER_ID' => $users[0],
+                    ],
+                ],
+            ],
+        ])->fetchAll();
+    }
+
+    /**
+     * @throws \Bitrix\Main\ArgumentException
+     *
+     * @param int $timeslot
+     * @param array $users
+     *
+     * @return bool
+     */
+    public static function checkTimeslotIsFree($timeslot, $users)
+    {
+        $result = self::getList([
+            'select' => ['ID'],
+            'filter' => [
+                '!=STATUS'     => [self::$statuses[self::STATUS_REJECTED], self::$statuses[self::STATUS_TIMEOUT]],
+                '=TIMESLOT_ID' => $timeslot,
+                [
+                    'LOGIC' => 'OR',
+                    [
+                        '=SENDER_ID'   => $users,
+                        '=RECEIVER_ID' => $users,
+                    ],
+                ],
+            ],
+        ])->getSelectedRowsCount();
+
+        return (bool)$result;
+    }
 }

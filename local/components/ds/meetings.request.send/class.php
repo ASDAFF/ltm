@@ -8,6 +8,7 @@ use Bitrix\Main\Localization\Loc;
 use Spectr\Meeting\Models\RequestTable;
 use Spectr\Meeting\Models\SettingsTable;
 use Spectr\Meeting\Models\TimeslotTable;
+use Spectr\Meeting\Models\RegistrGuestTable;
 use Bitrix\Main;
 use Bitrix\Main\Entity;
 
@@ -103,12 +104,9 @@ class MeetingsRequestSend extends CBitrixComponent
         return $this;
     }
 
-    /**
-     * @throws \Bitrix\Main\ArgumentException
-     */
     private function getAppSettings()
     {
-        $this->arResult['APP_SETTINGS'] = SettingsTable::getSettingsById($this->arResult['APP_ID']);
+        $this->arResult['APP_SETTINGS'] = SettingsTable::getById($this->arResult['APP_ID'])->fetch();
 
         return $this;
     }
@@ -124,7 +122,7 @@ class MeetingsRequestSend extends CBitrixComponent
 
         if ((int)$_REQUEST['to'] <= 0) {
             if ($this->arResult['USER_TYPE'] === self::PARTICIPANT_TYPE) {
-                throw new Exception(Loc::getMessage('ERROR_WRONG_RECEIVER_PARTICIP_ID'));
+                throw new Exception(Loc::getMessage('ERROR_WRONG_RECEIVER_PARTICIPANT_ID'));
             } else {
                 throw new Exception(Loc::getMessage('ERROR_WRONG_RECEIVER_ID'));
             }
@@ -154,7 +152,8 @@ class MeetingsRequestSend extends CBitrixComponent
             }
         }
 
-        $this->arResult['USER_TYPE'] = $userType;
+        $this->arResult['USER_TYPE']      = $userType;
+        $this->arResult['USER_TYPE_NAME'] = self::$userTypes[$userType];
 
         return $this;
     }
@@ -170,9 +169,23 @@ class MeetingsRequestSend extends CBitrixComponent
         } else {
             $this->arResult['SENDER_ID'] = $USER->GetID();
         }
-
         $this->arResult['RECEIVER_ID'] = (int)$_REQUEST['to'];
-        $this->arResult['TIMESLOT']    = $this->getTimeslot();
+        $this->arResult['SENDER']      = $this->getUserInfo(
+            $this->arResult['SENDER_ID'],
+            $this->arResult['USER_TYPE'] === self::PARTICIPANT_TYPE
+        );
+        $this->arResult['RECEIVER']    = $this->getUserInfo(
+            $this->arResult['RECEIVER_ID'],
+            $this->arResult['USER_TYPE'] !== self::PARTICIPANT_TYPE
+        );
+
+        if (empty($this->arResult['SENDER'])) {
+            throw new Exception(Loc::getMessage(self::$userTypes[$this->arResult['USER_TYPE']].'_WRONG_SENDER_ID'));
+        }
+        if (empty($this->arResult['RECEIVER'])) {
+            throw new Exception(Loc::getMessage(self::$userTypes[$this->arResult['USER_TYPE']].'_WRONG_RECEIVER_ID'));
+        }
+        $this->arResult['TIMESLOT'] = $this->getTimeslot();
         if ( !$this->arResult['TIMESLOT']) {
             throw new Exception(Loc::getMessage(self::$userTypes[$this->arResult['USER_TYPE']].'_WRONG_TIMESLOT_ID'));
         }
@@ -194,6 +207,8 @@ class MeetingsRequestSend extends CBitrixComponent
     {
         $this->checkSendingRequestToHimself();
         $this->checkUsersRights($this->arResult['RECEIVER_ID'], $this->arResult['SENDER_ID']);
+        $this->checkRequestExists();
+        $this->checkTimeslotsIsFree();
 
         return $this;
     }
@@ -310,12 +325,93 @@ class MeetingsRequestSend extends CBitrixComponent
         return in_array($this->arResult['APP_SETTINGS']['MEMBERS_GROUP'], $userGroups);
     }
 
+    /**
+     * @throws \Bitrix\Main\ArgumentException
+     * @throws \Exception
+     */
+    private function checkRequestExists()
+    {
+        $requests = RequestTable::getAllSlotsBetweenUsers(
+            [$this->arResult['SENDER_ID'], $this->arResult['RECEIVER_ID']],
+            [$this->arResult['APP_ID'], $this->arResult['APP_ID_OTHER']]
+        );
+        if ( !empty($requests)) {
+            throw new Exception(Loc::getMessage(self::$userTypes[$this->arResult['USER_TYPE']].'_COMPANY_MEET_EXIST'));
+        }
+    }
 
     /**
-     * TODO need to implement
+     * @param int $userId
+     * @param bool $isParticipant
+     *
+     * @throws \Bitrix\Main\ArgumentException
+     * @return array
+     */
+    private function getUserInfo($userId, $isParticipant = false)
+    {
+        if ($isParticipant) {
+            $arUser = \Bitrix\Main\UserTable::getList([
+                'select' => ['ID', 'EMAIL', 'WORK_COMPANY', 'NAME', 'LAST_NAME'],
+                'filter' => ['=ID' => $userId],
+            ])->fetchAll();
+            if ( !empty($arUser)) {
+                return [
+                    'ID' => $userId,
+                    'NAME'    => "{$arUser[0]['NAME']} {$arUser[0]['LAST_NAME']}",
+                    'COMPANY' => $arUser[0]['WORK_COMPANY'],
+                    'EMAIL'   => $arUser[0]['EMAIL'],
+                ];
+            }
+        } else {
+            $arUser = RegistrGuestTable::getRowByUserID($userId);
+            if ( !empty($arUser)) {
+                return [
+                    'ID'      => $userId,
+                    'NAME'    => "{$arUser['UF_NAME']} {$arUser['UF_SURNAME']}",
+                    'COMPANY' => $arUser['UF_COMPANY'],
+                    'EMAIL'   => $arUser['UF_EMAIL'],
+                ];
+            }
+        }
+
+        return [];
+    }
+
+    /**
+     * @throws \Bitrix\Main\ArgumentException
+     * @throws Exception
+     */
+    private function checkTimeslotsIsFree()
+    {
+        $result = RequestTable::checkTimeslotIsFree(
+            $this->arResult['TIMESLOT']['ID'],
+            [$this->arResult['SENDER_ID'], $this->arResult['RECEIVER_ID'],]
+        );
+        if ($result) {
+            throw new Exception('ошибка отправки');
+        }
+    }
+
+    /**
+     * @throws Exception
      */
     private function addRequest()
     {
+        $fields                         = [
+            'RECEIVER_ID'   => $this->arResult['RECEIVER_ID'],
+            'SENDER_ID'     => $this->arResult['SENDER_ID'],
+            'EXHIBITION_ID' => $this->arResult['APP_ID'],
+            'TIMESLOT_ID'   => $this->arResult['TIMESLOT']['ID'],
+            'STATUS'        => $this->arResult['USER_TYPE'] === self::ADMIN_TYPE
+                ? RequestTable::STATUS_CONFIRMED
+                : RequestTable::STATUS_PROCESS,
+        ];
+        if (isset($_POST['submit'])) {
+
+            $result                         = RequestTable::add($fields);
+            $this->arResult['REQUEST_SENT'] = $result->isSuccess();
+        }
+
         return $this;
     }
 
@@ -324,6 +420,19 @@ class MeetingsRequestSend extends CBitrixComponent
      */
     private function sendEmail()
     {
+        if ($this->arResult['REQUEST_SEND']) {
+            $arFieldsMes = [
+                'EMAIL'         => $this->arResult['RECEIVER']['EMAIL'],
+                'EXIB_NAME_RU'  => $this->arResult['PARAM_EXHIBITION']['NAME'],
+                'EXIB_NAME_EN'  => $this->arResult['PARAM_EXHIBITION']['PROPERTIES']['NAME_EN']['VALUE'],
+                'EXIB_SHORT_RU' => $this->arResult['PARAM_EXHIBITION']['PROPERTIES']['V_RU']['VALUE'],
+                'EXIB_SHORT_EN' => $this->arResult['PARAM_EXHIBITION']['PROPERTIES']['V_EN']['VALUE'],
+                'EXIB_DATE'     => $this->arResult['PARAM_EXHIBITION']['PROPERTIES']['DATE']['VALUE'],
+                'EXIB_PLACE'    => $this->arResult['PARAM_EXHIBITION']['PROPERTIES']['VENUE']['VALUE'],
+            ];
+            CEvent::Send($this->arResult['APP_SETTINGS']['EVENT_SENT'], 's1', $arFieldsMes);
+        }
+
         return $this;
     }
 
