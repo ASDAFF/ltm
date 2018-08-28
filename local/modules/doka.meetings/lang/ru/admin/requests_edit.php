@@ -14,6 +14,7 @@ $MESS['DOKA_MEET_PROCESS'] = "Ожидание";
 $MESS['DOKA_MEET_CONFIRMED'] = "Подтвержден";
 $MESS['DOKA_MEET_REJECTED'] = "Отменен";
 $MESS['DOKA_MEET_TIMEOUT'] = "Истекло время ожидания ответа";
+$MESS['DOKA_MEET_RESERVE'] = "Зарезервирован";
 $MESS['DOKA_MEET_CHOOSE_EXHIBITION'] = "Выберите выставку";
 $MESS['DOKA_MEET_CHOOSE_TIMESLOT'] = "Выберите таймслот";
 

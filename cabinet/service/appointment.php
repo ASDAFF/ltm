@@ -27,12 +27,16 @@ else{
 }
 ?>
 
-<?$APPLICATION->IncludeComponent(
-	"doka:meetings.request.send",
-	"",
-	Array(
-		"APP_ID" => $appId
-	),
-false
-);?>
+<?
+$APPLICATION->IncludeComponent(
+    "ds:meetings.request.send",
+    "",
+    Array(
+        "APP_ID"               => $appId,
+        "EXHIBITION_IBLOCK_ID" => 15,
+        "IS_HB"                => false
+    ),
+    false
+);
+?>
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
