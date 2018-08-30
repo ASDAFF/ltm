@@ -147,6 +147,7 @@ elseif($arResult['USER_TYPE'] == "PARTICIP" && isset($arParams["IS_HB"]) && $arP
 }
 else{
 	$busy_timeslots = $req_obj->getAllTimesByCompNamed($arResult['CURRENT_USER_ID'], $formId, $propertyNameParticipant, $fio_dates);
+
 }
 if(isset($_REQUEST['mode']) && $_REQUEST['mode'] == 'pdf'){
 	$rsUser = CUser::GetByID($arResult['CURRENT_USER_ID']);
@@ -188,7 +189,7 @@ foreach ($timeslots as $timeslot_id => $item) {
 			'name' => $item['name'],
 			'status' => $meet['status'],
 			'notes' => DokaGetNote($meet, $arResult['USER_TYPE'], $arResult['CURRENT_USER_ID']),
-			'sent_by_you' => ($meet['modified_by'] == $arResult['CURRENT_USER_ID']),
+			'sent_by_you' => ($meet['sender_id'] == $arResult['CURRENT_USER_ID']),
 			'company_name' => $meet['company_name'],
 			'company_rep' => $meet['company_rep'],
 			'company_id' => $meet['company_id'],
@@ -274,7 +275,7 @@ $this->IncludeComponentTemplate();
 function DokaGetNote($meet, $user_type, $curUser) {
 	switch ($meet['status']) {
 		case 'process':
-			if ($meet['modified_by'] == $curUser)
+			if ($meet['sender_id'] == $curUser)
 				$msg = GetMessage($user_type.'_SENT_BY_YOU');
 			else
 				$msg = GetMessage($user_type.'_SENT_TO_YOU');

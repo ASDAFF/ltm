@@ -16,9 +16,9 @@ $APPLICATION->AddHeadString('<script type="text/javascript" src="'.SITE_TEMPLATE
         <?foreach($arResult['TIMES_FREE'] as $timesId => $timesList):?>
         <div id="time-list<?=$timesId?>">
             <?if($timesList == ''):?>
-                Все таймслоты заняты
+                <span class="companies">Все таймслоты заняты</span>
             <?else:?>
-                <select>
+                <select class="companies">
                     <?=$timesList?>
                 </select>
             <?endif;?>

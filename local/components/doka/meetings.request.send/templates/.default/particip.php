@@ -1,12 +1,4 @@
-<?
-if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
-?>
-<form action="" method="POST">
-	<input type="hidden" name="time" value="<?=$arResult['TIMESLOT']['id']?>" />
-	<input type="hidden" name="id" value="<?=$arResult['SENDER']['company_id']?>" />
-	<input type="hidden" name="to" value="<?=$arResult['RECEIVER']['company_id']?>" />
-	<input type="hidden" name="app" value="<?=$arResult['APP']?>" />
-    <table width="100%" border="0" cellspacing="0" cellpadding="5" class="form_edit">
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="form_edit">
 		<tr>
         	<td width="130">From:</td>
 			<td>
