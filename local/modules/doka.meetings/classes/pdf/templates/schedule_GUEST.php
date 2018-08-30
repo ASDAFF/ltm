@@ -128,7 +128,14 @@ function DokaGeneratePdf($arResult)
                         <td width="85" align="center">' . $freeseriflot['name'] . '</td>
                         <td colspan="3" width="450" align="center">Свободно</td>
                     </tr>';
-        } else if ($freeseriflot['status'] == 'coffee') {
+        }
+        elseif ($freeseriflot['status'] == 'reserve') {
+            $tbl .= '<tr nobr="true">
+                  <td width="85" align="center">' . $freeseriflot['name'] . '</td>
+                  <td colspan="'.$colspanGuest.'" width="450" align="center"></td>
+              </tr>';
+        }
+         else if ($freeseriflot['status'] == 'coffee') {
             $tbl .= '<tr nobr="true">
                         <td  width="85" align="center">' . $freeseriflot['name'] . '</td>
                         <td colspan="3" width="450" align="center">Перерыв на кофе</td>

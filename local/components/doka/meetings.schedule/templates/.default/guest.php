@@ -30,7 +30,11 @@
 	<? if(!in_array($item['status'], ['coffee', 'lunch'])):?>
 		<tr <?if($item['status'] == 'process' && !$item['sent_by_you']):?>class="unconfirmed"<?endif;?>>
 			<td><?=$item['name']?></td>
-			<?if (isset($item['company_name'])):?>
+			<?if($item['status'] == 'reserve'):?>
+				<td colspan="2">
+					Забронировано администратором
+				</td>
+			<?elseif (isset($item['company_name'])):?>
 				<td><a href="/ajax/userInfo.php?id=<?=$item['company_id']?>&res=<?=$item['form_res']?>" class="user-info-wind fancybox.ajax"
 					   target="_blank"><?=$item['company_name']?></a></td>
 				<td><?=$item['company_rep']?></td>
@@ -87,7 +91,7 @@
             ?>
 			<td width="105"><?=$item['notes'];?></td>
 			<td width="50">
-				<?if($item['status'] != 'confirmed'):?>
+				<?if($item['status'] != 'confirmed' and $item['status'] != 'reserve'):?>
 					<?=$item['time_left'];?><?if($item['time_left']):?>ч<?endif;?>
 				<?endif;?>
 			</td>
