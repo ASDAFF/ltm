@@ -112,39 +112,10 @@ SIMPLE_QUESTION_395 - Logo
 			$arFields["SIMPLE_QUESTION_395"] = array("193" => $filear);
 		}
 	}
-
-	foreach ($arFields as $SID => $value)
+ 	foreach ($arFields as $SID => $value)
 	{
 		CFormResult::SetField($resultId, $SID, $value);
 	}
-
-
-	//фото
-	/* старое
-	if(isset($_POST["PHOTO"]))
-	{
-		$el = new CIBlockElement;
-		foreach ($_POST["PHOTO"] as $path)
-		{
-		    if($photoCount >= MAX_PHOTO_COUNT)
-		    {
-		    	break;
-		    }
-			$path = htmlspecialcharsBx($path);
-
-			$arFields = array(
-				"MODIFIED_BY"    => $arUser["ID"], // элемент изменен текущим пользователем
-				"IBLOCK_SECTION_ID" => $galleryID,          // элемент лежит в корне раздела
-				"IBLOCK_ID"      => PHOTO_GALLERY_ID,//галерея
-				"NAME"           => "Фото " . (++$photoCount),
-				"ACTIVE"         => "Y",            // активен
-				"PREVIEW_PICTURE" => CFile::MakeFileArray($path)
-			);
-
-			$resiltId =  $el->Add($arFields);
-		}
-	}
-	*/
 
 	//отправка почтового сообщения администратору
 
@@ -222,11 +193,6 @@ if("Y" != $exhParticipantEdit)
 				$value = $arAnswer["USER_TEXT"];
 				?>
 			<textarea name="SIMPLE_QUESTION_163" id="" cols="30" rows="10"><?= $value?></textarea>
-			<?/*
-			<div class="title">	Please upload a minimum of 6 (maximum 12) photos of your company/hotel. The maximum size of each photo is 3mb. Don’t forget &mdash; the better the quality of your photos, the better the impression of your company/hotel.</div>
-			<label class="button-dark ltm-btn" id="upload_photo">upload photos</label>
-			<span>You can upload <span id="photo_count"><?= MAX_PHOTO_COUNT - $photoCount?></span> photos</span>
-			*/?>
 			<?$APPLICATION->IncludeComponent(
 				"rarus:members.photoloader",
 				"",
@@ -359,75 +325,6 @@ $(function(){
 
 		}
 	});
-
-/*
-	new AjaxUpload(btnUploadPhoto, {
-		action: "/ajax/upload_photo.php",
-		name: 	"photo",
-		data: {sid: '<?= bitrix_sessid()?>'},
-		onChange: function(file, ext){
-			var count = parseInt(photoCount.text());
-			if(!count || (count <= 0) || btnUploadPhoto.next().hasClass("load_img"))
-			{
-				return false;
-			}
-
-            if(!ext || !(/^(jpg|jpeg)$/.test(ext[0])) )
-            {
-            	alert("Photo format should be only jpg");
-            	return false;
-            };
-		},
-		onSubmit: function(file, ext)
-		{
-			if(!btnUploadPhoto.next().hasClass("load_img"))
-			{
-				btnUploadPhoto.after('<span class = "load_img"></span>');
-			}
-		},
-		onComplete: function(file, response)
-		{
-			if(btnUploadPhoto.next().hasClass("load_img"))
-			{
-				btnUploadPhoto.next().remove();
-			}
-			response = BX.parseJSON(response);
-
-			if(response.STATUS == "OK")
-			{
-				btnUploadPhoto.after("<input name='PHOTO[]' type='hidden' value='"+ response.PATH + "'/>");
-
-				var count = parseInt(photoCount.text());
-				if(count && (count > 0))
-				{
-					count--;
-					photoCount.text(count);
-				}
-			}
-			else
-			{
-				alert(response.MESSAGE);
-			}
-
-		}
-	});
-	*/
-/*
-	$("input.check_all").change(function(){
-		var input = $(this);
-		var area = input.closest("div.area");
-
-		if(!input.prop("checked"))
-		{
-			area.find("input[type=checkbox][name!=" + input.attr("name") + "]").each(function(){$(this).prop("checked", false)});
-		}
-		else
-		{
-			area.find("input[type=checkbox][name!=" + input.attr("name") + "]").each(function(){$(this).prop("checked", true)});
-		}
-	});
-	*/
-
 });
 
 LANGUAGE_ID = 'en';

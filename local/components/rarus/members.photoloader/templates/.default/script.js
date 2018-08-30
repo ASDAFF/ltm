@@ -208,7 +208,7 @@ $(document).ready(function(){
 			photoSortUpdate();
 		};
 
-		xhr.open('post', '', true);
+		xhr.open('post', '/cabinet/edit/participant-company-photo.php', true);
 		xhr.send(formData);
 	}
 
