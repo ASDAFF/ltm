@@ -35,26 +35,6 @@
 							),
 							false
 						);?>
-						<?/*
-						<div class="member">
-							<?//if(preg_match('/src="([^"]+)"/', $arQuestion["HTML_CODE"], $matches)):?>
-							<?
-							$arPhoto = CFormResult::GetFileByAnswerID($arParams["RESULT_ID"], $arQuestion["STRUCTURE"][0]["ID"]);
-							if($arPhoto)
-							{
-							    $arResizePhoto = CFile::ResizeImageGet($arPhoto["USER_FILE_ID"], Array("width"=>108, "height"=>108), BX_RESIZE_IMAGE_EXACT);
-							    ?>
-							    <img src="<?=$arResizePhoto["src"]?>" alt="userpic">
-							    <?
-							}
-							?>
-							<?//endif?>
-						</div>
-						<label class="photo-uploader">
-							<input class="inputfile" type="file" size="0" name="form_image_<?=$arQuestion["STRUCTURE"][0]["ID"]?>">
-							Upload photo
-						</label>
-*/?>
 					</div>
 				<?endif?>
 			<?endforeach;?>
