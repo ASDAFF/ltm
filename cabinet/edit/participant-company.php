@@ -4,6 +4,7 @@
 <? 
 $APPLICATION->SetAdditionalCSS("/cabinet/edit/style.css");
 $APPLICATION->AddHeadScript("/cabinet/edit/script.js");
+$APPLICATION->AddHeadScript("/assets/js/validate_form.js");
 ?>
 <div id="exhibition-tab-1">
 <?
@@ -192,7 +193,7 @@ if("Y" != $exhParticipantEdit)
 				$arAnswer = reset($arAnswers["SIMPLE_QUESTION_163"]);
 				$value = $arAnswer["USER_TEXT"];
 				?>
-			<textarea name="SIMPLE_QUESTION_163" id="" cols="30" rows="10"><?= $value?></textarea>
+			<textarea name="SIMPLE_QUESTION_163" id="" cols="30" rows="10" class="en"><?= $value?></textarea>
 			<?$APPLICATION->IncludeComponent(
 				"rarus:members.photoloader",
 				"",
@@ -259,7 +260,7 @@ if("Y" != $exhParticipantEdit)
 			</div>
 		</div>
 		<? if("Y" == $exhParticipantEdit):?>
-		<input type="submit" value="save changes" class="button-green ltm-btn" />
+		<input type="submit" value="save changes" class="button-green ltm-btn participant-submit" />
 		<? endif;?>
 	</form>
 	</div>

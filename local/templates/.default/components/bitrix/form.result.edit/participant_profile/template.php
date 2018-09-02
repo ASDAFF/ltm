@@ -2,6 +2,8 @@
 <?=str_replace(array("&formresult=editok","formresult=editok"),"", $arResult["FORM_HEADER"])?>
 <?=bitrix_sessid_post()?>
 
+<? $APPLICATION->AddHeadScript("/assets/js/validate_form.js"); ?>
+
 <?$arNonShowedQuestion = array_flip(array_keys($arResult["QUESTIONS"]))?>
 
 <div class="edit-profil pull-overflow">
@@ -106,3 +108,6 @@ if(strlen($arParams["EMAIL_SID"]) > 0 && strlen($arParams["CONF_EMAIL_SID"]) > 0
 <?
 }
 ?>
+<script type="text/javascript">
+	LANGUAGE_ID = 'en';
+</script>

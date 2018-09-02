@@ -1,5 +1,3 @@
-var errorLang = 'en';
-
 $(function() {
 	var en = {
 			"require":"This field is required.",
@@ -49,24 +47,8 @@ $(function() {
 	$errorText = {"en":en, "ru":ru};
 	
 
-	//Клик по регистрации участника
-	$("#exhibition-tab-1 form").on("click", ".submit input[name=web_form_apply]", function(){
-		
-		$(this).prop('disabled',true);
-		if($("input#ckeck_register").prop("checked") && validateRegFormP())
-		{
-			submitForm("Y");
-		}
-		else
-		{
-			$('body,html').animate({scrollTop:300},300);
-		}
-		$(this).prop('disabled',false);
-	});
+
 });
-
-
-
 
 function equalsValue(validator1, validator2)
 {
@@ -215,11 +197,11 @@ $(function() {
 		
 		if(!value.match(/^[^а-яА-Я]+$/) && value.length > 0)
 		{
-			showErrorMessage(this,$errorText[errorLang]["en"]);
+			showErrorMessage(this,$errorText[LANGUAGE_ID]["en"]);
 		}
 		else
 		{
-			hideErrorMessage(this,$errorText[errorLang]["en"], true);
+			hideErrorMessage(this,$errorText[LANGUAGE_ID]["en"], true);
 		}
 	});
 });
@@ -232,11 +214,11 @@ $(function() {
 		
 		if(value.length <= 0)
 		{
-			showErrorMessage(this,$errorText[errorLang]["require"]);
+			showErrorMessage(this,$errorText[LANGUAGE_ID]["require"]);
 		}
 		else
 		{
-			hideErrorMessage(this,$errorText[errorLang]["require"]);
+			hideErrorMessage(this,$errorText[LANGUAGE_ID]["require"]);
 		}
 	});
 });
@@ -251,29 +233,12 @@ $(function() {
 		
 		if(!value.match(/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*(\.[a-z]{2,8})+$/i) && value.length > 0)
 		{
-			showErrorMessage(this,$errorText[errorLang]["email"]);
+			showErrorMessage(this,$errorText[LANGUAGE_ID]["email"]);
 		}
 		else
 		{
-			hideErrorMessage(this,$errorText[errorLang]["email"],true);
+			hideErrorMessage(this,$errorText[LANGUAGE_ID]["email"],true);
 		}
-	});
-});
-
-$(function() {
-	$("#exhibition-tab-1 form").on("focusout", ".description", function(){
-		var input = $(this);
-		var value = input.val();
-		
-		if(value.length <= 0)
-		{
-			showErrorMessage(this,$errorText[errorLang]["require"]);
-		}
-		else
-		{
-			hideErrorMessage(this,$errorText[errorLang]["require"]);
-		}
-		
 	});
 });
 
@@ -291,6 +256,3 @@ function validateRegFormP()
 	 
 	return correctly;
 }
-
-
-
