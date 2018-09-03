@@ -1303,7 +1303,7 @@ ul{margin: 0;padding: 0;list-style: none;}
 .message-box .new-message textarea{max-width: 680px;min-width: 680px;border: 1px solid #9B9C9E;margin: 5px 0px;min-height: 280px;padding: 4px;}
 .message-box .new-message select{padding: 3px 0px; margin: 5px 0px; max-width: 690px;}
 .message-box .send{text-align: right;}
-.send input[type=submit]{color: #00aeef;border: none;padding: 0;border-bottom: 1px solid #00aeef;font-size: 14px;background: none;cursor: pointer;}
+.send input[type=submit], .send input[type=button] {color: #00aeef;border: none;padding: 0;border-bottom: 1px solid #00aeef;font-size: 14px;background: none;cursor: pointer;}
 .message-box .reed-letter{margin-bottom: 15px;}
 .message-box .reed-letter .head-letter{background: #ededee;padding: 5px;font-size: 12px;margin-bottom: 15px;}
 .message-box .reed-letter .contact-info{width: 500px;}
