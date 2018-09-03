@@ -386,7 +386,7 @@ function generatePDF($data, $folder)
     switch ($data["PAY_REQUISITE_XML"])
     {
     	case "IP" : {
-$data["BENEFICIARY"] = "Polanskiy Artem Valentinovich,
+$data["BENEFICIARY"] = "Polanskii Artem Valentinovich,
 registered as independent entrepreneur
 with State Registration Number 309503525800010
 at Federal Tax Service Inspectorate in
@@ -405,10 +405,10 @@ Moscow, Russia";
 $data["BANK_DETAILS"] = "Beneficiary's Bank:
 VTB 24 (PJSC), Moscow, Russia
 SWIFT: CBGURUMM
-Beneficiary: Polanskiy Artem Valentinovich
+Beneficiary: Polanskii Artem Valentinovich
 Account: 40802978700001002738";
 
-$data["BENEFICIARY_NAME"] = "Artem V. Polanskiy / Поланский Артём Валентинович";
+$data["BENEFICIARY_NAME"] = "Artem V. Polanskii / Поланский Артём Валентинович";
     	}; break;
 
     	case "TM" : {
@@ -501,11 +501,11 @@ Pavlosvkiy Posad, Moscow Region
 
 Moscow, Russia";
 
-$data["BANK_DETAILS"] = "Beneficiary's Bank: AO «ALFA-BANK»
-Beneficiary's bank address: 27 Kalanchevskaya str., Moscow, 107078
+$data["BANK_DETAILS"] = "Beneficiary's name: IP POLANSKII ARTEM VALENTINOVICH
+Beneficiary acc. No: 40802978702620000127
 SWIFT: ALFARUMM
-Beneficiary: Polanskii Artem Valentinovich
-Account: 40802978702620000127";
+Beneficiary's Bank: AO «ALFA-BANK»
+Beneficiary's bank address: 27 Kalanchevskaya str., Moscow, 107078";
 
 $data["BENEFICIARY_NAME"] = "Artem V. Polanskii / Поланский Артём Валентинович";
     	}; break;            
@@ -648,8 +648,6 @@ function BodyPDF($data, &$oPDF, $folder)
     $path = $folder . "{$data["CODE"]}/name.txt";
     $data["SHORT_NAME"] = file_get_contents($path);
 
-
-
     $oPDF->SetFont('freeserif','B',FONT_SIZE);
     $oPDF->MultiCell(0, 5, "INVOICE N/ Счёт № {$data["PAY_NAME"]}-{$data["SHORT_NAME"]}\n", 0, "C");
     $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
@@ -669,15 +667,16 @@ function BodyPDF($data, &$oPDF, $folder)
     $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
 
     $oPDF->SetFont('freeserif','B',FONT_SIZE);
-    $oPDF->MultiCell(0, 5, "Payment information / Детали платежа:\n", 0, "C");
+    $oPDF->MultiCell(0, 5, "Payment information / Детали платежа: INVOICE N/ Счёт № {$data["PAY_NAME"]}-{$data["SHORT_NAME"]}\n", 0, "C");
 
-    $oPDF->SetFont('freeserif','',FONT_SIZE);
-    $oPDF->MultiCell(0, 5, "Please put the invoice number / Укажите номер счёта\n", 0, "C");
     $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
 }
 
 function FooterPDF($data, &$oPDF, $folder)
 {
+    $path = $folder . "{$data["CODE"]}/comments.txt";
+    $data["COMMENTS_BANK"] = file_get_contents($path);
+
     $oPDF->SetFont('freeserif','B',FONT_SIZE);
     $oPDF->MultiCell(0, 5, "Bank details / Банковские реквизиты:\n", 0, "C");
 
@@ -689,6 +688,9 @@ function FooterPDF($data, &$oPDF, $folder)
         $oPDF->SetFont('freeserif','B',FONT_SIZE);
         $oPDF->MultiCell(0, 5, "PLEASE NOTE THAT IBAN CODES DO NOT EXIST IN THE RUSSIAN FEDERATION\n", 0, "C");
         $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
+        $oPDF->MultiCell(0, 5, $data["COMMENTS_BANK"], 0, "C");
+        $oPDF->setXY(0,$oPDF->getY() + LINE_INDENT);
+
     }
     $oPDF->SetFont('freeserif','',FONT_SIZE);
     $sData  = "This invoice is valid for payments within specified time. Bank charges at payer's expense\n";
