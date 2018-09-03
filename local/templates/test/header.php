@@ -108,7 +108,7 @@
                     	//прверка на гостя
                     	if(!$bUserTypeIsset)
                     	{
-                    	    $arGuestGroupID = array("22", "25", "23", "26", "24", "27", "19", "44","48","52","57");
+                    	    $arGuestGroupID = array("22", "25", "23", "26", "24", "27", "19", "44","48","52","57", "63");
                         	foreach ($arGuestGroupID as $userGroupID)
                         	{
                         		if(in_array($userGroupID, $arUserGroups))
