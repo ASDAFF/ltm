@@ -260,7 +260,8 @@ if("Y" != $exhParticipantEdit)
 			</div>
 		</div>
 		<? if("Y" == $exhParticipantEdit):?>
-		<input type="submit" value="save changes" class="button-green ltm-btn participant-submit" />
+			<input type="button" value="save changes" class="button-green ltm-btn submit-particip-btn" />
+			<input type="submit" value="save changes" class="button-green ltm-btn participant-submit submit-particip-send" style="display: none;" />
 		<? endif;?>
 	</form>
 	</div>
