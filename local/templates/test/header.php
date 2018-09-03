@@ -93,7 +93,7 @@
                     	//прверка на участника
                     	if(!$bUserTypeIsset)
                     	{
-                    	    $arPartGroupID = array("10","9", "12", "11", "14","13", "16", "15", "18", "17", "21", "20", "43", "42", "46","47","50","51","55","56");
+                    	    $arPartGroupID = array("10","9", "12", "11", "14","13", "16", "15", "18", "17", "21", "20", "43", "42", "46","47","50","51","55","56", "61", "62");
                         	foreach ($arCPartGroupID as $userGroupID)
                         	{
                         		if(in_array($userGroupID, $arUserGroups))
