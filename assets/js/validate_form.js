@@ -45,9 +45,6 @@ $(function() {
 	
 
 	$errorText = {"en":en, "ru":ru};
-	
-
-
 });
 
 function equalsValue(validator1, validator2)
@@ -242,17 +239,28 @@ $(function() {
 	});
 });
 
+$(function() {
+	$("#exhibition-tab-1 form").on("click", ".submit-particip-btn", function(e){
+		e.preventDefault();
+		if(validateRegFormP()) {
+			$(".submit-particip-send").trigger('click');
+		} else {
+			$('body,html').animate({scrollTop:300},300);
+		}
+	});
+});
+
 /*Валидация формы участника*/
 function validateRegFormP()
 {
 	correctly = true;
-	
+
 	//проверка на заполнение полей
 	 $("#exhibition-tab-1 form input[type=text], #exhibition-tab-1 form textarea").each(function(ind, elem)
 		{
-			 $(elem).trigger("focusout");
+			$(elem).trigger("focusout");
 		}
 	 );
-	 
+
 	return correctly;
 }

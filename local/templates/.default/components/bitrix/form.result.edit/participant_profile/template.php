@@ -78,7 +78,8 @@
 
 	<? if("Y" == $arParams["EDITING"]):?>
 	<div class="send-change send">
-		<input type="submit" name="web_form_apply" value="Save" />
+		<input type="button" name="web_form_apply-btn" class="submit-particip-btn" value="Save" />
+		<input type="submit" name="web_form_apply" value="Save" class="submit-particip-send" style="display: none;" />
 	</div>
 	<? endif;?>
 
