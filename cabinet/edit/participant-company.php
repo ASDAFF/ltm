@@ -193,7 +193,7 @@ if("Y" != $exhParticipantEdit)
 				$arAnswer = reset($arAnswers["SIMPLE_QUESTION_163"]);
 				$value = $arAnswer["USER_TEXT"];
 				?>
-			<textarea name="SIMPLE_QUESTION_163" id="" cols="30" rows="10" class="en"><?= $value?></textarea>
+			<textarea name="SIMPLE_QUESTION_163" id="" cols="30" rows="10"><?= $value?></textarea>
 			<?$APPLICATION->IncludeComponent(
 				"rarus:members.photoloader",
 				"",
