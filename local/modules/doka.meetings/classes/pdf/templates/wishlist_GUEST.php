@@ -24,7 +24,8 @@ function DokaGeneratePdf($arResult) {
 	$pdf->multiCell(210, 5, "Список неподтвержденных запросов на\n" . $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'] . $dayline, 0, C);
 	$pdf->SetFont('freeserif','',15);
 	$pdf->setXY(30,$pdf->getY() + 2);
-	if(in_array($arResult["APP_ID"], [1,6]) && $arResult['IS_HB']) {
+	// if(in_array($arResult["APP_ID"], [1,6]) && $arResult['IS_HB']) {
+	if($arResult['IS_HB']) {
 		$pdf->multiCell(210, 5, $arResult["USER"]['COMPANY'], 0, L);
 	} else {
 		$pdf->multiCell(210, 5, $arResult["USER"]['COMPANY'].", ". $arResult["USER"]['CITY'], 0, L);
