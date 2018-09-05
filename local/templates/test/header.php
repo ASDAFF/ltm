@@ -20,15 +20,15 @@
 </head>
 <body <? if(stristr($APPLICATION->GetCurPage(), "/cabinet/")):?>class="cabinet"<?endif;?>>
 <!-- Включаемая область для pop-up на главной странице -->
-     <?$APPLICATION->IncludeComponent("bitrix:main.include", "", 
+     <?$APPLICATION->IncludeComponent("bitrix:main.include", "",
         Array(
-            "AREA_FILE_SHOW" => "page", 
-            "AREA_FILE_SUFFIX" => "popup", 
+            "AREA_FILE_SHOW" => "page",
+            "AREA_FILE_SUFFIX" => "popup",
             "EDIT_TEMPLATE" => ""
         )
     );?>
 
-    
+
 	<div class="main_container">
 	<? CJSCore::Init("ajax"); ?>
 	<? if ($USER->isAdmin())$APPLICATION->ShowPanel();?>
@@ -77,7 +77,6 @@
 			    {
 			        $userType = $_SESSION["USER_TYPE"]; //генерится в компоненте авторизации rarus:auth.form
 
-			        $userId;
 			        if($USER->IsAdmin() && isset($_REQUEST["UID"])) {
 			            $userId = intval($_REQUEST["UID"]);
 			        } else {
@@ -94,7 +93,7 @@
                     	if(!$bUserTypeIsset)
                     	{
                     	    $arPartGroupID = array("10","9", "12", "11", "14","13", "16", "15", "18", "17", "21", "20", "43", "42", "46","47","50","51","55","56", "61", "62");
-                        	foreach ($arCPartGroupID as $userGroupID)
+                        	foreach ($arPartGroupID as $userGroupID)
                         	{
                         		if(in_array($userGroupID, $arUserGroups))
                         		{
