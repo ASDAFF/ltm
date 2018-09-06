@@ -151,7 +151,7 @@ $fields = RequestTable::getEntity()->getFields();
 $arFields = [];
 foreach ($fields as $field) {
     $fieldCode = $field->getName();
-    if ($fieldCode === "ID") continue;
+    if ($fieldCode === "ID" || $fieldCode === 'TIMESLOT' || $fieldCode === 'RECEIVER_USER') continue;
     $res = [];
     $res = [
         "NAME" => Loc::getMessage("DOKA_MEET_" . $fieldCode),

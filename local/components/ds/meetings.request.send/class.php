@@ -11,6 +11,7 @@ use Spectr\Meeting\Models\TimeslotTable;
 use Spectr\Meeting\Models\RegistrGuestTable;
 use Bitrix\Main;
 use Bitrix\Main\Entity;
+use Bitrix\Main\Type\DateTime;
 
 class MeetingsRequestSend extends CBitrixComponent
 {
@@ -397,9 +398,13 @@ class MeetingsRequestSend extends CBitrixComponent
      */
     private function addRequest()
     {
+        $dateTime = new DateTime();
         $fields                         = [
             'RECEIVER_ID'   => $this->arResult['RECEIVER_ID'],
             'SENDER_ID'     => $this->arResult['SENDER_ID'],
+            'CREATED_AT' => $dateTime,
+            'UPDATED_AT' => $dateTime,
+            'MODIFIED_BY' => $this->arResult['SENDER_ID'],
             'EXHIBITION_ID' => $this->arResult['APP_ID'],
             'TIMESLOT_ID'   => $this->arResult['TIMESLOT']['ID'],
             'STATUS'        => $this->arResult['USER_TYPE'] === self::ADMIN_TYPE
