@@ -107,7 +107,7 @@ class RequestTable extends DataManager
         return self::getList([
             'select' => ['ID'],
             'filter' => [
-                '=ID' => $exhibitions,
+                '=EXHIBITION_ID' => $exhibitions,
                 [
                     'LOGIC' => 'OR',
                     [
