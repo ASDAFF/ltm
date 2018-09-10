@@ -11,6 +11,7 @@ use Spectr\Meeting\Models\TimeslotTable;
 use Spectr\Meeting\Models\RegistrGuestTable;
 use Bitrix\Main;
 use Bitrix\Main\Entity;
+use Bitrix\Main\Type\DateTime;
 
 class MeetingsRequestSend extends CBitrixComponent
 {
@@ -52,7 +53,7 @@ class MeetingsRequestSend extends CBitrixComponent
     {
         global $USER;
         if ( !$USER->IsAuthorized()) {
-            throw new Exception(Loc::getMessage('ERROR_EMPTY_USER_ID'));
+            throw new Exception(Loc::getMessage('ERROR_USER_IS_NOT_AUTHORIZED'));
         }
 
         return $this;
@@ -356,7 +357,7 @@ class MeetingsRequestSend extends CBitrixComponent
             ])->fetchAll();
             if ( !empty($arUser)) {
                 return [
-                    'ID' => $userId,
+                    'ID'      => $userId,
                     'NAME'    => "{$arUser[0]['NAME']} {$arUser[0]['LAST_NAME']}",
                     'COMPANY' => $arUser[0]['WORK_COMPANY'],
                     'EMAIL'   => $arUser[0]['EMAIL'],
@@ -388,7 +389,7 @@ class MeetingsRequestSend extends CBitrixComponent
             [$this->arResult['SENDER_ID'], $this->arResult['RECEIVER_ID'],]
         );
         if ($result) {
-            throw new Exception('ошибка отправки');
+            throw new Exception('ERROR_TIMESLOT_BUSY');
         }
     }
 
@@ -397,9 +398,13 @@ class MeetingsRequestSend extends CBitrixComponent
      */
     private function addRequest()
     {
-        $fields                         = [
+        $dateTime = new DateTime();
+        $fields   = [
             'RECEIVER_ID'   => $this->arResult['RECEIVER_ID'],
             'SENDER_ID'     => $this->arResult['SENDER_ID'],
+            'CREATED_AT'    => $dateTime,
+            'UPDATED_AT'    => $dateTime,
+            'MODIFIED_BY'   => $this->arResult['SENDER_ID'],
             'EXHIBITION_ID' => $this->arResult['APP_ID'],
             'TIMESLOT_ID'   => $this->arResult['TIMESLOT']['ID'],
             'STATUS'        => $this->arResult['USER_TYPE'] === self::ADMIN_TYPE
@@ -415,9 +420,6 @@ class MeetingsRequestSend extends CBitrixComponent
         return $this;
     }
 
-    /**
-     * TODO need to implement
-     */
     private function sendEmail()
     {
         if ($this->arResult['REQUEST_SEND']) {
@@ -438,6 +440,7 @@ class MeetingsRequestSend extends CBitrixComponent
 
     public function executeComponent()
     {
+        $this->onIncludeComponentLang();
         try {
             $this->checkModules()
                  ->checkAuth()
