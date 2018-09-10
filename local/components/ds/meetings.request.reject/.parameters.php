@@ -1,21 +1,28 @@
 <?
-if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
+if ( !defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
+    die();
+}
 
-$arUserTypes = array(
-	'PARTICIP' => 'PARTICIP',
-	'GUEST' => 'GUEST'
-);
+use Bitrix\Main\Localization\Loc;
 
 $arComponentParameters = array(
-	"GROUPS" => array(
-	),
-	"PARAMETERS" => array(
-		"APP_ID" => array(
-			"PARENT" => "BASE",
-			"NAME" => GetMessage("APP_ID"),
-			"TYPE" => "STRING",
-			"DEFAULT" => '={$_REQUEST["APP_ID"]}',
-		),
-	),
+    'GROUPS'     => [],
+    'PARAMETERS' => array(
+        'APP_ID'               => [
+            'PARENT'  => 'BASE',
+            'NAME'    => Loc::getMessage('APP_ID'),
+            'TYPE'    => 'STRING',
+            'DEFAULT' => '={$_REQUEST["APP_ID"]}',
+        ],
+        'EXHIBITION_IBLOCK_ID' => [
+            'PARENT' => 'BASE',
+            'NAME'   => Loc::getMessage('EXHIBITION_IBLOCK_ID'),
+            'TYPE'   => 'STRING',
+        ],
+        'IS_HB'                => [
+            'PARENT' => 'BASE',
+            'NAME'   => Loc::getMessage('IS_HB'),
+            'TYPE'   => 'CHECKBOX',
+        ],
+    ),
 );
-?>

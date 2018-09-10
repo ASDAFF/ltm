@@ -222,7 +222,7 @@ class MeetingsRequestReject extends CBitrixComponent
         }
         $this->arResult['REQUEST'] = $this->getActiveRequest();
         if ( !$this->arResult['REQUEST']) {
-            throw new Exception(Loc::getMessage($this->arResult['USER_TYPE'].'_REQUEST_NOT_FOUND'));
+            throw new Exception(Loc::getMessage(self::$userTypes[$this->arResult['USER_TYPE']].'_REQUEST_NOT_FOUND'));
         }
 
         return $this;
