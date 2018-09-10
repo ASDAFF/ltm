@@ -3,12 +3,8 @@ if ( !defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     die();
 }
 
-use Bitrix\Main\Loader;
 use Bitrix\Main\Localization\Loc;
 use Spectr\Meeting\Models\RequestTable;
-use Spectr\Meeting\Models\SettingsTable;
-use Spectr\Meeting\Models\TimeslotTable;
-use Spectr\Meeting\Models\RegistrGuestTable;
 use Bitrix\Main;
 use Bitrix\Main\Entity;
 use Bitrix\Main\Type\DateTime;
