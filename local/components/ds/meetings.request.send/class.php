@@ -14,6 +14,35 @@ CBitrixComponent::includeComponentClass('ds:meetings.request');
 class MeetingsRequestSend extends MeetingsRequest
 {
     /**
+     * @throws Exception
+     */
+    private function prepareFields()
+    {
+        global $USER;
+        $this->arResult['RECEIVER_ID'] = (int)$_REQUEST['to'];
+        if (isset($_REQUEST['id']) && $this->arResult['USER_TYPE'] === self::ADMIN_TYPE) {
+            $this->arResult['SENDER_ID'] = (int)$_REQUEST['id'];
+        } else {
+            $this->arResult['SENDER_ID'] = $USER->GetID();
+        }
+        if (
+            $this->arResult['USER_TYPE'] === self::PARTICIPANT_TYPE ||
+            ($this->arResult['USER_TYPE'] === self::ADMIN_TYPE && isset($_REQUEST['type']) && $_REQUEST['type'] === 'p')
+        ) {
+            $this->arResult['SENDER']   = $this->getUserInfo($this->arResult['SENDER_ID'], true);
+            $this->arResult['RECEIVER'] = $this->getUserInfo($this->arResult['RECEIVER_ID'], false);
+        } else {
+            $this->arResult['SENDER']   = $this->getUserInfo($this->arResult['SENDER_ID'], false);
+            $this->arResult['RECEIVER'] = $this->getUserInfo($this->arResult['RECEIVER_ID'], true);
+        }
+
+        $this->checkSenderAndReceiver();
+        $this->getTimeslot();
+
+        return $this;
+    }
+
+    /**
      * @throws Main\ArgumentException
      * @throws Exception
      */
@@ -88,10 +117,10 @@ class MeetingsRequestSend extends MeetingsRequest
                 !($this->isGuest($arUsers[$senderId]['GROUPS']) && $arUsers[$senderId]['UF_MR']) &&
                 !$this->isParticipant($arUsers[$senderId]['GROUPS'])
             ) {
-                throw new Exception(Loc::getMessage('ERROR_WRONG_SENDER_RIGHTS'));
+                throw new Exception(Loc::getMessage('ERROR_WRONG_RIGHTS'));
             }
         } else {
-            throw new Exception(Loc::getMessage('ERROR_WRONG_SENDER_RIGHTS'));
+            throw new Exception(Loc::getMessage('ERROR_WRONG_RIGHTS'));
         }
 
         if (isset($arUsers[$receiverId])) {
@@ -100,25 +129,10 @@ class MeetingsRequestSend extends MeetingsRequest
                 !($this->isGuest($arUsers[$receiverId]['GROUPS']) && $arUsers[$receiverId]['UF_MR']) &&
                 !$this->isParticipant($arUsers[$receiverId]['GROUPS'])
             ) {
-                throw new Exception(Loc::getMessage('ERROR_WRONG_RECEIVER_RIGHTS'));
+                throw new Exception(Loc::getMessage('ERROR_WRONG_RIGHTS'));
             }
         } else {
-            throw new Exception(Loc::getMessage('ERROR_WRONG_RECEIVER_RIGHTS'));
-        }
-    }
-
-    /**
-     * @throws \Bitrix\Main\ArgumentException
-     * @throws \Exception
-     */
-    private function checkRequestExists()
-    {
-        $requests = RequestTable::getAllSlotsBetweenUsers(
-            [$this->arResult['SENDER_ID'], $this->arResult['RECEIVER_ID']],
-            [$this->arResult['APP_ID'], $this->arResult['APP_ID_OTHER']]
-        );
-        if ( !empty($requests)) {
-            throw new Exception(Loc::getMessage(self::$userTypes[$this->arResult['USER_TYPE']].'_COMPANY_MEET_EXIST'));
+            throw new Exception(Loc::getMessage('ERROR_WRONG_RIGHTS'));
         }
     }
 
@@ -132,8 +146,9 @@ class MeetingsRequestSend extends MeetingsRequest
             $this->arResult['TIMESLOT']['ID'],
             [$this->arResult['SENDER_ID'], $this->arResult['RECEIVER_ID'],]
         );
+
         if ($result) {
-            throw new Exception('ERROR_TIMESLOT_BUSY');
+            throw new Exception(Loc::getMessage('ERROR_TIMESLOT_BUSY'));
         }
     }
 

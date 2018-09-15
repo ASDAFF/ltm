@@ -4,18 +4,20 @@ if ( !defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 }
 
 use \Bitrix\Main\Localization\Loc;
+
 ?>
-<? if ( $arResult['APP_SETTINGS']['IS_LOCKED'] && $arResult['USER_TYPE_NAME'] !== 'ADMIN'): ?>
-    <? echo Loc::getMessage($arResult['USER_TYPE_NAME'].'_EXHIBITION_BLOCKED'); ?>
+<? if ($arResult['APP_SETTINGS']['IS_LOCKED'] && $arResult['USER_TYPE_NAME'] !== 'ADMIN'): ?>
+    <? echo Loc::getMessage('EXHIBITION_BLOCKED'); ?>
 <? elseif (isset($arResult['REQUEST_SENT'])): ?>
     <? if ($arResult['REQUEST_SENT'] === false) {
         switch ($arResult['USER_TYPE_NAME']) {
             case 'ADMIN':
-            case 'PARTICIP':
+            case 'PARTICIPANT':
                 echo "<p><b>Error sending request. Time slot is not available.</b></p> <p>Window will close after 5 sec.</p>";
                 break;
             case 'GUEST':
                 echo "<p><b>Ошибка отправки. Слот занят.</b></p><p> Закрытие через 5 секунд.</p>";
+                break;
         }
     } else {
         switch ($arResult['USER_TYPE_NAME']) {
@@ -28,6 +30,7 @@ use \Bitrix\Main\Localization\Loc;
                 break;
             case 'GUEST':
                 echo "<p>Запрос успешно отправлен. Закрытие через 5 секунд.</p>";
+                break;
         }
     } ?>
     <script type="text/javascript">

@@ -3,13 +3,9 @@ if ( !defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     die();
 }
 
-use Bitrix\Main\Loader;
-use Bitrix\Main\Localization\Loc;
-use Spectr\Meeting\Models\SettingsTable;
-use Spectr\Meeting\Models\TimeslotTable;
-use Spectr\Meeting\Models\RegistrGuestTable;
 use Spectr\Meeting\Models\RequestTable;
 use Spectr\Meeting\Models\WishlistTable;
+use Bitrix\Main\Type\DateTime;
 
 CBitrixComponent::includeComponentClass('ds:meetings.request');
 
@@ -20,34 +16,22 @@ class MeetingsRequestReject extends MeetingsRequest
      */
     protected function prepareFields()
     {
-        parent::prepareFields();
-        $this->arResult['REQUEST'] = $this->getActiveRequest();
-        if ( !$this->arResult['REQUEST']) {
-            throw new Exception(Loc::getMessage(self::$userTypes[$this->arResult['USER_TYPE']].'_REQUEST_NOT_FOUND'));
+        global $USER;
+        $this->arResult['RECEIVER_ID'] = (int)$_REQUEST['to'];
+        $this->arResult['SENDER_ID']   = isset($_REQUEST['id']) ? (int)$_REQUEST['id'] : $USER->GetID();
+        $senderType                    = $this->getUserTypeById($this->arResult['SENDER_ID']);
+        if ($senderType === self::GUEST_TYPE) {
+            $this->arResult['SENDER']   = $this->getUserInfo($this->arResult['SENDER_ID'], false);
+            $this->arResult['RECEIVER'] = $this->getUserInfo($this->arResult['RECEIVER_ID'], true);
+        } else {
+            $this->arResult['SENDER']   = $this->getUserInfo($this->arResult['SENDER_ID'], true);
+            $this->arResult['RECEIVER'] = $this->getUserInfo($this->arResult['RECEIVER_ID'], false);
         }
+        $this->checkSenderAndReceiver();
+        $this->getTimeslot();
+        $this->getActiveRequest();
 
         return $this;
-    }
-
-    /**
-     * @throws Exception
-     */
-    private function getActiveRequest()
-    {
-        $request = RequestTable::getList([
-            'select' => ['*'],
-            'filter' => [
-                'TIMESLOT_ID'   => $this->arResult['TIMESLOT']['ID'],
-                'SENDER_ID'     => $this->arResult['SENDER_ID'],
-                'RECEIVER_ID'   => $this->arResult['RECEIVER_ID'],
-                'EXHIBITION_ID' => $this->arResult['APP_ID'],
-            ],
-        ]);
-        if ($request->getSelectedRowsCount()) {
-            return $request->fetch();
-        }
-
-        return false;
     }
 
     /**
@@ -65,52 +49,17 @@ class MeetingsRequestReject extends MeetingsRequest
     /**
      * @throws Exception
      */
-    private function checkSenderGroups()
-    {
-        $valid          = false;
-        $arSenderGroups = CUser::GetUserGroup($this->arResult['SENDER_ID']);
-        switch ($this->arResult['USER_TYPE']) {
-            case self::ADMIN_TYPE:
-                $valid = true;
-                break;
-            case self::GUEST_TYPE:
-            case self::PARTICIPANT_TYPE:
-                $valid = $this->isGuest($arSenderGroups) || $this->isParticipant($arSenderGroups);
-                break;
-        }
-        if ( !$valid) {
-            throw new Exception(Loc::getMessage('ERROR_GROUP_SENDER'));
-        }
-    }
-
-    /**
-     * @throws Exception
-     */
-    private function checkStatus()
-    {
-        if ($this->arResult['USER_TYPE'] !== self::ADMIN_TYPE &&
-            $this->arResult['REQUEST']['STATUS'] !== RequestTable::$statuses[RequestTable::STATUS_PROCESS]) {
-            throw new Exception(Loc::getMessage('ERROR_STATUS'));
-        }
-    }
-
-    /**
-     * @throws Exception
-     */
-    private function checkBlocking()
-    {
-        if ($this->arResult['APP_SETTINGS']['IS_LOCKED'] && $this->arResult['USER_TYPE'] !== self::ADMIN_TYPE) {
-            throw new Exception(Loc::getMessage('ERROR_APPOINTMENT_LOCKED'));
-        }
-    }
-
-    /**
-     * @throws Exception
-     */
     private function rejectRequest()
     {
-        $field                              = ['STATUS' => RequestTable::STATUS_REJECTED];
-        $result                             = RequestTable::update($this->arResult['REQUEST']['ID'], $field);
+        global $USER;
+        $dateTime = new DateTime();
+        $field    = [
+            'STATUS'      => RequestTable::STATUS_REJECTED,
+            'UPDATED_AT'  => $dateTime,
+            'MODIFIED_BY' => $USER->GetID(),
+        ];
+        $result   = RequestTable::update($this->arResult['REQUEST']['ID'], $field);
+
         $this->arResult['REQUEST_REJECTED'] = $result->isSuccess();
 
         return $this;
@@ -123,8 +72,8 @@ class MeetingsRequestReject extends MeetingsRequest
     {
         $result                              = WishlistTable::add([
             'SENDER_ID'   => $this->arResult['SENDER_ID'],
-            "RECEIVER_ID" => $this->arResult['RECEIVER_ID'],
-            "REASON"      => WishlistTable::REASON_REJECTED,
+            'RECEIVER_ID' => $this->arResult['RECEIVER_ID'],
+            'REASON'      => WishlistTable::REASON_REJECTED,
         ]);
         $this->arResult['ADDED_TO_WISHLIST'] = $result->isSuccess();
 

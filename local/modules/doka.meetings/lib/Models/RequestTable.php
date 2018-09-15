@@ -136,18 +136,16 @@ class RequestTable extends DataManager
         $result = self::getList([
             'select' => ['ID'],
             'filter' => [
-                '!=STATUS'     => [self::$statuses[self::STATUS_REJECTED], self::$statuses[self::STATUS_TIMEOUT]],
+                '!=STATUS'     => [self::STATUS_REJECTED, self::STATUS_TIMEOUT],
                 '=TIMESLOT_ID' => $timeslot,
                 [
                     'LOGIC' => 'OR',
-                    [
-                        '=SENDER_ID'   => $users,
-                        '=RECEIVER_ID' => $users,
-                    ],
+                    '=SENDER_ID'   => $users,
+                    '=RECEIVER_ID' => $users,
                 ],
             ],
-        ])->getSelectedRowsCount();
+        ]);
 
-        return (bool)$result;
+        return (bool)$result->getSelectedRowsCount();
     }
 }

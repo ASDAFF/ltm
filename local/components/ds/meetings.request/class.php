@@ -8,6 +8,7 @@ use Bitrix\Main\Localization\Loc;
 use Spectr\Meeting\Models\SettingsTable;
 use Spectr\Meeting\Models\RegistrGuestTable;
 use Spectr\Meeting\Models\TimeslotTable;
+use Spectr\Meeting\Models\RequestTable;
 
 class MeetingsRequest extends CBitrixComponent
 {
@@ -135,6 +136,20 @@ class MeetingsRequest extends CBitrixComponent
         return $this;
     }
 
+    protected function getUserTypeById($id)
+    {
+        $arGroups = \CUser::GetUserGroup($id);
+        if ($this->isAdmin($arGroups)) {
+            $userType = self::ADMIN_TYPE;
+        } elseif ($this->isGuest($arGroups)) {
+            $userType = self::GUEST_TYPE;
+        } else {
+            $userType = self::PARTICIPANT_TYPE;
+        }
+
+        return $userType;
+    }
+
     /**
      * @param array $userGroups
      *
@@ -173,9 +188,8 @@ class MeetingsRequest extends CBitrixComponent
     protected function checkRestRequestParams()
     {
         if ((int)$_REQUEST['time'] <= 0) {
-            throw new Exception(Loc::getMessage("ERROR_EMPTY_TIMESLOT_ID"));
+            throw new Exception(Loc::getMessage('ERROR_EMPTY_TIMESLOT_ID'));
         }
-
         if ((int)$_REQUEST['to'] <= 0) {
             if ($this->arResult['USER_TYPE'] === self::PARTICIPANT_TYPE) {
                 throw new Exception(Loc::getMessage('ERROR_WRONG_RECEIVER_PARTICIPANT_ID'));
@@ -190,36 +204,14 @@ class MeetingsRequest extends CBitrixComponent
     /**
      * @throws Exception
      */
-    protected function prepareFields()
+    protected function checkSenderAndReceiver()
     {
-        global $USER;
-        if (isset($_REQUEST['id']) && $this->arResult['USER_TYPE'] === self::ADMIN_TYPE) {
-            $this->arResult['SENDER_ID'] = (int)$_REQUEST['id'];
-        } else {
-            $this->arResult['SENDER_ID'] = $USER->GetID();
-        }
-        $this->arResult['RECEIVER_ID'] = (int)$_REQUEST['to'];
-        $this->arResult['SENDER']      = $this->getUserInfo(
-            $this->arResult['SENDER_ID'],
-            $this->arResult['USER_TYPE'] === self::PARTICIPANT_TYPE
-        );
-        $this->arResult['RECEIVER']    = $this->getUserInfo(
-            $this->arResult['RECEIVER_ID'],
-            $this->arResult['USER_TYPE'] !== self::PARTICIPANT_TYPE
-        );
-
         if (empty($this->arResult['SENDER'])) {
-            throw new Exception(Loc::getMessage(self::$userTypes[$this->arResult['USER_TYPE']].'_WRONG_SENDER_ID'));
+            throw new Exception(Loc::getMessage('WRONG_SENDER_ID'));
         }
         if (empty($this->arResult['RECEIVER'])) {
-            throw new Exception(Loc::getMessage(self::$userTypes[$this->arResult['USER_TYPE']].'_WRONG_RECEIVER_ID'));
+            throw new Exception(Loc::getMessage('WRONG_RECEIVER_ID'));
         }
-        $this->arResult['TIMESLOT'] = $this->getTimeslot();
-        if ( !$this->arResult['TIMESLOT']) {
-            throw new Exception(Loc::getMessage(self::$userTypes[$this->arResult['USER_TYPE']].'_WRONG_TIMESLOT_ID'));
-        }
-
-        return $this;
     }
 
     /**
@@ -259,9 +251,97 @@ class MeetingsRequest extends CBitrixComponent
         return [];
     }
 
+    /**
+     * @throws Exception
+     */
     protected function getTimeslot()
     {
-        return TimeslotTable::getTimeslotForMeet((int)$_REQUEST['time']);
+        $this->arResult['TIMESLOT'] = TimeslotTable::getTimeslotForMeet((int)$_REQUEST['time']);
+        if ( !$this->arResult['TIMESLOT']) {
+            throw new Exception(Loc::getMessage('WRONG_TIMESLOT_ID'));
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    protected function getActiveRequest()
+    {
+        $request = RequestTable::getList([
+            'select' => ['*'],
+            'filter' => [
+                'TIMESLOT_ID'   => $this->arResult['TIMESLOT']['ID'],
+                'SENDER_ID'     => $this->arResult['SENDER_ID'],
+                'RECEIVER_ID'   => $this->arResult['RECEIVER_ID'],
+                'EXHIBITION_ID' => $this->arResult['APP_ID'],
+            ],
+        ]);
+
+        if ($request->getSelectedRowsCount()) {
+            $this->arResult['REQUEST'] = $request->fetch();
+        } else {
+            throw new Exception(Loc::getMessage('REQUEST_NOT_FOUND'));
+        }
+    }
+
+    /**
+     * @param int $limit
+     *
+     * @throws \Bitrix\Main\ArgumentException
+     * @throws \Exception
+     */
+    protected function checkRequestExists($limit = 0)
+    {
+        $requests = RequestTable::getAllSlotsBetweenUsers(
+            [$this->arResult['SENDER_ID'], $this->arResult['RECEIVER_ID']],
+            [$this->arResult['APP_ID'], $this->arResult['APP_ID_OTHER']]
+        );
+
+        if ( !empty($requests) && count($requests) > (int)$limit) {
+            throw new Exception(Loc::getMessage(self::$userTypes[$this->arResult['USER_TYPE']].'_COMPANY_MEET_EXIST'));
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    protected function checkSenderGroups()
+    {
+        $valid          = false;
+        $arSenderGroups = CUser::GetUserGroup($this->arResult['SENDER_ID']);
+        switch ($this->arResult['USER_TYPE']) {
+            case self::ADMIN_TYPE:
+                $valid = true;
+                break;
+            case self::GUEST_TYPE:
+            case self::PARTICIPANT_TYPE:
+                $valid = $this->isGuest($arSenderGroups) || $this->isParticipant($arSenderGroups);
+                break;
+        }
+        if ( !$valid) {
+            throw new Exception(Loc::getMessage('ERROR_GROUP_SENDER'));
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    protected function checkStatus()
+    {
+        if ($this->arResult['USER_TYPE'] !== self::ADMIN_TYPE &&
+            $this->arResult['REQUEST']['STATUS'] !== RequestTable::$statuses[RequestTable::STATUS_PROCESS]) {
+            throw new Exception(Loc::getMessage('ERROR_STATUS'));
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    protected function checkBlocking()
+    {
+        if ($this->arResult['APP_SETTINGS']['IS_LOCKED'] && $this->arResult['USER_TYPE'] !== self::ADMIN_TYPE) {
+            throw new Exception(Loc::getMessage('ERROR_APPOINTMENT_LOCKED'));
+        }
     }
 
     public function executeComponent()

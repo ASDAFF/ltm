@@ -12,7 +12,7 @@ if ( !defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                 echo "<p>You have to reload the parent page yourself</p>";
             }
             break;
-        case 'PARTICIP':
+        case 'PARTICIPANT':
             include_once(dirname(__FILE__).'/particip.php');
             break;
         case 'GUEST':
