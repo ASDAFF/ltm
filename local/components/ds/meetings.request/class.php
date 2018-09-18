@@ -27,7 +27,8 @@ class MeetingsRequest extends CBitrixComponent
         return [
             'APP_ID'               => (int)$arParams['APP_ID'],
             'EXHIBITION_IBLOCK_ID' => (int)$arParams['EXHIBITION_IBLOCK_ID'],
-            'IS_HB'                => isset($arParams['IS_HB']) && (bool)$arParams['IS_HB'] ? true : false,
+            'IS_HB'                => isset($arParams['IS_HB']) && $arParams['IS_HB'] === 'Y' ? true : false,
+            'NEED_RELOAD'          => isset($arParams['NEED_RELOAD']) && $arParams['NEED_RELOAD'] === 'Y' ? true : false,
         ];
     }
 
@@ -223,6 +224,14 @@ class MeetingsRequest extends CBitrixComponent
      */
     protected function getUserInfo($userId, $isParticipant = false)
     {
+        global $USER;
+        if ($USER->IsAdmin()) {
+            echo "<pre>";
+            print_r($userId);
+            var_dump($isParticipant);
+            echo "</pre>";
+        }
+
         if ($isParticipant) {
             $arUser = \Bitrix\Main\UserTable::getList([
                 'select' => ['ID', 'EMAIL', 'WORK_COMPANY', 'NAME', 'LAST_NAME'],

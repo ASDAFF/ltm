@@ -3,7 +3,7 @@ if ( !defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
     die();
 }
 ?>
-<?if ($arResult['REQUEST_CONFIRMED']): ?>
+<? if ($arResult['REQUEST_CONFIRMED']): ?>
     <?
     switch ($arResult['USER_TYPE_NAME']) {
         case 'ADMIN':
@@ -21,7 +21,7 @@ if ( !defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 			window.close();
 		}, 5000);
     </script>
-    <? if (empty($arParams["RELOAD"]) || $arParams["RELOAD"] != 'N'): ?>
+    <? if ($arParams['NEED_RELOAD']): ?>
         <script type='text/javascript'>top.opener.document.location.reload();</script>
     <? endif; ?>
 <? endif; ?>

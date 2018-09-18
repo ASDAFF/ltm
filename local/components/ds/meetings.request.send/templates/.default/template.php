@@ -24,7 +24,7 @@ use \Bitrix\Main\Localization\Loc;
             case 'ADMIN':
             case 'PARTICIPANT':
                 echo "<p>Request sent. Window will close after 5 sec.</p>";
-                if ( !empty($arParams["RELOAD"]) && $arParams["RELOAD"] == 'N') {
+                if ( !$arParams['RELOAD']) {
                     echo "<p>You have to reload the parent page yourself</p>";
                 }
                 break;
@@ -38,7 +38,7 @@ use \Bitrix\Main\Localization\Loc;
 			window.close();
 		}, 5000);
     </script>
-    <? if (empty($arParams["RELOAD"]) || $arParams["RELOAD"] != 'N'): ?>
+    <? if ($arParams['RELOAD']): ?>
         <script type='text/javascript'>top.opener.document.location.reload();</script>
     <? endif; ?>
 <? else: ?>

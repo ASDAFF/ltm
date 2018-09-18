@@ -3,10 +3,8 @@ if ( !defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     die();
 }
 
-use Bitrix\Main\Localization\Loc;
-
 $arComponentDescription = [
-    'NAME'        => Loc::getMessage('COMPONENT_NAME'),
+    'NAME'        => GetMessage('COMPONENT_NAME'),
     'DESCRIPTION' => '',
     'ICON'        => '/images/icon.gif',
     'SORT'        => 10,

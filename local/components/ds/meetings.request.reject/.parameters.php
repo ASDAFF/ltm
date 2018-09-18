@@ -24,5 +24,10 @@ $arComponentParameters = array(
             'NAME'   => Loc::getMessage('IS_HB'),
             'TYPE'   => 'CHECKBOX',
         ],
+        'NEED_RELOAD'          => [
+            'PARENT' => 'BASE',
+            'NAME'   => Loc::getMessage('NEED_RELOAD'),
+            'TYPE'   => 'CHECKBOX',
+        ],
     ),
 );

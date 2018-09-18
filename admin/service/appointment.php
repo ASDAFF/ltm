@@ -2,13 +2,18 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Назначение встреч");
 ?>
-<?$APPLICATION->IncludeComponent(
-	"doka:meetings.request.send",
-	"",
-	Array(
-		"APP_ID" => $_REQUEST["app"],
-		"RELOAD" => 'N'
-	),
-false
-);?>
+<?
+$APPLICATION->IncludeComponent(
+    "ds:meetings.request.send",
+    "",
+    Array(
+        "APP_ID"               => $_REQUEST["app"],
+        "EXHIBITION_IBLOCK_ID" => 15,
+        "IS_HB"                => "N",
+        "NEED_RELOAD"          => "N",
+    ),
+    false
+);
+?>
+
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

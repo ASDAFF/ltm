@@ -14,7 +14,8 @@ $APPLICATION->IncludeComponent(
     Array(
         "APP_ID"               => $appId,
         "EXHIBITION_IBLOCK_ID" => 15,
-        "IS_HB"                => true,
+        "IS_HB"                => "Y",
+        "NEED_RELOAD"          => "Y",
     ),
     false
 );
