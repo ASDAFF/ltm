@@ -224,14 +224,6 @@ class MeetingsRequest extends CBitrixComponent
      */
     protected function getUserInfo($userId, $isParticipant = false)
     {
-        global $USER;
-        if ($USER->IsAdmin()) {
-            echo "<pre>";
-            print_r($userId);
-            var_dump($isParticipant);
-            echo "</pre>";
-        }
-
         if ($isParticipant) {
             $arUser = \Bitrix\Main\UserTable::getList([
                 'select' => ['ID', 'EMAIL', 'WORK_COMPANY', 'NAME', 'LAST_NAME'],
