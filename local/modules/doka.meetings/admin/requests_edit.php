@@ -89,7 +89,7 @@ if ($RIGHT >= "W" && $request->isPost() && check_bitrix_sessid()) {
         "SENDER_ID" => $SENDER_ID,
         "EXHIBITION_ID" => $EXHIBITION_ID,
         "TIMESLOT_ID" => $TIMESLOT_ID,
-        "STATUS" => $STATUS,
+        "STATUS" => array_search($STATUS, RequestTable::$statuses),
     ];
 
     if (!empty($ID)) {
