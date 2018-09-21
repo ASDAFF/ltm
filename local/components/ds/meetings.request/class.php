@@ -188,9 +188,27 @@ class MeetingsRequest extends CBitrixComponent
      */
     protected function checkRestRequestParams()
     {
+        $this->checkTimeSlotInRequest();
+        $this->checkReceiverInReceiver();
+
+        return $this;
+    }
+
+    /**
+     * @throws Exception
+     */
+    protected function checkTimeSlotInRequest()
+    {
         if ((int)$_REQUEST['time'] <= 0) {
             throw new Exception(Loc::getMessage('ERROR_EMPTY_TIMESLOT_ID'));
         }
+    }
+
+    /**
+     * @throws Exception
+     */
+    protected function checkReceiverInReceiver()
+    {
         if ((int)$_REQUEST['to'] <= 0) {
             if ($this->arResult['USER_TYPE'] === self::PARTICIPANT_TYPE) {
                 throw new Exception(Loc::getMessage('ERROR_WRONG_RECEIVER_PARTICIPANT_ID'));
@@ -198,8 +216,6 @@ class MeetingsRequest extends CBitrixComponent
                 throw new Exception(Loc::getMessage('ERROR_WRONG_RECEIVER_ID'));
             }
         }
-
-        return $this;
     }
 
     /**
