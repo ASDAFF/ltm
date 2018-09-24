@@ -3,12 +3,21 @@ if ( !defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     die();
 }
 
-use \Bitrix\Main\Localization\Loc;
+use Bitrix\Main\Localization\Loc;
+use Spectr\Meeting\Models\RequestTable;
 
 CBitrixComponent::includeComponentClass('ds:meetings.request');
 
 class MeetingsTimeReserve extends MeetingsRequest
 {
+    public function onPrepareComponentParams($arParams): array
+    {
+        return [
+            'APP_ID'               => (int)$arParams['APP_ID'],
+            'EXHIBITION_IBLOCK_ID' => (int)$arParams['EXHIBITION_IBLOCK_ID'],
+        ];
+    }
+
     protected function checkRestRequestParams()
     {
         $this->checkTimeSlotInRequest();
@@ -23,6 +32,7 @@ class MeetingsTimeReserve extends MeetingsRequest
     {
         $this->getTimeslot();
         $this->getUserId();
+        $this->arResult['REQUEST'] = $this->getRequest();
 
         return $this;
     }
@@ -36,6 +46,26 @@ class MeetingsTimeReserve extends MeetingsRequest
         } else {
             $this->arResult['USER_ID'] = $userId;
         }
+    }
+
+    /**
+     * @throws Exception
+     * @return array
+     */
+    private function getRequest()
+    {
+        $filter = [
+            '!=STATUS'       => [RequestTable::STATUS_REJECTED, RequestTable::STATUS_TIMEOUT],
+            '=TIMESLOT_ID'   => $this->arResult['TIMESLOT']['ID'],
+            [
+                'LOGIC'        => 'OR',
+                '=SENDER_ID'   => $this->arResult['USER_ID'],
+                '=RECEIVER_ID' => $this->arResult['USER_ID'],
+            ],
+            '=EXHIBITION_ID' => $this->arResult['APP_ID'],
+        ];
+
+        return RequestTable::getRow(['select' => ['*'], 'filter' => $filter]);
     }
 
     /**
@@ -61,17 +91,51 @@ class MeetingsTimeReserve extends MeetingsRequest
     }
 
     /**
-     * TODO need to implement
+     * @throws Exception
      */
     private function checkTimeSlotIsBusy()
     {
+        if ( !empty($this->arResult['REQUEST'])) {
+            if (
+                $this->arResult['REQUEST']['STATUS'] !== RequestTable::STATUS_RESERVE ||
+                $this->arResult['REQUEST']['SENDER_ID'] !== $this->arResult['USER_ID'] ||
+                $this->arResult['REQUEST']['RECEIVER_ID'] !== $this->arResult['USER_ID']
+            ) {
+                throw new Exception(Loc::getMessage('ERROR_TIMESLOT_BUSY'));
+            }
+        }
     }
 
     /**
-     * TODO need to implement
+     * @throws Exception
      */
     private function reserveOrRejectRequest()
     {
+        $dateTime = new DateTime();
+        $fields   = [
+            'UPDATED_AT'  => $dateTime,
+            'MODIFIED_BY' => $this->arResult['USER_ID'],
+        ];
+        if ( !empty($this->arResult['REQUEST'])) {
+            $this->arResult['TO_RESERVE']       = false;
+            $fields['STATUS']                   = RequestTable::STATUS_REJECTED;
+            $result                             = RequestTable::update($this->arResult['REQUEST']['ID'], $fields);
+            $this->arResult['REQUEST_REJECTED'] = $result->isSuccess();
+        } else {
+            $this->arResult['TO_RESERVE'] = true;
+            $fields['RECEIVER_ID']        = $this->arResult['USER_ID'];
+            $fields['SENDER_ID']          = $this->arResult['USER_ID'];
+            $fields['CREATED_AT']         = $dateTime;
+            $fields['EXHIBITION_ID']      = $this->arResult['APP_ID'];
+            $fields['TIMESLOT_ID']        = $this->arResult['TIMESLOT']['ID'];
+            $fields['STATUS']             = RequestTable::STATUS_RESERVE;
+            if (isset($_REQUEST['confirm']) && $_REQUEST['confirm'] === 'Y') {
+
+                $result                            = RequestTable::add($fields);
+                $this->arResult['REQUEST_RESERVE'] = $result->isSuccess();
+            }
+        }
+
         return $this;
     }
 
@@ -91,7 +155,8 @@ class MeetingsTimeReserve extends MeetingsRequest
                  ->reserveOrRejectRequest()
                  ->includeComponentTemplate();
         } catch (\Exception $e) {
-            ShowError($e->getMessage());
+            $this->arResult['ERROR_MESSAGE'][] = $e->getMessage();
+            $this->includeComponentTemplate();
         }
     }
 }
