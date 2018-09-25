@@ -5,6 +5,7 @@ if ( !defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
 use Bitrix\Main\Localization\Loc;
 use Spectr\Meeting\Models\RequestTable;
+use Bitrix\Main\Type\DateTime;
 
 CBitrixComponent::includeComponentClass('ds:meetings.request');
 
@@ -97,9 +98,9 @@ class MeetingsTimeReserve extends MeetingsRequest
     {
         if ( !empty($this->arResult['REQUEST'])) {
             if (
-                $this->arResult['REQUEST']['STATUS'] !== RequestTable::STATUS_RESERVE ||
-                $this->arResult['REQUEST']['SENDER_ID'] !== $this->arResult['USER_ID'] ||
-                $this->arResult['REQUEST']['RECEIVER_ID'] !== $this->arResult['USER_ID']
+                $this->arResult['REQUEST']['STATUS'] !== RequestTable::$statuses[RequestTable::STATUS_RESERVE] ||
+                (int)$this->arResult['REQUEST']['SENDER_ID'] !== $this->arResult['USER_ID'] ||
+                (int)$this->arResult['REQUEST']['RECEIVER_ID'] !== $this->arResult['USER_ID']
             ) {
                 throw new Exception(Loc::getMessage('ERROR_TIMESLOT_BUSY'));
             }
