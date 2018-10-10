@@ -9,18 +9,15 @@ use Spectr\Meeting\Models\SettingsTable;
 use Spectr\Meeting\Models\RegistrGuestTable;
 use Spectr\Meeting\Models\TimeslotTable;
 use Spectr\Meeting\Models\RequestTable;
+use Spectr\Meeting\Helpers\UserTypes;
 
 class MeetingsRequest extends CBitrixComponent
 {
     const DEFAULT_ERROR = '404 Not Found';
-    const ADMIN_TYPE = 0;
-    const GUEST_TYPE = 1;
-    const PARTICIPANT_TYPE = 2;
-    static $userTypes = [
-        self::ADMIN_TYPE        => 'ADMIN',
-        self::GUEST_TYPE        => 'GUEST',
-        self:: PARTICIPANT_TYPE => 'PARTICIPANT',
-    ];
+    /**
+     * @var UserTypes
+     */
+    protected $userTypes;
 
     public function onPrepareComponentParams($arParams): array
     {
@@ -57,7 +54,10 @@ class MeetingsRequest extends CBitrixComponent
         return $this;
     }
 
-    /** @throws Exception */
+    /**
+     * if appId was defined, creating Spectr\Meeting\UserTypes instance
+     * @throws Exception
+     */
     protected function getAppId()
     {
         if (
@@ -75,27 +75,20 @@ class MeetingsRequest extends CBitrixComponent
                     $arFilter['PROPERTY_APP_ID'] = $this->arParams['APP_ID'];
                 }
             }
-            $rsExhib = CIBlockElement::GetList(
-                ['SORT' => 'ASC'],
-                $arFilter,
-                false,
-                false,
-                ['ID', 'CODE', 'NAME', 'IBLOCK_ID', 'PROPERTY_*',]
-            );
-            while ($oExhib = $rsExhib->GetNextElement(true, false)) {
-                $this->arResult['PARAM_EXHIBITION']               = $oExhib->GetFields();
-                $this->arResult['PARAM_EXHIBITION']['PROPERTIES'] = $oExhib->GetProperties();
-                if ($this->arParams['IS_HB']) {
-                    $this->arResult['APP_ID']       = $this->arResult['PARAM_EXHIBITION']['PROPERTIES']['APP_HB_ID']['VALUE'];
-                    $this->arResult['APP_ID_OTHER'] = $this->arResult['PARAM_EXHIBITION']['PROPERTIES']['APP_ID']['VALUE'];
-                } else {
-                    $this->arResult['APP_ID']       = $this->arResult['PARAM_EXHIBITION']['PROPERTIES']['APP_ID']['VALUE'];
-                    $this->arResult['APP_ID_OTHER'] = $this->arResult['PARAM_EXHIBITION']['PROPERTIES']['APP_HB_ID']['VALUE'];
-                }
-                if ((int)$this->arResult['APP_ID'] <= 0) {
-                    throw new Exception(self::DEFAULT_ERROR);
-                }
+            $exhibition                         = SettingsTable::getExhibition($arFilter);
+            $this->arResult['PARAM_EXHIBITION'] = $exhibition['PARAM_EXHIBITION'];
+            if ($this->arParams['IS_HB']) {
+                $this->arResult['APP_ID']       = $this->arResult['PARAM_EXHIBITION']['PROPERTIES']['APP_HB_ID']['VALUE'];
+                $this->arResult['APP_ID_OTHER'] = $this->arResult['PARAM_EXHIBITION']['PROPERTIES']['APP_ID']['VALUE'];
+            } else {
+                $this->arResult['APP_ID']       = $this->arResult['PARAM_EXHIBITION']['PROPERTIES']['APP_ID']['VALUE'];
+                $this->arResult['APP_ID_OTHER'] = $this->arResult['PARAM_EXHIBITION']['PROPERTIES']['APP_HB_ID']['VALUE'];
             }
+            if ((int)$this->arResult['APP_ID'] <= 0) {
+                throw new Exception(self::DEFAULT_ERROR);
+            }
+
+            $this->userTypes = new UserTypes($this->arResult['APP_ID']);
         } else {
             throw new Exception(self::DEFAULT_ERROR);
         }
@@ -116,71 +109,18 @@ class MeetingsRequest extends CBitrixComponent
 
         if (isset($_REQUEST['type']) && $USER->GetID() == 1) {
             if ($_REQUEST['type'] === 'p') {
-                $userType = self::PARTICIPANT_TYPE;
+                $userType = UserTypes::PARTICIPANT_TYPE;
             } else {
-                $userType = self::GUEST_TYPE;
+                $userType = UserTypes::GUEST_TYPE;
             }
         } else {
-            $arGroups = $USER->GetUserGroupArray();
-            if ($this->isAdmin($arGroups)) {
-                $userType = self::ADMIN_TYPE;
-            } elseif ($this->isGuest($arGroups)) {
-                $userType = self::GUEST_TYPE;
-            } else {
-                $userType = self::PARTICIPANT_TYPE;
-            }
+            $userType = $this->userTypes->getUserType();
         }
 
         $this->arResult['USER_TYPE']      = $userType;
-        $this->arResult['USER_TYPE_NAME'] = self::$userTypes[$userType];
+        $this->arResult['USER_TYPE_NAME'] = UserTypes::$userTypes[$userType];
 
         return $this;
-    }
-
-    protected function getUserTypeById($id)
-    {
-        $arGroups = \CUser::GetUserGroup($id);
-        if ($this->isAdmin($arGroups)) {
-            $userType = self::ADMIN_TYPE;
-        } elseif ($this->isGuest($arGroups)) {
-            $userType = self::GUEST_TYPE;
-        } else {
-            $userType = self::PARTICIPANT_TYPE;
-        }
-
-        return $userType;
-    }
-
-    /**
-     * @param array $userGroups
-     *
-     * @return bool
-     */
-    protected function isAdmin($userGroups = [])
-    {
-        global $USER;
-
-        return in_array($this->arResult['APP_SETTINGS']['ADMINS_GROUP'], $userGroups) || $USER->IsAdmin();
-    }
-
-    /**
-     * @param array $userGroups
-     *
-     * @return bool
-     */
-    protected function isGuest($userGroups = [])
-    {
-        return in_array($this->arResult['APP_SETTINGS']['GUESTS_GROUP'], $userGroups);
-    }
-
-    /**
-     * @param array $userGroups
-     *
-     * @return bool
-     */
-    protected function isParticipant($userGroups = [])
-    {
-        return in_array($this->arResult['APP_SETTINGS']['MEMBERS_GROUP'], $userGroups);
     }
 
     /**
@@ -210,7 +150,7 @@ class MeetingsRequest extends CBitrixComponent
     protected function checkReceiverInReceiver()
     {
         if ((int)$_REQUEST['to'] <= 0) {
-            if ($this->arResult['USER_TYPE'] === self::PARTICIPANT_TYPE) {
+            if ($this->arResult['USER_TYPE'] === UserTypes::PARTICIPANT_TYPE) {
                 throw new Exception(Loc::getMessage('ERROR_WRONG_RECEIVER_PARTICIPANT_ID'));
             } else {
                 throw new Exception(Loc::getMessage('ERROR_WRONG_RECEIVER_ID'));
@@ -315,7 +255,7 @@ class MeetingsRequest extends CBitrixComponent
         );
 
         if ( !empty($requests) && count($requests) > (int)$limit) {
-            throw new Exception(Loc::getMessage(self::$userTypes[$this->arResult['USER_TYPE']].'_COMPANY_MEET_EXIST'));
+            throw new Exception(Loc::getMessage(UserTypes::$userTypes[$this->arResult['USER_TYPE']].'_COMPANY_MEET_EXIST'));
         }
     }
 
@@ -324,15 +264,15 @@ class MeetingsRequest extends CBitrixComponent
      */
     protected function checkSenderGroups()
     {
-        $valid          = false;
-        $arSenderGroups = CUser::GetUserGroup($this->arResult['SENDER_ID']);
+        $valid = false;
         switch ($this->arResult['USER_TYPE']) {
-            case self::ADMIN_TYPE:
+            case UserTypes::ADMIN_TYPE:
                 $valid = true;
                 break;
-            case self::GUEST_TYPE:
-            case self::PARTICIPANT_TYPE:
-                $valid = $this->isGuest($arSenderGroups) || $this->isParticipant($arSenderGroups);
+            case UserTypes::GUEST_TYPE:
+            case UserTypes::PARTICIPANT_TYPE:
+                $arSenderGroups = CUser::GetUserGroup($this->arResult['SENDER_ID']);
+                $valid          = $this->userTypes->isGuest($arSenderGroups) || $this->userTypes->isParticipant($arSenderGroups);
                 break;
         }
         if ( !$valid) {
@@ -345,7 +285,7 @@ class MeetingsRequest extends CBitrixComponent
      */
     protected function checkStatus()
     {
-        if ($this->arResult['USER_TYPE'] !== self::ADMIN_TYPE &&
+        if ($this->arResult['USER_TYPE'] !== UserTypes::ADMIN_TYPE &&
             $this->arResult['REQUEST']['STATUS'] !== RequestTable::$statuses[RequestTable::STATUS_PROCESS]) {
             throw new Exception(Loc::getMessage('ERROR_STATUS'));
         }
@@ -356,7 +296,7 @@ class MeetingsRequest extends CBitrixComponent
      */
     protected function checkBlocking()
     {
-        if ($this->arResult['APP_SETTINGS']['IS_LOCKED'] && $this->arResult['USER_TYPE'] !== self::ADMIN_TYPE) {
+        if ($this->arResult['APP_SETTINGS']['IS_LOCKED'] && $this->arResult['USER_TYPE'] !== UserTypes::ADMIN_TYPE) {
             throw new Exception(Loc::getMessage('ERROR_APPOINTMENT_LOCKED'));
         }
     }

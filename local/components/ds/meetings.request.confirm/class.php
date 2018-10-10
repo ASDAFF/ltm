@@ -5,6 +5,7 @@ if ( !defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
 use Spectr\Meeting\Models\RequestTable;
 use Bitrix\Main\Type\DateTime;
+use Spectr\Meeting\Helpers\UserTypes;
 
 CBitrixComponent::includeComponentClass('ds:meetings.request');
 
@@ -16,7 +17,7 @@ class MeetingsRequestConfirm extends MeetingsRequest
     protected function prepareFields()
     {
         global $USER;
-        if ($this->arResult['USER_TYPE'] === self::ADMIN_TYPE) {
+        if ($this->arResult['USER_TYPE'] === UserTypes::ADMIN_TYPE) {
             $this->arResult['RECEIVER_ID'] = (int)$_REQUEST['to'];
             $this->arResult['SENDER_ID']   = isset($_REQUEST['id']) ? (int)$_REQUEST['id'] : $USER->GetID();
         } else {
@@ -25,17 +26,17 @@ class MeetingsRequestConfirm extends MeetingsRequest
         }
 
         switch ($this->arResult['USER_TYPE']) {
-            case self::GUEST_TYPE:
+            case UserTypes::GUEST_TYPE:
                 $this->arResult['SENDER']   = $this->getUserInfo($this->arResult['SENDER_ID'], true);
                 $this->arResult['RECEIVER'] = $this->getUserInfo($this->arResult['RECEIVER_ID'], false);
                 break;
-            case self::PARTICIPANT_TYPE:
+            case UserTypes::PARTICIPANT_TYPE:
                 $this->arResult['SENDER']   = $this->getUserInfo($this->arResult['SENDER_ID'], false);
                 $this->arResult['RECEIVER'] = $this->getUserInfo($this->arResult['RECEIVER_ID'], true);
                 break;
             default:
-                $senderType = $this->getUserTypeById($this->arResult['SENDER_ID']);
-                if ($senderType === self::GUEST_TYPE) {
+                $senderType = $this->userTypes->getUserTypeById($this->arResult['SENDER_ID']);
+                if ($senderType === UserTypes::GUEST_TYPE) {
                     $this->arResult['SENDER']   = $this->getUserInfo($this->arResult['SENDER_ID'], true);
                     $this->arResult['RECEIVER'] = $this->getUserInfo($this->arResult['RECEIVER_ID'], false);
                 } else {

@@ -15,7 +15,6 @@ Loader::includeModule("iblock");
 
 class SettingsTable extends DataManager
 {
-
     public static function getTableName(): string
     {
         return "meetings_settings";
@@ -149,21 +148,10 @@ class SettingsTable extends DataManager
         ])->fetch();
     }
 
-    /**
-     * @param int $id
-     *
-     * @throws ArgumentException
-     * @return array
-     */
-    public static function getSettingsById(int $id): array
-    {
-        return self::getList(['filter' => ['ID' => $id]])->fetch();
-    }
-
-    public static function getExhibition(string $exhibCode): array
+    public static function getExhibition(array $filter): array
     {
         $result  = [];
-        $rsExhib = CIBlockElement::GetList([], ["CODE" => $exhibCode]);
+        $rsExhib = CIBlockElement::GetList([], $filter);
         if ($oExhib = $rsExhib->GetNextElement(true, false)) {
             $result["PARAM_EXHIBITION"]               = $oExhib->GetFields();
             $result["PARAM_EXHIBITION"]["PROPERTIES"] = $oExhib->GetProperties();

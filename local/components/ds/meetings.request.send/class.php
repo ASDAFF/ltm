@@ -5,6 +5,7 @@ if ( !defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
 use Bitrix\Main\Localization\Loc;
 use Spectr\Meeting\Models\RequestTable;
+use Spectr\Meeting\Helpers\UserTypes;
 use Bitrix\Main;
 use Bitrix\Main\Entity;
 use Bitrix\Main\Type\DateTime;
@@ -20,14 +21,14 @@ class MeetingsRequestSend extends MeetingsRequest
     {
         global $USER;
         $this->arResult['RECEIVER_ID'] = (int)$_REQUEST['to'];
-        if (isset($_REQUEST['id']) && $this->arResult['USER_TYPE'] === self::ADMIN_TYPE) {
+        if (isset($_REQUEST['id']) && $this->arResult['USER_TYPE'] === UserTypes::ADMIN_TYPE) {
             $this->arResult['SENDER_ID'] = (int)$_REQUEST['id'];
         } else {
             $this->arResult['SENDER_ID'] = $USER->GetID();
         }
         if (
-            $this->arResult['USER_TYPE'] === self::PARTICIPANT_TYPE ||
-            ($this->arResult['USER_TYPE'] === self::ADMIN_TYPE && isset($_REQUEST['type']) && $_REQUEST['type'] === 'p')
+            $this->arResult['USER_TYPE'] === UserTypes::PARTICIPANT_TYPE ||
+            ($this->arResult['USER_TYPE'] === UserTypes::ADMIN_TYPE && isset($_REQUEST['type']) && $_REQUEST['type'] === 'p')
         ) {
             $this->arResult['SENDER']   = $this->getUserInfo($this->arResult['SENDER_ID'], true);
             $this->arResult['RECEIVER'] = $this->getUserInfo($this->arResult['RECEIVER_ID'], false);
@@ -62,7 +63,7 @@ class MeetingsRequestSend extends MeetingsRequest
     private function checkSendingRequestToHimself()
     {
         if ($this->arResult['RECEIVER_ID'] === $this->arResult['SENDER_ID']) {
-            throw new Exception(Loc::getMessage(self::$userTypes[$this->arResult['USER_TYPE']].'_WRONG_RECEIVER_ID'));
+            throw new Exception(Loc::getMessage(UserTypes::$userTypes[$this->arResult['USER_TYPE']].'_WRONG_RECEIVER_ID'));
         }
     }
 
@@ -113,9 +114,9 @@ class MeetingsRequestSend extends MeetingsRequest
 
         if (isset($arUsers[$senderId])) {
             if (
-                !$this->isAdmin($arUsers[$senderId]['GROUPS']) &&
-                !($this->isGuest($arUsers[$senderId]['GROUPS']) && $arUsers[$senderId]['UF_MR']) &&
-                !$this->isParticipant($arUsers[$senderId]['GROUPS'])
+                !$this->userTypes->isAdmin($arUsers[$senderId]['GROUPS']) &&
+                !($this->userTypes->isGuest($arUsers[$senderId]['GROUPS']) && $arUsers[$senderId]['UF_MR']) &&
+                !$this->userTypes->isParticipant($arUsers[$senderId]['GROUPS'])
             ) {
                 throw new Exception(Loc::getMessage('ERROR_WRONG_RIGHTS'));
             }
@@ -125,9 +126,9 @@ class MeetingsRequestSend extends MeetingsRequest
 
         if (isset($arUsers[$receiverId])) {
             if (
-                !$this->isAdmin($arUsers[$receiverId]['GROUPS']) &&
-                !($this->isGuest($arUsers[$receiverId]['GROUPS']) && $arUsers[$receiverId]['UF_MR']) &&
-                !$this->isParticipant($arUsers[$receiverId]['GROUPS'])
+                !$this->userTypes->isAdmin($arUsers[$receiverId]['GROUPS']) &&
+                !($this->userTypes->isGuest($arUsers[$receiverId]['GROUPS']) && $arUsers[$receiverId]['UF_MR']) &&
+                !$this->userTypes->isParticipant($arUsers[$receiverId]['GROUPS'])
             ) {
                 throw new Exception(Loc::getMessage('ERROR_WRONG_RIGHTS'));
             }
@@ -166,7 +167,7 @@ class MeetingsRequestSend extends MeetingsRequest
             'MODIFIED_BY'   => $this->arResult['SENDER_ID'],
             'EXHIBITION_ID' => $this->arResult['APP_ID'],
             'TIMESLOT_ID'   => $this->arResult['TIMESLOT']['ID'],
-            'STATUS'        => $this->arResult['USER_TYPE'] === self::ADMIN_TYPE
+            'STATUS'        => $this->arResult['USER_TYPE'] === UserTypes::ADMIN_TYPE
                 ? RequestTable::STATUS_CONFIRMED
                 : RequestTable::STATUS_PROCESS,
         ];
