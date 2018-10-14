@@ -47,7 +47,7 @@ if($appId != ""){
 	false
 	)
 	?>
-	<div class="request-guests">
+	<div class="request-guests" id="wishlistId">
 	<?$APPLICATION->IncludeComponent(
 		"doka:meetings.wishlist",
 		"",

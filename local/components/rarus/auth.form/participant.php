@@ -143,49 +143,83 @@ while($obElement = $rsElement->GetNextElement()) {
     $arExhib["PARTICIPATION_FEE"] = $arItem["PROPERTIES"]["PARTICIPATION_FEE"]["VALUE"];
     $arExhib["STATUS_G_M"] = $arItem["PROPERTIES"]["STATUS_G_M"]["VALUE"];
     $arExhib["STATUS_G_E"] = $arItem["PROPERTIES"]["STATUS_G_E"]["VALUE"];
+    $arExhib["ID"] = $arItem["ID"];
+    $uidAdditionalString = (($USER->IsAdmin())?"?UID=". $arUser["ID"]:"");
+
     //если пользователь зарегистрирован на эту выставку
     if(in_array($confirmedGroup, $arUserGroups))
     {
-        if($arItem["CODE"] == $arParams["EXHIB_CODE"])
-        {
+        if($arItem["CODE"] == $arParams["EXHIB_CODE"]) {
             $arExhib["SELECTED"] = "Y";
         }
-        $arExhib["ID"] = $arItem["ID"];
-        //$arExhib["PROPERTIES"] = $arItem["PROPERTIES"];
+
+        $appHBId = $arItem["PROPERTIES"]["APP_HB_ID"]["VALUE"];
+        $appId = $arItem["PROPERTIES"]["APP_ID"]["VALUE"];
+        $dayAdditionalText = (($appHBId) ? 'for 2nd day' : "");
 
         $arExhib["MESSAGES"] = array(
             "COUNT" => CHLMFunctions::GetMessagesCount(2, $arExhib["ID"], $UID, 3),
-            "LINK" => $arParams["PROFILE_URL"] . "" . $arItem["CODE"] . "/messages/" . (($USER->IsAdmin())?"?UID=". $arUser["ID"]:"")
+            "LINK" => sprintf(
+              $arParams["PROFILE_URL"]."%s/messages/%s",
+              $arItem["CODE"], $uidAdditionalString
+            )
         );
 
-        $arExhib["WISHLIST"] = array(
-            "LINK" => $arParams["PROFILE_URL"] . "" . $arItem["CODE"] . "/morning/schedule/" . (($USER->IsAdmin())?"?UID=". $arUser["ID"]:"")
-            //"LINK" => $arParams["PROFILE_URL"] . "" . $arItem["CODE"] . "/deadline/" . (($USER->IsAdmin())?"?UID=". $arUser["ID"]:"")
+        if($appHBId) {
+            $arExhib["WISHLIST"][] = array(
+              "LINK" => sprintf(
+                $arParams["PROFILE_URL"]."%s/hb/schedule/#wishlistId%s",
+                $arItem["CODE"], $uidAdditionalString
+              ),
+              "TEXT" =>  sprintf(GetMessage("AUTH_P_WISHLIST"), 'for 1st day')
+            );
+        }
+
+        $arExhib["WISHLIST"][] = array(
+            "LINK" => sprintf(
+              $arParams["PROFILE_URL"]."%s/morning/schedule/#wishlistId%s",
+              $arItem["CODE"], $uidAdditionalString
+            ),
+          "TEXT" =>  sprintf(GetMessage("AUTH_P_WISHLIST"), $dayAdditionalText)
         );
 
-        $appId = $arItem["PROPERTIES"]["APP_ID"]["VALUE"];
         $meets = $meetsHB = 0;
+        if($appHBId){
+            $req_obj = new DokaRequest($appHBId);
+            $meetsArr = $req_obj->getUnconfirmedRequestsTotal($arUser["ID"]);
+            $meetsHB = $meetsArr["incoming"];
+
+            $arExhib["SCHEDULE"][] = array(
+              "LINK" => sprintf(
+                $arParams["PROFILE_URL"]."%s/hb/schedule/%s",
+                $arItem["CODE"], $uidAdditionalString
+              ),
+              "TEXT" =>  sprintf(GetMessage("AUTH_P_SHEDULE"), 'for 1st day'),
+              "COUNT" => $meetsHB,
+              "APP" => $appHBId,
+            );
+        }
+
         if($appId){
             $req_obj = new DokaRequest($appId);
             $meetsArr = $req_obj->getUnconfirmedRequestsTotal($arUser["ID"]);
             $meets = $meetsArr["incoming"];
         }
-        $appHBId = $arItem["PROPERTIES"]["APP_HB_ID"]["VALUE"];
-        if($appHBId){
-            $req_obj = new DokaRequest($appHBId);
-            $meetsArr = $req_obj->getUnconfirmedRequestsTotal($arUser["ID"]);
-            $meets += $meetsArr["incoming"];
-        }
-        $arExhib["SCHEDULE"] = array(
-            "LINK" => $arParams["PROFILE_URL"] . "" . $arItem["CODE"] . "/morning/schedule/" . (($USER->IsAdmin())?"?UID=". $arUser["ID"]:""),
-            //"LINK" => $arParams["PROFILE_URL"] . "" . $arItem["CODE"] . "/deadline/" . (($USER->IsAdmin())?"?UID=". $arUser["ID"]:""),
+        $arExhib["SCHEDULE"][] = array(
+            "LINK" => sprintf(
+                $arParams["PROFILE_URL"]."%s/morning/schedule/%s",
+                $arItem["CODE"], $uidAdditionalString
+            ),
+            "TEXT" =>  sprintf(GetMessage("AUTH_P_SHEDULE"), $dayAdditionalText),
             "COUNT" => $meets,
             "APP" => $appId,
-            "APP_HB" => $appHBId,
         );
 
         $arExhib["EDIT"] = array(
-            "LINK" => $arParams["PROFILE_URL"] . "" . $arItem["CODE"] . "/edit/colleague/" . (($USER->IsAdmin())?"?UID=". $arUser["ID"]:"")
+          "LINK" => sprintf(
+            $arParams["PROFILE_URL"]."%s/edit/colleague/%s",
+            $arItem["CODE"], $uidAdditionalString
+          )
         );
 
         $arExhib["EXH_NAME"] = $arItem["PROPERTIES"]["SHORT_NAME"]["VALUE"];
