@@ -5,7 +5,7 @@ if ( !defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
 use Spectr\Meeting\Models\RequestTable;
 use Spectr\Meeting\Models\WishlistTable;
-use Spectr\Meeting\Helpers\UserTypes;
+use Spectr\Meeting\Helpers\UserHelper;
 use Bitrix\Main\Type\DateTime;
 
 CBitrixComponent::includeComponentClass('ds:meetings.request');
@@ -20,13 +20,13 @@ class MeetingsRequestReject extends MeetingsRequest
         global $USER;
         $this->arResult['RECEIVER_ID'] = (int)$_REQUEST['to'];
         $this->arResult['SENDER_ID']   = isset($_REQUEST['id']) ? (int)$_REQUEST['id'] : $USER->GetID();
-        $senderType                    = $this->userTypes->getUserTypeById($this->arResult['SENDER_ID']);
-        if ($senderType === UserTypes::GUEST_TYPE) {
-            $this->arResult['SENDER']   = $this->getUserInfo($this->arResult['SENDER_ID'], false);
-            $this->arResult['RECEIVER'] = $this->getUserInfo($this->arResult['RECEIVER_ID'], true);
+        $senderType                    = $this->userHelper->getUserTypeById($this->arResult['SENDER_ID']);
+        if ($senderType === UserHelper::GUEST_TYPE) {
+            $this->arResult['SENDER']   = $this->userHelper->getUserInfo($this->arResult['SENDER_ID'], false);
+            $this->arResult['RECEIVER'] = $this->userHelper->getUserInfo($this->arResult['RECEIVER_ID'], true);
         } else {
-            $this->arResult['SENDER']   = $this->getUserInfo($this->arResult['SENDER_ID'], true);
-            $this->arResult['RECEIVER'] = $this->getUserInfo($this->arResult['RECEIVER_ID'], false);
+            $this->arResult['SENDER']   = $this->userHelper->getUserInfo($this->arResult['SENDER_ID'], true);
+            $this->arResult['RECEIVER'] = $this->userHelper->getUserInfo($this->arResult['RECEIVER_ID'], false);
         }
         $this->checkSenderAndReceiver();
         $this->getTimeslot();
@@ -84,7 +84,7 @@ class MeetingsRequestReject extends MeetingsRequest
     private function sendEmail()
     {
         global $USER;
-        if ($this->arResult['USER_TYPE'] !== UserTypes::ADMIN_TYPE && $this->arResult['SENDER_ID'] !== $USER->GetID()) {
+        if ($this->arResult['USER_TYPE'] !== UserHelper::ADMIN_TYPE && $this->arResult['SENDER_ID'] !== $USER->GetID()) {
             $arFieldsMes = array(
                 'EMAIL'         => $this->arResult['RECEIVER']['EMAIL'],
                 'COMPANY'       => $this->arResult['RECEIVER']['COMPANY'],
@@ -111,6 +111,7 @@ class MeetingsRequestReject extends MeetingsRequest
                  ->checkAuth()
                  ->getAppId()
                  ->getAppSettings()
+                 ->createHelperInstance()
                  ->getUserType()
                  ->checkRestRequestParams()
                  ->prepareFields()

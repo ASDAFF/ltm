@@ -6,18 +6,17 @@ if ( !defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 use Bitrix\Main\Loader;
 use Bitrix\Main\Localization\Loc;
 use Spectr\Meeting\Models\SettingsTable;
-use Spectr\Meeting\Models\RegistrGuestTable;
 use Spectr\Meeting\Models\TimeslotTable;
 use Spectr\Meeting\Models\RequestTable;
-use Spectr\Meeting\Helpers\UserTypes;
+use Spectr\Meeting\Helpers\UserHelper;
 
 class MeetingsRequest extends CBitrixComponent
 {
     const DEFAULT_ERROR = '404 Not Found';
     /**
-     * @var UserTypes
+     * @var UserHelper
      */
-    protected $userTypes;
+    protected $userHelper;
 
     public function onPrepareComponentParams($arParams): array
     {
@@ -87,8 +86,6 @@ class MeetingsRequest extends CBitrixComponent
             if ((int)$this->arResult['APP_ID'] <= 0) {
                 throw new Exception(self::DEFAULT_ERROR);
             }
-
-            $this->userTypes = new UserTypes($this->arResult['APP_ID']);
         } else {
             throw new Exception(self::DEFAULT_ERROR);
         }
@@ -103,22 +100,32 @@ class MeetingsRequest extends CBitrixComponent
         return $this;
     }
 
+    /**
+     * @throws Exception
+     */
+    protected function createHelperInstance()
+    {
+        $this->userHelper = new UserHelper($this->arResult['APP_ID']);
+
+        return $this;
+    }
+
     protected function getUserType()
     {
         global $USER;
 
         if (isset($_REQUEST['type']) && $USER->GetID() == 1) {
             if ($_REQUEST['type'] === 'p') {
-                $userType = UserTypes::PARTICIPANT_TYPE;
+                $userType = UserHelper::PARTICIPANT_TYPE;
             } else {
-                $userType = UserTypes::GUEST_TYPE;
+                $userType = UserHelper::GUEST_TYPE;
             }
         } else {
-            $userType = $this->userTypes->getUserType();
+            $userType = $this->userHelper->getUserType();
         }
 
         $this->arResult['USER_TYPE']      = $userType;
-        $this->arResult['USER_TYPE_NAME'] = UserTypes::$userTypes[$userType];
+        $this->arResult['USER_TYPE_NAME'] = UserHelper::$userTypes[$userType];
 
         return $this;
     }
@@ -129,7 +136,7 @@ class MeetingsRequest extends CBitrixComponent
     protected function checkRestRequestParams()
     {
         $this->checkTimeSlotInRequest();
-        $this->checkReceiverInReceiver();
+        $this->checkReceiverInRequest();
 
         return $this;
     }
@@ -147,10 +154,10 @@ class MeetingsRequest extends CBitrixComponent
     /**
      * @throws Exception
      */
-    protected function checkReceiverInReceiver()
+    protected function checkReceiverInRequest()
     {
         if ((int)$_REQUEST['to'] <= 0) {
-            if ($this->arResult['USER_TYPE'] === UserTypes::PARTICIPANT_TYPE) {
+            if ($this->arResult['USER_TYPE'] === UserHelper::PARTICIPANT_TYPE) {
                 throw new Exception(Loc::getMessage('ERROR_WRONG_RECEIVER_PARTICIPANT_ID'));
             } else {
                 throw new Exception(Loc::getMessage('ERROR_WRONG_RECEIVER_ID'));
@@ -169,43 +176,6 @@ class MeetingsRequest extends CBitrixComponent
         if (empty($this->arResult['RECEIVER'])) {
             throw new Exception(Loc::getMessage('WRONG_RECEIVER_ID'));
         }
-    }
-
-    /**
-     * @param int $userId
-     * @param bool $isParticipant
-     *
-     * @throws \Bitrix\Main\ArgumentException
-     * @return array
-     */
-    protected function getUserInfo($userId, $isParticipant = false)
-    {
-        if ($isParticipant) {
-            $arUser = \Bitrix\Main\UserTable::getList([
-                'select' => ['ID', 'EMAIL', 'WORK_COMPANY', 'NAME', 'LAST_NAME'],
-                'filter' => ['=ID' => $userId],
-            ])->fetchAll();
-            if ( !empty($arUser)) {
-                return [
-                    'ID'      => $userId,
-                    'NAME'    => "{$arUser[0]['NAME']} {$arUser[0]['LAST_NAME']}",
-                    'COMPANY' => $arUser[0]['WORK_COMPANY'],
-                    'EMAIL'   => $arUser[0]['EMAIL'],
-                ];
-            }
-        } else {
-            $arUser = RegistrGuestTable::getRowByUserID($userId);
-            if ( !empty($arUser)) {
-                return [
-                    'ID'      => $userId,
-                    'NAME'    => "{$arUser['UF_NAME']} {$arUser['UF_SURNAME']}",
-                    'COMPANY' => $arUser['UF_COMPANY'],
-                    'EMAIL'   => $arUser['UF_EMAIL'],
-                ];
-            }
-        }
-
-        return [];
     }
 
     /**
@@ -255,7 +225,7 @@ class MeetingsRequest extends CBitrixComponent
         );
 
         if ( !empty($requests) && count($requests) > (int)$limit) {
-            throw new Exception(Loc::getMessage(UserTypes::$userTypes[$this->arResult['USER_TYPE']].'_COMPANY_MEET_EXIST'));
+            throw new Exception(Loc::getMessage(UserHelper::$userTypes[$this->arResult['USER_TYPE']].'_COMPANY_MEET_EXIST'));
         }
     }
 
@@ -266,13 +236,13 @@ class MeetingsRequest extends CBitrixComponent
     {
         $valid = false;
         switch ($this->arResult['USER_TYPE']) {
-            case UserTypes::ADMIN_TYPE:
+            case UserHelper::ADMIN_TYPE:
                 $valid = true;
                 break;
-            case UserTypes::GUEST_TYPE:
-            case UserTypes::PARTICIPANT_TYPE:
+            case UserHelper::GUEST_TYPE:
+            case UserHelper::PARTICIPANT_TYPE:
                 $arSenderGroups = CUser::GetUserGroup($this->arResult['SENDER_ID']);
-                $valid          = $this->userTypes->isGuest($arSenderGroups) || $this->userTypes->isParticipant($arSenderGroups);
+                $valid          = $this->userHelper->isGuest($arSenderGroups) || $this->userHelper->isParticipant($arSenderGroups);
                 break;
         }
         if ( !$valid) {
@@ -285,7 +255,7 @@ class MeetingsRequest extends CBitrixComponent
      */
     protected function checkStatus()
     {
-        if ($this->arResult['USER_TYPE'] !== UserTypes::ADMIN_TYPE &&
+        if ($this->arResult['USER_TYPE'] !== UserHelper::ADMIN_TYPE &&
             $this->arResult['REQUEST']['STATUS'] !== RequestTable::$statuses[RequestTable::STATUS_PROCESS]) {
             throw new Exception(Loc::getMessage('ERROR_STATUS'));
         }
@@ -296,7 +266,7 @@ class MeetingsRequest extends CBitrixComponent
      */
     protected function checkBlocking()
     {
-        if ($this->arResult['APP_SETTINGS']['IS_LOCKED'] && $this->arResult['USER_TYPE'] !== UserTypes::ADMIN_TYPE) {
+        if ($this->arResult['APP_SETTINGS']['IS_LOCKED'] && $this->arResult['USER_TYPE'] !== UserHelper::ADMIN_TYPE) {
             throw new Exception(Loc::getMessage('ERROR_APPOINTMENT_LOCKED'));
         }
     }

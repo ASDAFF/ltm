@@ -1,0 +1,184 @@
+<?php
+
+namespace Spectr\Meeting\Helpers;
+
+use Spectr\Meeting\Models\SettingsTable;
+use Spectr\Meeting\Models\RegistrGuestTable;
+
+class UserHelper
+{
+    const DEFAULT_ERROR = '404 Not Found';
+    const ADMIN_TYPE = 0;
+    const GUEST_TYPE = 1;
+    const PARTICIPANT_TYPE = 2;
+    static $userTypes = [
+        self::ADMIN_TYPE        => 'ADMIN',
+        self::GUEST_TYPE        => 'GUEST',
+        self:: PARTICIPANT_TYPE => 'PARTICIPANT',
+    ];
+
+    private $appSettings = [];
+
+    /**
+     * @param int $appId
+     *
+     * @throws \Exception
+     */
+    public function __construct($appId)
+    {
+        if ((int)$appId) {
+            $this->appSettings = SettingsTable::getById($appId)->fetch();
+        } else {
+            throw new \Exception('App id is not set');
+        }
+    }
+
+    /**
+     * @param array $userGroups
+     *
+     * @return bool
+     */
+    public function isAdmin($userGroups = [])
+    {
+        global $USER;
+
+        return in_array($this->appSettings['ADMINS_GROUP'], $userGroups) || $USER->IsAdmin();
+    }
+
+    /**
+     * @param array $userGroups
+     *
+     * @return bool
+     */
+    public function isGuest($userGroups = [])
+    {
+        return in_array($this->appSettings['GUESTS_GROUP'], $userGroups);
+    }
+
+    /**
+     * @param array $userGroups
+     *
+     * @return bool
+     */
+    public function isParticipant($userGroups = [])
+    {
+        return in_array($this->appSettings['MEMBERS_GROUP'], $userGroups);
+    }
+
+    /**
+     * @param int $userId
+     *
+     * @return string
+     **/
+    public function getUserTypeById(int $userId)
+    {
+        global $USER;
+
+        $arGroups = \CUser::GetUserGroup($userId);
+        if ($this->isAdmin($arGroups) || $USER->IsAdmin()) {
+            $userType = self::ADMIN_TYPE;
+        } elseif ($this->isGuest($arGroups)) {
+            $userType = self::GUEST_TYPE;
+        } else {
+            $userType = self::PARTICIPANT_TYPE;
+        }
+
+        return $userType;
+    }
+
+    public function getUserType()
+    {
+        global $USER;
+
+        $arGroups = $USER->GetUserGroupArray();
+        if (in_array($this->appSettings['ADMINS_GROUP'], $arGroups) || $USER->IsAdmin()) {
+            $userType = self::ADMIN_TYPE;
+        } elseif (in_array($this->appSettings['GUESTS_GROUP'], $arGroups)) {
+            $userType = self::GUEST_TYPE;
+        } else {
+            $userType = self::PARTICIPANT_TYPE;
+        }
+
+        return $userType;
+    }
+
+    /**
+     * @param int $userId
+     * @param bool $isParticipant
+     *
+     * @throws \Bitrix\Main\ArgumentException
+     * @return array
+     */
+    public function getUserInfo($userId, $isParticipant = false)
+    {
+        if ($isParticipant) {
+            $arUser = \Bitrix\Main\UserTable::getList([
+                'select' => ['ID', 'EMAIL', 'WORK_COMPANY', 'NAME', 'LAST_NAME', 'UF_ID_COMP'],
+                'filter' => ['=ID' => $userId],
+            ])->fetchAll();
+            if ( !empty($arUser)) {
+                return [
+                    'ID'       => $userId,
+                    'NAME'     => "{$arUser[0]['NAME']} {$arUser[0]['LAST_NAME']}",
+                    'COMPANY'  => $arUser[0]['WORK_COMPANY'],
+                    'EMAIL'    => $arUser[0]['EMAIL'],
+                    'FORM_RES' => $arUser[0]['UF_ID_COMP'],
+                ];
+            }
+        } else {
+            $arUser = RegistrGuestTable::getRowByUserID($userId);
+            if ( !empty($arUser)) {
+                return [
+                    'ID'      => $userId,
+                    'NAME'    => "{$arUser['UF_NAME']} {$arUser['UF_SURNAME']}",
+                    'COMPANY' => $arUser['UF_COMPANY'],
+                    'EMAIL'   => $arUser['UF_EMAIL'],
+                ];
+            }
+        }
+
+        return [];
+    }
+
+    /**
+     * @param array $arUserId
+     * @param bool $isParticipant
+     *
+     * @throws \Bitrix\Main\ArgumentException
+     * @return array
+     */
+    public function getUsersInfo($arUserId, $isParticipant = false)
+    {
+        if ($isParticipant) {
+            $arUsers = \Bitrix\Main\UserTable::getList([
+                'select' => ['ID', 'EMAIL', 'WORK_COMPANY', 'NAME', 'LAST_NAME', 'UF_ID_COMP'],
+                'filter' => ['ID' => $arUserId],
+            ])->fetchAll();
+            if ( !empty($arUsers)) {
+                return array_map(function ($user) {
+                    return [
+                        'ID'       => $user['ID'],
+                        'NAME'     => "{$user['NAME']} {$user['LAST_NAME']}",
+                        'COMPANY'  => $user['WORK_COMPANY'],
+                        'EMAIL'    => $user['EMAIL'],
+                        'FORM_RES' => $user['UF_ID_COMP'],
+                    ];
+                }, $arUsers);
+            }
+        } else {
+            $arUsers = RegistrGuestTable::getList(['filter' => ['UF_USER_ID' => $arUserId]])->fetchAll();
+            if ( !empty($arUsers)) {
+                return array_map(function ($user) {
+                    return [
+                        'ID'      => $user['UF_USER_ID'],
+                        'NAME'    => "{$user['UF_NAME']} {$user['UF_SURNAME']}",
+                        'COMPANY' => $user['UF_COMPANY'],
+                        'EMAIL'   => $user['UF_EMAIL'],
+                    ];
+                }, $arUsers);
+            }
+        }
+
+        return [];
+    }
+}

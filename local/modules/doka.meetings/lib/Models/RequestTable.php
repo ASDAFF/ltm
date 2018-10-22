@@ -28,6 +28,8 @@ class RequestTable extends DataManager
         self::STATUS_RESERVE   => 'reserve',
     ];
 
+    static $freeStatuses = [self::STATUS_REJECTED, self::STATUS_TIMEOUT, self::STATUS_EMPTY];
+
     public static function getTableName(): string
     {
         return "meetings_requests";
@@ -136,10 +138,12 @@ class RequestTable extends DataManager
         $result = self::getList([
             'select' => ['ID'],
             'filter' => [
-                '!=STATUS'     => [self::STATUS_REJECTED, self::STATUS_TIMEOUT],
+                '!=STATUS'     => array_map(function ($status) {
+                    return self::$statuses[$status];
+                }, self::$freeStatuses),
                 '=TIMESLOT_ID' => $timeslot,
                 [
-                    'LOGIC' => 'OR',
+                    'LOGIC'        => 'OR',
                     '=SENDER_ID'   => $users,
                     '=RECEIVER_ID' => $users,
                 ],
