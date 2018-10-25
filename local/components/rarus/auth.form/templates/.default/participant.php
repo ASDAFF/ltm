@@ -56,13 +56,25 @@ $curDir = $APPLICATION->GetCurDir();
     			<div class="place"><?= $arExhibition["NAME"]?></div>
     		</div>
     		<div class="content pull-overflow">
-    			<div class="pull-left">
+    			<div class="content__links">
     				<div class="pull-overflow mail-list">
 						<a href="<?= $arExhibition["MESSAGES"]["LINK"]?>" title="">
 							<span class="mess"><?= GetMessage("AUTH_P_MESSAGES")?></span>
-							<span class="count pull-right <? if($arExhibition["MESSAGES"]["COUNT"] > 0):?>show<? endif;?>" id="mess-<?=$arExhibition["ID"]?>"><?= $arExhibition["MESSAGES"]["COUNT"]?></span>
+							<span class="count <? if($arExhibition["MESSAGES"]["COUNT"] > 0):?>show<? endif;?>" id="mess-<?=$arExhibition["ID"]?>"><?= $arExhibition["MESSAGES"]["COUNT"]?></span>
 						</a>
 					</div>
+					<?foreach($arExhibition["SCHEDULE"] as $sheduleInfo):?>
+						<div class="pull-overflow mail-list">
+							<a href="<?= $sheduleInfo["LINK"]?>" title="">
+								<span class="mess meetApp" data-id="<?=$sheduleInfo["APP"]?>">
+									<?=$sheduleInfo["TEXT"]?>
+								</span>
+								<span class="count <? if($sheduleInfo["COUNT"] > 0):?>show<? endif;?>" id="meet-<?=$sheduleInfo["APP"]?>">
+									<?= $sheduleInfo["COUNT"]?>
+								</span>
+							</a>
+						</div>
+					<?endforeach;?>					
 					<?foreach($arExhibition["WISHLIST"] as $wishlistInfo):?>
 						<div class="pull-overflow mail-list">
 							<a href="<?=$wishlistInfo["LINK"]?>" title="">
@@ -70,20 +82,9 @@ $curDir = $APPLICATION->GetCurDir();
 							</a>
 						</div>
 					<?endforeach;?>
-						<?foreach($arExhibition["SCHEDULE"] as $sheduleInfo):?>
-							<div class="pull-overflow mail-list">
-								<a href="<?= $sheduleInfo["LINK"]?>" title="">
-									<span class="mess meetApp" data-id="<?=$sheduleInfo["APP"]?>">
-										<?=$sheduleInfo["TEXT"]?>
-									</span>
-									<span class="count pull-right <? if($sheduleInfo["COUNT"] > 0):?>show<? endif;?>" id="meet-<?=$sheduleInfo["APP"]?>">
-										<?= $sheduleInfo["COUNT"]?>
-									</span>
-								</a>
-							</div>
-						<?endforeach;?>
+
     			</div>
-    			<div class="pull-right edit-registration"><a href="<?= $arExhibition["EDIT"]["LINK"]?>" title=""><?= GetMessage("AUTH_P_EDIT_COLLEAGUE")?></a></div>
+    			<div class="edit-registration"><a href="<?= $arExhibition["EDIT"]["LINK"]?>" title=""><?= GetMessage("AUTH_P_EDIT_COLLEAGUE")?></a></div>
     		</div>
     	</div>
     <? endforeach;?>
