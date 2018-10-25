@@ -7,7 +7,6 @@ use Spectr\Meeting\Models\RegistrGuestTable;
 
 class UserHelper
 {
-    const DEFAULT_ERROR = '404 Not Found';
     const ADMIN_TYPE = 0;
     const GUEST_TYPE = 1;
     const PARTICIPANT_TYPE = 2;
@@ -113,7 +112,7 @@ class UserHelper
     {
         if ($isParticipant) {
             $arUser = \Bitrix\Main\UserTable::getList([
-                'select' => ['ID', 'EMAIL', 'WORK_COMPANY', 'NAME', 'LAST_NAME', 'UF_ID_COMP'],
+                'select' => ['ID', 'EMAIL', 'WORK_COMPANY', 'NAME', 'LAST_NAME', 'UF_ID_COMP', 'UF_HB'],
                 'filter' => ['=ID' => $userId],
             ])->fetchAll();
             if ( !empty($arUser)) {
@@ -123,16 +122,24 @@ class UserHelper
                     'COMPANY'  => $arUser[0]['WORK_COMPANY'],
                     'EMAIL'    => $arUser[0]['EMAIL'],
                     'FORM_RES' => $arUser[0]['UF_ID_COMP'],
+                    'IS_HB'    => $arUser[0]['UF_HB'],
                 ];
             }
         } else {
             $arUser = RegistrGuestTable::getRowByUserID($userId);
             if ( !empty($arUser)) {
                 return [
-                    'ID'      => $userId,
-                    'NAME'    => "{$arUser['UF_NAME']} {$arUser['UF_SURNAME']}",
-                    'COMPANY' => $arUser['UF_COMPANY'],
-                    'EMAIL'   => $arUser['UF_EMAIL'],
+                    'ID'         => $userId,
+                    'NAME'       => "{$arUser['UF_NAME']} {$arUser['UF_SURNAME']}",
+                    'COMPANY'    => $arUser['UF_COMPANY'],
+                    'EMAIL'      => $arUser['UF_EMAIL'],
+                    'CITY'       => $arUser['UF_CITY'],
+                    'HALL'       => $arUser['UF_HALL'],
+                    'TABLE'      => $arUser['UF_TABLE'],
+                    'MOB'        => $arUser['UF_MOBILE'],
+                    'PHONE'      => $arUser['UF_PHONE'],
+                    'COLLEAGUES' => $arUser['UF_COLLEAGUES'],
+                    'IS_HB'      => $arUser['UF_HB'],
                 ];
             }
         }
@@ -151,7 +158,7 @@ class UserHelper
     {
         if ($isParticipant) {
             $arUsers = \Bitrix\Main\UserTable::getList([
-                'select' => ['ID', 'EMAIL', 'WORK_COMPANY', 'NAME', 'LAST_NAME', 'UF_ID_COMP'],
+                'select' => ['ID', 'EMAIL', 'WORK_COMPANY', 'NAME', 'LAST_NAME', 'UF_ID_COMP', 'UF_HB'],
                 'filter' => ['ID' => $arUserId],
             ])->fetchAll();
             if ( !empty($arUsers)) {
@@ -162,18 +169,28 @@ class UserHelper
                         'COMPANY'  => $user['WORK_COMPANY'],
                         'EMAIL'    => $user['EMAIL'],
                         'FORM_RES' => $user['UF_ID_COMP'],
+                        'IS_HB'    => $user['UF_HB'],
                     ];
                 }, $arUsers);
             }
         } else {
-            $arUsers = RegistrGuestTable::getList(['filter' => ['UF_USER_ID' => $arUserId]])->fetchAll();
+            $arUsers = RegistrGuestTable::getList([
+                'select' => ['*', 'UF_HB' => 'USER.UF_HB'],
+                'filter' => ['UF_USER_ID' => $arUserId],
+            ])->fetchAll();
             if ( !empty($arUsers)) {
                 return array_map(function ($user) {
                     return [
-                        'ID'      => $user['UF_USER_ID'],
-                        'NAME'    => "{$user['UF_NAME']} {$user['UF_SURNAME']}",
-                        'COMPANY' => $user['UF_COMPANY'],
-                        'EMAIL'   => $user['UF_EMAIL'],
+                        'ID'         => $user['UF_USER_ID'],
+                        'NAME'       => "{$user['UF_NAME']} {$user['UF_SURNAME']}",
+                        'COMPANY'    => $user['UF_COMPANY'],
+                        'EMAIL'      => $user['UF_EMAIL'],
+                        'CITY'       => $user['UF_CITY'],
+                        'HALL'       => $user['UF_HALL'],
+                        'TABLE'      => $user['UF_TABLE'],
+                        'MOB'        => $user['UF_MOBILE'],
+                        'PHONE'      => $user['UF_PHONE'],
+                        'COLLEAGUES' => $user['UF_COLLEAGUES'],
                     ];
                 }, $arUsers);
             }

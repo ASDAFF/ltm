@@ -57,7 +57,9 @@ class MeetingsTimeReserve extends MeetingsRequest
     private function getRequest()
     {
         $filter = [
-            '!=STATUS'       => [RequestTable::STATUS_REJECTED, RequestTable::STATUS_TIMEOUT],
+            '!=STATUS'       => array_map(function ($status) {
+                return RequestTable::$statuses[$status];
+            }, RequestTable::$freeStatuses),
             '=TIMESLOT_ID'   => $this->arResult['TIMESLOT']['ID'],
             [
                 'LOGIC'        => 'OR',

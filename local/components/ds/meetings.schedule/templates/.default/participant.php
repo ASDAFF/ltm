@@ -11,26 +11,26 @@
         <th>Time left /<br>Hold slot</th>
     </tr>
     <? foreach ($arResult['SCHEDULE'] as $item): ?>
-        <? if ($item['SLOT_TYPE'] === 'meet'): ?>
-            <tr class="<? if ($item['STATUS'] == 'process' && !$item['SENT_BY_YOU']): ?>unconfirmed<? endif; ?> <?= $item['STATUS'] ?>">
-                <td><?= $item['COMPANY_NAME'] ?></td>
-                <? if ($item['STATUS'] == 'reserve'): ?>
+        <? if ($item['slot_type'] === 'meet'): ?>
+            <tr class="<? if ($item['status'] == 'process' && !$item['sent_by_you']): ?>unconfirmed<? endif; ?> <?= $item['status'] ?>">
+                <td><?= $item['name'] ?></td>
+                <? if ($item['status'] == 'reserve'): ?>
                     <td colspan="2">
                         Reserved by you
                     </td>
-                <? elseif (isset($item['COMPANY_NAME'])): ?>
+                <? elseif (isset($item['company_name'])): ?>
                     <td>
-                        <a href="/ajax/userInfo.php?id=<?= $item['COMPANY_ID'] ?>" class="user-info-wind fancybox.ajax"
+                        <a href="/ajax/userInfo.php?id=<?= $item['company_id'] ?>" class="user-info-wind fancybox.ajax"
                            target="_blank">
-                            <?= $item['COMPANY_REP'] ?>
+                            <?= $item['company_rep'] ?>
                         </a>
                     </td>
-                    <td><?= $item['COMPANY_NAME'] ?></td>
+                    <td><?= $item['company_name'] ?></td>
                 <? else: ?>
                     <td colspan="2">
-                        <select name="company_id" class="chose-company" id="companys<?= $item['TIMESLOT_ID'] ?>">
+                        <select name="company_id" class="chose-company" id="companys<?= $item['timeslot_id'] ?>">
                             <option value="0">Choose a company</option>
-                            <? foreach ($item['LIST'] as $company): ?>
+                            <? foreach ($item['list'] as $company): ?>
                                 <option value="<?= $company['ID'] ?>"><?= $company['COMPANY'] ?></option>
                             <? endforeach; ?>
                         </select>
@@ -38,24 +38,24 @@
                 <? endif; ?>
                 <td width="80">
                     <?
-                    switch ($item['STATUS']) {
+                    switch ($item['status']) {
                         case 'confirmed':
                             echo 'confirmed';
                             break;
                         case 'process':
-                            if ($item['SENT_BY_YOU']):?>
-                                <a href="<?= $arResult['REJECT_REQUEST_LINK'] ?>?id=<?= $arResult['USER_ID'] ?>&to=<?= $item['COMPANY_ID'] ?>&time=<?= $item['TIMESLOT_ID'] ?>&app=<?= $arResult['APP_ID'] ?>&type=p&exib_code=<?= $arResult['PARAM_EXHIBITION']['CODE'] ?>"
+                            if ($item['sent_by_you']):?>
+                                <a href="<?= $arResult['REJECT_REQUEST_LINK'] ?>?id=<?= $arResult['USER_ID'] ?>&to=<?= $item['company_id'] ?>&time=<?= $item['timeslot_id'] ?>&app=<?= $arResult['APP_ID'] ?>&type=p&exib_code=<?= $arResult['PARAM_EXHIBITION']['CODE'] ?>"
                                    target="_blank"
-                                   onclick="newWind('<?= $arResult['REJECT_REQUEST_LINK'] ?>?id=<?= $arResult['USER_ID'] ?>&to=<?= $item['COMPANY_ID'] ?>&time=<?= $item['TIMESLOT_ID'] ?>&app=<?= $arResult['APP_ID']
+                                   onclick="newWind('<?= $arResult['REJECT_REQUEST_LINK'] ?>?id=<?= $arResult['USER_ID'] ?>&to=<?= $item['company_id'] ?>&time=<?= $item['timeslot_id'] ?>&app=<?= $arResult['APP_ID']
                                    ?>&type=p&exib_code=<?= $arResult['PARAM_EXHIBITION']['CODE'] ?>', 500, 400); return false;">Cancel</a>
                             <? else: ?>
-                                <a href="<?= $arResult['CONFIRM_REQUEST_LINK'] ?>?id=<?= $arResult['USER_ID'] ?>&to=<?= $item['COMPANY_ID'] ?>&time=<?= $item['TIMESLOT_ID'] ?>&app=<?= $arResult['APP_ID'] ?>&type=p&exib_code=<?= $arResult['PARAM_EXHIBITION']['CODE'] ?>"
+                                <a href="<?= $arResult['CONFIRM_REQUEST_LINK'] ?>?id=<?= $arResult['USER_ID'] ?>&to=<?= $item['company_id'] ?>&time=<?= $item['timeslot_id'] ?>&app=<?= $arResult['APP_ID'] ?>&type=p&exib_code=<?= $arResult['PARAM_EXHIBITION']['CODE'] ?>"
                                    target="_blank"
-                                   onclick="newWind('<?= $arResult['CONFIRM_REQUEST_LINK'] ?>?id=<?= $arResult['USER_ID'] ?>&to=<?= $item['COMPANY_ID'] ?>&time=<?= $item['timeslot_id'] ?>&app=<?= $arResult['APP_ID'] ?>&type=p&exib_code=<?= $arResult['PARAM_EXHIBITION']['CODE'] ?>', 500, 400); return false;">Accept</a>
+                                   onclick="newWind('<?= $arResult['CONFIRM_REQUEST_LINK'] ?>?id=<?= $arResult['USER_ID'] ?>&to=<?= $item['company_id'] ?>&time=<?= $item['timeslot_id'] ?>&app=<?= $arResult['APP_ID'] ?>&type=p&exib_code=<?= $arResult['PARAM_EXHIBITION']['CODE'] ?>', 500, 400); return false;">Accept</a>
                                 <br/>
-                                <a href="<?= $arResult['REJECT_REQUEST_LINK'] ?>?id=<?= $item['COMPANY_ID'] ?>&to=<?= $arResult['USER_ID'] ?>&time=<?= $item['TIMESLOT_ID'] ?>&app=<?= $arResult['APP_ID'] ?>&type=p&exib_code=<?= $arResult['PARAM_EXHIBITION']['CODE'] ?>"
+                                <a href="<?= $arResult['REJECT_REQUEST_LINK'] ?>?id=<?= $item['company_id'] ?>&to=<?= $arResult['USER_ID'] ?>&time=<?= $item['timeslot_id'] ?>&app=<?= $arResult['APP_ID'] ?>&type=p&exib_code=<?= $arResult['PARAM_EXHIBITION']['CODE'] ?>"
                                    target="_blank"
-                                   onclick="newWind('<?= $arResult['REJECT_REQUEST_LINK'] ?>?id=<?= $item['COMPANY_ID'] ?>&to=<?= $arResult['USER_ID'] ?>&time=<?= $item['TIMESLOT_ID'] ?>&app=<?= $arResult['APP_ID'] ?>&type=p&exib_code=<?= $arResult['PARAM_EXHIBITION']['CODE'] ?>', 500, 400); return false;">Decline</a>
+                                   onclick="newWind('<?= $arResult['REJECT_REQUEST_LINK'] ?>?id=<?= $item['company_id'] ?>&to=<?= $arResult['USER_ID'] ?>&time=<?= $item['timeslot_id'] ?>&app=<?= $arResult['APP_ID'] ?>&type=p&exib_code=<?= $arResult['PARAM_EXHIBITION']['CODE'] ?>', 500, 400); return false;">Decline</a>
                             <?
                             endif;
                             break;
@@ -63,27 +63,27 @@
                             if ( $arResult['APP_SETTINGS']['IS_LOCKED']) { ?>
                                 Blocked
                             <? } else { ?>
-                                <a href="<?= $arResult['SEND_REQUEST_LINK'] ?>?id=<?= $arResult['USER_ID'] ?>&to=0&time=<?= $item['TIMESLOT_ID'] ?>&app=<?= $arResult['APP_ID'] ?>&type=p&exib_code=<?= $arResult['PARAM_EXHIBITION']['CODE'] ?>"
+                                <a href="<?= $arResult['SEND_REQUEST_LINK'] ?>?id=<?= $arResult['USER_ID'] ?>&to=0&time=<?= $item['timeslot_id'] ?>&app=<?= $arResult['APP_ID'] ?>&type=p&exib_code=<?= $arResult['PARAM_EXHIBITION']['CODE'] ?>"
                                    target="_blank"
-                                   onclick="newRequest('<?= $arResult['USER_ID'] ?>','<?= $item['TIMESLOT_ID'] ?>','<?= $arResult['APP_ID'] ?>','<?= $arResult['SEND_REQUEST_LINK'] ?>', 'p', '<?= $arResult['PARAM_EXHIBITION']['CODE'] ?>'); return false;">Send
+                                   onclick="newRequest('<?= $arResult['USER_ID'] ?>','<?= $item['timeslot_id'] ?>','<?= $arResult['APP_ID'] ?>','<?= $arResult['SEND_REQUEST_LINK'] ?>', 'p', '<?= $arResult['PARAM_EXHIBITION']['CODE'] ?>'); return false;">Send
                                     a request</a>
                                 <?
                             }
                             break;
                     } ?>
                 </td>
-                <td width="100"><?= $item['NOTES']; ?></td>
+                <td width="100"><?= $item['notes']; ?></td>
                 <td width="60">
-                    <? if ($item['STATUS'] == 'free'):
-                        $reserveLink = $arResult['RESERVE_REQUEST_LINK']."?id=".$arResult['USER_ID']."&time=".$item['TIMESLOT_ID']."&app=".$arResult['APP_ID']."&type=p&exib_code=".$arResult['PARAM_EXHIBITION']['CODE'];
+                    <? if ($item['status'] == 'free'):
+                        $reserveLink = $arResult['RESERVE_REQUEST_LINK']."?id=".$arResult['USER_ID']."&time=".$item['timeslot_id']."&app=".$arResult['APP_ID']."&type=p&exib_code=".$arResult['PARAM_EXHIBITION']['CODE'];
                         ?>
                         <a href="<?= $reserveLink ?>" class="time-reserve-wind fancybox.ajax" target="_blank">Reserve</a>
-                    <? elseif ($item['STATUS'] == 'reserve'):
-                        $reserveLink = $arResult['RESERVE_REQUEST_LINK']."?id=".$arResult['USER_ID']."&time=".$item['TIMESLOT_ID']."&app=".$arResult['APP_ID']."&type=p&exib_code=".$arResult['PARAM_EXHIBITION']['CODE'];
+                    <? elseif ($item['status'] == 'reserve'):
+                        $reserveLink = $arResult['RESERVE_REQUEST_LINK']."?id=".$arResult['USER_ID']."&time=".$item['timeslot_id']."&app=".$arResult['APP_ID']."&type=p&exib_code=".$arResult['PARAM_EXHIBITION']['CODE'];
                         ?>
                         <a href="<?= $reserveLink ?>" class="time-reserve-wind fancybox.ajax" target="_blank">Release</a>
-                    <? elseif ($item['STATUS'] != 'confirmed'): ?>
-                        <?= $item['TIME_LEFT']; ?><? if ($item['TIME_LEFT']): ?>h<? endif; ?>
+                    <? elseif ($item['status'] != 'confirmed'): ?>
+                        <?= $item['time_left']; ?><? if ($item['time_left']): ?>h<? endif; ?>
                     <? endif; ?>
                 </td>
             </tr>

@@ -8,6 +8,7 @@ use Bitrix\Main\Entity\Event;
 use Bitrix\Main\Entity\EventResult;
 use Bitrix\Main\Entity\IntegerField;
 use Bitrix\Main\Entity\StringField;
+use Bitrix\Main\Entity\ReferenceField;
 use CFile;
 use CUser;
 
@@ -22,16 +23,16 @@ class RegistrGuestTable extends DataManager
     {
         return [
             new IntegerField('ID', [
-                'primary' => true,
+                'primary'      => true,
                 'autocomplete' => true,
             ]),
             new StringField('UF_COMPANY'),
             new IntegerField('UF_PRIORITY_AREAS', [
-                'serialized' => true,
+                'serialized'             => true,
                 'save_data_modification' => function () {
                     return [
                         function ($value) {
-                            if (!is_array($value)) {
+                            if ( !is_array($value)) {
                                 return [$value];
                             } else {
                                 return $value;
@@ -57,11 +58,11 @@ class RegistrGuestTable extends DataManager
             new StringField('UF_PASSWORD'),
             new StringField('UF_DESCRIPTION'),
             new IntegerField('UF_OCEANIA', [
-                'serialized' => true,
+                'serialized'             => true,
                 'save_data_modification' => function () {
                     return [
                         function ($value) {
-                            if (!is_array($value)) {
+                            if ( !is_array($value)) {
                                 return [$value];
                             } else {
                                 return $value;
@@ -71,11 +72,11 @@ class RegistrGuestTable extends DataManager
                 },
             ]),
             new IntegerField('UF_ASIA', [
-                'serialized' => true,
+                'serialized'             => true,
                 'save_data_modification' => function () {
                     return [
                         function ($value) {
-                            if (!is_array($value)) {
+                            if ( !is_array($value)) {
                                 return [$value];
                             } else {
                                 return $value;
@@ -85,11 +86,11 @@ class RegistrGuestTable extends DataManager
                 },
             ]),
             new IntegerField('UF_AFRICA', [
-                'serialized' => true,
+                'serialized'             => true,
                 'save_data_modification' => function () {
                     return [
                         function ($value) {
-                            if (!is_array($value)) {
+                            if ( !is_array($value)) {
                                 return [$value];
                             } else {
                                 return $value;
@@ -99,11 +100,11 @@ class RegistrGuestTable extends DataManager
                 },
             ]),
             new IntegerField('UF_SOUTH_AMERICA', [
-                'serialized' => true,
+                'serialized'             => true,
                 'save_data_modification' => function () {
                     return [
                         function ($value) {
-                            if (!is_array($value)) {
+                            if ( !is_array($value)) {
                                 return [$value];
                             } else {
                                 return $value;
@@ -113,11 +114,11 @@ class RegistrGuestTable extends DataManager
                 },
             ]),
             new IntegerField('UF_EUROPE', [
-                'serialized' => true,
+                'serialized'             => true,
                 'save_data_modification' => function () {
                     return [
                         function ($value) {
-                            if (!is_array($value)) {
+                            if ( !is_array($value)) {
                                 return [$value];
                             } else {
                                 return $value;
@@ -127,11 +128,11 @@ class RegistrGuestTable extends DataManager
                 },
             ]),
             new IntegerField('UF_NORTH_AMERICA', [
-                'serialized' => true,
+                'serialized'             => true,
                 'save_data_modification' => function () {
                     return [
                         function ($value) {
-                            if (!is_array($value)) {
+                            if ( !is_array($value)) {
                                 return [$value];
                             } else {
                                 return $value;
@@ -141,7 +142,7 @@ class RegistrGuestTable extends DataManager
                 },
             ]),
             new BooleanField('UF_EVENING', [
-                'save_data_modification' => function () {
+                'save_data_modification'  => function () {
                     return [
                         function ($value) {
                             if (is_bool($value)) {
@@ -165,7 +166,7 @@ class RegistrGuestTable extends DataManager
                 },
             ]),
             new BooleanField('UF_MORNING', [
-                'save_data_modification' => function () {
+                'save_data_modification'  => function () {
                     return [
                         function ($value) {
                             if (is_bool($value)) {
@@ -189,11 +190,11 @@ class RegistrGuestTable extends DataManager
                 },
             ]),
             new IntegerField('UF_COLLEAGUES', [
-                'serialized' => true,
+                'serialized'             => true,
                 'save_data_modification' => function () {
                     return [
                         function ($value) {
-                            if (!is_array($value)) {
+                            if ( !is_array($value)) {
                                 return [$value];
                             } else {
                                 return $value;
@@ -209,31 +210,36 @@ class RegistrGuestTable extends DataManager
             new IntegerField('UF_HALL'),
             new IntegerField('UF_EXHIB_ID'),
             new IntegerField('UF_HOTEL'),
+            new ReferenceField('USER', 'Bitrix\Main\UserTable', [
+                '=this.UF_USER_ID' => 'ref.ID',
+            ]),
         ];
     }
 
     public static function getRowByUserID($userId): array
     {
         $result = self::getList([
+            'select' => ['*', 'UF_HB' => 'USER.UF_HB'],
             'filter' => [
                 'UF_USER_ID' => $userId,
             ],
-            'limit' => 1,
+            'limit'  => 1,
         ])->fetch();
+
         return $result ?: [];
     }
 
     private static function updateUser(int $userId, array $groupIds = [59]): bool
     {
         $arFields = [
-            'UF_MR' => false,
-            'UF_EV' => false,
-            'UF_HB' => false,
+            'UF_MR'    => false,
+            'UF_EV'    => false,
+            'UF_HB'    => false,
             'GROUP_ID' => $groupIds,
         ];
-        $user = new CUser();
+        $user     = new CUser();
         $user->Update($userId, $arFields);
-        if (!$user->LAST_ERROR) {
+        if ( !$user->LAST_ERROR) {
             return true;
         } else {
             return false;
@@ -249,7 +255,7 @@ class RegistrGuestTable extends DataManager
                 $newColleagues = [];
                 foreach ($row['UF_COLLEAGUES'] as $colleagueId) {
                     $newId = RegistrGuestColleagueTable::moveColleagueToStorage($colleagueId);
-                    if (!is_null($newId)) {
+                    if ( !is_null($newId)) {
                         $newColleagues[] = $newId;
                     }
                 }
@@ -258,6 +264,7 @@ class RegistrGuestTable extends DataManager
             $result = GuestStorageTable::add($row);
             if ($result->isSuccess()) {
                 self::delete($row['ID']);
+
                 return $result->getId();
             } else {
                 return null;
@@ -280,8 +287,8 @@ class RegistrGuestTable extends DataManager
 
     public static function onBeforeAdd(Event $event)
     {
-        $result = new EventResult;
-        $data = $event->getParameter("fields");
+        $result    = new EventResult;
+        $data      = $event->getParameter("fields");
         $fieldsKey = array_keys(self::getEntity()->getFields());
         if (isset($data['ID'])) {
             $result->unsetField('ID');
@@ -293,7 +300,7 @@ class RegistrGuestTable extends DataManager
         }
 
         foreach ($data as $key => $value) {
-            if (!in_array($key, $fieldsKey)) {
+            if ( !in_array($key, $fieldsKey)) {
                 $result->unsetField($key);
             }
         }
