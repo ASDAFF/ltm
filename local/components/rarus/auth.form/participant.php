@@ -155,7 +155,7 @@ while($obElement = $rsElement->GetNextElement()) {
 
         $appHBId = $arItem["PROPERTIES"]["APP_HB_ID"]["VALUE"];
         $appId = $arItem["PROPERTIES"]["APP_ID"]["VALUE"];
-        $dayAdditionalText = (($appHBId) ? 'for 2nd day' : "");
+        $dayAdditionalText = (($appHBId) ? 'for the 2nd day' : "");
 
         $arExhib["MESSAGES"] = array(
             "COUNT" => CHLMFunctions::GetMessagesCount(2, $arExhib["ID"], $UID, 3),
@@ -171,7 +171,7 @@ while($obElement = $rsElement->GetNextElement()) {
                 $arParams["PROFILE_URL"]."%s/hb/schedule/#wishlistId%s",
                 $arItem["CODE"], $uidAdditionalString
               ),
-              "TEXT" =>  sprintf(GetMessage("AUTH_P_WISHLIST"), 'for 1st day')
+              "TEXT" =>  sprintf(GetMessage("AUTH_P_WISHLIST"), 'for the 1st day')
             );
         }
 
@@ -194,7 +194,7 @@ while($obElement = $rsElement->GetNextElement()) {
                 $arParams["PROFILE_URL"]."%s/hb/schedule/%s",
                 $arItem["CODE"], $uidAdditionalString
               ),
-              "TEXT" =>  sprintf(GetMessage("AUTH_P_SHEDULE"), 'for 1st day'),
+              "TEXT" =>  sprintf(GetMessage("AUTH_P_SHEDULE"), 'for the 1st day'),
               "COUNT" => $meetsHB,
               "APP" => $appHBId,
             );
