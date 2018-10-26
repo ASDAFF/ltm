@@ -166,9 +166,10 @@ class MeetingsSchedule extends CBitrixComponent
      */
     private function getTimeslots()
     {
-        $this->arResult['TIMESLOTS'] = TimeslotTable::getList(
-            ['filter' => ['EXHIBITION_ID' => $this->arResult['APP_ID']]]
-        )->fetchAll();
+        $this->arResult['TIMESLOTS'] = TimeslotTable::getList([
+            'filter' => ['EXHIBITION_ID' => $this->arResult['APP_ID']],
+            'order'  => ['SORT' => 'ASC'],
+        ])->fetchAll();
 
         return $this;
     }
@@ -344,7 +345,7 @@ class MeetingsSchedule extends CBitrixComponent
                     : $timeslot['SLOT_TYPE'],
                 'name'        => $timeslot['NAME'],
                 'notes'       => $this->getNote($request, $user),
-                'sent_by_you' => $isReceiver,
+                'sent_by_you' => !$isReceiver,
             ];
 
             if ( !empty($request)) {

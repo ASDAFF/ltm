@@ -121,6 +121,9 @@ class RequestTable extends DataManager
                         '=RECEIVER_ID' => $users[0],
                     ],
                 ],
+                '!=STATUS'     => array_map(function ($status) {
+                    return self::$statuses[$status];
+                }, self::$freeStatuses)
             ],
         ])->fetchAll();
     }

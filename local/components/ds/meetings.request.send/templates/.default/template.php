@@ -38,7 +38,7 @@ use \Bitrix\Main\Localization\Loc;
 			window.close();
 		}, 5000);
     </script>
-    <? if ($arParams['RELOAD']): ?>
+    <? if ($arParams['NEED_RELOAD']): ?>
         <script type='text/javascript'>top.opener.document.location.reload();</script>
     <? endif; ?>
 <? else: ?>
