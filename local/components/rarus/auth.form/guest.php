@@ -58,6 +58,7 @@ else
 }
 
 $rsElement = CIBlockElement::GetList(array("sort" => "asc"),$arFilter, false, false, $arSelect);
+$uidAdditionalString = (($USER->IsAdmin())?"?UID=". $arUser["ID"]:"");
 
 while($obElement = $rsElement->GetNextElement())
 {
@@ -126,8 +127,10 @@ while($obElement = $rsElement->GetNextElement())
 
         $appId = $arItem["PROPERTIES"]["APP_ID"]["VALUE"];
         $appHbId = '';
+        $dayAdditionalText = '';
         if($arUser["UF_HB"] == 1){
             $appHbId = $arItem["PROPERTIES"]["APP_HB_ID"]["VALUE"];
+            $dayAdditionalText = 'на 2ой день';
         }
         $meets = array();
         if($appId){
@@ -139,20 +142,36 @@ while($obElement = $rsElement->GetNextElement())
         if($appHbId){
             $req_objN = new DokaRequest($appHbId);
             $meetsHb = $req_objN->getUnconfirmedRequestsTotal($arUser["ID"]);
+
+            $arProfile["SCHEDULE"][] = array(
+              "LINK" => sprintf(
+                $arParams["PROFILE_URL"]."%s/hb/schedule/%s",
+                $arItem["CODE"], $uidAdditionalString
+              ),
+              "TEXT" =>  sprintf(GetMessage("AUTH_G_SHEDULE"), 'на 1ый день'),
+              "COUNT" => $meetsHb["incoming"],
+              "APP" => $appHBId,
+            );
         }
 
-        $arProfile["SCHEDULE"] = array(
-            "COUNT" => $meets["incoming"] + $meetsHb["incoming"],
-            "LINK" => $arParams["PROFILE_URL"] . $arItem["CODE"] ."/morning/schedule/" . (($USER->IsAdmin())?"?UID=". $arUser["ID"]:""),
-            //"LINK" => $arParams["PROFILE_URL"] . $arItem["CODE"] ."/deadline/" . (($USER->IsAdmin())?"?UID=". $arUser["ID"]:""),
-            "APP" => $appId,
-            "APP_HB" => $appHbId
+        $arProfile["SCHEDULE"][] = array(
+          "LINK" => sprintf(
+            $arParams["PROFILE_URL"]."%s/morning/schedule/%s",
+            $arItem["CODE"], $uidAdditionalString
+          ),
+          "TEXT" =>  sprintf(GetMessage("AUTH_G_SHEDULE"), $dayAdditionalText),
+          "COUNT" => $meets["incoming"],
+          "APP" => $appId,
         );
 
         $arProfile["MESSAGES"] = array(
             "COUNT" => CHLMFunctions::GetMessagesCount(2, $arItem["ID"], $UID, 3),
-            "LINK" => $arParams["PROFILE_URL"] . $arItem["CODE"] . "/messages/" . (($USER->IsAdmin())?"?UID=". $arUser["ID"]:""),
+          "LINK" => sprintf(
+            $arParams["PROFILE_URL"]."%s/messages/%s",
+            $arItem["CODE"], $uidAdditionalString
+          ),
         );
+
         $arProfile["EDIT_COLLEAGUE_LINK"] = $arParams["PROFILE_URL"] . $arItem["CODE"] ."/edit/colleague/" . (($USER->IsAdmin())?"?UID=". $arUser["ID"]:"");
         $arProfile["PERSONAL_LINK"] = $arParams["PROFILE_URL"] . $arItem["CODE"] ."/" . (($USER->IsAdmin())?"?UID=". $arUser["ID"]:"");
 
