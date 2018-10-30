@@ -129,17 +129,18 @@ class UserHelper
             $arUser = RegistrGuestTable::getRowByUserID($userId);
             if ( !empty($arUser)) {
                 return [
-                    'ID'         => $userId,
-                    'NAME'       => "{$arUser['UF_NAME']} {$arUser['UF_SURNAME']}",
-                    'COMPANY'    => $arUser['UF_COMPANY'],
-                    'EMAIL'      => $arUser['UF_EMAIL'],
-                    'CITY'       => $arUser['UF_CITY'],
-                    'HALL'       => $arUser['UF_HALL'],
-                    'TABLE'      => $arUser['UF_TABLE'],
-                    'MOB'        => $arUser['UF_MOBILE'],
-                    'PHONE'      => $arUser['UF_PHONE'],
-                    'COLLEAGUES' => $arUser['UF_COLLEAGUES'],
-                    'IS_HB'      => $arUser['UF_HB'],
+                    'ID'          => $userId,
+                    'NAME'        => "{$arUser['UF_NAME']} {$arUser['UF_SURNAME']}",
+                    'COMPANY'     => $arUser['UF_COMPANY'],
+                    'EMAIL'       => $arUser['UF_EMAIL'],
+                    'CITY'        => $arUser['UF_CITY'],
+                    'HALL'        => $arUser['UF_HALL'],
+                    'TABLE'       => $arUser['UF_TABLE'],
+                    'MOB'         => $arUser['UF_MOBILE'],
+                    'PHONE'       => $arUser['UF_PHONE'],
+                    'COLLEAGUES'  => $arUser['UF_COLLEAGUES'],
+                    'DESCRIPTION' => $arUser['UF_DESCRIPTION'],
+                    'IS_HB'       => $arUser['UF_HB'],
                 ];
             }
         }
@@ -160,6 +161,7 @@ class UserHelper
             $arUsers = \Bitrix\Main\UserTable::getList([
                 'select' => ['ID', 'EMAIL', 'WORK_COMPANY', 'NAME', 'LAST_NAME', 'UF_ID_COMP', 'UF_HB'],
                 'filter' => ['ID' => $arUserId],
+                'order'  => ['WORK_COMPANY' => 'ASC'],
             ])->fetchAll();
             if ( !empty($arUsers)) {
                 return array_map(function ($user) {
@@ -177,20 +179,22 @@ class UserHelper
             $arUsers = RegistrGuestTable::getList([
                 'select' => ['*', 'UF_HB' => 'USER.UF_HB'],
                 'filter' => ['UF_USER_ID' => $arUserId],
+                'order'  => ['UF_COMPANY' => 'ASC'],
             ])->fetchAll();
             if ( !empty($arUsers)) {
                 return array_map(function ($user) {
                     return [
-                        'ID'         => $user['UF_USER_ID'],
-                        'NAME'       => "{$user['UF_NAME']} {$user['UF_SURNAME']}",
-                        'COMPANY'    => $user['UF_COMPANY'],
-                        'EMAIL'      => $user['UF_EMAIL'],
-                        'CITY'       => $user['UF_CITY'],
-                        'HALL'       => $user['UF_HALL'],
-                        'TABLE'      => $user['UF_TABLE'],
-                        'MOB'        => $user['UF_MOBILE'],
-                        'PHONE'      => $user['UF_PHONE'],
-                        'COLLEAGUES' => $user['UF_COLLEAGUES'],
+                        'ID'          => $user['UF_USER_ID'],
+                        'NAME'        => "{$user['UF_NAME']} {$user['UF_SURNAME']}",
+                        'COMPANY'     => $user['UF_COMPANY'],
+                        'EMAIL'       => $user['UF_EMAIL'],
+                        'CITY'        => $user['UF_CITY'],
+                        'HALL'        => $user['UF_HALL'],
+                        'TABLE'       => $user['UF_TABLE'],
+                        'MOB'         => $user['UF_MOBILE'],
+                        'PHONE'       => $user['UF_PHONE'],
+                        'DESCRIPTION' => $user['UF_DESCRIPTION'],
+                        'COLLEAGUES'  => $user['UF_COLLEAGUES'],
                     ];
                 }, $arUsers);
             }

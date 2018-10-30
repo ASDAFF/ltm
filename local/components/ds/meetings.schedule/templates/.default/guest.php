@@ -1,4 +1,4 @@
-<? if ($arResult['APP_SETTINGS']['IS_LOCKED']) { ?>
+<? if ($userInfo['APP_SETTINGS']['IS_LOCKED']) { ?>
     <p class="error">Appointments schedule blocked by the organizers</p>
 <? } ?>
 <table class="morning-time time-line">
@@ -10,14 +10,20 @@
         <th>Заметки</th>
         <th>Времени осталось</th>
     </tr>
-    <? foreach ($arResult['SCHEDULE'] as $item): ?>
+    <? foreach ($userInfo['SCHEDULE'] as $item): ?>
         <? if ($item['slot_type'] === 'meet'): ?>
             <tr <? if ($item['status'] == 'process' && !$item['sent_by_you']): ?>class="unconfirmed"<? endif; ?>>
                 <td><?= $item['name'] ?></td>
                 <? if (isset($item['company_name'])): ?>
-                    <td><a href="/ajax/userInfo.php?id=<?= $item['company_id'] ?>&res=<?= $item['form_res'] ?>"
-                           class="user-info-wind fancybox.ajax"
-                           target="_blank"><?= $item['company_rep'] ?></a></td>
+                    <td>
+                        <a
+                                href="/ajax/userInfo.php?id=<?= $item['company_id'] ?>&res=<?= $item['form_res'] ?>"
+                                class="user-info-wind fancybox.ajax"
+                                target="_blank"
+                        >
+                            <?= $item['company_rep'] ?>
+                        </a>
+                    </td>
                     <td><?= $item['company_name'] ?></td>
                 <? else: ?>
                     <td colspan="2">
@@ -37,27 +43,27 @@
                             break;
                         case 'process':
                             if ($item['sent_by_you']):?>
-                                <a href="<?= $arResult['REJECT_REQUEST_LINK'] ?>?id=<?= $arResult['USER_ID'] ?>&to=<?= $item['company_id'] ?>&time=<?= $item['timeslot_id'] ?>&app=<?= $arResult['APP_ID'] ?>&type=p&exib_code=<?= $arResult['PARAM_EXHIBITION']['CODE'] ?>"
+                                <a href="<?= $userInfo['REJECT_REQUEST_LINK'] ?>?id=<?= $userInfo['USER_ID'] ?>&to=<?= $item['company_id'] ?>&time=<?= $item['timeslot_id'] ?>&app=<?= $userInfo['APP_ID'] ?>&type=p&exib_code=<?= $userInfo['PARAM_EXHIBITION']['CODE'] ?>"
                                    target="_blank"
-                                   onclick="newWind('<?= $arResult['REJECT_REQUEST_LINK'] ?>?id=<?= $arResult['USER_ID'] ?>&to=<?= $item['company_id'] ?>&time=<?= $item['timeslot_id'] ?>&app=<?= $arResult['APP_ID'] ?>&type=p&exib_code=<?= $arResult['PARAM_EXHIBITION']['CODE'] ?>', 500, 400); return false;">Отменить</a>
+                                   onclick="newWind('<?= $userInfo['REJECT_REQUEST_LINK'] ?>?id=<?= $userInfo['USER_ID'] ?>&to=<?= $item['company_id'] ?>&time=<?= $item['timeslot_id'] ?>&app=<?= $userInfo['APP_ID'] ?>&type=p&exib_code=<?= $userInfo['PARAM_EXHIBITION']['CODE'] ?>', 500, 400); return false;">Отменить</a>
                             <? else: ?>
-                                <a href="<?= $arResult['CONFIRM_REQUEST_LINK'] ?>?id=<?= $arResult['USER_ID'] ?>&to=<?= $item['company_id'] ?>&time=<?= $item['timeslot_id'] ?>&app=<?= $arResult['APP_ID'] ?>&type=p&exib_code=<?= $arResult['PARAM_EXHIBITION']['CODE'] ?>"
+                                <a href="<?= $userInfo['CONFIRM_REQUEST_LINK'] ?>?id=<?= $userInfo['USER_ID'] ?>&to=<?= $item['company_id'] ?>&time=<?= $item['timeslot_id'] ?>&app=<?= $userInfo['APP_ID'] ?>&type=p&exib_code=<?= $userInfo['PARAM_EXHIBITION']['CODE'] ?>"
                                    target="_blank"
-                                   onclick="newWind('<?= $arResult['CONFIRM_REQUEST_LINK'] ?>?id=<?= $arResult['USER_ID'] ?>&to=<?= $item['company_id'] ?>&time=<?= $item['timeslot_id'] ?>&app=<?= $arResult['APP_ID'] ?>&type=p&exib_code=<?= $arResult['PARAM_EXHIBITION']['CODE'] ?>', 500, 400); return false;">Подтвердить</a>
+                                   onclick="newWind('<?= $userInfo['CONFIRM_REQUEST_LINK'] ?>?id=<?= $userInfo['USER_ID'] ?>&to=<?= $item['company_id'] ?>&time=<?= $item['timeslot_id'] ?>&app=<?= $userInfo['APP_ID'] ?>&type=p&exib_code=<?= $userInfo['PARAM_EXHIBITION']['CODE'] ?>', 500, 400); return false;">Подтвердить</a>
                                 <br/>
-                                <a href="<?= $arResult['REJECT_REQUEST_LINK'] ?>?id=<?= $item['company_id'] ?>&to=<?= $arResult['USER_ID'] ?>&time=<?= $item['timeslot_id'] ?>&app=<?= $arResult['APP_ID'] ?>&type=p&exib_code=<?= $arResult['PARAM_EXHIBITION']['CODE'] ?>"
+                                <a href="<?= $userInfo['REJECT_REQUEST_LINK'] ?>?id=<?= $item['company_id'] ?>&to=<?= $userInfo['USER_ID'] ?>&time=<?= $item['timeslot_id'] ?>&app=<?= $userInfo['APP_ID'] ?>&type=p&exib_code=<?= $userInfo['PARAM_EXHIBITION']['CODE'] ?>"
                                    target="_blank"
-                                   onclick="newWind('<?= $arResult['REJECT_REQUEST_LINK'] ?>?id=<?= $item['company_id'] ?>&to=<?= $arResult['USER_ID'] ?>&time=<?= $item['timeslot_id'] ?>&app=<?= $arResult['APP_ID'] ?>&type=p&exib_code=<?= $arResult['PARAM_EXHIBITION']['CODE'] ?>', 500, 400); return false;">Отменить</a>
+                                   onclick="newWind('<?= $userInfo['REJECT_REQUEST_LINK'] ?>?id=<?= $item['company_id'] ?>&to=<?= $userInfo['USER_ID'] ?>&time=<?= $item['timeslot_id'] ?>&app=<?= $userInfo['APP_ID'] ?>&type=p&exib_code=<?= $userInfo['PARAM_EXHIBITION']['CODE'] ?>', 500, 400); return false;">Отменить</a>
                             <?
                             endif;
                             break;
                         case 'free':
-                            if ($arResult['APP_SETTINGS']['IS_LOCKED']) { ?>
+                            if ($userInfo['APP_SETTINGS']['IS_LOCKED']) { ?>
                                 Заблокировано
                             <? } else { ?>
-                                <a href="<?= $arResult['SEND_REQUEST_LINK'] ?>?id=<?= $arResult['USER_ID'] ?>&to=0&time=<?= $item['timeslot_id'] ?>&app=<?= $arResult['APP_ID'] ?>&type=p&exib_code=<?= $arResult['PARAM_EXHIBITION']['CODE'] ?>"
+                                <a href="<?= $userInfo['SEND_REQUEST_LINK'] ?>?id=<?= $userInfo['USER_ID'] ?>&to=0&time=<?= $item['timeslot_id'] ?>&app=<?= $userInfo['APP_ID'] ?>&type=p&exib_code=<?= $userInfo['PARAM_EXHIBITION']['CODE'] ?>"
                                    target="_blank"
-                                   onclick="newRequest('<?= $arResult['USER_ID'] ?>','<?= $item['timeslot_id'] ?>','<?= $arResult['APP_ID'] ?>','<?= $arResult['SEND_REQUEST_LINK'] ?>', 'p', '<?= $arResult['PARAM_EXHIBITION']['CODE'] ?>'); return false;">Послать
+                                   onclick="newRequest('<?= $userInfo['USER_ID'] ?>','<?= $item['timeslot_id'] ?>','<?= $userInfo['APP_ID'] ?>','<?= $userInfo['SEND_REQUEST_LINK'] ?>', 'p', '<?= $userInfo['PARAM_EXHIBITION']['CODE'] ?>'); return false;">Послать
                                     запрос</a>
                                 <?
                             }
@@ -79,15 +85,15 @@
 </table>
 <div class="pull-overflow generate-file">
     <div class="pull-left">
-        <a onclick="newWind('<?= $arResult['WISHLIST_LINK'] ?>_guest.php?id=<?= $arResult['USER_ID'] ?>&exhib=<?= $arResult['PARAM_EXHIBITION']['CODE'] ?>&app=<?= $arResult['APP_ID'] ?>&type=g&mode=pdf', 600, 700); return false;"
+        <a onclick="newWind('<?= $userInfo['WISHLIST_LINK'] ?>_guest.php?id=<?= $userInfo['USER_ID'] ?>&exhib=<?= $userInfo['PARAM_EXHIBITION']['CODE'] ?>&app=<?= $userInfo['APP_ID'] ?>&type=g&mode=pdf', 600, 700); return false;"
            target="_blank"
-           href="<?= $arResult['WISHLIST_LINK'] ?>_guest.php?id=<?= $arResult['USER_ID'] ?>&exhib=<?= $arResult['PARAM_EXHIBITION']['CODE'] ?>&app=<?= $arResult['APP_ID'] ?>&type=g&mode=pdf">Генерировать
+           href="<?= $userInfo['WISHLIST_LINK'] ?>_guest.php?id=<?= $userInfo['USER_ID'] ?>&exhib=<?= $userInfo['PARAM_EXHIBITION']['CODE'] ?>&app=<?= $userInfo['APP_ID'] ?>&type=g&mode=pdf">Генерировать
             вишлист PDF</a>
     </div>
     <div class="pull-right">
-        <a onclick="newWind('<?= $arResult['SCHEDULE_LINK'] ?>_guest.php?id=<?= $arResult['USER_ID'] ?>&exhib=<?= $arResult['PARAM_EXHIBITION']['CODE'] ?>&app=<?= $arResult['APP_ID'] ?>&type=g&mode=pdf', 600, 700); return false;"
+        <a onclick="newWind('<?= $userInfo['SCHEDULE_LINK'] ?>_guest.php?id=<?= $userInfo['USER_ID'] ?>&exhib=<?= $userInfo['PARAM_EXHIBITION']['CODE'] ?>&app=<?= $userInfo['APP_ID'] ?>&type=g&mode=pdf', 600, 700); return false;"
            target="_blank"
-           href="<?= $arResult['SCHEDULE_LINK'] ?>_guest.php?id=<?= $arResult['USER_ID'] ?>&exhib=<?= $arResult['PARAM_EXHIBITION']['CODE'] ?>&app=<?= $arResult['APP_ID'] ?>&type=g&mode=pdf">Генерировать
+           href="<?= $userInfo['SCHEDULE_LINK'] ?>_guest.php?id=<?= $userInfo['USER_ID'] ?>&exhib=<?= $userInfo['PARAM_EXHIBITION']['CODE'] ?>&app=<?= $userInfo['APP_ID'] ?>&type=g&mode=pdf">Генерировать
             расписание PDF</a>
     </div>
 </div>
