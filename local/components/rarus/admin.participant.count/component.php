@@ -512,24 +512,24 @@ $data["BENEFICIARY_NAME"] = "Artem V. Polanskii / Поланский Артём 
     	}; break;
 
 			case "TMI" : {
-				$data["BENEFICIARY"] = "Travel Media,
+				$data["BENEFICIARY"] = "Travel Media International,
 registered as Society with limited liability
-with State Registration Number 1047796617472
+with State Registration Number 1047796932260
 at Federal Tax Service Inspectorate No 46 in Moscow
-Общество с ограниченной ответственностью «Трэвэл Медиа»,
+Общество с ограниченной ответственностью «Трэвэл Медиа Интернэшнл»,
 зарегистрированное Инспекцией Федеральной
 Налоговой Службы № 46 по г. Москве,
-государственный регистрационный номер 1047796617472
-ИНН 7707525284
+государственный регистрационный номер 1047796932260
+ИНН 7707534730
 
 Moscow, Russia";
 
 
 				$data["BANK_DETAILS"] = "Beneficiary's Bank:
-VTB Bank (open joint-stock company), Moscow, Russia
-SWIFT: VTBRRUM2MSK
-Beneficiary: Travel Media
-Account: 40702978900140010240";
+VTB Bank (public joint-stock company) Branch N 7701, Moscow Russia
+SWIFT: VTBRRUM2MS3
+Beneficiary: Travel Media International
+Account: 40702978627001000845";
 
 				$data["BENEFICIARY_NAME"] = "Elena Vetrova / Ветрова Елена Васильевна";
 			}; break;
