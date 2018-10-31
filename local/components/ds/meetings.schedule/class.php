@@ -281,10 +281,11 @@ class MeetingsSchedule extends CBitrixComponent
         );
 
         foreach ($arUsers as $user) {
-            $tableFieldSid   = CFormMatrix::getSIDRelBase($this->tableSid, $formId);
-            $hallFieldSid    = CFormMatrix::getSIDRelBase($this->hallSid, $formId);
-            $nameFieldSid    = CFormMatrix::getSIDRelBase($this->nameSid, $formId);
-            $surnameFieldSid = CFormMatrix::getSIDRelBase($this->surnameSid, $formId);
+            $this->arResult['USERS'][$user['ID']]['REP_RES'] = $user[$userField];
+            $tableFieldSid                                   = CFormMatrix::getSIDRelBase($this->tableSid, $formId);
+            $hallFieldSid                                    = CFormMatrix::getSIDRelBase($this->hallSid, $formId);
+            $nameFieldSid                                    = CFormMatrix::getSIDRelBase($this->nameSid, $formId);
+            $surnameFieldSid                                 = CFormMatrix::getSIDRelBase($this->surnameSid, $formId);
             if (isset($answersSID[$user[$userField]][$tableFieldSid][0])) {
                 $this->arResult['USERS'][$user['ID']]['TABLE'] = $answersSID[$user[$userField]][$tableFieldSid][0]['USER_TEXT'];
             }
@@ -354,6 +355,7 @@ class MeetingsSchedule extends CBitrixComponent
                 $schedule['company_rep']  = $this->arResult['USERS'][$userId]['COMPANY'];
                 $schedule['company_id']   = $this->arResult['USERS'][$userId]['ID'];
                 $schedule['form_res']     = $this->arResult['USERS'][$userId]['FORM_RES'];
+                $schedule['rep_res']      = $this->arResult['USERS'][$userId]['REP_RES'];
                 $schedule['hall']         = $this->arResult['USERS'][$userId]['HALL'];
                 $schedule['table']        = $this->arResult['USERS'][$userId]['TABLE'];
 

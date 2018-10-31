@@ -82,11 +82,11 @@ if ($isParticipant) {
 } else {
     if (CModule::IncludeModule('doka.meetings')) {
         $data                = Spectr\Meeting\Models\RegistrGuestTable::getRowByUserID($id);
-        $userInfo['NAME']    = $data['COMPANY'];
-        $userInfo['REP']     = $data['NAME'];
-        $userInfo['COUNTRY'] = '';
-        $userInfo['CITY']    = $data['CITY'];
-        $userInfo['DESC']    = $data['DESCRIPTION'];
+        $userInfo['NAME']    = $data['UF_COMPANY'];
+        $userInfo['REP']     = "{$data['UF_NAME']} {$data['UF_SURNAME']}";
+        $userInfo['COUNTRY'] = $data['COUNTRY_NAME'];
+        $userInfo['CITY']    = $data['UF_CITY'];
+        $userInfo['DESC']    = $data['UF_DESCRIPTION'];
     }
 }
 $userInfo['DESC'] = str_replace("\n", "<br>", $userInfo['DESC']);

@@ -22,7 +22,7 @@
                 <? if (isset($item['company_name'])): ?>
                     <td>
                         <a
-                                href="/ajax/userInfo.php?id=<?= $item['company_id'] ?>&res=<?= $item['form_res'] ?>"
+                                href="/ajax/userInfo.php?id=<?= $item['company_id'] ?>&res=<?= $item['rep_res'] ?>"
                                 class="user-info-wind fancybox.ajax"
                                 target="_blank"
                         >

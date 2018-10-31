@@ -213,13 +213,16 @@ class RegistrGuestTable extends DataManager
             new ReferenceField('USER', 'Bitrix\Main\UserTable', [
                 '=this.UF_USER_ID' => 'ref.ID',
             ]),
+            new ReferenceField('COUNTRY', 'Spectr\Meeting\Models\GuestCountriesTable', [
+                '=this.UF_COUNTRY' => 'ref.ID',
+            ]),
         ];
     }
 
     public static function getRowByUserID($userId): array
     {
         $result = self::getList([
-            'select' => ['*', 'UF_HB' => 'USER.UF_HB'],
+            'select' => ['*', 'UF_HB' => 'USER.UF_HB', 'COUNTRY_NAME' => 'COUNTRY.UF_VALUE'],
             'filter' => [
                 'UF_USER_ID' => $userId,
             ],

@@ -26,7 +26,7 @@
                 <? elseif (isset($item['company_name'])): ?>
                     <td>
                         <a
-                                href="/ajax/userInfo.php?id=<?= $item['company_id'] ?>userType=GUEST"
+                                href="/ajax/userInfo.php?id=<?= $item['company_id'] ?>&userType=GUEST"
                                 class="user-info-wind fancybox.ajax"
                                 target="_blank"
                         >

@@ -141,6 +141,7 @@ class UserHelper
                     'COLLEAGUES'  => $arUser['UF_COLLEAGUES'],
                     'DESCRIPTION' => $arUser['UF_DESCRIPTION'],
                     'IS_HB'       => $arUser['UF_HB'],
+                    'COUNTRY'     => $arUser['COUNTRY_NAME'],
                 ];
             }
         }
@@ -177,7 +178,7 @@ class UserHelper
             }
         } else {
             $arUsers = RegistrGuestTable::getList([
-                'select' => ['*', 'UF_HB' => 'USER.UF_HB'],
+                'select' => ['*', 'UF_HB' => 'USER.UF_HB', 'COUNTRY_NAME' => 'COUNTRY.UF_VALUE'],
                 'filter' => ['UF_USER_ID' => $arUserId],
                 'order'  => ['UF_COMPANY' => 'ASC'],
             ])->fetchAll();
@@ -195,6 +196,7 @@ class UserHelper
                         'PHONE'       => $user['UF_PHONE'],
                         'DESCRIPTION' => $user['UF_DESCRIPTION'],
                         'COLLEAGUES'  => $user['UF_COLLEAGUES'],
+                        'COUNTRY'     => $user['COUNTRY_NAME'],
                     ];
                 }, $arUsers);
             }
