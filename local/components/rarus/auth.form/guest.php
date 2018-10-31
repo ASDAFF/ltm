@@ -128,7 +128,7 @@ while($obElement = $rsElement->GetNextElement())
         $appId = $arItem["PROPERTIES"]["APP_ID"]["VALUE"];
         $appHbId = '';
         $dayAdditionalText = '';
-        if($arUser["UF_HB"] == 1){
+        if($arUser["UF_HB"] == 1 && $arItem["PROPERTIES"]["APP_HB_ID"]["VALUE"]){
             $appHbId = $arItem["PROPERTIES"]["APP_HB_ID"]["VALUE"];
             $dayAdditionalText = 'на 2ой день';
         }
