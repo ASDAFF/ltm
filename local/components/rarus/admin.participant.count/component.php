@@ -260,6 +260,7 @@ if($arResult["ERROR_MESSAGE"] == '')
             case 2 : $arData["PAY_REQUISITE_XML"] = "EV"; break;
             case 3 : $arData["PAY_REQUISITE_XML"] = "EM"; break;
             case 4:  $arData["PAY_REQUISITE_XML"] = "IPALFA"; break;
+				 case 5:  $arData["PAY_REQUISITE_XML"] = "TMI"; break;
 	     	default: $arData["PAY_REQUISITE_XML"] = "TM";
 	     }
 
@@ -508,7 +509,30 @@ Beneficiary's Bank: AO «ALFA-BANK»
 Beneficiary's bank address: 27 Kalanchevskaya str., Moscow, 107078";
 
 $data["BENEFICIARY_NAME"] = "Artem V. Polanskii / Поланский Артём Валентинович";
-    	}; break;            
+    	}; break;
+
+			case "TMI" : {
+				$data["BENEFICIARY"] = "Travel Media International,
+registered as Society with limited liability
+with State Registration Number 1047796932260
+at Federal Tax Service Inspectorate No 46 in Moscow
+Общество с ограниченной ответственностью «Трэвэл Медиа Интернэшнл»,
+зарегистрированное Инспекцией Федеральной
+Налоговой Службы № 46 по г. Москве,
+государственный регистрационный номер 1047796932260
+ИНН 7707534730
+
+Moscow, Russia";
+
+
+				$data["BANK_DETAILS"] = "Beneficiary's Bank:
+VTB Bank (public joint-stock company) Branch N 7701, Moscow Russia
+SWIFT: VTBRRUM2MS3
+Beneficiary: Travel Media International
+Account: 40702978627001000845";
+
+				$data["BENEFICIARY_NAME"] = "Elena Vetrova / Ветрова Елена Васильевна";
+			}; break;
 
     }
 
@@ -599,7 +623,15 @@ function ContractPDF($data, &$oPDF, $folder)
         $height = 40;
         $width = 100.94;
 
-    }    
+    }
+		elseif($data["PAY_REQUISITE_XML"] == "TMI")
+		{
+			$stampY = $oPDF->getY() - 30;
+			$stampX = 130;
+			$img = __DIR__ . '/images/stamp_tm.png';
+			$height = 40;
+			$width = 52.88;
+		}
 
     $oPDF->Image($img,$stampX,$stampY,$width,$height ,'','','',false,72,'',false,false,1);
 
