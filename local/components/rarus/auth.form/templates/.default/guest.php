@@ -26,12 +26,14 @@ $curDir = $APPLICATION->GetCurDir();
 			<div class="redact"><a href="<?= $arResult["PROFILE"]["EDIT_LINK"]?>" title="Edit profile" <?= ($curDir == stristr($arResult["PROFILE"]["EDIT_LINK"], "?", true))?"class='bolder'":"";?>><?= GetMessage("AUTH_G_EDIT_PROFILE")?></a></div>
 			<div class="colleague-reg"><a href="<?= $arResult["PROFILE"]["EDIT_COLLEAGUE_LINK"]?>" title="" <?= ($curDir == stristr($arResult["PROFILE"]["EDIT_COLLEAGUE_LINK"], "?", true))?"class='bolder'":"";?>><?= GetMessage("AUTH_G_EDIT_COLLEAGUE")?></a></div>
 			<div class="mail-list pull-overflow"><a href="<?= $arResult["PROFILE"]["MESSAGES"]["LINK"]?>" title="<?= GetMessage("AUTH_G_MESSAGES")?>" <?= ($curDir == stristr($arResult["PROFILE"]["MESSAGES"]["LINK"], "?", true))?"class='bolder'":"";?>><span class="mess"><?= GetMessage("AUTH_G_MESSAGES")?></span> <span class="count pull-right  <? if($arResult["PROFILE"]["MESSAGES"]["COUNT"] > 0):?>show<? endif;?>" id="mess-<?=$arResult["PROFILE"]["EXIBITION"]?>"><?= $arResult["PROFILE"]["MESSAGES"]["COUNT"]?></span></a></div>
+	<?foreach($arResult["PROFILE"]["SCHEDULE"] as $sheduleInfo):?>
 			<div class="mail-list pull-overflow">
-				<a href="<?= $arResult["PROFILE"]["SCHEDULE"]["LINK"]?>" title="<?= GetMessage("AUTH_G_SHEDULE")?>" <?= ($curDir == stristr($arResult["PROFILE"]["SCHEDULE"]["LINK"], "?", true))?"class='bolder'":"";?>>
-					<span class="mess meetApp" data-id="<?=$arResult["PROFILE"]["SCHEDULE"]["APP"]?>" data-hb-id="<?=$arResult["PROFILE"]["SCHEDULE"]["APP_HB"]?>"><?= GetMessage("AUTH_G_SHEDULE")?></span>
-					<span class="count pull-right  <? if($arResult["PROFILE"]["SCHEDULE"]["COUNT"] > 0):?>show<? endif;?>" id="meet-<?=$arResult["PROFILE"]["SCHEDULE"]["APP"]?>"><?= $arResult["PROFILE"]["SCHEDULE"]["COUNT"]?></span>
+				<a href="<?= $sheduleInfo["LINK"]?>" title="<?= $sheduleInfo["TEXT"]?>" <?= ($curDir == stristr($sheduleInfo["LINK"], "?", true))?"class='bolder'":"";?>>
+					<span class="mess meetApp" data-id="<?=$sheduleInfo["APP"]?>"><?= $sheduleInfo["TEXT"]?></span>
+					<span class="count pull-right  <? if($sheduleInfo["COUNT"] > 0):?>show<? endif;?>" id="meet-<?=$sheduleInfo["APP"]?>"><?= $sheduleInfo["COUNT"]?></span>
 				</a>
 			</div>
+	<?endforeach;?>
 		</div>
 		<? else:?>
 			<? if(GUEST_CABINET == "Y"):?>

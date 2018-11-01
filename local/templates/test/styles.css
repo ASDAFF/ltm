@@ -1059,7 +1059,7 @@ ul{margin: 0;padding: 0;list-style: none;}
 .private-office .gray-grid.register .head{background:#dbf9ff url("images/bg/gray-grid.png") 0 0 repeat;padding: 10px 15px;}
 .private-office .gray-grid .head .place{font-size: 15px;}
 .private-office .gray-grid.register .content{padding: 10px 15px;}
-.private-office .mail-list .mess{float:left;}
+/*.private-office .mail-list .mess{float:left;}*/
 .private-office .mail-list .count{
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
@@ -1070,21 +1070,21 @@ ul{margin: 0;padding: 0;list-style: none;}
 	font-weight: bold;
 	display:none;
 	width: 25px;
-	height: 20px;
+	height: 25px;
 	vertical-align: middle;
-	padding-top: 5px;
+	/*padding-top: 5px;*/
 	text-align: center;
 	margin-left: 5px;
 	margin-top: -3px;
-	line-height: 14px;
+	line-height: 25px;
 }
 .private-office .mail-list .count.show{
     display:inline-block;
 }
 .private-office .gray-grid .content .mail-list{padding: 4px 0;}
-.private-office .gray-grid .mail-list a{float: left;}
-.private-office .gray-grid .edit-registration{text-align: right;margin-top: 40px;max-width: 130px;}
-.private-office .gray-grid .edit-registration a{font-size: 14px;}
+/*.private-office .gray-grid .mail-list a{float: left;}*/
+/*.private-office .gray-grid .edit-registration{margin-top: 40px;}*/
+/*.private-office .gray-grid .edit-registration a{font-size: 14px;}*/
 .private-office .gray-grid.unregister .head{background:#f3f3f3 url("images/bg/gray-grid.png") 0 0 repeat;padding: 10px 15px;}
 .private-office .gray-grid.unregister .content{padding: 5px 15px;}
 .private-office .gray-grid.unregister .content a{color: #00aeef;}
