@@ -83,11 +83,11 @@
                 <td width="100"><?= $item['notes']; ?></td>
                 <td width="60">
                     <? if ($item['status'] == 'free'):
-                        $reserveLink = $arResult['RESERVE_REQUEST_LINK']."?id=".$arResult['USER_ID']."&time=".$item['timeslot_id']."&app=".$arResult['APP_ID']."&type=p&exib_code=".$arResult['PARAM_EXHIBITION']['CODE'];
+                        $reserveLink = $arResult['RESERVE_REQUEST_LINK']."?id=".$arResult['USER_ID']."&time=".$item['timeslot_id']."&app=".$arResult['APP_ID']."&type=p&exib_code=".$arResult['PARAM_EXHIBITION']['CODE']."&is_hb=".($arParams['IS_HB'] ? 'Y' : 'N');
                         ?>
                         <a href="<?= $reserveLink ?>" class="time-reserve-wind fancybox.ajax" target="_blank">Reserve</a>
                     <? elseif ($item['status'] == 'reserve'):
-                        $reserveLink = $arResult['RESERVE_REQUEST_LINK']."?id=".$arResult['USER_ID']."&time=".$item['timeslot_id']."&app=".$arResult['APP_ID']."&type=p&exib_code=".$arResult['PARAM_EXHIBITION']['CODE'];
+                        $reserveLink = $arResult['RESERVE_REQUEST_LINK']."?id=".$arResult['USER_ID']."&time=".$item['timeslot_id']."&app=".$arResult['APP_ID']."&type=p&exib_code=".$arResult['PARAM_EXHIBITION']['CODE']."&is_hb=".($arParams['IS_HB'] ? 'Y' : 'N');
                         ?>
                         <a href="<?= $reserveLink ?>" class="time-reserve-wind fancybox.ajax" target="_blank">Release</a>
                     <? elseif ($item['status'] != 'confirmed'): ?>

@@ -325,7 +325,8 @@ class MeetingsSchedule extends CBitrixComponent
 
     private function createSchedule()
     {
-        $user = ['ID' => $this->arResult['USER_ID'], 'USER_TYPE' => $this->arResult['USER_TYPE_NAME']];
+        $user          = ['ID' => $this->arResult['USER_ID'], 'USER_TYPE' => $this->arResult['USER_TYPE_NAME']];
+        $isParticipant = $this->arResult['USER_TYPE'] === UserHelper::PARTICIPANT_TYPE;
         foreach ($this->arResult['TIMESLOTS'] as $timeslot) {
             $arRequest = array_filter(
                 $this->arResult['USER_REQUESTS'], function ($request) use ($timeslot) {
@@ -350,9 +351,14 @@ class MeetingsSchedule extends CBitrixComponent
             ];
 
             if ( !empty($request)) {
-                $userId                   = $isReceiver ? $request['SENDER_ID'] : $request['RECEIVER_ID'];
-                $schedule['company_name'] = $this->arResult['USERS'][$userId]['NAME'];
-                $schedule['company_rep']  = $this->arResult['USERS'][$userId]['COMPANY'];
+                $userId = $isReceiver ? $request['SENDER_ID'] : $request['RECEIVER_ID'];
+                if ($isParticipant) {
+                    $schedule['company_name'] = $this->arResult['USERS'][$userId]['NAME'];
+                    $schedule['company_rep']  = $this->arResult['USERS'][$userId]['COMPANY'];
+                } else {
+                    $schedule['company_rep'] = $this->arResult['USERS'][$userId]['NAME'];
+                    $schedule['company_name']  = $this->arResult['USERS'][$userId]['COMPANY'];
+                }
                 $schedule['company_id']   = $this->arResult['USERS'][$userId]['ID'];
                 $schedule['form_res']     = $this->arResult['USERS'][$userId]['FORM_RES'];
                 $schedule['rep_res']      = $this->arResult['USERS'][$userId]['REP_RES'];
@@ -391,20 +397,25 @@ class MeetingsSchedule extends CBitrixComponent
      */
     private function getUserInfoForPDF()
     {
-        $isParticipant  = $this->arResult['USER_TYPE'] === UserHelper::PARTICIPANT_TYPE;
-        $userInfo       = $this->userHelper->getUserInfo($this->arResult['USER_ID'], $isParticipant);
-        $userInfoForPDF = [
+        $isParticipant     = $this->arResult['USER_TYPE'] === UserHelper::PARTICIPANT_TYPE;
+        $isExhibitionForHB = (bool)$this->arResult['APP_SETTINGS']['IS_HB'];
+        $userInfo          = $this->userHelper->getUserInfo($this->arResult['USER_ID'], $isParticipant);
+        $userInfoForPDF    = [
             'COMPANY' => $userInfo['COMPANY'],
             'REP'     => $userInfo['NAME'],
             'IS_HB'   => $userInfo['IS_HB'],
         ];
 
         if ($isParticipant) {
-            $userInfoForPDF['HALL']  = $this->arResult['USERS'][$this->arResult['USER_ID']]['HALL'];
-            $userInfoForPDF['TABLE'] = $this->arResult['USERS'][$this->arResult['USER_ID']]['TABLE'];
+            if ( !$isExhibitionForHB) {
+                $userInfoForPDF['HALL']  = $this->arResult['USERS'][$this->arResult['USER_ID']]['HALL'];
+                $userInfoForPDF['TABLE'] = $this->arResult['USERS'][$this->arResult['USER_ID']]['TABLE'];
+            }
         } else {
-            $userInfoForPDF['CITY']  = $userInfo['CITY'];
-            $userInfoForPDF['HALL']  = $userInfo['HALL'];
+            if ($isExhibitionForHB) {
+                $userInfoForPDF['CITY'] = $userInfo['CITY'];
+                $userInfoForPDF['HALL'] = $userInfo['HALL'];
+            }
             $userInfoForPDF['TABLE'] = $userInfo['TABLE'];
             $userInfoForPDF['PHONE'] = $userInfo['PHONE'];
             $userInfoForPDF['MOB']   = $userInfo['MOB'];
@@ -467,17 +478,21 @@ class MeetingsSchedule extends CBitrixComponent
      */
     private function generatePDF()
     {
-        $isParticipant = $this->arResult['USER_TYPE'] === UserHelper::PARTICIPANT_TYPE;
-        $userName      = $isParticipant ? $this->templateNameForParticipant : $this->arResult['USER_TYPE_NAME'];
+        $isParticipant     = $this->arResult['USER_TYPE'] === UserHelper::PARTICIPANT_TYPE;
+        $isExhibitionForHB = (bool)$this->arResult['APP_SETTINGS']['IS_HB'];
+        $userName          = $isParticipant ? $this->templateNameForParticipant : $this->arResult['USER_TYPE_NAME'];
         global $APPLICATION;
         require(DOKA_MEETINGS_MODULE_DIR.'/classes/pdf/tcpdf.php');
         require_once(DOKA_MEETINGS_MODULE_DIR."/classes/pdf/templates/schedule_{$userName}.php");
         $APPLICATION->RestartBuffer();
         $pdfResult['USER']             = $this->getUserInfoForPDF();
-        $pdfResult['EXHIBITION']       = ['IS_HB' => $pdfResult['USER']['IS_HB']];
+        $pdfResult['EXHIBITION']       = $this->arResult['APP_SETTINGS'];
         $pdfResult['PARAM_EXHIBITION'] = $this->arResult['PARAM_EXHIBITION'];
         $pdfResult['SCHEDULE']         = $this->arResult['SCHEDULE'];
-        if ($isParticipant) {
+        if (
+            ( !$isParticipant && $isExhibitionForHB) ||
+            ($isParticipant && !$isExhibitionForHB)
+        ) {
             $pdfResult['HALL']  = $pdfResult['USER']['HALL'];
             $pdfResult['TABLE'] = $pdfResult['USER']['TABLE'];
         }

@@ -17,6 +17,7 @@ class MeetingsTimeReserve extends MeetingsRequest
         return [
             'APP_ID'               => (int)$arParams['APP_ID'],
             'EXHIBITION_IBLOCK_ID' => (int)$arParams['EXHIBITION_IBLOCK_ID'],
+            'IS_HB'                => $arParams['IS_HB'] === 'Y' ? true : false,
         ];
     }
 
@@ -102,8 +103,8 @@ class MeetingsTimeReserve extends MeetingsRequest
         if ( !empty($this->arResult['REQUEST'])) {
             if (
                 $this->arResult['REQUEST']['STATUS'] !== RequestTable::$statuses[RequestTable::STATUS_RESERVE] ||
-                (int)$this->arResult['REQUEST']['SENDER_ID'] !== $this->arResult['USER_ID'] ||
-                (int)$this->arResult['REQUEST']['RECEIVER_ID'] !== $this->arResult['USER_ID']
+                (int)$this->arResult['REQUEST']['SENDER_ID'] !== (int)$this->arResult['USER_ID'] ||
+                (int)$this->arResult['REQUEST']['RECEIVER_ID'] !== (int)$this->arResult['USER_ID']
             ) {
                 throw new Exception(Loc::getMessage('ERROR_TIMESLOT_BUSY'));
             }
