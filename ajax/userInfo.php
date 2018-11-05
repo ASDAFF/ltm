@@ -15,7 +15,6 @@ if ($isParticipant) {
     if (CModule::IncludeModule('form')) {
         // ID результата веб-формы с данными представителя участника
         $formResRepId = (int)$_REQUEST['res'];
-
         $filter = ['ID' => $id];
         $select = [
             'SELECT' => ['UF_ID_COMP'],

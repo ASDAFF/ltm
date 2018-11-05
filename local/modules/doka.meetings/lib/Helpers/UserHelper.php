@@ -4,6 +4,7 @@ namespace Spectr\Meeting\Helpers;
 
 use Spectr\Meeting\Models\SettingsTable;
 use Spectr\Meeting\Models\RegistrGuestTable;
+use Bitrix\Main\Loader;
 
 class UserHelper
 {
@@ -16,6 +17,10 @@ class UserHelper
         self:: PARTICIPANT_TYPE => 'PARTICIPANT',
     ];
 
+    private $tableSid = 'SIMPLE_QUESTION_148';
+    private $hallSid = 'SIMPLE_QUESTION_732';
+    private $nameSid = 'SIMPLE_QUESTION_446';
+    private $surnameSid = 'SIMPLE_QUESTION_551';
     private $appSettings = [];
 
     /**
@@ -110,19 +115,54 @@ class UserHelper
      */
     public function getUserInfo($userId, $isParticipant = false)
     {
+        $userId = (int)$userId;
         if ($isParticipant) {
-            $arUser = \Bitrix\Main\UserTable::getList([
-                'select' => ['ID', 'EMAIL', 'WORK_COMPANY', 'NAME', 'LAST_NAME', 'UF_ID_COMP', 'UF_HB'],
+            $userField = $this->appSettings['FORM_RES_CODE'];
+            $arUser    = \Bitrix\Main\UserTable::getList([
+                'select' => ['ID', 'EMAIL', 'WORK_COMPANY', 'NAME', 'LAST_NAME', 'UF_ID_COMP', 'UF_HB', $userField],
                 'filter' => ['=ID' => $userId],
             ])->fetchAll();
             if ( !empty($arUser)) {
+                $answerId        = $arUser[0][$userField];
+                $infoFromWebForm = [];
+                if ($answerId) {
+                    $arFilter = ['RESULT_ID' => $answerId];
+                    $formId   = $this->appSettings['FORM_ID'];
+                    \CForm::GetResultAnswerArray($formId, $columns, $answers, $answersSID, $arFilter);
+                    $tableFieldSid   = \CFormMatrix::getSIDRelBase($this->tableSid, $formId);
+                    $hallFieldSid    = \CFormMatrix::getSIDRelBase($this->hallSid, $formId);
+                    $nameFieldSid    = \CFormMatrix::getSIDRelBase($this->nameSid, $formId);
+                    $surnameFieldSid = \CFormMatrix::getSIDRelBase($this->surnameSid, $formId);
+                    if (isset($answersSID[$arUser[0][$userField]][$tableFieldSid][0])) {
+                        $infoFromWebForm['TABLE'] = $answersSID[$arUser[0][$userField]][$tableFieldSid][0]['USER_TEXT'];
+                    }
+                    if (isset($answersSID[$arUser[0][$userField]][$hallFieldSid][0])) {
+                        $infoFromWebForm['HALL'] = $answersSID[$arUser[0][$userField]][$hallFieldSid][0]['ANSWER_TEXT'];
+                    }
+                    if ($arUser[0][$userField]) {
+                        $fullName = [];
+                        if (isset($answersSID[$arUser[0][$userField]][$nameFieldSid][0])) {
+                            $fullName[] = $answersSID[$arUser[0][$userField]][$nameFieldSid][0]['USER_TEXT'];
+                        }
+                        if (isset($answersSID[$arUser[0][$userField]][$surnameFieldSid][0])) {
+                            $fullName[] = $answersSID[$arUser[0][$userField]][$surnameFieldSid][0]['USER_TEXT'];
+                        }
+                        if ( !empty($fullName)) {
+                            $infoFromWebForm['NAME'] = implode(' ', $fullName);
+                        }
+                    }
+                }
+
                 return [
                     'ID'       => $userId,
-                    'NAME'     => "{$arUser[0]['NAME']} {$arUser[0]['LAST_NAME']}",
+                    'NAME'     => !empty($infoFromWebForm) ? $infoFromWebForm['NAME'] : "{$arUser[0]['NAME']} {$arUser[0]['LAST_NAME']}",
                     'COMPANY'  => $arUser[0]['WORK_COMPANY'],
                     'EMAIL'    => $arUser[0]['EMAIL'],
                     'FORM_RES' => $arUser[0]['UF_ID_COMP'],
                     'IS_HB'    => $arUser[0]['UF_HB'],
+                    'HALL'     => !empty($infoFromWebForm) ? $infoFromWebForm['HALL'] : '',
+                    'TABLE'    => !empty($infoFromWebForm) ? $infoFromWebForm['TABLE'] : '',
+                    'REP_RES'  => $arUser[0][$userField],
                 ];
             }
         } else {
@@ -159,20 +199,62 @@ class UserHelper
     public function getUsersInfo($arUserId, $isParticipant = false)
     {
         if ($isParticipant) {
-            $arUsers = \Bitrix\Main\UserTable::getList([
-                'select' => ['ID', 'EMAIL', 'WORK_COMPANY', 'NAME', 'LAST_NAME', 'UF_ID_COMP', 'UF_HB'],
+            $userField = $this->appSettings['FORM_RES_CODE'];
+            $arUsers   = \Bitrix\Main\UserTable::getList([
+                'select' => ['ID', 'EMAIL', 'WORK_COMPANY', 'NAME', 'LAST_NAME', 'UF_ID_COMP', 'UF_HB', $userField],
                 'filter' => ['ID' => $arUserId],
                 'order'  => ['WORK_COMPANY' => 'ASC'],
             ])->fetchAll();
             if ( !empty($arUsers)) {
-                return array_map(function ($user) {
+                $arAnswersId = array_map(function ($user) use ($userField) {
+                    return $user[$userField];
+                }, $arUsers);
+
+                $arInfoFromWebForm = [];
+                if ( !empty($arAnswersId)) {
+                    $arFilter = ['RESULT_ID' => implode('|', $arAnswersId)];
+                    $formId   = $this->appSettings['FORM_ID'];
+                    \CForm::GetResultAnswerArray($formId, $columns, $answers, $answersSID, $arFilter);
+                    foreach ($arUsers as $user) {
+                        $arInfoFromWebForm[$user['ID']]['REP_RES'] = $user[$userField];
+                        $tableFieldSid                             = \CFormMatrix::getSIDRelBase($this->tableSid, $formId);
+                        $hallFieldSid                              = \CFormMatrix::getSIDRelBase($this->hallSid, $formId);
+                        $nameFieldSid                              = \CFormMatrix::getSIDRelBase($this->nameSid, $formId);
+                        $surnameFieldSid                           = \CFormMatrix::getSIDRelBase($this->surnameSid, $formId);
+                        if (isset($answersSID[$user[$userField]][$tableFieldSid][0])) {
+                            $arInfoFromWebForm[$user['ID']]['TABLE'] = $answersSID[$user[$userField]][$tableFieldSid][0]['USER_TEXT'];
+                        }
+                        if (isset($answersSID[$user[$userField]][$hallFieldSid][0])) {
+                            $arInfoFromWebForm[$user['ID']]['HALL'] = $answersSID[$user[$userField]][$hallFieldSid][0]['ANSWER_TEXT'];
+                        }
+                        if ($user[$userField]) {
+                            $fullName = [];
+                            if (isset($answersSID[$user[$userField]][$nameFieldSid][0])) {
+                                $fullName[] = $answersSID[$user[$userField]][$nameFieldSid][0]['USER_TEXT'];
+                            }
+                            if (isset($answersSID[$user[$userField]][$surnameFieldSid][0])) {
+                                $fullName[] = $answersSID[$user[$userField]][$surnameFieldSid][0]['USER_TEXT'];
+                            }
+                            if ( !empty($fullName)) {
+                                $arInfoFromWebForm[$user['ID']]['NAME'] = implode(' ', $fullName);
+                            }
+                        }
+                    }
+                }
+
+                return array_map(function ($user) use ($arInfoFromWebForm) {
                     return [
-                        'ID'       => $user['ID'],
-                        'NAME'     => "{$user['NAME']} {$user['LAST_NAME']}",
+                        'ID'       => (int)$user['ID'],
+                        'NAME'     => $arInfoFromWebForm[$user['ID']]['NAME']
+                            ? $arInfoFromWebForm[$user['ID']]['NAME']
+                            : "{$user['NAME']} {$user['LAST_NAME']}",
                         'COMPANY'  => $user['WORK_COMPANY'],
                         'EMAIL'    => $user['EMAIL'],
                         'FORM_RES' => $user['UF_ID_COMP'],
                         'IS_HB'    => $user['UF_HB'],
+                        'TABLE'    => $arInfoFromWebForm[$user['ID']]['TABLE'],
+                        'HALL'     => $arInfoFromWebForm[$user['ID']]['HALL'],
+                        'REP_RES'  => $arInfoFromWebForm[$user['ID']]['REP_RES'],
                     ];
                 }, $arUsers);
             }
@@ -185,7 +267,7 @@ class UserHelper
             if ( !empty($arUsers)) {
                 return array_map(function ($user) {
                     return [
-                        'ID'          => $user['UF_USER_ID'],
+                        'ID'          => (int)$user['UF_USER_ID'],
                         'NAME'        => "{$user['UF_NAME']} {$user['UF_SURNAME']}",
                         'COMPANY'     => $user['UF_COMPANY'],
                         'EMAIL'       => $user['UF_EMAIL'],

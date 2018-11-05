@@ -33,7 +33,11 @@ class MeetingsRequest extends CBitrixComponent
      **/
     protected function checkModules()
     {
-        if ( !Loader::includeModule('doka.meetings') || !Loader::includeModule('iblock')) {
+        if (
+            !Loader::includeModule('doka.meetings') ||
+            !Loader::includeModule('iblock') ||
+            !Loader::includeModule('form')
+        ) {
             throw new Exception(self::DEFAULT_ERROR);
         }
 

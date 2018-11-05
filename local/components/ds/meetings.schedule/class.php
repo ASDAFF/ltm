@@ -17,10 +17,6 @@ class MeetingsSchedule extends CBitrixComponent
     /** @var UserHelper */
     private $userHelper;
     private $freeMeetType = 'free';
-    private $tableSid = 'SIMPLE_QUESTION_148';
-    private $hallSid = 'SIMPLE_QUESTION_732';
-    private $nameSid = 'SIMPLE_QUESTION_446';
-    private $surnameSid = 'SIMPLE_QUESTION_551';
     private $templateNameForParticipant = 'PARTICIP';
 
     public function onPrepareComponentParams($arParams): array
@@ -251,63 +247,6 @@ class MeetingsSchedule extends CBitrixComponent
     /**
      * @throws Exception
      */
-    private function getInfoFromWebForm()
-    {
-        $formId    = $this->arResult['APP_SETTINGS']['FORM_ID'];
-        $userField = $this->arResult['APP_SETTINGS']['FORM_RES_CODE'];
-
-        if ($this->arResult['USER_TYPE'] === UserHelper::PARTICIPANT_TYPE) {
-            $filterId = $this->arResult['USER_ID'];
-        } else {
-            $filterId = array_map(function ($user) {
-                return $user['ID'];
-            }, $this->arResult['PARTICIPANTS']);
-        }
-        $arUsers = \Bitrix\Main\UserTable::getList([
-            'select' => ['ID', 'NAME', $userField],
-            'filter' => ['ID' => $filterId],
-        ])->fetchAll();
-
-        $arAnswersId = array_map(function ($user) use ($userField) {
-            return $user[$userField];
-        }, $arUsers);
-        $arFilter    = ['RESULT_ID' => implode('|', $arAnswersId)];
-        CForm::GetResultAnswerArray(
-            $formId,
-            $columns,
-            $answers,
-            $answersSID,
-            $arFilter
-        );
-
-        foreach ($arUsers as $user) {
-            $this->arResult['USERS'][$user['ID']]['REP_RES'] = $user[$userField];
-            $tableFieldSid                                   = CFormMatrix::getSIDRelBase($this->tableSid, $formId);
-            $hallFieldSid                                    = CFormMatrix::getSIDRelBase($this->hallSid, $formId);
-            $nameFieldSid                                    = CFormMatrix::getSIDRelBase($this->nameSid, $formId);
-            $surnameFieldSid                                 = CFormMatrix::getSIDRelBase($this->surnameSid, $formId);
-            if (isset($answersSID[$user[$userField]][$tableFieldSid][0])) {
-                $this->arResult['USERS'][$user['ID']]['TABLE'] = $answersSID[$user[$userField]][$tableFieldSid][0]['USER_TEXT'];
-            }
-            if (isset($answersSID[$user[$userField]][$hallFieldSid][0])) {
-                $this->arResult['USERS'][$user['ID']]['HALL'] = $answersSID[$user[$userField]][$hallFieldSid][0]['ANSWER_TEXT'];
-            }
-            if ((int)$user['ID'] === (int)$this->arResult['USER_ID']) {
-                if (isset($answersSID[$user[$userField]][$nameFieldSid][0])) {
-                    $this->arResult['USERS'][$user['ID']]['NAME'] = $answersSID[$user[$userField]][$nameFieldSid][0]['USER_TEXT'];
-                }
-                if (isset($answersSID[$user[$userField]][$surnameFieldSid][0])) {
-                    $this->arResult['USERS'][$user['ID']]['SURNAME'] = $answersSID[$user[$userField]][$surnameFieldSid][0]['USER_TEXT'];
-                }
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @throws Exception
-     */
     private function getReceivers()
     {
         $isParticipant = $this->arResult['USER_TYPE'] === UserHelper::PARTICIPANT_TYPE;
@@ -356,14 +295,14 @@ class MeetingsSchedule extends CBitrixComponent
                     $schedule['company_name'] = $this->arResult['USERS'][$userId]['NAME'];
                     $schedule['company_rep']  = $this->arResult['USERS'][$userId]['COMPANY'];
                 } else {
-                    $schedule['company_rep'] = $this->arResult['USERS'][$userId]['NAME'];
-                    $schedule['company_name']  = $this->arResult['USERS'][$userId]['COMPANY'];
+                    $schedule['company_rep']  = $this->arResult['USERS'][$userId]['NAME'];
+                    $schedule['company_name'] = $this->arResult['USERS'][$userId]['COMPANY'];
                 }
-                $schedule['company_id']   = $this->arResult['USERS'][$userId]['ID'];
-                $schedule['form_res']     = $this->arResult['USERS'][$userId]['FORM_RES'];
-                $schedule['rep_res']      = $this->arResult['USERS'][$userId]['REP_RES'];
-                $schedule['hall']         = $this->arResult['USERS'][$userId]['HALL'];
-                $schedule['table']        = $this->arResult['USERS'][$userId]['TABLE'];
+                $schedule['company_id'] = $this->arResult['USERS'][$userId]['ID'];
+                $schedule['form_res']   = $this->arResult['USERS'][$userId]['FORM_RES'];
+                $schedule['rep_res']    = $this->arResult['USERS'][$userId]['REP_RES'];
+                $schedule['hall']       = $this->arResult['USERS'][$userId]['HALL'];
+                $schedule['table']      = $this->arResult['USERS'][$userId]['TABLE'];
 
                 $timeLeft              = $this->arResult['APP_SETTINGS']['TIMEOUT_VALUE'] - floor((time() - strtotime($request['UPDATED_AT'])) / 3600);
                 $schedule['time_left'] = $timeLeft > 0 ? $timeLeft : 0;
@@ -402,8 +341,8 @@ class MeetingsSchedule extends CBitrixComponent
         $userInfo          = $this->userHelper->getUserInfo($this->arResult['USER_ID'], $isParticipant);
         $userInfoForPDF    = [
             'COMPANY' => $userInfo['COMPANY'],
-            'REP'     => $userInfo['NAME'],
             'IS_HB'   => $userInfo['IS_HB'],
+            'REP'     => $userInfo['NAME'],
         ];
 
         if ($isParticipant) {
@@ -514,12 +453,12 @@ class MeetingsSchedule extends CBitrixComponent
                  ->getTimeslots()
                  ->getRequests()
                  ->getInfoAboutUsers()
-                 ->getInfoFromWebForm()
                  ->getReceivers()
                  ->createSchedule();
             if (isset($_REQUEST['mode']) && $_REQUEST['mode'] === 'pdf') {
                 $this->generatePDF();
             } else {
+                $this->getUserInfoForPDF();
                 $this->includeComponentTemplate();
             }
         } catch (\Exception $e) {
