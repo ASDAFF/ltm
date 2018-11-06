@@ -265,7 +265,6 @@ class MeetingsSchedule extends CBitrixComponent
     private function createSchedule()
     {
         $user          = ['ID' => $this->arResult['USER_ID'], 'USER_TYPE' => $this->arResult['USER_TYPE_NAME']];
-        $isParticipant = $this->arResult['USER_TYPE'] === UserHelper::PARTICIPANT_TYPE;
         foreach ($this->arResult['TIMESLOTS'] as $timeslot) {
             $arRequest = array_filter(
                 $this->arResult['USER_REQUESTS'], function ($request) use ($timeslot) {
@@ -291,13 +290,8 @@ class MeetingsSchedule extends CBitrixComponent
 
             if ( !empty($request)) {
                 $userId = $isReceiver ? $request['SENDER_ID'] : $request['RECEIVER_ID'];
-                if ($isParticipant) {
-                    $schedule['company_name'] = $this->arResult['USERS'][$userId]['NAME'];
-                    $schedule['company_rep']  = $this->arResult['USERS'][$userId]['COMPANY'];
-                } else {
-                    $schedule['company_rep']  = $this->arResult['USERS'][$userId]['NAME'];
-                    $schedule['company_name'] = $this->arResult['USERS'][$userId]['COMPANY'];
-                }
+                $schedule['company_rep']  = $this->arResult['USERS'][$userId]['NAME'];
+                $schedule['company_name'] = $this->arResult['USERS'][$userId]['COMPANY'];
                 $schedule['company_id'] = $this->arResult['USERS'][$userId]['ID'];
                 $schedule['form_res']   = $this->arResult['USERS'][$userId]['FORM_RES'];
                 $schedule['rep_res']    = $this->arResult['USERS'][$userId]['REP_RES'];

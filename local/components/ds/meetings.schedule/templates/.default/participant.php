@@ -30,10 +30,10 @@
                                 class="user-info-wind fancybox.ajax"
                                 target="_blank"
                         >
-                            <?= $item['company_rep'] ?>
+                            <?= $item['company_name'] ?>
                         </a>
                     </td>
-                    <td><?= $item['company_name'] ?></td>
+                    <td><?= $item['company_rep'] ?></td>
                 <? else: ?>
                     <td colspan="2">
                         <select name="company_id" class="chose-company" id="companys<?= $item['timeslot_id'] ?>">

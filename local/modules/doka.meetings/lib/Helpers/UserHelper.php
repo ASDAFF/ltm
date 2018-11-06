@@ -168,13 +168,21 @@ class UserHelper
         } else {
             $arUser = RegistrGuestTable::getRowByUserID($userId);
             if ( !empty($arUser)) {
+                $hall = '';
+                if ($arUser['UF_HALL']) {
+                    $rsHall = \CUserFieldEnum::GetList([], ['ID' => $arUser['UF_HALL']]);
+                    if ($arHall = $rsHall->GetNext()) {
+                        $hall = $arHall['VALUE'];
+                    }
+                }
+
                 return [
                     'ID'          => $userId,
                     'NAME'        => "{$arUser['UF_NAME']} {$arUser['UF_SURNAME']}",
                     'COMPANY'     => $arUser['UF_COMPANY'],
                     'EMAIL'       => $arUser['UF_EMAIL'],
                     'CITY'        => $arUser['UF_CITY'],
-                    'HALL'        => $arUser['UF_HALL'],
+                    'HALL'        => $hall,
                     'TABLE'       => $arUser['UF_TABLE'],
                     'MOB'         => $arUser['UF_MOBILE'],
                     'PHONE'       => $arUser['UF_PHONE'],
@@ -265,14 +273,32 @@ class UserHelper
                 'order'  => ['UF_COMPANY' => 'ASC'],
             ])->fetchAll();
             if ( !empty($arUsers)) {
-                return array_map(function ($user) {
+                $halls   = [];
+                $arHalls = array_values(
+                    array_filter(
+                        array_map(function ($user) {
+                            return $user['UF_HALL'];
+                        }, $arUsers),
+                        function ($hall) {
+                            return (bool)$hall;
+                        }
+                    )
+                );
+                if ( !empty($arHalls)) {
+                    $rsHall = \CUserFieldEnum::GetList([], ['ID' => $arHalls]);
+                    if ($arHall = $rsHall->GetNext()) {
+                        $halls[$arHall['ID']] = $arHall['VALUE'];
+                    }
+                }
+
+                return array_map(function ($user) use ($halls) {
                     return [
                         'ID'          => (int)$user['UF_USER_ID'],
                         'NAME'        => "{$user['UF_NAME']} {$user['UF_SURNAME']}",
                         'COMPANY'     => $user['UF_COMPANY'],
                         'EMAIL'       => $user['UF_EMAIL'],
                         'CITY'        => $user['UF_CITY'],
-                        'HALL'        => $user['UF_HALL'],
+                        'HALL'        => $halls[$user['UF_HALL']],
                         'TABLE'       => $user['UF_TABLE'],
                         'MOB'         => $user['UF_MOBILE'],
                         'PHONE'       => $user['UF_PHONE'],
