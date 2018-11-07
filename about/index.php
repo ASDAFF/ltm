@@ -18,7 +18,7 @@ if(LANGUAGE_ID == "ru")
 {
 ?>
 <p>
-	 Выставка Luxury Travel Mart давно уже стала одним из самых обсуждаемых и успешных профессиональных мероприятий в сфере роскошного отдыха. В 2019&nbsp;году LTM отпразднует&nbsp;15-летний юбилей. За эти годы выставка Luxury Travel Mart заслуженно завоевала репутацию самого эффективного мероприятия в индустрии роскошного туризма в России среди международных гостиничных групп и компаний.
+	 Выставка Luxury Travel Mart давно уже стала одним из самых обсуждаемых и успешных профессиональных мероприятий в сфере роскошного отдыха. В 2019 году LTM отпразднует 15-летний юбилей. За эти годы выставка Luxury Travel Mart заслуженно завоевала репутацию самого эффективного мероприятия в индустрии роскошного туризма в России среди международных гостиничных групп и компаний.
 </p>
 <p>
 	 Luxury Travel Mart – мероприятие категории «бизнес для бизнеса» ориентировано на компании, предлагающие услуги элитного туризма и ставящие своей целью установить новые контакты и укрепить связи с партнерами из стран СНГ – туристическими компаниями, работающими с VIP-клиентами.
@@ -42,33 +42,31 @@ if(LANGUAGE_ID == "ru")
 	 Для регистрации по программе приглашенных региональных гостей, пожалуйста, свяжитесь с нами по <a href="/contacts">электронной почте.</a>
 </p>
 <p>
-	 В настоящее время выставки Luxury Travel Mart проводятся 5 раз&nbsp;в год в следующих городах:
+	 В настоящее время выставки Luxury Travel Mart проводятся 5 раз в год в следующих городах:
 </p>
-<p>
- <b>Luxury Travel Mart Киев, Украина</b> <br>
-	 Дата проведения в 2018: 25&nbsp;сентября <br>
-	 Место проведения: InterContinental Kiev
-</p>
-<p>
- <b>Luxury Travel Mart Алматы, Казахстан</b> <br>
-	 Дата проведения в 2018: 28&nbsp;сентября <br>
-	 Место проведения: The Ritz-Carlton, Almaty
-</p>
-<p>
- <b>Осенний Luxury Travel Mart Москва, Россия</b> <br>
-	 Дата проведения в 2018: 2&nbsp;октября <br>
-	 Место проведения: The Ritz-Carlton, Moscow
-</p>
-<p>
- <b>Весенний Luxury Travel Mart Москва, Россия&nbsp;</b><br>
-	 Даты проведения в 2019: 28 февраля&nbsp;–&nbsp;1 марта<br>
-	 Место проведения: Hyatt Regency Moscow Petrovsky Park<br>
-</p>
-<p>
- <b>Весенний Luxury Travel Mart Алматы, Казахстан&nbsp;</b><br>
-	 Дата&nbsp;проведения в 2019: 5&nbsp;марта&nbsp;<br>
-	 Место проведения: The Ritz-Carlton, Almaty
-</p>
+<p><b>Весенний Luxury Travel Mart Москва, Россия </b><br>
+	Даты проведения в 2019: 28 февраля – 1 марта<br>
+	Место проведения: Hyatt Regency Moscow Petrovsky Park</p>
+
+<p><b>Весенний Luxury Travel Mart Алматы, Казахстан </b><br>
+	Дата проведения в 2019: 5 марта <br>
+	Место проведения: The Ritz-Carlton, Almaty</p>
+
+<p><b>Luxury Travel Mart Киев, Украина </b><br>
+	Дата проведения в 2019: 24 сентября <br>
+	Место проведения: InterContinental Kiev</p>
+
+<p><b>Luxury Travel Mart Алматы, Казахстан </b><br>
+	Дата проведения в 2019: 27 сентября <br>
+	Место проведения: The Ritz-Carlton, Almaty</p>
+
+<p><b>Осенний Luxury Travel Mart Москва, Россия </b><br>
+	Дата проведения в 2019: 1 октября <br>
+	Место проведения: The Ritz-Carlton, Moscow</p>
+
+<p><b>Весенний Luxury Travel Mart Москва, Россия </b><br>
+	Даты проведения в 2020: 28-29 февраля<br>
+	Место проведения: Hyatt Regency Moscow Petrovsky Park</p>
  <?
 }
 elseif(LANGUAGE_ID == "en")
@@ -95,10 +93,10 @@ elseif(LANGUAGE_ID == "en")
 <ul class="static_ul">
 	<li>The most successful event in this niche in the CIS</li>
 	<li>Number of repeat exhibitors – over 90%</li>
-	<li>360&nbsp;exhibitors participated in LTM Moscow Spring 2018&nbsp;and 146 in Moscow Autumn 2017, 92&nbsp;at LTM Kiev 2017&nbsp;and 124&nbsp;at LTM Almaty 2017&nbsp;(maximum capacity at all events)</li>
-	<li>Over 3800 guests visited LTM events in Moscow, Kiev, Almaty in 2017/2018</li>
+	<li>360 exhibitors participated in LTM Moscow Spring 2018 and 146 in Moscow Autumn 2018, 98 at LTM Kiev 2018 and 120 at LTM Almaty 2018 (maximum capacity at all events)</li>
+	<li>Over 4000 guests visited LTM events in Moscow, Kiev, Almaty in 2018</li>
 	<li>Over 1200 guests visited LTM Spring in Moscow in 2018</li>
-	<li>560 hosted buyers from the Russian regions and the CIS in 2017&nbsp;at LTM events and 360 hosted buyers at LTM Spring in Moscow 2018&nbsp;only</li>
+	<li>560 hosted buyers from the Russian regions and the CIS in 2018 at LTM events and 360 hosted buyers at LTM Spring in Moscow 2018 only</li>
 	<li>98% of exhibitors considered LTM to be an extremely useful and successful events</li>
 	<li>LTM is the only event in the CIS with an extensive Hosted buyers program</li>
 	<li>All buyers are carefully pre-selected and visitors are by invitation only, which guarantees the highcaliber of the clientele and travel industry professionals</li>
@@ -106,56 +104,41 @@ elseif(LANGUAGE_ID == "en")
 <p>
 	 Luxury Travel Mart currently organises 5 events a year:
 </p>
-<p>
- <b>Luxury Travel Mart Kiev, Ukraine</b>&nbsp;
-</p>
-<p>
-	 Date for 2018: September 25&nbsp;&nbsp;
-</p>
-<p>
-	 Venue: InterContinental Kiev <br>
-	 Approximate number of guests: 200-220 at the morning session, 50 hosted buyers, 300-350 guests at the evening session.
-</p>
-<p>
- <b>Luxury Travel Mart Almaty, Kazakhstan, Autumn Edition</b>&nbsp;
-</p>
-<p>
-	 Date for 2018: September 28&nbsp;&nbsp;
-</p>
-<p>
-	 Venue: The Ritz-Carlton, Almaty <br>
-	 Approximate number of guests: 110-125 at the morning session, 50 hosted buyers, 200-230 guests at the evening session.
-</p>
-<p>
- <b>Luxury Travel Mart Moscow, Russia, Autumn Edition</b>&nbsp;
-</p>
-<p>
-	 Date for 2018: October 2&nbsp;&nbsp;
-</p>
-<p>
-	 Venue: The Ritz-Carlton, Moscow <br>
-	 Approximate number of guests: 300-350 at the morning session, 145 hosted buyers, 800-850 guests at the evening session.
-</p>
-<p>
- <b>Luxury Travel Mart Moscow, Russia, Spring Edition&nbsp;</b>
-</p>
-<p>
-	 Dates for 2019: February&nbsp;28&nbsp;–&nbsp;March 1&nbsp;(two-days event) &nbsp; &nbsp;&nbsp;
-</p>
-<p>
-	 Venue:&nbsp;Hyatt Regency Moscow Petrovsky Park&nbsp;<br>
-	 Approximate number of guests: 360 hosted buyers at the first day, 400&nbsp;at the morning session of the second day, over 1000 guests at the evening reception.<b><br>
- </b>
-</p>
-<p>
- <b>Luxury Travel Mart Almaty, Kazakhstan</b><b>, Spring Edition&nbsp;</b><b>&nbsp;</b>
-</p>
-<p>
-	 Date for 2019: March 5&nbsp; &nbsp;
-</p>
-<p>
-	 Venue: The Ritz-Carlton, Almaty&nbsp;<br>
-	 Approximate number of guests: 110-125 at the morning session, 50 hosted buyers, 200-230 guests at the evening session.
-</p>
+
+<p><b>Luxury Travel Mart Moscow, Russia, Spring Edition </b></p>
+
+<p>Dates for 2019: February 28 – March 1 (two-days event)</p>
+
+<p>Venue: Hyatt Regency Moscow Petrovsky Park<br> 
+	Approximate number of guests: 360 hosted buyers at the first day, 400 at the morning session of the second day, over 1000 guests at the evening reception.</p>
+
+<p><b>Luxury Travel Mart Almaty, Kazakhstan, Spring Edition  </b></p>
+
+<p>Date for 2019: March 5</p>
+
+<p>Venue: The Ritz-Carlton, Almaty<br>
+	Approximate number of guests: 110-125 at the morning session, 50 hosted buyers, 200-230 guests at the evening session.</p>
+
+<p><b>Luxury Travel Mart Kiev, Ukraine </b></p>
+
+<p>Date for 2019: September 24</p>
+
+<p>Venue: InterContinental Kiev<br>
+	Approximate number of guests: 200-220 at the morning session, 50 hosted buyers, 300-350 guests at the evening session.</p>
+
+<p><b>Luxury Travel Mart Almaty, Kazakhstan, Autumn Edition </b></p>
+
+<p>Date for 2019: September 27  </p> 
+
+<p>Venue: The Ritz-Carlton, Almaty<br> 
+	Approximate number of guests: 110-125 at the morning session, 50 hosted buyers, 200-230 guests at the evening session.</p>
+
+<p><b>Luxury Travel Mart Moscow, Russia, Autumn Edition </b></p>
+
+<p>Date for 2019: October 1   </p>
+
+<p>Venue: The Ritz-Carlton, Moscow<br> 
+	Approximate number of guests: 300-350 at the morning session, 145 hosted buyers, 800-850 guests at the evening session.</p>
+
  <?
 }?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
