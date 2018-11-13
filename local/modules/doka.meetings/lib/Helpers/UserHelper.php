@@ -200,11 +200,12 @@ class UserHelper
     /**
      * @param array $arUserId
      * @param bool $isParticipant
+     * @param bool $onlyHB
      *
      * @throws \Bitrix\Main\ArgumentException
      * @return array
      */
-    public function getUsersInfo($arUserId, $isParticipant = false)
+    public function getUsersInfo($arUserId, $isParticipant = false, $onlyHB = false)
     {
         if ($isParticipant) {
             $userField = $this->appSettings['FORM_RES_CODE'];
@@ -267,9 +268,13 @@ class UserHelper
                 }, $arUsers);
             }
         } else {
+            $filter = ['UF_USER_ID' => $arUserId];
+            if ($onlyHB) {
+                $filter['UF_HB'] = 1;
+            }
             $arUsers = RegistrGuestTable::getList([
                 'select' => ['*', 'UF_HB' => 'USER.UF_HB', 'COUNTRY_NAME' => 'COUNTRY.UF_VALUE'],
-                'filter' => ['UF_USER_ID' => $arUserId],
+                'filter' => $filter,
                 'order'  => ['UF_COMPANY' => 'ASC'],
             ])->fetchAll();
             if ( !empty($arUsers)) {
@@ -286,7 +291,7 @@ class UserHelper
                 );
                 if ( !empty($arHalls)) {
                     $rsHall = \CUserFieldEnum::GetList([], ['ID' => $arHalls]);
-                    if ($arHall = $rsHall->GetNext()) {
+                    while ($arHall = $rsHall->GetNext()) {
                         $halls[$arHall['ID']] = $arHall['VALUE'];
                     }
                 }

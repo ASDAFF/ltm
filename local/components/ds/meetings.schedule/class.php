@@ -206,6 +206,7 @@ class MeetingsSchedule extends CBitrixComponent
      */
     private function getInfoAboutUsers()
     {
+        $isHbExhibition  = $this->arResult['APP_SETTINGS']['IS_HB'];
         $users = array_map(function ($request) {
             if ((int)$request['SENDER_ID'] === (int)$this->arResult['USER_ID']) {
                 $user = $request['RECEIVER_ID'];
@@ -226,7 +227,7 @@ class MeetingsSchedule extends CBitrixComponent
 
         $this->arResult['GUESTS'] = $this->userHelper->getUsersInfo(array_map(function ($user) {
             return $user['USER_ID'];
-        }, $guests));
+        }, $guests), false, $isHbExhibition);
 
         $this->arResult['PARTICIPANTS'] = $this->userHelper->getUsersInfo(array_map(function ($user) {
             return $user['USER_ID'];
@@ -249,14 +250,15 @@ class MeetingsSchedule extends CBitrixComponent
      */
     private function getReceivers()
     {
-        $isParticipant = $this->arResult['USER_TYPE'] === UserHelper::PARTICIPANT_TYPE;
+        $isParticipant  = $this->arResult['USER_TYPE'] === UserHelper::PARTICIPANT_TYPE;
+        $isHbExhibition = $this->arResult['APP_SETTINGS']['IS_HB'];
         if ($this->arResult['USER_TYPE'] === UserHelper::PARTICIPANT_TYPE) {
             $users = CGroup::GetGroupUser($this->arResult['APP_SETTINGS']['GUESTS_GROUP']);
         } else {
             $users = CGroup::GetGroupUser($this->arResult['APP_SETTINGS']['MEMBERS_GROUP']);
         }
         if ( !empty($users)) {
-            $this->arResult['LIST'] = $this->userHelper->getUsersInfo($users, !$isParticipant);
+            $this->arResult['LIST'] = $this->userHelper->getUsersInfo($users, !$isParticipant, $isHbExhibition);
         }
 
         return $this;
@@ -264,7 +266,7 @@ class MeetingsSchedule extends CBitrixComponent
 
     private function createSchedule()
     {
-        $user          = ['ID' => $this->arResult['USER_ID'], 'USER_TYPE' => $this->arResult['USER_TYPE_NAME']];
+        $user = ['ID' => $this->arResult['USER_ID'], 'USER_TYPE' => $this->arResult['USER_TYPE_NAME']];
         foreach ($this->arResult['TIMESLOTS'] as $timeslot) {
             $arRequest = array_filter(
                 $this->arResult['USER_REQUESTS'], function ($request) use ($timeslot) {
@@ -289,14 +291,14 @@ class MeetingsSchedule extends CBitrixComponent
             ];
 
             if ( !empty($request)) {
-                $userId = $isReceiver ? $request['SENDER_ID'] : $request['RECEIVER_ID'];
+                $userId                   = $isReceiver ? $request['SENDER_ID'] : $request['RECEIVER_ID'];
                 $schedule['company_rep']  = $this->arResult['USERS'][$userId]['NAME'];
                 $schedule['company_name'] = $this->arResult['USERS'][$userId]['COMPANY'];
-                $schedule['company_id'] = $this->arResult['USERS'][$userId]['ID'];
-                $schedule['form_res']   = $this->arResult['USERS'][$userId]['FORM_RES'];
-                $schedule['rep_res']    = $this->arResult['USERS'][$userId]['REP_RES'];
-                $schedule['hall']       = $this->arResult['USERS'][$userId]['HALL'];
-                $schedule['table']      = $this->arResult['USERS'][$userId]['TABLE'];
+                $schedule['company_id']   = $this->arResult['USERS'][$userId]['ID'];
+                $schedule['form_res']     = $this->arResult['USERS'][$userId]['FORM_RES'];
+                $schedule['rep_res']      = $this->arResult['USERS'][$userId]['REP_RES'];
+                $schedule['hall']         = $this->arResult['USERS'][$userId]['HALL'];
+                $schedule['table']        = $this->arResult['USERS'][$userId]['TABLE'];
 
                 $timeLeft              = $this->arResult['APP_SETTINGS']['TIMEOUT_VALUE'] - floor((time() - strtotime($request['UPDATED_AT'])) / 3600);
                 $schedule['time_left'] = $timeLeft > 0 ? $timeLeft : 0;
@@ -452,7 +454,6 @@ class MeetingsSchedule extends CBitrixComponent
             if (isset($_REQUEST['mode']) && $_REQUEST['mode'] === 'pdf') {
                 $this->generatePDF();
             } else {
-                $this->getUserInfoForPDF();
                 $this->includeComponentTemplate();
             }
         } catch (\Exception $e) {
