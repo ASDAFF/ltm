@@ -1,5 +1,5 @@
 <?
-define(DOKA_MEETINGS_MODULE_DIR, dirname(__FILE__));
+define('DOKA_MEETINGS_MODULE_DIR', dirname(__FILE__));
 
 CModule::AddAutoloadClasses('doka.meetings', array(
     'Doka\Meetings\Settings'                           => 'classes/general/Settings.php',
@@ -20,5 +20,6 @@ CModule::AddAutoloadClasses('doka.meetings', array(
     'Spectr\Meeting\Models\RegistrGuestTable'          => 'lib/Models/RegistrGuestTable.php',
     'Spectr\Meeting\Models\CompanyScheduleTable'       => 'lib/Models/CompanyScheduleTable.php',
     'Spectr\Meeting\Models\GuestCountriesTable'        => 'lib/Models/GuestCountriesTable.php',
-    'Spectr\Meeting\Helpers\UserHelper'                => 'lib/Helpers/UserHelper.php',
+    'Spectr\Meeting\Helpers\User'                      => 'lib/Helpers/User.php',
+    'Spectr\Meeting\Helpers\App'                       => 'lib/Helpers/App.php',
 ));

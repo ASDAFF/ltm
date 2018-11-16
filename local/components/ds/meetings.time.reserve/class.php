@@ -5,7 +5,7 @@ if ( !defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
 use Bitrix\Main\Localization\Loc;
 use Spectr\Meeting\Models\RequestTable;
-use Spectr\Meeting\Helpers\UserHelper;
+use Spectr\Meeting\Helpers\User;
 use Bitrix\Main\Type\DateTime;
 
 CBitrixComponent::includeComponentClass('ds:meetings.request');
@@ -44,7 +44,7 @@ class MeetingsTimeReserve extends MeetingsRequest
     {
         global $USER;
         $userId = (int)$_REQUEST['id'];
-        if ($userId <= 0 || $this->arResult['USER_TYPE'] !== UserHelper::ADMIN_TYPE) {
+        if ($userId <= 0 || $this->arResult['USER_TYPE'] !== User::ADMIN_TYPE) {
             $this->arResult['USER_ID'] = $USER->GetID();
         } else {
             $this->arResult['USER_ID'] = $userId;
@@ -90,7 +90,7 @@ class MeetingsTimeReserve extends MeetingsRequest
      */
     private function checkIsParticipant()
     {
-        if ($this->arResult['USER_TYPE'] !== UserHelper::PARTICIPANT_TYPE && $this->arResult['USER_TYPE'] !== UserHelper::ADMIN_TYPE) {
+        if ($this->arResult['USER_TYPE'] !== User::PARTICIPANT_TYPE && $this->arResult['USER_TYPE'] !== User::ADMIN_TYPE) {
             throw new Exception(Loc::getMessage('ERROR_NOT_PARTICIPANT'));
         }
     }
@@ -151,9 +151,8 @@ class MeetingsTimeReserve extends MeetingsRequest
         try {
             $this->checkModules()
                  ->checkAuth()
-                 ->getAppId()
-                 ->getAppSettings()
-                 ->createHelperInstance()
+                 ->init()
+                 ->getApp()
                  ->getUserType()
                  ->checkRestRequestParams()
                  ->prepareFields()

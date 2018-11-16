@@ -1,5 +1,7 @@
 <?php
-if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die();
+if ( !defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
+    die();
+}
 
 use Bitrix\Main\Loader;
 use Spectr\Meeting\Models\SettingsTable;
@@ -13,10 +15,11 @@ class MeetingsWishlist extends CBitrixComponent
 
     public function onPrepareComponentParams(array $arParams): array
     {
-        $result = $arParams;
-        $result['EXHIBITION_ID'] = (int)$arParams['EXHIBITION_ID'];
-        $result['USER_ID'] = (int)$arParams['USER_ID'];
+        $result                         = $arParams;
+        $result['EXHIBITION_ID']        = (int)$arParams['EXHIBITION_ID'];
+        $result['USER_ID']              = (int)$arParams['USER_ID'];
         $result['ADD_LINK_TO_WISHLIST'] = $result['ADD_LINK_TO_WISHLIST'] ?: "cabinet/service/wish.php";
+
         return $result;
     }
 
@@ -25,14 +28,14 @@ class MeetingsWishlist extends CBitrixComponent
         $this->checkComponentTemplate();
         if ($this->request->get("mode") !== 'pdf') {
             $this->arResult = [
-                'WISHLIST_FOR_USER' => $this->getWishListForUser(),
+                'WISHLIST_FOR_USER'  => $this->getWishListForUser(),
                 'WISHLIST_FROM_USER' => $this->getWishListFromUser(),
             ];
             $this->includeComponentTemplate();
         } else {
             global $APPLICATION;
             $APPLICATION->RestartBuffer();
-            $this->generetePdf();
+            $this->generatePdf();
         }
 
     }
@@ -47,36 +50,38 @@ class MeetingsWishlist extends CBitrixComponent
     public function getWishListForUser(): array
     {
         $result = WishlistTable::getWishlistForUser($this->arParams['USER_ID'], $this->arParams['EXHIBITION_ID']);
+
         return $result;
     }
 
     public function getWishListFromUser(): array
     {
         $result = WishlistTable::getWishlistFromUser($this->arParams['USER_ID'], $this->arParams['EXHIBITION_ID']);
+
         return $result;
     }
 
-    public function generetePdf()
+    public function generatePdf()
     {
-        $wishListForUser = $this->getWishListForUser();
+        $wishListForUser  = $this->getWishListForUser();
         $wishListFromUser = $this->getWishListFromUser();
-        $exhibSettings = SettingsTable::getSettingsByCode($this->arParams['EXHIBITION_CODE']);
-        $exhibition = SettingsTable::getExhibition([ 'CODE' => $this->arParams['EXHIBITION_CODE']]);
-//        c($exhibition);
-        $filter = ['ID' => $this->arParams['USER_ID']];
-        $select = [
-            'SELECT' => [$exhibSettings['REPR_PROP_CODE']],
-            'FIELDS' => ['WORK_COMPANY', 'ID'],
-        ];
-        $rsUser = CUser::GetList(($by = "id"), ($order = "desc"), $filter, $select);
+        $exhibSettings    = SettingsTable::getSettingsByCode($this->arParams['EXHIBITION_CODE']);
+        $exhibition       = SettingsTable::getExhibition(['CODE' => $this->arParams['EXHIBITION_CODE']]);
+        $filter      = ['ID' => $this->arParams['USER_ID']];
+        $select      = ['SELECT' => [$exhibSettings['REPR_PROP_CODE']], 'FIELDS' => ['WORK_COMPANY', 'ID']];
+        $by          = 'id';
+        $order       = 'desc';
+        $fioParticip = '';
+        $arResult    = [];
+        $rsUser      = CUser::GetList($by, $order, $filter, $select);
         if ($arUser = $rsUser->Fetch()) {
             if ($fioParticip == '') {
                 $fioParticip = $arUser[$exhibSettings['REPR_PROP_CODE']];
             }
             $arResult['USER'] = [
-                'REP' => $fioParticip,
+                'REP'     => $fioParticip,
                 'COMPANY' => $arUser['WORK_COMPANY'],
-                'CITY' => $arResult['CITY'],
+                'CITY'    => $arResult['CITY'],
                 'COL_REP' => $col_rep,
             ];
         }
@@ -86,7 +91,8 @@ class MeetingsWishlist extends CBitrixComponent
         $pdf->setPrintFooter(false);
         $pdf->AddFont('freeserif', 'I', 'freeserifi.php');
         $pdf->AddPage();
-        $pdf->ImageSVG($file = DOKA_MEETINGS_MODULE_DIR . '/images/logo.svg', $x = 30, $y = 5, $w = '150', $h = '', $link = '', $align = '', $palign = '', $border = 0, $fitonpage = false);
+        $pdf->ImageSVG($file = DOKA_MEETINGS_MODULE_DIR.'/images/logo.svg', $x = 30, $y = 5, $w = '150', $h = '', $link = '',
+            $align = '', $palign = '', $border = 0, $fitonpage = false);
         $pdf->setXY(0, 23);
         $pdf->SetFont('freeserif', 'B', 17);
         // Если в свойствах выставки отмечено "Есть сессия НВ"
@@ -94,26 +100,27 @@ class MeetingsWishlist extends CBitrixComponent
             // Если в настройках встреч отмечено "Сессия с НВ"
             if ($exhibSettings["IS_HB"]) {
                 $exhibition["PROPERTIES"]["V_RU"]['VALUE'] .= " Hosted Buyers сессия\n";
-                $dayline = "День 1, 1 марта 2018";
+                $dayline                                   = "День 1, 1 марта 2018";
             } else {
-                $dayline = "День 2, 2 марта 2018";
+                $dayline                                   = "День 2, 2 марта 2018";
                 $exhibition["PROPERTIES"]["V_RU"]['VALUE'] .= "\n";
             }
         }
-        $pdf->multiCell(210, 5, "Список неподтвержденных запросов на\n" . $exhibition["PROPERTIES"]["V_RU"]['VALUE'] . $dayline, 0, C);
+        $pdf->multiCell(210, 5, "Список неподтвержденных запросов на\n".$exhibition["PROPERTIES"]["V_RU"]['VALUE'].$dayline, 0,
+            C);
         $pdf->SetFont('freeserif', '', 15);
         $pdf->setXY(30, $pdf->getY() + 2);
         if (in_array($arResult["APP_ID"], [1, 6]) && $arResult['IS_HB']) {
             $pdf->multiCell(210, 5, $arResult["USER"]['COMPANY'], 0, L);
         } else {
-            $pdf->multiCell(210, 5, $arResult["USER"]['COMPANY'] . ", " . $arResult["USER"]['CITY'], 0, L);
+            $pdf->multiCell(210, 5, $arResult["USER"]['COMPANY'].", ".$arResult["USER"]['CITY'], 0, L);
         }
 
         $pdf->setXY(30, $pdf->getY() + 1);
 
         //если есть коллега, выводим его через запятую
-        if (!empty($arResult["USER"]["REP"]) && !empty(trim($arResult["USER"]["COL_REP"]))) {
-            $pdf->multiCell(300, 5, trim($arResult["USER"]["REP"]) . ", " . trim($arResult["USER"]["COL_REP"]), 0, L);
+        if ( !empty($arResult["USER"]["REP"]) && !empty(trim($arResult["USER"]["COL_REP"]))) {
+            $pdf->multiCell(300, 5, trim($arResult["USER"]["REP"]).", ".trim($arResult["USER"]["COL_REP"]), 0, L);
         } else {
             $pdf->multiCell(300, 5, trim($arResult["USER"]["REP"]), 0, L);
         }
@@ -128,7 +135,7 @@ class MeetingsWishlist extends CBitrixComponent
 
 
         /* Формируем таблицу */
-        if (!$wishListFromUser) {
+        if ( !$wishListFromUser) {
             $pdf->setXY(0, $pdf->getY() + 5);
             $pdf->SetFont('freeserif', '', 13);
             $pdf->multiCell(210, 5, "Этот список запросов пуст.", 0, C);
@@ -143,13 +150,13 @@ class MeetingsWishlist extends CBitrixComponent
 				<td align="center" width="160">Представитель</td>
 				<td align="center" width="90">Причина</td>
 			</tr>';
-            $i = 1;
+            $i   = 1;
             foreach ($wishListFromUser as $item) {
                 $tbl .= '<tr>
-				<td align="center">' . $i . '</td>
-				<td>' . $item["COMPANY_NAME"] . '</td>
-				<td>' . $item["COMPANY_REP"] . '</td>
-				<td>' . $arResult['STATUS_REQUEST'][$item["REASON"]] . '</td>
+				<td align="center">'.$i.'</td>
+				<td>'.$item["COMPANY_NAME"].'</td>
+				<td>'.$item["COMPANY_REP"].'</td>
+				<td>'.$arResult['STATUS_REQUEST'][$item["REASON"]].'</td>
 			</tr>';
                 $i++;
             }
@@ -166,7 +173,7 @@ class MeetingsWishlist extends CBitrixComponent
         $pdf->setX(0);
         $pdf->multiCell(210, 5, "(возможно, вы отклонили запросы от этих участников или ваше расписание уже полное):", 0, C);
 
-        if (!$wishListForUser) {
+        if ( !$wishListForUser) {
             $pdf->setXY(0, $pdf->getY() + 5);
             $pdf->SetFont('freeserif', '', 13);
             $pdf->multiCell(210, 5, "Этот список запросов пуст.", 0, C);
@@ -181,13 +188,13 @@ class MeetingsWishlist extends CBitrixComponent
 				<td align="center" width="160">Представитель</td>
 				<td align="center" width="90">Причина</td>
 			</tr>';
-            $i = 1;
+            $i   = 1;
             foreach ($wishListForUser as $item) {
                 $tbl .= '<tr>
-				<td align="center">' . $i . '</td>
-				<td>' . $item["COMPANY_NAME"] . '</td>
-				<td>' . $item["COMPANY_REP"] . '</td>
-				<td>' . $arResult['STATUS_REQUEST'][$item["REASON"]] . '</td>
+				<td align="center">'.$i.'</td>
+				<td>'.$item["COMPANY_NAME"].'</td>
+				<td>'.$item["COMPANY_REP"].'</td>
+				<td>'.$arResult['STATUS_REQUEST'][$item["REASON"]].'</td>
 			</tr>';
                 $i++;
             }

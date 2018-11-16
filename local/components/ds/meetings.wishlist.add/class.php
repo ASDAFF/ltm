@@ -6,7 +6,7 @@ use Spectr\Meeting\Models\WishlistTable;
 
 Loader::includeModule('doka.meetings');
 
-class MeetingsWishlist extends CBitrixComponent
+class MeetingsWishlistAdd extends CBitrixComponent
 {
     private $componentTemplate = 'guest';
 

@@ -3,19 +3,16 @@ if ( !defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     die();
 }
 
-use Bitrix\Main\Loader;
 use Bitrix\Main\Localization\Loc;
-use Spectr\Meeting\Models\SettingsTable;
-use Spectr\Meeting\Helpers\UserHelper;
+use Spectr\Meeting\Helpers\User;
 use Spectr\Meeting\Models\TimeslotTable;
 use Spectr\Meeting\Models\RequestTable;
 use Spectr\Meeting\Models\RegistrGuestColleagueTable;
 
-class MeetingsSchedule extends CBitrixComponent
+CBitrixComponent::includeComponentClass('ds:meetings.request');
+
+class MeetingsSchedule extends MeetingsRequest
 {
-    const DEFAULT_ERROR = '404 Not Found';
-    /** @var UserHelper */
-    private $userHelper;
     private $freeMeetType = 'free';
     private $templateNameForParticipant = 'PARTICIP';
 
@@ -40,64 +37,6 @@ class MeetingsSchedule extends CBitrixComponent
 
     /**
      * @throws Exception
-     **/
-    private function checkModules()
-    {
-        if (
-            !Loader::includeModule('doka.meetings') ||
-            !Loader::includeModule('iblock') ||
-            !Loader::includeModule('form')
-        ) {
-            throw new Exception(self::DEFAULT_ERROR);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @throws Exception
-     */
-    private function getApp()
-    {
-        if ($this->arParams['EXHIBITION_CODE']) {
-            $arFilter                           = [
-                'IBLOCK_ID' => $this->arParams['EXHIBITION_IBLOCK_ID'],
-                'CODE'      => $this->arParams['EXHIBITION_CODE'],
-            ];
-            $exhibition                         = SettingsTable::getExhibition($arFilter);
-            $this->arResult['PARAM_EXHIBITION'] = $exhibition['PARAM_EXHIBITION'];
-            if ($this->arParams['IS_HB']) {
-                $this->arResult['APP_ID'] = $this->arResult['PARAM_EXHIBITION']['PROPERTIES']['APP_HB_ID']['VALUE'];
-            } else {
-                $this->arResult['APP_ID'] = $this->arResult['PARAM_EXHIBITION']['PROPERTIES']['APP_ID']['VALUE'];
-            }
-        }
-        if ((int)$this->arResult['APP_ID'] <= 0) {
-            throw new Exception(self::DEFAULT_ERROR);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @throws Exception
-     */
-    private function createHelperInstance()
-    {
-        $this->userHelper = new UserHelper($this->arResult['APP_ID']);
-
-        return $this;
-    }
-
-    private function getAppSettings()
-    {
-        $this->arResult['APP_SETTINGS'] = SettingsTable::getById($this->arResult['APP_ID'])->fetch();
-
-        return $this;
-    }
-
-    /**
-     * @throws Exception
      */
     private function getUserId()
     {
@@ -115,26 +54,26 @@ class MeetingsSchedule extends CBitrixComponent
         return $this;
     }
 
-    private function getUserType()
+    protected function getUserType()
     {
         global $USER;
         if (isset($_REQUEST["type"]) && $_REQUEST["type"] !== '') {
-            $this->arResult['USER_TYPE'] = $_REQUEST['type'] === 'p' ? UserHelper::PARTICIPANT_TYPE : UserHelper::GUEST_TYPE;
+            $this->arResult['USER_TYPE'] = $_REQUEST['type'] === 'p' ? User::PARTICIPANT_TYPE : User::GUEST_TYPE;
         } else {
-            $this->arResult['USER_TYPE'] = UserHelper::$userTypes[UserHelper::PARTICIPANT_TYPE] === (string)$this->arParams['USER_TYPE']
-                ? UserHelper::PARTICIPANT_TYPE : UserHelper::GUEST_TYPE;
+            $this->arResult['USER_TYPE'] = User::$userTypes[User::PARTICIPANT_TYPE] === (string)$this->arParams['USER_TYPE']
+                ? User::PARTICIPANT_TYPE : User::GUEST_TYPE;
         }
 
         if ( !$this->arResult['USER_TYPE']) {
             if ($USER->IsAdmin()) {
-                $this->arResult['USER_TYPE'] = $this->userHelper->getUserTypeById($_REQUEST['id']);
+                $this->arResult['USER_TYPE'] = $this->user->getUserTypeById($_REQUEST['id']);
             }
             if ( !$this->arResult['USER_TYPE']) {
-                $this->arResult['USER_TYPE'] = $this->userHelper->getUserType();
+                $this->arResult['USER_TYPE'] = $this->user->getUserType();
             }
         }
 
-        $this->arResult['USER_TYPE_NAME'] = UserHelper::$userTypes[$this->arResult['USER_TYPE']];
+        $this->arResult['USER_TYPE_NAME'] = User::$userTypes[$this->arResult['USER_TYPE']];
 
         return $this;
     }
@@ -206,30 +145,30 @@ class MeetingsSchedule extends CBitrixComponent
      */
     private function getInfoAboutUsers()
     {
-        $isHbExhibition  = $this->arResult['APP_SETTINGS']['IS_HB'];
-        $users = array_map(function ($request) {
+        $isHbExhibition = $this->arResult['APP_SETTINGS']['IS_HB'];
+        $users          = array_map(function ($request) {
             if ((int)$request['SENDER_ID'] === (int)$this->arResult['USER_ID']) {
                 $user = $request['RECEIVER_ID'];
             } else {
                 $user = $request['SENDER_ID'];
             }
 
-            return ['USER_ID' => $user, 'USER_TYPE' => $this->userHelper->getUserTypeById($user)];
+            return ['USER_ID' => $user, 'USER_TYPE' => $this->user->getUserTypeById($user)];
         }, $this->arResult['USER_REQUESTS']);
 
         $guests = array_filter($users, function ($userType) {
-            return $userType['USER_TYPE'] === UserHelper::GUEST_TYPE;
+            return $userType['USER_TYPE'] === User::GUEST_TYPE;
         });
 
         $participants = array_filter($users, function ($userType) {
-            return $userType['USER_TYPE'] === UserHelper::PARTICIPANT_TYPE;
+            return $userType['USER_TYPE'] === User::PARTICIPANT_TYPE;
         });
 
-        $this->arResult['GUESTS'] = $this->userHelper->getUsersInfo(array_map(function ($user) {
+        $this->arResult['GUESTS'] = $this->user->getUsersInfo(array_map(function ($user) {
             return $user['USER_ID'];
         }, $guests), false, $isHbExhibition);
 
-        $this->arResult['PARTICIPANTS'] = $this->userHelper->getUsersInfo(array_map(function ($user) {
+        $this->arResult['PARTICIPANTS'] = $this->user->getUsersInfo(array_map(function ($user) {
             return $user['USER_ID'];
         }, $participants), true);
 
@@ -250,15 +189,15 @@ class MeetingsSchedule extends CBitrixComponent
      */
     private function getReceivers()
     {
-        $isParticipant  = $this->arResult['USER_TYPE'] === UserHelper::PARTICIPANT_TYPE;
+        $isParticipant  = $this->arResult['USER_TYPE'] === User::PARTICIPANT_TYPE;
         $isHbExhibition = $this->arResult['APP_SETTINGS']['IS_HB'];
-        if ($this->arResult['USER_TYPE'] === UserHelper::PARTICIPANT_TYPE) {
+        if ($this->arResult['USER_TYPE'] === User::PARTICIPANT_TYPE) {
             $users = CGroup::GetGroupUser($this->arResult['APP_SETTINGS']['GUESTS_GROUP']);
         } else {
             $users = CGroup::GetGroupUser($this->arResult['APP_SETTINGS']['MEMBERS_GROUP']);
         }
         if ( !empty($users)) {
-            $this->arResult['LIST'] = $this->userHelper->getUsersInfo($users, !$isParticipant, $isHbExhibition);
+            $this->arResult['LIST'] = $this->user->getUsersInfo($users, !$isParticipant, $isHbExhibition);
         }
 
         return $this;
@@ -332,9 +271,9 @@ class MeetingsSchedule extends CBitrixComponent
      */
     private function getUserInfoForPDF()
     {
-        $isParticipant     = $this->arResult['USER_TYPE'] === UserHelper::PARTICIPANT_TYPE;
+        $isParticipant     = $this->arResult['USER_TYPE'] === User::PARTICIPANT_TYPE;
         $isExhibitionForHB = (bool)$this->arResult['APP_SETTINGS']['IS_HB'];
-        $userInfo          = $this->userHelper->getUserInfo($this->arResult['USER_ID'], $isParticipant);
+        $userInfo          = $this->user->getUserInfo($this->arResult['USER_ID'], $isParticipant);
         $userInfoForPDF    = [
             'COMPANY' => $userInfo['COMPANY'],
             'IS_HB'   => $userInfo['IS_HB'],
@@ -413,7 +352,7 @@ class MeetingsSchedule extends CBitrixComponent
      */
     private function generatePDF()
     {
-        $isParticipant     = $this->arResult['USER_TYPE'] === UserHelper::PARTICIPANT_TYPE;
+        $isParticipant     = $this->arResult['USER_TYPE'] === User::PARTICIPANT_TYPE;
         $isExhibitionForHB = (bool)$this->arResult['APP_SETTINGS']['IS_HB'];
         $userName          = $isParticipant ? $this->templateNameForParticipant : $this->arResult['USER_TYPE_NAME'];
         global $APPLICATION;
@@ -440,9 +379,8 @@ class MeetingsSchedule extends CBitrixComponent
         $this->onIncludeComponentLang();
         try {
             $this->checkModules()
+                 ->init()
                  ->getApp()
-                 ->getAppSettings()
-                 ->createHelperInstance()
                  ->getUserId()
                  ->getUserType()
                  ->getLinks()

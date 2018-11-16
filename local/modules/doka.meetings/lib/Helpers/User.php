@@ -2,11 +2,9 @@
 
 namespace Spectr\Meeting\Helpers;
 
-use Spectr\Meeting\Models\SettingsTable;
 use Spectr\Meeting\Models\RegistrGuestTable;
-use Bitrix\Main\Loader;
 
-class UserHelper
+class User
 {
     const ADMIN_TYPE = 0;
     const GUEST_TYPE = 1;
@@ -21,19 +19,19 @@ class UserHelper
     private $hallSid = 'SIMPLE_QUESTION_732';
     private $nameSid = 'SIMPLE_QUESTION_446';
     private $surnameSid = 'SIMPLE_QUESTION_551';
-    private $appSettings = [];
+    private $app;
 
     /**
-     * @param int $appId
+     * @param App $app
      *
      * @throws \Exception
      */
-    public function __construct($appId)
+    public function __construct($app)
     {
-        if ((int)$appId) {
-            $this->appSettings = SettingsTable::getById($appId)->fetch();
+        if ($app) {
+            $this->app = $app;
         } else {
-            throw new \Exception('App id is not set');
+            throw new \Exception('App is not set');
         }
     }
 
@@ -46,7 +44,7 @@ class UserHelper
     {
         global $USER;
 
-        return in_array($this->appSettings['ADMINS_GROUP'], $userGroups) || $USER->IsAdmin();
+        return in_array($this->app->getSettings()['ADMINS_GROUP'], $userGroups) || $USER->IsAdmin();
     }
 
     /**
@@ -56,7 +54,7 @@ class UserHelper
      */
     public function isGuest($userGroups = [])
     {
-        return in_array($this->appSettings['GUESTS_GROUP'], $userGroups);
+        return in_array($this->app->getSettings()['GUESTS_GROUP'], $userGroups);
     }
 
     /**
@@ -66,7 +64,7 @@ class UserHelper
      */
     public function isParticipant($userGroups = [])
     {
-        return in_array($this->appSettings['MEMBERS_GROUP'], $userGroups);
+        return in_array($this->app->getSettings()['MEMBERS_GROUP'], $userGroups);
     }
 
     /**
@@ -95,9 +93,9 @@ class UserHelper
         global $USER;
 
         $arGroups = $USER->GetUserGroupArray();
-        if (in_array($this->appSettings['ADMINS_GROUP'], $arGroups) || $USER->IsAdmin()) {
+        if (in_array($this->app->getSettings()['ADMINS_GROUP'], $arGroups) || $USER->IsAdmin()) {
             $userType = self::ADMIN_TYPE;
-        } elseif (in_array($this->appSettings['GUESTS_GROUP'], $arGroups)) {
+        } elseif (in_array($this->app->getSettings()['GUESTS_GROUP'], $arGroups)) {
             $userType = self::GUEST_TYPE;
         } else {
             $userType = self::PARTICIPANT_TYPE;
@@ -117,7 +115,7 @@ class UserHelper
     {
         $userId = (int)$userId;
         if ($isParticipant) {
-            $userField = $this->appSettings['FORM_RES_CODE'];
+            $userField = $this->app->getSettings()['FORM_RES_CODE'];
             $arUser    = \Bitrix\Main\UserTable::getList([
                 'select' => ['ID', 'EMAIL', 'WORK_COMPANY', 'NAME', 'LAST_NAME', 'UF_ID_COMP', 'UF_HB', $userField],
                 'filter' => ['=ID' => $userId],
@@ -127,7 +125,7 @@ class UserHelper
                 $infoFromWebForm = [];
                 if ($answerId) {
                     $arFilter = ['RESULT_ID' => $answerId];
-                    $formId   = $this->appSettings['FORM_ID'];
+                    $formId   = $this->app->getSettings()['FORM_ID'];
                     \CForm::GetResultAnswerArray($formId, $columns, $answers, $answersSID, $arFilter);
                     $tableFieldSid   = \CFormMatrix::getSIDRelBase($this->tableSid, $formId);
                     $hallFieldSid    = \CFormMatrix::getSIDRelBase($this->hallSid, $formId);
@@ -208,7 +206,7 @@ class UserHelper
     public function getUsersInfo($arUserId, $isParticipant = false, $onlyHB = false)
     {
         if ($isParticipant) {
-            $userField = $this->appSettings['FORM_RES_CODE'];
+            $userField = $this->app->getSettings()['FORM_RES_CODE'];
             $arUsers   = \Bitrix\Main\UserTable::getList([
                 'select' => ['ID', 'EMAIL', 'WORK_COMPANY', 'NAME', 'LAST_NAME', 'UF_ID_COMP', 'UF_HB', $userField],
                 'filter' => ['ID' => $arUserId],
@@ -222,7 +220,7 @@ class UserHelper
                 $arInfoFromWebForm = [];
                 if ( !empty($arAnswersId)) {
                     $arFilter = ['RESULT_ID' => implode('|', $arAnswersId)];
-                    $formId   = $this->appSettings['FORM_ID'];
+                    $formId   = $this->app->getSettings()['FORM_ID'];
                     \CForm::GetResultAnswerArray($formId, $columns, $answers, $answersSID, $arFilter);
                     foreach ($arUsers as $user) {
                         $arInfoFromWebForm[$user['ID']]['REP_RES'] = $user[$userField];

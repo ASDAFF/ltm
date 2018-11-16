@@ -5,7 +5,7 @@ if ( !defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
 use Spectr\Meeting\Models\RequestTable;
 use Bitrix\Main\Type\DateTime;
-use Spectr\Meeting\Helpers\UserHelper;
+use Spectr\Meeting\Helpers\User;
 
 CBitrixComponent::includeComponentClass('ds:meetings.request');
 
@@ -17,7 +17,7 @@ class MeetingsRequestConfirm extends MeetingsRequest
     protected function prepareFields()
     {
         global $USER;
-        if ($this->arResult['USER_TYPE'] === UserHelper::ADMIN_TYPE) {
+        if ($this->arResult['USER_TYPE'] === User::ADMIN_TYPE) {
             $this->arResult['RECEIVER_ID'] = (int)$_REQUEST['to'];
             $this->arResult['SENDER_ID']   = isset($_REQUEST['id']) ? (int)$_REQUEST['id'] : $USER->GetID();
         } else {
@@ -26,22 +26,22 @@ class MeetingsRequestConfirm extends MeetingsRequest
         }
 
         switch ($this->arResult['USER_TYPE']) {
-            case UserHelper::GUEST_TYPE:
-                $this->arResult['SENDER']   = $this->userHelper->getUserInfo($this->arResult['SENDER_ID'], true);
-                $this->arResult['RECEIVER'] = $this->userHelper->getUserInfo($this->arResult['RECEIVER_ID'], false);
+            case User::GUEST_TYPE:
+                $this->arResult['SENDER']   = $this->user->getUserInfo($this->arResult['SENDER_ID'], true);
+                $this->arResult['RECEIVER'] = $this->user->getUserInfo($this->arResult['RECEIVER_ID'], false);
                 break;
-            case UserHelper::PARTICIPANT_TYPE:
-                $this->arResult['SENDER']   = $this->userHelper->getUserInfo($this->arResult['SENDER_ID'], false);
-                $this->arResult['RECEIVER'] = $this->userHelper->getUserInfo($this->arResult['RECEIVER_ID'], true);
+            case User::PARTICIPANT_TYPE:
+                $this->arResult['SENDER']   = $this->user->getUserInfo($this->arResult['SENDER_ID'], false);
+                $this->arResult['RECEIVER'] = $this->user->getUserInfo($this->arResult['RECEIVER_ID'], true);
                 break;
             default:
-                $senderType = $this->userHelper->getUserTypeById($this->arResult['SENDER_ID']);
-                if ($senderType === UserHelper::GUEST_TYPE) {
-                    $this->arResult['SENDER']   = $this->userHelper->getUserInfo($this->arResult['SENDER_ID'], true);
-                    $this->arResult['RECEIVER'] = $this->userHelper->getUserInfo($this->arResult['RECEIVER_ID'], false);
+                $senderType = $this->user->getUserTypeById($this->arResult['SENDER_ID']);
+                if ($senderType === User::GUEST_TYPE) {
+                    $this->arResult['SENDER']   = $this->user->getUserInfo($this->arResult['SENDER_ID'], true);
+                    $this->arResult['RECEIVER'] = $this->user->getUserInfo($this->arResult['RECEIVER_ID'], false);
                 } else {
-                    $this->arResult['SENDER']   = $this->userHelper->getUserInfo($this->arResult['SENDER_ID'], false);
-                    $this->arResult['RECEIVER'] = $this->userHelper->getUserInfo($this->arResult['RECEIVER_ID'], true);
+                    $this->arResult['SENDER']   = $this->user->getUserInfo($this->arResult['SENDER_ID'], false);
+                    $this->arResult['RECEIVER'] = $this->user->getUserInfo($this->arResult['RECEIVER_ID'], true);
                 }
         }
 
@@ -91,9 +91,8 @@ class MeetingsRequestConfirm extends MeetingsRequest
         try {
             $this->checkModules()
                  ->checkAuth()
-                 ->getAppId()
-                 ->getAppSettings()
-                 ->createHelperInstance()
+                 ->init()
+                 ->getApp()
                  ->getUserType()
                  ->checkRestRequestParams()
                  ->prepareFields()
