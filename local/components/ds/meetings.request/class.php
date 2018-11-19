@@ -69,6 +69,7 @@ class MeetingsRequest extends CBitrixComponent
             'ID'        => $this->arParams['APP_ID'],
             'IS_HB'     => $this->arParams['IS_HB'],
         ];
+
         $this->app  = new App($params);
         $this->user = new User($this->app);
 

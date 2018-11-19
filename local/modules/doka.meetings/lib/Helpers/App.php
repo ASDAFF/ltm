@@ -85,17 +85,18 @@ class App
                 $arFilter['PROPERTY_APP_ID'] = $this->filter['ID'];
             }
         }
+
         $rsExhib = \CIBlockElement::GetList([], $arFilter);
         if ($oExhib = $rsExhib->GetNextElement(true, false)) {
-            $this->data['PARAM_EXHIBITION']               = $oExhib->GetFields();
-            $this->data['PARAM_EXHIBITION']['PROPERTIES'] = $oExhib->GetProperties();
+            $this->data               = $oExhib->GetFields();
+            $this->data['PROPERTIES'] = $oExhib->GetProperties();
         }
         if ($this->filter['IS_HB']) {
-            $this->id      = $this->data['PARAM_EXHIBITION']['PROPERTIES']['APP_HB_ID']['VALUE'];
-            $this->otherId = $this->data['PARAM_EXHIBITION']['PROPERTIES']['APP_ID']['VALUE'];
+            $this->id      = $this->data['PROPERTIES']['APP_HB_ID']['VALUE'];
+            $this->otherId = $this->data['PROPERTIES']['APP_ID']['VALUE'];
         } else {
-            $this->id      = $this->data['PARAM_EXHIBITION']['PROPERTIES']['APP_ID']['VALUE'];
-            $this->otherId = $this->data['PARAM_EXHIBITION']['PROPERTIES']['APP_HB_ID']['VALUE'];
+            $this->id      = $this->data['PROPERTIES']['APP_ID']['VALUE'];
+            $this->otherId = $this->data['PROPERTIES']['APP_HB_ID']['VALUE'];
         }
 
         $this->settings = SettingsTable::getById($this->getId())->fetch();

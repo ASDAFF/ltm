@@ -18,9 +18,9 @@ class WishlistTable extends DataManager
     const REASON_SELECTED = 3;
 
     static $types = [
-        self::REASON_EMPTY => 'empty',
+        self::REASON_EMPTY    => 'empty',
         self::REASON_REJECTED => 'rejected',
-        self::REASON_TIMEOUT => 'timeout',
+        self::REASON_TIMEOUT  => 'timeout',
         self::REASON_SELECTED => 'selected',
     ];
 
@@ -33,14 +33,14 @@ class WishlistTable extends DataManager
     {
         return [
             new IntegerField('ID', [
-                'primary' => true,
+                'primary'      => true,
                 'autocomplete' => true,
             ]),
             new IntegerField('SENDER_ID'),
             new IntegerField('RECEIVER_ID'),
             new DatetimeField('CREATED_AT'),
             new StringField('REASON', [
-                'save_data_modification' => function () {
+                'save_data_modification'  => function () {
                     return [
                         function ($value) {
                             return self::$types[$value];
@@ -65,44 +65,30 @@ class WishlistTable extends DataManager
         ];
     }
 
-    public static function getWishlistFromUser(int $userId, int $exhibId): array
+    /**
+     * @param int $exhibitionId
+     * @param int $userId
+     * @param string $direction
+     *
+     * @throws \Exception
+     * @return array
+     */
+    public static function getWishlist(int $exhibitionId, int $userId, string $direction = 'from')
     {
-        return self::getList([
-            'select' => [
-                'ID',
-                'COMPANY_NAME' => 'RECEIVER_USER.WORK_COMPANY',
-                'REASON',
-                'COMPANY_REP',
-            ],
-            'filter' => [
-                'SENDER_ID' => $userId,
-                'EXHIBITION_ID' => $exhibId,
-            ],
-            'runtime' => [
-                new ExpressionField('COMPANY_REP',
-                    'CONCAT(%s, " ", %s)', ['RECEIVER_USER.NAME', 'RECEIVER_USER.LAST_NAME']),
-            ],
-        ])->fetchAll();
-    }
+        $filter = ['EXHIBITION_ID' => $exhibitionId];
+        if ($direction === 'from') {
+            $filter['SENDER_ID'] = $userId;
+        } else {
+            $filter['RECEIVER_ID'] = $userId;
+        }
+        $select = ['ID', 'REASON', 'SENDER_ID', 'RECEIVER_ID'];
+        $group  = [];
+        if ($direction === 'from') {
+            $group[] = 'RECEIVER_ID';
+        } else {
+            $group[] = 'SENDER_ID';
+        }
 
-    public static function getWishlistForUser(int $userId, int $exhibId): array
-    {
-        return self::getList([
-            'select' => [
-                'ID',
-                'COMPANY_NAME' => 'SENDER_USER.WORK_COMPANY',
-                'COMPANY_REP',
-                'REASON',
-
-            ],
-            'filter' => [
-                'RECEIVER_ID' => $userId,
-                'EXHIBITION_ID' => $exhibId,
-            ],
-            'runtime' => [
-                new ExpressionField('COMPANY_REP',
-                    'CONCAT(%s, " ", %s)', ['SENDER_USER.NAME', 'SENDER_USER.LAST_NAME']),
-            ],
-        ])->fetchAll();
+        return self::getList(['select' => $select, 'filter' => $filter, 'group' => $group])->fetchAll();
     }
 }

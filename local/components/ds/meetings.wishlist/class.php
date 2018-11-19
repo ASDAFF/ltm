@@ -3,209 +3,162 @@ if ( !defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     die();
 }
 
-use Bitrix\Main\Loader;
-use Spectr\Meeting\Models\SettingsTable;
 use Spectr\Meeting\Models\WishlistTable;
+use Bitrix\Main\Localization\Loc;
+use Spectr\Meeting\Helpers\User;
+use Spectr\Meeting\Models\RegistrGuestColleagueTable;
 
-Loader::includeModule('doka.meetings');
+CBitrixComponent::includeComponentClass('ds:meetings.request');
 
-class MeetingsWishlist extends CBitrixComponent
+class MeetingsWishlist extends MeetingsRequest
 {
-    private $componentTemplate = 'guest';
+    private $templateNameForParticipant = 'PARTICIP';
 
-    public function onPrepareComponentParams(array $arParams): array
+    public function onPrepareComponentParams($arParams): array
     {
-        $result                         = $arParams;
-        $result['EXHIBITION_ID']        = (int)$arParams['EXHIBITION_ID'];
-        $result['USER_ID']              = (int)$arParams['USER_ID'];
-        $result['ADD_LINK_TO_WISHLIST'] = $result['ADD_LINK_TO_WISHLIST'] ?: "cabinet/service/wish.php";
+        $params = [];
 
-        return $result;
+        $params['USER_ID']              = (int)$arParams['USER_ID'];
+        $params['EXHIBITION_IBLOCK_ID'] = (int)$arParams['EXHIBITION_IBLOCK_ID'];
+        $params['EXHIBITION_CODE']      = (string)$arParams['EXHIBITION_CODE'];
+        $params['ADD_LINK_TO_WISHLIST'] = $arParams['ADD_LINK_TO_WISHLIST'] ?: "cabinet/service/wish.php";
+        $params['IS_HB']                = isset($arParams['IS_HB']) && $arParams['IS_HB'] === 'Y' ? true : false;
+
+        return $params;
+    }
+
+    protected function init()
+    {
+        $this->arResult['USERS'] = [];
+
+        return parent::init();
     }
 
     public function executeComponent()
     {
-        $this->checkComponentTemplate();
-        if ($this->request->get("mode") !== 'pdf') {
-            $this->arResult = [
-                'WISHLIST_FOR_USER'  => $this->getWishListForUser(),
-                'WISHLIST_FROM_USER' => $this->getWishListFromUser(),
+        $this->onIncludeComponentLang();
+        try {
+            $this->checkModules()
+                 ->init()
+                 ->getApp()
+                 ->getWishListForUser()
+                 ->getWishListFromUser()
+                 ->getUserType()
+                 ->getStatuses();
+            if ($this->request->get('mode') !== 'pdf') {
+                $this->includeComponentTemplate();
+            } else {
+                global $APPLICATION;
+                $APPLICATION->RestartBuffer();
+                $this->generatePdf();
+            }
+        } catch (\Exception $e) {
+            ShowError($e->getMessage());
+        }
+    }
+
+    /**
+     * @throws Exception
+     * TODO add sort by company name
+     */
+    private function getWishListForUser()
+    {
+        $wishlist      = WishlistTable::getWishlist($this->app->getId(), $this->arParams['USER_ID'], 'to');
+        $isParticipant = $this->arResult['USER_TYPE'] !== User::PARTICIPANT_TYPE;
+        $isHb          = (bool)$this->arResult['APP_SETTINGS']['IS_HB'];
+        $users         = array_map(function ($item) {
+            return $item['SENDER_ID'];
+        }, $wishlist);
+        $usersInfo     = $this->user->getUsersInfo($users, $isParticipant, $isHb);
+        array_walk($usersInfo, function ($user) {
+            $this->arResult['USERS'][$user['ID']] = $user;
+        });
+        $this->arResult['WISH_IN'] = array_map(function ($item) {
+            return [
+                'company_id'     => $item['SENDER_ID'],
+                'company_name'   => $this->arResult['USERS'][$item['SENDER_ID']]['COMPANY'],
+                'company_rep'    => $this->arResult['USERS'][$item['SENDER_ID']]['NAME'],
+                'company_reason' => $item['REASON'],
             ];
-            $this->includeComponentTemplate();
-        } else {
-            global $APPLICATION;
-            $APPLICATION->RestartBuffer();
-            $this->generatePdf();
+        }, $wishlist);
+
+        return $this;
+    }
+
+    /**
+     * @throws Exception
+     * TODO add sort by company name
+     */
+    private function getWishListFromUser()
+    {
+        $wishlist      = WishlistTable::getWishlist($this->app->getId(), $this->arParams['USER_ID'], 'from');
+        $isParticipant = $this->arResult['USER_TYPE'] !== User::PARTICIPANT_TYPE;
+        $isHb          = (bool)$this->arResult['APP_SETTINGS']['IS_HB'];
+        $users         = array_map(function ($item) {
+            return $item['RECEIVER_ID'];
+        }, $wishlist);
+        $usersInfo     = $this->user->getUsersInfo($users, $isParticipant, $isHb);
+        array_walk($usersInfo, function ($user) {
+            $this->arResult['USERS'][$user['ID']] = $user;
+        });
+        $this->arResult['WISH_OUT'] = array_map(function ($item) {
+            return [
+                'company_id'     => $item['RECEIVER_ID'],
+                'company_name'   => $this->arResult['USERS'][$item['RECEIVER_ID']]['COMPANY'],
+                'company_rep'    => $this->arResult['USERS'][$item['RECEIVER_ID']]['NAME'],
+                'company_reason' => $item['REASON'],
+            ];
+        }, $wishlist);
+
+        return $this;
+    }
+
+    private function getStatuses()
+    {
+        $this->arResult['STATUS_REQUEST'] = [
+            WishlistTable::$types[WishlistTable::REASON_EMPTY]    => '',
+            WishlistTable::$types[WishlistTable::REASON_REJECTED] => Loc::getMessage($this->arResult['USER_TYPE_NAME'].'_REJECTED'),
+            WishlistTable::$types[WishlistTable::REASON_TIMEOUT]  => Loc::getMessage($this->arResult['USER_TYPE_NAME'].'_TIMEOUT'),
+            WishlistTable::$types[WishlistTable::REASON_SELECTED] => Loc::getMessage($this->arResult['USER_TYPE_NAME'].'_SELECTED'),
+        ];
+
+        return $this;
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function getUserInfoForPDF()
+    {
+        $isParticipant  = $this->arResult['USER_TYPE'] === User::PARTICIPANT_TYPE;
+        $userInfo       = $this->user->getUserInfo($this->arResult['USER_ID'], $isParticipant);
+        $userInfoForPDF = [
+            'COMPANY' => $userInfo['COMPANY'],
+            'IS_HB'   => $userInfo['IS_HB'],
+            'REP'     => $userInfo['NAME'],
+        ];
+        if ( !$isParticipant) {
+            if ( !empty($userInfo['COLLEAGUES'])) {
+                $colleague                 = RegistrGuestColleagueTable::getById($userInfo['COLLEAGUES'][0])->fetch();
+                $userInfoForPDF['COL_REP'] = "{$colleague['UF_NAME']} {$colleague['UF_SURNAME']}";
+            }
         }
 
+        return $userInfoForPDF;
     }
 
-    public function checkComponentTemplate()
-    {
-        if ($this->arParams['USER_TYPE'] === 'PARTICIP') {
-            $this->componentTemplate = 'particip';
-        }
-    }
-
-    public function getWishListForUser(): array
-    {
-        $result = WishlistTable::getWishlistForUser($this->arParams['USER_ID'], $this->arParams['EXHIBITION_ID']);
-
-        return $result;
-    }
-
-    public function getWishListFromUser(): array
-    {
-        $result = WishlistTable::getWishlistFromUser($this->arParams['USER_ID'], $this->arParams['EXHIBITION_ID']);
-
-        return $result;
-    }
-
+    /**
+     * @throws Exception
+     */
     public function generatePdf()
     {
-        $wishListForUser  = $this->getWishListForUser();
-        $wishListFromUser = $this->getWishListFromUser();
-        $exhibSettings    = SettingsTable::getSettingsByCode($this->arParams['EXHIBITION_CODE']);
-        $exhibition       = SettingsTable::getExhibition(['CODE' => $this->arParams['EXHIBITION_CODE']]);
-        $filter      = ['ID' => $this->arParams['USER_ID']];
-        $select      = ['SELECT' => [$exhibSettings['REPR_PROP_CODE']], 'FIELDS' => ['WORK_COMPANY', 'ID']];
-        $by          = 'id';
-        $order       = 'desc';
-        $fioParticip = '';
-        $arResult    = [];
-        $rsUser      = CUser::GetList($by, $order, $filter, $select);
-        if ($arUser = $rsUser->Fetch()) {
-            if ($fioParticip == '') {
-                $fioParticip = $arUser[$exhibSettings['REPR_PROP_CODE']];
-            }
-            $arResult['USER'] = [
-                'REP'     => $fioParticip,
-                'COMPANY' => $arUser['WORK_COMPANY'],
-                'CITY'    => $arResult['CITY'],
-                'COL_REP' => $col_rep,
-            ];
-        }
-
-        $pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(false);
-        $pdf->setPrintFooter(false);
-        $pdf->AddFont('freeserif', 'I', 'freeserifi.php');
-        $pdf->AddPage();
-        $pdf->ImageSVG($file = DOKA_MEETINGS_MODULE_DIR.'/images/logo.svg', $x = 30, $y = 5, $w = '150', $h = '', $link = '',
-            $align = '', $palign = '', $border = 0, $fitonpage = false);
-        $pdf->setXY(0, 23);
-        $pdf->SetFont('freeserif', 'B', 17);
-        // Если в свойствах выставки отмечено "Есть сессия НВ"
-        if ($exhibition["PROPERTIES"]["HB_EXIST"]['VALUE']) {
-            // Если в настройках встреч отмечено "Сессия с НВ"
-            if ($exhibSettings["IS_HB"]) {
-                $exhibition["PROPERTIES"]["V_RU"]['VALUE'] .= " Hosted Buyers сессия\n";
-                $dayline                                   = "День 1, 1 марта 2018";
-            } else {
-                $dayline                                   = "День 2, 2 марта 2018";
-                $exhibition["PROPERTIES"]["V_RU"]['VALUE'] .= "\n";
-            }
-        }
-        $pdf->multiCell(210, 5, "Список неподтвержденных запросов на\n".$exhibition["PROPERTIES"]["V_RU"]['VALUE'].$dayline, 0,
-            C);
-        $pdf->SetFont('freeserif', '', 15);
-        $pdf->setXY(30, $pdf->getY() + 2);
-        if (in_array($arResult["APP_ID"], [1, 6]) && $arResult['IS_HB']) {
-            $pdf->multiCell(210, 5, $arResult["USER"]['COMPANY'], 0, L);
-        } else {
-            $pdf->multiCell(210, 5, $arResult["USER"]['COMPANY'].", ".$arResult["USER"]['CITY'], 0, L);
-        }
-
-        $pdf->setXY(30, $pdf->getY() + 1);
-
-        //если есть коллега, выводим его через запятую
-        if ( !empty($arResult["USER"]["REP"]) && !empty(trim($arResult["USER"]["COL_REP"]))) {
-            $pdf->multiCell(300, 5, trim($arResult["USER"]["REP"]).", ".trim($arResult["USER"]["COL_REP"]), 0, L);
-        } else {
-            $pdf->multiCell(300, 5, trim($arResult["USER"]["REP"]), 0, L);
-        }
-
-        $pdf->SetFont('freeserif', 'B', 13);
-        $pdf->setXY(0, $pdf->getY() + 5);
-        $pdf->multiCell(210, 5, "Вы также хотели бы встретиться со следующими компаниями", 0, C);
-
-        $pdf->SetFont('freeserif', '', 10);
-        $pdf->setXY(0, $pdf->getY() + 1);
-        $pdf->multiCell(210, 5, "(возможно, данные участники отклонили ваши запросы или их расписание уже полное):", 0, C);
-
-
-        /* Формируем таблицу */
-        if ( !$wishListFromUser) {
-            $pdf->setXY(0, $pdf->getY() + 5);
-            $pdf->SetFont('freeserif', '', 13);
-            $pdf->multiCell(210, 5, "Этот список запросов пуст.", 0, C);
-        } else {
-            $pdf->setXY(20, $pdf->getY() + 5);
-            $pdf->SetFont('freeserif', '', 11);
-
-            $tbl = '<table cellspacing="0" cellpadding="5" border="1">
-			<tr>
-				<td align="center" width="40">№</td>
-				<td align="center" width="220">Компания</td>
-				<td align="center" width="160">Представитель</td>
-				<td align="center" width="90">Причина</td>
-			</tr>';
-            $i   = 1;
-            foreach ($wishListFromUser as $item) {
-                $tbl .= '<tr>
-				<td align="center">'.$i.'</td>
-				<td>'.$item["COMPANY_NAME"].'</td>
-				<td>'.$item["COMPANY_REP"].'</td>
-				<td>'.$arResult['STATUS_REQUEST'][$item["REASON"]].'</td>
-			</tr>';
-                $i++;
-            }
-            $tbl .= '</table>';
-            $pdf->writeHTML($tbl, true, false, false, false, '');
-        }
-
-
-        $pdf->SetFont('freeserif', 'B', 13);
-        $pdf->setXY(0, $pdf->getY() + 10);
-        $pdf->multiCell(210, 5, "С вами также хотели бы встретиться следующие компании", 0, C);
-
-        $pdf->SetFont('freeserif', '', 10);
-        $pdf->setX(0);
-        $pdf->multiCell(210, 5, "(возможно, вы отклонили запросы от этих участников или ваше расписание уже полное):", 0, C);
-
-        if ( !$wishListForUser) {
-            $pdf->setXY(0, $pdf->getY() + 5);
-            $pdf->SetFont('freeserif', '', 13);
-            $pdf->multiCell(210, 5, "Этот список запросов пуст.", 0, C);
-        } else {
-            $pdf->setXY(20, $pdf->getY() + 5);
-            $pdf->SetFont('freeserif', '', 11);
-
-            $tbl = '<table cellspacing="0" cellpadding="5" border="1">
-			<tr>
-				<td align="center" width="40">№</td>
-				<td align="center" width="220">Компания</td>
-				<td align="center" width="160">Представитель</td>
-				<td align="center" width="90">Причина</td>
-			</tr>';
-            $i   = 1;
-            foreach ($wishListForUser as $item) {
-                $tbl .= '<tr>
-				<td align="center">'.$i.'</td>
-				<td>'.$item["COMPANY_NAME"].'</td>
-				<td>'.$item["COMPANY_REP"].'</td>
-				<td>'.$arResult['STATUS_REQUEST'][$item["REASON"]].'</td>
-			</tr>';
-                $i++;
-            }
-            $tbl .= '</table>';
-            $pdf->writeHTML($tbl, true, false, false, false, '');
-
-        }
-        $pdf->setXY(20, $pdf->getY() + 10);
-        $html = '<p>Вы можете встретиться со всеми компаниями, указанными выше, в любое другое время Luxury Travel
-Mart, например, во время ланча, перерыва на кофе или на вечерней сессии.<p>';
-        $pdf->writeHTML($html, true, false, false, false, '');
-        $pdf->Output("print_wish.pdf", I);
+        $isParticipant = $this->arResult['USER_TYPE'] === User::PARTICIPANT_TYPE;
+        $userType      = $isParticipant ? $this->templateNameForParticipant : $this->arResult['USER_TYPE_NAME'];
+        require(DOKA_MEETINGS_MODULE_DIR.'/classes/pdf/tcpdf.php');
+        require_once(DOKA_MEETINGS_MODULE_DIR."/classes/pdf/templates/wishlist_{$userType}.php");
+        $pdfResult['USER']             = $this->getUserInfoForPDF();
+        $pdfResult['EXHIBITION']       = $this->arResult['APP_SETTINGS'];
+        $pdfResult['PARAM_EXHIBITION'] = $this->arResult['PARAM_EXHIBITION'];
+        DokaGeneratePdf($pdfResult);
     }
 }

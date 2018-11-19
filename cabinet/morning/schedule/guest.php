@@ -10,29 +10,20 @@ if (isset($_REQUEST["app"]) && $_REQUEST["app"] != '' && $authUser == 1) {
 } else {
     $appId = $appCode;
 }
-if (isset($_REQUEST["type"]) && $_REQUEST["type"] != '' && $authUser == 1) {
-    if ($_REQUEST["type"] == "p") {
-        $userType = "PARTICIP";
-    } else {
-        $userType = "GUEST";
-    }
-} else {
-    $userType = 'GUEST';
-}
 if ($appId != "") {
     $APPLICATION->IncludeComponent(
         "ds:meetings.schedule",
         "",
         [
-            "CACHE_TYPE" => "A",
-            "CACHE_TIME" => "3600",
+            "CACHE_TYPE"           => "A",
+            "CACHE_TIME"           => "3600",
             "EXHIBITION_IBLOCK_ID" => "15",
-            "MESSAGE_LINK" => "/service/write.php",
-            "SEND_REQUEST_LINK" => "/service/appointment.php",
+            "MESSAGE_LINK"         => "/service/write.php",
+            "SEND_REQUEST_LINK"    => "/service/appointment.php",
             "CONFIRM_REQUEST_LINK" => "/service/appointment_confirm.php",
-            "REJECT_REQUEST_LINK" => "/service/appointment_del.php",
+            "REJECT_REQUEST_LINK"  => "/service/appointment_del.php",
             "RESERVE_REQUEST_LINK" => "/ajax/time_reserve.php",
-            "USER_TYPE" => 'GUEST'
+            "USER_TYPE"            => 'GUEST',
         ],
         false
     );
@@ -43,11 +34,10 @@ if ($appId != "") {
         'ds:meetings.wishlist',
         '',
         [
-            'EXHIBITION_ID' => $appId,
-            'EXHIBITION_CODE' => $exhibCode,
-            "USER_TYPE" => $userType,
-            "USER_ID" => $curUser,
-            "ADD_LINK_TO_WISHLIST" => "cabinet/service/wish.php",
+            'EXHIBITION_CODE'      => $exhibCode,
+            "EXHIBITION_IBLOCK_ID" => "15",
+            'USER_ID'              => $curUser,
+            'ADD_LINK_TO_WISHLIST' => 'cabinet/service/wish.php',
         ]);
     ?></div><?
 } else {
