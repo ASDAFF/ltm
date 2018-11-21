@@ -7,6 +7,8 @@ use Spectr\Meeting\Models\WishlistTable;
 use Bitrix\Main\Localization\Loc;
 use Spectr\Meeting\Helpers\User;
 use Spectr\Meeting\Models\RegistrGuestColleagueTable;
+use Spectr\Meeting\Models\TimeslotTable;
+use Spectr\Meeting\Models\RequestTable;
 
 CBitrixComponent::includeComponentClass('ds:meetings.request');
 
@@ -48,7 +50,8 @@ class MeetingsWishlist extends MeetingsRequest
                  ->getStatuses()
                  ->sortWishLists();
             if ($this->request->get('mode') !== 'pdf') {
-                $this->includeComponentTemplate();
+                $this->getUsersForManualAddition()
+                     ->includeComponentTemplate();
             } else {
                 global $APPLICATION;
                 $APPLICATION->RestartBuffer();
@@ -138,9 +141,62 @@ class MeetingsWishlist extends MeetingsRequest
         return strcasecmp($a['company_name'], $b['company_name']);
     }
 
-    /** TODO implement */
+    /**
+     * @throws Exception
+     */
     private function getUsersForManualAddition()
     {
+        $this->arResult['COMPANIES'] = [];
+        $isHbExhibition              = $this->arResult['APP_SETTINGS']['IS_HB'];
+        $isParticipant               = $this->arResult['USER_TYPE'] === User::PARTICIPANT_TYPE;
+        if ($this->arResult['USER_TYPE'] === User::PARTICIPANT_TYPE) {
+            $users = CGroup::GetGroupUser($this->arResult['APP_SETTINGS']['GUESTS_GROUP']);
+        } else {
+            $users = CGroup::GetGroupUser($this->arResult['APP_SETTINGS']['MEMBERS_GROUP']);
+        }
+        if ( !empty($users)) {
+            $companies                          = $this->user->getUsersInfo($users, !$isParticipant, $isHbExhibition);
+            $timeslotsCount                     = TimeslotTable::getList([
+                'filter' => [
+                    'SLOT_TYPE'     => TimeslotTable::$types[TimeslotTable::TYPE_MEET],
+                    'EXHIBITION_ID' => $this->arResult['APP_ID'],
+                ],
+            ])->getSelectedRowsCount();
+            $requests                           = RequestTable::getList([
+                'filter' => [
+                    '!=RECEIVER_ID' => $this->arResult['USER_ID'],
+                    '!=SENDER_ID'   => $this->arResult['USER_ID'],
+                    '!=STATUS'      => array_map(function ($status) {
+                        return RequestTable::$statuses[$status];
+                    }, RequestTable::$freeStatuses),
+                    'EXHIBITION_ID' => $this->arResult['APP_ID'],
+                ],
+            ]);
+            $this->arResult['REQUESTS_COUNTER'] = [];
+            while ($request = $requests->fetch()) {
+                if ($request['SENDER_ID'] !== $request['RECEIVER_ID']) {
+                    $this->arResult['REQUESTS_COUNTER'][$request['SENDER_ID']]++;
+                    $this->arResult['REQUESTS_COUNTER'][$request['RECEIVER_ID']]++;
+                } else {
+                    $this->arResult['REQUESTS_COUNTER'][$request['SENDER_ID']]++;
+                }
+            }
+            $deniedUsers = array_map(function ($user) {
+                return $user['company_id'];
+            }, $this->arResult['WISH_IN']);
+            array_walk($companies, function ($company) use ($timeslotsCount, $deniedUsers) {
+                if (
+                    $this->arResult['REQUESTS_COUNTER'][$company['ID']] === $timeslotsCount &&
+                    !in_array($company['ID'], $deniedUsers)
+                ) {
+                    $this->arResult['COMPANIES'][] = [
+                        'company_id'   => $company['ID'],
+                        'company_name' => $company['COMPANY'],
+                    ];
+                }
+            });
+        }
+
         return $this;
     }
 
