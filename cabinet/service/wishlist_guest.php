@@ -26,10 +26,11 @@ $APPLICATION->IncludeComponent(
     'ds:meetings.wishlist',
     '',
     [
-        'EXHIBITION_ID' => $_REQUEST["app"],
-        'EXHIBITION_CODE' => $_REQUEST["exhib"],
-        "USER_TYPE" => $userType,
-        "USER_ID" => $curUser,
+        'EXHIBITION_ID'        => $_REQUEST["app"],
+        "EXHIBITION_IBLOCK_ID" => "15",
+        'EXHIBITION_CODE'      => $_REQUEST["exhib"],
+        "USER_TYPE"            => $userType,
+        "USER_ID"              => $curUser,
         "ADD_LINK_TO_WISHLIST" => "cabinet/service/wish.php",
     ]);
 ?>

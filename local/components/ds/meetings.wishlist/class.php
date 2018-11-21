@@ -29,7 +29,8 @@ class MeetingsWishlist extends MeetingsRequest
 
     protected function init()
     {
-        $this->arResult['USERS'] = [];
+        $this->arResult['USERS']   = [];
+        $this->arResult['USER_ID'] = $this->arParams['USER_ID'];
 
         return parent::init();
     }
@@ -44,7 +45,8 @@ class MeetingsWishlist extends MeetingsRequest
                  ->getWishListForUser()
                  ->getWishListFromUser()
                  ->getUserType()
-                 ->getStatuses();
+                 ->getStatuses()
+                 ->sortWishLists();
             if ($this->request->get('mode') !== 'pdf') {
                 $this->includeComponentTemplate();
             } else {
@@ -59,11 +61,10 @@ class MeetingsWishlist extends MeetingsRequest
 
     /**
      * @throws Exception
-     * TODO add sort by company name
      */
     private function getWishListForUser()
     {
-        $wishlist      = WishlistTable::getWishlist($this->app->getId(), $this->arParams['USER_ID'], 'to');
+        $wishlist      = WishlistTable::getWishlist($this->app->getId(), $this->arResult['USER_ID'], 'to');
         $isParticipant = $this->arResult['USER_TYPE'] !== User::PARTICIPANT_TYPE;
         $isHb          = (bool)$this->arResult['APP_SETTINGS']['IS_HB'];
         $users         = array_map(function ($item) {
@@ -87,11 +88,10 @@ class MeetingsWishlist extends MeetingsRequest
 
     /**
      * @throws Exception
-     * TODO add sort by company name
      */
     private function getWishListFromUser()
     {
-        $wishlist      = WishlistTable::getWishlist($this->app->getId(), $this->arParams['USER_ID'], 'from');
+        $wishlist      = WishlistTable::getWishlist($this->app->getId(), $this->arResult['USER_ID'], 'from');
         $isParticipant = $this->arResult['USER_TYPE'] !== User::PARTICIPANT_TYPE;
         $isHb          = (bool)$this->arResult['APP_SETTINGS']['IS_HB'];
         $users         = array_map(function ($item) {
@@ -122,6 +122,25 @@ class MeetingsWishlist extends MeetingsRequest
             WishlistTable::$types[WishlistTable::REASON_SELECTED] => Loc::getMessage($this->arResult['USER_TYPE_NAME'].'_SELECTED'),
         ];
 
+        return $this;
+    }
+
+    private function sortWishLists()
+    {
+        usort($this->arResult['WISH_IN'], [static::class, 'sortByCompanyName']);
+        usort($this->arResult['WISH_OUT'], [static::class, 'sortByCompanyName']);
+
+        return $this;
+    }
+
+    private static function sortByCompanyName($a, $b)
+    {
+        return strcasecmp($a['company_name'], $b['company_name']);
+    }
+
+    /** TODO implement */
+    private function getUsersForManualAddition()
+    {
         return $this;
     }
 
@@ -156,9 +175,16 @@ class MeetingsWishlist extends MeetingsRequest
         $userType      = $isParticipant ? $this->templateNameForParticipant : $this->arResult['USER_TYPE_NAME'];
         require(DOKA_MEETINGS_MODULE_DIR.'/classes/pdf/tcpdf.php');
         require_once(DOKA_MEETINGS_MODULE_DIR."/classes/pdf/templates/wishlist_{$userType}.php");
-        $pdfResult['USER']             = $this->getUserInfoForPDF();
-        $pdfResult['EXHIBITION']       = $this->arResult['APP_SETTINGS'];
-        $pdfResult['PARAM_EXHIBITION'] = $this->arResult['PARAM_EXHIBITION'];
+        $pdfResult = [
+            'APP_ID'           => $this->arResult['APP_ID'],
+            'IS_HB'            => $this->arResult['APP_SETTINGS']['IS_HB'],
+            'USER'             => $this->getUserInfoForPDF(),
+            'EXHIBITION'       => $this->arResult['APP_SETTINGS'],
+            'PARAM_EXHIBITION' => $this->arResult['PARAM_EXHIBITION'],
+            'STATUS_REQUEST'   => $this->arResult['STATUS_REQUEST'],
+            'WISH_IN'          => $this->arResult['WISH_IN'],
+            'WISH_OUT'         => $this->arResult['WISH_OUT'],
+        ];
         DokaGeneratePdf($pdfResult);
     }
 }

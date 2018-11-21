@@ -70,6 +70,11 @@ class App
         return $this;
     }
 
+    /**
+     * @throws \Exception
+     *
+     * @param array $params
+     */
     private function init($params)
     {
         $this->filter = $params;
@@ -97,6 +102,10 @@ class App
         } else {
             $this->id      = $this->data['PROPERTIES']['APP_ID']['VALUE'];
             $this->otherId = $this->data['PROPERTIES']['APP_HB_ID']['VALUE'];
+        }
+
+        if ( !$this->getId()) {
+            throw new \Exception('APP_ID NOT FOUND');
         }
 
         $this->settings = SettingsTable::getById($this->getId())->fetch();

@@ -88,7 +88,8 @@ class WishlistTable extends DataManager
         } else {
             $group[] = 'SENDER_ID';
         }
+        $order = ['CREATED_AT' => 'ASC'];
 
-        return self::getList(['select' => $select, 'filter' => $filter, 'group' => $group])->fetchAll();
+        return self::getList(['select' => $select, 'filter' => $filter, 'group' => $group, 'order' => $order])->fetchAll();
     }
 }
