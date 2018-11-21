@@ -67,11 +67,11 @@ class MeetingsWishlist extends MeetingsRequest
      */
     private function getWishListForUser()
     {
-        $wishlist      = WishlistTable::getWishlist($this->app->getId(), $this->arResult['USER_ID'], 'to');
+        $wishlist      = WishlistTable::getWishlist($this->app->getId(), $this->arResult['USER_ID'], 'from');
         $isParticipant = $this->arResult['USER_TYPE'] !== User::PARTICIPANT_TYPE;
         $isHb          = (bool)$this->arResult['APP_SETTINGS']['IS_HB'];
         $users         = array_map(function ($item) {
-            return $item['SENDER_ID'];
+            return $item['RECEIVER_ID'];
         }, $wishlist);
         $usersInfo     = $this->user->getUsersInfo($users, $isParticipant, $isHb);
         array_walk($usersInfo, function ($user) {
@@ -79,9 +79,9 @@ class MeetingsWishlist extends MeetingsRequest
         });
         $this->arResult['WISH_IN'] = array_map(function ($item) {
             return [
-                'company_id'     => $item['SENDER_ID'],
-                'company_name'   => $this->arResult['USERS'][$item['SENDER_ID']]['COMPANY'],
-                'company_rep'    => $this->arResult['USERS'][$item['SENDER_ID']]['NAME'],
+                'company_id'     => $item['RECEIVER_ID'],
+                'company_name'   => $this->arResult['USERS'][$item['RECEIVER_ID']]['COMPANY'],
+                'company_rep'    => $this->arResult['USERS'][$item['RECEIVER_ID']]['NAME'],
                 'company_reason' => $item['REASON'],
             ];
         }, $wishlist);
@@ -94,11 +94,11 @@ class MeetingsWishlist extends MeetingsRequest
      */
     private function getWishListFromUser()
     {
-        $wishlist      = WishlistTable::getWishlist($this->app->getId(), $this->arResult['USER_ID'], 'from');
+        $wishlist      = WishlistTable::getWishlist($this->app->getId(), $this->arResult['USER_ID'], 'to');
         $isParticipant = $this->arResult['USER_TYPE'] !== User::PARTICIPANT_TYPE;
         $isHb          = (bool)$this->arResult['APP_SETTINGS']['IS_HB'];
         $users         = array_map(function ($item) {
-            return $item['RECEIVER_ID'];
+            return $item['SENDER_ID'];
         }, $wishlist);
         $usersInfo     = $this->user->getUsersInfo($users, $isParticipant, $isHb);
         array_walk($usersInfo, function ($user) {
@@ -106,9 +106,9 @@ class MeetingsWishlist extends MeetingsRequest
         });
         $this->arResult['WISH_OUT'] = array_map(function ($item) {
             return [
-                'company_id'     => $item['RECEIVER_ID'],
-                'company_name'   => $this->arResult['USERS'][$item['RECEIVER_ID']]['COMPANY'],
-                'company_rep'    => $this->arResult['USERS'][$item['RECEIVER_ID']]['NAME'],
+                'company_id'     => $item['SENDER_ID'],
+                'company_name'   => $this->arResult['USERS'][$item['SENDER_ID']]['COMPANY'],
+                'company_rep'    => $this->arResult['USERS'][$item['SENDER_ID']]['NAME'],
                 'company_reason' => $item['REASON'],
             ];
         }, $wishlist);

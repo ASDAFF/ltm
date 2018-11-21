@@ -41,7 +41,7 @@ $APPLICATION->IncludeComponent(
             'EXHIBITION_CODE'      => $exhibCode,
             "EXHIBITION_IBLOCK_ID" => "15",
             'USER_ID'              => $curUser,
-            'ADD_LINK_TO_WISHLIST' => 'cabinet/service/wish_hb.php',
+            'ADD_LINK_TO_WISHLIST' => '/cabinet/service/wish.php',
             'IS_HB'                => 'Y',
         ]);
     ?>

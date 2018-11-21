@@ -5,32 +5,82 @@ if ( !defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
 use Bitrix\Main\Loader;
 use Spectr\Meeting\Models\WishlistTable;
-
-Loader::includeModule('doka.meetings');
+use Bitrix\Main\Type\DateTime;
 
 class MeetingsWishlistAdd extends CBitrixComponent
 {
-    private $componentTemplate = 'guest';
 
-    public function onPrepareComponentParams(array $arParams): array
+    public function onPrepareComponentParams($params = []): array
     {
-        $result                  = [];
-        $result['EXHIBITION_ID'] = (int)$arParams['EXHIBITION_ID'];
-        $result['SENDER_ID']     = (int)$arParams['SENDER_ID'];
-        $result['RECEIVER_ID']   = (int)$arParams['RECEIVER_ID'];
+        global $USER;
 
-        return $result;
+        return [
+            'EXHIBITION_ID' => (int)$_REQUEST['app'],
+            'SENDER_ID'     => (int)$USER->GetID(),
+            'RECEIVER_ID'   => (int)$_REQUEST['to'],
+        ];
     }
 
+    /**
+     * @throws \Bitrix\Main\LoaderException
+     */
+    private function loadModules()
+    {
+        Loader::includeModule('doka.meetings');
+
+        return $this;
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function checkParams()
+    {
+        if ($this->arParams['EXHIBITION_ID'] <= 0) {
+            throw new Exception('REQUIRED PARAMETER EXHIBITION_ID NOT SET');
+        }
+        if ($this->arParams['SENDER_ID'] <= 0) {
+            throw new Exception('REQUIRED PARAMETER SENDER_ID NOT SET');
+        }
+        if ($this->arParams['RECEIVER_ID'] <= 0) {
+            throw new Exception('REQUIRED PARAMETER RECEIVER_ID NOT SET');
+        }
+
+        return $this;
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function addItemToWishlist()
+    {
+        $dateTime                 = new DateTime();
+        $result                   = WishlistTable::add([
+            'SENDER_ID'     => $this->arParams['SENDER_ID'],
+            'RECEIVER_ID'   => $this->arParams['RECEIVER_ID'],
+            'REASON'        => WishlistTable::REASON_SELECTED,
+            'EXHIBITION_ID' => $this->arParams['EXHIBITION_ID'],
+            'CREATED_AT'    => $dateTime,
+        ]);
+        $this->arResult['RESULT'] = $result;
+
+        return $this;
+    }
+
+    /**
+     * @throws Exception
+     */
     public function executeComponent()
     {
-        $result                   = WishlistTable::add([
-            "SENDER_ID"   => $this->arParams["SENDER_ID"],
-            "RECEIVER_ID" => $this->arParams["RECEIVER_ID"],
-            "REASON"      => WishlistTable::REASON_SELECTED,
-        ]);
-        $this->arResult["RESULT"] = $result;
-        $this->includeComponentTemplate();
+        $this->onIncludeComponentLang();
+        try {
+            $this->loadModules()
+                 ->checkParams()
+                 ->addItemToWishlist()
+                 ->includeComponentTemplate();
+        } catch (\Exception $e) {
+            ShowError($e->getMessage());
+        }
     }
 
 }

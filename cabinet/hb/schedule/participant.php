@@ -32,19 +32,16 @@ $APPLICATION->IncludeComponent(
     false
 ); ?>
 <div class="request-guests">
-    <? $APPLICATION->IncludeComponent(
-        "doka:meetings.wishlist",
-        "",
-        Array(
-            "CACHE_TYPE"      => "A",
-            "CACHE_TIME"      => "3600",
-            "EXHIB_IBLOCK_ID" => "15",
-            "EXIB_CODE"       => $exhibCode,
-            "USER_TYPE"       => $userType,
-            "USER_ID"         => $curUser,
-            "MESSAGE_LINK"    => "/cabinet/service/write.php",
-            "IS_HB"           => "Y",
-        ),
-        false
-    ); ?>
+    <?
+    $APPLICATION->IncludeComponent(
+        'ds:meetings.wishlist',
+        '',
+        [
+            'EXHIBITION_CODE'      => $exhibCode,
+            "EXHIBITION_IBLOCK_ID" => "15",
+            'USER_ID'              => $curUser,
+            'ADD_LINK_TO_WISHLIST' => '/cabinet/service/wish.php',
+            'IS_HB'                => 'Y',
+        ]);
+    ?>
 </div>

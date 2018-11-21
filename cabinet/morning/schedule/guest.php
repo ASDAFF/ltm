@@ -37,7 +37,7 @@ if ($appId != "") {
             'EXHIBITION_CODE'      => $exhibCode,
             "EXHIBITION_IBLOCK_ID" => "15",
             'USER_ID'              => $curUser,
-            'ADD_LINK_TO_WISHLIST' => 'cabinet/service/wish.php',
+            'ADD_LINK_TO_WISHLIST' => '/cabinet/service/wish.php',
         ]);
     ?></div><?
 } else {
