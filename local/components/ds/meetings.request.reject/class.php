@@ -71,15 +71,18 @@ class MeetingsRequestReject extends MeetingsRequest
      */
     private function addCompanyToWishlist()
     {
-        $dateTime                            = new DateTime();
-        $result                              = WishlistTable::add([
-            'SENDER_ID'     => $this->arResult['SENDER_ID'],
-            'RECEIVER_ID'   => $this->arResult['RECEIVER_ID'],
-            'REASON'        => WishlistTable::REASON_REJECTED,
-            'EXHIBITION_ID' => $this->arResult['APP_ID'],
-            'CREATED_AT'    => $dateTime,
-        ]);
-        $this->arResult['ADDED_TO_WISHLIST'] = $result->isSuccess();
+        global $USER;
+        if ((int)$USER->GetID() !== (int)$this->arResult['SENDER_ID']) {
+            $dateTime                            = new DateTime();
+            $result                              = WishlistTable::add([
+                'SENDER_ID'     => $this->arResult['SENDER_ID'],
+                'RECEIVER_ID'   => $this->arResult['RECEIVER_ID'],
+                'REASON'        => WishlistTable::REASON_REJECTED,
+                'EXHIBITION_ID' => $this->arResult['APP_ID'],
+                'CREATED_AT'    => $dateTime,
+            ]);
+            $this->arResult['ADDED_TO_WISHLIST'] = $result->isSuccess();
+        }
 
         return $this;
     }

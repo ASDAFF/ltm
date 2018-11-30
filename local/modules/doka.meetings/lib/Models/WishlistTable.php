@@ -5,7 +5,6 @@ namespace Spectr\Meeting\Models;
 
 use Bitrix\Main\Entity\DataManager;
 use Bitrix\Main\Entity\DatetimeField;
-use Bitrix\Main\Entity\ExpressionField;
 use Bitrix\Main\Entity\IntegerField;
 use Bitrix\Main\Entity\ReferenceField;
 use Bitrix\Main\Entity\StringField;
@@ -82,14 +81,22 @@ class WishlistTable extends DataManager
             $filter['RECEIVER_ID'] = $userId;
         }
         $select = ['ID', 'REASON', 'SENDER_ID', 'RECEIVER_ID'];
-        $group  = [];
-        if ($direction === 'from') {
-            $group[] = 'RECEIVER_ID';
-        } else {
-            $group[] = 'SENDER_ID';
-        }
-        $order = ['CREATED_AT' => 'ASC'];
+        $order  = ['CREATED_AT' => 'ASC'];
 
-        return self::getList(['select' => $select, 'filter' => $filter, 'group' => $group, 'order' => $order])->fetchAll();
+        $allWishlistItems = self::getList(['select' => $select, 'filter' => $filter, 'order' => $order])->fetchAll();
+        $uniqueItems      = [];
+        foreach ($allWishlistItems as $item) {
+            if ($direction === 'from') {
+                if ( !isset($uniqueItems[$item['RECEIVER_ID']])) {
+                    $uniqueItems[$item['RECEIVER_ID']] = $item;
+                }
+            } else {
+                if ( !isset($uniqueItems[$item['SENDER_ID']])) {
+                    $uniqueItems[$item['SENDER_ID']] = $item;
+                }
+            }
+        }
+
+        return $uniqueItems;
     }
 }
