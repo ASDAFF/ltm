@@ -44,8 +44,8 @@ class MeetingsWishlist extends MeetingsRequest
             $this->checkModules()
                  ->init()
                  ->getApp()
-                 ->getWishListForUser()
-                 ->getWishListFromUser()
+                 ->getWishListIn()
+                 ->getWishListOut()
                  ->getUserType()
                  ->getStatuses()
                  ->sortWishLists();
@@ -65,7 +65,7 @@ class MeetingsWishlist extends MeetingsRequest
     /**
      * @throws Exception
      */
-    private function getWishListForUser()
+    private function getWishListIn()
     {
         $wishlist      = WishlistTable::getWishlist($this->app->getId(), $this->arResult['USER_ID'], 'from');
         $isParticipant = $this->arResult['USER_TYPE'] !== User::PARTICIPANT_TYPE;
@@ -92,7 +92,7 @@ class MeetingsWishlist extends MeetingsRequest
     /**
      * @throws Exception
      */
-    private function getWishListFromUser()
+    private function getWishListOut()
     {
         $wishlist      = WishlistTable::getWishlist($this->app->getId(), $this->arResult['USER_ID'], 'to');
         $isParticipant = $this->arResult['USER_TYPE'] !== User::PARTICIPANT_TYPE;
@@ -181,7 +181,7 @@ class MeetingsWishlist extends MeetingsRequest
                     $this->arResult['REQUESTS_COUNTER'][$request['SENDER_ID']]++;
                 }
             }
-            $deniedUsers = array_map(function ($user) {
+            $deniedUsers  = array_map(function ($user) {
                 return $user['company_id'];
             }, $this->arResult['WISH_IN']);
             array_walk($companies, function ($company) use ($timeslotsCount, $deniedUsers) {

@@ -79,7 +79,7 @@ class App
     {
         $this->filter = $params;
 
-        $arFilter = ['IBLOCK_ID' => $this->filter['IBLOCK_ID']];
+        $arFilter = ['IBLOCK_ID' => $this->filter['IBLOCK_ID'], 'ACTIVE' => 'Y'];
         if ($this->filter['CODE']) {
             $arFilter['CODE'] = $this->filter['CODE'];
         }
