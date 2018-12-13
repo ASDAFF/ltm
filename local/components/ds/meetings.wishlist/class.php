@@ -44,9 +44,9 @@ class MeetingsWishlist extends MeetingsRequest
             $this->checkModules()
                  ->init()
                  ->getApp()
+                 ->getUserType()
                  ->getWishListIn()
                  ->getWishListOut()
-                 ->getUserType()
                  ->getStatuses()
                  ->sortWishLists();
             if ($this->request->get('mode') !== 'pdf') {
@@ -181,7 +181,7 @@ class MeetingsWishlist extends MeetingsRequest
                     $this->arResult['REQUESTS_COUNTER'][$request['SENDER_ID']]++;
                 }
             }
-            $deniedUsers  = array_map(function ($user) {
+            $deniedUsers = array_map(function ($user) {
                 return $user['company_id'];
             }, $this->arResult['WISH_IN']);
             array_walk($companies, function ($company) use ($timeslotsCount, $deniedUsers) {
@@ -214,8 +214,13 @@ class MeetingsWishlist extends MeetingsRequest
         ];
         if ( !$isParticipant) {
             if ( !empty($userInfo['COLLEAGUES'])) {
-                $colleague                 = RegistrGuestColleagueTable::getById($userInfo['COLLEAGUES'][0])->fetch();
-                $userInfoForPDF['COL_REP'] = "{$colleague['UF_NAME']} {$colleague['UF_SURNAME']}";
+                $colleagues = RegistrGuestColleagueTable::getList(['filter' => ['ID' => $userInfo['COLLEAGUES']]]);
+                while ($colleague = $colleagues->fetch()) {
+                    if ($colleague['UF_DAYTIME'] === RegistrGuestColleagueTable::MORNING_DAYTIME) {
+                        $userInfoForPDF['COL_REP'] = "{$colleague['UF_NAME']} {$colleague['UF_SURNAME']}";
+                        break;
+                    }
+                }
             }
         }
 
@@ -232,7 +237,7 @@ class MeetingsWishlist extends MeetingsRequest
         require(DOKA_MEETINGS_MODULE_DIR.'/classes/pdf/tcpdf.php');
         require_once(DOKA_MEETINGS_MODULE_DIR."/classes/pdf/templates/wishlist_{$userType}.php");
         $pdfResult = [
-            'APP_ID'           => $this->arResult['APP_ID'],
+            'APP_ID'           => [$this->arResult['APP_ID'], $this->arResult['APP_ID_OTHER']],
             'IS_HB'            => $this->arResult['APP_SETTINGS']['IS_HB'],
             'USER'             => $this->getUserInfoForPDF(),
             'EXHIBITION'       => $this->arResult['APP_SETTINGS'],

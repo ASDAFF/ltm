@@ -17,6 +17,9 @@ Loader::includeModule('highloadblock');
 
 class RegistrGuestColleagueTable extends DataManager
 {
+    const MORNING_DAYTIME = 'morning';
+    const EVENING_DAYTIME = 'evening';
+
     public static function getTableName(): string
     {
         return "ltm_registr_buyer_colleague";
@@ -39,7 +42,7 @@ class RegistrGuestColleagueTable extends DataManager
 
     public static function getHlId(): string
     {
-        return 'HLBLOCK_' . self::getId();
+        return 'HLBLOCK_'.self::getId();
     }
 
     private static function getUserFieldId(string $code): int
@@ -50,30 +53,33 @@ class RegistrGuestColleagueTable extends DataManager
         $result = CUserTypeEntity::GetList(
             [],
             [
-                'ENTITY_ID' => self::getHlId(),
+                'ENTITY_ID'  => self::getHlId(),
                 'FIELD_NAME' => $code,
             ]
         )->Fetch();
+
         return $result['ID'];
     }
 
     public static function getEnumValueXMLIDById(int $id, string $code)
     {
         $userFieldId = self::getUserFieldId($code);
-        $result = CUserFieldEnum::GetList([], [
-            'ID' => $id,
+        $result      = CUserFieldEnum::GetList([], [
+            'ID'            => $id,
             'USER_FIELD_ID' => $userFieldId,
         ])->Fetch();
+
         return $result['XML_ID'];
     }
 
     public static function getEnumValueIdByXMLID($xml_id, string $code): int
     {
         $userFieldId = self::getUserFieldId($code);
-        $result = CUserFieldEnum::GetList([], [
-            'XML_ID' => $xml_id,
+        $result      = CUserFieldEnum::GetList([], [
+            'XML_ID'        => $xml_id,
             'USER_FIELD_ID' => $userFieldId,
         ])->Fetch();
+
         return $result['ID'] ?: 0;
     }
 
@@ -81,18 +87,19 @@ class RegistrGuestColleagueTable extends DataManager
     {
         return [
             new IntegerField('ID', [
-                'primary' => true,
+                'primary'      => true,
                 'autocomplete' => true,
             ]),
             new StringField('UF_MOBILE_PHONE'),
             new IntegerField('UF_SALUTATION'),
             new IntegerField('UF_DAYTIME', [
-                'save_data_modification' => function () {
+                'save_data_modification'  => function () {
                     return [
                         function ($value) {
                             if (is_array($value)) {
                                 $value = reset($value);
                             }
+
                             return serialize([self::getEnumValueIdByXMLID($value, 'UF_DAYTIME')]);
                         },
                     ];
@@ -100,7 +107,7 @@ class RegistrGuestColleagueTable extends DataManager
                 'fetch_data_modification' => function () {
                     return [
                         function ($value) {
-                            $unserValue = reset(unserialize($value));
+                            $unserValue  = reset(unserialize($value));
                             $ufEnumValue = self::getEnumValueXMLIDById(intval($unserValue), 'UF_DAYTIME');
                             if ($ufEnumValue) {
                                 return $ufEnumValue;
@@ -121,8 +128,8 @@ class RegistrGuestColleagueTable extends DataManager
 
     public static function onBeforeAdd(Event $event)
     {
-        $result = new EventResult;
-        $data = $event->getParameter("fields");
+        $result    = new EventResult;
+        $data      = $event->getParameter("fields");
         $fieldsKey = array_keys(self::getEntity()->getFields());
         if (isset($data['ID'])) {
             $result->unsetField('ID');
@@ -134,7 +141,7 @@ class RegistrGuestColleagueTable extends DataManager
         }
 
         foreach ($data as $key => $value) {
-            if (!in_array($key, $fieldsKey)) {
+            if ( !in_array($key, $fieldsKey)) {
                 $result->unsetField($key);
             }
         }
@@ -149,6 +156,7 @@ class RegistrGuestColleagueTable extends DataManager
             $result = GuestStorageColleagueTable::add($row);
             if ($result->isSuccess()) {
                 self::delete($colleague_id);
+
                 return $result->getId();
             } else {
                 return null;
@@ -160,11 +168,11 @@ class RegistrGuestColleagueTable extends DataManager
 
     public static function onAfterAdd(Event $event)
     {
-        $id = $event->getParameter('id');
-        $data = $event->getParameter('fields');
-        $valueId = self::getEnumValueIdByXMLID($data['UF_DAYTIME'], 'UF_DAYTIME');
-        $hlblock = HL\HighloadBlockTable::getById(self::getId())->fetch();
-        $entity = HL\HighloadBlockTable::compileEntity($hlblock);
+        $id                = $event->getParameter('id');
+        $data              = $event->getParameter('fields');
+        $valueId           = self::getEnumValueIdByXMLID($data['UF_DAYTIME'], 'UF_DAYTIME');
+        $hlblock           = HL\HighloadBlockTable::getById(self::getId())->fetch();
+        $entity            = HL\HighloadBlockTable::compileEntity($hlblock);
         $entity_data_class = $entity->getDataClass();
         $entity_data_class::update($id, ['UF_DAYTIME' => [$valueId]]);
     }

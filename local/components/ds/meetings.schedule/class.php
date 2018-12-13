@@ -160,17 +160,27 @@ class MeetingsSchedule extends MeetingsRequest
             return $userType['USER_TYPE'] === User::GUEST_TYPE;
         });
 
+        $guestsId = array_map(function ($user) {
+            return $user['USER_ID'];
+        }, $guests);
+
         $participants = array_filter($users, function ($userType) {
             return $userType['USER_TYPE'] === User::PARTICIPANT_TYPE;
         });
 
-        $this->arResult['GUESTS'] = $this->user->getUsersInfo(array_map(function ($user) {
+        $participantsId = array_map(function ($user) {
             return $user['USER_ID'];
-        }, $guests), false, $isHbExhibition);
+        }, $participants);
 
-        $this->arResult['PARTICIPANTS'] = $this->user->getUsersInfo(array_map(function ($user) {
-            return $user['USER_ID'];
-        }, $participants), true);
+        if ($this->arResult['USER_TYPE'] === User::PARTICIPANT_TYPE) {
+            $participantsId[] = $this->arResult['USER_ID'];
+        } else {
+            $guestsId[] = $this->arResult['USER_ID'];
+        }
+
+        $this->arResult['GUESTS'] = $this->user->getUsersInfo($guestsId, false, $isHbExhibition);
+
+        $this->arResult['PARTICIPANTS'] = $this->user->getUsersInfo($participantsId, true);
 
         $this->arResult['USERS'] = [];
 
@@ -294,8 +304,13 @@ class MeetingsSchedule extends MeetingsRequest
             $userInfoForPDF['PHONE'] = $userInfo['PHONE'];
             $userInfoForPDF['MOB']   = $userInfo['MOB'];
             if ( !empty($userInfo['COLLEAGUES'])) {
-                $colleague                 = RegistrGuestColleagueTable::getById($userInfo['COLLEAGUES'][0])->fetch();
-                $userInfoForPDF['COL_REP'] = "{$colleague['UF_NAME']} {$colleague['UF_SURNAME']}";
+                $colleagues = RegistrGuestColleagueTable::getList(['filter' => ['ID' => $userInfo['COLLEAGUES']]]);
+                while ($colleague = $colleagues->fetch()) {
+                    if ($colleague['UF_DAYTIME'] === RegistrGuestColleagueTable::MORNING_DAYTIME) {
+                        $userInfoForPDF['COL_REP'] = "{$colleague['UF_NAME']} {$colleague['UF_SURNAME']}";
+                        break;
+                    }
+                }
             }
         }
 
@@ -363,6 +378,8 @@ class MeetingsSchedule extends MeetingsRequest
         $pdfResult['EXHIBITION']       = $this->arResult['APP_SETTINGS'];
         $pdfResult['PARAM_EXHIBITION'] = $this->arResult['PARAM_EXHIBITION'];
         $pdfResult['SCHEDULE']         = $this->arResult['SCHEDULE'];
+        $pdfResult['IS_HB']            = $this->arResult['APP_SETTINGS']['IS_HB'];
+        $pdfResult['APP_ID']           = [$this->arResult['APP_ID'], $this->arResult['APP_ID_OTHER']];
         if (
             ( !$isParticipant && $isExhibitionForHB) ||
             ($isParticipant && !$isExhibitionForHB)
