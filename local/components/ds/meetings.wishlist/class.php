@@ -234,12 +234,13 @@ class MeetingsWishlist extends MeetingsRequest
     {
         $isParticipant = $this->arResult['USER_TYPE'] === User::PARTICIPANT_TYPE;
         $userType      = $isParticipant ? $this->templateNameForParticipant : $this->arResult['USER_TYPE_NAME'];
+        $userInfo = $this->getUserInfoForPDF();
         require(DOKA_MEETINGS_MODULE_DIR.'/classes/pdf/tcpdf.php');
         require_once(DOKA_MEETINGS_MODULE_DIR."/classes/pdf/templates/wishlist_{$userType}.php");
         $pdfResult = [
-            'APP_ID'           => [$this->arResult['APP_ID'], $this->arResult['APP_ID_OTHER']],
-            'IS_HB'            => $this->arResult['APP_SETTINGS']['IS_HB'],
-            'USER'             => $this->getUserInfoForPDF(),
+            'APP_ID'           => $this->arResult['APP_ID'],
+            'IS_HB'            => $userInfo['IS_HB'],
+            'USER'             => $userInfo,
             'EXHIBITION'       => $this->arResult['APP_SETTINGS'],
             'PARAM_EXHIBITION' => $this->arResult['PARAM_EXHIBITION'],
             'STATUS_REQUEST'   => $this->arResult['STATUS_REQUEST'],

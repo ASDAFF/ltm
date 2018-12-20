@@ -378,8 +378,8 @@ class MeetingsSchedule extends MeetingsRequest
         $pdfResult['EXHIBITION']       = $this->arResult['APP_SETTINGS'];
         $pdfResult['PARAM_EXHIBITION'] = $this->arResult['PARAM_EXHIBITION'];
         $pdfResult['SCHEDULE']         = $this->arResult['SCHEDULE'];
-        $pdfResult['IS_HB']            = $this->arResult['APP_SETTINGS']['IS_HB'];
-        $pdfResult['APP_ID']           = [$this->arResult['APP_ID'], $this->arResult['APP_ID_OTHER']];
+        $pdfResult['IS_HB']            = $pdfResult['USER']['IS_HB'];
+        $pdfResult['APP_ID']           = $this->arResult['APP_ID'];
         if (
             ( !$isParticipant && $isExhibitionForHB) ||
             ($isParticipant && !$isExhibitionForHB)
