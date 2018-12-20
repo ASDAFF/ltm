@@ -296,10 +296,8 @@ class MeetingsSchedule extends MeetingsRequest
                 $userInfoForPDF['TABLE'] = $this->arResult['USERS'][$this->arResult['USER_ID']]['TABLE'];
             }
         } else {
-            if ($isExhibitionForHB) {
-                $userInfoForPDF['CITY'] = $userInfo['CITY'];
-                $userInfoForPDF['HALL'] = $userInfo['HALL'];
-            }
+            $userInfoForPDF['CITY']  = $userInfo['CITY'];
+            $userInfoForPDF['HALL']  = $userInfo['HALL'];
             $userInfoForPDF['TABLE'] = $userInfo['TABLE'];
             $userInfoForPDF['PHONE'] = $userInfo['PHONE'];
             $userInfoForPDF['MOB']   = $userInfo['MOB'];
@@ -387,7 +385,6 @@ class MeetingsSchedule extends MeetingsRequest
             $pdfResult['HALL']  = $pdfResult['USER']['HALL'];
             $pdfResult['TABLE'] = $pdfResult['USER']['TABLE'];
         }
-
         DokaGeneratePdf($pdfResult);
     }
 

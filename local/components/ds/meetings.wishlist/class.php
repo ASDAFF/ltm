@@ -222,6 +222,7 @@ class MeetingsWishlist extends MeetingsRequest
                     }
                 }
             }
+            $userInfoForPDF['CITY'] = $userInfo['CITY'];
         }
 
         return $userInfoForPDF;
