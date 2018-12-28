@@ -13,8 +13,8 @@ CBitrixComponent::includeComponentClass('ds:meetings.request');
 
 class MeetingsSchedule extends MeetingsRequest
 {
-    private $freeMeetType = 'free';
-    private $templateNameForParticipant = 'PARTICIP';
+    protected $freeMeetType = 'free';
+    protected $templateNameForParticipant = 'PARTICIP';
 
     public function onPrepareComponentParams($arParams): array
     {
@@ -99,7 +99,7 @@ class MeetingsSchedule extends MeetingsRequest
     /**
      * @throws Exception
      */
-    private function getTimeslots()
+    protected function getTimeslots()
     {
         $this->arResult['TIMESLOTS'] = TimeslotTable::getList([
             'filter' => ['EXHIBITION_ID' => $this->arResult['APP_ID']],
@@ -231,9 +231,7 @@ class MeetingsSchedule extends MeetingsRequest
             $schedule   = [
                 'timeslot_id' => $timeslot['ID'],
                 'slot_type'   => $timeslot['SLOT_TYPE'],
-                'status'      => $timeslot['SLOT_TYPE'] === TimeslotTable::$types[TimeslotTable::TYPE_MEET]
-                    ? $request['STATUS'] ?: $this->freeMeetType
-                    : $timeslot['SLOT_TYPE'],
+                'status'      => $this->getTimeSlotStatus($timeslot, $request),
                 'name'        => $timeslot['NAME'],
                 'notes'       => $this->getNote($request, $user),
                 'sent_by_you' => !$isReceiver,
@@ -325,7 +323,7 @@ class MeetingsSchedule extends MeetingsRequest
      *
      * @return string
      */
-    private function getNote($request, $user): string
+    protected function getNote($request, $user): string
     {
         switch ($request['STATUS']) {
             case RequestTable::$statuses[RequestTable::STATUS_PROCESS]:
@@ -358,6 +356,13 @@ class MeetingsSchedule extends MeetingsRequest
         }
 
         return $msg;
+    }
+
+    protected function getTimeSlotStatus($timeslot, $request)
+    {
+        return $timeslot['SLOT_TYPE'] === TimeslotTable::$types[TimeslotTable::TYPE_MEET]
+            ? $request['STATUS'] ?: $this->freeMeetType
+            : $timeslot['SLOT_TYPE'];
     }
 
     /**

@@ -3,89 +3,29 @@ if ( !defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     die();
 }
 
-use Bitrix\Main\Loader;
-use Spectr\Meeting\Models\SettingsTable;
-use Bitrix\Main\Localization\Loc;
+use Spectr\Meeting\Helpers\User;
+use Spectr\Meeting\Models\RegistrGuestColleagueTable;
+use Spectr\Meeting\Models\TimeslotTable;
+use Spectr\Meeting\Models\RequestTable;
 
 set_time_limit(0);
 ignore_user_abort(true);
 session_write_close();
 
-class MeetingsAllSchedule extends CBitrixComponent
-{
-    const DEFAULT_ERROR = '404 Not Found';
-    const ADMIN_TYPE = 0;
-    const GUEST_TYPE = 1;
-    const PARTICIPANT_TYPE = 2;
-    static $userTypes = [
-        self::ADMIN_TYPE        => 'ADMIN',
-        self::GUEST_TYPE        => 'GUEST',
-        self:: PARTICIPANT_TYPE => 'PARTICIPANT',
-    ];
+CBitrixComponent::includeComponentClass('ds:meetings.schedule');
 
+class MeetingsAllSchedule extends MeetingsSchedule
+{
     public function onPrepareComponentParams($arParams): array
     {
         return [
-            'CACHE_TIME'           => isset($arParams["CACHE_TIME"]) ? (int)$arParams['CACHE_TIME'] : 3600,
+            'CACHE_TIME'           => isset($arParams['CACHE_TIME']) ? (int)$arParams['CACHE_TIME'] : 3600,
             'EXHIBITION_IBLOCK_ID' => (int)$arParams['EXHIBITION_IBLOCK_ID'],
             'EXHIBITION_CODE'      => (string)$arParams['EXHIBITION_CODE'],
-            'USER_TYPE'            => isset($arParams['USER_TYPE']) ? $arParams['USER_TYPE'] : self::$userTypes[self::PARTICIPANT_TYPE],
             'EMAIL'                => isset($arParams['EMAIL']) ? $arParams['EMAIL'] : 'info@luxurytravelmart.ru',
             'IS_HB'                => isset($arParams['IS_HB']) && $arParams['IS_HB'] === 'Y' ? true : false,
             'CUT'                  => $arParams['CUT'],
         ];
-    }
-
-    /**
-     * @throws Exception
-     **/
-    protected function checkModules()
-    {
-        if ( !Loader::includeModule('doka.meetings') || !Loader::includeModule('iblock')) {
-            throw new Exception(self::DEFAULT_ERROR);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @throws Exception
-     */
-    private function getApp()
-    {
-        if ($this->arParams['EXHIBITION_CODE']) {
-            $rsExhibition = CIBlockElement::GetList(
-                [],
-                [
-                    'IBLOCK_ID' => $this->arParams['EXHIBITION_IBLOCK_ID'],
-                    'CODE'      => $this->arParams['EXHIBITION_CODE'],
-                ],
-                false,
-                false,
-                ['ID', 'CODE', 'IBLOCK_ID', 'PROPERTY_*']
-            );
-            while ($oExhibition = $rsExhibition->GetNextElement(true, false)) {
-                $this->arResult['PARAM_EXHIBITION']               = $oExhibition->GetFields();
-                $this->arResult['PARAM_EXHIBITION']['PROPERTIES'] = $oExhibition->GetProperties();
-                if ($this->arParams['IS_HB']) {
-                    $this->arResult['APP_ID'] = $this->arResult['PARAM_EXHIBITION']['PROPERTIES']['APP_HB_ID']['VALUE'];
-                } else {
-                    $this->arResult['APP_ID'] = $this->arResult['PARAM_EXHIBITION']['PROPERTIES']['APP_ID']['VALUE'];
-                }
-                if ((int)$this->arResult['APP_ID'] <= 0) {
-                    throw new Exception(self::DEFAULT_ERROR);
-                }
-            }
-        }
-
-        return $this;
-    }
-
-    private function getAppSettings()
-    {
-        $this->arResult['APP_SETTINGS'] = SettingsTable::getById($this->arResult['APP_ID'])->fetch();
-
-        return $this;
     }
 
     private function setPDFSettings()
@@ -113,71 +53,328 @@ class MeetingsAllSchedule extends CBitrixComponent
 
         if ($this->arParams['IS_HB']) {
             $this->arResult['EXHIBITION_PDF_SETTINGS']['TITLE']    .= ' Hosted Buyers session';
-            $this->arResult['EXHIBITION_PDF_SETTINGS']["TITLE_RU"] .= ' Hosted Buyers сессия';
+            $this->arResult['EXHIBITION_PDF_SETTINGS']['TITLE_RU'] .= ' Hosted Buyers сессия';
         } else {
             $this->arResult['EXHIBITION_PDF_SETTINGS']['TITLE']    = $this->arResult['PARAM_EXHIBITION']['PROPERTIES']['V_EN']['VALUE'];
             $this->arResult['EXHIBITION_PDF_SETTINGS']['TITLE_RU'] = $this->arResult['PARAM_EXHIBITION']['PROPERTIES']['V_RU']['VALUE'];
-
         }
 
         return $this;
     }
 
-    /** @TODO need to implement */
-    private function getTimeslotsForApp()
+    protected function getUserType()
     {
+        $type = strtoupper($_REQUEST['type']);
+        if ($type === User::$userTypes[User::GUEST_TYPE]) {
+            $this->arResult['USER_TYPE']      = User::GUEST_TYPE;
+            $this->arResult['USER_TYPE_NAME'] = User::$userTypes[User::GUEST_TYPE];
+        } else {
+            $this->arResult['USER_TYPE']      = User::PARTICIPANT_TYPE;
+            $this->arResult['USER_TYPE_NAME'] = User::$userTypes[User::PARTICIPANT_TYPE];
+        }
+
         return $this;
     }
 
-    /** @TODO need to implement */
-    private function getParticipantsList()
+    /**
+     * @throws Exception
+     */
+    private function getUsers()
     {
+        $this->getParticipants()->getGuests();
+
+        foreach ($this->arResult['PARTICIPANTS'] as $user) {
+            $this->arResult['USERS'][$user['ID']] = $user;
+        }
+
+        $this->arResult['COLLEAGUES_ID'] = [];
+        foreach ($this->arResult['GUESTS'] as $user) {
+            $this->arResult['USERS'][$user['ID']] = $user;
+            if ( !empty($user['COLLEAGUES'])) {
+                $this->arResult['COLLEAGUES_ID'] = array_merge($this->arResult['COLLEAGUES_ID'], $user['COLLEAGUES']);
+            }
+        }
+        $this->getColleagues();
+
         return $this;
     }
 
-    /** @TODO need to implement */
-    private function getGuestsList()
+    /**
+     * @throws Exception
+     */
+    private function getParticipants()
     {
+        $users = CGroup::GetGroupUser($this->arResult['APP_SETTINGS']['MEMBERS_GROUP']);
+        if ( !empty($users)) {
+            $this->arResult['PARTICIPANTS'] = $this->user->getUsersInfo($users, true);
+        } else {
+            $this->arResult['PARTICIPANTS'] = [];
+        }
+
+        return $this;
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function getGuests()
+    {
+        $isHbExhibition = $this->arResult['APP_SETTINGS']['IS_HB'];
+        $users          = CGroup::GetGroupUser($this->arResult['APP_SETTINGS']['GUESTS_GROUP']);
+        if ( !empty($users)) {
+            $this->arResult['GUESTS'] = $this->user->getUsersInfo($users, false, $isHbExhibition, !$isHbExhibition);
+        } else {
+            $this->arResult['GUESTS'] = [];
+        }
+
+        return $this;
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function getColleagues()
+    {
+        $this->arResult['COLLEAGUES_ID'] = array_unique($this->arResult['COLLEAGUES_ID']);
+
+        $colleagues = RegistrGuestColleagueTable::getList(['filter' => ['ID' => $this->arResult['COLLEAGUES_ID']]]);
+        while ($colleague = $colleagues->fetch()) {
+            $this->arResult['COLLEAGUES'][$colleague['ID']] = $colleague;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function getRequests()
+    {
+        $this->arResult['REQUESTS'] = [];
+        $requests                   = RequestTable::getList([
+            'filter' => [
+                '=EXHIBITION_ID' => $this->arResult['APP_ID'],
+                '!=STATUS'       => array_map(function ($status) {
+                    return RequestTable::$statuses[$status];
+                }, RequestTable::$freeStatuses),
+            ],
+        ]);
+
+        while ($req = $requests->fetch()) {
+            if ( !isset($this->arResult['REQUESTS'][$req['TIMESLOT_ID']])) {
+                $this->arResult['REQUESTS'][$req['TIMESLOT_ID']] = [];
+            }
+            $this->arResult['REQUESTS'][$req['TIMESLOT_ID']][$req['SENDER_ID']]   = [
+                'USER_ID'     => $req['RECEIVER_ID'],
+                'IS_SENDER'   => true,
+                'STATUS'      => $req['STATUS'],
+                'MODIFIED_BY' => $req['MODIFIED_BY'],
+                'SENDER_ID'   => $req['SENDER_ID'],
+                'RECEIVER_ID' => $req['RECEIVER_ID'],
+            ];
+            $this->arResult['REQUESTS'][$req['TIMESLOT_ID']][$req['RECEIVER_ID']] = [
+                'USER_ID'     => $req['SENDER_ID'],
+                'IS_SENDER'   => false,
+                'STATUS'      => $req['STATUS'],
+                'MODIFIED_BY' => $req['MODIFIED_BY'],
+                'SENDER_ID'   => $req['SENDER_ID'],
+                'RECEIVER_ID' => $req['RECEIVER_ID'],
+            ];
+        }
+
+        return $this;
+    }
+
+    private function setFolder()
+    {
+        $this->arResult['PDF_FOLDER'] = $_SERVER['DOCUMENT_ROOT'].$this->getRelativePathToSourceFolder();
+        CheckDirPath($this->arResult['PDF_FOLDER']);
+
+        return $this;
+    }
+
+    private function setArchiveName()
+    {
+        $this->arResult['ARCHIVE_NAME'] = $_SERVER['DOCUMENT_ROOT'].$this->getRelativePathToArchive();
+
+        return $this;
+    }
+
+    private function getSourcePath()
+    {
+        return '/upload/pdf/'.strtolower($this->arResult['USER_TYPE_NAME']).'/';
+    }
+
+    private function getRelativePathToArchive()
+    {
+        return $this->getSourcePath().$this->arResult['PARAM_EXHIBITION']['CODE'].$this->getPostfix().'.zip';
+    }
+
+    private function getRelativePathToSourceFolder()
+    {
+        return $this->getSourcePath().strtolower($this->arResult['PARAM_EXHIBITION']['CODE']).$this->getPostfix().'/';
+    }
+
+    private function getPostfix()
+    {
+        $postfix = '';
+        if ($this->arParams['IS_HB']) {
+            $postfix = '_hb';
+        }
+
+        return $postfix;
+    }
+
+    private function generatePDF()
+    {
+        global $APPLICATION;
+        $this->deleteExistingArchive();
+        $isParticipant = $this->arResult['USER_TYPE'] === User::PARTICIPANT_TYPE;
+        $this->loadFunctionsForCreatePDF($isParticipant);
+        $targetUsers = $isParticipant ? $this->arResult['PARTICIPANTS'] : $this->arResult['GUESTS'];
+        $APPLICATION->RestartBuffer();
+        array_walk($targetUsers,
+            function ($item) {
+                $user = [
+                    'id'         => $item['ID'],
+                    'name'       => $item['COMPANY'],
+                    'rep'        => $item['NAME'],
+                    'mob'        => $this->arResult['USERS'][$item['ID']]['MOB'],
+                    'phone'      => $this->arResult['USERS'][$item['ID']]['PHONE'],
+                    'hall'       => $this->arResult['USERS'][$item['ID']]['HALL'],
+                    'table'      => $this->arResult['USERS'][$item['ID']]['TABLE'],
+                    'city'       => $this->arResult['USERS'][$item['ID']]['CITY'],
+                    'is_hb'      => $this->arResult['USERS'][$item['ID']]['IS_HB'],
+                    'path'       => $this->arResult['PDF_FOLDER'].$this->getNameOfPdfByUser($item),
+                    'schedule'   => $this->getSchedule($item),
+                    'exhib'      => $this->arResult['EXHIBITION_PDF_SETTINGS'],
+                    'APP_ID'     => $this->arResult['APP_ID'],
+                    'exhibition' => $this->arResult['APP_SETTINGS'],
+                ];
+                if ( !empty($item['COLLEAGUES'])) {
+                    foreach ($item['COLLEAGUES'] as $colleague) {
+                        if ($this->arResult['COLLEAGUES'][$colleague]) {
+                            $user['col_rep'] = "{$colleague['UF_NAME']} {$colleague['UF_SURNAME']}";
+                            break;
+                        }
+                    }
+                }
+
+                DokaGeneratePdf($user);
+            });
+
+        return $this;
+    }
+
+    /**
+     * @param bool $isParticipant
+     */
+    private function loadFunctionsForCreatePDF($isParticipant = false)
+    {
+        $userName = $isParticipant ? $this->templateNameForParticipant : $this->arResult['USER_TYPE_NAME'];
+        require(DOKA_MEETINGS_MODULE_DIR.'/classes/pdf/tcpdf.php');
+        require_once(DOKA_MEETINGS_MODULE_DIR."/classes/pdf/templates/schedule_all_{$userName}.php");
+    }
+
+    private function getNameOfPdfByUser($user)
+    {
+        $name = "{$user['COMPANY']}_{$user['ID']}.pdf";
+        $name = $this->removeSlashes($name);
+        $name = $this->removeSpaces($name);
+        $name = $this->removeStars($name);
+
+        return $name;
+    }
+
+    private function removeSpaces($str)
+    {
+        return str_replace(' ', '_', $str);
+    }
+
+    private function removeSlashes($str)
+    {
+        return str_replace('/', '_', $str);
+    }
+
+    private function removeStars($str)
+    {
+        return str_replace('*', '_', $str);
+    }
+
+    private function getSchedule($user)
+    {
+        $schedule = [];
+        foreach ($this->arResult['TIMESLOTS'] as $timeslot) {
+            $request = $this->arResult['REQUESTS'][$timeslot['ID']][$user['ID']] ?: [];
+            $item    = [
+                'timeslot_id'   => $timeslot['ID'],
+                'timeslot_name' => $timeslot['NAME'],
+            ];
+            if ( !empty($request)) {
+                $item['is_busy']        = true;
+                $item['user_is_sender'] = $request['IS_SENDER'];
+                $item['status']         = $this->getTimeSlotStatus($timeslot, $request);
+                $item['company_id']     = $request['USER_ID'];
+                $item['company_name']   = $this->arResult['USERS'][$request['USER_ID']]['COMPANY'];
+                $item['company_rep']    = $this->arResult['USERS'][$request['USER_ID']]['NAME'];
+                $item['hall']           = $this->arResult['USERS'][$request['USER_ID']]['HALL'];
+                $item['table']          = $this->arResult['USERS'][$request['USER_ID']]['TABLE'];
+
+                $arUser        = ['ID' => $user['ID'], 'USER_TYPE' => $this->arResult['USER_TYPE_NAME']];
+                $item['notes'] = $this->getNote($request, $arUser);
+            } else {
+                $item['is_busy']        = false;
+                $item['user_is_sender'] = false;
+                if ($timeslot['SLOT_TYPE'] === TimeslotTable::$types[TimeslotTable::TYPE_MEET]) {
+                    $item['status'] = $timeslot['SLOT_TYPE'];
+                    $item['notes']  = $timeslot['SLOT_TYPE'];
+                } else {
+                    $item['status'] = TimeslotTable::$types[TimeslotTable::TYPE_MEET];
+                }
+            }
+            $schedule[] = $item;
+        }
+
+        return $schedule;
+    }
+
+    private function makeArchive()
+    {
+        MakeZipArchive($this->arResult['PDF_FOLDER'], $this->arResult['ARCHIVE_NAME']);
+
+        return $this;
+    }
+
+    private function sendEmail()
+    {
+        if (
+            file_exists($this->arResult['ARCHIVE_NAME']) &&
+            is_file($this->arResult['ARCHIVE_NAME']) &&
+            filesize($this->arResult['ARCHIVE_NAME']) > 0
+        ) {
+            $arEventFields = [
+                'EMAIL'     => $this->arParams['EMAIL'],
+                'EXIBITION' => $this->arResult['EXHIBITION_PDF_SETTINGS']['TITLE'],
+                'TYPE'      => 'расписание',
+                'USER_TYPE' => strtolower($this->arResult['USER_TYPE_NAME']),
+                'LINK'      => 'http://'.$_SERVER['SERVER_NAME'].$this->getRelativePathToArchive(),
+            ];
+            CEvent::SendImmediate('ARCHIVE_READY', 's1', $arEventFields, 'Y');
+        }
+
         return $this;
     }
 
     private function deleteExistingArchive()
     {
-        return $this;
-    }
-
-    /** TODO need to implement */
-    private function generatePDF()
-    {
-        return $this;
-    }
-
-    private function makeArchive($pdfFolder, $fileName)
-    {
-        MakeZipArchive($pdfFolder, $fileName);
+        @unlink($this->arResult['ARCHIVE_NAME']);
 
         return $this;
     }
 
-    private function sendEmail($fileName)
+    private function cleanFolder($path, $t = '1')
     {
-        if (file_exists($fileName) && is_file($fileName) && filesize($fileName) > 0) {
-            $arEventFields = array(
-                "EMAIL"     => $this->arParams["EMAIL"],
-                "EXIBITION" => $this->arResult['EXHIBITION_PDF_SETTINGS']['TITLE'],
-                "TYPE"      => "расписание",
-                "USER_TYPE" => strtolower($this->arParams["USER_TYPE"]),
-                "LINK"      => "http://".$_SERVER['SERVER_NAME'].$fileName,
-            );
-            CEvent::SendImmediate("ARCHIVE_READY", "s1", $arEventFields, $Duplicate = "Y");
-        }
-
-        return $this;
-    }
-
-    private function cleanFolder($path, $t = "1")
-    {
-        $rtrn = "1";
+        $rtrn = '1';
         if (file_exists($path) && is_dir($path)) {
             $dirHandle = opendir($path);
             while (false !== ($file = readdir($dirHandle))) {
@@ -185,7 +382,7 @@ class MeetingsAllSchedule extends CBitrixComponent
                     $tmpPath = $path.'/'.$file;
                     chmod($tmpPath, 0777);
                     if (is_dir($tmpPath)) {
-                        fullRemove_ff($tmpPath);
+                        $this->cleanFolder($tmpPath);
                     } else {
                         if (file_exists($tmpPath)) {
                             unlink($tmpPath);
@@ -194,62 +391,46 @@ class MeetingsAllSchedule extends CBitrixComponent
                 }
             }
             closedir($dirHandle);
-            if ($t == "1") {
+            if ($t == '1') {
                 if (file_exists($path)) {
                     rmdir($path);
                 }
             }
         } else {
-            $rtrn = "0";
+            $rtrn = '0';
         }
 
         return $rtrn;
     }
 
-    private function getNote($meet, $user_type, $curUser)
+    private function writeToLog($data)
     {
-        switch ($meet['status']) {
-            case 'process':
-                if ($meet['modified_by'] == $curUser) {
-                    $msg = Loc::getMessage($user_type.'_SENT_BY_YOU');
-                } else {
-                    $msg = Loc::getMessage($user_type.'_SENT_TO_YOU');
-                }
-                break;
-            case 'confirmed':
-                if ($meet['modified_by'] == $curUser) {
-                    $msg = Loc::getMessage($user_type.'_CONFIRMED_SELF');
-                } elseif ($meet['modified_by'] == $meet['company_id']) {
-                    $msg = Loc::getMessage($user_type.'_CONFIRMED');
-                } else {
-                    $msg = Loc::getMessage($user_type.'_CONFIRMED_BY_ADMIN');
-                }
-                break;
-
-            default:
-                $msg = Loc::getMessage($user_type.'_SLOT_EMPTY');
-                break;
-        }
-
-        return $msg;
+        file_put_contents($_SERVER['DOCUMENT_ROOT'].'/upload/pdf/'.date("j.n.Y").'.log', $data, FILE_APPEND);
     }
 
     public function executeComponent()
     {
-        parent::executeComponent();
+        $this->writeToLog(date('c'));
         $this->onIncludeComponentLang();
         try {
             $this->checkModules()
+                 ->init()
                  ->getApp()
-                 ->getAppSettings()
                  ->setPDFSettings()
                  ->setExhibitionPDFSettings()
-                 ->getTimeslotsForApp()
-                 ->getParticipantsList()
-                 ->getGuestsList()
+                 ->getUserType()
+                 ->getTimeslots()
+                 ->getUsers()
+                 ->getRequests()
+                 ->setFolder()
+                 ->setArchiveName()
                  ->generatePDF()
-                 ->includeComponentTemplate();
+                 ->makeArchive();
+            $this->sendEmail();
+            $this->cleanFolder($this->arResult['PDF_FOLDER']);
         } catch (\Exception $e) {
+            $this->cleanFolder($this->arResult['PDF_FOLDER']);
+            $this->writeToLog(date('c'));
             ShowError($e->getMessage());
         }
     }

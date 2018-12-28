@@ -1,5 +1,5 @@
-<?php require($_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/main/include/prolog_before.php');
-$APPLICATION->IncludeComponent(
+<?php require($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_before.php');
+/*$APPLICATION->IncludeComponent(
     "doka:meetings.all.schedule",
     "",
     Array(
@@ -20,4 +20,18 @@ $APPLICATION->IncludeComponent(
         "FORM_RESULT2" => "UF_ID2"
     ),
     false
-);?>
+);*/
+
+$APPLICATION->IncludeComponent(
+    'ds:meetings.all.schedule',
+    '',
+    Array(
+        "IS_HB"                => strtoupper($_REQUEST["hb"]),
+        "EXHIBITION_IBLOCK_ID" => 15,
+        "EXHIBITION_CODE"      => $_REQUEST["app"],
+        "EMAIL"                => $_REQUEST["email"],
+        "CUT"                  => "10",
+    ),
+    false
+)
+?>

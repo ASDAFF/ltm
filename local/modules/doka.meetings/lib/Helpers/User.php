@@ -199,11 +199,12 @@ class User
      * @param array $arUserId
      * @param bool $isParticipant
      * @param bool $onlyHB
+     * @param bool $onlyMorning
      *
      * @throws \Bitrix\Main\ArgumentException
      * @return array
      */
-    public function getUsersInfo($arUserId, $isParticipant = false, $onlyHB = false)
+    public function getUsersInfo($arUserId, $isParticipant = false, $onlyHB = false, $onlyMorning = false)
     {
         if ($isParticipant) {
             $userField = $this->app->getSettings()['FORM_RES_CODE'];
@@ -270,6 +271,9 @@ class User
             if ($onlyHB) {
                 $filter['UF_HB'] = 1;
             }
+            if ($onlyMorning) {
+                $filter['UF_MORNING'] = 1;
+            }
             $arUsers = RegistrGuestTable::getList([
                 'select' => ['*', 'UF_HB' => 'USER.UF_HB', 'COUNTRY_NAME' => 'COUNTRY.UF_VALUE'],
                 'filter' => $filter,
@@ -308,6 +312,7 @@ class User
                         'DESCRIPTION' => $user['UF_DESCRIPTION'],
                         'COLLEAGUES'  => $user['UF_COLLEAGUES'],
                         'COUNTRY'     => $user['COUNTRY_NAME'],
+                        'IS_HB'       => $user['UF_HB'],
                     ];
                 }, $arUsers);
             }
