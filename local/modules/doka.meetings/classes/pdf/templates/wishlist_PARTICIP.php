@@ -12,10 +12,10 @@ function DokaGeneratePdf($arResult) {
         // Если в настройках встреч отмечено "Сессия с НВ"
         if($arResult["EXHIBITION"]["IS_HB"]){
             $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'] .= " Hosted Buyers session";
-            $dayline = "Day 1 - March 1, 2018";
+            $dayline = "Day 1 - February 28, 2019";
         }
         else {
-            $dayline = "Day 2 - March 2, 2018";
+            $dayline = "Day 2 - March 1, 2019";
         }
     }
 	$pdf->multiCell(180, 5, "Wish-list " . $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_EN"]['VALUE'] . " for ", 0, C);

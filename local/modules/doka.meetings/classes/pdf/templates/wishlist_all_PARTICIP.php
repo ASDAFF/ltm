@@ -10,9 +10,9 @@ function DokaGeneratePdf($arResult) {
     if($arResult["exhib"]["HB_EXIST"]){
         // Если в настройках встреч отмечено "Сессия с НВ"
         if ($arResult["exhib"]["IS_HB"]) {
-            $dayline = "Day 1 - March 1, 2018";
+            $dayline = "Day 1 - February 28, 2019";
         } else {
-            $dayline = "Day 2 - March 2, 2018";
+            $dayline = "Day 2 - March 1, 2019";
         }
     }
 	$pdf->SetFont('freeserif','B',17);

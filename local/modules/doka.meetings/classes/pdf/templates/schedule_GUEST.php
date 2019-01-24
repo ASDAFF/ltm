@@ -44,9 +44,9 @@ function DokaGeneratePdf($arResult)
         // Если в настройках встреч отмечено "Сессия с НВ"
         if ($arResult["EXHIBITION"]["IS_HB"]) {
             $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'] .= " Hosted Buyers сессия\n";
-            $dayline = "День 1, 1 марта 2018";
+            $dayline = "День 1, 28 февраля 2019";
         } else {
-            $dayline = "День 2, 2 марта 2018";
+            $dayline = "День 2, 1 марта 2019";
             $arResult["PARAM_EXHIBITION"]["PROPERTIES"]["V_RU"]['VALUE'] .= "\n";
         }
     }
