@@ -27,14 +27,16 @@ elseif($_SESSION["USER_TYPE"] == "GUEST")
 
 	<?//--> Список табов 2 уровня ?>
 	<ul class="pull-overflow sub-tab-session">
-		<li class="ui-tabs-active"><a href="<?= $page . "schedule/" . (($userId)?"?UID=".$userId:"")?>" title="">Расписание на сессию 1 марта</a></li>
+		<li class="ui-tabs-active"><a href="<?= $page . "schedule/" . (($userId)?"?UID=".$userId:"")?>" title="">Расписание на сессию 28 февраля</a></li>
 		<li><a href="<?= $page . "list/" . (($userId)?"?UID=".$userId:"")?>" title="">Список участников</a></li>
 	</ul>
+	<!--
         <div class="files">
             <ul class="files__items">
                 <li class="files__item"><a href="/files/moscow-spring-2018/LTM_Day1.pdf" class="files__link" target="_blank">Скачать план рассадки Hosted Buyers (День 1)</a></li>
             </ul>
-        </div>     
+        </div>   
+    -->  
 		<div id="session-tab-1">
 		<? include("guest.php");?>
 		</div>

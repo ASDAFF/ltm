@@ -12,9 +12,9 @@ function DokaGeneratePdf($arResult) {
     if($arResult["exhib"]["HB_EXIST"]){
         // Если в настройках встреч отмечено "Сессия с НВ"
         if ($arResult["exhib"]["IS_HB"]) {
-            $dayline = "День 1 - 1 марта, 2018";
+            $dayline = "День 1 - 1 февраля 2019";
         } else {
-            $dayline = "День 2 - 2 марта, 2018";
+            $dayline = "День 2 - 1 марта, 2019";
         }
     }
 	$arResult["exhib"]["TITLE_RU"] .= "\n";
