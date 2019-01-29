@@ -239,9 +239,10 @@ class MeetingsAllSchedule extends MeetingsSchedule
                     'id'         => $item['ID'],
                     'name'       => $item['COMPANY'],
                     'rep'        => $item['NAME'],
+                    'col_rep'   => '',
                     'mob'        => $this->arResult['USERS'][$item['ID']]['MOB'],
                     'phone'      => $this->arResult['USERS'][$item['ID']]['PHONE'],
-                    'hall'       => $this->arResult['USERS'][$item['ID']]['HALL'],
+                    'hall'       => $this->arResult['USERS'][$item['ID']]['HALL_MESSAGE'] ?: '',
                     'table'      => $this->arResult['USERS'][$item['ID']]['TABLE'],
                     'city'       => $this->arResult['USERS'][$item['ID']]['CITY'],
                     'is_hb'      => $this->arResult['USERS'][$item['ID']]['IS_HB'],
@@ -259,6 +260,10 @@ class MeetingsAllSchedule extends MeetingsSchedule
                         }
                     }
                 }
+
+                $this->writeToLog(PHP_EOL);
+                $this->writeToLog(print_r($user, 1));
+                $this->writeToLog(PHP_EOL);
 
                 DokaGeneratePdf($user);
             });
@@ -313,7 +318,7 @@ class MeetingsAllSchedule extends MeetingsSchedule
             if ( !empty($request)) {
                 $item['is_busy']        = true;
                 $item['user_is_sender'] = $request['IS_SENDER'];
-                $item['status']         = $this->getTimeSlotStatus($timeslot, $request);
+                $item['status']         = $timeslot['SLOT_TYPE'];
                 $item['company_id']     = $request['USER_ID'];
                 $item['company_name']   = $this->arResult['USERS'][$request['USER_ID']]['COMPANY'];
                 $item['company_rep']    = $this->arResult['USERS'][$request['USER_ID']]['NAME'];
@@ -326,10 +331,10 @@ class MeetingsAllSchedule extends MeetingsSchedule
                 $item['is_busy']        = false;
                 $item['user_is_sender'] = false;
                 if ($timeslot['SLOT_TYPE'] === TimeslotTable::$types[TimeslotTable::TYPE_MEET]) {
+                    $item['status'] = TimeslotTable::$types[TimeslotTable::TYPE_FREE];
+                } else {
                     $item['status'] = $timeslot['SLOT_TYPE'];
                     $item['notes']  = $timeslot['SLOT_TYPE'];
-                } else {
-                    $item['status'] = TimeslotTable::$types[TimeslotTable::TYPE_MEET];
                 }
             }
             $schedule[] = $item;
@@ -410,7 +415,6 @@ class MeetingsAllSchedule extends MeetingsSchedule
 
     public function executeComponent()
     {
-        $this->writeToLog(date('c'));
         $this->onIncludeComponentLang();
         try {
             $this->checkModules()
