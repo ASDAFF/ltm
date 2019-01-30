@@ -146,35 +146,36 @@ class MeetingsAllSchedule extends MeetingsSchedule
     }
 
     /**
+     * @param int $userId
+     *
      * @throws Exception
+     * @return array
      */
-    private function getRequests()
+    private function getRequestsForUser($userId)
     {
-        $this->arResult['REQUESTS'] = [];
-        $requests                   = RequestTable::getList([
+        $requests   = [];
+        $dbRequests = RequestTable::getList([
             'filter' => [
                 '=EXHIBITION_ID' => $this->arResult['APP_ID'],
                 '!=STATUS'       => array_map(function ($status) {
                     return RequestTable::$statuses[$status];
                 }, RequestTable::$freeStatuses),
+                [
+                    'LOGIC'        => 'OR',
+                    '=SENDER_ID'   => $userId,
+                    '=RECEIVER_ID' => $userId,
+                ],
             ],
         ]);
 
-        while ($req = $requests->fetch()) {
-            if ( !isset($this->arResult['REQUESTS'][$req['TIMESLOT_ID']])) {
-                $this->arResult['REQUESTS'][$req['TIMESLOT_ID']] = [];
+        while ($req = $dbRequests->fetch()) {
+            if ( !isset($requests[$req['TIMESLOT_ID']])) {
+                $requests[$req['TIMESLOT_ID']] = [];
             }
-            $this->arResult['REQUESTS'][$req['TIMESLOT_ID']][$req['SENDER_ID']]   = [
-                'USER_ID'     => $req['RECEIVER_ID'],
-                'IS_SENDER'   => true,
-                'STATUS'      => $req['STATUS'],
-                'MODIFIED_BY' => $req['MODIFIED_BY'],
-                'SENDER_ID'   => $req['SENDER_ID'],
-                'RECEIVER_ID' => $req['RECEIVER_ID'],
-            ];
-            $this->arResult['REQUESTS'][$req['TIMESLOT_ID']][$req['RECEIVER_ID']] = [
-                'USER_ID'     => $req['SENDER_ID'],
-                'IS_SENDER'   => false,
+            $isSender                      = (int)$req['SENDER_ID'] === (int)$userId;
+            $requests[$req['TIMESLOT_ID']] = [
+                'USER_ID'     => $isSender ? $req['RECEIVER_ID'] : $req['SENDER_ID'],
+                'IS_SENDER'   => $isSender,
                 'STATUS'      => $req['STATUS'],
                 'MODIFIED_BY' => $req['MODIFIED_BY'],
                 'SENDER_ID'   => $req['SENDER_ID'],
@@ -182,7 +183,7 @@ class MeetingsAllSchedule extends MeetingsSchedule
             ];
         }
 
-        return $this;
+        return $requests;
     }
 
     private function setFolder()
@@ -239,7 +240,7 @@ class MeetingsAllSchedule extends MeetingsSchedule
                     'id'         => $item['ID'],
                     'name'       => $item['COMPANY'],
                     'rep'        => $item['NAME'],
-                    'col_rep'   => '',
+                    'col_rep'    => '',
                     'mob'        => $this->arResult['USERS'][$item['ID']]['MOB'],
                     'phone'      => $this->arResult['USERS'][$item['ID']]['PHONE'],
                     'hall'       => $this->arResult['USERS'][$item['ID']]['HALL_MESSAGE'] ?: '',
@@ -306,11 +307,18 @@ class MeetingsAllSchedule extends MeetingsSchedule
         return str_replace('*', '_', $str);
     }
 
+    /**
+     * @param int $user
+     *
+     * @throws Exception
+     * @return array
+     */
     private function getSchedule($user)
     {
         $schedule = [];
+        $reqs     = $this->getRequestsForUser($user['ID']);
         foreach ($this->arResult['TIMESLOTS'] as $timeslot) {
-            $request = $this->arResult['REQUESTS'][$timeslot['ID']][$user['ID']] ?: [];
+            $request = $reqs[$timeslot['ID']] ?: [];
             $item    = [
                 'timeslot_id'   => $timeslot['ID'],
                 'timeslot_name' => $timeslot['NAME'],
@@ -318,7 +326,7 @@ class MeetingsAllSchedule extends MeetingsSchedule
             if ( !empty($request)) {
                 $item['is_busy']        = true;
                 $item['user_is_sender'] = $request['IS_SENDER'];
-                $item['status']         = $timeslot['SLOT_TYPE'];
+                $item['status']         = $request['STATUS'];
                 $item['company_id']     = $request['USER_ID'];
                 $item['company_name']   = $this->arResult['USERS'][$request['USER_ID']]['COMPANY'];
                 $item['company_rep']    = $this->arResult['USERS'][$request['USER_ID']]['NAME'];
@@ -425,7 +433,6 @@ class MeetingsAllSchedule extends MeetingsSchedule
                  ->getUserType()
                  ->getTimeslots()
                  ->getUsers()
-                 ->getRequests()
                  ->setFolder()
                  ->setArchiveName()
                  ->generatePDF()
