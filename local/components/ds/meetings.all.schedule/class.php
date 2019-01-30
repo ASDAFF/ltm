@@ -262,10 +262,6 @@ class MeetingsAllSchedule extends MeetingsSchedule
                     }
                 }
 
-                $this->writeToLog(PHP_EOL);
-                $this->writeToLog(print_r($user, 1));
-                $this->writeToLog(PHP_EOL);
-
                 DokaGeneratePdf($user);
             });
 
@@ -416,11 +412,6 @@ class MeetingsAllSchedule extends MeetingsSchedule
         return $rtrn;
     }
 
-    private function writeToLog($data)
-    {
-        file_put_contents($_SERVER['DOCUMENT_ROOT'].'/upload/pdf/'.date("j.n.Y").'.log', $data, FILE_APPEND);
-    }
-
     public function executeComponent()
     {
         $this->onIncludeComponentLang();
@@ -441,7 +432,6 @@ class MeetingsAllSchedule extends MeetingsSchedule
             $this->cleanFolder($this->arResult['PDF_FOLDER']);
         } catch (\Exception $e) {
             $this->cleanFolder($this->arResult['PDF_FOLDER']);
-            $this->writeToLog(date('c'));
             ShowError($e->getMessage());
         }
     }
