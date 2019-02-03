@@ -30,13 +30,13 @@ elseif($_SESSION["USER_TYPE"] == "GUEST")
 		<li class="ui-tabs-active"><a href="<?= $page . "schedule/" . (($userId)?"?UID=".$userId:"")?>" title="">Расписание на сессию 28 февраля</a></li>
 		<li><a href="<?= $page . "list/" . (($userId)?"?UID=".$userId:"")?>" title="">Список участников</a></li>
 	</ul>
-	<!--
-        <div class="files">
-            <ul class="files__items">
-                <li class="files__item"><a href="/files/moscow-spring-2018/LTM_Day1.pdf" class="files__link" target="_blank">Скачать план рассадки Hosted Buyers (День 1)</a></li>
-            </ul>
-        </div>   
-    -->  
+
+    <div class="files">
+        <ul class="files__items">
+            <li class="files__item"><a href="/files/moscow-spring-2019/Moscow_HB_Program_2019.pdf" class="files__link" target="_blank">Скачать программу для гостя по программе региональных покупателей Hosted Buyers (участие в двух днях выставки, 28 февраля и 1 марта 2019)</a></li>
+        </ul>
+    </div>   
+
 		<div id="session-tab-1">
 		<? include("guest.php");?>
 		</div>
