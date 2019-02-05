@@ -282,18 +282,22 @@ $(function(){
 				if(res.error == ''){
 					$(".meetApp").each(function() {
 						var appId = $(this).attr("data-id"),
-							appHbId = $(this).attr("data-hb-id"),
+							appHbId = $(this).attr("data-hb-id"), // такого атрибута нет
 							newCount = res[appId].incoming;
 						if(appHbId != ''){
+							//здесь возникает ошибка, т.к. ключ appHbId === undefined
+							//к гостю НВ ответ приходит без ключа "6"
 							newCount += res[appHbId].incoming;
 						}
 						$countMeet = $('#meet-'+appId).text();
 						if($countMeet != newCount){
 							$('#meet-'+appId).text(newCount);
 							if(newCount < 1)
-								$('#meet-'+appId).hide();
+								// заменил hide() на убирание класса show
+								$('#meet-'+appId).removeClass('show');
 							else
-								$('#meet-'+appId).show();
+								// заменил show() на добавление класса show
+								$('#meet-'+appId).addClass('show');
 						}
 					});
 				}
@@ -301,7 +305,11 @@ $(function(){
 		});
 	}
 
+	// Временно отключаем вызов checkMeets
+/*
 	$(document).ready(function(){
 		setInterval(checkMeets, 120000);
 	});
+*/
+
 });
