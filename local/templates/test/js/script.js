@@ -302,6 +302,6 @@ $(function(){
 	}
 
 	$(document).ready(function(){
-		setInterval(checkMeets, 60000);
+		setInterval(checkMeets, 120000);
 	});
 });
