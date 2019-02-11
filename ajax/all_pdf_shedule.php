@@ -7,7 +7,6 @@ $APPLICATION->IncludeComponent(
         "EXHIBITION_IBLOCK_ID" => 15,
         "EXHIBITION_CODE"      => $_REQUEST["app"],
         "EMAIL"                => $_REQUEST["email"],
-        "CUT"                  => "10",
     ),
     false
 )

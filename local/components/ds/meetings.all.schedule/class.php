@@ -24,7 +24,6 @@ class MeetingsAllSchedule extends MeetingsSchedule
             'EXHIBITION_CODE'      => (string)$arParams['EXHIBITION_CODE'],
             'EMAIL'                => isset($arParams['EMAIL']) ? $arParams['EMAIL'] : 'info@luxurytravelmart.ru',
             'IS_HB'                => isset($arParams['IS_HB']) && $arParams['IS_HB'] === 'Y' ? true : false,
-            'CUT'                  => $arParams['CUT'],
         ];
     }
 
@@ -34,10 +33,6 @@ class MeetingsAllSchedule extends MeetingsSchedule
             'USER_TYPE' => $this->arParams['USER_TYPE'],
             'APP_ID'    => $this->arParams['APP_ID'],
             'IS_ACTIVE' => !$this->arResult['APP_SETTINGS']['IS_LOCKED'],
-            'CUT'       => $this->arParams['CUT'],
-            'HALL'      => '',
-            'TABLE'     => '',
-            'CITY'      => '',
         ];
 
         return $this;
@@ -48,15 +43,14 @@ class MeetingsAllSchedule extends MeetingsSchedule
         $this->arResult['EXHIBITION_PDF_SETTINGS'] = [
             'IS_HB'    => $this->arParams['IS_HB'],
             'HB_EXIST' => $this->arResult['PARAM_EXHIBITION']['PROPERTIES']['HB_EXIST']['VALUE'],
-            'CUT'      => $this->arParams['CUT'],
         ];
+
+        $this->arResult['EXHIBITION_PDF_SETTINGS']['TITLE']    = $this->arResult['PARAM_EXHIBITION']['PROPERTIES']['V_EN']['VALUE'];
+        $this->arResult['EXHIBITION_PDF_SETTINGS']['TITLE_RU'] = $this->arResult['PARAM_EXHIBITION']['PROPERTIES']['V_RU']['VALUE'];
 
         if ($this->arParams['IS_HB']) {
             $this->arResult['EXHIBITION_PDF_SETTINGS']['TITLE']    .= ' Hosted Buyers session';
             $this->arResult['EXHIBITION_PDF_SETTINGS']['TITLE_RU'] .= ' Hosted Buyers сессия';
-        } else {
-            $this->arResult['EXHIBITION_PDF_SETTINGS']['TITLE']    = $this->arResult['PARAM_EXHIBITION']['PROPERTIES']['V_EN']['VALUE'];
-            $this->arResult['EXHIBITION_PDF_SETTINGS']['TITLE_RU'] = $this->arResult['PARAM_EXHIBITION']['PROPERTIES']['V_RU']['VALUE'];
         }
 
         return $this;
@@ -243,7 +237,7 @@ class MeetingsAllSchedule extends MeetingsSchedule
                     'col_rep'    => '',
                     'mob'        => $this->arResult['USERS'][$item['ID']]['MOB'],
                     'phone'      => $this->arResult['USERS'][$item['ID']]['PHONE'],
-                    'hall'       => $this->arResult['USERS'][$item['ID']]['HALL_MESSAGE'] ?: '',
+                    'hall'       => $this->arResult['USERS'][$item['ID']]['HALL'] ?: $this->arResult['USERS'][$item['ID']]['HALL_MESSAGE'],
                     'table'      => $this->arResult['USERS'][$item['ID']]['TABLE'],
                     'city'       => $this->arResult['USERS'][$item['ID']]['CITY'],
                     'is_hb'      => $this->arResult['USERS'][$item['ID']]['IS_HB'],
@@ -255,8 +249,12 @@ class MeetingsAllSchedule extends MeetingsSchedule
                 ];
                 if ( !empty($item['COLLEAGUES'])) {
                     foreach ($item['COLLEAGUES'] as $colleague) {
-                        if ($this->arResult['COLLEAGUES'][$colleague]) {
-                            $user['col_rep'] = "{$colleague['UF_NAME']} {$colleague['UF_SURNAME']}";
+                        if (
+                            is_array($this->arResult['COLLEAGUES'][$colleague]) &&
+                            !empty($this->arResult['COLLEAGUES'][$colleague])
+                        ) {
+                            $user['col_rep'] = $this->arResult['COLLEAGUES'][$colleague]['UF_NAME'].
+                                               " {$this->arResult['COLLEAGUES'][$colleague]['UF_SURNAME']}";
                             break;
                         }
                     }
