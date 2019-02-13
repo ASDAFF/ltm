@@ -17,11 +17,16 @@
 <p><b>Please do not invite any partners of your company/hotel to the Luxury Travel Mart without receiving approval from the organizers in advance.</b></p>
 
 
-
+<h3>Files for download</h3>
+<ul>
+	<li><a href="/files/moscow-spring-2019/Moscow_2019-exhibitors.pdf" target="_blank">Please download the detailed program of the event</a></li>
+	<li><a href="/files/moscow-spring-2019/BROCHURE-DAY1.pdf" target="_blank">Download Floor Plan for the 1st Day (Hosted Buyers Day)</a></li>
+	<li><a href="/files/moscow-spring-2019/BROCHURE-DAY2.pdf" target="_blank">Download Floor Plan for the 2nd Day</a></li>
+</ul>
 
 
 <p>
-	<a href="/files/moscow-spring-2019/Moscow_2019-exhibitors.pdf" target="_blank">Please download the detailed program of the event.</a>
+	<a href="" target="_blank"></a>
 </p>
 
 
