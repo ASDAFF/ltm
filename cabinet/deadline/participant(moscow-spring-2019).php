@@ -10,7 +10,7 @@
 
 <p>On the <b>4th of February 2019</b> you will receive an access code for your personal web-page on the LTM web-site, where you can schedule appointments with buyers, upload info for the catalogue, exchange messages with buyers, etc. </p>
 
-<p>From the <b>5th to the 12th of February 2019</b> — scheduling of appointments for the 1st day of LTM, from the <b>12th to the 20th of February 2019</b> scheduling of appointments for the 2nd day of LTM.</p>
+<p>From the <b>5th to the 12th of February 2019</b> — scheduling of appointments for the 1st day of LTM, from the <b>12th to the 20th of February 2019</b> — scheduling of appointments for the 2nd day of LTM.</p>
 
 <p>Please note that it is your own responsibility to maintain the schedule. If you forget or are too late to schedule and it turns out that you don’t have any pre-scheduled appointments – we will not accept any responsibility for this. </p>
 
