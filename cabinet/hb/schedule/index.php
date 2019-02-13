@@ -34,6 +34,7 @@ elseif($_SESSION["USER_TYPE"] == "GUEST")
     <div class="files">
         <ul class="files__items">
             <li class="files__item"><a href="/files/moscow-spring-2019/Moscow_HB_Program_2019.pdf" class="files__link" target="_blank">Скачать программу для гостя по программе региональных покупателей Hosted Buyers (участие в двух днях выставки, 28 февраля и 1 марта 2019)</a></li>
+            <li class="files__item"><a href="/files/moscow-spring-2019/BROCHURE-DAY1.pdf" class="files__link" target="_blank">Скачать план рассадки региональных компаний на 1-й день</a></li>
         </ul>
     </div>   
 
