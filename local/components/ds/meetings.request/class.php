@@ -17,6 +17,7 @@ class MeetingsRequest extends CBitrixComponent
     protected $user;
     /** @var App */
     protected $app;
+    protected $templateNameForParticipant = 'PARTICIP';
 
     public function onPrepareComponentParams($arParams): array
     {
@@ -63,7 +64,7 @@ class MeetingsRequest extends CBitrixComponent
      */
     protected function init()
     {
-        $params     = [
+        $params = [
             'IBLOCK_ID' => $this->arParams['EXHIBITION_IBLOCK_ID'],
             'CODE'      => $this->arParams['EXHIBITION_CODE'],
             'ID'        => $this->arParams['APP_ID'],

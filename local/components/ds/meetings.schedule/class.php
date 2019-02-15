@@ -14,7 +14,6 @@ CBitrixComponent::includeComponentClass('ds:meetings.request');
 class MeetingsSchedule extends MeetingsRequest
 {
     protected $freeMeetType = 'free';
-    protected $templateNameForParticipant = 'PARTICIP';
 
     public function onPrepareComponentParams($arParams): array
     {

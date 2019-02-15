@@ -14,8 +14,6 @@ CBitrixComponent::includeComponentClass('ds:meetings.request');
 
 class MeetingsWishlist extends MeetingsRequest
 {
-    private $templateNameForParticipant = 'PARTICIP';
-
     public function onPrepareComponentParams($arParams): array
     {
         $params = [];
