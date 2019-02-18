@@ -55,7 +55,7 @@ elseif($_SESSION["USER_TYPE"] == "GUEST")
 <? if ($exhibCode == "moscow-spring-2019") { ?>
     <div class="files">
         <ul class="files__items">
-            <li class="files__item"><a href="/files/moscow-spring-2019/Moscow_Program_Buyers_2019.pdf" class="files__link" target="_blank">Скачать программу для гостя из города Москва (участие только во втором дне выставки, 1 марта 2019)</a></li>
+            <li class="files__item"><a href="/files/moscow-spring-2019/Moscow_Program_Buyers_2019_print.pdf" class="files__link" target="_blank">Скачать программу для гостя из города Москва (участие только во втором дне выставки, 1 марта 2019)</a></li>
             <li class="files__item"><a href="/files/moscow-spring-2019/BROCHURE-DAY2.pdf" class="files__link" target="_blank">Скачать план расположения участников</a></li>
         </ul>
     </div>
