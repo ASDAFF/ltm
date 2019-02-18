@@ -16,7 +16,9 @@
 
 <p><b>Please do not invite any partners of your company/hotel to the Luxury Travel Mart without receiving approval from the organizers in advance. </b></p>
 
-<p>
-	<a href="/files/almaty-spring-2019/Almaty_2019-exhibitors.pdf" target="_blank">Please download the detailed program of the event.</a>
-</p>
-
+<h3>Files for download</h3>
+<ul>
+	<li><a href="/files/almaty-spring-2019/Almaty_2019-exhibitors.pdf" target="_blank">Please download the detailed program of the event.</a>
+	</li>
+	<li><a href="/files/almaty-spring-2019/Almaty_Spring_2019_Booklet.pdf" target="_blank">Download Floor Plan for LTM Almaty Spring 2019</a></li>
+</ul>
