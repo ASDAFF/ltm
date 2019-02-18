@@ -1,6 +1,7 @@
 # files
 .DS_Store
 Thumbs.db
+*.gz
 *.sql
 /.idea/
 /*.log
