@@ -4,6 +4,9 @@ if ( !defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 }
 
 use Spectr\Meeting\Helpers\User;
+use Spectr\Meeting\Helpers\Utils;
+use Bitrix\Main\Localization\Loc;
+use Spectr\Meeting\Models\RegistrGuestColleagueTable;
 
 set_time_limit(0);
 ignore_user_abort(true);
@@ -103,12 +106,12 @@ class MeetingsAllWishlist extends MeetingsWishlist
         if ($this->arParams['IS_HB']) {
             $isHB = '_hb';
         }
-        $userTypeName                    = strtolower($this->arResult['USER_TYPE_NAME']);
-        $exhibitionCode                  = strtolower($this->arParams['EXHIBITION_CODE']);
-        $this->arResult['PATH']['BASE']  = "/upload/pdf/{$userTypeName}/";
-        $this->arResult['PATH']['SHORT'] = "{$this->arResult['ARCHIVE_SETTINGS']['PATH']['BASE']}wish_{$exhibitionCode}{$isHB}/";
-        $this->arResult['PATH']['FULL']  = $_SERVER['DOCUMENT_ROOT'].$this->arResult['ARCHIVE_SETTINGS']['PATH']['SHORT'];
-        $this->arResult['PATH']['IS_HB'] = $isHB;
+        $userTypeName                       = strtolower($this->arResult['USER_TYPE_NAME']);
+        $exhibitionCode                     = strtolower($this->arParams['EXHIBITION_CODE']);
+        $this->arResult['PATH']['BASE']     = "/upload/pdf/{$userTypeName}/";
+        $this->arResult['PATH']['RELATIVE'] = "{$this->arResult['PATH']['BASE']}wish_{$exhibitionCode}{$isHB}/";
+        $this->arResult['PATH']['ABSOLUTE'] = $_SERVER['DOCUMENT_ROOT'].$this->arResult['PATH']['RELATIVE'];
+        $this->arResult['PATH']['IS_HB']    = $isHB;
 
         return $this;
     }
@@ -117,7 +120,7 @@ class MeetingsAllWishlist extends MeetingsWishlist
     {
         $this->arResult['ARCHIVE_NAME']          = ['SHORT' => '', 'INNER' => '', 'OUTER' => ''];
         $this->arResult['ARCHIVE_NAME']['SHORT'] =
-            "{$this->arResult['PATH']['SHORT']}wish_{$this->arParams['EXHIBITION_CODE']}{$this->arResult['PATH']['IS_HB']}.zip";
+            "{$this->arResult['PATH']['BASE']}wish_{$this->arParams['EXHIBITION_CODE']}{$this->arResult['PATH']['IS_HB']}.zip";
         $this->arResult['ARCHIVE_NAME']['INNER'] = "{$_SERVER['DOCUMENT_ROOT']}{$this->arResult['ARCHIVE_NAME']['SHORT']}";
         $this->arResult['ARCHIVE_NAME']['OUTER'] = "http://{$_SERVER['SERVER_NAME']}{$this->arResult['ARCHIVE_NAME']['SHORT']}";
 
@@ -130,22 +133,52 @@ class MeetingsAllWishlist extends MeetingsWishlist
         $isParticipant = $this->arResult['USER_TYPE'] === User::PARTICIPANT_TYPE;
         $this->createDirectories()->deleteExistingArchive()->loadFunctionsForCreatePDF($isParticipant);
         $APPLICATION->RestartBuffer();
+        $this->arResult['WISH_IN']  = [];
+        $this->arResult['WISH_OUT'] = [];
+        array_walk($this->arResult['USERS'], function ($item) {
+            $isParticipant = $this->arResult['USER_TYPE'] !== User::PARTICIPANT_TYPE;
+            $company       = [
+                'id'             => $item['ID'],
+                'name'           => $item['COMPANY'],
+                'rep'            => $item['NAME'],
+                'col_rep'        => '',
+                'city'           => $item['CITY'],
+                'path'           => $this->arResult['PATH']['ABSOLUTE'].$this->getNameOfPdfByUser($item),
+                'exhib'          => $this->arResult['EXHIBITION_PDF_SETTINGS'],
+                'is_hb'          => $item['IS_HB'],
+                'wish_in'        => $this->getWishListIn($item['ID'], $isParticipant),
+                'wish_out'       => $this->getWishListOut($item['ID'], $isParticipant),
+                'STATUS_REQUEST' => [
+                    'empty'    => '',
+                    'rejected' => Loc::getMessage($this->arResult['USER_TYPE_NAME'].'_REJECTED'),
+                    'timeout'  => Loc::getMessage($this->arResult['USER_TYPE_NAME'].'_TIMEOUT'),
+                    'selected' => Loc::getMessage($this->arResult['USER_TYPE_NAME'].'_SELECTED'),
+                ],
+            ];
 
+            if (is_array($item['COLLEAGUES']) && !empty($item['COLLEAGUES'])) {
+                $colleagues = RegistrGuestColleagueTable::getList(['filter' => ['ID' => $item['COLLEAGUES']]]);
+                if ($colleague = $colleagues->fetch()) {
+                    $company['col_rep'] = "{$colleague['UF_NAME']} {$colleague['UF_SURNAME']}";
+                }
+            }
+
+            DokaGeneratePdf($company);
+        });
 
         return $this;
     }
 
     private function createDirectories()
     {
-        CheckDirPath($this->arResult['PATH']['FULL']);
+        CheckDirPath($this->arResult['PATH']['ABSOLUTE']);
 
         return $this;
     }
 
     private function deleteExistingArchive()
     {
-
-        @unlink($this->arResult['ARCHIVE_NAME']['INNER']);
+        Utils::deleteFile($this->arResult['ARCHIVE_NAME']['INNER']);
 
         return $this;
     }
@@ -167,9 +200,9 @@ class MeetingsAllWishlist extends MeetingsWishlist
         include_once($_SERVER['DOCUMENT_ROOT'].'/local/php_interface/lib/pclzip.lib.php');
         $this->arResult['ARCHIVE']        = new PclZip($this->arResult['ARCHIVE_NAME']['INNER']);
         $this->arResult['ARCHIVE_RESULT'] = $this->arResult['ARCHIVE']->create(
-            $this->arResult['PATH']['FULL'],
+            $this->arResult['PATH']['ABSOLUTE'],
             PCLZIP_OPT_REMOVE_PATH,
-            $_SERVER['DOCUMENT_ROOT'].$this->arResult['PATH']['SHORT']
+            $_SERVER['DOCUMENT_ROOT'].$this->arResult['PATH']['RELATIVE']
         );
         if ($this->arResult['ARCHIVE_RESULT'] === 0) {
             throw new Exception($this->arResult['ARCHIVE']->errorInfo(true));
@@ -192,37 +225,6 @@ class MeetingsAllWishlist extends MeetingsWishlist
         return $this;
     }
 
-    private function cleanFolder($path, $t = '1')
-    {
-        $rtrn = '1';
-        if (file_exists($path) && is_dir($path)) {
-            $dirHandle = opendir($path);
-            while (false !== ($file = readdir($dirHandle))) {
-                if ($file != '.' && $file != '..') {
-                    $tmpPath = $path.'/'.$file;
-                    chmod($tmpPath, 0777);
-                    if (is_dir($tmpPath)) {
-                        $this->cleanFolder($tmpPath);
-                    } else {
-                        if (file_exists($tmpPath)) {
-                            unlink($tmpPath);
-                        }
-                    }
-                }
-            }
-            closedir($dirHandle);
-            if ($t == '1') {
-                if (file_exists($path)) {
-                    rmdir($path);
-                }
-            }
-        } else {
-            $rtrn = '0';
-        }
-
-        return $rtrn;
-    }
-
     public function executeComponent()
     {
         $this->onIncludeComponentLang();
@@ -237,9 +239,7 @@ class MeetingsAllWishlist extends MeetingsWishlist
                  ->generatePDF()
                  ->makeArchive()
                  ->sendEmail();
-            $this->cleanFolder($this->arResult['PATH']['FULL']);
         } catch (\Exception $e) {
-            $this->cleanFolder($this->arResult['PATH']['FULL']);
             ShowError($e->getMessage());
             @define('ERROR_404', 'Y');
             CHTTP::SetStatus('404 Not Found');

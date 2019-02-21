@@ -9,6 +9,7 @@ use Spectr\Meeting\Models\TimeslotTable;
 use Spectr\Meeting\Models\RequestTable;
 use Spectr\Meeting\Helpers\User;
 use Spectr\Meeting\Helpers\App;
+use Spectr\Meeting\Helpers\Utils;
 
 class MeetingsRequest extends CBitrixComponent
 {
@@ -253,6 +254,16 @@ class MeetingsRequest extends CBitrixComponent
         if ($this->arResult['APP_SETTINGS']['IS_LOCKED'] && $this->arResult['USER_TYPE'] !== User::ADMIN_TYPE) {
             throw new Exception(Loc::getMessage('ERROR_APPOINTMENT_LOCKED'));
         }
+    }
+
+    protected function getNameOfPdfByUser($user)
+    {
+        $name = "{$user['COMPANY']}_{$user['ID']}.pdf";
+        $name = Utils::removeSlashes($name);
+        $name = Utils::removeSpaces($name);
+        $name = Utils::removeStars($name);
+
+        return $name;
     }
 
     public function executeComponent()

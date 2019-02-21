@@ -22,4 +22,5 @@ CModule::AddAutoloadClasses('doka.meetings', array(
     'Spectr\Meeting\Models\GuestCountriesTable'        => 'lib/Models/GuestCountriesTable.php',
     'Spectr\Meeting\Helpers\User'                      => 'lib/Helpers/User.php',
     'Spectr\Meeting\Helpers\App'                       => 'lib/Helpers/App.php',
+    'Spectr\Meeting\Helpers\Utils'                     => 'lib/Helpers/Utils.php',
 ));
