@@ -14,8 +14,6 @@ CBitrixComponent::includeComponentClass('ds:meetings.request');
 
 class MeetingsWishlist extends MeetingsRequest
 {
-    private $templateNameForParticipant = 'PARTICIP';
-
     public function onPrepareComponentParams($arParams): array
     {
         $params = [];
@@ -31,89 +29,91 @@ class MeetingsWishlist extends MeetingsRequest
 
     protected function init()
     {
-        $this->arResult['USERS']   = [];
         $this->arResult['USER_ID'] = $this->arParams['USER_ID'];
 
         return parent::init();
     }
 
-    public function executeComponent()
-    {
-        $this->onIncludeComponentLang();
-        try {
-            $this->checkModules()
-                 ->init()
-                 ->getApp()
-                 ->getUserType()
-                 ->getWishListIn()
-                 ->getWishListOut()
-                 ->getStatuses()
-                 ->sortWishLists();
-            if ($this->request->get('mode') !== 'pdf') {
-                $this->getUsersForManualAddition()
-                     ->includeComponentTemplate();
-            } else {
-                global $APPLICATION;
-                $APPLICATION->RestartBuffer();
-                $this->generatePdf();
-            }
-        } catch (\Exception $e) {
-            ShowError($e->getMessage());
-        }
-    }
-
     /**
      * @throws Exception
      */
-    private function getWishListIn()
+    private function getWishLists()
     {
-        $wishlist      = WishlistTable::getWishlist($this->app->getId(), $this->arResult['USER_ID'], 'from');
-        $isParticipant = $this->arResult['USER_TYPE'] !== User::PARTICIPANT_TYPE;
-        $isHb          = (bool)$this->arResult['APP_SETTINGS']['IS_HB'];
-        $users         = array_map(function ($item) {
+        $isParticipant              = $this->arResult['USER_TYPE'] !== User::PARTICIPANT_TYPE;
+        $this->arResult['WISH_IN']  = $this->getWishListIn($this->arResult['USER_ID'], $isParticipant);
+        $this->arResult['WISH_OUT'] = $this->getWishListOut($this->arResult['USER_ID'], $isParticipant);
+
+        return $this;
+    }
+
+    /**
+     * @param int $userId
+     * @param bool $isParticipant
+     *
+     * @throws Exception
+     * @return array
+     */
+    protected function getWishListIn($userId, $isParticipant)
+    {
+        $wishlist  = WishlistTable::getWishlist($this->app->getId(), $userId, 'from');
+        $isHb      = (bool)$this->arResult['APP_SETTINGS']['IS_HB'];
+        $usersId   = array_map(function ($item) {
             return $item['RECEIVER_ID'];
         }, $wishlist);
-        $usersInfo     = $this->user->getUsersInfo($users, $isParticipant, $isHb);
-        array_walk($usersInfo, function ($user) {
-            $this->arResult['USERS'][$user['ID']] = $user;
-        });
-        $this->arResult['WISH_IN'] = array_map(function ($item) {
-            return [
-                'company_id'     => $item['RECEIVER_ID'],
-                'company_name'   => $this->arResult['USERS'][$item['RECEIVER_ID']]['COMPANY'],
-                'company_rep'    => $this->arResult['USERS'][$item['RECEIVER_ID']]['NAME'],
-                'company_reason' => $item['REASON'],
-            ];
-        }, $wishlist);
+        $users     = [];
+        $usersInfo = $this->user->getUsersInfo($usersId, $isParticipant, $isHb);
+        foreach ($usersInfo as $user) {
+            $users[$user['ID']] = $user;
+        }
 
-        return $this;
+        $wishlistIn = [];
+        foreach ($wishlist as $item) {
+            if ( !empty($users[$item['RECEIVER_ID']])) {
+                $wishlistIn[] = [
+                    'company_id'     => $item['RECEIVER_ID'],
+                    'company_name'   => $users[$item['RECEIVER_ID']]['COMPANY'],
+                    'company_rep'    => $users[$item['RECEIVER_ID']]['NAME'],
+                    'company_reason' => $item['REASON'],
+                ];
+            }
+        }
+
+        return $wishlistIn;
     }
 
     /**
+     * @param int $userId
+     * @param bool $isParticipant
+     *
      * @throws Exception
+     * @return array
      */
-    private function getWishListOut()
+    protected function getWishListOut($userId, $isParticipant)
     {
-        $wishlist      = WishlistTable::getWishlist($this->app->getId(), $this->arResult['USER_ID'], 'to');
-        $isParticipant = $this->arResult['USER_TYPE'] !== User::PARTICIPANT_TYPE;
-        $isHb          = (bool)$this->arResult['APP_SETTINGS']['IS_HB'];
-        $users         = array_map(function ($item) {
+        $wishlist  = WishlistTable::getWishlist($this->app->getId(), $userId, 'to');
+        $isHb      = (bool)$this->arResult['APP_SETTINGS']['IS_HB'];
+        $usersId   = array_map(function ($item) {
             return $item['SENDER_ID'];
         }, $wishlist);
-        $usersInfo     = $this->user->getUsersInfo($users, $isParticipant, $isHb);
-        array_walk($usersInfo, function ($user) {
-            $this->arResult['USERS'][$user['ID']] = $user;
-        });
-        $this->arResult['WISH_OUT'] = array_map(function ($item) {
-            return [
-                'company_id'     => $item['SENDER_ID'],
-                'company_name'   => $this->arResult['USERS'][$item['SENDER_ID']]['COMPANY'],
-                'company_rep'    => $this->arResult['USERS'][$item['SENDER_ID']]['NAME'],
-                'company_reason' => $item['REASON'],
-            ];
-        }, $wishlist);
+        $users     = [];
+        $usersInfo = $this->user->getUsersInfo($usersId, $isParticipant, $isHb);
+        foreach ($usersInfo as $user) {
+            $users[$user['ID']] = $user;
+        }
 
-        return $this;
+        $wishlistOut = [];
+        foreach ($wishlist as $item) {
+            if ( !empty($users[$item['SENDER_ID']])) {
+                $wishlistOut[] = [
+                    'company_id'     => $item['SENDER_ID'],
+                    'company_name'   => $users[$item['SENDER_ID']]['COMPANY'],
+                    'company_rep'    => $users[$item['SENDER_ID']]['NAME'],
+                    'company_reason' => $item['REASON'],
+                ];
+            }
+        }
+
+        return $wishlistOut;
     }
 
     private function getStatuses()
@@ -235,7 +235,7 @@ class MeetingsWishlist extends MeetingsRequest
     {
         $isParticipant = $this->arResult['USER_TYPE'] === User::PARTICIPANT_TYPE;
         $userType      = $isParticipant ? $this->templateNameForParticipant : $this->arResult['USER_TYPE_NAME'];
-        $userInfo = $this->getUserInfoForPDF();
+        $userInfo      = $this->getUserInfoForPDF();
         require(DOKA_MEETINGS_MODULE_DIR.'/classes/pdf/tcpdf.php');
         require_once(DOKA_MEETINGS_MODULE_DIR."/classes/pdf/templates/wishlist_{$userType}.php");
         $pdfResult = [
@@ -249,5 +249,29 @@ class MeetingsWishlist extends MeetingsRequest
             'WISH_OUT'         => $this->arResult['WISH_OUT'],
         ];
         DokaGeneratePdf($pdfResult);
+    }
+
+    public function executeComponent()
+    {
+        $this->onIncludeComponentLang();
+        try {
+            $this->checkModules()
+                 ->init()
+                 ->getApp()
+                 ->getUserType()
+                 ->getWishLists()
+                 ->getStatuses()
+                 ->sortWishLists();
+            if ($this->request->get('mode') !== 'pdf') {
+                $this->getUsersForManualAddition()
+                     ->includeComponentTemplate();
+            } else {
+                global $APPLICATION;
+                $APPLICATION->RestartBuffer();
+                $this->generatePdf();
+            }
+        } catch (\Exception $e) {
+            ShowError($e->getMessage());
+        }
     }
 }

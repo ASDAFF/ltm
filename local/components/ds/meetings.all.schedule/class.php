@@ -7,6 +7,7 @@ use Spectr\Meeting\Helpers\User;
 use Spectr\Meeting\Models\RegistrGuestColleagueTable;
 use Spectr\Meeting\Models\TimeslotTable;
 use Spectr\Meeting\Models\RequestTable;
+use Spectr\Meeting\Helpers\Utils;
 
 set_time_limit(0);
 ignore_user_abort(true);
@@ -276,31 +277,6 @@ class MeetingsAllSchedule extends MeetingsSchedule
         require_once(DOKA_MEETINGS_MODULE_DIR."/classes/pdf/templates/schedule_all_{$userName}.php");
     }
 
-    private function getNameOfPdfByUser($user)
-    {
-        $name = "{$user['COMPANY']}_{$user['ID']}.pdf";
-        $name = $this->removeSlashes($name);
-        $name = $this->removeSpaces($name);
-        $name = $this->removeStars($name);
-
-        return $name;
-    }
-
-    private function removeSpaces($str)
-    {
-        return str_replace(' ', '_', $str);
-    }
-
-    private function removeSlashes($str)
-    {
-        return str_replace('/', '_', $str);
-    }
-
-    private function removeStars($str)
-    {
-        return str_replace('*', '_', $str);
-    }
-
     /**
      * @param int $user
      *
@@ -374,40 +350,9 @@ class MeetingsAllSchedule extends MeetingsSchedule
 
     private function deleteExistingArchive()
     {
-        @unlink($this->arResult['ARCHIVE_NAME']);
+        Utils::deleteFile($this->arResult['ARCHIVE_NAME']);
 
         return $this;
-    }
-
-    private function cleanFolder($path, $t = '1')
-    {
-        $rtrn = '1';
-        if (file_exists($path) && is_dir($path)) {
-            $dirHandle = opendir($path);
-            while (false !== ($file = readdir($dirHandle))) {
-                if ($file != '.' && $file != '..') {
-                    $tmpPath = $path.'/'.$file;
-                    chmod($tmpPath, 0777);
-                    if (is_dir($tmpPath)) {
-                        $this->cleanFolder($tmpPath);
-                    } else {
-                        if (file_exists($tmpPath)) {
-                            unlink($tmpPath);
-                        }
-                    }
-                }
-            }
-            closedir($dirHandle);
-            if ($t == '1') {
-                if (file_exists($path)) {
-                    rmdir($path);
-                }
-            }
-        } else {
-            $rtrn = '0';
-        }
-
-        return $rtrn;
     }
 
     public function executeComponent()
@@ -427,9 +372,9 @@ class MeetingsAllSchedule extends MeetingsSchedule
                  ->generatePDF()
                  ->makeArchive();
             $this->sendEmail();
-            $this->cleanFolder($this->arResult['PDF_FOLDER']);
+            Utils::cleanFolder($this->arResult['PDF_FOLDER']);
         } catch (\Exception $e) {
-            $this->cleanFolder($this->arResult['PDF_FOLDER']);
+            Utils::cleanFolder($this->arResult['PDF_FOLDER']);
             ShowError($e->getMessage());
         }
     }
