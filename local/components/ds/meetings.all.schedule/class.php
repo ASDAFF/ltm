@@ -17,13 +17,6 @@ CBitrixComponent::includeComponentClass('ds:meetings.schedule');
 
 class MeetingsAllSchedule extends MeetingsSchedule
 {
-    protected function init()
-    {
-
-
-        return parent::init();
-    }
-
     public function onPrepareComponentParams($arParams): array
     {
         return [
