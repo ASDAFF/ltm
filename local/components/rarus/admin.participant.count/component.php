@@ -486,7 +486,7 @@ SWIFT: CBVILT2X";
 			}; break;
             
     	case "IPALFA" : {
-$data["BENEFICIARY"] = "Polanskiy Artem Valentinovich,
+$data["BENEFICIARY"] = "Polanskii Artem Valentinovich,
 registered as independent entrepreneur
 with State Registration Number 309503525800010
 at Federal Tax Service Inspectorate in
@@ -502,13 +502,13 @@ Pavlosvkiy Posad, Moscow Region
 
 Moscow, Russia";
 
-$data["BANK_DETAILS"] = "Beneficiary's name: IP POLANSKIY ARTEM VALENTINOVICH
+$data["BANK_DETAILS"] = "Beneficiary's name: IP POLANSKII ARTEM VALENTINOVICH
 Beneficiary acc. No: 40802978702620000127
 SWIFT: ALFARUMM
 Beneficiary's Bank: AO «ALFA-BANK»
 Beneficiary's bank address: 27 Kalanchevskaya str., Moscow, 107078";
 
-$data["BENEFICIARY_NAME"] = "Artem V. Polanskiy / Поланский Артём Валентинович";
+$data["BENEFICIARY_NAME"] = "Artem V. Polanskii / Поланский Артём Валентинович";
     	}; break;
 
 			case "TMI" : {
