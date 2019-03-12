@@ -29,6 +29,7 @@ class RequestTable extends DataManager
     ];
 
     static $freeStatuses = [self::STATUS_REJECTED, self::STATUS_TIMEOUT, self::STATUS_EMPTY];
+    static $freeStatusName = 'free';
 
     public static function getTableName(): string
     {
@@ -121,9 +122,9 @@ class RequestTable extends DataManager
                         '=RECEIVER_ID' => $users[0],
                     ],
                 ],
-                '!=STATUS'     => array_map(function ($status) {
+                '!=STATUS'       => array_map(function ($status) {
                     return self::$statuses[$status];
-                }, self::$freeStatuses)
+                }, self::$freeStatuses),
             ],
         ])->fetchAll();
     }
