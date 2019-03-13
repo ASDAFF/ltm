@@ -18,11 +18,10 @@ class MeetingsMatrix extends MeetingsRequest
     public function onPrepareComponentParams($arParams): array
     {
         return [
-            'EXHIBITION_CODE'      => (int)$arParams['EXHIBITION_CODE'],
+            'EXHIBITION_CODE'      => (string)$arParams['EXHIBITION_CODE'],
             'EXHIBITION_IBLOCK_ID' => (int)$arParams['EXHIBITION_IBLOCK_ID'],
             'USER_TYPE'            => (string)$arParams['USER_TYPE'],
             'IS_HB'                => isset($arParams['IS_HB']) && $arParams['IS_HB'] === 'Y' ? true : false,
-            'APP_ID'               => (int)$arParams['APP_ID'],
             'USERS_COUNT_PER_PAGE' => (int)$arParams['USERS_COUNT_PER_PAGE'],
         ];
     }
@@ -265,10 +264,11 @@ class MeetingsMatrix extends MeetingsRequest
         $this->arResult['PAGINATION'] = @ob_get_clean();
 
         while ($user = $rsUsers->fetch()) {
+            $userId = $isGuest ? $user['UF_USER_ID'] : $user['ID'];
             $company = [
-                'ID'       => $user['ID'],
-                'NAME'     => $this->arResult['USERS'][$user['ID']]['COMPANY'],
-                'REP'      => $this->arResult['USERS'][$user['ID']]['NAME'],
+                'ID'       => $userId,
+                'NAME'     => $this->arResult['USERS'][$userId]['COMPANY'],
+                'REP'      => $this->arResult['USERS'][$userId]['NAME'],
                 'SCHEDULE' => [],
             ];
 
@@ -277,15 +277,15 @@ class MeetingsMatrix extends MeetingsRequest
                     'TIMESLOT_ID'   => $timeslot['ID'],
                     'TIMESLOT_NAME' => $timeslot['NAME'],
                 ];
-                $arRequests = array_filter($this->arResult['REQUESTS'], function ($item) use ($timeslot, $user) {
+                $arRequests = array_filter($this->arResult['REQUESTS'], function ($item) use ($timeslot, $userId) {
                     return (int)$item['TIMESLOT_ID'] === (int)$timeslot['ID'] &&
-                           ((int)$user['ID'] === (int)$item['RECEIVER_ID'] || (int)$user['ID'] === (int)$item['SENDER_ID']);
+                           ((int)$userId === (int)$item['RECEIVER_ID'] || (int)$userId === (int)$item['SENDER_ID']);
                 });
                 if (count($arRequests) > 0) {
                     $request                    = array_values($arRequests)[0];
                     $schedule['STATUS']         = $request['STATUS'];
                     $schedule['IS_BUSY']        = true;
-                    $isSender                   = (int)$user['ID'] === (int)$request['SENDER_ID'];
+                    $isSender                   = (int)$userId === (int)$request['SENDER_ID'];
                     $schedule['USER_IS_SENDER'] = $isSender;
                     $oppositeUserId             = $isSender ? $request['RECEIVER_ID'] : $request['SENDER_ID'];
                     $oppositeUserId             = (int)$oppositeUserId;

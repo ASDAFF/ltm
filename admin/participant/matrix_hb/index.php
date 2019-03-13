@@ -2,7 +2,6 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Участники Матрица HB");
 $close     = true;
-$appCode   = 1;
 $exhibCode = trim($_REQUEST["EXHIBIT_CODE"]);
 ?>
 <? $APPLICATION->IncludeComponent(
@@ -14,7 +13,6 @@ $exhibCode = trim($_REQUEST["EXHIBIT_CODE"]);
         "CACHE_NOTES"          => "",
         "EXHIBITION_IBLOCK_ID" => "15",
         "EXHIBITION_CODE"      => $exhibCode,
-        "APP_ID"               => $appCode,
         "USER_TYPE"            => "PARTICIPANT",
         "USERS_COUNT_PER_PAGE" => 30,
         "IS_HB"                => "Y",

@@ -90,7 +90,6 @@ class App
                 $arFilter['PROPERTY_APP_ID'] = $this->filter['ID'];
             }
         }
-
         $rsExhib = \CIBlockElement::GetList([], $arFilter);
         if ($oExhib = $rsExhib->GetNextElement(true, false)) {
             $this->data               = $oExhib->GetFields();
