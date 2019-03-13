@@ -13,6 +13,8 @@ CBitrixComponent::includeComponentClass('ds:meetings.request');
 
 class MeetingsMatrix extends MeetingsRequest
 {
+    private $paginationId = 'matrix';
+
     public function onPrepareComponentParams($arParams): array
     {
         return [
@@ -205,11 +207,16 @@ class MeetingsMatrix extends MeetingsRequest
         global $APPLICATION;
         $isGuest     = $this->arResult['USER_TYPE'] !== User::PARTICIPANT_TYPE;
         $navNum      = $GLOBALS['NavNum'] ?: 1;
-        $nav         = new \Bitrix\Main\UI\PageNavigation("PAGEN_{$navNum}");
+        $nav         = new \Bitrix\Main\UI\PageNavigation($this->paginationId);
         $currentPage = $_REQUEST["PAGEN_{$navNum}"] ?: 1;
+        $showAll     = (int)$_REQUEST["SHOWALL_{$navNum}"];
         $nav->allowAllRecords(true)
             ->setPageSize($this->arParams['USERS_COUNT_PER_PAGE'])
             ->setCurrentPage($currentPage);
+        // hack for page with all elements. See $requiredParams in getBaseLink
+        if ($showAll > 0) {
+            $nav->initFromUri();
+        }
         if ($isGuest) {
             $filter = ['UF_USER_ID' => $this->arResult['GUESTS_ID']];
             if ($this->arParams['IS_HB']) {
@@ -243,12 +250,16 @@ class MeetingsMatrix extends MeetingsRequest
         $dbResult->NavPageSize    = $nav->getPageSize();
         $dbResult->NavRecordCount = $nav->getRecordCount();
         $dbResult->bShowAll       = true;
+        if ($showAll) {
+            $dbResult->NavShowAll = true;
+        }
 
         ob_start();
         $APPLICATION->IncludeComponent('bitrix:system.pagenavigation', '', [
             'NAV_RESULT'  => $dbResult,
             'SHOW_ALWAYS' => 'Y',
             'NAV_TITLE'   => Loc::getMessage('USERS'),
+            'BASE_LINK'   => $this->getBaseLink($navNum),
         ]);
 
         $this->arResult['PAGINATION'] = @ob_get_clean();
@@ -291,6 +302,24 @@ class MeetingsMatrix extends MeetingsRequest
         }
 
         return $this;
+    }
+
+    private function getBaseLink($navNum)
+    {
+        $sUrlPath       = GetPagePath(false, false);
+        $delParam       = array_merge(
+            [
+                "PAGEN_{$navNum}",
+                "SIZEN_{$navNum}",
+                "SHOWALL_{$navNum}",
+                "PHPSESSID",
+            ],
+            \Bitrix\Main\HttpRequest::getSystemParameters()
+        );
+        $navQueryString = htmlspecialcharsbx(DeleteParam($delParam));
+        $requiredParams = "{$this->paginationId}=page-all";
+
+        return $sUrlPath.'?'.$requiredParams.'&'.($navQueryString <> '' ? $navQueryString.'&' : '');
     }
 
     public function executeComponent()
