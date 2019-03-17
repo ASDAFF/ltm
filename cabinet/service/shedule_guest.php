@@ -4,25 +4,19 @@ $APPLICATION->SetTitle("Назначение встреч");
 ?>
 <?
 $APPLICATION->IncludeComponent(
-	"doka:meetings.schedule",
-	"",
-	Array(
-		"CACHE_TYPE" => "A",
-		"CACHE_TIME" => "3600",
-		"APP_ID" => $_REQUEST["app"],
-		"USER_TYPE" => "GUEST",
-		"USER_ID" => $_REQUEST["id"],
-		"EXIB_CODE" => $_REQUEST["exhib"],
-		"MESSAGE_LINK" => "/ru/personal/service/write.php",
-		"SEND_REQUEST_LINK" => "/ru/personal/service/write.php",
-		"CONFIRM_REQUEST_LINK" => "/ru/personal/service/write.php",
-		"REJECT_REQUEST_LINK" => "/ru/personal/service/write.php",
-		"CUT" => "10",
-		"HALL" => "10",
-		"TABLE" => "10",
-		"FORM_RESULT" => "UF_ID_COMP",
-		"FORM_RESULT2" => "UF_ID2"
-	),
-false
-);?> 
+    "ds:meetings.schedule",
+    "",
+    [
+        "CACHE_TYPE" => "A",
+        "CACHE_TIME" => "3600",
+        "EXHIBITION_IBLOCK_ID" => "15",
+        "MESSAGE_LINK" => "/service/write.php",
+        "SEND_REQUEST_LINK" => "/service/appointment.php",
+        "CONFIRM_REQUEST_LINK" => "/service/appointment_confirm.php",
+        "REJECT_REQUEST_LINK" => "/service/appointment_del.php",
+        "RESERVE_REQUEST_LINK" => "/ajax/time_reserve.php",
+        "USER_TYPE" => 'GUEST'
+    ],
+    false
+);?>
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

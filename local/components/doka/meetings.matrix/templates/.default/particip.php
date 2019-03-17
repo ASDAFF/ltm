@@ -40,7 +40,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 									"%TIME%" => $timeslot['id']
 								];
 								$params = str_replace(array_keys($values), array_values($values), $arResult["LINKS"]["reject"]["LINK_PARAMS"]);
-								$linkURL = $arResult["LINKS"]["reject"]["LINK"]."?".http_build_query($params);
+								$linkURL = $arResult["LINKS"]["reject"]["LINK"]."?".http_build_query($params)."&type=p";
 								?>
 								<a href="<?$linkURL?>" target="_blank"
 									 onclick="newWindConfirm('<?=$linkURL?>', 500, 400, 'Вы хотите отменить запрос?'); return false;">
@@ -54,7 +54,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 							"%TIME%" => $timeslot['id']
 						];
 						$params = str_replace(array_keys($values), array_values($values), $arResult["LINKS"]["reserve_cancel"]["LINK_PARAMS"]);
-						$reserveLink = $arResult["LINKS"]["reserve_cancel"]["LINK"]."?".http_build_query($params);
+						$reserveLink = $arResult["LINKS"]["reserve_cancel"]["LINK"]."?".http_build_query($params)."&type=p";
 						?>
 							<td class="reserved">
 								Забронирован<br />
@@ -84,14 +84,14 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 									"%TIME%" => $timeslot['id']
 								];
 								$params = str_replace(array_keys($values), array_values($values), $arResult["LINKS"]["confirm"]["LINK_PARAMS"]);
-								$linkURL = $arResult["LINKS"]["confirm"]["LINK"]."?".http_build_query($params);
+								$linkURL = $arResult["LINKS"]["confirm"]["LINK"]."?".http_build_query($params)."&type=p";
 								?>
 								<a href="<?=$linkURL?>" target="_blank" onclick="newWind('<?=$linkURL?>', 500, 400); return false;)">
 									<?=$arResult["LINKS"]["confirm"]["TITLE"]?>
 								</a><br />
 								<?
 								$params = str_replace(array_keys($values), array_values($values), $arResult["LINKS"]["reject"]["LINK_PARAMS"]);
-								$linkURL = $arResult["LINKS"]["reject"]["LINK"]."?".http_build_query($params);
+								$linkURL = $arResult["LINKS"]["reject"]["LINK"]."?".http_build_query($params)."&type=p";
 								?>
                 <a href="<?$linkURL?>" target="_blank"
 									 onclick="newWindConfirm('<?=$linkURL?>', 500, 400, 'Вы хотите отменить запрос?'); return false;">
@@ -106,7 +106,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 											"%TIME%" => $timeslot['id']
 										];
 										$params = str_replace(array_keys($values), array_values($values), $link["LINK_PARAMS"]);
-										$linkURL = $link["LINK"]."?".http_build_query($params);
+										$linkURL = $link["LINK"]."?".http_build_query($params)."&type=p";
 										$classNames = array_merge([$link_code], $link["CLASS"]);
 									?>
 									<a href="<?=$linkURL?>" target="_blank" data-timeslot="<?=$timeslot['id']?>" class="<?=implode(" ", $classNames)?>">

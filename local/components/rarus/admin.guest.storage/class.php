@@ -1,10 +1,10 @@
 <? if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
-use \Bitrix\Main\Localization\Loc;
-use \Bitrix\Main\Loader;
+
+use Bitrix\Main\Loader;
 use Ltm\Domain\GuestStorage\FormResult as LtmFormResult;
-use Bitrix\Highloadblock as HL;
-use Ltm\Domain\HlblockOrm\Manager as HlBlockManager;
 use Ltm\Domain\GuestStorage\Manager as GuestStorageManager;
+use Ltm\Domain\HlblockOrm\Manager as HlBlockManager;
+use Spectr\Meeting\Models\GuestStorageTable;
 
 class CAdminGuestStorage extends CBitrixComponent
 {
@@ -78,12 +78,9 @@ class CAdminGuestStorage extends CBitrixComponent
 	{
 		$request = self::getRequest();
 
-		$obGS = new CLTMGuestStorage();
-
-		$res = $obGS->putInWorking($request->get('ID'), $request->get('EXHIBITION'), $request->get('MORNING'), $request->get('EVENING'));
-
-		if(!$res){
-			$this->errors = array_merge($this->errors, $obGS->errors);
+    $res = GuestStorageTable::moveToExib($request->get('ID'), $request->get('EXHIBITION'), $request->get('MORNING'), $request->get('EVENING'));
+		if($res){
+			LocalRedirect($this->arResult['ACTION_URL']);
 		}
 	}
 
@@ -243,19 +240,19 @@ class CAdminGuestStorage extends CBitrixComponent
 		}
 		while ($data = $listRes->Fetch()) {
 			$item = $data;
-			$colleagues = $entityColleague::getList(['filter' => ['UF_USER_ID' => $data['UF_USER_ID']]]);
-			foreach ($colleagues as $colleague) {
-				if(in_array(LtmFormResult::MORNING_VAL, $colleague['UF_DAYTIME'])) {
-					$item['MORNING_COLLEAGUE_NAME'] = $colleague['UF_NAME'].' '.$colleague['UF_SURNAME'];
-					$item['MORNING_COLLEAGUE_EMAIL'] = $colleague['UF_EMAIL'];
-					$item['MORNING_COLLEAGUE_JOB_TITLE'] = $colleague['UF_JOB_TITLE'];
-				}
-				if(in_array(LtmFormResult::EVENING_VAL, $colleague['UF_DAYTIME']) && empty($item['EVENING_COLLEAGUE_NAME'])) {
-					$item['EVENING_COLLEAGUE_NAME'] = $colleague['UF_NAME'].' '.$colleague['UF_SURNAME'];
-					$item['EVENING_COLLEAGUE_EMAIL'] = $colleague['UF_EMAIL'];
-					$item['EVENING_COLLEAGUE_JOB_TITLE'] = $colleague['UF_JOB_TITLE'];
-				}
-			}
+            foreach ($data['UF_COLLEAGUES'] as $colleagueId) {
+                $colleague = $entityColleague::getRowById($colleagueId);
+                if (in_array(LtmFormResult::MORNING_VAL, $colleague['UF_DAYTIME'])) {
+                    $item['MORNING_COLLEAGUE_NAME'] = $colleague['UF_NAME'] . ' ' . $colleague['UF_SURNAME'];
+                    $item['MORNING_COLLEAGUE_EMAIL'] = $colleague['UF_EMAIL'];
+                    $item['MORNING_COLLEAGUE_JOB_TITLE'] = $colleague['UF_JOB_TITLE'];
+                }
+                if (in_array(LtmFormResult::EVENING_VAL, $colleague['UF_DAYTIME']) && empty($item['EVENING_COLLEAGUE_NAME'])) {
+                    $item['EVENING_COLLEAGUE_NAME'] = $colleague['UF_NAME'] . ' ' . $colleague['UF_SURNAME'];
+                    $item['EVENING_COLLEAGUE_EMAIL'] = $colleague['UF_EMAIL'];
+                    $item['EVENING_COLLEAGUE_JOB_TITLE'] = $colleague['UF_JOB_TITLE'];
+                }
+            }
 			$item['UF_COUNTRY'] = $countries[$item['UF_COUNTRY']];
 			$item['UF_FULL_ADDRESS'] = $item['UF_POSTCODE'].', '.$item['UF_ADDRESS'];
 			$this->arResult['USERS'][$data['UF_USER_ID']] = $item;
@@ -394,6 +391,9 @@ class CAdminGuestStorage extends CBitrixComponent
 		if(!Loader::includeModule('ltm.domain')){
 			$this->errors[] = 'ltm.domain module is not installed';
 		}
+        if (!Loader::includeModule('doka.meetings')) {
+            $this->errors[] = 'ltm.domain module is not installed';
+        }
 	}
 
 	/**
