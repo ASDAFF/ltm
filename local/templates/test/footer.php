@@ -35,8 +35,9 @@ if($exhibCode)
 	".default", 
 	array(
 		"USER_GROUP_ID" => array(
-			0 => "21",
-			1 => "55",
+			0 => "46",
+			1 => "42",
+			2 => "50",
 		),
 		"FORM_FIELD_COMPANY_NAME_ID" => "17",
 		"FORM_FIELD_LOGIN_ID" => "18",
