@@ -27,21 +27,21 @@ class MeetingsRequestConfirm extends MeetingsRequest
 
         switch ($this->arResult['USER_TYPE']) {
             case User::GUEST_TYPE:
-                $this->arResult['SENDER']   = $this->user->getUserInfo($this->arResult['SENDER_ID'], true);
-                $this->arResult['RECEIVER'] = $this->user->getUserInfo($this->arResult['RECEIVER_ID'], false);
-                break;
-            case User::PARTICIPANT_TYPE:
                 $this->arResult['SENDER']   = $this->user->getUserInfo($this->arResult['SENDER_ID'], false);
                 $this->arResult['RECEIVER'] = $this->user->getUserInfo($this->arResult['RECEIVER_ID'], true);
+                break;
+            case User::PARTICIPANT_TYPE:
+                $this->arResult['SENDER']   = $this->user->getUserInfo($this->arResult['SENDER_ID'], true);
+                $this->arResult['RECEIVER'] = $this->user->getUserInfo($this->arResult['RECEIVER_ID'], false);
                 break;
             default:
                 $senderType = $this->user->getUserTypeById($this->arResult['SENDER_ID']);
                 if ($senderType === User::GUEST_TYPE) {
-                    $this->arResult['SENDER']   = $this->user->getUserInfo($this->arResult['SENDER_ID'], true);
-                    $this->arResult['RECEIVER'] = $this->user->getUserInfo($this->arResult['RECEIVER_ID'], false);
-                } else {
                     $this->arResult['SENDER']   = $this->user->getUserInfo($this->arResult['SENDER_ID'], false);
                     $this->arResult['RECEIVER'] = $this->user->getUserInfo($this->arResult['RECEIVER_ID'], true);
+                } else {
+                    $this->arResult['SENDER']   = $this->user->getUserInfo($this->arResult['SENDER_ID'], true);
+                    $this->arResult['RECEIVER'] = $this->user->getUserInfo($this->arResult['RECEIVER_ID'], false);
                 }
         }
 

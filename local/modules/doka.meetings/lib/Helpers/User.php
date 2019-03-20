@@ -75,12 +75,8 @@ class User
      **/
     public function getUserTypeById(int $userId)
     {
-        global $USER;
-
         $arGroups = \CUser::GetUserGroup($userId);
-        if ($this->isAdmin($arGroups) || $USER->IsAdmin()) {
-            $userType = self::ADMIN_TYPE;
-        } elseif ($this->isGuest($arGroups)) {
+        if ($this->isGuest($arGroups)) {
             $userType = self::GUEST_TYPE;
         } else {
             $userType = self::PARTICIPANT_TYPE;
