@@ -329,20 +329,20 @@ class MeetingsSchedule extends MeetingsRequest
                 if ((int)$user['ID'] === (int)$request['MODIFIED_BY']) {
                     $msg = Loc::getMessage("{$user['USER_TYPE']}_SENT_BY_YOU");
                 } else {
-                    $msg = Loc::getMessage("${user['USER_TYPE']}_SENT_TO_YOU");
+                    $msg = Loc::getMessage("{$user['USER_TYPE']}_SENT_TO_YOU");
                 }
                 break;
             case RequestTable::$statuses[RequestTable::STATUS_CONFIRMED]:
                 if ((int)$user['ID'] === (int)$request['MODIFIED_BY']) {
-                    $msg = Loc::getMessage("${user['USER_TYPE']}_CONFIRMED_SELF");
+                    $msg = Loc::getMessage("{$user['USER_TYPE']}_CONFIRMED_SELF");
                 } else {
                     if (
                         (int)$request['MODIFIED_BY'] === (int)$request['SENDER_ID'] ||
                         (int)$request['MODIFIED_BY'] === (int)$request['RECEIVER_ID']
                     ) {
-                        $msg = Loc::getMessage("${user['USER_TYPE']}_CONFIRMED");
+                        $msg = Loc::getMessage("{$user['USER_TYPE']}_CONFIRMED");
                     } else {
-                        $msg = Loc::getMessage("${$user['USER_TYPE']}_CONFIRMED_BY_ADMIN");
+                        $msg = Loc::getMessage("{$user['USER_TYPE']}_CONFIRMED_BY_ADMIN");
                     }
                 }
                 break;
