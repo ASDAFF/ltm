@@ -121,7 +121,7 @@ class MeetingsMatrix extends MeetingsRequest
         foreach ($this->arResult['TIMESLOTS'] as $timeslot) {
             $timeslotRequests = array_filter($this->arResult['REQUESTS'],
                 function ($item) use ($timeslot) {
-                    return (int)$item['TIMESLOT'] === (int)$timeslot['ID'];
+                    return (int)$item['TIMESLOT_ID'] === (int)$timeslot['ID'];
                 });
             $deniedReceivers  = array_map(function ($item) {
                 return $item['RECEIVER_ID'];
@@ -131,7 +131,7 @@ class MeetingsMatrix extends MeetingsRequest
             }, $timeslotRequests);
             $deniedCompanies  = array_unique(array_merge($deniedReceivers, $deniedSenders));
             $freeCompanies    = array_filter($oppositeUsers, function ($item) use ($deniedCompanies) {
-                return !in_array($item, $deniedCompanies);
+                return !in_array($item['ID'], $deniedCompanies);
             });
 
             $this->arResult['TIMESLOTS_WITH_FREE_COMPANIES'][$timeslot['ID']] = [
