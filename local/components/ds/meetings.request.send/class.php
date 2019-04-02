@@ -21,7 +21,7 @@ class MeetingsRequestSend extends MeetingsRequest
     {
         global $USER;
         $this->arResult['RECEIVER_ID'] = (int)$_REQUEST['to'];
-        if (isset($_REQUEST['id']) && ($this->arResult['USER_TYPE'] === User::ADMIN_TYPE|| (int)$USER->GetID() === 1)) {
+        if (isset($_REQUEST['id']) && ($this->arResult['USER_TYPE'] === User::ADMIN_TYPE)) {
             $this->arResult['SENDER_ID'] = (int)$_REQUEST['id'];
         } else {
             $this->arResult['SENDER_ID'] = $USER->GetID();

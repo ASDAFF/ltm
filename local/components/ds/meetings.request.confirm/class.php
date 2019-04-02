@@ -24,26 +24,27 @@ class MeetingsRequestConfirm extends MeetingsRequest
             $this->arResult['SENDER_ID']   = (int)$_REQUEST['to'];
             $this->arResult['RECEIVER_ID'] = $USER->GetID();
         }
-
         switch ($this->arResult['USER_TYPE']) {
             case User::GUEST_TYPE:
-                $this->arResult['SENDER']   = $this->user->getUserInfo($this->arResult['SENDER_ID'], false);
-                $this->arResult['RECEIVER'] = $this->user->getUserInfo($this->arResult['RECEIVER_ID'], true);
+                $isSenderParticipant   = false;
+                $isReceiverParticipant = true;
                 break;
             case User::PARTICIPANT_TYPE:
-                $this->arResult['SENDER']   = $this->user->getUserInfo($this->arResult['SENDER_ID'], true);
-                $this->arResult['RECEIVER'] = $this->user->getUserInfo($this->arResult['RECEIVER_ID'], false);
+                $isSenderParticipant   = true;
+                $isReceiverParticipant = false;
                 break;
             default:
                 $senderType = $this->user->getUserTypeById($this->arResult['SENDER_ID']);
                 if ($senderType === User::GUEST_TYPE) {
-                    $this->arResult['SENDER']   = $this->user->getUserInfo($this->arResult['SENDER_ID'], false);
-                    $this->arResult['RECEIVER'] = $this->user->getUserInfo($this->arResult['RECEIVER_ID'], true);
+                    $isSenderParticipant   = false;
+                    $isReceiverParticipant = true;
                 } else {
-                    $this->arResult['SENDER']   = $this->user->getUserInfo($this->arResult['SENDER_ID'], true);
-                    $this->arResult['RECEIVER'] = $this->user->getUserInfo($this->arResult['RECEIVER_ID'], false);
+                    $isSenderParticipant   = true;
+                    $isReceiverParticipant = false;
                 }
         }
+        $this->arResult['SENDER']   = $this->user->getUserInfo($this->arResult['SENDER_ID'], $isSenderParticipant);
+        $this->arResult['RECEIVER'] = $this->user->getUserInfo($this->arResult['RECEIVER_ID'], $isReceiverParticipant);
 
         $this->checkSenderAndReceiver();
         $this->getTimeslot();

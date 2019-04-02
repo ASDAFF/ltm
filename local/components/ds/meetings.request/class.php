@@ -96,17 +96,7 @@ class MeetingsRequest extends CBitrixComponent
 
     protected function getUserType()
     {
-        global $USER;
-
-        if (isset($_REQUEST['type']) && $USER->GetID() == 1) {
-            if ($_REQUEST['type'] === 'p') {
-                $userType = User::PARTICIPANT_TYPE;
-            } else {
-                $userType = User::GUEST_TYPE;
-            }
-        } else {
-            $userType = $this->user->getUserType();
-        }
+        $userType = $this->user->getUserType();
 
         $this->arResult['USER_TYPE']      = $userType;
         $this->arResult['USER_TYPE_NAME'] = User::$userTypes[$userType];
