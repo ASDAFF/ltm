@@ -86,6 +86,7 @@ class MeetingsMatrix extends MeetingsRequest
                 'EXHIBITION_ID' => $this->arResult['APP_ID'],
                 'SLOT_TYPE'     => TimeslotTable::$types[TimeslotTable::TYPE_MEET],
             ],
+            'order' => ['SORT' => 'ASC']
         ])->fetchAll();
 
         return $this;
