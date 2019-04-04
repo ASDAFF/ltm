@@ -157,13 +157,14 @@ class MeetingsRequestSend extends MeetingsRequest
      */
     private function addRequest()
     {
+        global $USER;
         $dateTime = new DateTime();
         $fields   = [
             'RECEIVER_ID'   => $this->arResult['RECEIVER_ID'],
             'SENDER_ID'     => $this->arResult['SENDER_ID'],
             'CREATED_AT'    => $dateTime,
             'UPDATED_AT'    => $dateTime,
-            'MODIFIED_BY'   => $this->arResult['SENDER_ID'],
+            'MODIFIED_BY'   => $USER->GetID(),
             'EXHIBITION_ID' => $this->arResult['APP_ID'],
             'TIMESLOT_ID'   => $this->arResult['TIMESLOT']['ID'],
             'STATUS'        => $this->arResult['USER_TYPE'] === User::ADMIN_TYPE
